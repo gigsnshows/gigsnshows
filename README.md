@@ -48,6 +48,12 @@ If a browser-rendered source returns 0 events, open its URL in a normal browser,
 3. Actions tab → enable workflows. Run "Refresh listings" once manually to seed it.
 4. Your dashboard is at `https://<you>.github.io/<repo>/`. It refreshes at 07:00 and 17:00 IST daily.
 
+This site lives at **https://gigsnshows.com** (repo `gigsnshows/gigsnshows`, domain DNS at GoDaddy pointing to GitHub Pages).
+
+**Two collectors.** District and BookMyShow refuse GitHub's cloud servers, so:
+- GitHub's scheduled run (07:00 / 17:00 IST) refreshes NCPA, NMACC, Skillbox and thumpN, and keeps District/BookMyShow's last known shows (a source that returns nothing never wipes its listings).
+- `collect-local.sh` runs the full collection from a Mac at 07:30 / 17:30 (or on wake if asleep) and uploads it, using a repo deploy key at `~/.ssh/gigsnshows_deploy`. It runs from its own clone at `~/.gigsnshows-collector`, scheduled by `~/Library/LaunchAgents/com.gigsnshows.collect.plist`; log in `~/Library/Logs/gigsnshows-collect.log`. To stop it: `launchctl bootout gui/$(id -u)/com.gigsnshows.collect`.
+
 Friends get their own city with a link like `…/?city=delhi&tab=comedy`, or share a single show from its card.
 
 ## 4. Adding a source
