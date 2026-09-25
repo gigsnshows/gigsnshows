@@ -1,0 +1,108 @@
+# Where listings come from. Add a source by adding a block here; no code needed
+# unless the site needs its own parser (see scrapers/parsers.py).
+#
+# Fields
+#   name           Label shown on the dashboard.
+#   parser         jsonld        schema.org Event data embedded in the page
+#                  district      District's server-rendered listing pages
+#                  ncpa          NCPA's WordPress site
+#                  detail_pages  collect links matching link_pattern from the page
+#                                (or an XML sitemap), then read each linked page
+#   render         true if the listing page only fills in with JavaScript
+#   render_details true if the individual event pages also need JavaScript
+#   wait_ms        how long to let a rendered page load (default 2500)
+#   url            a URL template; {city} and {category} are filled from the maps below
+#   cities         our city name -> the slug this site uses
+#   categories     our category -> the slug this site uses. A slug can be a LIST of
+#                  candidates; the first one that returns events is used.
+#   urls           instead of a template, an explicit list of {url, city, category}
+#   default_category  used when a listing gives no category and the title doesn't
+#                  make it obvious (otherwise such events are dropped)
+#   link_pattern / max_pages   for detail_pages: which links are events, how many to read
+#
+# The city a listing page is for is only a fallback: every show is filed under the city
+# its own venue/address names (see scrapers/cities.py), because city pages on these sites
+# mix in shows from elsewhere. So a new city appears on the dashboard as soon as any
+# source lists a show there; adding it below just makes sure we ask for its page too.
+
+- name: District
+  parser: district
+  url: https://www.district.in/activities/{category}-in-{city}
+  cities: {Mumbai: mumbai, Delhi: delhi-ncr, Bengaluru: bengaluru, Pune: pune, Hyderabad: hyderabad,
+           Chennai: chennai, Kolkata: kolkata, Ahmedabad: ahmedabad, Jaipur: jaipur, Goa: goa, Kochi: kochi,
+           Chandigarh: chandigarh, Lucknow: lucknow, Indore: indore, Surat: surat, Vadodara: vadodara,
+           Nagpur: nagpur, Bhopal: bhopal, Coimbatore: coimbatore, Guwahati: guwahati, Dehradun: dehradun}
+  categories:
+    music: music
+    theatre: [performances, theatre, plays, theatre-shows]
+    sports: sports
+    comedy: [comedy, comedy-shows]
+
+- name: NCPA
+  parser: ncpa
+  urls:
+    - {url: https://www.ncpamumbai.com/, city: Mumbai}
+
+- name: NMACC
+  parser: detail_pages
+  render: true
+  link_pattern: /performing-arts/
+  urls:
+    - {url: https://www.nmacc.com/calendar/, city: Mumbai}
+
+- name: BookMyShow
+  parser: jsonld
+  render: true
+  url: https://in.bookmyshow.com/explore/{category}-{city}
+  # Browser-rendered sources are slow, so they cover the biggest cities only.
+  cities: &bms_cities {Mumbai: mumbai, Delhi: national-capital-region-ncr, Bengaluru: bengaluru, Pune: pune,
+                       Hyderabad: hyderabad, Chennai: chennai, Kolkata: kolkata, Ahmedabad: ahmedabad,
+                       Jaipur: jaipur, Goa: goa, Chandigarh: chandigarh}
+  categories:
+    music: music-shows
+    comedy: comedy-shows
+
+# BookMyShow's theatre/sports listing pages only embed a bare {url, name} ItemList
+# (no date/venue), unlike music/comedy which embed a full MusicEvent per item.
+# So these read the listing page for links, then pull the real event data
+# (a *TheaterEvent/SportsEvent node) off each individual event page instead.
+- name: BookMyShow Plays
+  parser: detail_pages
+  render: true
+  render_details: true
+  link_pattern: /plays/
+  default_category: theatre
+  url: https://in.bookmyshow.com/explore/plays-{city}
+  cities: *bms_cities
+
+- name: BookMyShow Sports
+  parser: detail_pages
+  render: true
+  render_details: true
+  link_pattern: /sports/
+  default_category: sports
+  url: https://in.bookmyshow.com/explore/sports-{city}
+  cities: *bms_cities
+
+- name: Skillbox
+  parser: detail_pages
+  render: true
+  render_details: true      # event pages are also browser-rendered; slower but needed
+  link_pattern: /events/
+  max_pages: 40
+  default_category: music
+  url: https://www.skillboxes.com/events-{city}
+  cities: {Mumbai: mumbai, Delhi: delhi, Bengaluru: bengaluru, Pune: pune, Hyderabad: hyderabad,
+           Chennai: chennai, Kolkata: kolkata, Ahmedabad: ahmedabad, Jaipur: jaipur, Goa: goa,
+           Chandigarh: chandigarh}
+
+- name: thumpN
+  parser: detail_pages
+  render: true
+  wait_ms: 6000
+  link_pattern: /event/
+  max_pages: 250            # the sitemap lists every thumpN show, across all cities
+  default_category: music
+  urls:
+    - {url: https://thumpn.com/sitemap.xml, city: Mumbai}
+    - {url: https://thumpn.com/, city: Mumbai}

@@ -1,0 +1,29 @@
+name: Refresh listings
+
+on:
+  schedule:
+    - cron: "30 1,11 * * *"   # 07:00 and 17:00 IST every day
+  workflow_dispatch:           # lets you run it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: pip install playwright && playwright install --with-deps chromium
+      - run: python run.py
+      - name: Commit updated listings
+        run: |
+          git config user.name "listings-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/events.json
+          git diff --cached --quiet || git commit -m "Refresh listings $(date -u +%F)"
+          git push

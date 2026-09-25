@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gigsnshows</title>
+<meta name="description" content="Live music, theatre, sports and stand-up across Mumbai, Delhi and Bengaluru, collated from every major ticketing platform.">
+<meta property="og:site_name" content="gigsnshows">
+<meta property="og:title" content="gigsnshows · Gigs & shows in Mumbai, Delhi and Bengaluru">
+<meta property="og:description" content="Live music, theatre, sports and stand-up from every major ticketing platform, in one place.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -6 40 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230a84ff'/%3E%3Cstop offset='1' stop-color='%23ff2d95'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M5 4h30a3 3 0 0 1 3 3v4a3 3 0 0 0 0 6v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4a3 3 0 0 0 0-6V7a3 3 0 0 1 3-3z'/%3E%3Cpath d='M28 7.5v13' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' stroke-dasharray='.01 3.2'/%3E%3Cpolygon fill='%23fff' points='15,8.8 16.29,12.22 19.95,12.39 17.09,14.68 18.06,18.21 15,16.2 11.94,18.21 12.91,14.68 10.05,12.39 13.71,12.22'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --bg-2: #1c1c1e;
+    --bg-3: #2c2c2e;
+    --line: rgba(84,84,88,.65);
+    --ink: rgba(255,255,255,.94);
+    --ink-2: rgba(235,235,245,.60);
+    --ink-3: rgba(235,235,245,.30);
+    --glow: #0a84ff;
+    --glow-ink: #ffffff;
+    --neon: #ff2d95;
+    --brand-font: "Outfit", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --music: #ff9f0a;
+    --theatre: #ff375f;
+    --sports: #64d2ff;
+    --comedy: #30d158;
+    --max: 1280px;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); color: var(--ink); }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
+  :focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; border-radius: 2px; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- ambient glow behind the header, Apple TV-style ---------- */
+  .ambient {
+    position: absolute; inset: 0 0 auto 0; height: 420px; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(520px 260px at 15% -15%, color-mix(in srgb, var(--glow) 16%, transparent), transparent 70%),
+      radial-gradient(460px 240px at 90% -10%, color-mix(in srgb, var(--theatre) 12%, transparent), transparent 70%);
+    filter: blur(30px);
+  }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- top bar: logo · categories · city, Netflix-style ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,0));
+    border-bottom: 1px solid transparent;
+    transition: background 220ms ease, border-color 220ms ease;
+  }
+  .topbar.scrolled { background: rgba(0,0,0,.82); backdrop-filter: blur(20px) saturate(1.6); border-bottom-color: var(--line); }
+  .bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 36px; height: 68px; }
+
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .logo-mark { width: 38px; height: 27px; flex: none; transform: rotate(-12deg); filter: drop-shadow(0 0 7px rgba(255,45,149,.5)); }
+  .logo-word {
+    font-family: var(--brand-font); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
+    background: linear-gradient(90deg, var(--glow) 0%, #8b5cf6 50%, var(--neon) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 6px rgba(255,45,149,.35)) drop-shadow(0 0 10px rgba(10,132,255,.25));
+  }
+  .logo-word b { font-weight: 500; margin: 0 0.02em; }
+
+  .tabs { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { padding: 6px 0; white-space: nowrap; color: var(--ink-2); font-size: 0.92rem; font-weight: 500; transition: color 140ms ease; }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { color: var(--ink); font-weight: 700; }
+
+  .city { position: relative; }
+  .city-btn {
+    display: flex; align-items: center; gap: 6px; padding: 7px 12px 7px 10px; border-radius: 999px;
+    background: rgba(255,255,255,.08); border: 1px solid var(--line); font-size: 0.9rem; font-weight: 600;
+    transition: background 140ms ease;
+  }
+  .city-btn:hover, .city-btn[aria-expanded="true"] { background: rgba(255,255,255,.14); }
+  .city-btn .pin { width: 15px; height: 15px; color: var(--glow); }
+  .city-btn .chev { width: 11px; height: 11px; color: var(--ink-2); transition: transform 160ms ease; }
+  .city-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .city-pop {
+    position: absolute; right: 0; top: calc(100% + 8px); width: 250px; padding: 6px;
+    background: rgba(28,28,30,.96); backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.6);
+  }
+  .city-search {
+    width: 100%; margin: 0 0 6px; padding: 9px 12px; border-radius: 9px; border: 1px solid var(--line);
+    background: rgba(255,255,255,.06); color: var(--ink); font: inherit; font-size: 0.9rem; outline: none;
+  }
+  .city-search:focus { border-color: var(--glow); }
+  .city-menu { margin: 0; padding: 0; list-style: none; max-height: min(360px, 60vh); overflow-y: auto; }
+  .city-menu .none { padding: 10px 12px; color: var(--ink-3); font-size: 0.88rem; cursor: default; }
+  .city-menu li {
+    display: grid; grid-template-columns: 1fr auto 16px; align-items: center; gap: 10px;
+    padding: 10px 10px 10px 12px; border-radius: 9px; font-size: 0.95rem; cursor: pointer;
+  }
+  .city-menu li:hover, .city-menu li:focus-visible { background: var(--bg-3); outline: none; }
+  .city-menu li small { color: var(--ink-3); font-variant-numeric: tabular-nums; font-size: 0.8rem; }
+  .city-menu li svg { width: 16px; height: 16px; color: var(--glow); }
+
+  @media (max-width: 720px) {
+    .bar { grid-template-columns: 1fr auto; grid-template-areas: "logo city" "tabs tabs"; height: auto; column-gap: 12px; row-gap: 2px; padding-top: 10px; padding-bottom: 4px; }
+    .logo { grid-area: logo; }
+    .city { grid-area: city; }
+    .tabs { grid-area: tabs; gap: 20px; }
+    .logo-word { font-size: 1.3rem; }
+    .logo-mark { width: 32px; height: 23px; }
+  }
+
+  /* ---------- trays ---------- */
+  main { padding: 8px 0 64px; min-height: 40vh; position: relative; z-index: 1; }
+  .tray { padding: 28px 0 4px; }
+  .tray-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 0 14px; }
+  .tray h2 {
+    font-weight: 800;
+    font-size: 1.4rem; letter-spacing: -0.02em; margin: 0;
+  }
+  .tray h2 small { display: inline-block; margin-left: 10px; font-weight: 500; color: var(--ink-2); font-size: 0.68em; vertical-align: middle; white-space: nowrap; }
+  .see-all { color: var(--ink-2); font-weight: 600; font-size: 0.85rem; white-space: nowrap; }
+  .see-all:hover { color: var(--ink); }
+
+  .venues { display: flex; gap: 18px; overflow-x: auto; scrollbar-width: none; padding: 2px 20px 16px; margin: 0 -20px; }
+  .venues::-webkit-scrollbar { display: none; }
+  .venue-btn { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 7px; width: 68px; }
+  .venue-avatar {
+    width: 52px; height: 52px; border-radius: 50%; background: var(--bg-2); border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; color: var(--ink-2);
+    transition: border-color 140ms ease, color 140ms ease, background 140ms ease;
+  }
+  .venue-name { font-size: 0.72rem; color: var(--ink-2); text-align: center; line-height: 1.2; }
+  .venue-btn[aria-pressed="true"] .venue-avatar { border-color: var(--glow); background: color-mix(in srgb, var(--glow) 18%, var(--bg-2)); color: var(--glow); }
+  .venue-btn[aria-pressed="true"] .venue-name { color: var(--ink); }
+
+  .shelf-wrap { position: relative; }
+  .shelf {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 232px; gap: 18px;
+    overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: 20px; scroll-behavior: smooth;
+    padding: 4px 20px 16px; margin: 0 -20px; scrollbar-width: none;
+  }
+  .shelf::-webkit-scrollbar { display: none; }
+  .arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; z-index: 6;
+    display: flex; align-items: center; justify-content: center; font-size: 1.35rem; line-height: 1;
+    border-radius: 50%; background: rgba(28,28,30,.85); border: 1px solid var(--line);
+    backdrop-filter: blur(8px); box-shadow: 0 6px 16px rgba(0,0,0,.45);
+    transition: opacity 140ms ease, background 140ms ease;
+  }
+  .arrow:hover { background: rgba(58,58,60,.92); }
+  .arrow:disabled { opacity: 0; pointer-events: none; }
+  .arrow.prev { left: 4px; }
+  .arrow.next { right: 4px; }
+  @media (max-width: 640px) { .arrow { display: none; } }
+
+  .tile { scroll-snap-align: start; }
+  .art {
+    position: relative; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;
+    background: var(--bg-3); box-shadow: 0 10px 24px rgba(0,0,0,.5); margin-bottom: 12px;
+    transition: transform 200ms cubic-bezier(.2,.8,.2,1), box-shadow 200ms ease;
+  }
+  .tile:hover .art, .tile:focus-within .art { transform: scale(1.035); box-shadow: 0 16px 34px rgba(0,0,0,.6); }
+  .art-link { position: absolute; inset: 0; display: block; }
+  .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .art .poster {
+    position: absolute; inset: 0; padding: 42px 14px 48px; display: flex; flex-direction: column; justify-content: center;
+    font-weight: 800; font-size: 1.15rem; line-height: 1.1;
+    letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+  .art .poster b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-weight: 800; }
+  .art .when {
+    position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,.55); backdrop-filter: blur(6px);
+    color: #fff; font-size: 0.76rem; font-weight: 600; padding: 4px 8px; border-radius: 999px; z-index: 1;
+  }
+  .art .when.today { background: var(--glow); color: var(--glow-ink); }
+  .art-actions { position: absolute; right: 10px; bottom: 10px; z-index: 3; display: flex; gap: 6px; }
+  .save, .share {
+    background: rgba(0,0,0,.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.35);
+    color: #fff; border-radius: 999px; transition: background 140ms ease, border-color 140ms ease;
+  }
+  .save { font-size: 0.72rem; font-weight: 700; padding: 5px 10px; }
+  .save[aria-pressed="true"] { background: var(--glow); border-color: var(--glow); color: var(--glow-ink); }
+  .share { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+  .save:hover, .share:hover { background: rgba(0,0,0,.78); }
+  .save[aria-pressed="true"]:hover { background: var(--glow); }
+  .share svg { width: 15px; height: 15px; }
+
+  .share-menu {
+    position: fixed; z-index: 50; width: 230px; padding: 6px;
+    background: rgba(28,28,30,.96); backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.6);
+  }
+  .share-menu p { margin: 6px 10px 8px; font-size: 0.78rem; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .share-menu a, .share-menu button {
+    display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; border-radius: 9px;
+    font-size: 0.92rem; font-weight: 500; text-decoration: none; color: var(--ink); text-align: left;
+  }
+  .share-menu a:hover, .share-menu button:hover, .share-menu a:focus-visible, .share-menu button:focus-visible { background: var(--bg-3); outline: none; }
+  .share-menu svg { width: 18px; height: 18px; flex: none; }
+  .body { text-decoration: none; color: inherit; display: block; }
+  .tile .name { font-weight: 600; font-size: 0.98rem; line-height: 1.3; margin: 0; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .tile .name .pill-new {
+    display: inline-block; vertical-align: middle; margin-left: 6px; background: var(--glow); color: var(--glow-ink);
+    font-size: 0.6rem; font-weight: 800; letter-spacing: .03em; padding: 2px 6px; border-radius: 4px;
+  }
+  .tile .venue { color: var(--ink-2); font-size: 0.88rem; margin: 4px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .foot { display: flex; justify-content: space-between; gap: 8px; color: var(--ink-2); font-size: 0.85rem; margin-top: 8px; }
+  .tile .foot b { color: var(--ink); font-weight: 600; }
+  .tile .multi { color: var(--glow); }
+
+  .empty { padding: 56px 0; color: var(--ink-2); max-width: 44ch; }
+  .empty b { color: var(--ink); }
+  .empty-row { margin: 0 20px; padding: 20px 18px; background: var(--bg-2); border-radius: 12px; color: var(--ink-2); font-size: 0.92rem; }
+  .empty-row b { color: var(--ink); }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 1px solid var(--line); margin-top: 24px; padding: 40px 0 44px; position: relative; z-index: 1; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 0 0 18px; padding: 0; list-style: none; }
+  .foot-links button, .foot-links a { padding: 0; font-size: 0.84rem; color: var(--ink-2); text-decoration: none; transition: color 140ms ease; }
+  .foot-links button:hover, .foot-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .fine { margin: 0; font-size: 0.72rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .sample { background: var(--bg-2); border: 1px dashed var(--line); padding: 12px 16px; border-radius: 8px; margin: 24px 0 0; font-size: 0.95rem; color: var(--ink-2); }
+
+  @media (max-width: 640px) {
+    .shelf { grid-auto-columns: 172px; gap: 12px; }
+    .art { border-radius: 10px; }
+    .art .poster b { display: none; }
+    .venue-avatar { width: 44px; height: 44px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .shelf { animation: reveal 220ms ease-out; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(4px); } }
+  }
+</style>
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true"></div>
+
+<header class="topbar" id="topbar">
+  <div class="wrap bar">
+    <a class="logo" href="./" aria-label="gigsnshows home">
+      <svg class="logo-mark" viewBox="0 0 40 28" aria-hidden="true">
+        <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/><stop offset="1" stop-color="#ff2d95"/></linearGradient></defs>
+        <path fill="url(#logoGrad)" d="M5 4h30a3 3 0 0 1 3 3v4a3 3 0 0 0 0 6v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4a3 3 0 0 0 0-6V7a3 3 0 0 1 3-3z"/>
+        <path d="M28 7.5v13" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-dasharray=".01 3.2" opacity=".9"/>
+        <polygon fill="#fff" points="15,8.8 16.29,12.22 19.95,12.39 17.09,14.68 18.06,18.21 15,16.2 11.94,18.21 12.91,14.68 10.05,12.39 13.71,12.22"/>
+      </svg>
+      <span class="logo-word">gigs<b>n</b>shows</span>
+    </a>
+    <nav class="tabs" role="tablist" id="tabs" aria-label="Categories"></nav>
+    <div class="city">
+      <button class="city-btn" id="cityBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Choose a city">
+        <svg class="pin" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        <span id="cityLabel">Mumbai</span>
+        <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+      </button>
+      <div class="city-pop" id="cityPop" hidden>
+        <input class="city-search" id="citySearch" type="search" placeholder="Search cities" aria-label="Search cities" autocomplete="off">
+        <ul class="city-menu" id="cityMenu" role="listbox" aria-label="Cities"></ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<h1 class="sr-only" id="pageTitle">Gigs &amp; shows</h1>
+
+<div class="wrap">
+  <div id="sampleNote" class="sample" hidden>
+    This page is showing sample listings. Run <code>python run.py</code> to replace them with real ones.
+  </div>
+</div>
+
+<main class="wrap" id="main" aria-live="polite"></main>
+
+<div class="share-menu" id="shareMenu" role="dialog" aria-label="Share this show" hidden></div>
+
+<footer>
+  <div class="wrap">
+    <ul class="foot-links" id="footTabs" aria-label="Categories"></ul>
+    <p class="fine"><span id="updated">Loading listings…</span> · © <span id="year"></span> gigsnshows</p>
+  </div>
+</footer>
+
+<script>
+  // ---------- config ----------
+  // Paste your newsletter signup link here (Buttondown, Substack, Mailchimp, a Google Form…)
+  // Leave empty to hide the button. Nothing is emailed automatically.
+  const SIGNUP_URL = "";
+
+  // Venues that get their own row (with a per-venue filter) on the Home view.
+  // Add more by giving each a name and a way to recognise its events.
+  const FAVOURITE_VENUES = [
+    { key: "ncpa",       name: "NCPA",       match: e => (e.venue || "").toUpperCase().includes("NCPA") },
+    { key: "nmacc",      name: "NMACC",      match: e => e.source === "NMACC" },
+    { key: "antisocial", name: "antiSOCIAL", match: e => (e.venue || "").toLowerCase().includes("antisocial") },
+    { key: "svp",        name: "SVP Dome",   match: e => /svp|dome/i.test(e.venue || "") },
+  ];
+
+  // A show counts as "new" while it's within this many days of first appearing in events.json.
+  const NEW_WINDOW_DAYS = 3;
+
+  const TABS = [
+    { key: "all",     label: "Home" },
+    { key: "music",   label: "Music" },
+    { key: "theatre", label: "Theatre" },
+    { key: "sports",  label: "Sports" },
+    { key: "comedy",  label: "Stand-up" },
+  ];
+
+  // ---------- state (kept in the URL so views are shareable) ----------
+  const params = new URLSearchParams(location.search);
+  const state = {
+    city: params.get("city") || "",
+    tab: TABS.some(t => t.key === params.get("tab")) ? params.get("tab") : "all",
+    favVenue: "all",
+    sharedId: params.get("event") || "",
+  };
+  let data = { events: [], cities: [] };
+
+  function syncUrl() {
+    const p = new URLSearchParams();
+    p.set("city", state.city.toLowerCase());
+    p.set("tab", state.tab);
+    if (state.sharedId) p.set("event", state.sharedId);
+    history.replaceState(null, "", "?" + p.toString());
+  }
+
+  // ---------- Wanna Go (saved locally; a show drops off once its date is gone from events.json) ----------
+  const LS_LIST = "whatsOn.myList";
+  function getWannaGo() {
+    let ids; try { ids = JSON.parse(localStorage.getItem(LS_LIST) || "[]"); } catch { ids = []; }
+    const valid = new Set(data.events.map(e => e.id));
+    return ids.filter(id => valid.has(id));
+  }
+  function toggleWannaGo(id) {
+    const ids = getWannaGo();
+    const i = ids.indexOf(id);
+    if (i > -1) ids.splice(i, 1); else ids.push(id);
+    localStorage.setItem(LS_LIST, JSON.stringify(ids));
+    renderList();
+  }
+
+  // ---------- helpers ----------
+  const fmtDay = new Intl.DateTimeFormat("en-IN", { weekday: "short" });
+  const fmtDate = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short" });
+  const fmtLong = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  const todayISO = new Date().toLocaleDateString("en-CA");
+
+  function to12h(t) {
+    if (!t) return "";
+    const [h, m] = t.split(":").map(Number);
+    const ap = h >= 12 ? "pm" : "am";
+    return `${h % 12 || 12}${m ? ":" + String(m).padStart(2, "0") : ""} ${ap}`;
+  }
+  function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  function byDateTime(a, b) { return a.date === b.date ? (a.time || "").localeCompare(b.time || "") : a.date.localeCompare(b.date); }
+  function daysSince(iso) { return Math.round((new Date(todayISO) - new Date(iso)) / 86400000); }
+  function isNew(e) { return e.first_seen && daysSince(e.first_seen) >= 0 && daysSince(e.first_seen) <= NEW_WINDOW_DAYS; }
+  function whenLabel(e) {
+    const day = e.date === todayISO ? "Today" : `${fmtDay.format(new Date(e.date + "T12:00:00"))} ${fmtDate.format(new Date(e.date + "T12:00:00"))}`;
+    return day + (e.time ? ", " + to12h(e.time) : "");
+  }
+
+  // ---------- sharing ----------
+  const ICON_SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>`;
+  const ICON_CHAT = `<svg viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/></svg>`;
+  const ICON_LINK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>`;
+
+  function shareLink(e) {
+    return `${location.origin}${location.pathname}?${new URLSearchParams({ city: e.city.toLowerCase(), event: e.id })}`;
+  }
+  function shareText(e) {
+    return `Wanna go? 🎟️ ${e.title} · ${whenLabel(e)}${e.venue ? " · " + e.venue : ""}`;
+  }
+
+  const shareMenu = document.getElementById("shareMenu");
+  let shareOpener = null;
+
+  // Phones get the native share sheet (WhatsApp, Instagram, iMessage…); laptops get a small menu.
+  async function shareEvent(id, btn) {
+    if (!shareMenu.hidden && shareOpener === btn) { closeShareMenu(true); return; }
+    const e = data.events.find(x => x.id === id);
+    if (!e) return;
+    const text = shareText(e), url = shareLink(e);
+    if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+      try { await navigator.share({ title: e.title, text, url }); return; }
+      catch (err) { if (err.name === "AbortError") return; }
+    }
+    openShareMenu(btn, e, text, url);
+  }
+
+  function openShareMenu(btn, e, text, url) {
+    shareOpener = btn;
+    shareMenu.innerHTML = `<p>${esc(e.title)}</p>
+      <a href="https://wa.me/?text=${encodeURIComponent(text + "\n" + url)}" target="_blank" rel="noopener" data-close>${ICON_CHAT}WhatsApp</a>
+      <button type="button" data-copy="${esc(url)}">${ICON_LINK}<span>Copy link</span></button>`;
+    shareMenu.hidden = false;
+    const r = btn.getBoundingClientRect(), w = shareMenu.offsetWidth, h = shareMenu.offsetHeight;
+    const top = r.bottom + 8 + h > innerHeight ? r.top - h - 8 : r.bottom + 8;
+    shareMenu.style.left = Math.max(8, Math.min(r.right - w, innerWidth - w - 8)) + "px";
+    shareMenu.style.top = Math.max(8, top) + "px";
+    shareMenu.querySelector("a").focus({ preventScroll: true });
+  }
+
+  function closeShareMenu(restoreFocus) {
+    if (shareMenu.hidden) return;
+    shareMenu.hidden = true;
+    if (restoreFocus && shareOpener) shareOpener.focus({ preventScroll: true });
+    shareOpener = null;
+  }
+
+  // ---------- render ----------
+  const ICON_CHECK = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>`;
+  const cityBtn = document.getElementById("cityBtn");
+  const cityPop = document.getElementById("cityPop");
+  const cityMenu = document.getElementById("cityMenu");
+  const citySearch = document.getElementById("citySearch");
+  const LS_CITY = "whatsOn.city";
+
+  function cityCounts() {
+    const counts = {};
+    data.events.forEach(e => counts[e.city] = (counts[e.city] || 0) + 1);
+    return counts;
+  }
+  // Busiest cities first, so the big metros lead and one-off towns sit at the bottom.
+  function citiesByShows() {
+    const counts = cityCounts();
+    return data.cities.slice().sort((a, b) => (counts[b] || 0) - (counts[a] || 0) || a.localeCompare(b));
+  }
+
+  function renderCityOptions() {
+    const counts = cityCounts();
+    const q = citySearch.value.trim().toLowerCase();
+    const list = citiesByShows().filter(c => c.toLowerCase().includes(q));
+    cityMenu.innerHTML = list.length ? list.map(c => `
+      <li role="option" tabindex="-1" data-city="${esc(c)}" aria-selected="${c === state.city}">
+        <span>${esc(c)}</span><small>${counts[c] || 0} ${counts[c] === 1 ? "show" : "shows"}</small>${c === state.city ? ICON_CHECK : "<i></i>"}
+      </li>`).join("") : `<li class="none">No shows listed in “${esc(citySearch.value.trim())}” yet</li>`;
+  }
+
+  function renderCity() {
+    citySearch.hidden = data.cities.length <= 8;
+    renderCityOptions();
+    document.getElementById("cityLabel").textContent = state.city;
+    document.getElementById("pageTitle").textContent = `Gigs & shows in ${state.city}`;
+    document.title = `Gigs & shows in ${state.city} · gigsnshows`;
+  }
+
+  function openCityMenu() {
+    citySearch.value = "";
+    renderCityOptions();
+    cityPop.hidden = false;
+    cityBtn.setAttribute("aria-expanded", "true");
+    const selected = cityMenu.querySelector('[aria-selected="true"]');
+    selected?.scrollIntoView({ block: "nearest" });
+    // Don't pop the phone keyboard open just to show the list.
+    if (!citySearch.hidden && matchMedia("(pointer: fine)").matches) citySearch.focus();
+    else (selected || cityMenu.querySelector("[data-city]"))?.focus();
+  }
+  function closeCityMenu(focusButton) {
+    if (cityPop.hidden) return;
+    cityPop.hidden = true;
+    cityBtn.setAttribute("aria-expanded", "false");
+    if (focusButton) cityBtn.focus();
+  }
+  function chooseCity(c) {
+    closeCityMenu(true);
+    try { localStorage.setItem(LS_CITY, c); } catch {}
+    if (c === state.city) return;
+    state.city = c; state.favVenue = "all";
+    render();
+    window.scrollTo({ top: 0 });
+  }
+
+  function renderTabs() {
+    document.getElementById("tabs").innerHTML = TABS.map(t =>
+      `<button class="tab" role="tab" data-tab="${t.key}" aria-selected="${t.key === state.tab}">${t.label}</button>`).join("");
+  }
+
+  function bucket(d) {
+    const day = (new Date(d + "T12:00:00") - new Date(todayISO + "T12:00:00")) / 86400000;
+    const dow = new Date(d + "T12:00:00").getDay();
+    if (day <= 0) return 0;
+    if (day <= 6 && (dow === 5 || dow === 6 || dow === 0)) return 1;
+    if (day <= 6) return 2;
+    if (day <= 30) return 3;
+    return 4;
+  }
+  const BUCKETS = ["Tonight", "This weekend", "This week", "Later this month", "Further out"];
+
+  function trayHtml(id, title, count, items, { bubbles = "", seeAll = "", empty = "" } = {}) {
+    const body = items.length ? `<div class="shelf-wrap">
+        <button class="arrow prev" data-scroll="prev" aria-label="Scroll left">‹</button>
+        <button class="arrow next" data-scroll="next" aria-label="Scroll right">›</button>
+        <div class="shelf">${items.join("")}</div>
+      </div>`
+      : `<div class="empty-row">${empty}</div>`;
+    return `<section class="tray" data-tray="${id}">
+      <div class="tray-head"><h2>${esc(title)}${count ? `<small>${count} ${count === 1 ? "show" : "shows"}</small>` : ""}</h2>${seeAll}</div>
+      ${bubbles}
+      ${body}
+    </section>`;
+  }
+
+  function renderHome() {
+    const evs = data.events.filter(e => e.city === state.city);
+    const list = getWannaGo();
+    const tonight = evs.filter(e => e.date === todayISO).sort(byDateTime);
+    const weekend = evs.filter(e => bucket(e.date) === 1).sort(byDateTime);
+    const justAnnounced = evs.filter(isNew).sort(byDateTime).slice(0, 14);
+    const wannaGo = data.events.filter(e => list.includes(e.id)).sort(byDateTime);
+    const favMatch = e => FAVOURITE_VENUES.some(v => v.match(e));
+    const favAll = evs.filter(favMatch).sort(byDateTime);
+    // No real popularity signal to draw on, so "popular" leans on the closest honest proxy we have:
+    // a show listed by more than one platform is more likely to be a bigger draw than one listed by just one.
+    const popular = evs.slice().sort((a, b) => {
+      const sa = (a.sources || [a.source]).length, sb = (b.sources || [b.source]).length;
+      if (sb !== sa) return sb - sa;
+      const pa = a.price_from || 0, pb = b.price_from || 0;
+      if (pb !== pa) return pb - pa;
+      return byDateTime(a, b);
+    }).slice(0, 14);
+
+    const seeAllFor = key => `<button class="see-all" data-seeall="${key}">See All ›</button>`;
+    const sections = [];
+
+    if (state.sharedId) {
+      const shared = data.events.find(e => e.id === state.sharedId);
+      const dismiss = `<button class="see-all" data-dismiss-shared>Dismiss ✕</button>`;
+      sections.push(shared
+        ? trayHtml("shared", "Your friend wants to go", 0, [renderTile(shared)], { seeAll: dismiss })
+        : trayHtml("shared", "Shared with you", 0, [], { seeAll: dismiss, empty: "That show has already happened or isn't listed any more. Here's what else is on." }));
+    }
+
+    if (tonight.length) sections.push(trayHtml("tonight", "Tonight", tonight.length, tonight.map(e => renderTile(e))));
+    if (weekend.length) sections.push(trayHtml("weekend", "This Weekend", weekend.length, weekend.map(e => renderTile(e))));
+    if (justAnnounced.length) sections.push(trayHtml("new", "Just Announced", justAnnounced.length, justAnnounced.map(e => renderTile(e))));
+
+    if (wannaGo.length) {
+      sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e))));
+    } else if (popular.length) {
+      sections.push(trayHtml("popular", "Top Recommendations", popular.length, popular.map(e => renderTile(e))));
+    }
+
+    const activeVenue = FAVOURITE_VENUES.find(v => v.key === state.favVenue);
+    const favShown = activeVenue ? evs.filter(activeVenue.match) : favAll;
+    const bubbles = `<div class="venues">
+      <button class="venue-btn" data-venue="all" aria-pressed="${state.favVenue === "all"}"><span class="venue-avatar">★</span><span class="venue-name">All</span></button>
+      ${FAVOURITE_VENUES.map(v => `<button class="venue-btn" data-venue="${v.key}" aria-pressed="${state.favVenue === v.key}">
+          <span class="venue-avatar">${esc(v.name.replace(/[a-z]/g, "").slice(0, 2) || v.name.slice(0, 2).toUpperCase())}</span>
+          <span class="venue-name">${esc(v.name)}</span>
+        </button>`).join("")}
+    </div>`;
+    sections.push(trayHtml("fav", "From Your Favourite Venues", favShown.length, favShown.map(e => renderTile(e)), {
+      bubbles,
+      empty: activeVenue ? `No upcoming shows at <b>${esc(activeVenue.name)}</b> yet — check back soon.` : `Nothing from your favourite venues in ${esc(state.city)} right now.`,
+    }));
+
+    TABS.filter(t => t.key !== "all").forEach(t => {
+      const items = evs.filter(e => e.category === t.key).sort(byDateTime);
+      if (items.length) sections.push(trayHtml(t.key, t.label, items.length, items.slice(0, 14).map(e => renderTile(e)), { seeAll: seeAllFor(t.key) }));
+    });
+
+    document.getElementById("main").innerHTML = sections.length
+      ? sections.join("")
+      : `<div class="empty"><b>Nothing listed for ${esc(state.city)} yet.</b><br>Listings refresh every morning. Check back tomorrow.</div>`;
+  }
+
+  function renderCategory() {
+    const tab = TABS.find(t => t.key === state.tab);
+    const evs = data.events.filter(e => e.city === state.city && e.category === state.tab);
+    const main = document.getElementById("main");
+    if (!evs.length) {
+      main.innerHTML = `<div class="empty"><b>Nothing listed for ${esc(tab.label.toLowerCase())} in ${esc(state.city)} yet.</b><br>
+        Listings refresh every morning. Try another tab, or check back tomorrow.</div>`;
+      return;
+    }
+    const trays = new Map();
+    evs.forEach(e => { const b = bucket(e.date); (trays.get(b) || trays.set(b, []).get(b)).push(e); });
+    main.innerHTML = [...trays.keys()].sort().map(b =>
+      trayHtml(`bucket-${b}`, BUCKETS[b], trays.get(b).length, trays.get(b).map(e => renderTile(e)))
+    ).join("");
+  }
+
+  function renderList() {
+    if (state.tab === "all") renderHome(); else renderCategory();
+    refreshArrows();
+  }
+
+  // Hide an arrow once its tray can't scroll any further that way (or at all).
+  function refreshArrows() {
+    document.querySelectorAll(".shelf-wrap").forEach(wrap => {
+      const shelf = wrap.querySelector(".shelf");
+      const prev = wrap.querySelector(".arrow.prev");
+      const next = wrap.querySelector(".arrow.next");
+      const update = () => {
+        const scrollable = shelf.scrollWidth > shelf.clientWidth + 4;
+        prev.disabled = !scrollable || shelf.scrollLeft <= 4;
+        next.disabled = !scrollable || shelf.scrollLeft >= shelf.scrollWidth - shelf.clientWidth - 4;
+      };
+      shelf.addEventListener("scroll", update, { passive: true });
+      update();
+    });
+  }
+  window.addEventListener("resize", refreshArrows);
+
+  // Deterministic poster art for events without an image, keyed by id.
+  function poster(e) {
+    let h = 0; for (const c of e.id) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    const hue = { music: 30, theatre: 347, sports: 195, comedy: 141 }[e.category] ?? 210;
+    const a = `hsl(${hue} 70% ${28 + h % 12}%)`, b = `hsl(${(hue + 40 + h % 60) % 360} 60% 18%)`;
+    const ang = 120 + h % 120;
+    return `<div class="poster" style="background:linear-gradient(${ang}deg, ${a}, ${b} 85%)"><b>${esc(e.title)}</b></div>`;
+  }
+
+  function renderTile(e) {
+    const sources = e.sources || [e.source];
+    const links = e.links || { [e.source]: e.url };
+    const href = links[sources[0]] || "#";
+    const art = poster(e) + (e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : "");
+    const price = e.price_from ? `<span>from <b>₹${Number(e.price_from).toLocaleString("en-IN")}</b></span>` : "<span></span>";
+    const via = sources.length > 1 ? `<span class="multi">${sources.length} platforms</span>` : `<span>${esc(sources[0])}</span>`;
+    const saved = getWannaGo().includes(e.id);
+    const newPill = isNew(e) ? `<span class="pill-new">New</span>` : "";
+    return `<div class="tile" data-id="${e.id}">
+      <div class="art">
+        <a class="art-link" href="${esc(href)}" target="_blank" rel="noopener" aria-label="${esc(e.title)}">
+          ${art}<span class="when ${e.date === todayISO ? "today" : ""}">${whenLabel(e)}</span>
+        </a>
+        <div class="art-actions">
+          <button class="save" data-add="${e.id}" aria-pressed="${saved}">${saved ? "✓ Wanna go" : "+ Wanna go"}</button>
+          <button class="share" data-share="${e.id}" aria-label="Share ${esc(e.title)}">${ICON_SHARE}</button>
+        </div>
+      </div>
+      <a class="body" href="${esc(href)}" target="_blank" rel="noopener">
+        <p class="name">${esc(e.title)}${newPill}</p>
+        <p class="venue">${esc(e.venue)}</p>
+        <div class="foot">${price}${via}</div>
+      </a>
+    </div>`;
+  }
+
+  function renderFooter() {
+    const upd = document.getElementById("updated");
+    const isSample = /SAMPLE/i.test(data.updated_at || "");
+    document.getElementById("sampleNote").hidden = !isSample;
+    upd.textContent = isSample ? "Showing sample listings" : `Listings updated ${fmtLong.format(new Date(data.updated_at))}`;
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("footTabs").innerHTML = TABS.map(t => `<li><button data-foot-tab="${t.key}">${t.label}</button></li>`).join("")
+      + (SIGNUP_URL ? `<li><a href="${esc(SIGNUP_URL)}" target="_blank" rel="noopener">Get the weekly picks</a></li>` : "");
+  }
+
+  function render() { renderCity(); renderTabs(); renderList(); syncUrl(); }
+
+  // ---------- events ----------
+  cityBtn.addEventListener("click", () => cityPop.hidden ? openCityMenu() : closeCityMenu(false));
+  cityMenu.addEventListener("click", e => { const o = e.target.closest("[data-city]"); if (o) chooseCity(o.dataset.city); });
+  citySearch.addEventListener("input", renderCityOptions);
+  cityPop.addEventListener("keydown", e => {
+    const opts = [...cityMenu.querySelectorAll("[data-city]")];
+    const i = opts.indexOf(document.activeElement);
+    if (e.key === "ArrowDown") { e.preventDefault(); opts[Math.min(i + 1, opts.length - 1)]?.focus(); }
+    else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (i <= 0 && !citySearch.hidden) citySearch.focus(); else opts[Math.max(i - 1, 0)]?.focus();
+    }
+    else if (e.key === "Enter" && document.activeElement === citySearch) { e.preventDefault(); if (opts[0]) chooseCity(opts[0].dataset.city); }
+    else if ((e.key === "Enter" || e.key === " ") && i > -1) { e.preventDefault(); chooseCity(opts[i].dataset.city); }
+    else if (e.key === "Tab") closeCityMenu(false);
+  });
+  const topbar = document.getElementById("topbar");
+  const onPageScroll = () => topbar.classList.toggle("scrolled", window.scrollY > 8);
+  window.addEventListener("scroll", onPageScroll, { passive: true });
+  onPageScroll();
+  document.getElementById("tabs").addEventListener("click", e => {
+    const b = e.target.closest("[data-tab]"); if (!b) return;
+    state.tab = b.dataset.tab; render();
+  });
+  document.getElementById("main").addEventListener("click", e => {
+    const add = e.target.closest("[data-add]");
+    if (add) { toggleWannaGo(add.dataset.add); return; }
+    const share = e.target.closest("[data-share]");
+    if (share) { shareEvent(share.dataset.share, share); return; }
+    if (e.target.closest("[data-dismiss-shared]")) { state.sharedId = ""; render(); return; }
+    const venue = e.target.closest("[data-venue]");
+    if (venue) { state.favVenue = venue.dataset.venue; renderList(); return; }
+    const seeAll = e.target.closest("[data-seeall]");
+    if (seeAll) { state.tab = seeAll.dataset.seeall; render(); return; }
+    const arrow = e.target.closest("[data-scroll]");
+    if (arrow) { const shelf = arrow.closest(".shelf-wrap").querySelector(".shelf"); shelf.scrollBy({ left: arrow.dataset.scroll === "next" ? 640 : -640, behavior: "smooth" }); }
+  });
+  shareMenu.addEventListener("click", async ev => {
+    if (ev.target.closest("[data-close]")) { setTimeout(() => closeShareMenu(false), 0); return; }
+    const copy = ev.target.closest("[data-copy]");
+    if (!copy) return;
+    try {
+      await navigator.clipboard.writeText(copy.dataset.copy);
+      copy.querySelector("span").textContent = "Link copied";
+      setTimeout(() => closeShareMenu(true), 1100);
+    } catch {
+      closeShareMenu(true);
+      prompt("Copy this link:", copy.dataset.copy);
+    }
+  });
+  document.addEventListener("click", ev => {
+    if (!shareMenu.hidden && !shareMenu.contains(ev.target) && !ev.target.closest("[data-share]")) closeShareMenu(false);
+    if (!cityPop.hidden && !ev.target.closest(".city")) closeCityMenu(false);
+  });
+  document.addEventListener("keydown", ev => {
+    if (ev.key !== "Escape") return;
+    if (!cityPop.hidden) closeCityMenu(true); else closeShareMenu(true);
+  });
+  document.addEventListener("scroll", () => closeShareMenu(false), true);
+  window.addEventListener("resize", () => closeShareMenu(false));
+
+  document.getElementById("footTabs").addEventListener("click", e => {
+    const tab = e.target.closest("[data-foot-tab]");
+    if (tab) { state.tab = tab.dataset.footTab; render(); window.scrollTo({ top: 0 }); }
+  });
+
+  // ---------- load ----------
+  fetch("data/events.json", { cache: "no-store" })
+    .then(r => r.json())
+    .then(json => {
+      data = json;
+      data.events = data.events.filter(e => e.date >= todayISO);
+      data.cities = [...new Set(data.events.map(e => e.city))];
+      const shared =state.sharedId && data.events.find(e => e.id === state.sharedId);
+      if (shared) state.tab = "all";
+      let remembered = null;
+      try { remembered = localStorage.getItem(LS_CITY); } catch {}
+      const find = name => name && data.cities.find(c => c.toLowerCase() === name.toLowerCase());
+      state.city = (shared && shared.city) || find(state.city) || find(remembered) || citiesByShows()[0];
+      renderFooter(); render();
+    })
+    .catch(() => {
+      document.getElementById("main").innerHTML = `<div class="empty"><b>Couldn't load the listings.</b><br>Make sure data/events.json exists next to this page.</div>`;
+      document.getElementById("updated").textContent = "";
+    });
+</script>
+</body>
+</html>
