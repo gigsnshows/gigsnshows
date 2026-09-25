@@ -89,18 +89,33 @@ def main(dry_run=False, only=None):
                     break
             collected.extend(evs)
 
-    upcoming = [e for e in collected if e["date"] >= today]
+    previous = json.loads(OUT.read_text()) if OUT.exists() else {}
+    is_sample = str(previous.get("updated_at", "")).startswith("SAMPLE")
+
+    # A source that came back empty (blocked, down, or skipped with --only) keeps its
+    # last known upcoming shows rather than vanishing from the dashboard.
+    refreshed = {e["source"] for e in collected}
+    stale = {s["name"] for s in sources} - refreshed
+    carried = [] if is_sample else [
+        e for e in previous.get("events", [])
+        if e["date"] >= today and not set(e.get("sources", [e["source"]])) & refreshed
+    ]
+    for e in carried:
+        e.pop("sources", None)
+        e.pop("links", None)
+    if stale:
+        print(f"\nNo fresh results from: {', '.join(sorted(stale))} — keeping {len(carried)} of their earlier upcoming shows")
+
+    upcoming = [e for e in collected if e["date"] >= today] + carried
     merged = dedupe(upcoming)
     merged.sort(key=lambda e: (e["date"], e["time"]))
-    print(f"\n{len(collected)} scraped -> {len(merged)} unique upcoming events")
+    print(f"\n{len(collected)} scraped + {len(carried)} kept -> {len(merged)} unique upcoming events")
 
     if dry_run:
         return
     if not merged:
         print("Nothing found; leaving the existing events.json untouched.")
         return
-    previous = json.loads(OUT.read_text()) if OUT.exists() else {}
-    is_sample = str(previous.get("updated_at", "")).startswith("SAMPLE")
 
     # first_seen powers the dashboard's "New" tray: a show keeps the date it first showed
     # up in this file; one that's genuinely new today gets stamped with today.
