@@ -19,6 +19,9 @@
 #   default_category  used when a listing gives no category and the title doesn't
 #                  make it obvious (otherwise such events are dropped)
 #   link_pattern / max_pages   for detail_pages: which links are events, how many to read
+#   crawl_delay    seconds between requests to this site (from its robots.txt)
+#   details        district parser: also read each show's own page (description, for genres)
+#   cloud: false   site refuses cloud servers; GitHub's run skips it (the Mac collector covers it)
 #
 # The city a listing page is for is only a fallback: every show is filed under the city
 # its own venue/address names (see scrapers/cities.py), because city pages on these sites
@@ -27,6 +30,9 @@
 
 - name: District
   parser: district
+  cloud: false
+  details: true            # also read each show's page for its description (for genres)
+  crawl_delay: 1
   url: https://www.district.in/activities/{category}-in-{city}
   cities: {Mumbai: mumbai, Delhi: delhi-ncr, Bengaluru: bengaluru, Pune: pune, Hyderabad: hyderabad,
            Chennai: chennai, Kolkata: kolkata, Ahmedabad: ahmedabad, Jaipur: jaipur, Goa: goa, Kochi: kochi,
@@ -51,6 +57,8 @@
     - {url: https://www.nmacc.com/calendar/, city: Mumbai}
 
 - name: BookMyShow
+  cloud: false
+  crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: jsonld
   render: true
   url: https://in.bookmyshow.com/explore/{category}-{city}
@@ -67,6 +75,8 @@
 # So these read the listing page for links, then pull the real event data
 # (a *TheaterEvent/SportsEvent node) off each individual event page instead.
 - name: BookMyShow Plays
+  cloud: false
+  crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: detail_pages
   render: true
   render_details: true
@@ -76,6 +86,8 @@
   cities: *bms_cities
 
 - name: BookMyShow Sports
+  cloud: false
+  crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: detail_pages
   render: true
   render_details: true

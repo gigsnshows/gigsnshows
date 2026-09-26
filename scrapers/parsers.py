@@ -38,7 +38,8 @@ def parse_detail_pages(html, page_url, src, entry):
     out = []
     for link in links[:limit]:
         _visited.add(link)
-        page = get_html(link, src.get("render_details", False), src.get("wait_ms", 2500), scroll=False)
+        page = get_html(link, src.get("render_details", False), src.get("wait_ms", 2500), scroll=False,
+                        delay=src.get("crawl_delay", 0))
         if not page:
             continue
         evs = parse_jsonld(page, link, src, entry)
@@ -51,6 +52,18 @@ def parse_detail_pages(html, page_url, src, entry):
 
 
 # ---------------------------------------------------------------- district.in
+
+_district_abouts = {}  # event URL -> description; a show often appears on several listing pages
+
+
+def _district_about(href, src):
+    """The show's own description (listing cards carry only a title), for genre tagging."""
+    if href not in _district_abouts:
+        page = get_html(href, delay=src.get("crawl_delay", 0))
+        nodes = extract_jsonld_events(page) if page else []
+        _district_abouts[href] = " ".join(n.get("description") or "" for n in nodes)[:1500]
+    return _district_abouts[href]
+
 
 def parse_district(html, page_url, src, entry):
     """
@@ -85,8 +98,9 @@ def parse_district(html, page_url, src, entry):
         image = None
         if img:
             image = img.get("src") or img.get("data-src")
+        about = _district_about(href, src) if src.get("details") else ""
         ev = event(title, day, src["name"], entry.get("city"), entry.get("category"),
-                   venue, time, price, href, image, place=place)
+                   venue, time, price, href, image, place=place, hint=about)
         if ev:
             out.append(ev)
     return out

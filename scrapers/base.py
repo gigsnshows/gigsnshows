@@ -15,14 +15,16 @@ import atexit
 import hashlib
 import json
 import re
+import time
 from datetime import date, datetime, timedelta, timezone
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as dateparser
 
 from .cities import CITIES, detect_city
+from .genres import tag as tag_genres
 
 HEADERS = {
     "User-Agent": (
@@ -33,6 +35,11 @@ HEADERS = {
 }
 
 CATEGORIES = ("music", "theatre", "sports", "comedy")
+
+# Classes and craft sessions some platforms list alongside shows (thumpN files them all as music).
+NOT_SHOWS = re.compile(
+    r"\b(workshop|workshops|masterclass|pottery|painting|art date|block printing|clay|candle making|resin art|"
+    r"crochet|embroidery|terrarium|baking class|cooking class|sip and paint|paint and sip|craft)\b", re.I)
 
 CATEGORY_KEYWORDS = {
     "comedy": ["comedy", "comic", "stand-up", "standup", "stand up", "improv", "open mic", "roast", "crowd work"],
@@ -106,8 +113,19 @@ def render(url, wait_ms=2500, scroll=True):
         return None
 
 
-def get_html(url, use_render=False, wait_ms=2500, scroll=True):
-    return render(url, wait_ms, scroll) if use_render else fetch(url)
+_last_request = {}  # host -> time of our previous request to it
+
+
+def get_html(url, use_render=False, wait_ms=2500, scroll=True, delay=0):
+    """`delay`: minimum seconds between requests to the same site (a source's robots.txt crawl-delay)."""
+    host = urlparse(url).netloc
+    wait = delay - (time.monotonic() - _last_request.get(host, -1e9))
+    if wait > 0:
+        time.sleep(wait)
+    try:
+        return render(url, wait_ms, scroll) if use_render else fetch(url)
+    finally:
+        _last_request[host] = time.monotonic()
 
 
 # ---------------------------------------------------------------- helpers
@@ -161,7 +179,7 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
     `venue`) wins, then a city named in the title.
     """
     title = re.sub(r"\s+", " ", title or "").strip()
-    if not title or not day:
+    if not title or not day or NOT_SHOWS.search(title):
         return None
     city = detect_city(place or venue) or detect_city(title) or city
     cat = category or guess_category(f"{title} {hint}", default)
@@ -174,6 +192,7 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
         "id": make_id(title, day, venue),
         "title": title,
         "category": cat,
+        "genres": tag_genres(cat, title, f"{hint} {venue}"),
         "city": city or "Unknown",
         "venue": (venue or "").strip(),
         "date": day,
@@ -250,9 +269,14 @@ def jsonld_to_event(node, source, city=None, category=None, page_url="", default
         image = image[0] if image else None
     if isinstance(image, dict):
         image = image.get("url")
-    day, time = parse_date(node.get("startDate") or "")
+    start = node.get("startDate") or ""
+    day, time = parse_date(start)
+    if re.search(r"T05:30(:00)?$", start):
+        time = ""  # BookMyShow writes date-only shows as midnight UTC, i.e. 05:30 IST; the real time is unknown
+    genre = node.get("genre") or ""
+    hint = f"{node.get('description', '')} {' '.join(genre) if isinstance(genre, list) else genre}"
     return event(node.get("name"), day, source, city, category, venue, time, price,
-                 node.get("url") or page_url, image, hint=node.get("description", ""), default=default, place=place)
+                 node.get("url") or page_url, image, hint=hint, default=default, place=place)
 
 
 def meta_event(html, source, city, category, page_url, default=None):

@@ -9,14 +9,19 @@ data/events.json for the dashboard.
 """
 
 import json
+import os
 import sys
 from datetime import date
 from pathlib import Path
 
 import yaml
 
-from scrapers.base import get_html, now_iso
+from scrapers.base import NOT_SHOWS, get_html, now_iso
+from scrapers.genres import catalog, tag
 from scrapers.parsers import PARSERS
+
+# GitHub's servers get refused by some sites (cloud: false in sources.yaml); the Mac collector covers those.
+IN_CLOUD = os.environ.get("GITHUB_ACTIONS") == "true"
 
 ROOT = Path(__file__).parent
 OUT = ROOT / "data" / "events.json"
@@ -69,6 +74,9 @@ def main(dry_run=False, only=None):
     for src in sources:
         if only and only.lower() not in src["name"].lower():
             continue
+        if IN_CLOUD and src.get("cloud") is False:
+            print(f"\n{src['name']}  (skipped: refuses cloud servers; refreshed from the Mac)")
+            continue
         parser = PARSERS[src.get("parser", "jsonld")]
         print(f"\n{src['name']}  ({src.get('parser', 'jsonld')}{', rendered' if src.get('render') else ''})")
         for entry in expand(src):
@@ -76,7 +84,8 @@ def main(dry_run=False, only=None):
             evs = []
             for url in entry["urls"]:
                 print(f"  {city or '-':10} {cat or 'all':8} {url}")
-                html = get_html(url, src.get("render", False), src.get("wait_ms", 2500))
+                html = get_html(url, src.get("render", False), src.get("wait_ms", 2500),
+                                delay=src.get("crawl_delay", 0))
                 if not html:
                     continue
                 try:
@@ -99,6 +108,7 @@ def main(dry_run=False, only=None):
     carried = [] if is_sample else [
         e for e in previous.get("events", [])
         if e["date"] >= today and not set(e.get("sources", [e["source"]])) & refreshed
+        and not NOT_SHOWS.search(e["title"])
     ]
     for e in carried:
         e.pop("sources", None)
@@ -123,10 +133,12 @@ def main(dry_run=False, only=None):
     prev_seen = {} if is_sample else {e["id"]: e.get("first_seen", fallback_seen) for e in previous.get("events", [])}
     for e in merged:
         e["first_seen"] = prev_seen.get(e["id"], today)
+        if "genres" not in e:  # shows carried over from before genres existed
+            e["genres"] = tag(e["category"], e["title"], e["venue"])
 
     OUT.parent.mkdir(exist_ok=True)
     cities = sorted({e["city"] for e in merged})
-    OUT.write_text(json.dumps({"updated_at": now_iso(), "cities": cities,
+    OUT.write_text(json.dumps({"updated_at": now_iso(), "cities": cities, "genres": catalog(),
                                "count": len(merged), "events": merged}, indent=2, ensure_ascii=False))
     print(f"wrote {OUT}")
 
