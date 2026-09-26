@@ -8,7 +8,13 @@ One page for live music, theatre, sports and stand-up across India's cities, col
 - `run.py` + `scrapers/` – reads every source and writes the JSON
 - `.github/workflows/update.yml` – runs the collector twice a day and publishes
 
-The **Home** tab is a browse-everything view — Tonight, This Weekend, Just Announced (shows first seen in the last few days), **Wanna Go** (tap *+ Wanna go* on any card to save it there; saved locally in your browser, and a show drops off once its date is gone from `events.json` — until you save something, this slot shows Top Recommendations instead), **From Your Favourite Venues** (edit the `FAVOURITE_VENUES` list at the top of the `<script>` in `index.html` to change which venues get a row), then one row per category.
+First-time visitors get a two-step **onboarding**: their city, then what they're into (categories and genres). It's saved in their browser; "Edit interests" on the first row, or "Your interests" in the footer, reopens it.
+
+The **Home** tab is a browse-everything view — **Recommendations for you** (interests first, then shows listed by several platforms and happening soon; one card per show), **Wanna Go** (tap *+ Wanna go* under any card; saved in your browser), Tonight, This Weekend, Just Announced (shows first seen in the last few days), **From Your Favourite Venues** (edit the `FAVOURITE_VENUES` list at the top of the `<script>` in `index.html` to change which venues get a row), then one row per category.
+
+Each category tab has **genre chips** (Jazz & blues, Stand-up, Running, Marathi…) for the genres showing in that city. Genres are tagged by the collector from each show's title and description — the list and keywords are in `scrapers/genres.py`. Workshops and classes (pottery, painting dates…) are left out; see `NOT_SHOWS` in `scrapers/base.py`.
+
+A show disappears from the page the moment its start time passes (or at the end of the day, if no time is listed) — the page re-checks every minute.
 
 Every card has a share button. On a phone it opens the native share sheet; on a laptop it offers WhatsApp or Copy link. The shared link (`?event=<id>`) opens the dashboard with that show pinned at the top under "Your friend wants to go". The **Music/Theatre/Sports/Stand-up** tabs still give the old single-category, date-bucketed view for deep links like `?tab=comedy`.
 

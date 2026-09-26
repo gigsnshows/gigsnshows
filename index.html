@@ -178,7 +178,7 @@
   .art-link { position: absolute; inset: 0; display: block; }
   .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .art .poster {
-    position: absolute; inset: 0; padding: 42px 14px 48px; display: flex; flex-direction: column; justify-content: center;
+    position: absolute; inset: 0; padding: 38px 14px 12px; display: flex; flex-direction: column; justify-content: center;
     font-weight: 800; font-size: 1.15rem; line-height: 1.1;
     letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.4);
   }
@@ -188,17 +188,78 @@
     color: #fff; font-size: 0.76rem; font-weight: 600; padding: 4px 8px; border-radius: 999px; z-index: 1;
   }
   .art .when.today { background: var(--glow); color: var(--glow-ink); }
-  .art-actions { position: absolute; right: 10px; bottom: 10px; z-index: 3; display: flex; gap: 6px; }
-  .save, .share {
-    background: rgba(0,0,0,.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.35);
-    color: #fff; border-radius: 999px; transition: background 140ms ease, border-color 140ms ease;
+  /* Actions sit below the card, not on the artwork, where busy posters swallowed them. */
+  .tile-actions { display: flex; gap: 8px; margin-top: 10px; }
+  .save {
+    flex: 1; height: 34px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; color: var(--neon);
+    border: 1.5px solid color-mix(in srgb, var(--neon) 65%, transparent);
+    background: color-mix(in srgb, var(--neon) 8%, transparent);
+    transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
   }
-  .save { font-size: 0.72rem; font-weight: 700; padding: 5px 10px; }
-  .save[aria-pressed="true"] { background: var(--glow); border-color: var(--glow); color: var(--glow-ink); }
-  .share { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
-  .save:hover, .share:hover { background: rgba(0,0,0,.78); }
-  .save[aria-pressed="true"]:hover { background: var(--glow); }
+  .save:hover { background: color-mix(in srgb, var(--neon) 18%, transparent); }
+  .save[aria-pressed="true"] { background: var(--neon); border-color: var(--neon); color: #fff; }
+  .share {
+    flex: none; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); background: rgba(255,255,255,.06); color: var(--ink-2);
+    transition: background 140ms ease, color 140ms ease;
+  }
+  .share:hover { color: var(--ink); background: rgba(255,255,255,.12); }
   .share svg { width: 15px; height: 15px; }
+
+  /* ---------- genre chips ---------- */
+  .genre-bar { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 22px 20px 2px; margin: 0 -20px; }
+  .genre-bar::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; padding: 8px 14px; border-radius: 999px; font-size: 0.86rem; font-weight: 600; white-space: nowrap;
+    color: var(--ink-2); background: rgba(255,255,255,.07); border: 1px solid var(--line);
+    transition: background 140ms ease, color 140ms ease;
+  }
+  .chip small { margin-left: 6px; color: var(--ink-3); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .chip:hover { color: var(--ink); background: rgba(255,255,255,.12); }
+  .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #000; }
+  .chip[aria-pressed="true"] small { color: rgba(0,0,0,.5); }
+
+  /* ---------- onboarding ---------- */
+  .onboard {
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px;
+    background: rgba(0,0,0,.72); backdrop-filter: blur(24px) saturate(1.4);
+  }
+  .onboard[hidden] { display: none; }
+  .ob-card {
+    position: relative; width: min(720px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto;
+    padding: 36px 36px 28px; border-radius: 24px; border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(44,44,46,.96), rgba(22,22,24,.98)); box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  }
+  .ob-step { margin: 0 0 8px; color: var(--ink-3); font-size: 0.78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .ob-card h2 { margin: 0; font-family: var(--brand-font); font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance; }
+  .ob-card .sub { margin: 10px 0 24px; color: var(--ink-2); font-size: 1rem; }
+  .ob-card .sub b { color: var(--ink); }
+  .ob-skip { position: absolute; top: 18px; right: 22px; color: var(--ink-2); font-size: 0.9rem; font-weight: 600; }
+  .ob-skip:hover { color: var(--ink); }
+  .ob-search {
+    width: 100%; margin: 0 0 14px; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--line);
+    background: rgba(255,255,255,.06); color: var(--ink); font: inherit; outline: none;
+  }
+  .ob-search:focus { border-color: var(--glow); }
+  .ob-cities { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ob-city { padding: 11px 16px; border-radius: 14px; background: rgba(255,255,255,.06); border: 1.5px solid var(--line); font-weight: 600; text-align: left; }
+  .ob-city small { display: block; margin-top: 2px; color: var(--ink-3); font-size: 0.74rem; font-weight: 500; }
+  .ob-city[aria-pressed="true"] { border-color: var(--glow); background: color-mix(in srgb, var(--glow) 22%, transparent); }
+  .ob-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .ob-cat {
+    display: flex; flex-direction: column; gap: 12px; padding: 18px 16px; border-radius: 16px; text-align: left;
+    font-size: 1.02rem; font-weight: 700; background: rgba(255,255,255,.05); border: 1.5px solid var(--line);
+  }
+  .ob-cat i { width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 12px var(--c); }
+  .ob-cat[aria-pressed="true"] { border-color: var(--c); background: color-mix(in srgb, var(--c) 16%, transparent); }
+  .ob-genres { display: grid; gap: 18px; margin-top: 22px; }
+  .ob-genres h3 { margin: 0 0 10px; color: var(--ink-2); font-size: 0.9rem; font-weight: 600; }
+  .ob-genres .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ob-actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 30px; }
+  .ob-primary { padding: 13px 26px; border-radius: 999px; background: var(--ink); color: #000; font-size: 1rem; font-weight: 700; }
+  .ob-primary:hover { background: #fff; }
+  .ob-back { color: var(--ink-2); font-weight: 600; }
+  .ob-back:hover { color: var(--ink); }
 
   .share-menu {
     position: fixed; z-index: 50; width: 230px; padding: 6px;
@@ -239,8 +300,10 @@
   @media (max-width: 640px) {
     .shelf { grid-auto-columns: 172px; gap: 12px; }
     .art { border-radius: 10px; }
-    .art .poster b { display: none; }
+    .art .poster { font-size: 0.95rem; padding: 34px 10px 8px; }
     .venue-avatar { width: 44px; height: 44px; }
+    .ob-card { padding: 28px 20px 22px; border-radius: 20px; }
+    .ob-cats { grid-template-columns: repeat(2, 1fr); }
   }
   @media (prefers-reduced-motion: no-preference) {
     .shelf { animation: reveal 220ms ease-out; }
@@ -290,6 +353,8 @@
 
 <div class="share-menu" id="shareMenu" role="dialog" aria-label="Share this show" hidden></div>
 
+<div class="onboard" id="onboard" role="dialog" aria-modal="true" aria-labelledby="obTitle" hidden></div>
+
 <footer>
   <div class="wrap">
     <ul class="foot-links" id="footTabs" aria-label="Categories"></ul>
@@ -330,15 +395,49 @@
     tab: TABS.some(t => t.key === params.get("tab")) ? params.get("tab") : "all",
     favVenue: "all",
     sharedId: params.get("event") || "",
+    genre: params.get("genre") || "",
   };
-  let data = { events: [], cities: [] };
+  let data = { events: [], cities: [], genres: {} };
 
   function syncUrl() {
     const p = new URLSearchParams();
     p.set("city", state.city.toLowerCase());
     p.set("tab", state.tab);
+    if (state.genre && state.tab !== "all") p.set("genre", state.genre);
     if (state.sharedId) p.set("event", state.sharedId);
     history.replaceState(null, "", "?" + p.toString());
+  }
+
+  function goTab(tab) {
+    state.tab = tab;
+    state.genre = "";
+    render();
+    window.scrollTo({ top: 0 });
+  }
+
+  // ---------- shows drop off the page the moment they start ----------
+  let todayISO = new Date().toLocaleDateString("en-CA");
+  function hasStarted(e, now) {
+    const today = now.toLocaleDateString("en-CA");
+    if (e.date !== today) return e.date < today;
+    if (!e.time) return false;  // no start time listed: keep it for the rest of the day
+    const [h, m] = e.time.split(":").map(Number);
+    return now.getHours() * 60 + now.getMinutes() >= h * 60 + m;
+  }
+  function pruneStarted() {
+    const now = new Date();
+    todayISO = now.toLocaleDateString("en-CA");
+    const before = data.events.length;
+    data.events = data.events.filter(e => !hasStarted(e, now));
+    data.cities = [...new Set(data.events.map(e => e.city))];
+    return data.events.length !== before;
+  }
+
+  // ---------- your interests (from onboarding; saved in this browser) ----------
+  const LS_PREFS = "whatsOn.prefs";
+  const LS_ONBOARDED = "whatsOn.onboarded";
+  function getPrefs() {
+    try { return JSON.parse(localStorage.getItem(LS_PREFS) || "null"); } catch { return null; }
   }
 
   // ---------- Wanna Go (saved locally; a show drops off once its date is gone from events.json) ----------
@@ -360,7 +459,6 @@
   const fmtDay = new Intl.DateTimeFormat("en-IN", { weekday: "short" });
   const fmtDate = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short" });
   const fmtLong = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-  const todayISO = new Date().toLocaleDateString("en-CA");
 
   function to12h(t) {
     if (!t) return "";
@@ -518,6 +616,32 @@
     </section>`;
   }
 
+  // Your interests lead; within those, a show listed by more than one platform (the closest honest
+  // popularity signal we have) and one happening soon rank higher. Without interests, it's just those.
+  function recommend(evs, prefs, saved) {
+    const cats = new Set(prefs?.categories || []), likes = new Set(prefs?.genres || []);
+    const days = e => (new Date(e.date + "T12:00:00") - new Date(todayISO + "T12:00:00")) / 86400000;
+    const score = e => {
+      const liked = (e.genres || []).filter(g => likes.has(g)).length;
+      const d = days(e);
+      return Math.min(liked, 2) * 3 + (cats.has(e.category) ? 2 : 0)
+        + ((e.sources || [e.source]).length - 1) * 1.5
+        + (d <= 2 ? 1.5 : d <= 7 ? 1 : d <= 21 ? 0.4 : 0)
+        + Math.min(e.price_from || 0, 3000) / 6000;
+    };
+    let pool = evs.filter(e => !saved.has(e.id));
+    const matched = pool.filter(e => cats.has(e.category) || (e.genres || []).some(g => likes.has(g)));
+    if (matched.length >= 6) pool = matched;
+    const seen = new Set();
+    return pool.map(e => [score(e), e]).sort((a, b) => b[0] - a[0] || byDateTime(a[1], b[1]))
+      .map(([, e]) => e)
+      .filter(e => {  // one card per show, even when it runs on many dates or venues
+        const key = e.title.toLowerCase().replace(/\|.*$/, "").replace(/[^a-z0-9]/g, "");
+        return !seen.has(key) && seen.add(key);
+      })
+      .slice(0, 14);
+  }
+
   function renderHome() {
     const evs = data.events.filter(e => e.city === state.city);
     const list = getWannaGo();
@@ -527,15 +651,8 @@
     const wannaGo = data.events.filter(e => list.includes(e.id)).sort(byDateTime);
     const favMatch = e => FAVOURITE_VENUES.some(v => v.match(e));
     const favAll = evs.filter(favMatch).sort(byDateTime);
-    // No real popularity signal to draw on, so "popular" leans on the closest honest proxy we have:
-    // a show listed by more than one platform is more likely to be a bigger draw than one listed by just one.
-    const popular = evs.slice().sort((a, b) => {
-      const sa = (a.sources || [a.source]).length, sb = (b.sources || [b.source]).length;
-      if (sb !== sa) return sb - sa;
-      const pa = a.price_from || 0, pb = b.price_from || 0;
-      if (pb !== pa) return pb - pa;
-      return byDateTime(a, b);
-    }).slice(0, 14);
+    const prefs = getPrefs();
+    const recs = recommend(evs, prefs, new Set(list));
 
     const seeAllFor = key => `<button class="see-all" data-seeall="${key}">See All ›</button>`;
     const sections = [];
@@ -548,15 +665,15 @@
         : trayHtml("shared", "Shared with you", 0, [], { seeAll: dismiss, empty: "That show has already happened or isn't listed any more. Here's what else is on." }));
     }
 
+    if (recs.length) {
+      const edit = `<button class="see-all" data-onboard>${prefs ? "Edit interests" : "Personalise ›"}</button>`;
+      sections.push(trayHtml("foryou", "Recommendations for you", 0, recs.map(e => renderTile(e)), { seeAll: edit }));
+    }
+    if (wannaGo.length) sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e))));
+
     if (tonight.length) sections.push(trayHtml("tonight", "Tonight", tonight.length, tonight.map(e => renderTile(e))));
     if (weekend.length) sections.push(trayHtml("weekend", "This Weekend", weekend.length, weekend.map(e => renderTile(e))));
     if (justAnnounced.length) sections.push(trayHtml("new", "Just Announced", justAnnounced.length, justAnnounced.map(e => renderTile(e))));
-
-    if (wannaGo.length) {
-      sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e))));
-    } else if (popular.length) {
-      sections.push(trayHtml("popular", "Top Recommendations", popular.length, popular.map(e => renderTile(e))));
-    }
 
     const activeVenue = FAVOURITE_VENUES.find(v => v.key === state.favVenue);
     const favShown = activeVenue ? evs.filter(activeVenue.match) : favAll;
@@ -584,16 +701,27 @@
 
   function renderCategory() {
     const tab = TABS.find(t => t.key === state.tab);
-    const evs = data.events.filter(e => e.city === state.city && e.category === state.tab);
+    const inCategory = data.events.filter(e => e.city === state.city && e.category === state.tab);
     const main = document.getElementById("main");
-    if (!evs.length) {
+    if (!inCategory.length) {
       main.innerHTML = `<div class="empty"><b>Nothing listed for ${esc(tab.label.toLowerCase())} in ${esc(state.city)} yet.</b><br>
         Listings refresh every morning. Try another tab, or check back tomorrow.</div>`;
       return;
     }
+    // Only genres with a show here get a chip, busiest first.
+    const counts = {};
+    inCategory.forEach(e => (e.genres || []).forEach(g => counts[g] = (counts[g] || 0) + 1));
+    const chips = (data.genres?.[state.tab] || []).filter(([slug]) => counts[slug]).sort((a, b) => counts[b[0]] - counts[a[0]]);
+    if (!counts[state.genre]) state.genre = "";
+    const bar = chips.length ? `<div class="genre-bar" role="toolbar" aria-label="${esc(tab.label)} genres">
+        <button class="chip" data-genre="" aria-pressed="${!state.genre}">All<small>${inCategory.length}</small></button>
+        ${chips.map(([slug, label]) => `<button class="chip" data-genre="${slug}" aria-pressed="${state.genre === slug}">${esc(label)}<small>${counts[slug]}</small></button>`).join("")}
+      </div>` : "";
+
+    const evs = state.genre ? inCategory.filter(e => (e.genres || []).includes(state.genre)) : inCategory;
     const trays = new Map();
     evs.forEach(e => { const b = bucket(e.date); (trays.get(b) || trays.set(b, []).get(b)).push(e); });
-    main.innerHTML = [...trays.keys()].sort().map(b =>
+    main.innerHTML = bar + [...trays.keys()].sort().map(b =>
       trayHtml(`bucket-${b}`, BUCKETS[b], trays.get(b).length, trays.get(b).map(e => renderTile(e)))
     ).join("");
   }
@@ -643,16 +771,16 @@
         <a class="art-link" href="${esc(href)}" target="_blank" rel="noopener" aria-label="${esc(e.title)}">
           ${art}<span class="when ${e.date === todayISO ? "today" : ""}">${whenLabel(e)}</span>
         </a>
-        <div class="art-actions">
-          <button class="save" data-add="${e.id}" aria-pressed="${saved}">${saved ? "✓ Wanna go" : "+ Wanna go"}</button>
-          <button class="share" data-share="${e.id}" aria-label="Share ${esc(e.title)}">${ICON_SHARE}</button>
-        </div>
       </div>
       <a class="body" href="${esc(href)}" target="_blank" rel="noopener">
         <p class="name">${esc(e.title)}${newPill}</p>
         <p class="venue">${esc(e.venue)}</p>
         <div class="foot">${price}${via}</div>
       </a>
+      <div class="tile-actions">
+        <button class="save" data-add="${e.id}" aria-pressed="${saved}">${saved ? "✓ Wanna go" : "+ Wanna go"}</button>
+        <button class="share" data-share="${e.id}" aria-label="Share ${esc(e.title)}">${ICON_SHARE}</button>
+      </div>
     </div>`;
   }
 
@@ -663,10 +791,108 @@
     upd.textContent = isSample ? "Showing sample listings" : `Listings updated ${fmtLong.format(new Date(data.updated_at))}`;
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("footTabs").innerHTML = TABS.map(t => `<li><button data-foot-tab="${t.key}">${t.label}</button></li>`).join("")
+      + `<li><button data-onboard>Your interests</button></li>`
       + (SIGNUP_URL ? `<li><a href="${esc(SIGNUP_URL)}" target="_blank" rel="noopener">Get the weekly picks</a></li>` : "");
   }
 
   function render() { renderCity(); renderTabs(); renderList(); syncUrl(); }
+
+  // ---------- onboarding: city, then interests ----------
+  const onboard = document.getElementById("onboard");
+  const CATEGORY_COLOR = { music: "var(--music)", theatre: "var(--theatre)", sports: "var(--sports)", comedy: "var(--comedy)" };
+  let ob = null;  // { step, city, categories: Set, genres: Set, q }
+
+  function openOnboarding() {
+    const p = getPrefs() || { categories: [], genres: [] };
+    ob = { step: 1, city: state.city, categories: new Set(p.categories), genres: new Set(p.genres), q: "" };
+    renderOnboarding();
+    onboard.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function closeOnboarding() {
+    onboard.hidden = true;
+    document.body.style.overflow = "";
+    ob = null;
+    try { localStorage.setItem(LS_ONBOARDED, "1"); } catch {}
+  }
+  function finishOnboarding() {
+    const inCats = slug => [...ob.categories].some(c => (data.genres?.[c] || []).some(([s]) => s === slug));
+    const prefs = { categories: [...ob.categories], genres: [...ob.genres].filter(inCats) };
+    const city = ob.city;
+    try { localStorage.setItem(LS_PREFS, JSON.stringify(prefs)); localStorage.setItem(LS_CITY, city); } catch {}
+    closeOnboarding();
+    Object.assign(state, { city, tab: "all", genre: "", favVenue: "all" });
+    render();
+    window.scrollTo({ top: 0 });
+  }
+
+  function cityChips() {
+    const counts = cityCounts();
+    const q = ob.q.trim().toLowerCase();
+    const list = citiesByShows().filter(c => c.toLowerCase().includes(q)).slice(0, q ? 60 : 12);
+    return list.map(c => `<button class="ob-city" data-ob-city="${esc(c)}" aria-pressed="${c === ob.city}">${esc(c)}<small>${counts[c] || 0} shows</small></button>`).join("")
+      || `<p class="sub">No shows listed in “${esc(ob.q.trim())}” yet.</p>`;
+  }
+
+  function renderOnboarding(focusSel) {
+    const skip = `<button class="ob-skip" data-ob="skip">Skip</button>`;
+    if (ob.step === 1) {
+      onboard.innerHTML = `<div class="ob-card">${skip}
+        <p class="ob-step">Step 1 of 2</p>
+        <h2 id="obTitle">Where are you heading out?</h2>
+        <p class="sub">We'll show what's on in your city first. You can switch any time from the top right.</p>
+        ${data.cities.length > 12 ? `<input class="ob-search" data-ob-search type="search" placeholder="Search all ${data.cities.length} cities" autocomplete="off">` : ""}
+        <div class="ob-cities">${cityChips()}</div>
+        <div class="ob-actions"><span></span><button class="ob-primary" data-ob="next">Next</button></div>
+      </div>`;
+    } else {
+      const cats = TABS.filter(t => t.key !== "all");
+      onboard.innerHTML = `<div class="ob-card">${skip}
+        <p class="ob-step">Step 2 of 2</p>
+        <h2 id="obTitle">What are you into?</h2>
+        <p class="sub">Pick as many as you like. We'll put them first in <b>Recommendations for you</b>.</p>
+        <div class="ob-cats">${cats.map(t => `<button class="ob-cat" data-ob-cat="${t.key}" aria-pressed="${ob.categories.has(t.key)}" style="--c:${CATEGORY_COLOR[t.key]}"><i></i>${t.label}</button>`).join("")}</div>
+        <div class="ob-genres">${cats.filter(t => ob.categories.has(t.key) && data.genres?.[t.key]).map(t => `
+          <div><h3>${t.label} — any favourites?</h3><div class="chips">${data.genres[t.key].map(([slug, label]) =>
+            `<button class="chip" data-ob-genre="${slug}" aria-pressed="${ob.genres.has(slug)}">${esc(label)}</button>`).join("")}</div></div>`).join("")}
+        </div>
+        <div class="ob-actions"><button class="ob-back" data-ob="back">‹ Back</button><button class="ob-primary" data-ob="done">Show my picks</button></div>
+      </div>`;
+    }
+    (onboard.querySelector(focusSel || ".ob-primary"))?.focus({ preventScroll: true });
+  }
+
+  onboard.addEventListener("click", e => {
+    const act = e.target.closest("[data-ob]")?.dataset.ob;
+    if (act === "skip") { closeOnboarding(); return; }
+    if (act === "next") { ob.step = 2; renderOnboarding(); return; }
+    if (act === "back") { ob.step = 1; renderOnboarding(); return; }
+    if (act === "done") { finishOnboarding(); return; }
+    const city = e.target.closest("[data-ob-city]");
+    if (city) {
+      ob.city = city.dataset.obCity;
+      onboard.querySelectorAll("[data-ob-city]").forEach(b => b.setAttribute("aria-pressed", String(b === city)));
+      return;
+    }
+    const cat = e.target.closest("[data-ob-cat]");
+    if (cat) {
+      const k = cat.dataset.obCat;
+      if (ob.categories.has(k)) ob.categories.delete(k); else ob.categories.add(k);
+      renderOnboarding(`[data-ob-cat="${k}"]`);
+      return;
+    }
+    const g = e.target.closest("[data-ob-genre]");
+    if (g) {
+      const s = g.dataset.obGenre;
+      if (ob.genres.has(s)) ob.genres.delete(s); else ob.genres.add(s);
+      g.setAttribute("aria-pressed", String(ob.genres.has(s)));
+    }
+  });
+  onboard.addEventListener("input", e => {
+    if (!e.target.matches("[data-ob-search]")) return;
+    ob.q = e.target.value;
+    onboard.querySelector(".ob-cities").innerHTML = cityChips();
+  });
 
   // ---------- events ----------
   cityBtn.addEventListener("click", () => cityPop.hidden ? openCityMenu() : closeCityMenu(false));
@@ -689,8 +915,7 @@
   window.addEventListener("scroll", onPageScroll, { passive: true });
   onPageScroll();
   document.getElementById("tabs").addEventListener("click", e => {
-    const b = e.target.closest("[data-tab]"); if (!b) return;
-    state.tab = b.dataset.tab; render();
+    const b = e.target.closest("[data-tab]"); if (b) goTab(b.dataset.tab);
   });
   document.getElementById("main").addEventListener("click", e => {
     const add = e.target.closest("[data-add]");
@@ -698,10 +923,13 @@
     const share = e.target.closest("[data-share]");
     if (share) { shareEvent(share.dataset.share, share); return; }
     if (e.target.closest("[data-dismiss-shared]")) { state.sharedId = ""; render(); return; }
+    if (e.target.closest("[data-onboard]")) { openOnboarding(); return; }
+    const chip = e.target.closest("[data-genre]");
+    if (chip) { state.genre = chip.dataset.genre; renderList(); syncUrl(); return; }
     const venue = e.target.closest("[data-venue]");
     if (venue) { state.favVenue = venue.dataset.venue; renderList(); return; }
     const seeAll = e.target.closest("[data-seeall]");
-    if (seeAll) { state.tab = seeAll.dataset.seeall; render(); return; }
+    if (seeAll) { goTab(seeAll.dataset.seeall); return; }
     const arrow = e.target.closest("[data-scroll]");
     if (arrow) { const shelf = arrow.closest(".shelf-wrap").querySelector(".shelf"); shelf.scrollBy({ left: arrow.dataset.scroll === "next" ? 640 : -640, behavior: "smooth" }); }
   });
@@ -724,14 +952,17 @@
   });
   document.addEventListener("keydown", ev => {
     if (ev.key !== "Escape") return;
-    if (!cityPop.hidden) closeCityMenu(true); else closeShareMenu(true);
+    if (!onboard.hidden) closeOnboarding();
+    else if (!cityPop.hidden) closeCityMenu(true);
+    else closeShareMenu(true);
   });
   document.addEventListener("scroll", () => closeShareMenu(false), true);
   window.addEventListener("resize", () => closeShareMenu(false));
 
   document.getElementById("footTabs").addEventListener("click", e => {
     const tab = e.target.closest("[data-foot-tab]");
-    if (tab) { state.tab = tab.dataset.footTab; render(); window.scrollTo({ top: 0 }); }
+    if (tab) goTab(tab.dataset.footTab);
+    else if (e.target.closest("[data-onboard]")) openOnboarding();
   });
 
   // ---------- load ----------
@@ -739,15 +970,23 @@
     .then(r => r.json())
     .then(json => {
       data = json;
-      data.events = data.events.filter(e => e.date >= todayISO);
-      data.cities = [...new Set(data.events.map(e => e.city))];
-      const shared =state.sharedId && data.events.find(e => e.id === state.sharedId);
+      pruneStarted();
+      const shared = state.sharedId && data.events.find(e => e.id === state.sharedId);
       if (shared) state.tab = "all";
       let remembered = null;
       try { remembered = localStorage.getItem(LS_CITY); } catch {}
       const find = name => name && data.cities.find(c => c.toLowerCase() === name.toLowerCase());
       state.city = (shared && shared.city) || find(state.city) || find(remembered) || citiesByShows()[0];
       renderFooter(); render();
+
+      let onboarded = false;
+      try { onboarded = !!(localStorage.getItem(LS_ONBOARDED) || localStorage.getItem(LS_PREFS)); } catch {}
+      if (!onboarded && !state.sharedId) openOnboarding();  // don't get in the way of a friend's shared link
+
+      // Re-check every minute (and on returning to the tab) so a show vanishes once it starts.
+      const refresh = () => { if (pruneStarted()) { closeShareMenu(false); renderList(); } };
+      setInterval(refresh, 60000);
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
     })
     .catch(() => {
       document.getElementById("main").innerHTML = `<div class="empty"><b>Couldn't load the listings.</b><br>Make sure data/events.json exists next to this page.</div>`;
