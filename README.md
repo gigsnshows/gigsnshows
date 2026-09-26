@@ -14,6 +14,10 @@ The **Home** tab is a browse-everything view — **Recommendations for you** (in
 
 Each category tab has **genre chips** (Jazz & blues, Stand-up, Running, Marathi…) for the genres showing in that city. Genres are tagged by the collector from each show's title and description — the list and keywords are in `scrapers/genres.py`. Workshops and classes (pottery, painting dates…) are left out; see `NOT_SHOWS` in `scrapers/base.py`.
 
+Shared links point to `/s/<id>`, a tiny page per show that the collector writes (`scrapers/sharepages.py`) so WhatsApp and other apps preview the link with the show's poster, title, date and venue; it forwards straight to the show on the dashboard. Pages are kept for 30 days after the show.
+
+**Analytics** (optional): set `GOATCOUNTER` at the top of the `<script>` in `index.html` to your GoatCounter site code. Besides page views it counts, as events: `city/…`, `tab/…`, `genre/…`, `row/…` and `ticket/…` (which row and which ticket site people click through from), `wanna-go/add`, `share/…`, `onboarding/done|skip`, `interest/…` and `shared-link/opened`. No cookies, nothing personal.
+
 A show disappears from the page the moment its start time passes (or at the end of the day, if no time is listed) — the page re-checks every minute.
 
 Every card has a share button. On a phone it opens the native share sheet; on a laptop it offers WhatsApp or Copy link. The shared link (`?event=<id>`) opens the dashboard with that show pinned at the top under "Your friend wants to go". The **Music/Theatre/Sports/Stand-up** tabs still give the old single-category, date-bucketed view for deep links like `?tab=comedy`.

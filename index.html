@@ -368,6 +368,10 @@
   // Leave empty to hide the button. Nothing is emailed automatically.
   const SIGNUP_URL = "";
 
+  // Visitor analytics (GoatCounter: no cookies, no personal data). Paste your GoatCounter site
+  // code — the "mysite" in mysite.goatcounter.com — to switch it on. Leave empty to turn it off.
+  const GOATCOUNTER = "";
+
   // Venues that get their own row (with a per-venue filter) on the Home view.
   // Add more by giving each a name and a way to recognise its events.
   const FAVOURITE_VENUES = [
@@ -408,7 +412,25 @@
     history.replaceState(null, "", "?" + p.toString());
   }
 
+  // ---------- analytics: page views plus a few counted actions, e.g. "genre/jazz", "ticket/district" ----------
+  const trackQueue = [];
+  if (GOATCOUNTER) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    s.dataset.goatcounter = `https://${GOATCOUNTER}.goatcounter.com/count`;
+    s.onload = () => trackQueue.splice(0).forEach(ev => window.goatcounter.count(ev));
+    document.head.appendChild(s);
+  }
+  function track(path) {
+    if (!GOATCOUNTER) return;
+    const ev = { path, title: path, event: true };
+    if (window.goatcounter?.count) window.goatcounter.count(ev); else trackQueue.push(ev);
+  }
+  const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
   function goTab(tab) {
+    track(`tab/${tab}`);
     state.tab = tab;
     state.genre = "";
     render();
@@ -450,7 +472,7 @@
   function toggleWannaGo(id) {
     const ids = getWannaGo();
     const i = ids.indexOf(id);
-    if (i > -1) ids.splice(i, 1); else ids.push(id);
+    if (i > -1) ids.splice(i, 1); else { ids.push(id); track("wanna-go/add"); }
     localStorage.setItem(LS_LIST, JSON.stringify(ids));
     renderList();
   }
@@ -480,8 +502,10 @@
   const ICON_CHAT = `<svg viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/></svg>`;
   const ICON_LINK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>`;
 
+  // /s/<id> is a tiny page carrying the show's poster and details for link previews; it forwards here.
+  // GitHub Pages serves it without the .html; a local test server needs the extension.
   function shareLink(e) {
-    return `${location.origin}${location.pathname}?${new URLSearchParams({ city: e.city.toLowerCase(), event: e.id })}`;
+    return `${location.origin}/s/${e.id}${location.hostname === "localhost" ? ".html" : ""}`;
   }
   function shareText(e) {
     return `Wanna go? 🎟️ ${e.title} · ${whenLabel(e)}${e.venue ? " · " + e.venue : ""}`;
@@ -497,7 +521,7 @@
     if (!e) return;
     const text = shareText(e), url = shareLink(e);
     if (navigator.share && matchMedia("(pointer: coarse)").matches) {
-      try { await navigator.share({ title: e.title, text, url }); return; }
+      try { await navigator.share({ title: e.title, text, url }); track("share/phone"); return; }
       catch (err) { if (err.name === "AbortError") return; }
     }
     openShareMenu(btn, e, text, url);
@@ -581,6 +605,7 @@
     closeCityMenu(true);
     try { localStorage.setItem(LS_CITY, c); } catch {}
     if (c === state.city) return;
+    track(`city/${slug(c)}`);
     state.city = c; state.favVenue = "all";
     render();
     window.scrollTo({ top: 0 });
@@ -819,6 +844,9 @@
     const inCats = slug => [...ob.categories].some(c => (data.genres?.[c] || []).some(([s]) => s === slug));
     const prefs = { categories: [...ob.categories], genres: [...ob.genres].filter(inCats) };
     const city = ob.city;
+    track("onboarding/done");
+    prefs.categories.forEach(c => track(`interest/${c}`));
+    prefs.genres.forEach(g => track(`interest/${g}`));
     try { localStorage.setItem(LS_PREFS, JSON.stringify(prefs)); localStorage.setItem(LS_CITY, city); } catch {}
     closeOnboarding();
     Object.assign(state, { city, tab: "all", genre: "", favVenue: "all" });
@@ -864,7 +892,7 @@
 
   onboard.addEventListener("click", e => {
     const act = e.target.closest("[data-ob]")?.dataset.ob;
-    if (act === "skip") { closeOnboarding(); return; }
+    if (act === "skip") { track("onboarding/skip"); closeOnboarding(); return; }
     if (act === "next") { ob.step = 2; renderOnboarding(); return; }
     if (act === "back") { ob.step = 1; renderOnboarding(); return; }
     if (act === "done") { finishOnboarding(); return; }
@@ -925,7 +953,14 @@
     if (e.target.closest("[data-dismiss-shared]")) { state.sharedId = ""; render(); return; }
     if (e.target.closest("[data-onboard]")) { openOnboarding(); return; }
     const chip = e.target.closest("[data-genre]");
-    if (chip) { state.genre = chip.dataset.genre; renderList(); syncUrl(); return; }
+    if (chip) { state.genre = chip.dataset.genre; if (state.genre) track(`genre/${state.genre}`); renderList(); syncUrl(); return; }
+    const out = e.target.closest("a.art-link, a.body");
+    if (out) {  // leaving for a ticket site: which site, and which row sent them
+      const ev = data.events.find(x => x.id === out.closest(".tile")?.dataset.id);
+      if (ev) track(`ticket/${slug((ev.sources || [ev.source])[0])}`);
+      track(`row/${out.closest("[data-tray]")?.dataset.tray || "unknown"}`);
+      return;
+    }
     const venue = e.target.closest("[data-venue]");
     if (venue) { state.favVenue = venue.dataset.venue; renderList(); return; }
     const seeAll = e.target.closest("[data-seeall]");
@@ -934,9 +969,10 @@
     if (arrow) { const shelf = arrow.closest(".shelf-wrap").querySelector(".shelf"); shelf.scrollBy({ left: arrow.dataset.scroll === "next" ? 640 : -640, behavior: "smooth" }); }
   });
   shareMenu.addEventListener("click", async ev => {
-    if (ev.target.closest("[data-close]")) { setTimeout(() => closeShareMenu(false), 0); return; }
+    if (ev.target.closest("[data-close]")) { track("share/whatsapp"); setTimeout(() => closeShareMenu(false), 0); return; }
     const copy = ev.target.closest("[data-copy]");
     if (!copy) return;
+    track("share/copy-link");
     try {
       await navigator.clipboard.writeText(copy.dataset.copy);
       copy.querySelector("span").textContent = "Link copied";
@@ -978,6 +1014,8 @@
       const find = name => name && data.cities.find(c => c.toLowerCase() === name.toLowerCase());
       state.city = (shared && shared.city) || find(state.city) || find(remembered) || citiesByShows()[0];
       renderFooter(); render();
+      track(`city/${slug(state.city)}`);
+      if (state.sharedId) track(shared ? "shared-link/opened" : "shared-link/show-over");
 
       let onboarded = false;
       try { onboarded = !!(localStorage.getItem(LS_ONBOARDED) || localStorage.getItem(LS_PREFS)); } catch {}
