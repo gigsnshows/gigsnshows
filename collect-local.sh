@@ -13,7 +13,7 @@ BOT=(-c user.name=listings-bot -c user.email=bot@users.noreply.github.com)
 echo "=== $(date) ==="
 git "${BOT[@]}" pull --rebase -X theirs --quiet "$REPO" main   # latest code and listings
 python3 run.py
-git add data/events.json
+git add data/events.json s
 if git diff --cached --quiet; then echo "no changes"; exit 0; fi
 git "${BOT[@]}" commit --quiet -m "Refresh listings $(date +%F) (Mac)"
 for attempt in 1 2 3; do

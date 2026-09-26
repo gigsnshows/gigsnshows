@@ -17,6 +17,7 @@ from pathlib import Path
 import yaml
 
 from scrapers.base import NOT_SHOWS, get_html, now_iso
+from scrapers import sharepages
 from scrapers.genres import catalog, tag
 from scrapers.parsers import PARSERS
 
@@ -141,6 +142,9 @@ def main(dry_run=False, only=None):
     OUT.write_text(json.dumps({"updated_at": now_iso(), "cities": cities, "genres": catalog(),
                                "count": len(merged), "events": merged}, indent=2, ensure_ascii=False))
     print(f"wrote {OUT}")
+    cname = ROOT / "CNAME"
+    sharepages.write(merged, ROOT, f"https://{cname.read_text().strip()}" if cname.exists() else "")
+    print(f"wrote share pages to {ROOT / 's'}")
 
 
 if __name__ == "__main__":
