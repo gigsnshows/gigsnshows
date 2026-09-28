@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-27T11:50:46Z",
+  "updated_at": "2026-09-28T01:49:52Z",
   "cities": [
     "Ahmedabad",
     "Bengaluru",
@@ -29,7 +29,6 @@
     "Surat",
     "Thrissur",
     "Vadodara",
-    "Varanasi",
     "Visakhapatnam"
   ],
   "genres": {
@@ -218,3205 +217,8 @@
       ]
     ]
   },
-  "count": 705,
+  "count": 555,
   "events": [
-    {
-      "id": "762c7ce9f19f",
-      "title": "‘Tale of Melodies’",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "The Cube",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.nmacc.com/performing-arts/tale-of-melodies/",
-      "image": "https://www.nmacc.com/assets/nmacc/home/27thseptcube1920.webp",
-      "source": "NMACC",
-      "sources": [
-        "NMACC"
-      ],
-      "links": {
-        "NMACC": "https://www.nmacc.com/performing-arts/tale-of-melodies/"
-      },
-      "first_seen": "2026-09-05"
-    },
-    {
-      "id": "fe8e28a19828",
-      "title": "Ye Shaam Mastani ft. Saurav",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Drama",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": 199,
-      "url": "https://www.district.in/events/ye-shaam-mastani-ft-saurav-jul26-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ye-shaam-mastani-ft-saurav-jul26-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "2481d7cd608f",
-      "title": "Connaught Place Standup Comedy Show | CP",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Delhi",
-      "venue": "Laugh Palace",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/delhi-takeover-a-standup-comedy-show-mar15-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1773848434/zfxuyksanjmxq9qcp6y2.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/delhi-takeover-a-standup-comedy-show-mar15-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "60e2d6b419c6",
-      "title": "Adult Jokes Night | A Stand-Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Delhi",
-      "venue": "Too Loud Comedy Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/adult-jokes-night-a-standup-comedy-show-sep8-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M24ZJA7PTD9J0GTQGSGVSWM5.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/adult-jokes-night-a-standup-comedy-show-sep8-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "76345f62ae2d",
-      "title": "Ziel Shooting Academy",
-      "category": "sports",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Ziel Shooting Academy, Bangalore",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/ziel-shooting-academy-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1769490219/sqerjfxaveiupjcsxwmt.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ziel-shooting-academy-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "acc28548bded",
-      "title": "Late Night Standup Comedy Show (Koramangala)",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Bengaluru",
-      "venue": "Ministry Of Comedy",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/kaafi-late-night-comedy-show-koramangala-mar7-2024-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/kaafi-late-night-comedy-show-koramangala-mar7-2024-buy-tickets"
-      }
-    },
-    {
-      "id": "9387c32c9c06",
-      "title": "Midnight Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Coffee Theatre - Indiranagar, Bangalore",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/all-star-lineup-a-curated-stand-up-comedy-show-jun16-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1750485798/zocjuhkzll1invoxje0z.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/all-star-lineup-a-curated-stand-up-comedy-show-jun16-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "fb2688c842fa",
-      "title": "All Star Lineup Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Comedy Theatre - Indiranagar, Bangalore",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/all-star-lineup-comedy-show-jul16-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1752664504/vccsmkgazf5bho84xdtm.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/all-star-lineup-comedy-show-jul16-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "60a601e5971c",
-      "title": "Koregaon Park Mic Drop | Weekend Open Mic Escape",
-      "category": "comedy",
-      "genres": [
-        "comedy-open-mic"
-      ],
-      "city": "Pune",
-      "venue": "Laugh and Vibe Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/standup-comedy-koregaon-park-heart-of-the-city-apr19-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1768909316/h0j1j443zo6w6alptocj.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/standup-comedy-koregaon-park-heart-of-the-city-apr19-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "7e919f047500",
-      "title": "SXX & Savage Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Pune",
-      "venue": "Laugh and Vibe Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/sxx-savage-comedy-show-apr3-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1775212757/q8wvpr0tjunc6ftmlabb.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sxx-savage-comedy-show-apr3-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "79c9d8658eb7",
-      "title": "Sunday Comedy Showdown Weekender",
-      "category": "comedy",
-      "genres": [
-        "crowdwork"
-      ],
-      "city": "Pune",
-      "venue": "Laugh and Vibe Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/sunday-comedy-showdown-weekender-apr19-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sunday-comedy-showdown-weekender-apr19-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "043140b4cd4a",
-      "title": "18+ Stand-Up सूत्र | Standup Comedy @Koregaon Park",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Pune",
-      "venue": "Laugh and Vibe Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/laughs-galore-standup-comedy-koregaon-park-apr26-2025-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/laughs-galore-standup-comedy-koregaon-park-apr26-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "90c3c6f475f4",
-      "title": "Pune Standup Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Pune",
-      "venue": "Flow Comedy Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/pune-standup-comedy-show-jul26-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KY1ZJHS2MGZCP8F9JMYNT475.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/pune-standup-comedy-show-jul26-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "e8a1dbe63322",
-      "title": "Sex Jokes Only - A Stand-Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Pune",
-      "venue": "Two Good (food | art | studio)",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/sex-jokes-only-a-standup-comedy-show-oct13-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1760284257/ptnan6juchsu2ykggzee.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sex-jokes-only-a-standup-comedy-show-oct13-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "d740c78be1dc",
-      "title": "Stand-Up Comedy Night",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Hyderabad",
-      "venue": "Brew Commune Cafe & Bistro",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/standup-comedy-night-jul12-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1YAP2SYW3QET8QPVDEQ3GCW.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/standup-comedy-night-jul12-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "09fdac8a6ebc",
-      "title": "VGP Waghoba, Chennai",
-      "category": "music",
-      "genres": [
-        "open-jam"
-      ],
-      "city": "Chennai",
-      "venue": "Sing Your Heart Out | VGP Waghoba",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/karaoke-party-vgp-waghoba-chennai-aug1-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/karaoke-party-vgp-waghoba-chennai-aug1-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "0d90420f8c10",
-      "title": "Top Secret Comedy Show - A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Kolkata",
-      "venue": "Topcat Retired Comedy Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/top-secret-comedy-showa-stand-up-comedy-show-apr19-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1776092556/k9ggdst1jvi03rlh3ees.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/top-secret-comedy-showa-stand-up-comedy-show-apr19-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "f6c3dbafde66",
-      "title": "Shiva Immersive- A Theatrical Grandeur",
-      "category": "theatre",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Shiva Immersive",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/shiva-immersive-a-theatrical-grandeur-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/shiva-immersive-a-theatrical-grandeur-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "9d0dcfe8ca45",
-      "title": "Ghar: An Open Mic for Words by Tape A Tale | Jaipur",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "city": "Jaipur",
-      "venue": "Maah 間",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-jaipur-jul12-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVA5DR8GJRNG1NNQ0ZJJSAPQ.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-jaipur-jul12-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "601c4d722de4",
-      "title": "Sex Jokes Only",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Jaipur",
-      "venue": "Jaipur Comedy Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/sex-jokes-only-aug22-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1755521625/ls0pjm2xjl3xxijaiiq3.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sex-jokes-only-aug22-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "5065f8929405",
-      "title": "Ghar: An Open Mic for Words by Tape A Tale | Chandigarh",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "city": "Chandigarh",
-      "venue": "The Laugh Club",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-chandigarh-jul5-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KTR4V48FX5VJQ3RKJBJQ3Z9K.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-chandigarh-jul5-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "61249c0705c6",
-      "title": "Magic Show by Magician O. P. Sharma Jr. - Lucknow",
-      "category": "theatre",
-      "genres": [
-        "kids",
-        "comedy-play"
-      ],
-      "city": "Lucknow",
-      "venue": "Ravindralaya Auditorium and Lawns",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/magic-show-by-magician-o-p-sharma-jr-lucknow-sep25-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1XENMC8MHSTN6BMXEGVCNF5.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/magic-show-by-magician-o-p-sharma-jr-lucknow-sep25-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "8ce64bfd6878",
-      "title": "Comedy Night Outs - A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Surat",
-      "venue": "THE GREEN ROOM",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/comedy-night-outs-a-stand-up-comedy-show-sep3-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2FG1S7EFY4KQHMYC5D8VVD8.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/comedy-night-outs-a-stand-up-comedy-show-sep3-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "d7a6b70e1d98",
-      "title": "Live Music at Ganga Bliss Riverside Resort",
-      "category": "music",
-      "genres": [
-        "tribute"
-      ],
-      "city": "Dehradun",
-      "venue": "Ganga Bliss Riverside",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/live-music-at-ganga-bliss-riverside-resort-aug16-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/live-music-at-ganga-bliss-riverside-resort-aug16-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "6189fa802f56",
-      "title": "The Soti Porgi Show",
-      "category": "comedy",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "Prabodhankar Mini: Mumbai",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://in.bookmyshow.com/events/the-soti-porgi-show/ET00516064",
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-1440,h-288,bg-CCCCCC/et00516064-dpnmavelcw-landscape.jpg",
-      "source": "BookMyShow",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "BookMyShow"
-      ],
-      "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/the-soti-porgi-show/ET00516064"
-      }
-    },
-    {
-      "id": "62985730a4d1",
-      "title": "Upper Middle Below Privilege Line",
-      "category": "comedy",
-      "genres": [],
-      "city": "Pune",
-      "venue": "Buntara Bhavana: Pune",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://in.bookmyshow.com/events/upper-middle-below-privilege-line/ET00514731",
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-1440,h-288,bg-CCCCCC/et00514731-bhjtnzahbg-landscape.jpg",
-      "source": "BookMyShow",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "BookMyShow"
-      ],
-      "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/upper-middle-below-privilege-line/ET00514731"
-      }
-    },
-    {
-      "id": "937256bd67f1",
-      "title": "Onnu Sollanum - Vikkals Vikram Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Chennai",
-      "venue": "The Music Academy: Chennai",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://in.bookmyshow.com/events/onnu-sollanum-a-tamil-stand-up-comedy-show/ET00515715",
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-1440,h-288,bg-CCCCCC/et00515715-uxffzuyjfu-landscape.jpg",
-      "source": "BookMyShow",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "BookMyShow"
-      ],
-      "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/onnu-sollanum-a-tamil-stand-up-comedy-show/ET00515715"
-      }
-    },
-    {
-      "id": "a4185e70326d",
-      "title": "VIR DAS - SOUNDS OF INDIA - KOLKATA",
-      "category": "comedy",
-      "genres": [],
-      "city": "Kolkata",
-      "venue": "Dhono Dhanyo Auditorium: Kolkata",
-      "date": "2026-09-27",
-      "time": "",
-      "price_from": null,
-      "url": "https://in.bookmyshow.com/events/vir-das-sounds-of-india-kolkata/ET00500901",
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-1440,h-288,bg-CCCCCC/et00500901-wpunxzjtnk-landscape.jpg",
-      "source": "BookMyShow",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "BookMyShow"
-      ],
-      "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/vir-das-sounds-of-india-kolkata/ET00500901"
-      }
-    },
-    {
-      "id": "4e45b537ede4",
-      "title": "Hex Gaming Cafe",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "HEX Gaming Cafe",
-      "date": "2026-09-27",
-      "time": "03:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-8JMJY7/cover-image/evt-8jmjy7-7b9c.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "3425ded5eb86",
-      "title": "Lazer Crazer: BattleZone Delhi",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Lazer Crazer Delhi | Laser Tag & Cafe Myles",
-      "date": "2026-09-27",
-      "time": "05:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-99WH4D/cover-image/evt-99wh4d-1f50.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "ac2ead09cdea",
-      "title": "Rage Room Mumbai",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "Rage Room Mumbai",
-      "date": "2026-09-27",
-      "time": "05:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/HR97Y4/rage-room-mumbai",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-C7HLY2/cover-image/evt-c7hly2-d35a.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/HR97Y4/rage-room-mumbai"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "87ba2d26a1e3",
-      "title": "Kids Art Party",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Indiranagar Social",
-      "date": "2026-09-27",
-      "time": "08:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/JPEWB5/kids-art-party-indiranagar-social",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-JPEWB5/cover-image/evt-jpewb5-3ee1.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/JPEWB5/kids-art-party-indiranagar-social"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
-      "id": "a4865087cfcf",
-      "title": "Japanese Kintsugi Plate",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Indiranagar Social",
-      "date": "2026-09-27",
-      "time": "08:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/GBQVFT/japanese-kintsugi-plate-indiranagar-social",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-GBQVFT/cover-image/evt-gbqvft-69a2.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/GBQVFT/japanese-kintsugi-plate-indiranagar-social"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
-      "id": "1321d1f8df61",
-      "title": "Play Date With Parents",
-      "category": "theatre",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Indiranagar Social",
-      "date": "2026-09-27",
-      "time": "08:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/W7BW4G/play-date-with-parents-indiranagar-social",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-W7BW4G/cover-image/evt-w7bw4g-6946.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/W7BW4G/play-date-with-parents-indiranagar-social"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
-      "id": "d6790afdfd1c",
-      "title": "Paint Your Tote Bag",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Indiranagar Social",
-      "date": "2026-09-27",
-      "time": "08:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/M9JJXS/paint-your-tote-bag-indiranagar-social",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-M9JJXS/cover-image/evt-m9jjxs-2650.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/M9JJXS/paint-your-tote-bag-indiranagar-social"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "27dd82a4630f",
-      "title": "Japanese Bowl Kintsugi",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Indiranagar Social",
-      "date": "2026-09-27",
-      "time": "08:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/H7WP3C/japanese-bowl-kintsugi-indiranagar-social",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-H7WP3C/cover-image/evt-h7wp3c-24b5.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/H7WP3C/japanese-bowl-kintsugi-indiranagar-social"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "e3073921da13",
-      "title": "Baddy Club Sundays",
-      "category": "sports",
-      "genres": [
-        "racquet"
-      ],
-      "city": "Bengaluru",
-      "venue": "PLAY ZONE BELLANDUR (ONE TOUCH BADMINTON ARENA) Entity of M/s Omkar Global Services(Proprietary)",
-      "date": "2026-09-27",
-      "time": "09:45",
-      "price_from": null,
-      "url": "https://www.district.in/events/baddy-club-sundays-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M374MSJ8ES1W39RFMGK8Y6FY.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/baddy-club-sundays-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "acb40be4f373",
-      "title": "SFL Badminton Tournament",
-      "category": "sports",
-      "genres": [
-        "racquet"
-      ],
-      "city": "Bengaluru",
-      "venue": "Orchid Sports Academy",
-      "date": "2026-09-27",
-      "time": "10:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/sfl-badminton-tournament-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2MC100C0ZRNES441WDVQBDT.png",
-      "source": "District",
-      "first_seen": "2026-09-23",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sfl-badminton-tournament-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "8aadc73b2171",
-      "title": "LIVE MMA FIGHT",
-      "category": "sports",
-      "genres": [
-        "combat"
-      ],
-      "city": "Mumbai",
-      "venue": "Mihir Sen Sports Complex: Mumbai",
-      "date": "2026-09-27",
-      "time": "10:00",
-      "price_from": 399,
-      "url": "https://in.bookmyshow.com/sports/live-mma-fight/ET00514983",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-live-mma-fight-0-2026-9-1-t-12-35-27.jpg",
-      "source": "BookMyShow Sports",
-      "first_seen": "2026-09-05",
-      "sources": [
-        "BookMyShow Sports"
-      ],
-      "links": {
-        "BookMyShow Sports": "https://in.bookmyshow.com/sports/live-mma-fight/ET00514983"
-      }
-    },
-    {
-      "id": "601057c539c0",
-      "title": "Shriya Rao live in Mumbai",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "antiSOCIAL Lower Parel",
-      "date": "2026-09-27",
-      "time": "10:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/3Y3NF5/shriya-rao-live-in-mumbai",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-3Y3NF5/cover-image/evt-3y3nf5-b63c.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/3Y3NF5/shriya-rao-live-in-mumbai"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "437cd52b897a",
-      "title": "DIFFERENTAL ADVISORY: Lakshay_93 EP Launch Party",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Tizoe",
-      "date": "2026-09-27",
-      "time": "11:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/ENL6JK/differental-advisory",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-ENL6JK/cover-image/evt-enl6jk-a8c1.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/ENL6JK/differental-advisory"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "b12028b4ba72",
-      "title": "Knead to Meet You — A Pizza Making Experience",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "DLF MidTown Plaza",
-      "date": "2026-09-27",
-      "time": "12:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/knead-to-meet-you-a-pizza-making-experience-sberllyz",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790154731ecjlntXOfz2CIqF7.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/knead-to-meet-you-a-pizza-making-experience-sberllyz"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "f0acdcc17aaa",
-      "title": "Online Cricket ID for IPL 2026 +91 91555 50622",
-      "category": "sports",
-      "genres": [
-        "cricket"
-      ],
-      "city": "Delhi",
-      "venue": "To Be Announced",
-      "date": "2026-09-27",
-      "time": "12:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/online-cricket-id-for-ipl-2026-91-91555-50622-sbmioztm",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/b21rci9JOGtZNzc1ZGhBdUdkM3E3QT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17905049044vCwiz6NTNjNvAEo.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/online-cricket-id-for-ipl-2026-91-91555-50622-sbmioztm"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "6cf25de3b499",
-      "title": "Ghar - An Open Mic for Words by Tape A Tale | Hyderabad",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "city": "Hyderabad",
-      "venue": "Cafe Coffee day",
-      "date": "2026-09-27",
-      "time": "12:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-hyderabad-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2MK1331CVCVZ4YY37EFZE6R.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-hyderabad-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "cec453da5935",
-      "title": "Ghar - An Open Mic for Words by Tape A Tale | Bhopal",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "city": "Bhopal",
-      "venue": "Cafe Coffee day",
-      "date": "2026-09-27",
-      "time": "12:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-bhopal-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2MJD7QFX5SQJPXEYYJJ8AGM.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-bhopal-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "ea496bd39421",
-      "title": "Sunday Brunch Ft. Srijita Chatterjee | The Finch, Powai",
-      "category": "music",
-      "genres": [
-        "bollywood",
-        "pop"
-      ],
-      "city": "Mumbai",
-      "venue": "The Finch | Powai, Mumbai",
-      "date": "2026-09-27",
-      "time": "13:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/sunday-brunch-ft-srijita-chatterjee-the-finch-powai-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M302JXFV3BJGCN958KN4CRVN.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sunday-brunch-ft-srijita-chatterjee-the-finch-powai-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "4ab9b19e4b78",
-      "title": "TRAPPERX: THE SONIC EVOLUTION at Big Bull",
-      "category": "music",
-      "genres": [],
-      "city": "Hyderabad",
-      "venue": "Big Bull Club",
-      "date": "2026-09-27",
-      "time": "13:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/9WPZHB/trapperx-the-sonic-evolution-at-big-bull-hyderabad",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-9WPZHB/cover-image/evt-9wpzhb-b855.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/9WPZHB/trapperx-the-sonic-evolution-at-big-bull-hyderabad"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "3c16548e11d0",
-      "title": "Jam with Jeevan",
-      "category": "music",
-      "genres": [
-        "open-jam"
-      ],
-      "city": "Bengaluru",
-      "venue": "Native Bar and Coastal kitchen",
-      "date": "2026-09-27",
-      "time": "14:00",
-      "price_from": null,
-      "url": "https://thumpn.com/event/QULV89/jam-with-jeevan-bengaluru",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-KQBZD4/cover-image/evt-kqbzd4-4e1d.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/QULV89/jam-with-jeevan-bengaluru"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "2535d65ee705",
-      "title": "Vivek Samtani Live",
-      "category": "comedy",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "The Comedy Theatre - Indiranagar, Bangalore",
-      "date": "2026-09-27",
-      "time": "14:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/vivek-samtani-live-sep7-2025-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KYJAKN754MTDQ2Y609XQ567T.png",
-      "source": "District",
-      "first_seen": "2026-09-23",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/vivek-samtani-live-sep7-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "4dc1f437af36",
-      "title": "Come Alive with the Seasons: The Art of Punch Needling ft. Roku Gin || Bengaluru",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Saint Mark's Road",
-      "date": "2026-09-27",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/come-alive-with-the-seasons-the-art-of-punch-needling-ft-roku-gin-Bengaluru-sbqewnjm",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/OFBtUWVaUXNlUkpZTmdmMVJsRHlnZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17888537696vtvitXNANLgvVXp.png.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/come-alive-with-the-seasons-the-art-of-punch-needling-ft-roku-gin-Bengaluru-sbqewnjm"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
-      "id": "2baad38252b6",
-      "title": "Kolkata’s Biggest The Weeknd Fan Party 2026",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Kolkata",
-      "venue": "",
-      "date": "2026-09-27",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/kolkata-s-biggest-the-weeknd-fan-party-2026-sbweooye",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/QVo4WEFqbEtmdjFYQnhRa242N2dqdz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1783796945sLq3wcNpxxv6wkUH.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/kolkata-s-biggest-the-weeknd-fan-party-2026-sbweooye"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "704750adbc6b",
-      "title": "tnt_khilwaad | Card & Board Gaming Session",
-      "category": "music",
-      "genres": [],
-      "city": "Varanasi",
-      "venue": "Tattva Cafe, Hyderabad gate, Varanasi",
-      "date": "2026-09-27",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/tnt-khilwaad-card-board-gaming-session-sbxahyem",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/R0hiVUxVRmNtcVkxcFpMT1BTajNKZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789894546NruZzaTB54FGpNCB.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/tnt-khilwaad-card-board-gaming-session-sbxahyem"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "c7376df0a60e",
-      "title": "Comedy Open Mic - A Standup Stage for All",
-      "category": "comedy",
-      "genres": [
-        "standup",
-        "comedy-open-mic"
-      ],
-      "city": "Kolkata",
-      "venue": "Agora Space",
-      "date": "2026-09-27",
-      "time": "16:00",
-      "price_from": 199,
-      "url": "https://www.district.in/events/comedy-open-mic-a-standup-stage-for-all-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/comedy-open-mic-a-standup-stage-for-all-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "2b647527bffb",
-      "title": "Ghar: An Open Mic for Words by Tape A Tale | Indore",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "city": "Indore",
-      "venue": "Coffeenism",
-      "date": "2026-09-27",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-indore-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2MKCWSQE5FHXZ7RNVKJT2RW.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-indore-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "122ce876203a",
-      "title": "All The Best",
-      "category": "comedy",
-      "genres": [
-        "comedy-regional"
-      ],
-      "city": "Mumbai",
-      "venue": "Adya Krantiveer Vasudev Balwant Phadke : Panvel",
-      "date": "2026-09-27",
-      "time": "16:30",
-      "price_from": 300,
-      "url": "https://in.bookmyshow.com/plays/all-the-best/ET00384424",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-all-the-best-0-2025-4-2-t-12-57-32.jpg",
-      "source": "BookMyShow Plays",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "BookMyShow Plays"
-      ],
-      "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/all-the-best/ET00384424"
-      }
-    },
-    {
-      "id": "1b5f0f6a3c08",
-      "title": "Sanga, Kasa Jagaycha..?",
-      "category": "theatre",
-      "genres": [
-        "drama",
-        "theatre-marathi"
-      ],
-      "city": "Mumbai",
-      "venue": "Ram Ganesh Gadkari Rangayatan: Thane",
-      "date": "2026-09-27",
-      "time": "16:30",
-      "price_from": 500,
-      "url": "https://in.bookmyshow.com/plays/sanga-kasa-jagaycha/ET00494978",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-sanga-kasa-jagaycha-0-2026-4-11-t-13-15-26.jpg",
-      "source": "BookMyShow Plays",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "BookMyShow Plays"
-      ],
-      "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/sanga-kasa-jagaycha/ET00494978"
-      }
-    },
-    {
-      "id": "c2449d348f3a",
-      "title": "Asen Me Nasen Me",
-      "category": "theatre",
-      "genres": [
-        "drama",
-        "kids"
-      ],
-      "city": "Mumbai",
-      "venue": "Acharya Pralhad Keshav Atre RangMandir: Kalyan",
-      "date": "2026-09-27",
-      "time": "16:30",
-      "price_from": 300,
-      "url": "https://in.bookmyshow.com/plays/asen-me-nasen-me/ET00421962",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-asen-me-nasen-me-0-2024-11-30-t-7-10-23.jpg",
-      "source": "BookMyShow Plays",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "BookMyShow Plays"
-      ],
-      "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/asen-me-nasen-me/ET00421962"
-      }
-    },
-    {
-      "id": "091946868258",
-      "title": "Aamne Saamne - Marathi Play",
-      "category": "theatre",
-      "genres": [
-        "theatre-marathi"
-      ],
-      "city": "Pune",
-      "venue": "Anna Bhau Sathe Auditorium: Pune",
-      "date": "2026-09-27",
-      "time": "16:45",
-      "price_from": 400,
-      "url": "https://in.bookmyshow.com/plays/aamne-saamne-marathi-play/ET00482074",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-aamne-saamne-marathi-play-1-2026-7-5-t-5-13-16.jpg",
-      "source": "BookMyShow Plays",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "BookMyShow Plays"
-      ],
-      "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/aamne-saamne-marathi-play/ET00482074"
-      }
-    },
-    {
-      "id": "7b5c98610b2b",
-      "title": "Bollywood Jam Night",
-      "category": "music",
-      "genres": [
-        "bollywood",
-        "open-jam"
-      ],
-      "city": "Hyderabad",
-      "venue": "Amnesia Sky Bar",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/bollywood-jam-night-sbaaxiuz",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/cGRNaWpvcFBLbGpNYllIdWdZeWlaZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789042861PQ9U1UnG4FaLnNpB.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/bollywood-jam-night-sbaaxiuz"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "0d3b130d81a8",
-      "title": "Butterscotch - A Standup Solo by Abhijay Ghodke",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Pune",
-      "venue": "Two Good (food | art | studio)",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/butterscotch-a-standup-solo-by-abhijay-ghodke-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M0Z4CXAY952AQ24TY0KS692W.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/butterscotch-a-standup-solo-by-abhijay-ghodke-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "838798e77b4b",
-      "title": "Vikkals - Standup Comedy",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Chennai",
-      "venue": "Skygarden",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/vikkals-standup-comedy-jun26-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVR5DVVTB524XR6A3ZAYVNWE.jpg",
-      "source": "District",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/vikkals-standup-comedy-jun26-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "9cff71cfda55",
-      "title": "Couples Not Allowed - A Standup Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Chennai",
-      "venue": "Trinity Studio",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/couples-not-allowed-a-standup-comedy-show-jan4-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1767242430/vgx7tvljboyurvf5lfvi.png",
-      "source": "District",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/couples-not-allowed-a-standup-comedy-show-jan4-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "e95831b56938",
-      "title": "The Indie Jams Live at Sinnerr",
-      "category": "music",
-      "genres": [
-        "indie"
-      ],
-      "city": "Kolkata",
-      "venue": "Sinnerr",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/the-indie-jams-live-at-sinnerr-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M31GQ7WZM8ME45XJ5EQ0YXTE.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/the-indie-jams-live-at-sinnerr-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "f5603cde8689",
-      "title": "Dark Jokes Only",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Jaipur",
-      "venue": "Jaipur Comedy Club",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/dark-jokes-only-sep13-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2BE2H48G0NFG7T1FDJ1ERC0.jpg",
-      "source": "District",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/dark-jokes-only-sep13-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "bc724439a4d2",
-      "title": "Mayank Singh Live",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Lucknow",
-      "venue": "Lucknow Events Club (LEC)",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/mayank-singh-live-jun14-2025-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3CMP8XEHCJ9WAJ68Y00KYP2.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/mayank-singh-live-jun14-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "a06015c1f6b7",
-      "title": "ARIJIT SINGH x MOHIT CHAUHAN - Special Themed Jam",
-      "category": "music",
-      "genres": [
-        "bollywood",
-        "open-jam"
-      ],
-      "city": "Hyderabad",
-      "venue": "Big Bull Club: Hyderabad",
-      "date": "2026-09-27",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://in.bookmyshow.com/events/arijit-singh-x-mohit-chauhan-special-themed-jam/ET00518158",
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-1440,h-288,bg-CCCCCC/et00518158-rfbhfwgfqq-landscape.jpg",
-      "source": "BookMyShow",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "BookMyShow"
-      ],
-      "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/arijit-singh-x-mohit-chauhan-special-themed-jam/ET00518158"
-      }
-    },
-    {
-      "id": "1f9d1bcc0294",
-      "title": "LITJAM Mumbai: A Live Music Jamming Show",
-      "category": "music",
-      "genres": [
-        "open-jam"
-      ],
-      "city": "Mumbai",
-      "venue": "The Stables",
-      "date": "2026-09-27",
-      "time": "17:30",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/litjam-mumbai-a-live-music-jamming-show-sbnnarxp",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TGxIMWlaeG12R0I5Q2ZhUmtwRUhVQT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789553585Mlq14Fgw5QHfYQYK.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/litjam-mumbai-a-live-music-jamming-show-sbnnarxp"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
-      "id": "4fbcb153b75f",
-      "title": "Kommune Dehradun and Malang Open Mic",
-      "category": "comedy",
-      "genres": [
-        "comedy-open-mic"
-      ],
-      "city": "Dehradun",
-      "venue": "Cafe 7 ATE 9",
-      "date": "2026-09-27",
-      "time": "17:30",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/kommune-dehradun-and-malang-open-mic-sbyaorsi",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789967850IjBsqZqYxceaOyDi.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/kommune-dehradun-and-malang-open-mic-sbyaorsi"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "2fb3e9b006fa",
-      "title": "Kathakali Experience in Kochi | Live Show 5:30–7:00 PM",
-      "category": "theatre",
-      "genres": [
-        "dance",
-        "drama"
-      ],
-      "city": "Kochi",
-      "venue": "Cochin Cultural Centre (Kathakali, Kalaripayattu, Mohiniyattam, Bharatanatyam)",
-      "date": "2026-09-27",
-      "time": "17:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/kathakali-experience-in-kochi-live-show-530700-pm-mar3-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1772535742/xcwd0uwt6xvkhmdjqbmx.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/kathakali-experience-in-kochi-live-show-530700-pm-mar3-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "053295ece6f5",
-      "title": "Mahahadevan Live",
-      "category": "comedy",
-      "genres": [
-        "standup",
-        "crowdwork"
-      ],
-      "city": "Kochi",
-      "venue": "Commons",
-      "date": "2026-09-27",
-      "time": "17:30",
-      "price_from": 499,
-      "url": "https://www.district.in/events/mahahadevan-live-sep20-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2MZPPQ6NTGP9W95VH1XNQAK.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/mahahadevan-live-sep20-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "8ec1facdfc32",
-      "title": "Ti Chi Goshta - Season 1",
-      "category": "theatre",
-      "genres": [
-        "drama",
-        "theatre-marathi"
-      ],
-      "city": "Nashik",
-      "venue": "Mahakavi Kalidas Kala Mandir: Nashik",
-      "date": "2026-09-27",
-      "time": "17:30",
-      "price_from": 300,
-      "url": "https://in.bookmyshow.com/plays/ti-chi-goshta-season-1/ET00515157",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-ti-chi-goshta-0-2026-9-1-t-21-46-40.jpg",
-      "source": "BookMyShow Plays",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "BookMyShow Plays"
-      ],
-      "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/ti-chi-goshta-season-1/ET00515157"
-      }
-    },
-    {
-      "id": "179d9bf23a73",
-      "title": "Shots Fired | Kochi",
-      "category": "music",
-      "genres": [
-        "hiphop"
-      ],
-      "city": "Kochi",
-      "venue": "OG Chicago",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/shots-fired-kochi-sbwrjnav",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789049384POJImeICjHRKmLWI.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/shots-fired-kochi-sbwrjnav"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
-      "id": "53bee7f4ca5a",
-      "title": "Pratyush Chaubey Live | Bengaluru",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Comedy Theatre - Indiranagar, Bangalore",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/pratyush-chaubey-live-jul6-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1752919465/hnhi3amlxuiglxdzdbbx.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/pratyush-chaubey-live-jul6-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "628ad0f1b81f",
-      "title": "Rock & Roll by The Beach",
-      "category": "music",
-      "genres": [
-        "rock"
-      ],
-      "city": "Chennai",
-      "venue": "The Beach Terrace - Bay | Bar | Kitchen | Injambakkam, Chennai",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/rock-roll-by-the-beach-aug23-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M25CYPH7F4RSQVZR5HJP18R0.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/rock-roll-by-the-beach-aug23-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "7a857ec19a81",
-      "title": "Chennai's First Ever Night Theme Park Party - VGP Wonder World",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Chennai",
-      "venue": "VGP Wonder World",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/chennais-first-ever-night-theme-park-party-vgp-wonder-world-apr18-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1775114197/xjnf0g2dqr9yfmifjg1r.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/chennais-first-ever-night-theme-park-party-vgp-wonder-world-apr18-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "b12d605ce176",
-      "title": "Bangla Comedy Night - A Bengali Standup Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup",
-        "comedy-regional"
-      ],
-      "city": "Kolkata",
-      "venue": "Agora Space",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/bangla-comedy-night-a-bengali-standup-comedy-show-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2YPJAC9TMXVHFR7MF7AC5ZM.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/bangla-comedy-night-a-bengali-standup-comedy-show-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "fd4d04986c70",
-      "title": "Karaoke Night at 12Notez Music Studio",
-      "category": "music",
-      "genres": [
-        "open-jam"
-      ],
-      "city": "Jaipur",
-      "venue": "12notez Music Studio and Jam Room | Best Music Studio in Jaipur",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/karaoke-night-at-12notez-music-studio-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3A7XHADZQDSDCTZWQAMM9HW.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/karaoke-night-at-12notez-music-studio-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "1151bdc13407",
-      "title": "AIR 1 - A Standup Comedy Show by Harshit Mahawar",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Chandigarh",
-      "venue": "The Laugh Club",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/air-1-a-standup-comedy-show-by-harshit-mahawar-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/air-1-a-standup-comedy-show-by-harshit-mahawar-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "25d72f0701fe",
-      "title": "Khi Khi - A Stand Up Comedy show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Surat",
-      "venue": "Kukdi chopdi",
-      "date": "2026-09-27",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/khi-khi-a-stand-up-comedy-show-sep6-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1GW1E0E401QXVK2A0NTFZ8Q.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/khi-khi-a-stand-up-comedy-show-sep6-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "29473bf0969a",
-      "title": "Tea Ke Saath Comedy",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Kolkata",
-      "venue": "Global Tea Cafe Kolkata",
-      "date": "2026-09-27",
-      "time": "18:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/tea-ke-saath-comedy-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M36NMKNSC9S0E2SPM79SKS3N.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/tea-ke-saath-comedy-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "9aa7489839f8",
-      "title": "Hum Do Hamare Duo- Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Kolkata",
-      "venue": "Topcat Retired Comedy Club",
-      "date": "2026-09-27",
-      "time": "18:45",
-      "price_from": null,
-      "url": "https://www.district.in/events/hum-do-hamare-duo-stand-up-comedy-show-jun7-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KT6B2JX5J7CC3THX36J9X9C6.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/hum-do-hamare-duo-stand-up-comedy-show-jun7-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "78ee8a7b8c61",
-      "title": "Yatra with Aanchal || Bangalore",
-      "category": "music",
-      "genres": [
-        "folk"
-      ],
-      "city": "Bengaluru",
-      "venue": "Good Shepherd Auditorium",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/yatra-with-aanchal-sborcsdq",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1786965291k05HxsTCMNFs5U1Y.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/yatra-with-aanchal-sborcsdq"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "5f05ca6c62f8",
-      "title": "Bad Karaoke by GetSorted",
-      "category": "music",
-      "genres": [
-        "open-jam"
-      ],
-      "city": "Varanasi",
-      "venue": "VNS LIVE STUDIO",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/bad-karaoke-by-getsorted-sbxlgkqt",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/ZlJnK20waGZUSUFJcDdXTnV3Mi9BQT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789900891CkFuviqV3i3vCgTV.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/bad-karaoke-by-getsorted-sbxlgkqt"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "0930e6f3c5c0",
-      "title": "Souldout x Void presents Sama",
-      "category": "music",
-      "genres": [],
-      "city": "Jaipur",
-      "venue": "Romeo Lane Jaipur",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/souldout-x-void-presents-sama-sbgclwab",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789381750Lns9HU3aUtFMyb43.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/souldout-x-void-presents-sama-sbgclwab"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "0b3b0b217b4f",
-      "title": "Mic Drop Mehfil by Live Stories",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "city": "Mumbai",
-      "venue": "Third Bell Studios",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/mic-drop-mehfil-by-live-stories-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1R199Z5J5430NF5EXBN3EX0.jpg",
-      "source": "District",
-      "first_seen": "2026-09-06",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/mic-drop-mehfil-by-live-stories-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "e3323f3a3c93",
-      "title": "Roast Rehab",
-      "category": "comedy",
-      "genres": [
-        "crowdwork"
-      ],
-      "city": "Delhi",
-      "venue": "Foul Play | Hauz Khas, New Delhi",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/roast-rehab-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2T8P162JQSB1KP54KCGXVRS.png",
-      "source": "District",
-      "first_seen": "2026-09-23",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/roast-rehab-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "8eaa4eeabd2f",
-      "title": "Twin Strings The Karwaan India Tour | Bengaluru",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Sunburn Union",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/twin-strings-the-karwaan-india-tour-bengaluru-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1ND2PGAKCYTH6KPB1DHKQZ0.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-06",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/twin-strings-the-karwaan-india-tour-bengaluru-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "8f45aec8a73e",
-      "title": "And, Then?: An Improv Show by Improv Lore",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "city": "Bengaluru",
-      "venue": "Underline Center",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/and-then-an-improv-show-by-improv-lore-jul26-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KY4H1VQCT3MDQKF5A93W7EAD.jpg",
-      "source": "District",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/and-then-an-improv-show-by-improv-lore-jul26-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "f9284527ab08",
-      "title": "Family Night",
-      "category": "theatre",
-      "genres": [
-        "kids"
-      ],
-      "city": "Chennai",
-      "venue": "Zing | Koyambedu, Chennai",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/family-night-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/family-night-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "0e54d939a271",
-      "title": "Magic Show",
-      "category": "theatre",
-      "genres": [
-        "kids",
-        "storytelling"
-      ],
-      "city": "Chennai",
-      "venue": "ORNAMENTAL FISH TRADE CENTRE KOLATHUR",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/magic-show-may30-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KSJ5GGWA92JTS2MMFH38CC01.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/magic-show-may30-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "c2ffdd62c8b7",
-      "title": "The Chennai Late Night Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Chennai",
-      "venue": "Trinity Studio",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/the-chennai-late-night-comedy-show-jun27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVQ4VXY6RM0BSNHAPXEJ57D6.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/the-chennai-late-night-comedy-show-jun27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "6d193b93f88a",
-      "title": "Marne ka Shortcut",
-      "category": "theatre",
-      "genres": [
-        "theatre-hindi"
-      ],
-      "city": "Jaipur",
-      "venue": "Ravindra Manch ssk",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/marne-ka-shortcut-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2ATZPF7PE05G7SE3SS8QZEK.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/marne-ka-shortcut-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "24fc8826e3d1",
-      "title": "Shaam - e - Ghazal",
-      "category": "music",
-      "genres": [
-        "sufi"
-      ],
-      "city": "Lucknow",
-      "venue": "Classic Restaurant - Treat",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/shaam-e-ghazal-jun24-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVWTPCV3WFH433TFGQSQFS99.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/shaam-e-ghazal-jun24-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "aef5226bcd43",
-      "title": "Nizami Brothers Live -Qawwali evening at Baansera",
-      "category": "music",
-      "genres": [
-        "sufi"
-      ],
-      "city": "Delhi",
-      "venue": "Baansera Park: Delhi",
-      "date": "2026-09-27",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://in.bookmyshow.com/events/rang-ras-rooh/ET00516725",
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-1440,h-288,bg-CCCCCC/et00516725-fgymspfjpp-landscape.jpg",
-      "source": "BookMyShow",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "BookMyShow"
-      ],
-      "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/rang-ras-rooh/ET00516725"
-      }
-    },
-    {
-      "id": "b2ddb8ba9080",
-      "title": "JAB RAAVAN NE KAHAA JAI SHREE RAM",
-      "category": "theatre",
-      "genres": [
-        "theatre-hindi"
-      ],
-      "city": "Mumbai",
-      "venue": "St. Andrews Auditorium: Mumbai",
-      "date": "2026-09-27",
-      "time": "19:02",
-      "price_from": 599,
-      "url": "https://in.bookmyshow.com/plays/jab-raavan-ne-kahaa-jai-shree-ram/ET00513655",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-jab-raavan-ne-kahaa-jai-shree-ram-0-2026-8-21-t-19-32-44.jpg",
-      "source": "BookMyShow Plays",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "BookMyShow Plays"
-      ],
-      "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/jab-raavan-ne-kahaa-jai-shree-ram/ET00513655"
-      }
-    },
-    {
-      "id": "82ce8a9b7b88",
-      "title": "Pasandida Aurat : A Standup Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Jaipur",
-      "venue": "Jaipur Comedy Club",
-      "date": "2026-09-27",
-      "time": "19:15",
-      "price_from": null,
-      "url": "https://www.district.in/events/pasandida-aurat-a-standup-comedy-show-nov8-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1777628438/ju8lel8ztnpdlw0s4eiy.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/pasandida-aurat-a-standup-comedy-show-nov8-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "fdea6e032b61",
-      "title": "Forca Kochi FC Vs Malappuram FC | 27th Sept 2026",
-      "category": "sports",
-      "genres": [
-        "football"
-      ],
-      "city": "Kochi",
-      "venue": "JLN Stadium",
-      "date": "2026-09-27",
-      "time": "19:30",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/forca-kochi-fc-vs-malappuram-fc-sbgglyrh",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/OFBtUWVaUXNlUkpZTmdmMVJsRHlnZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789813089UbBhvNwaqQTKWoHy.png.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/forca-kochi-fc-vs-malappuram-fc-sbgglyrh"
-      },
-      "first_seen": "2026-09-26"
-    },
-    {
-      "id": "756563e03534",
-      "title": "Bpm Circuit | ft. Taketwo",
-      "category": "music",
-      "genres": [],
-      "city": "Hyderabad",
-      "venue": "Open Your Mouth India",
-      "date": "2026-09-27",
-      "time": "19:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/bpm-circuit-ft-taketwo-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2QE8V4F72XANYSCPSNDNKC4.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/bpm-circuit-ft-taketwo-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "8f36ef540c3e",
-      "title": "MHR & FRIENDS || PUNE",
-      "category": "music",
-      "genres": [
-        "hiphop"
-      ],
-      "city": "Pune",
-      "venue": "antiSOCIAL Shivajinagar Pune",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/mhr-friends-pune-sbmokhuh",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1786863407PpjTfPzFW9QRejir.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/mhr-friends-pune-sbmokhuh"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "77c065e89d43",
-      "title": "Joopy Rooster with Zane and Mark",
-      "category": "music",
-      "genres": [],
-      "city": "Goa",
-      "venue": "Saltamontes - Garden Cafe & Bar",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/joopy-rooster-with-zane-and-mark-sbylneep",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789971076b5z9PYvLTgt4h5u9.jpeg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/joopy-rooster-with-zane-and-mark-sbylneep"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "0275766698d6",
-      "title": "Burkina to Bombay to Goa",
-      "category": "music",
-      "genres": [],
-      "city": "Goa",
-      "venue": "Acajaiba",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/burkina-to-bombay-to-goa-sbvksxpb",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789820763BHTpT8s9MKndtNal.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/burkina-to-bombay-to-goa-sbvksxpb"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "40db4d5fc4d8",
-      "title": "Model Town Deewaney: A Theatrical Performance",
-      "category": "theatre",
-      "genres": [
-        "musical",
-        "drama"
-      ],
-      "city": "Mumbai",
-      "venue": "Rangshila Theatre Group",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": 499,
-      "url": "https://www.district.in/events/model-town-deewaney-a-theatrical-performance-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/model-town-deewaney-a-theatrical-performance-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "4142b626d7d9",
-      "title": "Kaun Main: A Standup Comedy Show by Appurv Gupta",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Mumbai",
-      "venue": "The J Spot (Juhu)",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/kaun-main-a-standup-comedy-show-by-appurv-gupta-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2HBTHQ1AJT51GR8KSZM979Q.jpg",
-      "source": "District",
-      "first_seen": "2026-09-23",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/kaun-main-a-standup-comedy-show-by-appurv-gupta-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "82d4e58c378d",
-      "title": "Open Mic Night",
-      "category": "comedy",
-      "genres": [
-        "comedy-open-mic"
-      ],
-      "city": "Mumbai",
-      "venue": "Radio Raga | Sakinaka, Mumbai",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/open-mic-night-jul5-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVTETG8ZFEB3D8G8G5V87EGB.jpg",
-      "source": "District",
-      "first_seen": "2026-09-23",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/open-mic-night-jul5-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "22b16b115e65",
-      "title": "Acoustic Sunday ft. Sunny Bhaat",
-      "category": "music",
-      "genres": [
-        "indie"
-      ],
-      "city": "Delhi",
-      "venue": "Cé La Vie Kitchen & Bar",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/acoustic-sunday-ft-sunny-bhaat-jan25-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1769059959/b2ldooxgefmmxytva87u.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/acoustic-sunday-ft-sunny-bhaat-jan25-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "bcc96cbfe739",
-      "title": "The Dharampura Dinner & Kathak Evening",
-      "category": "theatre",
-      "genres": [
-        "dance"
-      ],
-      "city": "Delhi",
-      "venue": "Haveli Dharampura",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": 4500,
-      "url": "https://www.district.in/events/the-dharampura-dinner-kathak-evening-jan9-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/the-dharampura-dinner-kathak-evening-jan9-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "e1e550b10d35",
-      "title": "DND ft. Thaikkudam Bridge Live",
-      "category": "theatre",
-      "genres": [
-        "musical"
-      ],
-      "city": "Bengaluru",
-      "venue": "DND | Bellandur, Bangalore",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/dnd-ft-thaikkudam-bridge-live-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M14NKJCV64T82MSRTEEN6D30.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-05",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/dnd-ft-thaikkudam-bridge-live-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "5c1ac8b0ef9d",
-      "title": "Bhaagi Hui Ladki",
-      "category": "theatre",
-      "genres": [
-        "storytelling",
-        "comedy-play"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Comedy Theatre : Church Street, Bangalore",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/bhaagi-hui-ladki-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M0TC9Y8HV9GX4HT38PPE6E3D.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/bhaagi-hui-ladki-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "2ae0f9af2e42",
-      "title": "Let Your Stories Meet Mine By Nishant Tanwar",
-      "category": "comedy",
-      "genres": [
-        "crowdwork",
-        "standup"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Laugh Junction",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/let-your-stories-meet-mine-by-nishant-tanwar-aug29-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M12FDAZMMRHMTV1BBCEQYC5K.jpg",
-      "source": "District",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/let-your-stories-meet-mine-by-nishant-tanwar-aug29-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "cb0d478494ec",
-      "title": "Sunday Sundown - Band Sublime Live at Jammin Junction",
-      "category": "music",
-      "genres": [],
-      "city": "Hyderabad",
-      "venue": "Jammin Junction Bar & Kitchen | Jubilee Hills, Hyderabad",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/sunday-sundown-band-sublime-live-at-jammin-junction-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3113XKF4S3FFM2N4SS6FC9K.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sunday-sundown-band-sublime-live-at-jammin-junction-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "5305c0d18965",
-      "title": "B.Tech to Bewars",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Hyderabad",
-      "venue": "Garage Moto Cafe",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/btech-to-bewars-mar14-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/btech-to-bewars-mar14-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "1a7560ae562a",
-      "title": "Kamzor by Gaurav Madaan | Hyderabad",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Hyderabad",
-      "venue": "The comedy Theatre - Hyderabad",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": 499,
-      "url": "https://www.district.in/events/kamzor-by-gaurav-madaan-in-hyderabad-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/kamzor-by-gaurav-madaan-in-hyderabad-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "061a647bbddf",
-      "title": "Darbari Live Performance at Tall Tales | Sunday",
-      "category": "music",
-      "genres": [
-        "sufi",
-        "electronic"
-      ],
-      "city": "Kolkata",
-      "venue": "Tall Tales | Theatre Road, Kolkata",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/darbari-live-performance-on-sunday-at-tall-tales-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/darbari-live-performance-on-sunday-at-tall-tales-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "25e0109c80aa",
-      "title": "Kerfuffle",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Kolkata",
-      "venue": "Global Tea Cafe Kolkata",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/kerfuffle-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M398J3ZFEM09TD1DY2TJ3SMP.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/kerfuffle-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "96081e619acd",
-      "title": "GenZ v 90s - A Standup Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Kolkata",
-      "venue": "Agora Space",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/genz-v-90s-a-standup-comedy-show-sep20-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2TFAFMHB98EV9JXCWKZ48NE.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/genz-v-90s-a-standup-comedy-show-sep20-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "293cbf65f29a",
-      "title": "Abhishek Bhutwani Live",
-      "category": "comedy",
-      "genres": [],
-      "city": "Ahmedabad",
-      "venue": "Backspace Ahmedabad",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": 299,
-      "url": "https://www.district.in/events/abhishek-bhutwani-live-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/abhishek-bhutwani-live-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "9f66750a3e70",
-      "title": "Masoom Vichar",
-      "category": "comedy",
-      "genres": [
-        "comedy-open-mic"
-      ],
-      "city": "Chandigarh",
-      "venue": "The Laugh Club",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/masoom-vichar-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1GQ2WAR714AF0VH862SM3Z7.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/masoom-vichar-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "53b8d035a709",
-      "title": "Surat's Funniest - A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Surat",
-      "venue": "Caffé Ushtta Té - Authentic Parsi Restaurant in Surat",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/surats-funniest-a-stand-up-comedy-show-sep6-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M141201035BV5QF6C5S522RA.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/surats-funniest-a-stand-up-comedy-show-sep6-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "b7c84b417f1f",
-      "title": "Subhedar Guest House",
-      "category": "theatre",
-      "genres": [
-        "drama",
-        "theatre-marathi"
-      ],
-      "city": "Mumbai",
-      "venue": "Shree Shivaji Mandir: Dadar",
-      "date": "2026-09-27",
-      "time": "20:00",
-      "price_from": 300,
-      "url": "https://in.bookmyshow.com/plays/subhedar-guest-house/ET00476718",
-      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-subhedar-guesthouse-0-2025-12-20-t-6-13-21.jpg",
-      "source": "BookMyShow Plays",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "BookMyShow Plays"
-      ],
-      "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/subhedar-guest-house/ET00476718"
-      }
-    },
-    {
-      "id": "84e01cd3ca80",
-      "title": "Bollywood Rewind Ft. Rahul Prajapati | The Finch",
-      "category": "music",
-      "genres": [
-        "bollywood"
-      ],
-      "city": "Mumbai",
-      "venue": "The Finch | Powai, Mumbai",
-      "date": "2026-09-27",
-      "time": "20:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/bollywood-rewind-ft-rahul-prajapati-the-finch-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M303541EM0BT7MK2PVSMSBB1.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/bollywood-rewind-ft-rahul-prajapati-the-finch-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "d8943bcc51cd",
-      "title": "Blockbuster Sunday |ft.TVB the Band| Mocha Indore",
-      "category": "music",
-      "genres": [
-        "bollywood",
-        "indie"
-      ],
-      "city": "Indore",
-      "venue": "Mocha",
-      "date": "2026-09-27",
-      "time": "20:30",
-      "price_from": 200,
-      "url": "https://www.district.in/events/sunday-block-buster-ft-sahil-mocha-indore-mar29-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sunday-block-buster-ft-sahil-mocha-indore-mar29-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "76cdfe902b20",
-      "title": "Sufi Crcle at Bastian Garden City with Aman Hora | Sunday",
-      "category": "theatre",
-      "genres": [
-        "musical"
-      ],
-      "city": "Bengaluru",
-      "venue": "Bastian Garden City",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/sufi-crcle-at-bastian-garden-city-with-aman-hora-sunday-sbbxfxgk",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/K0t3OHhzQnZqcXArdHVod1hTTUo5QT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790011845cS46uED97Z2jFCc7.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/sufi-crcle-at-bastian-garden-city-with-aman-hora-sunday-sbbxfxgk"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
-      "id": "a8febb1f1a95",
-      "title": "Curtain Blue Autumn - Winter Tour | Bangalore",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "The Humming Tree Bar and Bistro | Indiranagar, Bangalore",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/curtain-blue-autumn-winter-tour-bangalore-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/curtain-blue-autumn-winter-tour-bangalore-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "54c2859f459a",
-      "title": "Stand Up Comedy Live",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Bengaluru",
-      "venue": "Ministry Of Comedy",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/stand-up-comedy-live-may30-2025-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/stand-up-comedy-live-may30-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "3c08804544d5",
-      "title": "Tokyo Drift 2.0",
-      "category": "music",
-      "genres": [
-        "hiphop",
-        "electronic"
-      ],
-      "city": "Pune",
-      "venue": "Di Mora | The Mills, Bund Garden Road",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/tokyo-drift-20-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2QDTCPWJWX361TPM7PG0WPM.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/tokyo-drift-20-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "98b815d6ddba",
-      "title": "Experimental Electronica | Full Moon Night",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Hyderabad",
-      "venue": "Kadamba | Hitech City, Hyderabad",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": 500,
-      "url": "https://www.district.in/events/experimental-electronica-full-moon-night-sep27-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/experimental-electronica-full-moon-night-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "cfbcb26d5c9c",
-      "title": "The Laughter Show – Live Stand-Up Comedy",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/the-laughter-show-live-standup-comedy--mar21-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1772870257/o01qbthkcuzkvw0twats.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/the-laughter-show-live-standup-comedy--mar21-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "63aa1e2f3699",
-      "title": "A Night with Friends ft. DJ AERREO at SoHo Goa",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Goa",
-      "venue": "SoHoGoa",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/a-night-with-friends-ft-dj-aerreo-at-soho-goa-sep27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2R1QSB7R1YC32JXXC687BA5.jpeg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/a-night-with-friends-ft-dj-aerreo-at-soho-goa-sep27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "b6844c3bb0c5",
-      "title": "Shaam - e - Sufiyana ft. Vishal Pandey",
-      "category": "music",
-      "genres": [
-        "jazz",
-        "sufi"
-      ],
-      "city": "Lucknow",
-      "venue": "Tickled Pink",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/shaam-e-sufiyana-ft-vishal-pandey-jun21-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KV6DC4S20J69VNKSRDE4RXSX.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/shaam-e-sufiyana-ft-vishal-pandey-jun21-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "83412c51815b",
-      "title": "Best Of Surat - A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Surat",
-      "venue": "THE GREEN ROOM",
-      "date": "2026-09-27",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/surats-funniest-a-stand-up-comedy-show-jul11-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2JKC9WRWVF48FD9SM8KTGE6.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/surats-funniest-a-stand-up-comedy-show-jul11-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "0a611825e998",
-      "title": "Jokes Jam - Stand Up Comedy",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2026-09-27",
-      "time": "21:15",
-      "price_from": null,
-      "url": "https://www.district.in/events/jokes-jam-stand-up-comedy-jun27-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVWQJYP27SYS7E43ZRSWHRSV.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/jokes-jam-stand-up-comedy-jun27-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "6a74a0a7f759",
-      "title": "S*X Jokes Only - An Adult Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Kolkata",
-      "venue": "Agora Space",
-      "date": "2026-09-27",
-      "time": "21:30",
-      "price_from": 299,
-      "url": "https://www.district.in/events/sx-jokes-only-an-adult-comedy-show-aug1-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sx-jokes-only-an-adult-comedy-show-aug1-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "62411efdfade",
-      "title": "UNTAMED at Brown Cortile",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Brown Cortile",
-      "date": "2026-09-27",
-      "time": "22:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/untamed-at-brown-cortile-sbfeovsx",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17902531133oE3Sjcg8G10HQdV.png.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/untamed-at-brown-cortile-sbfeovsx"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "64e8ce7cc422",
-      "title": "HEYA Pre-Party ft. DJ Angel at Buen, Delhi",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Delhi",
-      "venue": "Buen New Delhi",
-      "date": "2026-09-27",
-      "time": "22:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/dj-angel-at-buen-delhi-sbaqklvp",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/SkdCemYwRkJ0RFU0OXgrbURkdm8zUT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790226488m5mji4RaY9y19IzV.png.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/dj-angel-at-buen-delhi-sbaqklvp"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "7628ca1d01dc",
-      "title": "Underground Comedy Showcase | Koramangala",
-      "category": "comedy",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "The Underground Comedy Club",
-      "date": "2026-09-27",
-      "time": "22:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/underground-comedy-showcase-koramangala-aug13-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KZPE4X134HAA6KJJJ5CPWW0N.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/underground-comedy-showcase-koramangala-aug13-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "ffe9e0c7c7f3",
-      "title": "Let Your Stories Meet Mine | A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Comedy Theatre - Indiranagar, Bangalore",
-      "date": "2026-09-27",
-      "time": "22:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/ultimate-roast-by-nishant-tanwar-aug31-2025-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KY2CWD6M9G19JY1JPFVGMR5E.png",
-      "source": "District",
-      "first_seen": "2026-09-23",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ultimate-roast-by-nishant-tanwar-aug31-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "943b6bcc8ae7",
-      "title": "Only Sex Jokes",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Ahmedabad",
-      "venue": "Backspace Ahmedabad",
-      "date": "2026-09-27",
-      "time": "22:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/only-sex-jokes-oct26-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1760869949/ypiydydg2cdnvbnlyajv.png",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/only-sex-jokes-oct26-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "a79f1c822d51",
-      "title": "DJ Ganesh Live at UNVRS Vagator – Weekend Blockbuster",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Goa",
-      "venue": "The Leela club",
-      "date": "2026-09-27",
-      "time": "22:00",
-      "price_from": 1000,
-      "url": "https://www.district.in/events/dj-ganesh-live-at-unvrs-vagator-weekend-blockbuster-jul12-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/dj-ganesh-live-at-unvrs-vagator-weekend-blockbuster-jul12-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "9435f453c323",
-      "title": "Double Trouble Ft. MADMEN at Hammerzz Makarena",
-      "category": "music",
-      "genres": [],
-      "city": "Goa",
-      "venue": "Hammerzz Makarena: Goa",
-      "date": "2026-09-27",
-      "time": "22:00",
-      "price_from": null,
-      "url": "https://in.bookmyshow.com/events/double-trouble-ft-madmen-at-hammerzz-makarena/ET00514847",
-      "image": "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-1440,h-288,bg-CCCCCC/et00514847-tklsyzrpum-landscape.jpg",
-      "source": "BookMyShow",
-      "first_seen": "2026-09-26",
-      "sources": [
-        "BookMyShow"
-      ],
-      "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/double-trouble-ft-madmen-at-hammerzz-makarena/ET00514847"
-      }
-    },
-    {
-      "id": "af4ca0cd81b8",
-      "title": "Fifty Shades of Ha Ha - Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2026-09-27",
-      "time": "22:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/fifty-shades-of-ha-ha-18-stand-up-comedy-show-dec14-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1765517500/dusswopl25iexdwfzxah.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/fifty-shades-of-ha-ha-18-stand-up-comedy-show-dec14-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "8bfe392c4a35",
-      "title": "Fry Fenchie - Adult Stand-Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2026-09-27",
-      "time": "23:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/fry-fenchie-adult-stand-up-comedy-show-mar26-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1742819383/oshla9bwkdx0iku7p8wf.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/fry-fenchie-adult-stand-up-comedy-show-mar26-2025-buy-tickets"
-      }
-    },
     {
       "id": "f02b9d8211ef",
       "title": "All Star Lineup - A Curated Stand Up Comedy Show",
@@ -3464,6 +266,27 @@
       }
     },
     {
+      "id": "69cbe92e75f1",
+      "title": "Hex Gaming Cafe",
+      "category": "music",
+      "genres": [],
+      "city": "Mumbai",
+      "venue": "HEX Gaming Cafe",
+      "date": "2026-09-28",
+      "time": "03:30",
+      "price_from": null,
+      "url": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-8JMJY7/cover-image/evt-8jmjy7-7b9c.webp",
+      "source": "thumpN",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai"
+      },
+      "first_seen": "2026-09-28"
+    },
+    {
       "id": "6b744539d0df",
       "title": "Brew Monday Morning",
       "category": "music",
@@ -3483,6 +306,27 @@
         "Skillbox": "https://www.skillboxes.com/events/brew-monday-morning-sbfgttao"
       },
       "first_seen": "2026-09-27"
+    },
+    {
+      "id": "dd93c0f2c5b8",
+      "title": "Lazer Crazer: BattleZone Delhi",
+      "category": "music",
+      "genres": [],
+      "city": "Delhi",
+      "venue": "Lazer Crazer Delhi | Laser Tag & Cafe Myles",
+      "date": "2026-09-28",
+      "time": "05:30",
+      "price_from": null,
+      "url": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-99WH4D/cover-image/evt-99wh4d-1f50.webp",
+      "source": "thumpN",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi"
+      },
+      "first_seen": "2026-09-28"
     },
     {
       "id": "bb63aa18f2dd",
@@ -3732,6 +576,27 @@
       }
     },
     {
+      "id": "ce850e162896",
+      "title": "Rage Room Mumbai",
+      "category": "music",
+      "genres": [],
+      "city": "Mumbai",
+      "venue": "Rage Room Mumbai",
+      "date": "2026-09-29",
+      "time": "05:30",
+      "price_from": null,
+      "url": "https://thumpn.com/event/HR97Y4/rage-room-mumbai",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-C7HLY2/cover-image/evt-c7hly2-d35a.webp",
+      "source": "thumpN",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/HR97Y4/rage-room-mumbai"
+      },
+      "first_seen": "2026-09-28"
+    },
+    {
       "id": "6bd39d9fbbd3",
       "title": "Kathika Cultural Experience",
       "category": "theatre",
@@ -3918,29 +783,6 @@
       }
     },
     {
-      "id": "9d390cdf312c",
-      "title": "Karaoke with Aashish Paul",
-      "category": "music",
-      "genres": [
-        "open-jam"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Humming Tree",
-      "date": "2026-09-29",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/verse-worse-karaoke-with-aashish-paul-sbqjblzt",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/YkM5YUkzb1JFbnltd25oanVpNnR6UT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1787909180mLyART8G0gapRIrw.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/verse-worse-karaoke-with-aashish-paul-sbqjblzt"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "f7648b6b87ee",
       "title": "The TEJ MUSIC VODKA Experience",
       "category": "music",
@@ -4098,27 +940,6 @@
       }
     },
     {
-      "id": "63c284628992",
-      "title": "An Evening with Short Films at Third Bell Studios",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "Third Bell Studios",
-      "date": "2026-09-30",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/an-evening-with-short-films-at-third-bell-studios-sbmcahwn",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/WWlESm5kNHE0ZElFNWkrRVpTTXFlZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790494284ivRKppF1k77Nqibw.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/an-evening-with-short-films-at-third-bell-studios-sbmcahwn"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "8456b624e9ed",
       "title": "Live Music at The Cape Goa ft. Pradyumna & Rutvik",
       "category": "music",
@@ -4138,6 +959,27 @@
       "links": {
         "District": "https://www.district.in/events/live-music-at-the-cape-goa-ft-pradyumna-rutvik-aug10-2026-buy-tickets"
       }
+    },
+    {
+      "id": "63c284628992",
+      "title": "An Evening with Short Films at Third Bell Studios",
+      "category": "music",
+      "genres": [],
+      "city": "Mumbai",
+      "venue": "Third Bell Studios",
+      "date": "2026-09-30",
+      "time": "19:30",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/an-evening-with-short-films-at-third-bell-studios-sbmcahwn",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/WWlESm5kNHE0ZElFNWkrRVpTTXFlZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790494284ivRKppF1k77Nqibw.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/an-evening-with-short-films-at-third-bell-studios-sbmcahwn"
+      },
+      "first_seen": "2026-09-27"
     },
     {
       "id": "52de6b66c3d3",
@@ -4253,29 +1095,6 @@
       }
     },
     {
-      "id": "033eca1b1dbf",
-      "title": "The Beatles Tribute: Snehal Pinto & The Steel Tuba Tribe",
-      "category": "music",
-      "genres": [
-        "tribute"
-      ],
-      "city": "Bengaluru",
-      "venue": "The Humming Tree",
-      "date": "2026-09-30",
-      "time": "20:30",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/snehal-pinto-the-steel-tuba-tribe-sbqnlgpb",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/YkM5YUkzb1JFbnltd25oanVpNnR6UT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/178791009268awRPF3pGhTUAgW.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/snehal-pinto-the-steel-tuba-tribe-sbqnlgpb"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "f9c8b5603d2a",
       "title": "Sufiyana Wednesday",
       "category": "music",
@@ -4376,7 +1195,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/talks-on-western-classical-music-74/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2023/05/Talk-by-Dr.-Cavas-Bilimoria.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2023/05/Talk-by-Dr.-Cavas-Bilimoria-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -4846,7 +1665,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/beyond/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Beyond.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Beyond-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -4867,7 +1686,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/jhilmilganj-ke-sitare/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Jhilmilganj-Ke-Sitare.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Jhilmilganj-Ke-Sitare-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -5594,7 +2413,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/adag-atal/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Adag-Atal.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Adag-Atal-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -5615,7 +2434,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/a-miracle/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/A-Miracle.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/A-Miracle-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -5636,7 +2455,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/manu-gandhi-ni-diary/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Manu-Gandhi-ni-Diary.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Manu-Gandhi-ni-Diary-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -5645,6 +2464,27 @@
         "NCPA": "https://www.ncpamumbai.com/event/manu-gandhi-ni-diary/"
       },
       "first_seen": "2026-09-05"
+    },
+    {
+      "id": "851fbd4a3aba",
+      "title": "30 Days 300 Hour Yoga TTC in Dehradun, Uttarakhand | Residential Packages | Event tickets Dehradun",
+      "category": "music",
+      "genres": [],
+      "city": "Dehradun",
+      "venue": "",
+      "date": "2026-10-04",
+      "time": "",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/30-days-300-hour-yoga-ttc-in-dehradun-uttarakhand-sbkjnadh",
+      "image": null,
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/30-days-300-hour-yoga-ttc-in-dehradun-uttarakhand-sbkjnadh"
+      },
+      "first_seen": "2026-09-28"
     },
     {
       "id": "367e7bbafe09",
@@ -6414,7 +3254,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/aabo-hawaa-an-evening-with-gulzar/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Aabo-Hawaa-An-Evening-with-Gulzar.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Aabo-Hawaa-An-Evening-with-Gulzar-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6435,7 +3275,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/the-queen/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/The-Queen.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/The-Queen-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6481,7 +3321,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/talks-on-western-classical-music-75/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2023/05/Talk-by-Dr.-Cavas-Bilimoria.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2023/05/Talk-by-Dr.-Cavas-Bilimoria-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6526,7 +3366,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/one-world-many-musics-celebrating-artistic-plurality-10/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/One-World-Many-Musics-Celebrating-Artistic-Plurality.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/One-World-Many-Musics-Celebrating-Artistic-Plurality-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6547,7 +3387,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/one-world-many-musics-garvit-priyansh/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/One-World-Many-Musics-Garvit-Priyansh.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/One-World-Many-Musics-Garvit-Priyansh-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6699,7 +3539,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/one-world-many-musics-rakesh-friends-raf/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/One-World-Many-Musics-Rakesh-Friends-RAF.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/One-World-Many-Musics-Rakesh-Friends-RAF-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6722,7 +3562,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/home-grown-the-anand-verma-rock-experience/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Home-Grown-The-Anand-Verma-Rock-Experience.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Home-Grown-The-Anand-Verma-Rock-Experience-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6743,7 +3583,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/home-grown-2026/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Home-Grown-2026.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Home-Grown-2026-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -6910,7 +3750,7 @@
     },
     {
       "id": "73792635f376",
-      "title": "Casa Bacardí on Tour | Lucknow",
+      "title": "Casa Bacardí On Tour | Lucknow",
       "category": "music",
       "genres": [],
       "city": "Lucknow",
@@ -7171,27 +4011,6 @@
       ],
       "links": {
         "Skillbox": "https://www.skillboxes.com/events/whitefield-dandiya-maha-utsav-season-6-sbjzhxne"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "4f6a8e4129c8",
-      "title": "💃🥢Dandiya Navratri Mahotsav 3.O",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "The Crown",
-      "date": "2026-10-10",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/dandiya-navratri-mahotsav-3-o-sbeirwuj",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/WlFMK1hUTW5IZ1dqRmlQTjJpSWpEdz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790143304IdVf9yN4uagGbqzP.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/dandiya-navratri-mahotsav-3-o-sbeirwuj"
       },
       "first_seen": "2026-09-25"
     },
@@ -7669,27 +4488,6 @@
       "first_seen": "2026-09-25"
     },
     {
-      "id": "a53966ed0351",
-      "title": "Kerala Rocks India Feat Thakara - Evergreen - Charlie Now | Hyderabad",
-      "category": "music",
-      "genres": [],
-      "city": "Hyderabad",
-      "venue": "EXT",
-      "date": "2026-10-10",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/kerala-rocks-india-feat-thakara-evergreen-charlie-now-hyderabad-sbubeazm",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1786103165d0EulZ4tkywcBpVF.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/kerala-rocks-india-feat-thakara-evergreen-charlie-now-hyderabad-sbubeazm"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
       "id": "f0bf413400b3",
       "title": "Job Kurian Live",
       "category": "music",
@@ -7918,27 +4716,6 @@
       "first_seen": "2026-09-25"
     },
     {
-      "id": "3cbfbc1a3dd7",
-      "title": "TECHNOTAKEOVERINDIA PRESENTS SON OF SON",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "X Live",
-      "date": "2026-10-10",
-      "time": "22:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/technotakeoverindia-presents-son-of-son-sbdxtkic",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790086564Uf7ZEgrr6bPGL0ry.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/technotakeoverindia-presents-son-of-son-sbdxtkic"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
       "id": "3f84b37d88da",
       "title": "Home Grown –The John Blue Ensemble",
       "category": "music",
@@ -7949,7 +4726,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/home-grown-the-john-blue-ensemble/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Home-Grown-–The-John-Blue-Ensemble.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Home-Grown-–The-John-Blue-Ensemble-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -8198,7 +4975,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/soi-chamber-orchestra-28/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/SOI-Chamber-Orchestra-1500x559.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/SOI-Chamber-Orchestra-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -8310,7 +5087,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/jo-dooba-so-paar-5/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Jo-Dooba-So-Paar.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Jo-Dooba-So-Paar-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -8443,7 +5220,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/traasadi/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Traasadi.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Traasadi-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -8464,7 +5241,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/movies-under-the-stars-meet-me-in-st-louis-1944/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Movies-Under-the-Stars-MEET-ME-IN-ST.-LOUIS-1944.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Movies-Under-the-Stars-MEET-ME-IN-ST.-LOUIS-1944-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -8708,7 +5485,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/purbi-rang-raar-aur-viraha/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Purbi-Rang-Raar-aur-Viraha.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Purbi-Rang-Raar-aur-Viraha-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -8933,6 +5710,27 @@
       "first_seen": "2026-09-27"
     },
     {
+      "id": "9c162ca22e9a",
+      "title": "Day 2 Pass",
+      "category": "music",
+      "genres": [],
+      "city": "Delhi",
+      "venue": "Sunder Nursery",
+      "date": "2026-10-16",
+      "time": "18:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/day-2-pass-sbpcpsna",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790165668BdBZxu0OH2cw6ClN.jpeg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/day-2-pass-sbpcpsna"
+      },
+      "first_seen": "2026-09-28"
+    },
+    {
       "id": "756af2d769a1",
       "title": "Pacific Dandiya Nights, Dwarka",
       "category": "music",
@@ -9029,7 +5827,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/mithyasur/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Mithyasur.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Mithyasur-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -9050,7 +5848,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/beewion-ka-madarsa-8/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -9214,27 +6012,6 @@
       }
     },
     {
-      "id": "58787106e7c0",
-      "title": "DANDIYA RAAS (CHANDIGARH\"s BIGGEST OPEN AIR DANDIYA NIGHT)",
-      "category": "music",
-      "genres": [],
-      "city": "Chandigarh",
-      "venue": "The LaLiT Chandigarh",
-      "date": "2026-10-17",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/dandiya-raas-chandigarh-s-biggest-open-air-dandiya-night-sbftsgvl",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/eVdZSENQM21SNldoZkxJbnJpajBxdz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789376697EKq7HzkVpmw9BqMh.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/dandiya-raas-chandigarh-s-biggest-open-air-dandiya-night-sbftsgvl"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
       "id": "233242e2ee31",
       "title": "Kolkata’s Biggest Dandiya Night 2026",
       "category": "music",
@@ -9322,27 +6099,6 @@
       }
     },
     {
-      "id": "1ff7edeb9214",
-      "title": "Masters and The Next Generation- A Live Music Concert",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "G5A",
-      "date": "2026-10-17",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/masters-and-the-next-generation-sbrsgqrg",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/dG50R1Z6YlVTV1Y2RE1RSEwxQm0rdz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17888574634iGihDWDLp0Z7vR8.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/masters-and-the-next-generation-sbrsgqrg"
-      },
-      "first_seen": "2026-09-26"
-    },
-    {
       "id": "60cdd8d9873d",
       "title": "Fittur Bollywood Dandiya Night",
       "category": "music",
@@ -9364,6 +6120,27 @@
         "Skillbox": "https://www.skillboxes.com/events/fittur-bollywood-dandiya-night-sbxpqfgb"
       },
       "first_seen": "2026-09-27"
+    },
+    {
+      "id": "b921a7b30144",
+      "title": "Day 3 Pass",
+      "category": "music",
+      "genres": [],
+      "city": "Delhi",
+      "venue": "Sunder Nursery",
+      "date": "2026-10-17",
+      "time": "18:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/day-3-pass-sbpeupur",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790165638fttoacoOg7KYcGUW.jpeg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/day-3-pass-sbpeupur"
+      },
+      "first_seen": "2026-09-28"
     },
     {
       "id": "2f271e412a61",
@@ -9467,7 +6244,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/marcia/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Marcia.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Marcia-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -9488,7 +6265,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/veera-rani-abbakka-queen-of-the-seas/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -9817,27 +6594,6 @@
       "first_seen": "2026-09-25"
     },
     {
-      "id": "b57a9993e2cf",
-      "title": "Yatra Edition 3 - Sajanka at Donna Belle",
-      "category": "music",
-      "genres": [],
-      "city": "Guwahati",
-      "venue": "Donna Belle",
-      "date": "2026-10-18",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/yatra-edition-3-sajanka-at-donna-belle-sbowbaqb",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17896480433akX3euGXQOrQmZm.jpeg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/yatra-edition-3-sajanka-at-donna-belle-sbowbaqb"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "dca0146526a1",
       "title": "RAJBARIR BHOJ - AN ABHIJAAT FEAST, REIMAGINED",
       "category": "music",
@@ -9925,27 +6681,6 @@
       }
     },
     {
-      "id": "2909f00c4fac",
-      "title": "RAJBARIR BHOJ - AN ABHIJAAT FEAST, REIMAGINED",
-      "category": "music",
-      "genres": [],
-      "city": "Kolkata",
-      "venue": "CLUB FENICIA",
-      "date": "2026-10-20",
-      "time": "12:30",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/rajbarir-bhoj-an-abhijaat-feast-reimagined-sbbomibu",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/MS9IMGFqOTc2WXlUcHE2L1ErSDdWZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790001989eAY2fpkDnzuWvOie.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/rajbarir-bhoj-an-abhijaat-feast-reimagined-sbbomibu"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
       "id": "cd2e5a82b9e4",
       "title": "Ayodhya Ke Ram",
       "category": "music",
@@ -9965,29 +6700,6 @@
       "links": {
         "District": "https://www.district.in/events/ayodhya-ke-ram-oct20-2026-buy-tickets"
       }
-    },
-    {
-      "id": "20be887fd171",
-      "title": "Verse and Worse Karaoke with Aashish Paul || 20th October 2026",
-      "category": "music",
-      "genres": [
-        "open-jam"
-      ],
-      "city": "Bengaluru",
-      "venue": "",
-      "date": "2026-10-20",
-      "time": "20:30",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/verse-and-worse-karaoke-with-aashish-paul-sbqhggqe",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/YkM5YUkzb1JFbnltd25oanVpNnR6UT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789646415sEYItfVuwsGeKdBM.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/verse-and-worse-karaoke-with-aashish-paul-sbqhggqe"
-      },
-      "first_seen": "2026-09-27"
     },
     {
       "id": "954ab6b04ad6",
@@ -10448,7 +7160,7 @@
     },
     {
       "id": "b93f75101985",
-      "title": "Casa Bacardí on Tour | Jaipur",
+      "title": "Casa Bacardí On Tour | Jaipur",
       "category": "music",
       "genres": [],
       "city": "Jaipur",
@@ -11097,27 +7809,6 @@
       }
     },
     {
-      "id": "d9d9105b3995",
-      "title": "Rage Room with Lestrange",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "",
-      "date": "2026-10-25",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/rage-room-with-lestrange-sbnbsnng",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1787821107nlw6uiacc6phJhQh.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/rage-room-with-lestrange-sbnbsnng"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "3336eb8cae59",
       "title": "Rhythm Shaw Live Nothing To Lose India Tour 2026 || Kolkata",
       "category": "music",
@@ -11289,7 +7980,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/death-and-the-maiden-2/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/03/Death-the-Maiden.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/03/Death-the-Maiden-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -11333,7 +8024,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/ncpa-connections-india-year-4/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/NCPA-Connections-India-Year-4.jpeg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/NCPA-Connections-India-Year-4-375x140.jpeg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -11354,7 +8045,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/narhar-kurundkar-the-story-of-a-thinker/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -11487,7 +8178,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/study-abroad/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Study-Abroad.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Study-Abroad-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -11672,27 +8363,6 @@
       "first_seen": "2026-09-27"
     },
     {
-      "id": "ce914491e381",
-      "title": "TAMA India Drum Fest",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "PLD Banquets by All Seasons",
-      "date": "2026-10-31",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/tama-india-drum-fest-sbepgori",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/V3YxWXRDQUJTbzZ6c2dRQmVKQXgxZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790167490k4XrREOdkTakAV2N.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/tama-india-drum-fest-sbepgori"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "d9a279458671",
       "title": "Akshay Srivastava Live | Standup Comedy | Jaipur",
       "category": "comedy",
@@ -11816,7 +8486,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/alag-is-not-galat/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -11837,7 +8507,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/the-mahima-sogani-show/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -12461,48 +9131,6 @@
       "first_seen": "2026-09-26"
     },
     {
-      "id": "498a747f06d2",
-      "title": "NAVRANG NAVRATRI SEASON 3 At DND HSR",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "DND - The Venue",
-      "date": "2026-11-10",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/navrang-navratri-season-3-at-dnd-hsr-sbpgurdh",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1788789133EfFsuqR0AD3ROQbH.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/navrang-navratri-season-3-at-dnd-hsr-sbpgurdh"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "6a0fb021b08c",
-      "title": "Sajanka India Tour 2026 || Kolkata",
-      "category": "music",
-      "genres": [],
-      "city": "Kolkata",
-      "venue": "CLUB FENICIA",
-      "date": "2026-11-10",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/sajanka-india-tour-2026-kolkata-sbuxkrwc",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789051152X93MEz5YrNRQk2df.jpeg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/sajanka-india-tour-2026-kolkata-sbuxkrwc"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "41ac53b19f54",
       "title": "META Festival 2026",
       "category": "theatre",
@@ -12534,7 +9162,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/the-old-man-and-the-sea-kathakali-of-morrow/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/The-Old-Man-and-the-Sea-–-Kathakali-of-Morrow-1500x560.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/The-Old-Man-and-the-Sea-–-Kathakali-of-Morrow-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -12620,7 +9248,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/nihsango-ishwar/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Nihsango-Ishwar-1500x560.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Nihsango-Ishwar-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -12730,7 +9358,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/the-departed-dawn/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/The-Departed-Dawn-1500x560.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/The-Departed-Dawn-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -12925,7 +9553,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/swang-jas-ki-tas/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Swang-Jas-ki-Tas-1500x560.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/Swang-Jas-ki-Tas-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -12960,7 +9588,7 @@
     },
     {
       "id": "649186305dec",
-      "title": "Casa Bacardí on Tour | Kochi",
+      "title": "Casa Bacardí On Tour | Kochi",
       "category": "music",
       "genres": [],
       "city": "Kochi",
@@ -13146,7 +9774,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/ncpa-international-jazz-festival-2026/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA_JazzFest_WebBanner.jpg-1.jpeg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA_JazzFest_WebBanner.jpg-1-375x140.jpeg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13169,7 +9797,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/ncpa-international-jazz-festival-2026-day-1/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA-International-Jazz-Festival-2026-Day-1.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA-International-Jazz-Festival-2026-Day-1-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13258,7 +9886,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/ncpa-international-jazz-festival-2026-day-2/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA-International-Jazz-Festival-2026-Day-2.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA-International-Jazz-Festival-2026-Day-2-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13541,7 +10169,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/ncpa-international-jazz-festival-2026-day-3/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA-International-Jazz-Festival-2026-Day-3.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/08/NCPA-International-Jazz-Festival-2026-Day-3-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13627,7 +10255,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/mad-sakharam-5/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Mad-Sakharam.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/07/Mad-Sakharam-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13648,7 +10276,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/begum-barve/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13694,7 +10322,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/marathi-vangmayacha-gholiv-itihas-3/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2025/09/Marathi-Vangmayacha-Gholiv-Itihas.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2025/09/Marathi-Vangmayacha-Gholiv-Itihas-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13715,7 +10343,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/namak-mirch/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -13743,27 +10371,6 @@
       ],
       "links": {
         "Skillbox": "https://www.skillboxes.com/events/slide-school-sbkzjvbz"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "10117cb60717",
-      "title": "Dirt Track - Motoverse 2026",
-      "category": "music",
-      "genres": [],
-      "city": "Goa",
-      "venue": "MotoThrill Arena",
-      "date": "2026-11-27",
-      "time": "09:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/dirt-track-sbmmkglr",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/VW16OFFTV3QwblBXMEZxdG9FU0liZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789629667LQWKyKSCvVigHY2q.jpeg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/dirt-track-sbmmkglr"
       },
       "first_seen": "2026-09-25"
     },
@@ -14218,7 +10825,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/hasna-jaroori-hai/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -14477,7 +11084,7 @@
     },
     {
       "id": "b391d52b0961",
-      "title": "Casa Bacardí on Tour | Noida",
+      "title": "Casa Bacardí On Tour | Noida",
       "category": "music",
       "genres": [],
       "city": "Delhi",
@@ -14638,7 +11245,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/jeff-tain-watts-quartet-live-at-the-ncpa/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Jeff-Tain-Watts-Quartet-Live-at-the-NCPA.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2026/09/Jeff-Tain-Watts-Quartet-Live-at-the-NCPA-375x144.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
@@ -15026,7 +11633,7 @@
       "time": "",
       "price_from": null,
       "url": "https://www.ncpamumbai.com/event/love-death-ketchup/",
-      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre.jpg",
+      "image": "https://www.ncpamumbai.com/wp-content/uploads/2021/11/Banner_Theatre-375x140.jpg",
       "source": "NCPA",
       "sources": [
         "NCPA"
