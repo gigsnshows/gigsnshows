@@ -18,7 +18,7 @@ import yaml
 
 from scrapers.base import NOT_SHOWS, get_html, now_iso
 from scrapers import sharepages
-from scrapers.genres import catalog, tag
+from scrapers.genres import catalog, language, languages, tag
 from scrapers.parsers import PARSERS
 
 # GitHub's servers get refused by some sites (cloud: false in sources.yaml); the Mac collector covers those.
@@ -60,6 +60,7 @@ def dedupe(events):
                 m["links"][e["source"]] = e["url"]
             m["image"] = m["image"] or e["image"]
             m["price_from"] = m["price_from"] or e["price_from"]
+            m["lang"] = m.get("lang", []) + [x for x in e.get("lang", []) if x not in m.get("lang", [])]
         else:
             e["sources"] = [e["source"]]
             e["links"] = {e["source"]: e["url"]}
@@ -134,12 +135,13 @@ def main(dry_run=False, only=None):
     prev_seen = {} if is_sample else {e["id"]: e.get("first_seen", fallback_seen) for e in previous.get("events", [])}
     for e in merged:
         e["first_seen"] = prev_seen.get(e["id"], today)
-        if "genres" not in e:  # shows carried over from before genres existed
-            e["genres"] = tag(e["category"], e["title"], e["venue"])
+        if "lang" not in e:  # shows carried over from before languages were read: re-tag them
+            e["lang"] = language(e["category"], e["title"], e.get("about", ""), e["venue"])
+            e["genres"] = tag(e["category"], e["title"], f"{e.get('about', '')} {e['venue']}", e["lang"])
 
     OUT.parent.mkdir(exist_ok=True)
     cities = sorted({e["city"] for e in merged})
-    OUT.write_text(json.dumps({"updated_at": now_iso(), "cities": cities, "genres": catalog(),
+    OUT.write_text(json.dumps({"updated_at": now_iso(), "cities": cities, "genres": catalog(), "languages": languages(),
                                "count": len(merged), "events": merged}, indent=2, ensure_ascii=False))
     print(f"wrote {OUT}")
     cname = ROOT / "CNAME"

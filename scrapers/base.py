@@ -25,7 +25,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser as dateparser
 
 from .cities import CITIES, detect_city
-from .genres import tag as tag_genres
+from .genres import language, tag as tag_genres
 
 HEADERS = {
     "User-Agent": (
@@ -199,11 +199,13 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
     if isinstance(price, str):
         m = re.search(r"\d[\d,]*", price)
         price = int(m.group(0).replace(",", "")) if m else None
+    langs = language(cat, title, hint, place or venue)
     return {
         "id": make_id(title, day, venue),
         "title": title,
         "category": cat,
-        "genres": tag_genres(cat, title, f"{hint} {venue}"),
+        "genres": tag_genres(cat, title, f"{hint} {venue}", langs),
+        "lang": langs,
         "city": city or "Unknown",
         "venue": (venue or "").strip(),
         "date": day,
@@ -286,7 +288,11 @@ def jsonld_to_event(node, source, city=None, category=None, page_url="", default
     if re.search(r"T05:30(:00)?$", start):
         time = ""  # BookMyShow writes date-only shows as midnight UTC, i.e. 05:30 IST; the real time is unknown
     genre = node.get("genre") or ""
-    hint = f"{node.get('description', '')} {' '.join(genre) if isinstance(genre, list) else genre}"
+    lang = node.get("inLanguage") or ""  # schema.org's own field, when a site fills it in
+    if isinstance(lang, dict):
+        lang = lang.get("name") or ""
+    hint = " ".join(" ".join(map(str, v)) if isinstance(v, list) else str(v)
+                    for v in (node.get("description", ""), genre, lang))
     return event(node.get("name"), day, source, city, category, venue, time, price,
                  node.get("url") or page_url, image, hint=hint, default=default, place=place,
                  about=node.get("description") or "")

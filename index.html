@@ -222,23 +222,23 @@
   }
   .date-pick { position: relative; flex: none; }
   .date-pick input { position: absolute; inset: 0; width: 100%; opacity: 0; pointer-events: none; }
-  /* Actions sit below the card, not on the artwork, where busy posters swallowed them. */
-  .tile-actions { display: flex; gap: 8px; margin-top: 10px; }
-  .save {
-    flex: 1; height: 34px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; color: var(--neon);
-    border: 1.5px solid color-mix(in srgb, var(--neon) 65%, transparent);
-    background: color-mix(in srgb, var(--neon) 8%, transparent);
-    transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+  /* Wanna go (a heart in the logo's neon) and share sit as small icons at the end of the
+     card's last line, below the artwork where busy posters used to swallow them. */
+  .icon-act {
+    flex: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: var(--ink-2); transition: background 140ms ease, color 140ms ease, transform 140ms ease;
   }
-  .save:hover { background: color-mix(in srgb, var(--neon) 18%, transparent); }
-  .save[aria-pressed="true"] { background: var(--neon); border-color: var(--neon); color: #fff; }
-  .share {
-    flex: none; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--line); background: rgba(255,255,255,.06); color: var(--ink-2);
-    transition: background 140ms ease, color 140ms ease;
+  .icon-act:hover { background: rgba(255,255,255,.1); color: var(--ink); }
+  .icon-act svg { width: 17px; height: 17px; }
+  .save svg { width: 21px; height: 21px; overflow: visible; }
+  .save path { fill: transparent; stroke: url(#neonGrad); stroke-width: 2.1; stroke-linejoin: round; transition: fill 160ms ease; }
+  .save[aria-pressed="true"] path { fill: url(#neonGrad); }
+  .save[aria-pressed="true"] svg { filter: drop-shadow(0 0 6px rgba(255,45,149,.6)); }
+  @media (prefers-reduced-motion: no-preference) {
+    .save[aria-pressed="true"] svg { animation: pop 260ms cubic-bezier(.2,.8,.2,1.4); }
+    @keyframes pop { 50% { transform: scale(1.25); } }
   }
-  .share:hover { color: var(--ink); background: rgba(255,255,255,.12); }
-  .share svg { width: 15px; height: 15px; }
+  .nope[aria-pressed="true"] { color: var(--neon); }
 
   /* ---------- genre chips ---------- */
   .genre-bar { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 22px 20px 2px; margin: 0 -20px; }
@@ -294,6 +294,10 @@
   .ob-primary:hover { background: #fff; }
   .ob-back { color: var(--ink-2); font-weight: 600; }
   .ob-back:hover { color: var(--ink); }
+  .ob-langs { margin-top: 22px; }
+  .ob-langs h3 { margin: 0 0 4px; color: var(--ink-2); font-size: 0.9rem; font-weight: 600; }
+  .ob-langs p { margin: 0 0 10px; color: var(--ink-3); font-size: 0.82rem; }
+  .ob-langs .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .ob-forget { margin: 22px 0 0; color: var(--ink-3); font-size: 0.85rem; }
   .ob-forget button { color: var(--ink-2); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
@@ -310,13 +314,15 @@
   .share-menu a:hover, .share-menu button:hover, .share-menu a:focus-visible, .share-menu button:focus-visible { background: var(--bg-3); outline: none; }
   .share-menu svg { width: 18px; height: 18px; flex: none; }
   .body { text-decoration: none; color: inherit; display: block; }
-  .tile .name { font-weight: 600; font-size: 0.98rem; line-height: 1.3; margin: 0; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  /* Always two lines tall, so every card in a row lines up whatever the title's length. */
+  .tile .name { font-weight: 600; font-size: 0.98rem; line-height: 1.3; min-height: 2.6em; margin: 0; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .tile .name .pill-new {
     display: inline-block; vertical-align: middle; margin-left: 6px; background: var(--glow); color: var(--glow-ink);
     font-size: 0.6rem; font-weight: 800; letter-spacing: .03em; padding: 2px 6px; border-radius: 4px;
   }
   .tile .venue { color: var(--ink-2); font-size: 0.88rem; margin: 4px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .tile .foot { display: flex; justify-content: space-between; gap: 8px; color: var(--ink-2); font-size: 0.85rem; margin-top: 8px; }
+  .tile .foot { display: flex; align-items: center; gap: 2px; color: var(--ink-2); font-size: 0.85rem; margin: 4px -6px 0 0; }
+  .tile .foot .meta { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .tile .foot b { color: var(--ink); font-weight: 600; }
   .tile .multi { color: var(--glow); }
 
@@ -384,8 +390,14 @@
     background: var(--ink); color: #000; font-weight: 700; font-size: 0.95rem; text-decoration: none; white-space: nowrap; overflow: hidden;
   }
   .btn-tickets:hover { background: #fff; }
-  .slide-actions .save { height: 46px; font-size: 0.9rem; }
-  .slide-actions .share { width: 46px; height: 46px; }
+  .slide-actions .icon-act { width: 46px; height: 46px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); color: var(--ink); }
+  .slide-actions .icon-act svg { width: 20px; height: 20px; }
+  .slide-actions .save svg { width: 23px; height: 23px; }
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 120; transform: translateX(-50%);
+    max-width: calc(100% - 32px); padding: 10px 16px; border-radius: 999px; background: rgba(44,44,46,.96);
+    border: 1px solid rgba(255,255,255,.16); box-shadow: 0 10px 30px rgba(0,0,0,.5); font-size: 0.88rem; font-weight: 600;
+  }
   .also { margin: 0; color: var(--ink-3); font-size: 0.8rem; }
   .also a { color: var(--ink-2); }
   .viewer-top {
@@ -417,6 +429,9 @@
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="neonGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ff2d95"/></linearGradient>
+</defs></svg>
 
 <div class="ambient" aria-hidden="true"></div>
 
@@ -479,6 +494,8 @@
     <button class="consent-ok" data-consent="granted">OK</button>
   </div>
 </div>
+
+<div class="toast" id="toast" role="status" hidden></div>
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Show details" hidden>
   <div class="viewer-top">
@@ -638,12 +655,15 @@
   const WEIGHT = { view: 1, genre: 2, search: 2, share: 4, ticket: 4, wannaGo: 5 };
   const STOPWORDS = new Set(["the", "and", "for", "with", "live", "show", "shows", "near", "night", "tonight", "event", "events", "concert"]);
 
+  // g/c/v/q: genres, categories, venues and search words you've shown interest in.
+  // ng/nv/nl: genres, venues and languages of shows you marked "Not for me"; hide: those shows.
+  const PROFILE_MAPS = ["g", "c", "v", "q", "ng", "nv", "nl"];
   function loadProfile() {
     let p = null;
     try { p = JSON.parse(localStorage.getItem(LS_PROFILE) || "null"); } catch {}
-    p = p || { t: Date.now(), g: {}, c: {}, v: {}, vl: {}, q: {} };
+    p = { t: Date.now(), g: {}, c: {}, v: {}, vl: {}, q: {}, ng: {}, nv: {}, nl: {}, hide: [], ...p };
     const fade = 0.5 ** ((Date.now() - p.t) / (HALF_LIFE_DAYS * 86400000));
-    for (const k of ["g", "c", "v", "q"]) {
+    for (const k of PROFILE_MAPS) {
       for (const [x, w] of Object.entries(p[k])) { if (w * fade < 0.05) delete p[k][x]; else p[k][x] = w * fade; }
     }
     p.t = Date.now();
@@ -676,7 +696,20 @@
   }
   function hasActivity() {
     const p = loadProfile();
-    return ["g", "c", "v", "q"].some(k => Object.keys(p[k]).length);
+    return p.hide.length > 0 || PROFILE_MAPS.some(k => Object.keys(p[k]).length);
+  }
+  // Language genres (Marathi plays…) are counted as the show's language instead.
+  const isLangGenre = g => /-(english|hindi|marathi|gujarati|regional)$/.test(g);
+  function notForMe(e) {
+    if (!e) return;
+    const p = loadProfile();
+    (e.genres || []).filter(g => !isLangGenre(g)).forEach(g => p.ng[g] = (p.ng[g] || 0) + 1);
+    (e.lang || []).forEach(l => p.nl[l] = (p.nl[l] || 0) + 1);
+    const v = venueKey(e);
+    if (v) p.nv[v] = (p.nv[v] || 0) + 1;
+    p.hide = [...p.hide.filter(k => k !== showKey(e)), showKey(e)].slice(-300);
+    saveProfile(p);
+    track("not_for_me", { item_name: e.title });
   }
 
   // ---------- Wanna Go (saved locally; a show drops off once its date is gone from events.json) ----------
@@ -794,6 +827,20 @@
   }
 
   // ---------- sharing ----------
+  const ICON_HEART = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.6-4.6-9.4-9.3C1.3 7.6 3.5 4.2 7 4.2c2.1 0 3.7 1.1 5 3 1.3-1.9 2.9-3 5-3 3.5 0 5.7 3.4 4.4 6.8-1.8 4.7-9.4 9.3-9.4 9.3z"/></svg>`;
+  const ICON_NOPE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>`;
+  function saveButton(id, saved) {
+    const label = saved ? "Remove from Wanna Go" : "Wanna go";
+    return `<button class="icon-act save" data-add="${id}" aria-pressed="${saved}" aria-label="${label}" title="${label}">${ICON_HEART}</button>`;
+  }
+  let toastTimer = null;
+  function toast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.hidden = true; }, 2600);
+  }
   const ICON_SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>`;
   const ICON_CHAT = `<svg viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/></svg>`;
   const ICON_LINK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>`;
@@ -939,8 +986,6 @@
     </section>`;
   }
 
-  // Your interests lead; within those, a show listed by more than one platform (the closest honest
-  // popularity signal we have) and one happening soon rank higher. Without interests, it's just those.
   // What you've done here, scaled so your strongest signal in each kind is 1.
   function affinity() {
     const p = loadProfile();
@@ -951,12 +996,17 @@
     return { g: scale(p.g), c: scale(p.c), v: scale(p.v), q: scale(p.q), raw: p };
   }
 
-  // Interests you picked lead; then what you've opened, saved, shared, bought and searched for
-  // (genres, venues, words); then a show listed by several platforms (the closest honest popularity
-  // signal we have) and one happening soon. One card per show.
+  // Genres you picked lead, well ahead of a whole category you picked; then what you've opened,
+  // saved, shared, bought and searched for (genres, venues, words), minus what you marked "Not for
+  // me"; then small nudges for a show listed by several platforms (the closest honest popularity
+  // signal we have) and one happening soon. Shows in languages you didn't pick are left out
+  // (ones that don't say stay in). One card per show.
   function recommend(evs, prefs, saved, limit = 14) {
-    const cats = new Set(prefs?.categories || []), likes = new Set(prefs?.genres || []);
-    const a = affinity();
+    const cats = new Set(prefs?.categories || []), likes = new Set(prefs?.genres || []), langs = new Set(prefs?.langs || []);
+    const a = affinity(), hidden = new Set(a.raw.hide);
+    const nope = e => Math.min((e.genres || []).reduce((s, g) => s + (a.raw.ng[g] || 0), 0), 3) * 1.2
+      + Math.min((e.lang || []).reduce((s, l) => s + (a.raw.nl[l] || 0), 0), 3) * 1.2
+      + Math.min(a.raw.nv[venueKey(e)] || 0, 2) * 1.5;
     const days = e => (new Date(e.date + "T12:00:00") - new Date(todayISO + "T12:00:00")) / 86400000;
     const searchText = e => norm(`${e.title} ${e.venue} ${(e.genres || []).map(genreName).join(" ")}`);
     const score = e => {
@@ -964,14 +1014,16 @@
       const d = days(e);
       const text = Object.keys(a.q).length ? searchText(e) : "";
       const searched = Math.max(0, ...Object.entries(a.q).filter(([t]) => text.includes(t)).map(([, w]) => w));
-      return Math.min(liked, 2) * 3 + (cats.has(e.category) ? 2 : 0)
+      return Math.min(liked, 2) * 4 + (cats.has(e.category) ? 1 : 0)
         + Math.min((e.genres || []).reduce((s, g) => s + (a.g[g] || 0), 0), 1.5) * 2.5
-        + (a.c[e.category] || 0) * 1.2 + (a.v[venueKey(e)] || 0) * 2.5 + searched * 2
-        + ((e.sources || [e.source]).length - 1) * 1.5
-        + (d <= 2 ? 1.5 : d <= 7 ? 1 : d <= 21 ? 0.4 : 0)
-        + Math.min(e.price_from || 0, 3000) / 6000;
+        + (a.c[e.category] || 0) + (a.v[venueKey(e)] || 0) * 2.5 + searched * 2
+        + ((e.sources || [e.source]).length - 1)
+        + (d <= 2 ? 0.6 : d <= 7 ? 0.4 : d <= 21 ? 0.15 : 0)
+        + Math.min(e.price_from || 0, 3000) / 6000
+        - nope(e);
     };
-    let pool = evs.filter(e => !saved.has(e.id));
+    const langOk = e => !langs.size || !(e.lang || []).length || e.lang.some(l => langs.has(l));
+    let pool = evs.filter(e => !saved.has(e.id) && !hidden.has(showKey(e)) && langOk(e));
     const matched = pool.filter(e => cats.has(e.category) || (e.genres || []).some(g => likes.has(g)));
     if (matched.length >= 6) pool = matched;
     const seen = new Set();
@@ -1176,8 +1228,8 @@
     const links = e.links || { [e.source]: e.url };
     const href = links[sources[0]] || "#";
     const art = poster(e) + (e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : "");
-    const price = e.price_from ? `<span>from <b>₹${Number(e.price_from).toLocaleString("en-IN")}</b></span>` : "<span></span>";
-    const via = sources.length > 1 ? `<span class="multi">${sources.length} platforms</span>` : `<span>${esc(sources[0])}</span>`;
+    const price = e.price_from ? `from <b>₹${Number(e.price_from).toLocaleString("en-IN")}</b> · ` : "";
+    const via = sources.length > 1 ? `<span class="multi">${sources.length} platforms</span>` : esc(sources[0].replace(/ (Plays|Sports)$/, ""));
     const saved = getWannaGo().includes(e.id);
     const newPill = isNew(e) ? `<span class="pill-new">New</span>` : "";
     const g = groupSizes.get(groupKey(e));
@@ -1193,11 +1245,11 @@
       <a class="body" href="${esc(href)}" target="_blank" rel="noopener">
         <p class="name">${esc(e.title)}${newPill}</p>
         <p class="venue">${esc(venue)}</p>
-        <div class="foot">${price}${via}</div>
       </a>
-      <div class="tile-actions">
-        <button class="save" data-add="${e.id}" aria-pressed="${saved}">${saved ? "✓ Wanna go" : "+ Wanna go"}</button>
-        <button class="share" data-share="${e.id}" aria-label="Share ${esc(e.title)}">${ICON_SHARE}</button>
+      <div class="foot">
+        <span class="meta">${price}${via}</span>
+        ${saveButton(e.id, saved)}
+        <button class="icon-act share" data-share="${e.id}" aria-label="Share ${esc(e.title)}" title="Share">${ICON_SHARE}</button>
       </div>
     </div>`;
   }
@@ -1218,7 +1270,7 @@
   // ---------- the swipe view: tap any card for the full story; swipe up through the rest of its row ----------
   const viewer = document.getElementById("viewer");
   const feed = document.getElementById("viewerFeed");
-  let viewerIds = [], viewerIndex = 0, viewerObserver = null, dwellTimer = null;
+  let viewerIds = [], viewerIndex = 0, viewerObserver = null, dwellTimer = null, dislikedInViewer = false;
 
   function slideHtml(e, i) {
     const sources = e.sources || [e.source];
@@ -1244,8 +1296,9 @@
         ${about}${dates}
         <div class="slide-actions">
           <a class="btn-tickets" href="${esc(links[sources[0]] || e.url)}" target="_blank" rel="noopener" data-ticket="${esc(sources[0])}">${price ? `${price} · ` : ""}Tickets</a>
-          <button class="save" data-add="${e.id}" aria-pressed="${saved}">${saved ? "✓ Wanna go" : "+ Wanna go"}</button>
-          <button class="share" data-share="${e.id}" aria-label="Share ${esc(e.title)}">${ICON_SHARE}</button>
+          ${saveButton(e.id, saved)}
+          <button class="icon-act share" data-share="${e.id}" aria-label="Share ${esc(e.title)}" title="Share">${ICON_SHARE}</button>
+          <button class="icon-act nope" data-nope="${e.id}" aria-pressed="false" aria-label="Not for me: show fewer like this" title="Not for me">${ICON_NOPE}</button>
         </div>
         <p class="also">Tickets on ${esc(sources[0])}${also ? `; also on ${also}` : ""}</p>
       </div>
@@ -1299,6 +1352,7 @@
     feed.innerHTML = "";
     closeShareMenu(false);
     if (!fromHistory && history.state?.viewer) history.back();
+    if (dislikedInViewer) { dislikedInViewer = false; renderList(); }  // For you drops what you turned down
   }
 
   viewer.addEventListener("click", e => {
@@ -1308,9 +1362,17 @@
     const add = e.target.closest("[data-add]");
     if (add) {
       toggleWannaGo(add.dataset.add);
-      const on = getWannaGo().includes(add.dataset.add);
-      add.setAttribute("aria-pressed", String(on));
-      add.textContent = on ? "✓ Wanna go" : "+ Wanna go";
+      add.outerHTML = saveButton(add.dataset.add, getWannaGo().includes(add.dataset.add));
+      return;
+    }
+    const nope = e.target.closest("[data-nope]");
+    if (nope) {
+      if (nope.getAttribute("aria-pressed") === "true") return;
+      nope.setAttribute("aria-pressed", "true");
+      notForMe(eventById(nope.dataset.nope));
+      dislikedInViewer = true;
+      toast("Got it. Fewer shows like this in For you.");
+      setTimeout(() => stepViewer(1), 700);
       return;
     }
     const share = e.target.closest("[data-share]");
@@ -1336,7 +1398,7 @@
 
   function openOnboarding() {
     const p = getPrefs() || { categories: [], genres: [] };
-    ob = { step: 1, city: state.city, categories: new Set(p.categories), genres: new Set(p.genres), q: "" };
+    ob = { step: 1, city: state.city, categories: new Set(p.categories), genres: new Set(p.genres), langs: new Set(p.langs || []), q: "" };
     renderOnboarding();
     onboard.hidden = false;
     document.body.style.overflow = "hidden";
@@ -1350,16 +1412,21 @@
   }
   function finishOnboarding() {
     const inCats = slug => [...ob.categories].some(c => (data.genres?.[c] || []).some(([s]) => s === slug));
-    const prefs = { categories: [...ob.categories], genres: [...ob.genres].filter(inCats) };
+    const prefs = { categories: [...ob.categories], genres: [...ob.genres].filter(inCats), langs: [...ob.langs] };
     const city = ob.city;
     track("onboarding", { result: "done" });
     prefs.categories.forEach(c => track("set_interest", { interest: c }));
     prefs.genres.forEach(g => track("set_interest", { interest: g }));
+    prefs.langs.forEach(l => track("set_interest", { interest: `language:${l}` }));
     try { localStorage.setItem(LS_PREFS, JSON.stringify(prefs)); localStorage.setItem(LS_CITY, city); } catch {}
     closeOnboarding();
     Object.assign(state, { city, tab: "all", genre: "", favVenue: "all" });
     render();
     window.scrollTo({ top: 0 });
+  }
+
+  function languageList() {
+    return data.languages || [["english", "English"], ["hindi", "Hindi"], ["marathi", "Marathi"], ["gujarati", "Gujarati"], ["other", "Other Indian languages"]];
   }
 
   function cityChips() {
@@ -1389,10 +1456,14 @@
         <p class="sub">Pick as many as you like. We'll put them first in <b>For you</b>.</p>
         <div class="ob-cats">${cats.map(t => `<button class="ob-cat" data-ob-cat="${t.key}" aria-pressed="${ob.categories.has(t.key)}" style="--c:${CATEGORY_COLOR[t.key]}"><i></i>${t.label}</button>`).join("")}</div>
         <div class="ob-genres">${cats.filter(t => ob.categories.has(t.key) && data.genres?.[t.key]).map(t => `
-          <div><h3>${t.label} — any favourites?</h3><div class="chips">${data.genres[t.key].map(([slug, label]) =>
+          <div><h3>${t.label} — any favourites?</h3><div class="chips">${data.genres[t.key].filter(([slug]) => !isLangGenre(slug)).map(([slug, label]) =>
             `<button class="chip" data-ob-genre="${slug}" aria-pressed="${ob.genres.has(slug)}">${esc(label)}</button>`).join("")}</div></div>`).join("")}
         </div>
-        <p class="ob-forget">For you also learns from the shows you open, save, share and search for — kept in this browser only.
+        <div class="ob-langs"><h3>Shows in which languages?</h3>
+          <p>Leave all off for any. Shows that don't say which language stay in.</p>
+          <div class="chips">${languageList().map(([slug, label]) =>
+            `<button class="chip" data-ob-lang="${slug}" aria-pressed="${ob.langs.has(slug)}">${esc(label)}</button>`).join("")}</div></div>
+        <p class="ob-forget">For you also learns from the shows you open, save, share, search for and mark “Not for me” — kept in this browser only.
           ${hasActivity() ? `<button data-ob="forget">Forget what I've browsed</button>` : ""}</p>
         <div class="ob-actions"><button class="ob-back" data-ob="back">‹ Back</button><button class="ob-primary" data-ob="done">Show my picks</button></div>
       </div>`;
@@ -1422,6 +1493,13 @@
       const k = cat.dataset.obCat;
       if (ob.categories.has(k)) ob.categories.delete(k); else ob.categories.add(k);
       renderOnboarding(`[data-ob-cat="${k}"]`);
+      return;
+    }
+    const lang = e.target.closest("[data-ob-lang]");
+    if (lang) {
+      const l = lang.dataset.obLang;
+      if (ob.langs.has(l)) ob.langs.delete(l); else ob.langs.add(l);
+      lang.setAttribute("aria-pressed", String(ob.langs.has(l)));
       return;
     }
     const g = e.target.closest("[data-ob-genre]");
