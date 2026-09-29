@@ -12,6 +12,7 @@ Two generic ways to read events out of a page:
 """
 
 import atexit
+import html
 import hashlib
 import json
 import re
@@ -172,11 +173,21 @@ def parse_date(text):
     return dt.date().isoformat(), time_str
 
 
-def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place=""):
+def summary(text, limit=420):
+    """A show's description as short plain text for the dashboard's detail view."""
+    text = re.sub(r"<[^>]+>", " ", html.unescape(text or ""))
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0].rstrip(".,;:!-– ") + "…"
+
+
+def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place="", about=None):
     """
     Build a normalised event dict; returns None if it lacks a title or date.
     `city` is only the listing page's city: the show's own venue/address (`place`, or
-    `venue`) wins, then a city named in the title.
+    `venue`) wins, then a city named in the title. `about` is the show's description
+    (defaults to `hint`).
     """
     title = re.sub(r"\s+", " ", title or "").strip()
     if not title or not day or NOT_SHOWS.search(title):
@@ -201,6 +212,7 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
         "url": url,
         "image": image,
         "source": source,
+        "about": summary(hint if about is None else about),
     }
 
 
@@ -276,7 +288,8 @@ def jsonld_to_event(node, source, city=None, category=None, page_url="", default
     genre = node.get("genre") or ""
     hint = f"{node.get('description', '')} {' '.join(genre) if isinstance(genre, list) else genre}"
     return event(node.get("name"), day, source, city, category, venue, time, price,
-                 node.get("url") or page_url, image, hint=hint, default=default, place=place)
+                 node.get("url") or page_url, image, hint=hint, default=default, place=place,
+                 about=node.get("description") or "")
 
 
 def meta_event(html, source, city, category, page_url, default=None):
