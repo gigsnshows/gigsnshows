@@ -14,6 +14,10 @@ First-time visitors get a two-step **onboarding**: their city, then what they're
 
 **Tapping any card opens the swipe view** — one show per screen (poster, genres, date, venue, description, other dates, Tickets / Wanna go / Share) — and swiping up moves through the rest of that row, TikTok-style. "Swipe" on the For you row starts a personal feed. Back closes it. Cmd/Ctrl-click a card still goes straight to the ticket site.
 
+**Dates:** a chip row on Home, the category tabs and search — Any time, Tonight, Tomorrow, This weekend (Fri–Sun), Next 7 days, or Pick a date (the device's own calendar). It filters everything except Wanna Go and is kept in the link (`?when=weekend`, `?when=2026-10-03`).
+
+**Repeat shows are one card:** a show on several dates (or at several venues) appears once, at its earliest date, with a "4 dates" / "2 venues" / "2 times" badge; the swipe view lists the other dates.
+
 **Search** (magnifier in the top bar, or `/`) matches every word against title, venue, city, category, genres and description, in the current city or all cities, with category and genre chips to narrow the results.
 
 The **Home** tab is a browse-everything view — **For you** (interests and behaviour first, then shows listed by several platforms and happening soon; one card per show), **Wanna Go** (tap *+ Wanna go* under any card; saved in your browser), Tonight, This Weekend, Just Announced (shows first seen in the last few days), **From Your Favourite Venues** (edit the `FAVOURITE_VENUES` list at the top of the `<script>` in `index.html` to change which venues get a row), then one row per category.

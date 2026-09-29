@@ -215,6 +215,13 @@
     color: #fff; font-size: 0.76rem; font-weight: 600; padding: 4px 8px; border-radius: 999px; z-index: 1;
   }
   .art .when.today { background: var(--glow); color: var(--glow-ink); }
+  .art .runs {
+    position: absolute; left: 10px; bottom: 10px; z-index: 1; padding: 3px 8px; border-radius: 999px;
+    background: rgba(0,0,0,.6); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.25);
+    color: #fff; font-size: 0.72rem; font-weight: 700;
+  }
+  .date-pick { position: relative; flex: none; }
+  .date-pick input { position: absolute; inset: 0; width: 100%; opacity: 0; pointer-events: none; }
   /* Actions sit below the card, not on the artwork, where busy posters swallowed them. */
   .tile-actions { display: flex; gap: 8px; margin-top: 10px; }
   .save {
@@ -532,6 +539,7 @@
     favVenue: "all",
     sharedId: params.get("event") || "",
     genre: params.get("genre") || "",
+    when: params.get("when") || "",                     // date filter: tonight, tomorrow, weekend, week or YYYY-MM-DD
     q: params.get("q") || "",                           // search
     qScope: params.get("in") === "all" ? "all" : "city",
     qCat: "",
@@ -544,6 +552,7 @@
     p.set("city", state.city.toLowerCase());
     p.set("tab", state.tab);
     if (state.genre && state.tab !== "all") p.set("genre", state.genre);
+    if (state.when) p.set("when", state.when);
     if (state.q.trim()) p.set("q", state.q.trim());
     if (state.q.trim() && state.qScope === "all") p.set("in", "all");
     if (state.sharedId) p.set("event", state.sharedId);
@@ -710,6 +719,72 @@
   function catLabel(key) { return TABS.find(t => t.key === key)?.label || key; }
   // "Sangeet Devbabhali | Pune" and "Sangeet Devbabhali" are the same show.
   function showKey(e) { return e.title.toLowerCase().replace(/\|.*$/, "").replace(/[^a-z0-9]/g, ""); }
+
+  // ---------- date filter ----------
+  function addDays(iso, n) {
+    const d = new Date(iso + "T12:00:00");
+    d.setDate(d.getDate() + n);
+    return d.toLocaleDateString("en-CA");
+  }
+  const WHEN_OPTIONS = [["", "Any time"], ["tonight", "Tonight"], ["tomorrow", "Tomorrow"], ["weekend", "This weekend"], ["week", "Next 7 days"]];
+  function isPickedDate(w) { return /^\d{4}-\d{2}-\d{2}$/.test(w); }
+  function dayLabel(iso) {
+    const d = new Date(iso + "T12:00:00");
+    return `${fmtDay.format(d)} ${fmtDate.format(d)}`;
+  }
+  function whenRange(w) {  // [first, last] day, inclusive
+    if (w === "tonight") return [todayISO, todayISO];
+    if (w === "tomorrow") { const t = addDays(todayISO, 1); return [t, t]; }
+    if (w === "week") return [todayISO, addDays(todayISO, 6)];
+    if (w === "weekend") {  // Fri–Sun; from today if we're already in it
+      const dow = new Date(todayISO + "T12:00:00").getDay();
+      const start = dow === 0 || dow >= 5 ? todayISO : addDays(todayISO, 5 - dow);
+      return [start, addDays(start, dow === 0 ? 0 : 7 - Math.max(dow, 5))];
+    }
+    if (isPickedDate(w)) return [w, w];
+    return null;
+  }
+  function inWhen(e) {
+    const r = whenRange(state.when);
+    return !r || (e.date >= r[0] && e.date <= r[1]);
+  }
+  function whenText() {
+    if (isPickedDate(state.when)) return `on ${dayLabel(state.when)}`;
+    return ({ tonight: "tonight", tomorrow: "tomorrow", weekend: "this weekend", week: "in the next 7 days" })[state.when] || "";
+  }
+  function setWhen(w) {
+    state.when = w;
+    track("filter_date", { when: w || "any" });
+    renderList();
+    syncUrl();
+  }
+  function whenBar(tight = false) {
+    const picked = isPickedDate(state.when);
+    return `<div class="genre-bar when-bar${tight ? " tight" : ""}" role="toolbar" aria-label="When">
+      ${WHEN_OPTIONS.map(([k, label]) => `<button class="chip" data-when="${k}" aria-pressed="${state.when === k}">${label}</button>`).join("")}
+      <span class="date-pick">
+        <button class="chip" data-when-pick aria-pressed="${picked}">${picked ? esc(dayLabel(state.when)) : "Pick a date"}</button>
+        <input type="date" id="whenDate" min="${todayISO}" value="${picked ? state.when : ""}" aria-label="Pick a date" tabindex="-1">
+      </span>
+    </div>`;
+  }
+
+  // ---------- one card per show, however many dates it runs ----------
+  let groupSizes = new Map();  // city|show -> { n, dates, venues }, for the shows on screen
+  function groupKey(e) { return `${e.city}|${showKey(e)}`; }
+  function countGroups(pool) {
+    groupSizes = new Map();
+    pool.forEach(e => {
+      const k = groupKey(e);
+      const g = groupSizes.get(k) || { n: 0, dates: new Set(), venues: new Set() };
+      g.n++; g.dates.add(e.date); g.venues.add((e.venue || "").split(/[:|,]/)[0].trim().toLowerCase());
+      groupSizes.set(k, g);
+    });
+  }
+  function groupShows(list) {  // keeps each show's first appearance — the earliest, in date-sorted lists
+    const seen = new Set();
+    return list.filter(e => { const k = groupKey(e); return !seen.has(k) && seen.add(k); });
+  }
   function byDateTime(a, b) { return a.date === b.date ? (a.time || "").localeCompare(b.time || "") : a.date.localeCompare(b.date); }
   function daysSince(iso) { return Math.round((new Date(todayISO) - new Date(iso)) / 86400000); }
   function isNew(e) { return e.first_seen && daysSince(e.first_seen) >= 0 && daysSince(e.first_seen) <= NEW_WINDOW_DAYS; }
@@ -922,14 +997,16 @@
   }
 
   function renderHome() {
-    const evs = data.events.filter(e => e.city === state.city);
+    const evs = data.events.filter(e => e.city === state.city && inWhen(e));
+    countGroups(evs);
     const list = getWannaGo();
-    const tonight = evs.filter(e => e.date === todayISO).sort(byDateTime);
-    const weekend = evs.filter(e => bucket(e.date) === 1).sort(byDateTime);
-    const justAnnounced = evs.filter(isNew).sort(byDateTime).slice(0, 14);
-    const wannaGo = data.events.filter(e => list.includes(e.id)).sort(byDateTime);
+    // With a date picked, Tonight / This Weekend would just repeat the rest of the page.
+    const tonight = state.when ? [] : groupShows(evs.filter(e => e.date === todayISO).sort(byDateTime));
+    const weekend = state.when ? [] : groupShows(evs.filter(e => bucket(e.date) === 1).sort(byDateTime));
+    const justAnnounced = groupShows(evs.filter(isNew).sort(byDateTime)).slice(0, 14);
+    const wannaGo = data.events.filter(e => list.includes(e.id)).sort(byDateTime);  // your saved list stays whole
     const favMatch = e => FAVOURITE_VENUES.some(v => v.match(e));
-    const favAll = evs.filter(favMatch).sort(byDateTime);
+    const favAll = groupShows(evs.filter(favMatch).sort(byDateTime));
     const prefs = getPrefs();
     const recs = recommend(evs, prefs, new Set(list));
 
@@ -957,7 +1034,7 @@
     if (justAnnounced.length) sections.push(trayHtml("new", "Just Announced", justAnnounced.length, justAnnounced.map(e => renderTile(e))));
 
     const activeVenue = FAVOURITE_VENUES.find(v => v.key === state.favVenue);
-    const favShown = activeVenue ? evs.filter(activeVenue.match) : favAll;
+    const favShown = activeVenue ? favAll.filter(activeVenue.match) : favAll;
     const bubbles = `<div class="venues">
       <button class="venue-btn" data-venue="all" aria-pressed="${state.favVenue === "all"}"><span class="venue-avatar">★</span><span class="venue-name">All</span></button>
       ${FAVOURITE_VENUES.map(v => `<button class="venue-btn" data-venue="${v.key}" aria-pressed="${state.favVenue === v.key}">
@@ -971,22 +1048,27 @@
     }));
 
     TABS.filter(t => t.key !== "all").forEach(t => {
-      const items = evs.filter(e => e.category === t.key).sort(byDateTime);
+      const items = groupShows(evs.filter(e => e.category === t.key).sort(byDateTime));
       if (items.length) sections.push(trayHtml(t.key, t.label, items.length, items.slice(0, 14).map(e => renderTile(e)), { seeAll: seeAllFor(t.key) }));
     });
 
-    document.getElementById("main").innerHTML = sections.length
-      ? sections.join("")
+    const nothing = state.when
+      ? `<div class="empty"><b>Nothing listed in ${esc(state.city)} ${esc(whenText())}.</b><br>Try another day, or <button class="see-all" data-when="">any time</button>.</div>`
       : `<div class="empty"><b>Nothing listed for ${esc(state.city)} yet.</b><br>Listings refresh every morning. Check back tomorrow.</div>`;
+    document.getElementById("main").innerHTML = whenBar() + sections.join("") + (evs.length ? "" : nothing);
   }
 
   function renderCategory() {
     const tab = TABS.find(t => t.key === state.tab);
-    const inCategory = data.events.filter(e => e.city === state.city && e.category === state.tab);
+    const dated = data.events.filter(e => e.city === state.city && e.category === state.tab && inWhen(e)).sort(byDateTime);
+    countGroups(dated);
+    const inCategory = groupShows(dated);
     const main = document.getElementById("main");
     if (!inCategory.length) {
-      main.innerHTML = `<div class="empty"><b>Nothing listed for ${esc(tab.label.toLowerCase())} in ${esc(state.city)} yet.</b><br>
-        Listings refresh every morning. Try another tab, or check back tomorrow.</div>`;
+      main.innerHTML = whenBar() + (state.when
+        ? `<div class="empty"><b>No ${esc(tab.label.toLowerCase())} in ${esc(state.city)} ${esc(whenText())}.</b><br>Try another day, or <button class="see-all" data-when="">any time</button>.</div>`
+        : `<div class="empty"><b>Nothing listed for ${esc(tab.label.toLowerCase())} in ${esc(state.city)} yet.</b><br>
+          Listings refresh every morning. Try another tab, or check back tomorrow.</div>`);
       return;
     }
     // Only genres with a show here get a chip, busiest first.
@@ -1002,7 +1084,7 @@
     const evs = state.genre ? inCategory.filter(e => (e.genres || []).includes(state.genre)) : inCategory;
     const trays = new Map();
     evs.forEach(e => { const b = bucket(e.date); (trays.get(b) || trays.set(b, []).get(b)).push(e); });
-    main.innerHTML = bar + [...trays.keys()].sort().map(b =>
+    main.innerHTML = whenBar() + bar + [...trays.keys()].sort().map(b =>
       trayHtml(`bucket-${b}`, BUCKETS[b], trays.get(b).length, trays.get(b).map(e => renderTile(e)))
     ).join("");
   }
@@ -1026,10 +1108,11 @@
   function renderSearch() {
     const q = state.q.trim();
     const words = norm(q).split(" ").filter(Boolean);
-    const pool = state.qScope === "all" ? data.events : data.events.filter(e => e.city === state.city);
+    const pool = (state.qScope === "all" ? data.events : data.events.filter(e => e.city === state.city)).filter(inWhen);
     const inTitle = e => words.every(w => norm(e.title).includes(w));
-    const found = pool.filter(e => words.every(w => searchable(e).includes(w)))
-      .sort((a, b) => (inTitle(b) - inTitle(a)) || byDateTime(a, b));
+    const matches = pool.filter(e => words.every(w => searchable(e).includes(w))).sort(byDateTime);
+    countGroups(matches);
+    const found = groupShows(matches).sort((a, b) => (inTitle(b) - inTitle(a)) || byDateTime(a, b));
 
     const catCounts = {};
     found.forEach(e => catCounts[e.category] = (catCounts[e.category] || 0) + 1);
@@ -1051,7 +1134,7 @@
     const genreRow = genres.length ? `<div class="genre-bar tight" role="toolbar" aria-label="Genre">
       ${chip("data-qgenre", "", !state.qGenre, "Any genre")}${genres.map(g => chip("data-qgenre", g, state.qGenre === g, genreName(g), genreCounts[g])).join("")}</div>` : "";
 
-    const where = state.qScope === "all" ? "across all cities" : `in ${state.city}`;
+    const where = (state.qScope === "all" ? "across all cities" : `in ${state.city}`) + (state.when ? ` ${whenText()}` : "");
     const LIMIT = 60;
     const body = shown.length
       ? `<section data-tray="search"><div class="results">${shown.slice(0, LIMIT).map(e => renderTile(e)).join("")}</div>
@@ -1059,7 +1142,7 @@
       : `<div class="empty"><b>No shows match “${esc(q)}” ${esc(where)} right now.</b><br>
          Try fewer or different words${state.qScope === "city" ? `, or <button class="see-all" data-scope="all">search all cities</button>` : ""}.</div>`;
     document.getElementById("main").innerHTML = `<div class="results-head"><h2>“${esc(q)}”</h2>
-      <p>${shown.length} ${shown.length === 1 ? "show" : "shows"} ${esc(where)}</p></div>${scopeRow}${catRow}${genreRow}${body}`;
+      <p>${shown.length} ${shown.length === 1 ? "show" : "shows"} ${esc(where)}</p></div>${scopeRow}${whenBar(true)}${catRow}${genreRow}${body}`;
   }
 
   // Hide an arrow once its tray can't scroll any further that way (or at all).
@@ -1097,15 +1180,19 @@
     const via = sources.length > 1 ? `<span class="multi">${sources.length} platforms</span>` : `<span>${esc(sources[0])}</span>`;
     const saved = getWannaGo().includes(e.id);
     const newPill = isNew(e) ? `<span class="pill-new">New</span>` : "";
+    const g = groupSizes.get(groupKey(e));
+    const runs = !g || g.n < 2 ? "" : g.dates.size > 1 ? `${g.dates.size} dates` : g.venues.size > 1 ? `${g.venues.size} venues` : `${g.n} times`;
+    const venue = g && g.venues.size > 1 ? `${e.venue.split(/[:|,]/)[0].trim()} + ${g.venues.size - 1} more` : e.venue;
     return `<div class="tile" data-id="${e.id}">
       <div class="art">
         <a class="art-link" href="${esc(href)}" target="_blank" rel="noopener" aria-label="${esc(e.title)}">
           ${art}<span class="when ${e.date === todayISO ? "today" : ""}">${whenLabel(e)}</span>
+          ${runs ? `<span class="runs">${runs}</span>` : ""}
         </a>
       </div>
       <a class="body" href="${esc(href)}" target="_blank" rel="noopener">
         <p class="name">${esc(e.title)}${newPill}</p>
-        <p class="venue">${esc(e.venue)}</p>
+        <p class="venue">${esc(venue)}</p>
         <div class="foot">${price}${via}</div>
       </a>
       <div class="tile-actions">
@@ -1373,6 +1460,9 @@
   document.getElementById("tabs").addEventListener("click", e => {
     const b = e.target.closest("[data-tab]"); if (b) goTab(b.dataset.tab);
   });
+  document.getElementById("main").addEventListener("change", e => {
+    if (e.target.id === "whenDate" && e.target.value) setWhen(e.target.value);
+  });
   document.getElementById("main").addEventListener("click", e => {
     const add = e.target.closest("[data-add]");
     if (add) { toggleWannaGo(add.dataset.add); return; }
@@ -1380,6 +1470,13 @@
     if (share) { shareEvent(share.dataset.share, share); return; }
     if (e.target.closest("[data-dismiss-shared]")) { state.sharedId = ""; render(); return; }
     if (e.target.closest("[data-onboard]")) { openOnboarding(); return; }
+    const when = e.target.closest("[data-when]");
+    if (when) { setWhen(when.dataset.when); return; }
+    if (e.target.closest("[data-when-pick]")) {
+      const input = document.getElementById("whenDate");
+      try { input.showPicker(); } catch { input.focus(); input.click(); }  // older browsers: fall back to the field itself
+      return;
+    }
     const chip = e.target.closest("[data-genre]");
     if (chip) {
       state.genre = chip.dataset.genre;
@@ -1520,6 +1617,8 @@
     .then(json => {
       data = json;
       pruneStarted();
+      const knownWhen = WHEN_OPTIONS.some(([k]) => k === state.when) || (isPickedDate(state.when) && state.when >= todayISO);
+      if (!knownWhen) state.when = "";  // a link from an earlier day
       const shared = state.sharedId && data.events.find(e => e.id === state.sharedId);
       if (shared) state.tab = "all";
       let remembered = null;
