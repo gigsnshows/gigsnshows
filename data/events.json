@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-28T11:53:34Z",
+  "updated_at": "2026-09-29T01:50:41Z",
   "cities": [
     "Ahmedabad",
     "Bengaluru",
@@ -217,251 +217,8 @@
       ]
     ]
   },
-  "count": 567,
+  "count": 561,
   "events": [
-    {
-      "id": "f02b9d8211ef",
-      "title": "All Star Lineup - A Curated Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Delhi",
-      "venue": "The Comedy Theatre - Hauz Khass Village",
-      "date": "2026-09-28",
-      "time": "",
-      "price_from": 299,
-      "url": "https://www.district.in/events/all-star-lineup-a-curated-stand-up-comedy-show-may1-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/all-star-lineup-a-curated-stand-up-comedy-show-may1-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "5660f62404b5",
-      "title": "Raw Comedy Night at FC Road",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Pune",
-      "venue": "Crazy Cheesy Cafe - FC Road",
-      "date": "2026-09-28",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/raw-comedy-night-fc-road-jun23-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVX86DV2PMB7WNG8GPY6GRYC.png",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/raw-comedy-night-fc-road-jun23-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "69cbe92e75f1",
-      "title": "Hex Gaming Cafe",
-      "category": "music",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "HEX Gaming Cafe",
-      "date": "2026-09-28",
-      "time": "03:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-8JMJY7/cover-image/evt-8jmjy7-7b9c.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai"
-      },
-      "first_seen": "2026-09-28"
-    },
-    {
-      "id": "6b744539d0df",
-      "title": "Brew Monday Morning",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Brew & Ice By Brown",
-      "date": "2026-09-28",
-      "time": "05:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/brew-monday-morning-sbfgttao",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790163675NjblokFV5kemssJe.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/brew-monday-morning-sbfgttao"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "dd93c0f2c5b8",
-      "title": "Lazer Crazer: BattleZone Delhi",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Lazer Crazer Delhi | Laser Tag & Cafe Myles",
-      "date": "2026-09-28",
-      "time": "05:30",
-      "price_from": null,
-      "url": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-99WH4D/cover-image/evt-99wh4d-1f50.webp",
-      "source": "thumpN",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi"
-      },
-      "first_seen": "2026-09-28"
-    },
-    {
-      "id": "bb63aa18f2dd",
-      "title": "Live Music at The Cape Goa ft. Aadi",
-      "category": "music",
-      "genres": [],
-      "city": "Goa",
-      "venue": "The Cape Goa | Cavelossim, Goa",
-      "date": "2026-09-28",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/live-music-at-the-cape-goa-ft-aadi-aug8-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/live-music-at-the-cape-goa-ft-aadi-aug8-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "78e86b0b6e21",
-      "title": "Monday Rock with Anirban",
-      "category": "music",
-      "genres": [
-        "rock"
-      ],
-      "city": "Goa",
-      "venue": "Saltamontes - Garden Cafe & Bar",
-      "date": "2026-09-28",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/monday-rock-with-anirban-sbkvewls",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790419940GkSoXj83nhnWtW4u.jpeg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/monday-rock-with-anirban-sbkvewls"
-      },
-      "first_seen": "2026-09-26"
-    },
-    {
-      "id": "36ab090f7904",
-      "title": "FULL SPECTRUM 113.0",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Goa",
-      "venue": "House of Chapora",
-      "date": "2026-09-28",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/full-spectrum-113-0-sbjojlax",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790334655WD71lCJRdAgWGFjf.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/full-spectrum-113-0-sbjojlax"
-      },
-      "first_seen": "2026-09-25"
-    },
-    {
-      "id": "d038aa048a33",
-      "title": "Glengarry Glen Ross: A Theatrical Performance",
-      "category": "theatre",
-      "genres": [],
-      "city": "Mumbai",
-      "venue": "Rangshila Theatre Group",
-      "date": "2026-09-28",
-      "time": "20:00",
-      "price_from": 500,
-      "url": "https://www.district.in/events/glengarry-glen-ross-a-theatrical-performance-sep28-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/glengarry-glen-ross-a-theatrical-performance-sep28-2026-buy-tickets"
-      }
-    },
-    {
-      "id": "3f1b4640152d",
-      "title": "Hate My Job Standup Comedy Show presented by Ink-A-Laugh",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Mumbai",
-      "venue": "Ink A Laugh Standup Comedy Club vile parle west",
-      "date": "2026-09-28",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/inkalaugh-presents-hate-my-job-standup-comedy-show-sep26-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1762834811/nildmi7lsozuyuc9giks.jpg",
-      "source": "District",
-      "first_seen": "2026-09-27",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/inkalaugh-presents-hate-my-job-standup-comedy-show-sep26-2025-buy-tickets"
-      }
-    },
-    {
-      "id": "62102eab19e2",
-      "title": "Funny Monday - A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2026-09-28",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/funny-monday-a-stand-up-comedy-show-jun9-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1749395751/pvutdmuvk4jkafdhlydx.jpg",
-      "source": "District",
-      "first_seen": "2026-09-25",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/funny-monday-a-stand-up-comedy-show-jun9-2025-buy-tickets"
-      }
-    },
     {
       "id": "372e42fc03d5",
       "title": "Standup Comedy - Tuesdays",
@@ -574,6 +331,48 @@
       "links": {
         "District": "https://www.district.in/events/naughty-late-nights-a-standup-comedy-show-may5-2026-buy-tickets"
       }
+    },
+    {
+      "id": "f833edb86bd8",
+      "title": "Hex Gaming Cafe",
+      "category": "music",
+      "genres": [],
+      "city": "Mumbai",
+      "venue": "HEX Gaming Cafe",
+      "date": "2026-09-29",
+      "time": "03:30",
+      "price_from": null,
+      "url": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-8JMJY7/cover-image/evt-8jmjy7-7b9c.webp",
+      "source": "thumpN",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/8JMJY7/hex-gaming-cafe-mumbai"
+      },
+      "first_seen": "2026-09-29"
+    },
+    {
+      "id": "59fb40bcbd55",
+      "title": "Lazer Crazer: BattleZone Delhi",
+      "category": "music",
+      "genres": [],
+      "city": "Delhi",
+      "venue": "Lazer Crazer Delhi | Laser Tag & Cafe Myles",
+      "date": "2026-09-29",
+      "time": "05:30",
+      "price_from": null,
+      "url": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-99WH4D/cover-image/evt-99wh4d-1f50.webp",
+      "source": "thumpN",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/D5XMGD/lazer-crazer-battlezone-delhi"
+      },
+      "first_seen": "2026-09-29"
     },
     {
       "id": "ce850e162896",
@@ -942,6 +741,29 @@
       }
     },
     {
+      "id": "71e48cb2a171",
+      "title": "Two of a Kind: Comedy Show FT. Trisha & Tushar",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "city": "Delhi",
+      "venue": "The Laughter Foyer",
+      "date": "2026-09-30",
+      "time": "14:30",
+      "price_from": null,
+      "url": "https://thumpn.com/event/HDSZ6W/two-of-a-kind-comedy-show-ft-trisha-tushar-gurugram",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-HDSZ6W/cover-image/evt-hdsz6w-74a0.webp",
+      "source": "thumpN",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/HDSZ6W/two-of-a-kind-comedy-show-ft-trisha-tushar-gurugram"
+      },
+      "first_seen": "2026-09-29"
+    },
+    {
       "id": "7f30cbe65b37",
       "title": "Retro Music Night",
       "category": "music",
@@ -1003,29 +825,6 @@
         "Skillbox": "https://www.skillboxes.com/events/an-evening-with-short-films-at-third-bell-studios-sbmcahwn"
       },
       "first_seen": "2026-09-27"
-    },
-    {
-      "id": "52de6b66c3d3",
-      "title": "The Undeniables Fighting Championship",
-      "category": "sports",
-      "genres": [
-        "combat"
-      ],
-      "city": "Pune",
-      "venue": "High Spirits Cafe",
-      "date": "2026-09-30",
-      "time": "19:30",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/the-undeniables-fighting-championship-sbkxexui",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17894754550NB6d8oPUdbpPnYB.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/the-undeniables-fighting-championship-sbkxexui"
-      },
-      "first_seen": "2026-09-25"
     },
     {
       "id": "f6a038545ec0",
@@ -2510,27 +2309,6 @@
         "NCPA": "https://www.ncpamumbai.com/event/manu-gandhi-ni-diary/"
       },
       "first_seen": "2026-09-05"
-    },
-    {
-      "id": "851fbd4a3aba",
-      "title": "30 Days 300 Hour Yoga TTC in Dehradun, Uttarakhand | Residential Packages | Event tickets Dehradun",
-      "category": "music",
-      "genres": [],
-      "city": "Dehradun",
-      "venue": "",
-      "date": "2026-10-04",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/30-days-300-hour-yoga-ttc-in-dehradun-uttarakhand-sbkjnadh",
-      "image": null,
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/30-days-300-hour-yoga-ttc-in-dehradun-uttarakhand-sbkjnadh"
-      },
-      "first_seen": "2026-09-28"
     },
     {
       "id": "367e7bbafe09",
@@ -4040,6 +3818,27 @@
       "first_seen": "2026-09-26"
     },
     {
+      "id": "de890e009178",
+      "title": "WHITEFIELD DANDIYA MAHA UTSAV - SEASON 6",
+      "category": "music",
+      "genres": [],
+      "city": "Bengaluru",
+      "venue": "International Tech Park Bengaluru (ITPB)",
+      "date": "2026-10-10",
+      "time": "17:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/whitefield-dandiya-maha-utsav-season-6-sbjzhxne",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790344709VY1VrQ92TFaMM4Gv.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/whitefield-dandiya-maha-utsav-season-6-sbjzhxne"
+      },
+      "first_seen": "2026-09-29"
+    },
+    {
       "id": "4f6a8e4129c8",
       "title": "💃🥢Dandiya Navratri Mahotsav 3.O",
       "category": "music",
@@ -4511,6 +4310,27 @@
         "Skillbox": "https://www.skillboxes.com/events/habibi-funk-mumbai-sbhyuklm"
       },
       "first_seen": "2026-09-25"
+    },
+    {
+      "id": "51bf1615d119",
+      "title": "Retro Classics by Abji & The Grooves",
+      "category": "music",
+      "genres": [],
+      "city": "Pune",
+      "venue": "Shisha Cafe",
+      "date": "2026-10-10",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/retro-classics-by-abji-the-grooves-sbpcuomb",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790612366XSimZkGQ0fsVP5oW.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/retro-classics-by-abji-the-grooves-sbpcuomb"
+      },
+      "first_seen": "2026-09-29"
     },
     {
       "id": "dda74a97bbbe",
@@ -5605,29 +5425,6 @@
       "first_seen": "2026-09-23"
     },
     {
-      "id": "d79bb6831a58",
-      "title": "Sajanka India Tour 2026 || Siliguri | Club Gigs - Music | Event tickets Siliguri",
-      "category": "music",
-      "genres": [
-        "electronic"
-      ],
-      "city": "Siliguri",
-      "venue": "Roots",
-      "date": "2026-10-16",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/sajanka-india-tour-2026-siliguri-sbuqvzzd",
-      "image": null,
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/sajanka-india-tour-2026-siliguri-sbuqvzzd"
-      },
-      "first_seen": "2026-09-28"
-    },
-    {
       "id": "6104363367a0",
       "title": "The Grand Palace Dandiya",
       "category": "music",
@@ -5714,27 +5511,6 @@
       "first_seen": "2026-09-25"
     },
     {
-      "id": "cf9ab87582e0",
-      "title": "SURBHI DANDIYA MAHOTSAV",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "DDA park",
-      "date": "2026-10-16",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/surbhi-dandiya-mahotsav-sbbbiyhw",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789996001TK3Rt2m25dy3nm05.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/surbhi-dandiya-mahotsav-sbbbiyhw"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
       "id": "5d4e51d26621",
       "title": "RANGILO 2026 – The Grand Dandiya & Garba Festival",
       "category": "music",
@@ -5754,6 +5530,48 @@
         "Skillbox": "https://www.skillboxes.com/events/rangilo-2026-the-grand-dandiya-garba-festival-sbznyvac"
       },
       "first_seen": "2026-09-23"
+    },
+    {
+      "id": "27d817e12c97",
+      "title": "RAAS - Premium Navratri festival in Delhi",
+      "category": "music",
+      "genres": [],
+      "city": "Delhi",
+      "venue": "The Nikunj",
+      "date": "2026-10-16",
+      "time": "17:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/anicca-project-sbhesqwn",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17887654557IRRkrSBOjk2WfHb.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/anicca-project-sbhesqwn"
+      },
+      "first_seen": "2026-09-29"
+    },
+    {
+      "id": "499f9932d59a",
+      "title": "Navraas Dandiya 2026 – Garba & Raas Night",
+      "category": "music",
+      "genres": [],
+      "city": "Delhi",
+      "venue": "Vista Square",
+      "date": "2026-10-16",
+      "time": "18:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/navraas-dandiya-2026-garba-raas-night-sbpjjgja",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790617369mfZh3M3IzhY3xOUM.jpeg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/navraas-dandiya-2026-garba-raas-night-sbpjjgja"
+      },
+      "first_seen": "2026-09-29"
     },
     {
       "id": "2da36bfd23ef",
@@ -5884,6 +5702,29 @@
       }
     },
     {
+      "id": "275dfeb39ea2",
+      "title": "Sajanka India Tour 2026 || Siliguri",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "city": "Siliguri",
+      "venue": "Roots Siliguri (A Unit of Kanha Confectioners PVT LTD)",
+      "date": "2026-10-16",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/sajanka-india-tour-2026-siliguri-sbuqvzzd",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17890398743w1Gh2hRyIb9ofrV.jpeg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/sajanka-india-tour-2026-siliguri-sbuqvzzd"
+      },
+      "first_seen": "2026-09-29"
+    },
+    {
       "id": "d0c9bc9e6d13",
       "title": "Mithyasur",
       "category": "theatre",
@@ -5989,6 +5830,27 @@
       "links": {
         "District": "https://www.district.in/events/7padel-junior-padel-americano-i-under-12-oct17-2026-buy-tickets"
       }
+    },
+    {
+      "id": "8f1a75a335bd",
+      "title": "Dandiya Mahakumbh 2026",
+      "category": "music",
+      "genres": [],
+      "city": "Lucknow",
+      "venue": "Regalia Greens, Lucknow",
+      "date": "2026-10-17",
+      "time": "12:30",
+      "price_from": null,
+      "url": "https://thumpn.com/event/TYB9R8/dandiya-mahakumbh-2026-regalia-greens-lucknow",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-TYB9R8/cover-image/evt-tyb9r8-9870.webp",
+      "source": "thumpN",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/TYB9R8/dandiya-mahakumbh-2026-regalia-greens-lucknow"
+      },
+      "first_seen": "2026-09-29"
     },
     {
       "id": "b3d4ded50751",
@@ -6204,50 +6066,6 @@
       ],
       "links": {
         "Skillbox": "https://www.skillboxes.com/events/masters-and-the-next-generation-sbrsgqrg"
-      },
-      "first_seen": "2026-09-28"
-    },
-    {
-      "id": "60cdd8d9873d",
-      "title": "Fittur Bollywood Dandiya Night",
-      "category": "music",
-      "genres": [
-        "bollywood"
-      ],
-      "city": "Delhi",
-      "venue": "PSOI club",
-      "date": "2026-10-17",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/fittur-bollywood-dandiya-night-sbxpqfgb",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789921244fZX48Uy1csIATDr9.jpeg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/fittur-bollywood-dandiya-night-sbxpqfgb"
-      },
-      "first_seen": "2026-09-27"
-    },
-    {
-      "id": "b921a7b30144",
-      "title": "Day 3 Pass",
-      "category": "music",
-      "genres": [],
-      "city": "Delhi",
-      "venue": "Sunder Nursery",
-      "date": "2026-10-17",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/day-3-pass-sbpeupur",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790165638fttoacoOg7KYcGUW.jpeg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/day-3-pass-sbpeupur"
       },
       "first_seen": "2026-09-28"
     },
@@ -6724,6 +6542,29 @@
       "first_seen": "2026-09-28"
     },
     {
+      "id": "8863dd03019e",
+      "title": "Rangratri",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "city": "Delhi",
+      "venue": "Bel-La Monde Hotel NH8",
+      "date": "2026-10-19",
+      "time": "17:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/rangratri-sbmktxbd",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790609108huOeBaCrqis3tDOg.png.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/rangratri-sbmktxbd"
+      },
+      "first_seen": "2026-09-29"
+    },
+    {
       "id": "dca0146526a1",
       "title": "RAJBARIR BHOJ - AN ABHIJAAT FEAST, REIMAGINED",
       "category": "music",
@@ -6939,30 +6780,6 @@
         "Skillbox": "https://www.skillboxes.com/events/classical-conclave-aarti-ankalikar"
       },
       "first_seen": "2026-09-25"
-    },
-    {
-      "id": "c088443fc961",
-      "title": "Rhythm Shaw Live Nothing To Lose India Tour 2026 || Pune",
-      "category": "music",
-      "genres": [
-        "rock",
-        "jazz"
-      ],
-      "city": "Pune",
-      "venue": "High Spirits Cafe",
-      "date": "2026-10-21",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/rhythm-shaw-live-nothing-to-lose-india-tour-2026-pune-sbhyksnk",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1788847486WK35kop1YpTIS5GH.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/rhythm-shaw-live-nothing-to-lose-india-tour-2026-pune-sbhyksnk"
-      },
-      "first_seen": "2026-09-26"
     },
     {
       "id": "f81f7b1d8c9f",
@@ -7444,27 +7261,6 @@
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/a-perfect-murder/ET00336256"
       }
-    },
-    {
-      "id": "1c9d80508240",
-      "title": "Cloud Temple Boutique Music Festival",
-      "category": "music",
-      "genres": [],
-      "city": "Jaipur",
-      "venue": "R Chandra's Palace",
-      "date": "2026-10-24",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/cloud-temple-boutique-music-festival-sbwbwkaf",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1788159629BuUjroHQQHB0qD0s.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/cloud-temple-boutique-music-festival-sbwbwkaf"
-      },
-      "first_seen": "2026-09-23"
     },
     {
       "id": "c282f3ebd2a0",
@@ -8005,6 +7801,29 @@
         "Skillbox": "https://www.skillboxes.com/events/rhythm-shaw-live-nothing-to-lose-india-tour-2026-kolkata-sbiappvb"
       },
       "first_seen": "2026-09-27"
+    },
+    {
+      "id": "2c772012f273",
+      "title": "THE GUNS N ROSES EXPERIENCE by NIGHTRAIN",
+      "category": "theatre",
+      "genres": [
+        "musical"
+      ],
+      "city": "Pune",
+      "venue": "AntiSOCIAL",
+      "date": "2026-10-25",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/the-guns-n-roses-experience-by-nightrain-sbgpubta",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/dVQ4dUlaa1hXcStxNHdKb044a2xsdz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790178670kgw61iXNeoUSv2zh.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/the-guns-n-roses-experience-by-nightrain-sbgpubta"
+      },
+      "first_seen": "2026-09-29"
     },
     {
       "id": "ec670f024ad6",
@@ -9074,6 +8893,27 @@
         "Skillbox": "https://www.skillboxes.com/events/manifest-and-mirror-sbjqoiio"
       },
       "first_seen": "2026-09-25"
+    },
+    {
+      "id": "108a2fc10046",
+      "title": "SoMAD × THE HUMMING TREE present DAR DISKU",
+      "category": "music",
+      "genres": [],
+      "city": "Bengaluru",
+      "venue": "THE HUMMING TREE",
+      "date": "2026-11-10",
+      "time": "16:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/somad-the-humming-tree-present-dar-disku-sbouazhl",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790606998lJ2bgFCcuBG3pDmY.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/somad-the-humming-tree-present-dar-disku-sbouazhl"
+      },
+      "first_seen": "2026-09-29"
     },
     {
       "id": "590051c423a0",
@@ -10874,6 +10714,30 @@
       }
     },
     {
+      "id": "e0d5e7baa20d",
+      "title": "MLTR by Abji & The Grooves",
+      "category": "music",
+      "genres": [
+        "rock",
+        "pop"
+      ],
+      "city": "Pune",
+      "venue": "Shisha Cafe",
+      "date": "2026-11-28",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/mltr-by-abji-the-grooves-sbpezlts",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790612493Q90qRGDb9j4Td13k.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/mltr-by-abji-the-grooves-sbpezlts"
+      },
+      "first_seen": "2026-09-29"
+    },
+    {
       "id": "2c729f236fd4",
       "title": "Akhil Sachdeva - Homecoming India Tour | Ahmedabad",
       "category": "music",
@@ -11449,27 +11313,6 @@
       "first_seen": "2026-09-23"
     },
     {
-      "id": "cc512989c513",
-      "title": "KHALID LIVE IN BENGALURU",
-      "category": "music",
-      "genres": [],
-      "city": "Bengaluru",
-      "venue": "Bhartiya Mall of Bengaluru",
-      "date": "2026-12-15",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/khalid-live-in-bengaluru-sbntavxl",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/OFBtUWVaUXNlUkpZTmdmMVJsRHlnZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/178728637168dz4wBrEEvg0zVE.jpg.webp",
-      "source": "Skillbox",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/khalid-live-in-bengaluru-sbntavxl"
-      },
-      "first_seen": "2026-09-23"
-    },
-    {
       "id": "0e30bf8dc32d",
       "title": "Jeff Tain Watts Quartet Live at the NCPA",
       "category": "music",
@@ -12005,6 +11848,30 @@
         "thumpN": "https://thumpn.com/event/53JZTU/faheem-abdullah-the-unbecoming-india-tour-mumbai-2026"
       },
       "first_seen": "2026-09-25"
+    },
+    {
+      "id": "3a7edac08433",
+      "title": "Kolkata's Biggest BTS Fan Party 2026",
+      "category": "music",
+      "genres": [
+        "pop",
+        "electronic"
+      ],
+      "city": "Kolkata",
+      "venue": "Realityz",
+      "date": "2026-12-27",
+      "time": "13:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/kolkata-s-biggest-bts-fan-party-2026-sbplodqr",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/QVo4WEFqbEtmdjFYQnhRa242N2dqdz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790633941GREcUACBaAdWHQsU.jpg.webp",
+      "source": "Skillbox",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/kolkata-s-biggest-bts-fan-party-2026-sbplodqr"
+      },
+      "first_seen": "2026-09-29"
     },
     {
       "id": "d32ed8b4a354",
