@@ -6,12 +6,15 @@ where `src` is the source block from sources.yaml and `entry` is the expanded
 To support a new site layout, add a function here and register it in PARSERS.
 """
 
+import json
 import re
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 
 from .base import (collect_links, event, extract_jsonld_events, get_html,
-                   jsonld_to_event, meta_event, parse_date)
+                   jsonld_to_event, meta_event, parse_date, summary)
+from .genres import language
 
 _visited = set()  # detail pages already read this run (same event linked from several city pages)
 
@@ -176,9 +179,100 @@ def parse_ncpa(html, page_url, src, entry):
     return out
 
 
+# ---------------------------------------------------------------- prithvitheatre.org
+
+# Plays (event type PL) are theatre; of Prithvi's other listings, these are shows. Talks
+# and film screenings are left out.
+PRITHVI_KINDS = {"Music Shows": "music", "Performances": "theatre"}
+PRITHVI_BOOKING = "https://prithvitheatre.org/booktickets"
+
+
+def parse_prithvi(html, page_url, src, entry):
+    """
+    Prithvi's site reads its whole schedule from one JSON feed: shows (aEV), each
+    performance's date, time and stage (aST), and the stages themselves (aVN).
+    """
+    data = json.loads(html)["BookMyShow"]
+    shows = {e["EventCode"]: e for e in data.get("aEV", [])}
+    stages = {v["Venue_strID"]: v["Venue_strName"] for v in data.get("aVN", [])}
+    out = []
+    for perf in data.get("aST", []):
+        e = shows.get(perf["EventCode"])
+        if not e:
+            continue
+        cat = "theatre" if e.get("EventType") == "PL" else PRITHVI_KINDS.get(e.get("Genre"))
+        if not cat:
+            continue
+        d, t = perf.get("ShowDateCode", ""), perf.get("ShowTimeNumeric", "")
+        if not re.fullmatch(r"\d{8}", d):
+            continue
+        price = int(float(e.get("MinPrice") or 0)) or None  # 0 = free
+        about = summary(e.get("Synopsis"))
+        ev = event(e["EventTitle"], f"{d[:4]}-{d[4:6]}-{d[6:]}", src["name"], entry.get("city"), cat,
+                   perf.get("ScreenName") or "Prithvi Theatre", f"{t[:2]}:{t[2:]}" if re.fullmatch(r"\d{4}", t) else "",
+                   price, PRITHVI_BOOKING,
+                   f"https://in.bmscdn.com/Events/moviecard/{e['ImageCode']}.jpg" if e.get("ImageCode") else None,
+                   hint=f"{about} {e.get('Genre', '')}", place=stages.get(perf.get("VenueID"), "Juhu, Mumbai"),
+                   about=about, lang=language(cat, e.get("strLanguage", "")))  # the site states it: "Hindi", "English/Hindi"
+        if ev:
+            out.append(ev)
+    return out
+
+
+# ---------------------------------------------------------------- thepianoman.in
+
+_pianoman_pages = {}  # show page -> (description, price)
+
+
+def _pianoman_details(href, src):
+    """A show's own page adds what the list lacks: its description and ticket price."""
+    if href not in _pianoman_pages:
+        html = get_html(href, delay=src.get("crawl_delay", 0))
+        about, price = "", None
+        if html:
+            soup = BeautifulSoup(html, "lxml")
+            desc = soup.select_one("div.content")
+            about = desc.get_text(" ", strip=True) if desc else ""
+            m = re.search(r"₹\s*([\d,]+)", soup.get_text(" "))
+            price = int(m.group(1).replace(",", "")) if m else None
+        _pianoman_pages[href] = (about, price)
+    return _pianoman_pages[href]
+
+
+def parse_pianoman(html, page_url, src, entry):
+    """
+    One venue's list: a card per show with its title, date (29.09.26), seating time,
+    the club's genre label (Jazz, Sufi, Retro…) and the venue's logo, named in its alt text.
+    """
+    soup = BeautifulSoup(html, "lxml")
+    out = []
+    for card in soup.select("div.card-body"):
+        title, link = card.select_one(".cs-title"), card.select_one("a[href*='/event/detail/']")
+        when = card.select_one(".cs-venue-date")
+        m = when and re.search(r"(\d{2})\.(\d{2})\.(\d{2})", when.get_text())
+        if not (title and link and m):
+            continue
+        seating = card.select_one(".cs-venue-time")
+        tm = seating and re.search(r"\d{1,2}:\d{2}\s*[AP]M", seating.get_text(), re.I)
+        time = datetime.strptime(tm.group(0).replace(" ", "").upper(), "%I:%M%p").strftime("%H:%M") if tm else ""
+        label = next((d.get_text(" ", strip=True) for d in card.select("div.cs-text") if "cs-venue-date" not in d["class"]), "")
+        logo, img = card.select_one(".cs-logo img"), card.select_one(".card-img img")
+        name = title.get_text(" ", strip=True)
+        about, price = _pianoman_details(link["href"], src)
+        ev = event(name, f"20{m[3]}-{m[2]}-{m[1]}", src["name"], entry.get("city"),
+                   "comedy" if re.search(r"\b(comedy|stand-?up)\b", name, re.I) else "music",
+                   logo.get("alt", "The Piano Man") if logo else "The Piano Man", time, price, link["href"],
+                   img.get("src") if img else None, hint=f"{label} {about}", about=about)
+        if ev:
+            out.append(ev)
+    return out
+
+
 PARSERS = {
     "jsonld": parse_jsonld,
     "detail_pages": parse_detail_pages,
     "district": parse_district,
     "ncpa": parse_ncpa,
+    "prithvi": parse_prithvi,
+    "pianoman": parse_pianoman,
 }

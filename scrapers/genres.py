@@ -112,14 +112,16 @@ _LANG_PATTERNS = [(slug, _pattern(words)) for slug, _, words in LANGUAGES]
 def language(category, title, about="", venue=""):
     """
     Languages a show is performed in, e.g. ["marathi"]; empty when nothing says. The title
-    decides if it names one; otherwise the language(s) the description mentions most; then,
-    for plays, the stage it's on.
+    decides if it names one; otherwise, for plays and stand-up, the language(s) the
+    description mentions most; then, for plays, the stage it's on.
     """
     in_title = [slug for slug, rx in _LANG_PATTERNS if rx.search(title or "")]
     if in_title:
         return in_title
     if GUJARATI_SCRIPT.search(title or ""):
         return ["gujarati"]
+    if category not in ("theatre", "comedy"):
+        return []  # a gig's blurb mentioning "English" or "Punjabi" rarely means the language it's sung in
     text = SUBTITLES.sub(" ", about or "")
     counts = {slug: len(rx.findall(text)) for slug, rx in _LANG_PATTERNS}
     top = max(counts.values())

@@ -1,6 +1,6 @@
 # gigsnshows
 
-One page for live music, theatre, sports and stand-up across India's cities, collated from District, NCPA, thumpN, Skillbox, NMACC and BookMyShow.
+One page for live music, theatre, sports and stand-up across India's cities, collated from District, BookMyShow, NCPA, NMACC, Prithvi Theatre, The Piano Man, thumpN and Skillbox.
 
 - `index.html` – the dashboard (static, works on mobile and desktop)
 - `data/events.json` – the listings the page reads
@@ -59,6 +59,8 @@ What to expect on the first run, based on how each site is built:
 | thumpN | browser | Home page needs rendering to list event links; event pages are then read directly. |
 | Skillbox | browser | Fully browser-rendered. |
 | NMACC | browser | Fully browser-rendered. Mumbai only. |
+| Prithvi Theatre | plain fetch | The site's own schedule feed (plays, concerts, poetry nights; talks and screenings left out). Mumbai only. |
+| The Piano Man | plain fetch | One list per club (Safdarjung, Saket, Gurugram); each show's page adds its description and price. Delhi only. |
 | BookMyShow | browser | Also blocks automated requests; expect this one to need tuning or to fail. |
 
 If a browser-rendered source returns 0 events, open its URL in a normal browser, confirm the listing path is still right, and check what the event links look like (adjust `link_pattern` in `sources.yaml`).
@@ -73,7 +75,7 @@ If a browser-rendered source returns 0 events, open its URL in a normal browser,
 This site lives at **https://gigsnshows.com** (repo `gigsnshows/gigsnshows`, domain DNS at GoDaddy pointing to GitHub Pages).
 
 **Two collectors.** District and BookMyShow refuse GitHub's cloud servers, so:
-- GitHub's scheduled run (07:00 / 17:00 IST) refreshes NCPA, NMACC, Skillbox and thumpN, and keeps District/BookMyShow's last known shows (a source that returns nothing never wipes its listings).
+- GitHub's scheduled run (07:00 / 17:00 IST) refreshes NCPA, NMACC, Prithvi, The Piano Man, Skillbox and thumpN, and keeps District/BookMyShow's last known shows (a source that returns nothing never wipes its listings).
 - `collect-local.sh` runs the full collection from a Mac at 07:30 / 17:30 (or on wake if asleep) and uploads it, using a repo deploy key at `~/.ssh/gigsnshows_deploy`. It runs from its own clone at `~/.gigsnshows-collector`, scheduled by `~/Library/LaunchAgents/com.gigsnshows.collect.plist`; log in `~/Library/Logs/gigsnshows-collect.log`. To stop it: `launchctl bootout gui/$(id -u)/com.gigsnshows.collect`.
 
 Friends get their own city with a link like `…/?city=delhi&tab=comedy`, or share a single show from its card.

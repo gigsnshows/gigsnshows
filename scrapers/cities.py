@@ -48,7 +48,7 @@ CITIES = {
     **{c: [c.lower()] for c in [
         "Jaipur", "Lucknow", "Indore", "Surat", "Nagpur", "Bhopal", "Coimbatore", "Guwahati", "Dehradun",
         "Udaipur", "Jodhpur", "Kolhapur", "Sangli", "Satara", "Solapur", "Vijayawada", "Bhubaneswar", "Patna",
-        "Ranchi", "Raipur", "Varanasi", "Agra", "Amritsar", "Ludhiana", "Shillong", "Madurai", "Rishikesh",
+        "Ranchi", "Raipur", "Jalandhar", "Varanasi", "Agra", "Amritsar", "Ludhiana", "Shillong", "Madurai", "Rishikesh",
         "Gangtok", "Siliguri", "Jammu", "Srinagar", "Shimla", "Manali", "Dharamshala", "Kanpur", "Thrissur",
         "Lonavala", "Dubai", "Abu Dhabi", "Singapore", "Bangkok", "Kathmandu", "Colombo", "Dhaka"]},
 }

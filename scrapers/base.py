@@ -182,12 +182,13 @@ def summary(text, limit=420):
     return text[:limit].rsplit(" ", 1)[0].rstrip(".,;:!-– ") + "…"
 
 
-def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place="", about=None):
+def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place="", about=None, lang=None):
     """
     Build a normalised event dict; returns None if it lacks a title or date.
     `city` is only the listing page's city: the show's own venue/address (`place`, or
     `venue`) wins, then a city named in the title. `about` is the show's description
-    (defaults to `hint`).
+    (defaults to `hint`). `lang`: the show's languages when the site states them
+    (otherwise they're read from the title and description).
     """
     title = re.sub(r"\s+", " ", title or "").strip()
     if not title or not day or NOT_SHOWS.search(title):
@@ -199,7 +200,7 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
     if isinstance(price, str):
         m = re.search(r"\d[\d,]*", price)
         price = int(m.group(0).replace(",", "")) if m else None
-    langs = language(cat, title, hint, place or venue)
+    langs = language(cat, title, hint, place or venue) if lang is None else lang
     return {
         "id": make_id(title, day, venue),
         "title": title,

@@ -535,6 +535,8 @@
     { key: "nmacc",      name: "NMACC",      match: e => e.source === "NMACC" },
     { key: "antisocial", name: "antiSOCIAL", match: e => (e.venue || "").toLowerCase().includes("antisocial") },
     { key: "svp",        name: "SVP Dome",   match: e => /svp|dome/i.test(e.venue || "") },
+    { key: "prithvi",    name: "Prithvi",    match: e => /^prithvi/i.test(e.venue || "") },
+    { key: "pianoman",   name: "The Piano Man", mark: "PM", match: e => /piano man/i.test(e.venue || "") },
   ];
 
   // A show counts as "new" while it's within this many days of first appearing in events.json.
@@ -1089,8 +1091,8 @@
     const favShown = activeVenue ? favAll.filter(activeVenue.match) : favAll;
     const bubbles = `<div class="venues">
       <button class="venue-btn" data-venue="all" aria-pressed="${state.favVenue === "all"}"><span class="venue-avatar">★</span><span class="venue-name">All</span></button>
-      ${FAVOURITE_VENUES.map(v => `<button class="venue-btn" data-venue="${v.key}" aria-pressed="${state.favVenue === v.key}">
-          <span class="venue-avatar">${esc(v.name.replace(/[a-z]/g, "").slice(0, 2) || v.name.slice(0, 2).toUpperCase())}</span>
+      ${FAVOURITE_VENUES.filter(v => v === activeVenue || favAll.some(v.match)).map(v => `<button class="venue-btn" data-venue="${v.key}" aria-pressed="${state.favVenue === v.key}">
+          <span class="venue-avatar">${esc(v.mark || v.name.replace(/[a-z]/g, "").slice(0, 2) || v.name.slice(0, 2).toUpperCase())}</span>
           <span class="venue-name">${esc(v.name)}</span>
         </button>`).join("")}
     </div>`;

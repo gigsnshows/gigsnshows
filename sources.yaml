@@ -6,6 +6,8 @@
 #   parser         jsonld        schema.org Event data embedded in the page
 #                  district      District's server-rendered listing pages
 #                  ncpa          NCPA's WordPress site
+#                  prithvi       Prithvi Theatre's schedule feed
+#                  pianoman      The Piano Man's per-club show lists
 #                  detail_pages  collect links matching link_pattern from the page
 #                                (or an XML sitemap), then read each linked page
 #   render         true if the listing page only fills in with JavaScript
@@ -96,6 +98,19 @@
   url: https://in.bookmyshow.com/explore/sports-{city}
   cities: *bms_cities
 
+- name: Prithvi Theatre
+  parser: prithvi           # the site's own schedule feed; Mumbai only
+  urls:
+    - {url: "https://prithvitheatre.org/api/getPrithviData?cmd=DEGETTHEATERS&cc=PTHV", city: Mumbai}
+
+- name: The Piano Man
+  parser: pianoman          # one list per club; each show's page adds its description and price
+  crawl_delay: 1
+  urls:
+    - {url: https://www.thepianoman.in/venue/event/list/1, city: Delhi}
+    - {url: https://www.thepianoman.in/venue/event/list/2, city: Delhi}
+    - {url: https://www.thepianoman.in/venue/event/list/3, city: Delhi}
+
 - name: Skillbox
   parser: detail_pages
   render: true
@@ -106,7 +121,9 @@
   url: https://www.skillboxes.com/events-{city}
   cities: {Mumbai: mumbai, Delhi: delhi, Bengaluru: bengaluru, Pune: pune, Hyderabad: hyderabad,
            Chennai: chennai, Kolkata: kolkata, Ahmedabad: ahmedabad, Jaipur: jaipur, Goa: goa,
-           Chandigarh: chandigarh}
+           Chandigarh: chandigarh, Kochi: kochi, Jalandhar: jalandhar, Raipur: raipur, Noida: noida}
+  # Skillbox's other city pages (46 in its sitemap) repeat the same national list; these four
+  # were the only ones adding shows of their own when checked in Sep 2026.
 
 - name: thumpN
   parser: detail_pages
