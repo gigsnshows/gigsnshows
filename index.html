@@ -115,10 +115,37 @@
   .city-menu li small { color: var(--ink-3); font-variant-numeric: tabular-nums; font-size: 0.8rem; }
   .city-menu li svg { width: 16px; height: 16px; color: var(--glow); }
 
+  .bar-right { display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.08); border: 1px solid var(--line); color: var(--ink); transition: background 140ms ease;
+  }
+  .icon-btn:hover, .icon-btn[aria-expanded="true"] { background: rgba(255,255,255,.16); }
+  .icon-btn svg { width: 17px; height: 17px; }
+
+  /* ---------- search ---------- */
+  .searchbar { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; }
+  .searchbar[hidden] { display: none; }
+  .search-field {
+    flex: 1; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px; border-radius: 14px;
+    background: rgba(255,255,255,.08); border: 1px solid var(--line);
+  }
+  .search-field:focus-within { border-color: var(--glow); }
+  .search-field svg { width: 17px; height: 17px; flex: none; color: var(--ink-2); }
+  .search-field input { flex: 1; min-width: 0; border: 0; outline: none; background: none; color: var(--ink); font: inherit; font-size: 1rem; }
+  .search-cancel { color: var(--ink-2); font-size: 0.92rem; font-weight: 600; }
+  .search-cancel:hover { color: var(--ink); }
+  .results-head { padding: 22px 0 0; }
+  .results-head h2 { margin: 0; font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+  .results-head p { margin: 4px 0 0; color: var(--ink-2); font-size: 0.9rem; }
+  .genre-bar.tight { padding-top: 10px; }
+  .results { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 26px 18px; padding: 20px 0 8px; }
+  .results-more { color: var(--ink-3); font-size: 0.85rem; }
+
   @media (max-width: 720px) {
     .bar { grid-template-columns: 1fr auto; grid-template-areas: "logo city" "tabs tabs"; height: auto; column-gap: 12px; row-gap: 2px; padding-top: 10px; padding-bottom: 4px; }
     .logo { grid-area: logo; }
-    .city { grid-area: city; }
+    .bar-right { grid-area: city; }
     .tabs { grid-area: tabs; gap: 20px; }
     .logo-word { font-size: 1.3rem; }
     .logo-mark { width: 32px; height: 23px; }
@@ -260,9 +287,11 @@
   .ob-primary:hover { background: #fff; }
   .ob-back { color: var(--ink-2); font-weight: 600; }
   .ob-back:hover { color: var(--ink); }
+  .ob-forget { margin: 22px 0 0; color: var(--ink-3); font-size: 0.85rem; }
+  .ob-forget button { color: var(--ink-2); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
   .share-menu {
-    position: fixed; z-index: 50; width: 230px; padding: 6px;
+    position: fixed; z-index: 120; width: 230px; padding: 6px;
     background: rgba(28,28,30,.96); backdrop-filter: blur(20px) saturate(1.6);
     border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.6);
   }
@@ -297,8 +326,64 @@
   .fine { margin: 0; font-size: 0.72rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
   .sample { background: var(--bg-2); border: 1px dashed var(--line); padding: 12px 16px; border-radius: 8px; margin: 24px 0 0; font-size: 0.95rem; color: var(--ink-2); }
 
+  .tray-note { margin: -8px 0 12px; color: var(--ink-2); font-size: 0.85rem; }
+  .tray-head .actions-inline { display: flex; gap: 16px; }
+
+  /* ---------- the swipe view: one show per screen, swipe up for the next ---------- */
+  .viewer { position: fixed; inset: 0; z-index: 90; background: #000; }
+  .viewer[hidden] { display: none; }
+  .viewer-feed {
+    width: min(480px, 100%); height: 100%; margin: 0 auto; overflow-y: auto; overscroll-behavior: contain;
+    scroll-snap-type: y mandatory; scrollbar-width: none;
+  }
+  .viewer-feed::-webkit-scrollbar { display: none; }
+  .slide { position: relative; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; scroll-snap-align: start; scroll-snap-stop: always; }
+  .slide-bg { position: absolute; inset: -60px; background: var(--bg-2) center / cover no-repeat; filter: blur(40px) saturate(1.3) brightness(.4); }
+  .slide-art { position: relative; flex: none; height: 38dvh; margin: 64px 18px 0; }
+  .slide-art .poster { position: absolute; inset: 0; border-radius: 16px; padding: 20px; display: flex; align-items: center; font-weight: 800; font-size: 1.5rem; line-height: 1.1; }
+  .slide-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 18px 36px rgba(0,0,0,.6)); }
+  .slide-info {
+    position: relative; flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;
+    padding: 18px 20px calc(18px + env(safe-area-inset-bottom));
+  }
+  .slide-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,.12); font-size: 0.72rem; font-weight: 700; }
+  .tag.cat { background: color-mix(in srgb, var(--c) 30%, transparent); }
+  .tag.new { background: var(--glow); }
+  .slide-title { margin: 2px 0 0; font-family: var(--brand-font); font-size: 1.6rem; font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; }
+  .slide-meta { margin: 0; font-size: 0.95rem; }
+  .slide-meta span { color: var(--ink-2); }
+  .slide-about { margin: 2px 0 0; color: var(--ink-2); font-size: 0.9rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .slide-about.open { -webkit-line-clamp: unset; }
+  .more { align-self: flex-start; color: var(--ink); font-size: 0.85rem; font-weight: 600; }
+  .slide-dates { margin: 2px 0 0; color: var(--ink-2); font-size: 0.85rem; line-height: 1.5; }
+  .slide-dates b { color: var(--ink); font-weight: 600; }
+  .slide-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 12px; }
+  .btn-tickets {
+    flex: 1.5; display: flex; align-items: center; justify-content: center; height: 46px; padding: 0 12px; border-radius: 999px;
+    background: var(--ink); color: #000; font-weight: 700; font-size: 0.95rem; text-decoration: none; white-space: nowrap; overflow: hidden;
+  }
+  .btn-tickets:hover { background: #fff; }
+  .slide-actions .save { height: 46px; font-size: 0.9rem; }
+  .slide-actions .share { width: 46px; height: 46px; }
+  .also { margin: 0; color: var(--ink-3); font-size: 0.8rem; }
+  .also a { color: var(--ink-2); }
+  .viewer-top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 2; width: min(480px, 100%); margin: 0 auto; padding: 14px 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; pointer-events: none;
+  }
+  .viewer-top > * { pointer-events: auto; }
+  .viewer-close, .viewer-count, .swipe-hint { background: rgba(0,0,0,.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.18); }
+  .viewer-close { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+  .viewer-count, .swipe-hint { padding: 5px 11px; border-radius: 999px; color: var(--ink-2); font-size: 0.78rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .viewer-nav { position: fixed; top: 50%; right: max(16px, calc(50% - 310px)); z-index: 2; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; }
+  .viewer-nav button { width: 42px; height: 42px; border-radius: 50%; background: rgba(28,28,30,.85); border: 1px solid var(--line); font-size: 1.05rem; }
+  .viewer-nav button:disabled { opacity: .3; }
+  @media (max-width: 640px), (pointer: coarse) { .viewer-nav { display: none; } }
+
   @media (max-width: 640px) {
     .shelf { grid-auto-columns: 172px; gap: 12px; }
+    .results { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
     .art { border-radius: 10px; }
     .art .poster { font-size: 0.95rem; padding: 34px 10px 8px; }
     .venue-avatar { width: 44px; height: 44px; }
@@ -327,6 +412,10 @@
       <span class="logo-word">gigs<b>n</b>shows</span>
     </a>
     <nav class="tabs" role="tablist" id="tabs" aria-label="Categories"></nav>
+    <div class="bar-right">
+    <button class="icon-btn" id="searchBtn" aria-label="Search shows" aria-expanded="false" aria-controls="searchBar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>
+    </button>
     <div class="city">
       <button class="city-btn" id="cityBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Choose a city">
         <svg class="pin" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
@@ -338,6 +427,14 @@
         <ul class="city-menu" id="cityMenu" role="listbox" aria-label="Cities"></ul>
       </div>
     </div>
+    </div>
+  </div>
+  <div class="wrap searchbar" id="searchBar" hidden>
+    <label class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>
+      <input id="q" type="search" placeholder="Search shows, artists, venues, genres" aria-label="Search shows" autocomplete="off" enterkeyhint="search">
+    </label>
+    <button class="search-cancel" id="searchCancel">Cancel</button>
   </div>
 </header>
 
@@ -354,6 +451,19 @@
 <div class="share-menu" id="shareMenu" role="dialog" aria-label="Share this show" hidden></div>
 
 <div class="onboard" id="onboard" role="dialog" aria-modal="true" aria-labelledby="obTitle" hidden></div>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Show details" hidden>
+  <div class="viewer-top">
+    <button class="viewer-close" data-viewer-close aria-label="Close">×</button>
+    <span class="swipe-hint" id="swipeHint">Swipe up for the next show</span>
+    <span class="viewer-count" id="viewerCount"></span>
+  </div>
+  <div class="viewer-nav">
+    <button data-viewer-step="-1" aria-label="Previous show">↑</button>
+    <button data-viewer-step="1" aria-label="Next show">↓</button>
+  </div>
+  <div class="viewer-feed" id="viewerFeed"></div>
+</div>
 
 <footer>
   <div class="wrap">
@@ -400,6 +510,10 @@
     favVenue: "all",
     sharedId: params.get("event") || "",
     genre: params.get("genre") || "",
+    q: params.get("q") || "",                           // search
+    qScope: params.get("in") === "all" ? "all" : "city",
+    qCat: "",
+    qGenre: "",
   };
   let data = { events: [], cities: [], genres: {} };
 
@@ -408,6 +522,8 @@
     p.set("city", state.city.toLowerCase());
     p.set("tab", state.tab);
     if (state.genre && state.tab !== "all") p.set("genre", state.genre);
+    if (state.q.trim()) p.set("q", state.q.trim());
+    if (state.q.trim() && state.qScope === "all") p.set("in", "all");
     if (state.sharedId) p.set("event", state.sharedId);
     history.replaceState(null, "", "?" + p.toString());
   }
@@ -431,6 +547,7 @@
 
   function goTab(tab) {
     track(`tab/${tab}`);
+    resetSearch();
     state.tab = tab;
     state.genre = "";
     render();
@@ -462,6 +579,54 @@
     try { return JSON.parse(localStorage.getItem(LS_PREFS) || "null"); } catch { return null; }
   }
 
+  // ---------- what you've done here: opened, saved, shared, clicked through to buy, searched ----------
+  // Kept only in this browser. Older activity fades (half-life of a month) so tastes can change.
+  const LS_PROFILE = "whatsOn.profile";
+  const HALF_LIFE_DAYS = 30;
+  const WEIGHT = { view: 1, genre: 2, search: 2, share: 4, ticket: 4, wannaGo: 5 };
+  const STOPWORDS = new Set(["the", "and", "for", "with", "live", "show", "shows", "near", "night", "tonight", "event", "events", "concert"]);
+
+  function loadProfile() {
+    let p = null;
+    try { p = JSON.parse(localStorage.getItem(LS_PROFILE) || "null"); } catch {}
+    p = p || { t: Date.now(), g: {}, c: {}, v: {}, vl: {}, q: {} };
+    const fade = 0.5 ** ((Date.now() - p.t) / (HALF_LIFE_DAYS * 86400000));
+    for (const k of ["g", "c", "v", "q"]) {
+      for (const [x, w] of Object.entries(p[k])) { if (w * fade < 0.05) delete p[k][x]; else p[k][x] = w * fade; }
+    }
+    p.t = Date.now();
+    return p;
+  }
+  function saveProfile(p) { try { localStorage.setItem(LS_PROFILE, JSON.stringify(p)); } catch {} }
+  function venueKey(e) { return norm((e.venue || "").split(/[:|,]/)[0]).trim(); }
+
+  function remember(e, w) {
+    if (!e) return;
+    const p = loadProfile();
+    p.c[e.category] = (p.c[e.category] || 0) + w;
+    (e.genres || []).forEach(g => p.g[g] = (p.g[g] || 0) + w);
+    const v = venueKey(e);
+    if (v) { p.v[v] = (p.v[v] || 0) + w; p.vl[v] = e.venue.split(/[:|,]/)[0].trim(); }
+    saveProfile(p);
+  }
+  function rememberGenre(g) {
+    const p = loadProfile();
+    p.g[g] = (p.g[g] || 0) + WEIGHT.genre;
+    saveProfile(p);
+  }
+  function rememberSearch(q) {
+    const cities = new Set(data.cities.map(c => norm(c)));
+    const terms = norm(q).split(" ").filter(t => t.length >= 3 && !STOPWORDS.has(t) && !cities.has(t));
+    if (!terms.length) return;
+    const p = loadProfile();
+    terms.forEach(t => p.q[t] = (p.q[t] || 0) + WEIGHT.search);
+    saveProfile(p);
+  }
+  function hasActivity() {
+    const p = loadProfile();
+    return ["g", "c", "v", "q"].some(k => Object.keys(p[k]).length);
+  }
+
   // ---------- Wanna Go (saved locally; a show drops off once its date is gone from events.json) ----------
   const LS_LIST = "whatsOn.myList";
   function getWannaGo() {
@@ -472,7 +637,7 @@
   function toggleWannaGo(id) {
     const ids = getWannaGo();
     const i = ids.indexOf(id);
-    if (i > -1) ids.splice(i, 1); else { ids.push(id); track("wanna-go/add"); }
+    if (i > -1) ids.splice(i, 1); else { ids.push(id); track("wanna-go/add"); remember(eventById(id), WEIGHT.wannaGo); }
     localStorage.setItem(LS_LIST, JSON.stringify(ids));
     renderList();
   }
@@ -489,6 +654,19 @@
     return `${h % 12 || 12}${m ? ":" + String(m).padStart(2, "0") : ""} ${ap}`;
   }
   function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  // Lowercase, accents off, punctuation to spaces (Devanagari kept), for search and matching.
+  function norm(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-z0-9ऀ-ॿ]+/g, " ").trim();
+  }
+  function eventById(id) { return data.events.find(e => e.id === id); }
+  function genreName(slug) {
+    for (const list of Object.values(data.genres || {})) for (const [s, label] of list) if (s === slug) return label;
+    return slug;
+  }
+  function catLabel(key) { return TABS.find(t => t.key === key)?.label || key; }
+  // "Sangeet Devbabhali | Pune" and "Sangeet Devbabhali" are the same show.
+  function showKey(e) { return e.title.toLowerCase().replace(/\|.*$/, "").replace(/[^a-z0-9]/g, ""); }
   function byDateTime(a, b) { return a.date === b.date ? (a.time || "").localeCompare(b.time || "") : a.date.localeCompare(b.date); }
   function daysSince(iso) { return Math.round((new Date(todayISO) - new Date(iso)) / 86400000); }
   function isNew(e) { return e.first_seen && daysSince(e.first_seen) >= 0 && daysSince(e.first_seen) <= NEW_WINDOW_DAYS; }
@@ -519,6 +697,7 @@
     if (!shareMenu.hidden && shareOpener === btn) { closeShareMenu(true); return; }
     const e = data.events.find(x => x.id === id);
     if (!e) return;
+    remember(e, WEIGHT.share);
     const text = shareText(e), url = shareLink(e);
     if (navigator.share && matchMedia("(pointer: coarse)").matches) {
       try { await navigator.share({ title: e.title, text, url }); track("share/phone"); return; }
@@ -627,7 +806,7 @@
   }
   const BUCKETS = ["Tonight", "This weekend", "This week", "Later this month", "Further out"];
 
-  function trayHtml(id, title, count, items, { bubbles = "", seeAll = "", empty = "" } = {}) {
+  function trayHtml(id, title, count, items, { bubbles = "", seeAll = "", empty = "", note = "" } = {}) {
     const body = items.length ? `<div class="shelf-wrap">
         <button class="arrow prev" data-scroll="prev" aria-label="Scroll left">‹</button>
         <button class="arrow next" data-scroll="next" aria-label="Scroll right">›</button>
@@ -636,6 +815,7 @@
       : `<div class="empty-row">${empty}</div>`;
     return `<section class="tray" data-tray="${id}">
       <div class="tray-head"><h2>${esc(title)}${count ? `<small>${count} ${count === 1 ? "show" : "shows"}</small>` : ""}</h2>${seeAll}</div>
+      ${note ? `<p class="tray-note">${esc(note)}</p>` : ""}
       ${bubbles}
       ${body}
     </section>`;
@@ -643,13 +823,32 @@
 
   // Your interests lead; within those, a show listed by more than one platform (the closest honest
   // popularity signal we have) and one happening soon rank higher. Without interests, it's just those.
-  function recommend(evs, prefs, saved) {
+  // What you've done here, scaled so your strongest signal in each kind is 1.
+  function affinity() {
+    const p = loadProfile();
+    const scale = m => {
+      const max = Math.max(0, ...Object.values(m));
+      return max ? Object.fromEntries(Object.entries(m).map(([k, w]) => [k, w / max])) : {};
+    };
+    return { g: scale(p.g), c: scale(p.c), v: scale(p.v), q: scale(p.q), raw: p };
+  }
+
+  // Interests you picked lead; then what you've opened, saved, shared, bought and searched for
+  // (genres, venues, words); then a show listed by several platforms (the closest honest popularity
+  // signal we have) and one happening soon. One card per show.
+  function recommend(evs, prefs, saved, limit = 14) {
     const cats = new Set(prefs?.categories || []), likes = new Set(prefs?.genres || []);
+    const a = affinity();
     const days = e => (new Date(e.date + "T12:00:00") - new Date(todayISO + "T12:00:00")) / 86400000;
+    const searchText = e => norm(`${e.title} ${e.venue} ${(e.genres || []).map(genreName).join(" ")}`);
     const score = e => {
       const liked = (e.genres || []).filter(g => likes.has(g)).length;
       const d = days(e);
+      const text = Object.keys(a.q).length ? searchText(e) : "";
+      const searched = Math.max(0, ...Object.entries(a.q).filter(([t]) => text.includes(t)).map(([, w]) => w));
       return Math.min(liked, 2) * 3 + (cats.has(e.category) ? 2 : 0)
+        + Math.min((e.genres || []).reduce((s, g) => s + (a.g[g] || 0), 0), 1.5) * 2.5
+        + (a.c[e.category] || 0) * 1.2 + (a.v[venueKey(e)] || 0) * 2.5 + searched * 2
         + ((e.sources || [e.source]).length - 1) * 1.5
         + (d <= 2 ? 1.5 : d <= 7 ? 1 : d <= 21 ? 0.4 : 0)
         + Math.min(e.price_from || 0, 3000) / 6000;
@@ -658,13 +857,25 @@
     const matched = pool.filter(e => cats.has(e.category) || (e.genres || []).some(g => likes.has(g)));
     if (matched.length >= 6) pool = matched;
     const seen = new Set();
-    return pool.map(e => [score(e), e]).sort((a, b) => b[0] - a[0] || byDateTime(a[1], b[1]))
+    return pool.map(e => [score(e), e]).sort((x, y) => y[0] - x[0] || byDateTime(x[1], y[1]))
       .map(([, e]) => e)
-      .filter(e => {  // one card per show, even when it runs on many dates or venues
-        const key = e.title.toLowerCase().replace(/\|.*$/, "").replace(/[^a-z0-9]/g, "");
-        return !seen.has(key) && seen.add(key);
-      })
-      .slice(0, 14);
+      .filter(e => !seen.has(showKey(e)) && seen.add(showKey(e)))
+      .slice(0, limit);
+  }
+
+  // One line on why "For you" looks the way it does.
+  function forYouNote(prefs) {
+    const a = affinity();
+    const top = m => Object.entries(m).sort((x, y) => y[1] - x[1])[0]?.[0];
+    const parts = [];
+    const g = top(a.raw.g) || prefs?.genres?.[0];
+    if (g) parts.push(genreName(g));
+    const v = top(a.raw.v);
+    if (v && a.raw.v[v] >= 2) parts.push(a.raw.vl[v]);
+    const q = top(a.raw.q);
+    if (q) parts.push(`your searches for “${q}”`);
+    if (!parts.length && prefs?.categories?.length) parts.push(prefs.categories.map(catLabel).join(", "));
+    return parts.length ? `Because you like ${parts.slice(0, 3).join(" · ")}` : "";
   }
 
   function renderHome() {
@@ -691,8 +902,10 @@
     }
 
     if (recs.length) {
-      const edit = `<button class="see-all" data-onboard>${prefs ? "Edit interests" : "Personalise ›"}</button>`;
-      sections.push(trayHtml("foryou", "Recommendations for you", 0, recs.map(e => renderTile(e)), { seeAll: edit }));
+      const actions = `<span class="actions-inline">
+        <button class="see-all" data-swipe>Swipe ›</button>
+        <button class="see-all" data-onboard>${prefs ? "Edit" : "Personalise"}</button></span>`;
+      sections.push(trayHtml("foryou", "For you", 0, recs.map(e => renderTile(e)), { seeAll: actions, note: forYouNote(prefs) }));
     }
     if (wannaGo.length) sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e))));
 
@@ -752,8 +965,58 @@
   }
 
   function renderList() {
-    if (state.tab === "all") renderHome(); else renderCategory();
+    if (state.q.trim()) renderSearch();
+    else if (state.tab === "all") renderHome();
+    else renderCategory();
     refreshArrows();
+  }
+
+  // ---------- search: every word must appear in the title, venue, city, category, genres or description ----------
+  const searchIndex = new Map();
+  function searchable(e) {
+    if (!searchIndex.has(e.id)) {
+      searchIndex.set(e.id, norm(`${e.title} ${e.venue} ${e.city} ${catLabel(e.category)} ${(e.genres || []).map(genreName).join(" ")} ${e.about || ""}`));
+    }
+    return searchIndex.get(e.id);
+  }
+
+  function renderSearch() {
+    const q = state.q.trim();
+    const words = norm(q).split(" ").filter(Boolean);
+    const pool = state.qScope === "all" ? data.events : data.events.filter(e => e.city === state.city);
+    const inTitle = e => words.every(w => norm(e.title).includes(w));
+    const found = pool.filter(e => words.every(w => searchable(e).includes(w)))
+      .sort((a, b) => (inTitle(b) - inTitle(a)) || byDateTime(a, b));
+
+    const catCounts = {};
+    found.forEach(e => catCounts[e.category] = (catCounts[e.category] || 0) + 1);
+    if (!catCounts[state.qCat]) state.qCat = "";
+    const inCat = state.qCat ? found.filter(e => e.category === state.qCat) : found;
+    const genreCounts = {};
+    inCat.forEach(e => (e.genres || []).forEach(g => genreCounts[g] = (genreCounts[g] || 0) + 1));
+    if (!genreCounts[state.qGenre]) state.qGenre = "";
+    const shown = state.qGenre ? inCat.filter(e => (e.genres || []).includes(state.qGenre)) : inCat;
+
+    const chip = (attr, val, on, label, n) =>
+      `<button class="chip" ${attr}="${esc(val)}" aria-pressed="${on}">${esc(label)}${n != null ? `<small>${n}</small>` : ""}</button>`;
+    const scopeRow = `<div class="genre-bar tight" role="toolbar" aria-label="Where to search">
+      ${chip("data-scope", "city", state.qScope === "city", `In ${state.city}`)}${chip("data-scope", "all", state.qScope === "all", "All cities")}</div>`;
+    const cats = TABS.filter(t => catCounts[t.key]);
+    const catRow = cats.length > 1 ? `<div class="genre-bar tight" role="toolbar" aria-label="Category">
+      ${chip("data-qcat", "", !state.qCat, "All", found.length)}${cats.map(t => chip("data-qcat", t.key, state.qCat === t.key, t.label, catCounts[t.key])).join("")}</div>` : "";
+    const genres = Object.keys(genreCounts).sort((a, b) => genreCounts[b] - genreCounts[a]);
+    const genreRow = genres.length ? `<div class="genre-bar tight" role="toolbar" aria-label="Genre">
+      ${chip("data-qgenre", "", !state.qGenre, "Any genre")}${genres.map(g => chip("data-qgenre", g, state.qGenre === g, genreName(g), genreCounts[g])).join("")}</div>` : "";
+
+    const where = state.qScope === "all" ? "across all cities" : `in ${state.city}`;
+    const LIMIT = 60;
+    const body = shown.length
+      ? `<section data-tray="search"><div class="results">${shown.slice(0, LIMIT).map(e => renderTile(e)).join("")}</div>
+         ${shown.length > LIMIT ? `<p class="results-more">Showing the first ${LIMIT} of ${shown.length}. Add a word or pick a filter to narrow it down.</p>` : ""}</section>`
+      : `<div class="empty"><b>No shows match “${esc(q)}” ${esc(where)} right now.</b><br>
+         Try fewer or different words${state.qScope === "city" ? `, or <button class="see-all" data-scope="all">search all cities</button>` : ""}.</div>`;
+    document.getElementById("main").innerHTML = `<div class="results-head"><h2>“${esc(q)}”</h2>
+      <p>${shown.length} ${shown.length === 1 ? "show" : "shows"} ${esc(where)}</p></div>${scopeRow}${catRow}${genreRow}${body}`;
   }
 
   // Hide an arrow once its tray can't scroll any further that way (or at all).
@@ -822,6 +1085,120 @@
 
   function render() { renderCity(); renderTabs(); renderList(); syncUrl(); }
 
+  // ---------- the swipe view: tap any card for the full story; swipe up through the rest of its row ----------
+  const viewer = document.getElementById("viewer");
+  const feed = document.getElementById("viewerFeed");
+  let viewerIds = [], viewerIndex = 0, viewerObserver = null, dwellTimer = null;
+
+  function slideHtml(e, i) {
+    const sources = e.sources || [e.source];
+    const links = e.links || { [e.source]: e.url };
+    const saved = getWannaGo().includes(e.id);
+    const tags = [`<span class="tag cat" style="--c:${CATEGORY_COLOR[e.category]}">${esc(catLabel(e.category))}</span>`,
+      ...(e.genres || []).map(g => `<span class="tag">${esc(genreName(g))}</span>`),
+      isNew(e) ? `<span class="tag new">New</span>` : ""].join("");
+    const others = data.events.filter(o => o.id !== e.id && o.city === e.city && showKey(o) === showKey(e)).sort(byDateTime);
+    const dates = others.length ? `<p class="slide-dates"><b>Also on</b> ${others.slice(0, 4).map(o =>
+      `${esc(whenLabel(o))}${o.venue !== e.venue ? ` · ${esc(o.venue.split(/[:|,]/)[0])}` : ""}`).join("; ")}${others.length > 4 ? ` and ${others.length - 4} more` : ""}</p>` : "";
+    const about = e.about ? `<p class="slide-about">${esc(e.about)}</p>${e.about.length > 200 ? `<button class="more" data-more>More</button>` : ""}` : "";
+    const price = e.price_from ? `From ₹${Number(e.price_from).toLocaleString("en-IN")}` : "";
+    const also = sources.slice(1).map(s => `<a href="${esc(links[s])}" target="_blank" rel="noopener" data-ticket="${esc(s)}">${esc(s)}</a>`).join(", ");
+    return `<article class="slide" data-id="${e.id}" data-i="${i}">
+      <div class="slide-bg"${e.image ? ` data-bg="${esc(e.image)}"` : ""}></div>
+      <div class="slide-art">${poster(e)}${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+      <div class="slide-info">
+        <div class="slide-tags">${tags}</div>
+        <h2 class="slide-title">${esc(e.title)}</h2>
+        <p class="slide-meta">${esc(whenLabel(e))}</p>
+        <p class="slide-meta"><span>${esc([e.venue, e.city].filter(Boolean).join(", "))}</span></p>
+        ${about}${dates}
+        <div class="slide-actions">
+          <a class="btn-tickets" href="${esc(links[sources[0]] || e.url)}" target="_blank" rel="noopener" data-ticket="${esc(sources[0])}">${price ? `${price} · ` : ""}Tickets</a>
+          <button class="save" data-add="${e.id}" aria-pressed="${saved}">${saved ? "✓ Wanna go" : "+ Wanna go"}</button>
+          <button class="share" data-share="${e.id}" aria-label="Share ${esc(e.title)}">${ICON_SHARE}</button>
+        </div>
+        <p class="also">Tickets on ${esc(sources[0])}${also ? `; also on ${also}` : ""}</p>
+      </div>
+    </article>`;
+  }
+
+  function openViewer(ids, startId, from) {
+    viewerIds = ids.filter(id => eventById(id));
+    if (!viewerIds.length) return;
+    closeShareMenu(false);
+    feed.innerHTML = viewerIds.map((id, i) => slideHtml(eventById(id), i)).join("");
+    viewer.hidden = false;
+    document.body.style.overflow = "hidden";
+    const start = Math.max(0, viewerIds.indexOf(startId));
+    feed.scrollTop = start * feed.clientHeight;
+    viewerObserver = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) setViewerIndex(Number(en.target.dataset.i));
+    }), { root: feed, threshold: 0.6 });
+    feed.querySelectorAll(".slide").forEach(s => viewerObserver.observe(s));
+    setViewerIndex(start);
+    document.getElementById("swipeHint").hidden = viewerIds.length < 2;
+    history.pushState({ viewer: true }, "");
+    track(`viewer/${from}`);
+    viewer.querySelector(".viewer-close").focus({ preventScroll: true });
+  }
+
+  function setViewerIndex(i) {
+    if (i !== viewerIndex) document.getElementById("swipeHint").hidden = true;
+    viewerIndex = i;
+    document.getElementById("viewerCount").textContent = `${i + 1} / ${viewerIds.length}`;
+    viewer.querySelector('[data-viewer-step="-1"]').disabled = i === 0;
+    viewer.querySelector('[data-viewer-step="1"]').disabled = i === viewerIds.length - 1;
+    for (let j = i - 1; j <= i + 2; j++) {  // blurred backdrops only for nearby slides
+      const bg = feed.children[j]?.querySelector(".slide-bg[data-bg]");
+      if (bg) { bg.style.backgroundImage = `url("${bg.dataset.bg}")`; delete bg.dataset.bg; }
+    }
+    clearTimeout(dwellTimer);  // counts as "viewed" for For you only after a couple of seconds on it
+    dwellTimer = setTimeout(() => remember(eventById(viewerIds[i]), WEIGHT.view), 2500);
+  }
+
+  function stepViewer(d) {
+    feed.children[viewerIndex + d]?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function closeViewer(fromHistory) {
+    if (viewer.hidden) return;
+    viewer.hidden = true;
+    document.body.style.overflow = "";
+    clearTimeout(dwellTimer);
+    viewerObserver?.disconnect();
+    feed.innerHTML = "";
+    closeShareMenu(false);
+    if (!fromHistory && history.state?.viewer) history.back();
+  }
+
+  viewer.addEventListener("click", e => {
+    if (e.target.closest("[data-viewer-close]")) { closeViewer(false); return; }
+    const step = e.target.closest("[data-viewer-step]");
+    if (step) { stepViewer(Number(step.dataset.viewerStep)); return; }
+    const add = e.target.closest("[data-add]");
+    if (add) {
+      toggleWannaGo(add.dataset.add);
+      const on = getWannaGo().includes(add.dataset.add);
+      add.setAttribute("aria-pressed", String(on));
+      add.textContent = on ? "✓ Wanna go" : "+ Wanna go";
+      return;
+    }
+    const share = e.target.closest("[data-share]");
+    if (share) { shareEvent(share.dataset.share, share); return; }
+    const more = e.target.closest("[data-more]");
+    if (more) {
+      const p = more.previousElementSibling.classList.toggle("open");
+      more.textContent = p ? "Less" : "More";
+      return;
+    }
+    const ticket = e.target.closest("[data-ticket]");
+    if (ticket) {
+      track(`ticket/${slug(ticket.dataset.ticket)}`);
+      remember(eventById(ticket.closest(".slide").dataset.id), WEIGHT.ticket);
+    }
+  });
+  window.addEventListener("popstate", () => closeViewer(true));
+
   // ---------- onboarding: city, then interests ----------
   const onboard = document.getElementById("onboard");
   const CATEGORY_COLOR = { music: "var(--music)", theatre: "var(--theatre)", sports: "var(--sports)", comedy: "var(--comedy)" };
@@ -878,12 +1255,14 @@
       onboard.innerHTML = `<div class="ob-card">${skip}
         <p class="ob-step">Step 2 of 2</p>
         <h2 id="obTitle">What are you into?</h2>
-        <p class="sub">Pick as many as you like. We'll put them first in <b>Recommendations for you</b>.</p>
+        <p class="sub">Pick as many as you like. We'll put them first in <b>For you</b>.</p>
         <div class="ob-cats">${cats.map(t => `<button class="ob-cat" data-ob-cat="${t.key}" aria-pressed="${ob.categories.has(t.key)}" style="--c:${CATEGORY_COLOR[t.key]}"><i></i>${t.label}</button>`).join("")}</div>
         <div class="ob-genres">${cats.filter(t => ob.categories.has(t.key) && data.genres?.[t.key]).map(t => `
           <div><h3>${t.label} — any favourites?</h3><div class="chips">${data.genres[t.key].map(([slug, label]) =>
             `<button class="chip" data-ob-genre="${slug}" aria-pressed="${ob.genres.has(slug)}">${esc(label)}</button>`).join("")}</div></div>`).join("")}
         </div>
+        <p class="ob-forget">For you also learns from the shows you open, save, share and search for — kept in this browser only.
+          ${hasActivity() ? `<button data-ob="forget">Forget what I've browsed</button>` : ""}</p>
         <div class="ob-actions"><button class="ob-back" data-ob="back">‹ Back</button><button class="ob-primary" data-ob="done">Show my picks</button></div>
       </div>`;
     }
@@ -896,6 +1275,11 @@
     if (act === "next") { ob.step = 2; renderOnboarding(); return; }
     if (act === "back") { ob.step = 1; renderOnboarding(); return; }
     if (act === "done") { finishOnboarding(); return; }
+    if (act === "forget") {
+      try { localStorage.removeItem(LS_PROFILE); } catch {}
+      e.target.replaceWith("Forgotten.");
+      return;
+    }
     const city = e.target.closest("[data-ob-city]");
     if (city) {
       ob.city = city.dataset.obCity;
@@ -953,12 +1337,41 @@
     if (e.target.closest("[data-dismiss-shared]")) { state.sharedId = ""; render(); return; }
     if (e.target.closest("[data-onboard]")) { openOnboarding(); return; }
     const chip = e.target.closest("[data-genre]");
-    if (chip) { state.genre = chip.dataset.genre; if (state.genre) track(`genre/${state.genre}`); renderList(); syncUrl(); return; }
+    if (chip) {
+      state.genre = chip.dataset.genre;
+      if (state.genre) { track(`genre/${state.genre}`); rememberGenre(state.genre); }
+      renderList(); syncUrl();
+      return;
+    }
     const out = e.target.closest("a.art-link, a.body");
-    if (out) {  // leaving for a ticket site: which site, and which row sent them
-      const ev = data.events.find(x => x.id === out.closest(".tile")?.dataset.id);
-      if (ev) track(`ticket/${slug((ev.sources || [ev.source])[0])}`);
-      track(`row/${out.closest("[data-tray]")?.dataset.tray || "unknown"}`);
+    if (out) {
+      const tray = out.closest("[data-tray]");
+      const id = out.closest(".tile").dataset.id;
+      track(`row/${tray?.dataset.tray || "unknown"}`);
+      if (e.metaKey || e.ctrlKey || e.shiftKey) {  // opening the ticket page in a new tab on purpose
+        const ev = eventById(id);
+        if (ev) { track(`ticket/${slug((ev.sources || [ev.source])[0])}`); remember(ev, WEIGHT.ticket); }
+        return;
+      }
+      e.preventDefault();
+      openViewer([...(tray || document).querySelectorAll(".tile")].map(t => t.dataset.id), id, tray?.dataset.tray || "card");
+      return;
+    }
+    if (e.target.closest("[data-swipe]")) {
+      const evs = data.events.filter(x => x.city === state.city);
+      const ids = recommend(evs, getPrefs(), new Set(getWannaGo()), 60).map(x => x.id);
+      openViewer(ids, ids[0], "foryou-swipe");
+      return;
+    }
+    const scope = e.target.closest("[data-scope]");
+    if (scope) { state.qScope = scope.dataset.scope; renderList(); syncUrl(); return; }
+    const qcat = e.target.closest("[data-qcat]");
+    if (qcat) { state.qCat = qcat.dataset.qcat; state.qGenre = ""; renderList(); return; }
+    const qgenre = e.target.closest("[data-qgenre]");
+    if (qgenre) {
+      state.qGenre = qgenre.dataset.qgenre;
+      if (state.qGenre) { track(`genre/${state.qGenre}`); rememberGenre(state.qGenre); }
+      renderList();
       return;
     }
     const venue = e.target.closest("[data-venue]");
@@ -987,10 +1400,66 @@
     if (!cityPop.hidden && !ev.target.closest(".city")) closeCityMenu(false);
   });
   document.addEventListener("keydown", ev => {
+    const typing = ev.target.matches?.("input, textarea");
+    if (!viewer.hidden && !typing && ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "j", "k"].includes(ev.key)) {
+      ev.preventDefault();
+      stepViewer(["ArrowUp", "PageUp", "k"].includes(ev.key) ? -1 : 1);
+      return;
+    }
+    if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden) { ev.preventDefault(); openSearch(); return; }
     if (ev.key !== "Escape") return;
     if (!onboard.hidden) closeOnboarding();
+    else if (!shareMenu.hidden) closeShareMenu(true);
+    else if (!viewer.hidden) closeViewer(false);
     else if (!cityPop.hidden) closeCityMenu(true);
-    else closeShareMenu(true);
+    else if (!searchBar.hidden) closeSearch();
+  });
+
+  // ---------- search box ----------
+  const searchBtn = document.getElementById("searchBtn");
+  const searchBar = document.getElementById("searchBar");
+  const qInput = document.getElementById("q");
+  let searchTimer = null, rememberTimer = null;
+
+  function openSearch() {
+    searchBar.hidden = false;
+    searchBtn.setAttribute("aria-expanded", "true");
+    qInput.focus();
+  }
+  function resetSearch() {
+    searchBar.hidden = true;
+    searchBtn.setAttribute("aria-expanded", "false");
+    qInput.value = "";
+    state.q = state.qCat = state.qGenre = "";
+  }
+  function closeSearch() {
+    const wasSearching = !!state.q;
+    resetSearch();
+    if (wasSearching) { renderList(); syncUrl(); }
+  }
+  function commitSearch() {  // a search someone settled on, not every keystroke
+    clearTimeout(rememberTimer);
+    const q = state.q.trim();
+    if (q.length < 3) return;
+    rememberSearch(q);
+    track(`search/${slug(q).slice(0, 40)}`);
+  }
+  searchBtn.addEventListener("click", () => searchBar.hidden ? openSearch() : closeSearch());
+  document.getElementById("searchCancel").addEventListener("click", closeSearch);
+  qInput.addEventListener("input", () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      state.q = qInput.value;
+      state.qCat = state.qGenre = "";
+      renderList();
+      syncUrl();
+      window.scrollTo({ top: 0 });
+    }, 150);
+    clearTimeout(rememberTimer);
+    rememberTimer = setTimeout(commitSearch, 1800);
+  });
+  qInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); state.q = qInput.value; renderList(); syncUrl(); commitSearch(); qInput.blur(); }
   });
   document.addEventListener("scroll", () => closeShareMenu(false), true);
   window.addEventListener("resize", () => closeShareMenu(false));
@@ -1013,9 +1482,11 @@
       try { remembered = localStorage.getItem(LS_CITY); } catch {}
       const find = name => name && data.cities.find(c => c.toLowerCase() === name.toLowerCase());
       state.city = (shared && shared.city) || find(state.city) || find(remembered) || citiesByShows()[0];
+      if (state.q) { searchBar.hidden = false; searchBtn.setAttribute("aria-expanded", "true"); qInput.value = state.q; }
       renderFooter(); render();
       track(`city/${slug(state.city)}`);
       if (state.sharedId) track(shared ? "shared-link/opened" : "shared-link/show-over");
+      if (shared) openViewer([shared.id], shared.id, "shared");  // a friend's link opens on the show itself
 
       let onboarded = false;
       try { onboarded = !!(localStorage.getItem(LS_ONBOARDED) || localStorage.getItem(LS_PREFS)); } catch {}
