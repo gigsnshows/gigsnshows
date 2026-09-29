@@ -6,9 +6,10 @@
 
 # Everything sits in main() so zsh reads the whole script before running it: the pull
 # below can update this very file, which would otherwise change it mid-run.
+HERE="${0:A:h}"  # this script's folder (inside a function, zsh's $0 is the function name)
 main() {
   set -e
-  cd "$(dirname "$0")"
+  cd "$HERE"
   export PATH="/Library/Frameworks/Python.framework/Versions/3.14/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
   export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/gigsnshows_deploy -o IdentitiesOnly=yes"
   local REPO=git@github.com:gigsnshows/gigsnshows.git
