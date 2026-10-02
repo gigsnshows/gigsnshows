@@ -413,6 +413,56 @@
   .viewer-nav button:disabled { opacity: .3; }
   @media (max-width: 640px), (pointer: coarse) { .viewer-nav { display: none; } }
 
+  /* ---------- book by voice ---------- */
+  .mic-fab {
+    position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 70;
+    width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff;
+    background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon));
+    box-shadow: 0 10px 26px rgba(0,0,0,.55), 0 0 18px rgba(255,45,149,.45);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .mic-fab:hover { transform: scale(1.06); box-shadow: 0 12px 30px rgba(0,0,0,.6), 0 0 26px rgba(255,45,149,.65); }
+  .mic-fab svg { width: 24px; height: 24px; }
+  .assist { position: fixed; inset: 0; z-index: 95; display: flex; align-items: flex-end; justify-content: center; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); }
+  .assist[hidden] { display: none; }
+  .assist-card {
+    position: relative; width: min(520px, 100%); max-height: min(86vh, 720px); overflow-y: auto; margin: 0 0 max(18px, env(safe-area-inset-bottom));
+    padding: 22px 20px 18px; border-radius: 22px; border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(44,44,46,.97), rgba(22,22,24,.99)); box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  }
+  .assist-card h2 { margin: 0; font-family: var(--brand-font); font-size: 1.3rem; font-weight: 700; }
+  .assist-close { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.1); font-size: 1.2rem; }
+  .assist-status { margin: 6px 0 14px; color: var(--ink-2); font-size: 0.92rem; min-height: 1.4em; }
+  .assist-form { display: flex; gap: 8px; align-items: center; }
+  .assist-form input {
+    flex: 1; min-width: 0; height: 46px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line);
+    background: rgba(255,255,255,.07); color: var(--ink); font: inherit; font-size: 1rem;
+  }
+  .assist-form input:focus { outline: 2px solid var(--glow); outline-offset: 1px; }
+  .assist-mic, .assist-go { flex: none; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .assist-mic { color: #fff; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
+  .assist-mic svg { width: 20px; height: 20px; }
+  .assist-mic[hidden] { display: none; }
+  .assist-go { background: var(--ink); color: #000; font-size: 1.2rem; font-weight: 700; }
+  @media (prefers-reduced-motion: no-preference) {
+    .assist-mic[aria-pressed="true"] { animation: listening 1.2s ease-in-out infinite; }
+    @keyframes listening { 50% { box-shadow: 0 0 0 9px rgba(255,45,149,.22); } }
+  }
+  .assist-heard { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 4px; }
+  .assist-msg { margin: 16px 0 0; color: var(--ink-2); font-size: 0.92rem; line-height: 1.45; }
+  .assist-msg b { color: var(--ink); }
+  .assist-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+  .assist-list li { padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); }
+  .assist-list h3 { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.3; }
+  .assist-list p { margin: 3px 0 0; color: var(--ink-2); font-size: 0.86rem; }
+  .assist-acts { display: flex; gap: 8px; margin-top: 10px; }
+  .assist-book {
+    flex: 1; display: flex; align-items: center; justify-content: center; height: 40px; padding: 0 12px; border-radius: 999px;
+    background: var(--ink); color: #000; font-weight: 700; font-size: 0.9rem; text-decoration: none; white-space: nowrap; overflow: hidden;
+  }
+  .assist-details { height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 0.88rem; font-weight: 600; }
+  .assist-fine { margin: 16px 0 0; color: var(--ink-3); font-size: 0.78rem; line-height: 1.4; }
+
   @media (max-width: 640px) {
     .shelf { grid-auto-columns: 172px; gap: 12px; }
     .results { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
@@ -496,6 +546,27 @@
 </div>
 
 <div class="toast" id="toast" role="status" hidden></div>
+
+<button class="mic-fab" id="micBtn" aria-label="Book a show by voice" aria-haspopup="dialog" title="Book a show by voice">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+</button>
+
+<div class="assist" id="assist" role="dialog" aria-modal="true" aria-labelledby="assistTitle" hidden>
+  <div class="assist-card">
+    <button class="assist-close" data-assist-close aria-label="Close">×</button>
+    <h2 id="assistTitle">Book a show</h2>
+    <p class="assist-status" id="assistStatus" aria-live="polite"></p>
+    <form class="assist-form" id="assistForm">
+      <button type="button" class="assist-mic" id="assistMic" aria-pressed="false" aria-label="Speak">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+      </button>
+      <input id="assistInput" type="text" autocomplete="off" enterkeyhint="search" aria-label="What would you like to book?">
+      <button class="assist-go" aria-label="Find the show">→</button>
+    </form>
+    <div id="assistOut"></div>
+    <p class="assist-fine">This only books shows: it finds one listed here and takes you to its tickets, where you pick seats and pay. Speech is turned into text by your browser.</p>
+  </div>
+</div>
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Show details" hidden>
   <div class="viewer-top">
@@ -1517,6 +1588,223 @@
     onboard.querySelector(".ob-cities").innerHTML = cityChips();
   });
 
+  // ---------- book by voice ----------
+  // Say or type what you want to book. The request is read for four things only — a show (or
+  // kind of show), a day, a city and a number of tickets — and matched against the listings.
+  // That's what keeps it to booking: anything else matches no show and is turned away.
+  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const assist = document.getElementById("assist"), assistInput = document.getElementById("assistInput");
+  const assistMic = document.getElementById("assistMic"), assistOut = document.getElementById("assistOut");
+  const assistStatus = document.getElementById("assistStatus");
+  const NUMBER_WORDS = { a: 1, an: 1, one: 1, single: 1, two: 2, couple: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+  const NUM = `\\d{1,2}|${Object.keys(NUMBER_WORDS).join("|")}`;
+  const WEEKDAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  const CITY_ALIASES = { bombay: "Mumbai", bangalore: "Bengaluru", "new delhi": "Delhi", gurgaon: "Delhi", gurugram: "Delhi",
+    noida: "Delhi", calcutta: "Kolkata", madras: "Chennai", cochin: "Kochi" };
+  const CATEGORY_WORDS = { comedy: "comedy", comedian: "comedy", standup: "comedy", "stand up": "comedy", play: "theatre", plays: "theatre",
+    theatre: "theatre", theater: "theatre", natak: "theatre", concert: "music", concerts: "music", music: "music", match: "sports", sports: "sports", sport: "sports" };
+  // Words that are part of asking, not part of what's being asked for.
+  const FILLER = new Set(("book booking booked tickets ticket seats seat passes pass for me us please i we want wanna would like to a an the some get "
+    + "buy need reserve can could you my our show shows gig gigs event events in on at of this next coming and with people persons friends "
+    + "find go going see watch live something anything any there is are what whats happening night evening hey hi hello").split(" "));
+
+  // What a request asks for: { words, category, range: [from, to] | null, dayLabel, city, qty }.
+  function parseRequest(text) {
+    let t = ` ${norm(text)} `;
+    const take = rx => { const m = t.match(rx); if (m) t = t.replace(m[0], " "); return m; };
+    const day = n => addDays(todayISO, n);
+    const req = { words: [], category: "", range: null, dayLabel: "", city: "", qty: null };
+
+    let m;
+    if (take(/ day after tomorrow /)) { req.range = [day(2), day(2)]; }
+    else if (take(/ (tomorrow|tmrw) /)) { req.range = [day(1), day(1)]; }
+    else if (take(/ (today|tonight) /)) { req.range = [todayISO, todayISO]; }
+    else if (take(/ (this |the |coming |next )?weekend /)) { req.range = whenRange("weekend"); req.dayLabel = "This weekend"; }
+    else if (take(/ this week /)) { req.range = whenRange("week"); req.dayLabel = "Next 7 days"; }
+    else if (take(/ next week /)) {  // Monday to Sunday
+      const monday = day(7 - ((new Date(todayISO + "T12:00:00").getDay() + 6) % 7));
+      req.range = [monday, addDays(monday, 6)]; req.dayLabel = "Next week";
+    }
+    else if ((m = take(new RegExp(` (\\d{1,2})(?:st|nd|rd|th)? (?:of )?(${MONTHS.join("|")})[a-z]* `)))
+          || (m = take(new RegExp(` (${MONTHS.join("|")})[a-z]* (\\d{1,2})(?:st|nd|rd|th)? `)))) {
+      const [d, mon] = /^\d/.test(m[1]) ? [m[1], m[2]] : [m[2], m[1]];
+      const year = Number(todayISO.slice(0, 4));
+      let iso = `${year}-${String(MONTHS.indexOf(mon) + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+      if (iso < todayISO) iso = `${year + 1}${iso.slice(4)}`;
+      req.range = [iso, iso];
+    }
+    else if ((m = take(new RegExp(` (next )?(${WEEKDAYS.join("|")}|${WEEKDAYS.map(d => d.slice(0, 3)).join("|")}) `)))) {
+      const today = new Date(todayISO + "T12:00:00").getDay();
+      const target = WEEKDAYS.findIndex(d => d.startsWith(m[2].slice(0, 3)));
+      let ahead = (target - today + 7) % 7;
+      // "Next Friday" on a Monday means the Friday after this one.
+      if (m[1] && ahead < (7 - ((today + 6) % 7))) ahead += 7;
+      req.range = [day(ahead), day(ahead)];
+    }
+    if (req.range && !req.dayLabel) {
+      const d = new Date(req.range[0] + "T12:00:00");
+      req.dayLabel = req.range[0] === todayISO ? "Today" : `${fmtDay.format(d)} ${fmtDate.format(d)}`;
+    }
+
+    const places = [...data.cities.map(c => [norm(c), c]), ...Object.entries(CITY_ALIASES)].sort((a, b) => b[0].length - a[0].length);
+    for (const [alias, city] of places) {
+      if (data.cities.includes(city) && take(new RegExp(` ${alias} `))) { req.city = city; break; }
+    }
+
+    m = take(new RegExp(` (${NUM}|couple of) (?:tickets?|seats?|passes|pass|people|persons|adults|of us) `))
+      || take(new RegExp(` for (${NUM.replace("|a|an|", "|")}) `)) || take(/ (\d{1,2}) /);  // not "for a play"
+    if (m) {
+      const n = /^\d/.test(m[1]) ? Number(m[1]) : NUMBER_WORDS[m[1].split(" ")[0]];
+      if (n >= 1 && n <= 10) req.qty = n;
+    }
+
+    for (const [word, cat] of Object.entries(CATEGORY_WORDS)) {
+      if (take(new RegExp(` ${word} `))) { req.category = cat; break; }
+    }
+    req.words = t.trim().split(" ").filter(w => w.length > 1 && !FILLER.has(w));
+    return req;
+  }
+
+  // Shows that fit a request, best first. Words match from the start of a word. One in the
+  // title counts most, then the venue, then a genre; the description only adds weight, since
+  // nearly any word turns up in one. Speech-to-text slips, so longer requests may miss a word.
+  function matchShows(req, city, useDay = true) {
+    const pool = data.events.filter(e => (!city || e.city === city) && (!req.category || e.category === req.category)
+      && (!useDay || !req.range || (e.date >= req.range[0] && e.date <= req.range[1])));
+    const need = req.words.length <= 2 ? req.words.length : req.words.length - 1;
+    const scored = [];
+    for (const e of pool) {
+      const title = ` ${norm(e.title)}`, venue = ` ${norm(e.venue)}`, about = ` ${norm(e.about)}`;
+      const genres = ` ${norm((e.genres || []).map(genreName).join(" "))}`;
+      let hits = 0, score = 0;
+      for (const w of req.words) {
+        const at = ` ${w}`;
+        const pts = title.includes(at) ? 4 : venue.includes(at) ? 3 : genres.includes(at) ? 2 : 0;
+        if (pts) hits++;
+        score += pts || (about.includes(at) ? 0.5 : 0);
+      }
+      if (hits >= need) scored.push([score, e]);
+    }
+    scored.sort((x, y) => y[0] - x[0] || byDateTime(x[1], y[1]));
+    const seen = new Set();  // one row per show, unless a day was asked for
+    return scored.map(([, e]) => e).filter(e => (useDay && req.range) || (!seen.has(showKey(e)) && seen.add(showKey(e)))).slice(0, 5);
+  }
+
+  function answerRequest(text, method) {
+    const req = parseRequest(text);
+    const asksForSomething = req.words.length || req.category || req.range;
+    if (!asksForSomething) {
+      track("voice_request", { method, result: "out_of_scope" });
+      assistOut.innerHTML = `<p class="assist-msg">I can only help you book a show. Tell me the show, artist or kind of show, and when — like <b>“two tickets for stand-up this Saturday”</b>.</p>`;
+      return;
+    }
+    // Exactly what was asked; else the same city on other days; else other cities.
+    const city = req.city || state.city;
+    let shows = matchShows(req, city), note = "", elsewhere = false;
+    if (!shows.length && req.range) {
+      shows = matchShows(req, city, false);
+      const when = req.dayLabel === "Today" ? "today" : req.range[0] === req.range[1] ? `on ${req.dayLabel}` : req.dayLabel.toLowerCase();
+      if (shows.length) note = `Nothing like that in ${city} ${when}. Here's when it's on:`;
+    }
+    if (!shows.length && !req.city) {
+      shows = matchShows(req, "");
+      if (!shows.length && req.range) shows = matchShows(req, "", false);
+      if (shows.length) { elsewhere = true; note = `Nothing like that in ${city}, but here's what I found elsewhere:`; }
+    }
+    track("voice_request", { method, result: !shows.length ? "none" : elsewhere ? "found_elsewhere" : note ? "found_other_day" : "found" });
+
+    const heard = [req.qty ? `${req.qty} ${req.qty === 1 ? "ticket" : "tickets"}` : "", req.words.join(" "), req.category ? catLabel(req.category) : "",
+      req.dayLabel, city].filter(Boolean);
+    const chips = `<div class="assist-heard">${heard.map(h => `<span class="tag">${esc(h)}</span>`).join("")}</div>`;
+    if (!shows.length) {
+      assistOut.innerHTML = `${chips}<p class="assist-msg">I couldn't find a show like that${req.dayLabel ? " on that day" : ""}. I can only book shows listed on gigsnshows — try the show's or artist's name, or a kind of show and a day.</p>`;
+      return;
+    }
+    const n = req.qty;
+    assistOut.innerHTML = `${chips}
+      ${note ? `<p class="assist-msg">${esc(note)}</p>` : ""}
+      <ul class="assist-list">${shows.map(e => {
+        const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url;
+        const price = e.price_from ? ` · from ₹${Number(e.price_from).toLocaleString("en-IN")}${n > 1 ? " each" : ""}` : "";
+        return `<li>
+          <h3>${esc(e.title)}</h3>
+          <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city !== city ? e.city : ""].filter(Boolean).join(", "))}${price}</p>
+          <div class="assist-acts">
+            <a class="assist-book" href="${esc(link)}" target="_blank" rel="noopener" data-assist-book="${e.id}" data-platform="${esc(sources[0])}">Book ${n ? `${n} ${n === 1 ? "ticket" : "tickets"} ` : ""}on ${esc(sources[0].replace(/ (Plays|Sports)$/, ""))}</a>
+            <button class="assist-details" data-assist-details="${e.id}">Details</button>
+          </div>
+        </li>`; }).join("")}</ul>`;
+  }
+
+  let recognition = null;
+  function stopListening() { try { recognition?.abort(); } catch {} recognition = null; assistMic.setAttribute("aria-pressed", "false"); }
+  function startListening() {
+    if (!Recognition) return;
+    stopListening();
+    const r = recognition = new Recognition();
+    r.lang = "en-IN"; r.interimResults = true; r.maxAlternatives = 1;
+    r.onresult = ev => {
+      const said = [...ev.results].map(x => x[0].transcript).join(" ").trim();
+      assistInput.value = said;
+      if (ev.results[ev.results.length - 1].isFinal) { stopListening(); assistStatus.textContent = ""; answerRequest(said, "voice"); }
+    };
+    r.onerror = ev => {
+      assistStatus.textContent = ev.error === "not-allowed" || ev.error === "service-not-allowed"
+        ? "The microphone is blocked for this site. Allow it in your browser's settings, or type below."
+        : ev.error === "no-speech" ? "I didn't catch that. Tap the mic and try again, or type below."
+        : ev.error === "aborted" ? "" : "Couldn't listen just now. Type what you'd like to book.";
+    };
+    r.onend = () => { if (recognition === r) stopListening(); };
+    try { r.start(); } catch { return; }
+    assistMic.setAttribute("aria-pressed", "true");
+    assistStatus.textContent = "Listening… say what you'd like to book.";
+  }
+
+  function openAssist() {
+    closeShareMenu(false);
+    assistOut.innerHTML = "";
+    assistInput.value = "";
+    assistInput.placeholder = "2 tickets for stand-up this Saturday";
+    assistMic.hidden = !Recognition;
+    assistStatus.textContent = Recognition ? "" : "Voice isn't available in this browser. Type what you'd like to book.";
+    assist.hidden = false;
+    document.body.style.overflow = "hidden";
+    track("voice_open");
+    if (Recognition) startListening(); else assistInput.focus();
+  }
+  function closeAssist() {
+    if (assist.hidden) return;
+    stopListening();
+    assist.hidden = true;
+    document.body.style.overflow = "";
+    document.getElementById("micBtn").focus({ preventScroll: true });
+  }
+  document.getElementById("micBtn").addEventListener("click", openAssist);
+  assistMic.addEventListener("click", () => assistMic.getAttribute("aria-pressed") === "true" ? stopListening() : startListening());
+  document.getElementById("assistForm").addEventListener("submit", ev => {
+    ev.preventDefault();
+    stopListening();
+    assistStatus.textContent = "";
+    if (assistInput.value.trim()) answerRequest(assistInput.value, "typed");
+  });
+  assist.addEventListener("click", ev => {
+    if (ev.target === assist || ev.target.closest("[data-assist-close]")) { closeAssist(); return; }
+    const book = ev.target.closest("[data-assist-book]");
+    if (book) {
+      const e = eventById(book.dataset.assistBook);
+      track("ticket_click", { platform: book.dataset.platform, item_name: e?.title, via: "voice" });
+      remember(e, WEIGHT.ticket);
+      return;
+    }
+    const details = ev.target.closest("[data-assist-details]");
+    if (details) {
+      const ids = [...assistOut.querySelectorAll("[data-assist-details]")].map(b => b.dataset.assistDetails);
+      closeAssist();
+      openViewer(ids, details.dataset.assistDetails, "voice");
+    }
+  });
+
   // ---------- events ----------
   cityBtn.addEventListener("click", () => cityPop.hidden ? openCityMenu() : closeCityMenu(false));
   cityMenu.addEventListener("click", e => { const o = e.target.closest("[data-city]"); if (o) chooseCity(o.dataset.city); });
@@ -1627,9 +1915,10 @@
       stepViewer(["ArrowUp", "PageUp", "k"].includes(ev.key) ? -1 : 1);
       return;
     }
-    if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden) { ev.preventDefault(); openSearch(); return; }
+    if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden && assist.hidden) { ev.preventDefault(); openSearch(); return; }
     if (ev.key !== "Escape") return;
-    if (!onboard.hidden) closeOnboarding();
+    if (!assist.hidden) closeAssist();
+    else if (!onboard.hidden) closeOnboarding();
     else if (!shareMenu.hidden) closeShareMenu(true);
     else if (!viewer.hidden) closeViewer(false);
     else if (!cityPop.hidden) closeCityMenu(true);
