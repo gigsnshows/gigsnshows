@@ -76,7 +76,10 @@ def dedupe(events):
 def main(dry_run=False, only=None, remerge=False):
     sources = yaml.safe_load((ROOT / "sources.yaml").read_text())
     today = date.today().isoformat()
-    collected = json.loads(FRESH.read_text()) if remerge else []
+    collected, failed = [], {}  # failed: source -> cities whose pages all came back empty
+    if remerge:
+        fresh = json.loads(FRESH.read_text())
+        collected, failed = fresh["events"], {k: set(v) for k, v in fresh["failed"].items()}
 
     for src in [] if remerge else sources:
         if only and only.lower() not in src["name"].lower():
@@ -87,6 +90,7 @@ def main(dry_run=False, only=None, remerge=False):
             continue
         parser = PARSERS[src.get("parser", "jsonld")]
         print(f"\n{src['name']}  ({src.get('parser', 'jsonld')}{', rendered' if src.get('render') else ''})")
+        tried, ok = set(), set()
         for entry in expand(src):
             city, cat = entry.get("city"), entry.get("category")
             evs = []
@@ -105,19 +109,29 @@ def main(dry_run=False, only=None, remerge=False):
                 if evs:
                     break
             collected.extend(evs)
+            tried.add(city)
+            if evs:
+                ok.add(city)
+        # Per city only for sources read city by city: a site that starts refusing partway
+        # through a run (BookMyShow, after a few cities) shouldn't wipe the cities it didn't answer.
+        if "cities" in src and ok and tried - ok:
+            failed[src["name"]] = tried - ok
+            print(f"  (no results for {', '.join(sorted(tried - ok))}; keeping their earlier shows)")
     if not remerge and not dry_run:
-        FRESH.write_text(json.dumps(collected, ensure_ascii=False))
+        FRESH.write_text(json.dumps({"events": collected, "failed": {k: sorted(v) for k, v in failed.items()}},
+                                    ensure_ascii=False))
 
     previous = json.loads(OUT.read_text()) if OUT.exists() else {}
     is_sample = str(previous.get("updated_at", "")).startswith("SAMPLE")
 
-    # A source that came back empty (blocked, down, or skipped with --only) keeps its
-    # last known upcoming shows rather than vanishing from the dashboard.
+    # A source that came back empty (blocked, down, or skipped here) keeps its last known
+    # upcoming shows rather than vanishing from the dashboard; so does a city it didn't answer.
     refreshed = {e["source"] for e in collected}
     stale = {s["name"] for s in sources} - refreshed
+    covered = lambda src, e: src in refreshed and e["city"] not in failed.get(src, ())  # noqa: E731
     carried = [] if is_sample else [
         e for e in previous.get("events", [])
-        if e["date"] >= today and not set(e.get("sources", [e["source"]])) & refreshed
+        if e["date"] >= today and not any(covered(src, e) for src in e.get("sources", [e["source"]]))
         and not NOT_SHOWS.search(e["title"])
     ]
     for e in carried:
