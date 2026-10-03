@@ -1,10 +1,10 @@
 name: Refresh listings
 
+# The twice-daily refresh now runs on the AWS server (collect.sh) and BookMyShow on the
+# Mac (collect-local.sh). This stays as a manual backup: Actions tab -> Run workflow. It reads
+# every source whose runs_on includes github (District and BookMyShow refuse GitHub).
 on:
-  schedule:
-    - cron: "30 1,11 * * *"   # 07:00 and 17:00 IST every day. District and BookMyShow block
-                              # GitHub's servers; collect-local.sh refreshes those from a Mac.
-  workflow_dispatch:           # lets you run it manually from the Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: write

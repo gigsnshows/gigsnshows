@@ -5,7 +5,9 @@ data/events.json for the dashboard.
 
     python run.py                 normal run
     python run.py --dry-run       show counts, don't write
-    python run.py --only District only run sources whose name contains this
+    python run.py --only District only run sources whose name contains this (wherever it runs)
+    python run.py --remerge       re-merge this machine's last results into the current
+                                  events.json (after another collector uploaded first)
 """
 
 import json
@@ -21,11 +23,14 @@ from scrapers import sharepages
 from scrapers.genres import catalog, language, languages, tag
 from scrapers.parsers import PARSERS
 
-# GitHub's servers get refused by some sites (cloud: false in sources.yaml); the Mac collector covers those.
-IN_CLOUD = os.environ.get("GITHUB_ACTIONS") == "true"
+# Which machine this run is on: "aws" (the Lightsail server), "mac" or "github" (Actions).
+# Some sites refuse some of them, so each source's `runs_on` in sources.yaml says where it's read.
+WHERE = os.environ.get("COLLECTOR") or ("github" if os.environ.get("GITHUB_ACTIONS") == "true" else "mac")
+DEFAULT_RUNS_ON = ["aws", "github"]
 
 ROOT = Path(__file__).parent
 OUT = ROOT / "data" / "events.json"
+FRESH = ROOT / "data" / ".fresh.json"  # this machine's latest results, kept for --remerge (not committed)
 
 
 def as_list(v):
@@ -68,16 +73,17 @@ def dedupe(events):
     return list(merged.values())
 
 
-def main(dry_run=False, only=None):
+def main(dry_run=False, only=None, remerge=False):
     sources = yaml.safe_load((ROOT / "sources.yaml").read_text())
     today = date.today().isoformat()
-    collected = []
+    collected = json.loads(FRESH.read_text()) if remerge else []
 
-    for src in sources:
+    for src in [] if remerge else sources:
         if only and only.lower() not in src["name"].lower():
             continue
-        if IN_CLOUD and src.get("cloud") is False:
-            print(f"\n{src['name']}  (skipped: refuses cloud servers; refreshed from the Mac)")
+        runs_on = src.get("runs_on", DEFAULT_RUNS_ON)
+        if not only and WHERE not in runs_on:
+            print(f"\n{src['name']}  (skipped here on {WHERE}; read on {' and '.join(runs_on)})")
             continue
         parser = PARSERS[src.get("parser", "jsonld")]
         print(f"\n{src['name']}  ({src.get('parser', 'jsonld')}{', rendered' if src.get('render') else ''})")
@@ -99,6 +105,8 @@ def main(dry_run=False, only=None):
                 if evs:
                     break
             collected.extend(evs)
+    if not remerge and not dry_run:
+        FRESH.write_text(json.dumps(collected, ensure_ascii=False))
 
     previous = json.loads(OUT.read_text()) if OUT.exists() else {}
     is_sample = str(previous.get("updated_at", "")).startswith("SAMPLE")
@@ -152,4 +160,4 @@ def main(dry_run=False, only=None):
 if __name__ == "__main__":
     args = sys.argv[1:]
     only = args[args.index("--only") + 1] if "--only" in args else None
-    main(dry_run="--dry-run" in args, only=only)
+    main(dry_run="--dry-run" in args, only=only, remerge="--remerge" in args)

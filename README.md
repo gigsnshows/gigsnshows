@@ -72,13 +72,16 @@ If a browser-rendered source returns 0 events, open its URL in a normal browser,
 1. Create a GitHub repo and push this folder.
 2. Settings → Pages → Source: *Deploy from a branch*, `main`, `/ (root)`.
 3. Actions tab → enable workflows. Run "Refresh listings" once manually to seed it.
-4. Your dashboard is at `https://<you>.github.io/<repo>/`. It refreshes at 07:00 and 17:00 IST daily.
+4. Your dashboard is at `https://<you>.github.io/<repo>/`.
 
 This site lives at **https://gigsnshows.com** (repo `gigsnshows/gigsnshows`, domain DNS at GoDaddy pointing to GitHub Pages).
 
-**Two collectors.** District and BookMyShow refuse GitHub's cloud servers, so:
-- GitHub's scheduled run (07:00 / 17:00 IST) refreshes NCPA, NMACC, Prithvi, The Piano Man, Skillbox and thumpN, and keeps District/BookMyShow's last known shows (a source that returns nothing never wipes its listings).
-- `collect-local.sh` runs the full collection from a Mac at 07:30 / 17:30 (or on wake if asleep) and uploads it, using a repo deploy key at `~/.ssh/gigsnshows_deploy`. It runs from its own clone at `~/.gigsnshows-collector`, scheduled by `~/Library/LaunchAgents/com.gigsnshows.collect.plist`; log in `~/Library/Logs/gigsnshows-collect.log`. To stop it: `launchctl bootout gui/$(id -u)/com.gigsnshows.collect`.
+**Collectors.** Different sites refuse different machines, so each source's `runs_on` in `sources.yaml` says where it's read:
+- **The AWS server** (Lightsail, Mumbai, `65.0.100.130`) reads everything except BookMyShow at 07:00 and 17:00 IST: `collect.sh` from a clone at `~/gigsnshows`, scheduled by the `ubuntu` user's crontab, log in `~/collect.log`. District refuses GitHub's servers but accepts this one.
+- **The Mac** reads BookMyShow only (it refuses cloud servers, AWS included) at 07:30 / 17:30, or on wake if asleep: `collect-local.sh` from `~/.gigsnshows-collector`, scheduled by `~/Library/LaunchAgents/com.gigsnshows.collect.plist`, log in `~/Library/Logs/gigsnshows-collect.log`. To stop it: `launchctl bootout gui/$(id -u)/com.gigsnshows.collect`. While the Mac is shut, BookMyShow's shows stay as last collected.
+- **GitHub Actions** ("Refresh listings") is now a manual backup only.
+
+A source that returns nothing keeps its last known shows rather than vanishing. Both collectors upload with the repo deploy key `~/.ssh/gigsnshows_deploy`; if one finds the other uploaded first, it merges its fresh results into the newer listings (`run.py --remerge`) instead of overwriting them.
 
 Friends get their own city with a link like `…/?city=delhi&tab=comedy`, or share a single show from its card.
 

@@ -23,7 +23,9 @@
 #   link_pattern / max_pages   for detail_pages: which links are events, how many to read
 #   crawl_delay    seconds between requests to this site (from its robots.txt)
 #   details        district parser: also read each show's own page (description, for genres)
-#   cloud: false   site refuses cloud servers; GitHub's run skips it (the Mac collector covers it)
+#   runs_on        which collectors read this source: aws (the Lightsail server, twice a day),
+#                  mac (the laptop, when it's awake), github (Actions, manual runs only now).
+#                  Default [aws, github]. District refuses GitHub; BookMyShow refuses both clouds.
 #
 # The city a listing page is for is only a fallback: every show is filed under the city
 # its own venue/address names (see scrapers/cities.py), because city pages on these sites
@@ -32,7 +34,7 @@
 
 - name: District
   parser: district
-  cloud: false
+  runs_on: [aws]            # refuses GitHub's servers
   details: true            # also read each show's page for its description (for genres)
   crawl_delay: 1
   url: https://www.district.in/activities/{category}-in-{city}
@@ -59,7 +61,7 @@
     - {url: https://www.nmacc.com/calendar/, city: Mumbai}
 
 - name: BookMyShow
-  cloud: false
+  runs_on: [mac]            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: jsonld
   render: true
@@ -77,7 +79,7 @@
 # So these read the listing page for links, then pull the real event data
 # (a *TheaterEvent/SportsEvent node) off each individual event page instead.
 - name: BookMyShow Plays
-  cloud: false
+  runs_on: [mac]            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: detail_pages
   render: true
@@ -88,7 +90,7 @@
   cities: *bms_cities
 
 - name: BookMyShow Sports
-  cloud: false
+  runs_on: [mac]            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: detail_pages
   render: true
