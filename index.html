@@ -122,6 +122,8 @@
   }
   .icon-btn:hover, .icon-btn[aria-expanded="true"] { background: rgba(255,255,255,.16); }
   .icon-btn svg { width: 17px; height: 17px; }
+  .icon-btn[hidden] { display: none; }
+  .acct-btn.on { border-color: transparent; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
 
   /* ---------- search ---------- */
   .searchbar { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; }
@@ -462,6 +464,18 @@
   }
   .assist-details { height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 0.88rem; font-weight: 600; }
   .assist-fine { margin: 16px 0 0; color: var(--ink-3); font-size: 0.78rem; line-height: 1.4; }
+  .assist-fine a { color: var(--ink-2); }
+  /* log in: reuses the voice panel's sheet */
+  .cc { flex: none; height: 46px; display: flex; align-items: center; padding: 0 14px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid var(--line); font-weight: 600; }
+  .grecaptcha-badge { visibility: hidden; }  /* credited in the login sheet instead, as reCAPTCHA allows */
+  .login-code { letter-spacing: .4em; font-variant-numeric: tabular-nums; }
+  .login-err { margin: 12px 0 0; color: #ff6b8b; font-size: 0.88rem; }
+  .login-err:empty { display: none; }
+  .login-links { display: flex; gap: 18px; margin-top: 14px; }
+  .login-links button { color: var(--ink-2); font-size: 0.86rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .login-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .login-acts button { height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line); font-weight: 600; font-size: 0.9rem; }
+  .login-acts .danger { color: #ff6b8b; border-color: color-mix(in srgb, #ff6b8b 50%, transparent); }
 
   @media (max-width: 640px) {
     .shelf { grid-auto-columns: 172px; gap: 12px; }
@@ -498,6 +512,9 @@
     </a>
     <nav class="tabs" role="tablist" id="tabs" aria-label="Categories"></nav>
     <div class="bar-right">
+    <button class="icon-btn acct-btn" id="acctBtn" aria-label="Log in" aria-haspopup="dialog" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-3.6 4.1-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg>
+    </button>
     <button class="icon-btn" id="searchBtn" aria-label="Search shows" aria-expanded="false" aria-controls="searchBar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>
     </button>
@@ -550,6 +567,11 @@
 <button class="mic-fab" id="micBtn" aria-label="Book a show by voice" aria-haspopup="dialog" title="Book a show by voice">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
 </button>
+
+<div class="assist" id="login" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
+  <div class="assist-card" id="loginCard"></div>
+</div>
+<div id="recaptcha"></div>
 
 <div class="assist" id="assist" role="dialog" aria-modal="true" aria-labelledby="assistTitle" hidden>
   <div class="assist-card">
@@ -742,7 +764,7 @@
     p.t = Date.now();
     return p;
   }
-  function saveProfile(p) { try { localStorage.setItem(LS_PROFILE, JSON.stringify(p)); } catch {} }
+  function saveProfile(p) { try { localStorage.setItem(LS_PROFILE, JSON.stringify(p)); } catch {} cloudSave(); }
   function venueKey(e) { return norm((e.venue || "").split(/[:|,]/)[0]).trim(); }
 
   function remember(e, w) {
@@ -797,6 +819,7 @@
     const i = ids.indexOf(id);
     if (i > -1) ids.splice(i, 1); else { ids.push(id); track("wanna_go", { item_name: eventById(id)?.title }); remember(eventById(id), WEIGHT.wannaGo); }
     localStorage.setItem(LS_LIST, JSON.stringify(ids));
+    cloudSave();
     renderList();
   }
 
@@ -1492,6 +1515,7 @@
     prefs.genres.forEach(g => track("set_interest", { interest: g }));
     prefs.langs.forEach(l => track("set_interest", { interest: `language:${l}` }));
     try { localStorage.setItem(LS_PREFS, JSON.stringify(prefs)); localStorage.setItem(LS_CITY, city); } catch {}
+    cloudSave();
     closeOnboarding();
     Object.assign(state, { city, tab: "all", genre: "", favVenue: "all" });
     render();
@@ -1552,6 +1576,7 @@
     if (act === "done") { finishOnboarding(); return; }
     if (act === "forget") {
       try { localStorage.removeItem(LS_PROFILE); } catch {}
+      cloudSave();
       e.target.replaceWith("Forgotten.");
       return;
     }
@@ -1587,6 +1612,198 @@
     ob.q = e.target.value;
     onboard.querySelector(".ob-cities").innerHTML = cityChips();
   });
+
+  // ---------- log in with a mobile number ----------
+  // Off until FIREBASE_CONFIG is filled in. Firebase texts the one-time code. Logging in keeps
+  // your Wanna Go list, interests and For you history in one document per person
+  // (users/<uid> in Firestore) that only that person can read or change (rules in README),
+  // so they follow you to other devices. Without logging in, they stay in this browser.
+  const FIREBASE_CONFIG = null;  // the web app's config object from the Firebase console
+  const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
+  const LS_SIGNED_IN = "whatsOn.signedIn";  // load Firebase on the next visit only if you're logged in
+  const loginDlg = document.getElementById("login"), loginCard = document.getElementById("loginCard");
+  const acctBtn = document.getElementById("acctBtn");
+  let fb = null, user = null, confirmation = null, pendingPhone = "", saveTimer = null;
+
+  async function loadFirebase() {
+    if (!fb) {
+      const [app, A, S] = await Promise.all(["firebase-app.js", "firebase-auth.js", "firebase-firestore.js"].map(f => import(FIREBASE_SDK + f)));
+      const instance = app.initializeApp(FIREBASE_CONFIG);
+      fb = { auth: A.getAuth(instance), db: S.getFirestore(instance), A, S };
+      fb.auth.languageCode = "en";
+      await new Promise(resolve => A.onAuthStateChanged(fb.auth, u => { setUser(u); resolve(); }));
+    }
+    return fb;
+  }
+  const readLS = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } };
+  const userDoc = () => fb.S.doc(fb.db, "users", user.uid);
+  const prettyPhone = n => (n || "").replace(/^\+91(\d{5})(\d{5})$/, "+91 $1 $2");
+
+  function setUser(u) {
+    const was = user?.uid;
+    user = u;
+    try { u ? localStorage.setItem(LS_SIGNED_IN, "1") : localStorage.removeItem(LS_SIGNED_IN); } catch {}
+    acctBtn.classList.toggle("on", !!u);
+    acctBtn.setAttribute("aria-label", u ? "Your account" : "Log in");
+    if (u && u.uid !== was) mergeWithAccount().catch(() => {});
+  }
+
+  // On logging in: this browser's saves and the account's are combined, nothing is dropped.
+  // Wanna Go: both lists. Interests: the account's, if it has any. For you history: the
+  // stronger of the two for each genre, venue and search word.
+  async function mergeWithAccount() {
+    const snap = await fb.S.getDoc(userDoc());
+    const cloud = snap.exists() ? snap.data() : {};
+    const list = [...new Set([...(cloud.wannaGo || []), ...readLS(LS_LIST, [])])];
+    const prefs = cloud.prefs || readLS(LS_PREFS, null);
+    const a = readLS(LS_PROFILE, null), b = cloud.profile || null;
+    let profile = a || b;
+    if (a && b) {
+      profile = { ...a, t: Math.max(a.t || 0, b.t || 0), vl: { ...b.vl, ...a.vl }, hide: [...new Set([...(b.hide || []), ...(a.hide || [])])] };
+      for (const k of PROFILE_MAPS) {
+        profile[k] = { ...b[k] };
+        for (const [x, w] of Object.entries(a[k] || {})) profile[k][x] = Math.max(w, profile[k][x] || 0);
+      }
+    }
+    try {
+      localStorage.setItem(LS_LIST, JSON.stringify(list));
+      if (prefs) { localStorage.setItem(LS_PREFS, JSON.stringify(prefs)); localStorage.setItem(LS_ONBOARDED, "1"); }
+      if (profile) localStorage.setItem(LS_PROFILE, JSON.stringify(profile));
+    } catch {}
+    await pushToAccount();
+    if (data) renderList();
+  }
+  async function pushToAccount() {
+    if (!user) return;
+    await fb.S.setDoc(userDoc(), { wannaGo: readLS(LS_LIST, []), prefs: readLS(LS_PREFS, null),
+      profile: readLS(LS_PROFILE, null), updatedAt: fb.S.serverTimestamp() });
+  }
+  function cloudSave() {  // a few seconds after the last change, so browsing doesn't write on every tap
+    if (!user) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => pushToAccount().catch(() => {}), 3000);
+  }
+
+  const LOGIN_ERRORS = {
+    "auth/invalid-phone-number": "That doesn't look like a 10-digit mobile number.",
+    "auth/missing-phone-number": "Enter your 10-digit mobile number.",
+    "auth/too-many-requests": "Too many tries from this device. Please wait a while and try again.",
+    "auth/quota-exceeded": "We can't send codes right now. Please try again later.",
+    "auth/invalid-verification-code": "That code isn't right. Check the text and try again.",
+    "auth/code-expired": "That code has expired. Send a new one.",
+    "auth/captcha-check-failed": "Couldn't confirm you're not a robot. Reload the page and try again.",
+    "auth/network-request-failed": "No connection. Check your internet and try again.",
+    "auth/requires-recent-login": "For your security, log in again, then delete your account.",
+  };
+  const loginError = err => LOGIN_ERRORS[err?.code] || "Something went wrong. Please try again.";
+
+  function renderLogin(step, error = "") {
+    const err = `<p class="login-err" role="alert">${esc(error)}</p>`;
+    const close = `<button class="assist-close" data-login-close aria-label="Close">×</button>`;
+    if (step === "account") {
+      loginCard.innerHTML = `${close}<h2 id="loginTitle">Your account</h2>
+        <p class="assist-status">Logged in as <b>${esc(prettyPhone(user.phoneNumber))}</b>. Your Wanna Go list, interests and For you picks are saved to your account and follow you to any device you log in on.</p>
+        <div class="login-acts"><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
+        <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
+    } else if (step === "confirm-delete") {
+      loginCard.innerHTML = `${close}<h2 id="loginTitle">Delete your account?</h2>
+        <p class="assist-status">This removes your phone number and everything saved to your account. What's saved in this browser stays here.</p>
+        <div class="login-acts"><button class="danger" data-login="delete-yes">Yes, delete it</button><button data-login="account">Keep my account</button></div>${err}`;
+    } else if (step === "code") {
+      loginCard.innerHTML = `${close}<h2 id="loginTitle">Enter the code</h2>
+        <p class="assist-status">We texted a 6-digit code to ${esc(prettyPhone(pendingPhone))}.</p>
+        <form class="assist-form" data-login-form="code">
+          <input class="login-code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="\\d{6}" aria-label="6-digit code" required>
+          <button class="assist-go" aria-label="Log in">→</button>
+        </form>${err}
+        <div class="login-links"><button data-login="phone">Change number</button><button data-login="resend">Send a new code</button></div>`;
+    } else {
+      loginCard.innerHTML = `${close}<h2 id="loginTitle">Log in</h2>
+        <p class="assist-status">Keep your Wanna Go list and For you picks on every device.</p>
+        <form class="assist-form" data-login-form="phone">
+          <span class="cc">+91</span>
+          <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-label="Mobile number" value="${esc(pendingPhone.slice(3))}" required>
+          <button class="assist-go" aria-label="Text me a code">→</button>
+        </form>${err}
+        <p class="assist-fine">We'll text you a one-time code; your operator's SMS charges may apply. By continuing you agree to our <a href="privacy.html">privacy policy</a>. Protected by reCAPTCHA: Google's <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a> apply.</p>`;
+    }
+    loginCard.querySelector("input, .login-acts button")?.focus({ preventScroll: true });
+  }
+
+  async function sendCode() {
+    renderLogin("phone");
+    loginCard.querySelector(".assist-status").textContent = "Sending your code…";
+    try {
+      await loadFirebase();
+      fb.verifier = fb.verifier || new fb.A.RecaptchaVerifier(fb.auth, "recaptcha", { size: "invisible" });
+      confirmation = await fb.A.signInWithPhoneNumber(fb.auth, pendingPhone, fb.verifier);
+      renderLogin("code");
+    } catch (err) {
+      renderLogin("phone", loginError(err));
+    }
+  }
+
+  async function openLogin() {
+    loginDlg.hidden = false;
+    document.body.style.overflow = "hidden";
+    if (user) renderLogin("account");
+    else renderLogin("phone");
+  }
+  function closeLogin() {
+    if (loginDlg.hidden) return;
+    loginDlg.hidden = true;
+    document.body.style.overflow = "";
+    acctBtn.focus({ preventScroll: true });
+  }
+
+  loginDlg.addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const form = ev.target.closest("[data-login-form]");
+    if (form?.dataset.loginForm === "phone") {
+      const digits = form.phone.value.replace(/\D/g, "").replace(/^(91|0)(?=\d{10}$)/, "");
+      if (!/^[6-9]\d{9}$/.test(digits)) { renderLogin("phone", LOGIN_ERRORS["auth/invalid-phone-number"]); return; }
+      pendingPhone = "+91" + digits;
+      sendCode();
+    } else if (form?.dataset.loginForm === "code") {
+      try {
+        const cred = await confirmation.confirm(form.code.value.trim());
+        track(fb.A.getAdditionalUserInfo(cred)?.isNewUser ? "sign_up" : "login", { method: "phone" });
+        closeLogin();
+        toast("You're logged in. Your picks now follow you to any device.");
+      } catch (err) {
+        renderLogin("code", loginError(err));
+      }
+    }
+  });
+  loginDlg.addEventListener("click", async ev => {
+    if (ev.target === loginDlg || ev.target.closest("[data-login-close]")) { closeLogin(); return; }
+    const act = ev.target.closest("[data-login]")?.dataset.login;
+    if (act === "phone") renderLogin("phone");
+    else if (act === "resend") sendCode();
+    else if (act === "account") renderLogin("account");
+    else if (act === "delete") renderLogin("confirm-delete");
+    else if (act === "logout") {
+      await fb.A.signOut(fb.auth);
+      closeLogin();
+      toast("Logged out. Your picks stay saved to your account.");
+    } else if (act === "delete-yes") {
+      try {
+        await fb.S.deleteDoc(userDoc());
+        await fb.A.deleteUser(user);
+        track("delete_account");
+        closeLogin();
+        toast("Your account has been deleted.");
+      } catch (err) {
+        if (err?.code === "auth/requires-recent-login") await fb.A.signOut(fb.auth);
+        renderLogin(user ? "confirm-delete" : "phone", loginError(err));
+      }
+    }
+  });
+  if (FIREBASE_CONFIG) {
+    acctBtn.hidden = false;
+    acctBtn.addEventListener("click", openLogin);
+    if (readLS(LS_SIGNED_IN, null)) loadFirebase().catch(() => {});  // restore the session and sync
+  }
 
   // ---------- book by voice ----------
   // Say or type what you want to book. The request is read for four things only — a show (or
@@ -1917,7 +2134,8 @@
     }
     if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden && assist.hidden) { ev.preventDefault(); openSearch(); return; }
     if (ev.key !== "Escape") return;
-    if (!assist.hidden) closeAssist();
+    if (!loginDlg.hidden) closeLogin();
+    else if (!assist.hidden) closeAssist();
     else if (!onboard.hidden) closeOnboarding();
     else if (!shareMenu.hidden) closeShareMenu(true);
     else if (!viewer.hidden) closeViewer(false);

@@ -30,6 +30,21 @@ Each category tab has **genre chips** (Jazz & blues, Stand-up, Running, Marathi�
 
 Shared links point to `/s/<id>`, a tiny page per show that the collector writes (`scrapers/sharepages.py`) so WhatsApp and other apps preview the link with the show's poster, title, date and venue; it forwards straight to the show on the dashboard. Pages are kept for 30 days after the show.
 
+**Log in with a mobile number** (Firebase): optional. The account icon in the top bar texts a one-time code (Firebase Authentication, with an invisible reCAPTCHA); once logged in, the Wanna Go list, interests and For you history are kept in one Firestore document per person (`users/<uid>`) and merged with what the browser already had, so they follow the person to any device. Logging out keeps them in the account; **Delete my account** removes the number and the document. It stays switched off until `FIREBASE_CONFIG` at the top of the login section of `index.html`'s script is filled in. Firebase setup: create a project, add a Web app (its config goes into `FIREBASE_CONFIG`), enable **Authentication → Phone**, add `gigsnshows.com` under Authentication → Settings → Authorised domains, create a **Firestore** database (region `asia-south1`, Mumbai) and set its rules to:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
+```
+
+`privacy.html` is the privacy policy the login links to. Analytics events: `login` / `sign_up` (method), `delete_account`.
+
 **Analytics** (Google Analytics 4): set `GA_MEASUREMENT_ID` at the top of the `<script>` in `index.html`. Visitors get a small notice asking before analytics cookies are set (Consent Mode; ad storage is always off); until they say OK, Google only receives cookie-free pings. Local testing (`localhost`) is never sent. Besides page views it sends these events, with parameters: `city_view` / `choose_city` (city), `view_tab` (tab), `filter_genre` (genre), `search` (search_term), `open_show` (row — which row a show was opened from), `swipe_view_open` (from), `ticket_click` (platform, item_name), `wanna_go` (item_name), `share` (method, item_id), `onboarding` (result), `set_interest` (interest), `shared_link_open` (status), `not_for_me` (item_name). To see the parameters in GA's reports, register them under Admin → Custom definitions.
 
 A show disappears from the page the moment its start time passes (or at the end of the day, if no time is listed) — the page re-checks every minute.
