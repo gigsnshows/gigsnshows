@@ -1618,7 +1618,16 @@
   // your Wanna Go list, interests and For you history in one document per person
   // (users/<uid> in Firestore) that only that person can read or change (rules in README),
   // so they follow you to other devices. Without logging in, they stay in this browser.
-  const FIREBASE_CONFIG = null;  // the web app's config object from the Firebase console
+  // The web app's config from the Firebase console (public by design: access is governed
+  // by Authentication's authorised domains and Firestore's rules, not by keeping this secret).
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyD6SaNLKN7HSd9VxzsoApAZponyV0JPAV4",
+    authDomain: "gigsnshows.firebaseapp.com",
+    projectId: "gigsnshows",
+    storageBucket: "gigsnshows.firebasestorage.app",
+    messagingSenderId: "317639338415",
+    appId: "1:317639338415:web:413c9a4a4d67d98cc7675a",
+  };
   const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
   const LS_SIGNED_IN = "whatsOn.signedIn";  // load Firebase on the next visit only if you're logged in
   const loginDlg = document.getElementById("login"), loginCard = document.getElementById("loginCard");
@@ -1694,6 +1703,7 @@
     "auth/captcha-check-failed": "Couldn't confirm you're not a robot. Reload the page and try again.",
     "auth/network-request-failed": "No connection. Check your internet and try again.",
     "auth/requires-recent-login": "For your security, log in again, then delete your account.",
+    "timeout": "Couldn't send the code just now. Please try again.",
   };
   const loginError = err => LOGIN_ERRORS[err?.code] || "Something went wrong. Please try again.";
 
@@ -1735,8 +1745,13 @@
     loginCard.querySelector(".assist-status").textContent = "Sending your code…";
     try {
       await loadFirebase();
-      fb.verifier = fb.verifier || new fb.A.RecaptchaVerifier(fb.auth, "recaptcha", { size: "invisible" });
-      confirmation = await fb.A.signInWithPhoneNumber(fb.auth, pendingPhone, fb.verifier);
+      // A fresh reCAPTCHA each time: a used one can't be run again (logging back in hung).
+      try { fb.verifier?.clear(); } catch {}
+      const box = document.getElementById("recaptcha");
+      box.innerHTML = "<div></div>";
+      fb.verifier = new fb.A.RecaptchaVerifier(fb.auth, box.firstElementChild, { size: "invisible" });
+      const timeout = new Promise((_, reject) => setTimeout(() => reject({ code: "timeout" }), 30000));
+      confirmation = await Promise.race([fb.A.signInWithPhoneNumber(fb.auth, pendingPhone, fb.verifier), timeout]);
       renderLogin("code");
     } catch (err) {
       renderLogin("phone", loginError(err));
