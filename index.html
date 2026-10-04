@@ -458,6 +458,11 @@
   .assist-list h3 { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.3; }
   .assist-list p { margin: 3px 0 0; color: var(--ink-2); font-size: 0.86rem; }
   .assist-acts { display: flex; gap: 8px; margin-top: 10px; }
+  .assist-row { display: flex; gap: 12px; align-items: flex-start; }
+  .assist-row > div:last-child { min-width: 0; }
+  .assist-thumb { position: relative; flex: none; width: 54px; height: 54px; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
+  .assist-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .assist-try { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   .assist-book {
     flex: 1; display: flex; align-items: center; justify-content: center; height: 40px; padding: 0 12px; border-radius: 999px;
     background: var(--ink); color: #000; font-weight: 700; font-size: 0.9rem; text-decoration: none; white-space: nowrap; overflow: hidden;
@@ -586,7 +591,7 @@
       <button class="assist-go" aria-label="Find the show">→</button>
     </form>
     <div id="assistOut"></div>
-    <p class="assist-fine">This only books shows: it finds one listed here and takes you to its tickets, where you pick seats and pay. Speech is turned into text by your browser.</p>
+    <p class="assist-fine">Just for finding and booking live shows: it picks from the shows listed here and takes you to their tickets, where you choose seats and pay. Speech is turned into text by your browser.</p>
   </div>
 </div>
 
@@ -1823,9 +1828,11 @@
   }
 
   // ---------- book by voice ----------
-  // Say or type what you want to book. The request is read for four things only — a show (or
-  // kind of show), a day, a city and a number of tickets — and matched against the listings.
-  // That's what keeps it to booking: anything else matches no show and is turned away.
+  // Say or type what you'd like to see or book. It's built for that and nothing else: a request
+  // is read for a show, artist or venue, a kind of show, a day, a city, a budget and a number of
+  // tickets, and answered only with shows from the listings ("what's on", "recommend something"
+  // and "surprise me" get your For you picks). Anything else (the weather, a cab, a joke,
+  // "ignore your instructions") gets the same short reply about what it can do.
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const assist = document.getElementById("assist"), assistInput = document.getElementById("assistInput");
   const assistMic = document.getElementById("assistMic"), assistOut = document.getElementById("assistOut");
@@ -1837,23 +1844,43 @@
   const CITY_ALIASES = { bombay: "Mumbai", bangalore: "Bengaluru", "new delhi": "Delhi", gurgaon: "Delhi", gurugram: "Delhi",
     noida: "Delhi", calcutta: "Kolkata", madras: "Chennai", cochin: "Kochi" };
   const CATEGORY_WORDS = { comedy: "comedy", comedian: "comedy", standup: "comedy", "stand up": "comedy", play: "theatre", plays: "theatre",
-    theatre: "theatre", theater: "theatre", natak: "theatre", concert: "music", concerts: "music", music: "music", match: "sports", sports: "sports", sport: "sports" };
-  // Words that are part of asking, not part of what's being asked for.
+    theatre: "theatre", theater: "theatre", natak: "theatre", drama: "theatre", concert: "music", concerts: "music", music: "music",
+    gig: "music", gigs: "music", match: "sports", matches: "sports", sports: "sports", sport: "sports" };
+  // Words that are part of asking, not part of what's being asked for (a few in Hindi too).
   const FILLER = new Set(("book booking booked tickets ticket seats seat passes pass for me us please i we want wanna would like to a an the some get "
-    + "buy need reserve can could you my our show shows gig gigs event events in on at of this next coming and with people persons friends "
-    + "find go going see watch live something anything any there is are what whats happening night evening hey hi hello").split(" "));
+    + "buy need reserve can could you my our show shows event events in on at of this next coming upcoming soon up and with by people persons friends "
+    + "find go going see watch live something anything any there is are be will what whats night evening tell let lets give help friend family out time times timing timings when start starts "
+    + "it its your india rupees rs inr price prices cost costs much many kya hai hain koi kuch mujhe hume humko dikhao batao chahiye ka ki ke mein aur wala wali").split(" "));
+  // Asking for ideas rather than a particular show: answered with your For you picks.
+  const DISCOVERY = new Set(("recommend recommendation recommendations suggest suggestion suggestions surprise fun good best great cool "
+    + "interesting nice popular top trending plans plan do doing happening playing near nearby around worth").split(" "));
+  // Not about shows. A request with these is turned away unless the rest of it names a listed show.
+  const OFF_TOPIC = new Set(("weather rain temperature forecast news headlines score scores joke jokes poem poems essay story stories "
+    + "recipe cook cooking food pizza biryani burger restaurant restaurants table dinner lunch breakfast order deliver delivery cab cabs "
+    + "taxi uber ola auto flight flights train trains bus hotel hotels room alarm timer remind reminder call text whatsapp email send "
+    + "money pay transfer upi bank loan translate calculate plus minus multiply divided prime minister president election stock stocks "
+    + "doctor medicine hospital homework code ignore instructions instruction pretend prompt chatgpt gpt ai song songs spotify youtube "
+    + "video videos radio assistant answer answers question questions now who why how").split(" "));
+  // Never about a show, whatever else is said: turned away outright.
+  const ALWAYS_OFF_TOPIC = new Set(("why weather forecast joke jokes poem poems essay recipe pizza biryani burger cab cabs taxi uber ola flight "
+    + "flights alarm timer translate calculate ignore instructions instruction pretend prompt chatgpt gpt homework money upi bank loan").split(" "));
+  const LANGUAGE_WORDS = new Set("english hindi marathi gujarati tamil telugu kannada bengali punjabi urdu malayalam".split(" "));
+  const GREETINGS = new Set("hello hi hey hiya namaste thanks thank thankyou ok okay bye goodbye yes no morning afternoon".split(" "));
+  const EXAMPLES = ["Comedy this weekend", "Live music tonight", "2 tickets for a play on Saturday", "Something under ₹500 this week"];
 
-  // What a request asks for: { words, category, range: [from, to] | null, dayLabel, city, qty }.
+  // What a request asks for: { words, category, range: [from, to] | null, dayLabel, city, qty,
+  // maxPrice, free, discover, film, offTopic, greeting }.
   function parseRequest(text) {
     let t = ` ${norm(text)} `;
     const take = rx => { const m = t.match(rx); if (m) t = t.replace(m[0], " "); return m; };
     const day = n => addDays(todayISO, n);
-    const req = { words: [], category: "", range: null, dayLabel: "", city: "", qty: null };
+    const req = { words: [], category: "", range: null, dayLabel: "", city: "", qty: null,
+      maxPrice: null, free: false, discover: false, film: false, offTopic: [], greeting: false };
 
     let m;
-    if (take(/ day after tomorrow /)) { req.range = [day(2), day(2)]; }
-    else if (take(/ (tomorrow|tmrw) /)) { req.range = [day(1), day(1)]; }
-    else if (take(/ (today|tonight) /)) { req.range = [todayISO, todayISO]; }
+    if (take(/ (day after tomorrow|parso|parson) /)) { req.range = [day(2), day(2)]; }
+    else if (take(/ (tomorrow|tmrw|kal) /)) { req.range = [day(1), day(1)]; }
+    else if (take(/ (today|tonight|aaj|aaj raat) /)) { req.range = [todayISO, todayISO]; }
     else if (take(/ (this |the |coming |next )?weekend /)) { req.range = whenRange("weekend"); req.dayLabel = "This weekend"; }
     else if (take(/ this week /)) { req.range = whenRange("week"); req.dayLabel = "Next 7 days"; }
     else if (take(/ next week /)) {  // Monday to Sunday
@@ -1886,6 +1913,13 @@
       if (data.cities.includes(city) && take(new RegExp(` ${alias} `))) { req.city = city; break; }
     }
 
+    // Budget before ticket counts, so "under 500" isn't read as a number of tickets.
+    m = take(/ (?:under|below|less than|within|upto|up to|max|maximum|cheaper than|not more than) (?:rs |inr )?(\d{2,5})(?: rupees| rs| inr| bucks)? /)
+      || take(/ (\d{3,5}) (?:rupees|rs|inr|bucks) /);
+    if (m) req.maxPrice = Number(m[1]);
+    else if (take(/ (cheap|budget|affordable|inexpensive|low cost) /)) req.maxPrice = 500;
+    if (take(/ free /)) req.free = true;
+
     m = take(new RegExp(` (${NUM}|couple of) (?:tickets?|seats?|passes|pass|people|persons|adults|of us) `))
       || take(new RegExp(` for (${NUM.replace("|a|an|", "|")}) `)) || take(/ (\d{1,2}) /);  // not "for a play"
     if (m) {
@@ -1893,28 +1927,52 @@
       if (n >= 1 && n <= 10) req.qty = n;
     }
 
-    for (const [word, cat] of Object.entries(CATEGORY_WORDS)) {
-      if (take(new RegExp(` ${word} `))) { req.category = cat; break; }
+    if (take(/ (movie|movies|film|films|cinema|cinemas) /)) req.film = true;
+    if (take(/ (what time is it|what is the time|whats the time|time now|current time) /)) req.offTopic.push("time");  // not "what time is the show"
+    for (const [word, cat] of Object.entries(CATEGORY_WORDS).sort((a, b) => b[0].length - a[0].length)) {
+      while (take(new RegExp(` ${word} `))) req.category = req.category || cat;  // "stand up comedy" is all one thing
     }
-    req.words = t.trim().split(" ").filter(w => w.length > 1 && !FILLER.has(w));
+    const rest = t.trim().split(" ").filter(w => w.length > 1);
+    req.greeting = rest.length > 0 && rest.every(w => GREETINGS.has(w) || FILLER.has(w) || DISCOVERY.has(w)) && rest.some(w => GREETINGS.has(w));
+    for (const w of rest) {
+      if (req.greeting) break;  // "good morning" is a greeting, not a request for picks
+      if (OFF_TOPIC.has(w)) req.offTopic.push(w);
+      else if (DISCOVERY.has(w)) req.discover = true;
+      else if (!FILLER.has(w) && !GREETINGS.has(w)) req.words.push(w);
+    }
+    // Mostly off-topic ("send money to my friend", "translate hello to Hindi"): only a real name
+    // can make it about a show, so short words and language names don't count, and off-topic
+    // words mustn't outnumber the rest.
+    if (req.offTopic.length) {
+      req.words = req.words.filter(w => w.length >= 4 && !LANGUAGE_WORDS.has(w));
+      if (req.offTopic.length > req.words.length || req.offTopic.some(w => ALWAYS_OFF_TOPIC.has(w))) req.words = [];
+    }
     return req;
   }
 
-  // Shows that fit a request, best first. Words match from the start of a word. One in the
-  // title counts most, then the venue, then a genre; the description only adds weight, since
+  // Upcoming shows in a city (all cities if none) that fit the kind of show, day and budget.
+  function showPool(req, city, useDay) {
+    return data.events.filter(e => (!city || e.city === city) && (!req.category || e.category === req.category)
+      && (!useDay || !req.range || (e.date >= req.range[0] && e.date <= req.range[1]))
+      && (!req.maxPrice || (e.price_from && e.price_from <= req.maxPrice)));
+  }
+
+  // Shows that fit a request's words, best first. Words match from the start of a word. One in
+  // the title counts most, then the venue, then a genre; the description only adds weight, since
   // nearly any word turns up in one. Speech-to-text slips, so longer requests may miss a word.
   function matchShows(req, city, useDay = true) {
-    const pool = data.events.filter(e => (!city || e.city === city) && (!req.category || e.category === req.category)
-      && (!useDay || !req.range || (e.date >= req.range[0] && e.date <= req.range[1])));
-    const need = req.words.length <= 2 ? req.words.length : req.words.length - 1;
+    // A request that's partly off-topic ("who's playing at NCPA", "how much is Papon") must name
+    // the show or venue outright: every word in a title or venue, so stray words can't match.
+    const strict = req.offTopic.length > 0;
+    const need = strict || req.words.length <= 2 ? req.words.length : req.words.length - 1;
     const scored = [];
-    for (const e of pool) {
+    for (const e of showPool(req, city, useDay)) {
       const title = ` ${norm(e.title)}`, venue = ` ${norm(e.venue)}`, about = ` ${norm(e.about)}`;
       const genres = ` ${norm((e.genres || []).map(genreName).join(" "))}`;
       let hits = 0, score = 0;
       for (const w of req.words) {
         const at = ` ${w}`;
-        const pts = title.includes(at) ? 4 : venue.includes(at) ? 3 : genres.includes(at) ? 2 : 0;
+        const pts = title.includes(at) ? 4 : venue.includes(at) ? 3 : !strict && genres.includes(at) ? 2 : 0;
         if (pts) hits++;
         score += pts || (about.includes(at) ? 0.5 : 0);
       }
@@ -1925,50 +1983,108 @@
     return scored.map(([, e]) => e).filter(e => (useDay && req.range) || (!seen.has(showKey(e)) && seen.add(showKey(e)))).slice(0, 5);
   }
 
-  function answerRequest(text, method) {
-    const req = parseRequest(text);
-    const asksForSomething = req.words.length || req.category || req.range;
-    if (!asksForSomething) {
-      track("voice_request", { method, result: "out_of_scope" });
-      assistOut.innerHTML = `<p class="assist-msg">I can only help you book a show. Tell me the show, artist or kind of show, and when — like <b>“two tickets for stand-up this Saturday”</b>.</p>`;
-      return;
-    }
-    // Exactly what was asked; else the same city on other days; else other cities.
+  // No particular show asked for ("comedy this weekend", "surprise me"): your For you picks.
+  function pickShows(req, city, useDay = true) {
+    return recommend(showPool(req, city, useDay), getPrefs(), new Set(), 5);
+  }
+
+  // The exact request; else the same city on other days; else other cities.
+  function findShows(req, by) {
     const city = req.city || state.city;
-    let shows = matchShows(req, city), note = "", elsewhere = false;
+    let shows = by(req, city, true), note = "", where = "here";
     if (!shows.length && req.range) {
-      shows = matchShows(req, city, false);
+      shows = by(req, city, false);
       const when = req.dayLabel === "Today" ? "today" : req.range[0] === req.range[1] ? `on ${req.dayLabel}` : req.dayLabel.toLowerCase();
-      if (shows.length) note = `Nothing like that in ${city} ${when}. Here's when it's on:`;
+      if (shows.length) { note = `Nothing like that in ${city} ${when}. Here's when it's on next:`; where = "other_day"; }
     }
     if (!shows.length && !req.city) {
-      shows = matchShows(req, "");
-      if (!shows.length && req.range) shows = matchShows(req, "", false);
-      if (shows.length) { elsewhere = true; note = `Nothing like that in ${city}, but here's what I found elsewhere:`; }
+      shows = by(req, "", true);
+      if (!shows.length && req.range) shows = by(req, "", false);
+      if (shows.length) { note = `Nothing like that in ${city}, but here's what I found elsewhere:`; where = "elsewhere"; }
     }
-    track("voice_request", { method, result: !shows.length ? "none" : elsewhere ? "found_elsewhere" : note ? "found_other_day" : "found" });
+    return { shows, note, where };
+  }
 
-    const heard = [req.qty ? `${req.qty} ${req.qty === 1 ? "ticket" : "tickets"}` : "", req.words.join(" "), req.category ? catLabel(req.category) : "",
-      req.dayLabel, city].filter(Boolean);
+  const SCOPE_EXAMPLES = `Try <b>“comedy this weekend”</b>, <b>“two tickets for a Marathi play on Saturday”</b> or <b>“jazz under ₹1,000”</b>.`;
+  function speak(line) {
+    if (!("speechSynthesis" in window)) return;
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(line);
+      u.lang = "en-IN"; u.rate = 1.05;
+      speechSynthesis.speak(u);
+    } catch {}
+  }
+
+  function answerRequest(text, method) {
+    const req = parseRequest(text);
+    const city = req.city || state.city;
+    const reply = (html, result, line) => {
+      assistOut.innerHTML = html;
+      track("voice_request", { method, result });
+      if (method === "voice" && line) speak(line);
+    };
+    const tryChips = `<div class="assist-try">${EXAMPLES.map(x => `<button class="chip" data-assist-try="${esc(x)}">${esc(x)}</button>`).join("")}</div>`;
+    const asksForShows = req.words.length || req.category || req.range || req.discover || req.maxPrice || req.free;
+
+    // Greetings, thanks, or nothing to go on.
+    if (!asksForShows && !req.film && !req.offTopic.length) {
+      return reply(`<p class="assist-msg">${req.greeting ? "Hi! " : ""}I'm here to help you find and book live shows: gigs, plays, stand-up and sports. ${SCOPE_EXAMPLES}</p>${tryChips}`,
+        "out_of_scope", "I can help you find and book live shows. Try comedy this weekend.");
+    }
+    // Off-topic: turned away, unless the rest of the request names a listed show.
+    let found = req.words.length ? findShows(req, matchShows) : { shows: [] };
+    if (req.offTopic.length && !found.shows.length) {
+      return reply(`<p class="assist-msg">Sorry, I can only help you find and book live shows on gigsnshows. ${SCOPE_EXAMPLES}</p>${tryChips}`,
+        "out_of_scope", "Sorry, I can only help you find and book live shows.");
+    }
+    if (req.film && !found.shows.length && !req.category) {
+      return reply(`<p class="assist-msg">gigsnshows lists live shows, not films. Looking for a gig, play, stand-up or a match instead? ${SCOPE_EXAMPLES}</p>${tryChips}`,
+        "film", "gigsnshows lists live shows, not films.");
+    }
+
+    let note = "";
+    if (!req.words.length) {
+      found = findShows(req, pickShows);
+    } else if (!found.shows.length && (req.category || req.range || req.discover || req.maxPrice)) {
+      // "Comedy in Bandra": nothing matches "Bandra", so offer the stand-up that is on.
+      const loose = findShows({ ...req, words: [] }, pickShows);
+      if (loose.shows.length) { found = loose; note = `Nothing matching “${req.words.join(" ")}”. `; }
+    }
+    if (req.free) note += "Not every show lists a price, so I can't pick out the free ones. ";
+    if (req.maxPrice && found.shows.length) note += "Only shows with a listed price are included. ";
+    const { shows } = found;
+    note = (note + (found.note || "")).trim();
+
+    const heard = [req.qty ? `${req.qty} ${req.qty === 1 ? "ticket" : "tickets"}` : "", req.words.join(" "),
+      req.category ? catLabel(req.category) : "", req.maxPrice ? `Under ₹${req.maxPrice.toLocaleString("en-IN")}` : "",
+      req.discover && !req.words.length ? "Your picks" : "", req.dayLabel, city].filter(Boolean);
     const chips = `<div class="assist-heard">${heard.map(h => `<span class="tag">${esc(h)}</span>`).join("")}</div>`;
     if (!shows.length) {
-      assistOut.innerHTML = `${chips}<p class="assist-msg">I couldn't find a show like that${req.dayLabel ? " on that day" : ""}. I can only book shows listed on gigsnshows — try the show's or artist's name, or a kind of show and a day.</p>`;
-      return;
+      const what = req.words.length ? `a show matching “${req.words.join(" ")}”` : "a show like that";
+      return reply(`${chips}<p class="assist-msg">I couldn't find ${what}${req.dayLabel ? " then" : ""} in the listings. Try a show's or artist's name, a venue, or a kind of show and a day.</p>`,
+        "none", "I couldn't find a show like that.");
     }
     const n = req.qty;
-    assistOut.innerHTML = `${chips}
+    const first = shows[0];
+    reply(`${chips}
       ${note ? `<p class="assist-msg">${esc(note)}</p>` : ""}
       <ul class="assist-list">${shows.map(e => {
         const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url;
         const price = e.price_from ? ` · from ₹${Number(e.price_from).toLocaleString("en-IN")}${n > 1 ? " each" : ""}` : "";
         return `<li>
-          <h3>${esc(e.title)}</h3>
-          <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city !== city ? e.city : ""].filter(Boolean).join(", "))}${price}</p>
+          <div class="assist-row">
+            <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+            <div><h3>${esc(e.title)}</h3>
+            <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city !== city ? e.city : ""].filter(Boolean).join(", "))}${price}</p></div>
+          </div>
           <div class="assist-acts">
             <a class="assist-book" href="${esc(link)}" target="_blank" rel="noopener" data-assist-book="${e.id}" data-platform="${esc(sources[0])}">Book ${n ? `${n} ${n === 1 ? "ticket" : "tickets"} ` : ""}on ${esc(sources[0].replace(/ (Plays|Sports)$/, ""))}</a>
             <button class="assist-details" data-assist-details="${e.id}">Details</button>
           </div>
-        </li>`; }).join("")}</ul>`;
+        </li>`; }).join("")}</ul>`,
+      found.where === "here" ? "found" : `found_${found.where}`,
+      `I found ${shows.length === 1 ? "one show" : `${shows.length} shows`}. ${shows.length > 1 ? "The first is " : ""}${first.title.split(/[|:]/)[0].trim()}, ${whenLabel(first).replace(",", " at")}.`);
   }
 
   let recognition = null;
@@ -1997,7 +2113,7 @@
 
   function openAssist() {
     closeShareMenu(false);
-    assistOut.innerHTML = "";
+    assistOut.innerHTML = `<div class="assist-try">${EXAMPLES.map(x => `<button class="chip" data-assist-try="${esc(x)}">${esc(x)}</button>`).join("")}</div>`;
     assistInput.value = "";
     assistInput.placeholder = "2 tickets for stand-up this Saturday";
     assistMic.hidden = !Recognition;
@@ -2010,6 +2126,7 @@
   function closeAssist() {
     if (assist.hidden) return;
     stopListening();
+    try { speechSynthesis.cancel(); } catch {}
     assist.hidden = true;
     document.body.style.overflow = "";
     document.getElementById("micBtn").focus({ preventScroll: true });
@@ -2024,6 +2141,8 @@
   });
   assist.addEventListener("click", ev => {
     if (ev.target === assist || ev.target.closest("[data-assist-close]")) { closeAssist(); return; }
+    const example = ev.target.closest("[data-assist-try]");
+    if (example) { stopListening(); assistStatus.textContent = ""; assistInput.value = example.dataset.assistTry; answerRequest(example.dataset.assistTry, "example"); return; }
     const book = ev.target.closest("[data-assist-book]");
     if (book) {
       const e = eventById(book.dataset.assistBook);

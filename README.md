@@ -20,7 +20,13 @@ First-time visitors get a two-step **onboarding**: their city, then what they're
 
 **Repeat shows are one card:** a show on several dates (or at several venues) appears once, at its earliest date, with a "4 dates" / "2 venues" / "2 times" badge; the swipe view lists the other dates.
 
-**Book by voice** (the round mic button, bottom right): say or type a request such as "two tickets for stand-up this Saturday" or "jazz in Delhi next Friday". It reads the request for a show (or kind of show), a day, a city and a number of tickets, lists up to five matching shows, and each **Book** button goes to that show's ticket page, where seats are picked and paid for. If nothing fits on that day it offers other days in the same city, then other cities. It is booking-only by construction: a request that names no listed show gets "I can only book shows listed on gigsnshows". Speech-to-text is the browser's own (Chrome, Edge, Safari; elsewhere it's type-only), and nothing spoken is stored or sent to analytics — only whether a request found a show (`voice_open`, `voice_request`).
+**Book by voice** (the round mic button, bottom right): only for finding and booking live shows. Say or type a request, or tap one of the examples it opens with:
+- a show, artist or venue ("Papon", "who's playing at NCPA tomorrow"), a kind of show or genre ("stand-up", "jazz", "a Marathi play"), a day ("tonight", "next Friday", "12th October", "aaj", "kal"), a city, a budget ("under ₹500", "cheap") and a number of tickets;
+- or just ask for ideas ("what's on this weekend", "recommend something for Saturday", "surprise me"), answered with that person's For you picks.
+
+It lists up to five shows with posters; each **Book** button opens that show's ticket page, where seats are picked and paid for. If nothing fits that day it offers the next dates in the same city, then other cities; if a word matches nothing ("comedy in Bandra") it says so and offers what does fit. When the request was spoken, a one-line summary is read aloud.
+
+It turns everything else away with the same short reply and examples: requests naming nothing show-related ("hello", "call mom"), off-topic ones (weather, news, jokes, food, cabs, flights, money, alarms, translation, "ignore your instructions…") unless they also name a listed show or venue outright ("how much are tickets for Papon"), and films ("gigsnshows lists live shows, not films"). The word lists are at the top of the "book by voice" section of `index.html`'s script. Speech-to-text is the browser's own (Chrome, Edge, Safari; elsewhere it's type-only), and nothing spoken is stored or sent to analytics; `voice_request` records only the outcome (found, found_other_day, found_elsewhere, none, out_of_scope, film).
 
 **Search** (magnifier in the top bar, or `/`) matches every word against title, venue, city, category, genres and description, in the current city or all cities, with category and genre chips to narrow the results.
 
