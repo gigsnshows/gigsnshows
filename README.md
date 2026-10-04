@@ -43,7 +43,7 @@ service cloud.firestore {
 }
 ```
 
-`privacy.html` is the privacy policy the login links to. Analytics events: `login` / `sign_up` (method), `delete_account`.
+`privacy.html` is the privacy policy the login and footer link to; its contact address (currently mahesh@gpt1ventures.com) is in two places in that file. Analytics events: `login` / `sign_up` (method), `delete_account`.
 
 **Analytics** (Google Analytics 4): set `GA_MEASUREMENT_ID` at the top of the `<script>` in `index.html`. Visitors get a small notice asking before analytics cookies are set (Consent Mode; ad storage is always off); until they say OK, Google only receives cookie-free pings. Local testing (`localhost`) is never sent. Besides page views it sends these events, with parameters: `city_view` / `choose_city` (city), `view_tab` (tab), `filter_genre` (genre), `search` (search_term), `open_show` (row — which row a show was opened from), `swipe_view_open` (from), `ticket_click` (platform, item_name), `wanna_go` (item_name), `share` (method, item_id), `onboarding` (result), `set_interest` (interest), `shared_link_open` (status), `not_for_me` (item_name). To see the parameters in GA's reports, register them under Admin → Custom definitions.
 

@@ -1358,6 +1358,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("footTabs").innerHTML = TABS.map(t => `<li><button data-foot-tab="${t.key}">${t.label}</button></li>`).join("")
       + `<li><button data-onboard>Your interests</button></li>`
+      + `<li><a href="privacy.html">Privacy</a></li>`
       + (SIGNUP_URL ? `<li><a href="${esc(SIGNUP_URL)}" target="_blank" rel="noopener">Get the weekly picks</a></li>` : "");
   }
 
