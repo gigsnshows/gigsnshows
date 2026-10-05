@@ -483,6 +483,10 @@
   .plan-group { margin-top: 16px; }
   .plan-group b { font-size: 0.9rem; }
   .plan-group .assist-heard { margin: 8px 0 0; }
+  .art .plan-count {
+    position: absolute; right: 10px; top: 10px; z-index: 1; padding: 4px 9px; border-radius: 999px; color: #fff; font-size: 0.74rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); box-shadow: 0 2px 10px rgba(0,0,0,.4);
+  }
   .tag.me { background: color-mix(in srgb, var(--glow) 40%, transparent); }
   .plan-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
   .plan-acts .assist-book { flex: 1 1 160px; }
@@ -1105,7 +1109,7 @@
   }
   const BUCKETS = ["Tonight", "This weekend", "This week", "Later this month", "Further out"];
 
-  function trayHtml(id, title, count, items, { bubbles = "", seeAll = "", empty = "", note = "" } = {}) {
+  function trayHtml(id, title, count, items, { bubbles = "", seeAll = "", empty = "", note = "", unit = "show" } = {}) {
     const body = items.length ? `<div class="shelf-wrap">
         <button class="arrow prev" data-scroll="prev" aria-label="Scroll left">‹</button>
         <button class="arrow next" data-scroll="next" aria-label="Scroll right">›</button>
@@ -1113,7 +1117,7 @@
       </div>`
       : `<div class="empty-row">${empty}</div>`;
     return `<section class="tray" data-tray="${id}">
-      <div class="tray-head"><h2>${esc(title)}${count ? `<small>${count} ${count === 1 ? "show" : "shows"}</small>` : ""}</h2>${seeAll}</div>
+      <div class="tray-head"><h2>${esc(title)}${count ? `<small>${count} ${count === 1 ? unit : unit + "s"}</small>` : ""}</h2>${seeAll}</div>
       ${note ? `<p class="tray-note">${esc(note)}</p>` : ""}
       ${bubbles}
       ${body}
@@ -1214,6 +1218,8 @@
       sections.push(trayHtml("foryou", "For you", 0, recs.map(e => renderTile(e)), { seeAll: actions, note: forYouNote(prefs) }));
     }
     if (wannaGo.length) sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e))));
+    const myPlans = planTiles();
+    if (myPlans.length) sections.push(trayHtml("plans", "Your plans", myPlans.length, myPlans, { unit: "plan", note: "Plans you started or answered. Tap one to see who's in." }));
 
     if (tonight.length) sections.push(trayHtml("tonight", "Tonight", tonight.length, tonight.map(e => renderTile(e))));
     if (weekend.length) sections.push(trayHtml("weekend", "This Weekend", weekend.length, weekend.map(e => renderTile(e))));
@@ -1678,16 +1684,19 @@
   const acctBtn = document.getElementById("acctBtn");
   let fb = null, user = null, confirmation = null, pendingPhone = "", saveTimer = null;
 
-  async function loadFirebase() {
-    if (!fb) {
-      const [app, A, S] = await Promise.all(["firebase-app.js", "firebase-auth.js", "firebase-firestore.js"].map(f => import(FIREBASE_SDK + f)));
-      const instance = app.initializeApp(FIREBASE_CONFIG);
-      fb = { auth: A.getAuth(instance), db: S.getFirestore(instance), A, S };
-      fb.auth.languageCode = "en";
-      // A friend answering a plan is signed in anonymously so their answer has an owner; that isn't an account.
-      await new Promise(resolve => A.onAuthStateChanged(fb.auth, u => { setUser(u && !u.isAnonymous ? u : null); resolve(); }));
+  let fbLoading = null;
+  function loadFirebase() {
+    if (!fbLoading) {
+      fbLoading = (async () => {
+        const [app, A, S] = await Promise.all(["firebase-app.js", "firebase-auth.js", "firebase-firestore.js"].map(f => import(FIREBASE_SDK + f)));
+        const instance = app.initializeApp(FIREBASE_CONFIG);
+        fb = { auth: A.getAuth(instance), db: S.getFirestore(instance), A, S };
+        fb.auth.languageCode = "en";
+        // A friend answering a plan is signed in anonymously so their answer has an owner; that isn't an account.
+        await new Promise(resolve => A.onAuthStateChanged(fb.auth, u => { setUser(u && !u.isAnonymous ? u : null); resolve(); }));
+      })().catch(err => { fbLoading = null; fb = null; throw err; });  // a failed load can be tried again
     }
-    return fb;
+    return fbLoading.then(() => fb);
   }
   const readLS = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } };
   const userDoc = () => fb.S.doc(fb.db, "users", user.uid);
@@ -1931,14 +1940,48 @@
     return live ? `${shareLink(live)}?plan=${plan.id}` : `${location.origin}/?plan=${plan.id}`;
   };
 
+  // "Your plans" row: plans you started or answered whose show is still listed, with who's coming.
+  const planInfo = new Map();  // plan id -> { going, maybe, cant }
+  function countAnswers(replies) {
+    const c = { going: 0, maybe: 0, cant: 0 };
+    for (const r of replies) if (r.answer in c) c[r.answer]++;
+    return c;
+  }
+  function planTiles() {
+    return readLS(LS_PLANS, []).map(p => [p, eventById(p.e)]).filter(([, e]) => e)
+      .sort((a, b) => byDateTime(a[1], b[1])).slice(0, 12).map(([p, e]) => {
+        const c = planInfo.get(p.id);
+        const label = !c ? "Plan" : c.going || c.maybe ? `${c.going} going${c.maybe ? ` · ${c.maybe} maybe` : ""}` : "No answers yet";
+        return renderTile(e).replace(`<div class="tile" data-id="${e.id}">`, `<div class="tile" data-id="${e.id}" data-plan-id="${p.id}">`)
+          .replace('<div class="art">', `<div class="art"><span class="plan-count">${esc(label)}</span>`);
+      });
+  }
+  async function refreshPlans() {  // fetch each plan's tally; drop plans that were deleted
+    const mine = readLS(LS_PLANS, []).filter(p => eventById(p.e)).slice(0, 12);
+    if (!mine.length) return;
+    try { await loadFirebase(); } catch { return; }
+    const gone = new Set();
+    await Promise.all(mine.map(async p => {
+      try {
+        if (!(await fb.S.getDoc(planRef(p.id))).exists()) { gone.add(p.id); return; }
+        const qs = await fb.S.getDocs(fb.S.collection(fb.db, "plans", p.id, "replies"));
+        planInfo.set(p.id, countAnswers(qs.docs.map(d => d.data())));
+      } catch {}
+    }));
+    if (gone.size) { try { localStorage.setItem(LS_PLANS, JSON.stringify(readLS(LS_PLANS, []).filter(p => !gone.has(p.id)))); } catch {} cloudSave(); }
+    renderList();
+  }
+
   function closePlan() {
     if (planDlg.hidden) return;
     try { plan?.unsub?.(); } catch {}
+    if (plan?.doc) planInfo.set(plan.id, countAnswers(plan.replies.values()));
     plan = null;
     planDlg.hidden = true;
     state.planId = "";
     syncUrl();
     document.body.style.overflow = viewer.hidden ? "" : "hidden";
+    renderList();  // the Your plans row reflects what just changed
   }
 
   async function openPlan(id, from) {
@@ -2056,6 +2099,7 @@
         await fb.S.deleteDoc(planRef(plan.id));
         const id = plan.id;
         try { localStorage.setItem(LS_PLANS, JSON.stringify(readLS(LS_PLANS, []).filter(x => x.id !== id))); } catch {}
+        planInfo.delete(id); cloudSave();
         closePlan();
         toast("Plan deleted.");
       } catch (err) { toast(planError(err)); }
@@ -2445,6 +2489,12 @@
       renderList(); syncUrl();
       return;
     }
+    const planCard = e.target.closest("a.art-link, a.body")?.closest('[data-tray="plans"] .tile[data-plan-id]');
+    if (planCard && !(e.metaKey || e.ctrlKey || e.shiftKey)) {
+      e.preventDefault();
+      openPlan(planCard.dataset.planId, "list");
+      return;
+    }
     const out = e.target.closest("a.art-link, a.body");
     if (out) {
       const tray = out.closest("[data-tray]");
@@ -2594,6 +2644,7 @@
       renderFooter(); render();
       track("city_view", { city: state.city });
       if (state.sharedId || state.planId) track("shared_link_open", { status: state.planId ? "plan" : shared ? "opened" : "show_over" });
+      if (FIREBASE_CONFIG) refreshPlans();
       if (state.planId) openPlan(state.planId, "link");  // a friend's "Who's in?" link opens on the plan
       else if (shared) openViewer([shared.id], shared.id, "shared");  // a friend's link opens on the show itself
 
