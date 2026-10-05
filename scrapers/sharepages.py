@@ -2,7 +2,7 @@
 One tiny page per show at /s/<id>, so a shared link previews with that show's poster,
 title, date and venue in WhatsApp, iMessage, Instagram etc. — link previewers read these
 tags and don't run the dashboard's JavaScript. People who open the link are sent straight
-on to the show on the dashboard.
+on to the show on the dashboard, with any query (a "Who's in?" plan's ?plan=<id>) carried along.
 
 Pages stay up for a month after the show so old links still land somewhere sensible
 (the dashboard then says the show has happened). s/index.json remembers each page's date.
@@ -31,7 +31,7 @@ PAGE = """<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{url}">
 <meta http-equiv="refresh" content="0; url={target}">
-<script>location.replace({target_js})</script>
+<script>location.replace({target_js}+(location.search?"&"+location.search.slice(1):""))</script>
 </head>
 <body style="background:#000;color:#fff;font-family:-apple-system,Helvetica,Arial,sans-serif;padding:2rem">
 <a href="{target}" style="color:#0a84ff">{title} — see it on gigsnshows</a>

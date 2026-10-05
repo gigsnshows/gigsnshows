@@ -28,6 +28,49 @@ It lists up to five shows with posters; each **Book** button opens that show's t
 
 It turns everything else away with the same short reply and examples: requests naming nothing show-related ("hello", "call mom"), off-topic ones (weather, news, jokes, food, cabs, flights, money, alarms, translation, "ignore your instructions…") unless they also name a listed show or venue outright ("how much are tickets for Papon"), and films ("gigsnshows lists live shows, not films"). The word lists are at the top of the "book by voice" section of `index.html`'s script. Speech-to-text is the browser's own (Chrome, Edge, Safari; elsewhere it's type-only), and nothing spoken is stored or sent to analytics; `voice_request` records only the outcome (found, found_other_day, found_elsewhere, none, out_of_scope, film).
 
+**Who's in? (plans with friends).** In the swipe view, "Who's in? Plan with friends" turns a show into a plan: the person who starts it shares a link (it previews with the show's poster like any shared show), and anyone who opens it types a first name and taps Going / Maybe / Can't. Everyone sees the answers live. Saying Going also puts the show on your Wanna Go list. No login needed: Firebase signs friends in anonymously so each answer has an owner. Starting a plan on a show you already planned reopens the same plan. Answers can be changed or removed, and the creator can delete the plan.
+
+Behind it: `plans/<12-letter id>` in Firestore (show details, creator) with `plans/<id>/replies/<uid>` (name, answer). Setup, beyond the login's: in the Firebase console, **Authentication → Sign-in method → Anonymous → Enable**, and use these Firestore rules (they replace the login-only ones):
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    // Anyone with a plan's link can read it; nobody can list plans.
+    match /plans/{planId} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if request.auth != null && planId.size() >= 12
+        && request.resource.data.keys().hasOnly(['eventId','title','date','time','venue','city','image','createdBy','createdAt'])
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.eventId is string && request.resource.data.eventId.size() <= 40
+        && request.resource.data.title is string && request.resource.data.title.size() <= 200
+        && request.resource.data.date is string && request.resource.data.date.size() <= 10
+        && request.resource.data.time is string && request.resource.data.time.size() <= 5
+        && request.resource.data.venue is string && request.resource.data.venue.size() <= 200
+        && request.resource.data.city is string && request.resource.data.city.size() <= 60
+        && request.resource.data.image is string && request.resource.data.image.size() <= 600;
+      allow update: if false;
+      allow delete: if request.auth != null && resource.data.createdBy == request.auth.uid;
+      match /replies/{userId} {
+        allow read: if exists(/databases/$(database)/documents/plans/$(planId));
+        allow create, update: if request.auth != null && request.auth.uid == userId
+          && exists(/databases/$(database)/documents/plans/$(planId))
+          && request.resource.data.keys().hasOnly(['name','answer','updatedAt'])
+          && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 40
+          && request.resource.data.answer in ['going','maybe','cant'];
+        allow delete: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
+```
+
+Analytics events: `plan_create`, `plan_open` (from: new / own / link; owner), `plan_reply` (answer; role owner or friend), `shared_link_open` with status `plan`, and `ticket_click` with `via: plan`. Share pages (`/s/<id>`) pass a `?plan=` query through to the dashboard.
+
 **Search** (magnifier in the top bar, or `/`) matches every word against title, venue, city, category, genres and description, in the current city or all cities, with category and genre chips to narrow the results.
 
 The **Home** tab is a browse-everything view — **For you** (interests and behaviour first, then shows listed by several platforms and happening soon; one card per show), **Wanna Go** (tap the heart under any card; saved in your browser), Tonight, This Weekend, Just Announced (shows first seen in the last few days), **From Your Favourite Venues** (edit the `FAVOURITE_VENUES` list at the top of the `<script>` in `index.html` to change which venues get a row), then one row per category.
