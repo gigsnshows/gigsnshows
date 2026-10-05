@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>gigsnshows</title>
-<meta name="description" content="Live music, theatre, sports and stand-up across Mumbai, Delhi and Bengaluru, collated from every major ticketing platform.">
+<meta name="description" content="Live music, theatre, sports and stand-up across India's cities, collated from every major ticketing platform.">
 <meta property="og:site_name" content="gigsnshows">
-<meta property="og:title" content="gigsnshows · Gigs & shows in Mumbai, Delhi and Bengaluru">
+<meta property="og:title" content="gigsnshows · Gigs & shows across India">
 <meta property="og:description" content="Live music, theatre, sports and stand-up from every major ticketing platform, in one place.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -6 40 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230a84ff'/%3E%3Cstop offset='1' stop-color='%23ff2d95'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M5 4h30a3 3 0 0 1 3 3v4a3 3 0 0 0 0 6v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4a3 3 0 0 0 0-6V7a3 3 0 0 1 3-3z'/%3E%3Cpath d='M28 7.5v13' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' stroke-dasharray='.01 3.2'/%3E%3Cpolygon fill='%23fff' points='15,8.8 16.29,12.22 19.95,12.39 17.09,14.68 18.06,18.21 15,16.2 11.94,18.21 12.91,14.68 10.05,12.39 13.71,12.22'/%3E%3C/svg%3E">
@@ -487,6 +487,10 @@
     position: absolute; right: 10px; top: 10px; z-index: 1; padding: 4px 9px; border-radius: 999px; color: #fff; font-size: 0.74rem; font-weight: 700;
     background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); box-shadow: 0 2px 10px rgba(0,0,0,.4);
   }
+  .plan-ans.two { grid-template-columns: repeat(2, 1fr); }
+  .list-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+  .list-who { margin: 4px 0 0; color: var(--ink-2); font-size: 0.82rem; }
+  .list-who b { color: var(--ink); font-weight: 600; }
   .tag.me { background: color-mix(in srgb, var(--glow) 40%, transparent); }
   .plan-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
   .plan-acts .assist-book { flex: 1 1 160px; }
@@ -603,6 +607,10 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
 </button>
 
+<div class="assist" id="list" role="dialog" aria-modal="true" aria-labelledby="listTitle" hidden>
+  <div class="assist-card" id="listCard"></div>
+</div>
+
 <div class="assist" id="plan" role="dialog" aria-modal="true" aria-labelledby="planTitle" hidden>
   <div class="assist-card" id="planCard"></div>
 </div>
@@ -689,6 +697,7 @@
     tab: TABS.some(t => t.key === params.get("tab")) ? params.get("tab") : "all",
     favVenue: "all",
     sharedId: params.get("event") || "",
+    listId: /^[a-z0-9]{12}$/.test(params.get("list") || "") ? params.get("list") : "",  // a friend's shared Wanna Go list
     planId: /^[a-z0-9]{12}$/.test(params.get("plan") || "") ? params.get("plan") : "",  // a friend's "Who's in?" link
     genre: params.get("genre") || "",
     when: params.get("when") || "",                     // date filter: tonight, tomorrow, weekend, week or YYYY-MM-DD
@@ -709,6 +718,7 @@
     if (state.q.trim() && state.qScope === "all") p.set("in", "all");
     if (state.sharedId) p.set("event", state.sharedId);
     if (state.planId) p.set("plan", state.planId);
+    if (state.listId) p.set("list", state.listId);
     history.replaceState(null, "", "?" + p.toString());
   }
 
@@ -861,6 +871,7 @@
     if (i > -1) ids.splice(i, 1); else { ids.push(id); track("wanna_go", { item_name: eventById(id)?.title }); remember(eventById(id), WEIGHT.wannaGo); }
     localStorage.setItem(LS_LIST, JSON.stringify(ids));
     cloudSave();
+    listSyncSoon();
     renderList();
   }
 
@@ -1217,7 +1228,13 @@
         <button class="see-all" data-onboard>${prefs ? "Edit" : "Personalise"}</button></span>`;
       sections.push(trayHtml("foryou", "For you", 0, recs.map(e => renderTile(e)), { seeAll: actions, note: forYouNote(prefs) }));
     }
-    if (wannaGo.length) sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e))));
+    const myLists = readLS(LS_LISTS, []);
+    if (wannaGo.length || myLists.length) {
+      const chips = `<div class="list-chips">${myLists.map(l => `<button class="chip" data-list-open="${esc(l.id)}">${esc(l.n)}</button>`).join("")}
+        <button class="chip" data-list-new>＋ Share this list with friends</button></div>`;
+      sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e)),
+        { bubbles: chips, empty: "Tap the heart on a show to add it here." }));
+    }
     const myPlans = planTiles();
     if (myPlans.length) sections.push(trayHtml("plans", "Your plans", myPlans.length, myPlans, { unit: "plan", note: "Plans you started or answered. Tap one to see who's in." }));
 
@@ -1678,6 +1695,7 @@
     appId: "1:317639338415:web:413c9a4a4d67d98cc7675a",
   };
   const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
+  const LS_LISTS = "whatsOn.lists";  // [{id, n: name, o: 1 if yours, j: 1 if you share your Wanna Go there, t}]
   const LS_PLANS = "whatsOn.plans";  // [{id, e: show id, o: 1 if you made it, t}]: plans you made or answered
   const LS_SIGNED_IN = "whatsOn.signedIn";  // load Firebase on the next visit only if you're logged in
   const loginDlg = document.getElementById("login"), loginCard = document.getElementById("loginCard");
@@ -1719,6 +1737,7 @@
     const cloud = snap.exists() ? snap.data() : {};
     const list = [...new Set([...(cloud.wannaGo || []), ...readLS(LS_LIST, [])])];
     const plans = [...new Map([...(cloud.plans || []), ...readLS(LS_PLANS, [])].map(x => [x.id, x])).values()].slice(0, 50);
+    const lists = [...new Map([...(cloud.lists || []), ...readLS(LS_LISTS, [])].map(x => [x.id, x])).values()].slice(0, 30);
     const prefs = cloud.prefs || readLS(LS_PREFS, null);
     const a = readLS(LS_PROFILE, null), b = cloud.profile || null;
     let profile = a || b;
@@ -1732,6 +1751,7 @@
     try {
       localStorage.setItem(LS_LIST, JSON.stringify(list));
       localStorage.setItem(LS_PLANS, JSON.stringify(plans));
+      localStorage.setItem(LS_LISTS, JSON.stringify(lists));
       if (prefs) { localStorage.setItem(LS_PREFS, JSON.stringify(prefs)); localStorage.setItem(LS_ONBOARDED, "1"); }
       if (profile) localStorage.setItem(LS_PROFILE, JSON.stringify(profile));
     } catch {}
@@ -1740,7 +1760,7 @@
   }
   async function pushToAccount() {
     if (!user) return;
-    await fb.S.setDoc(userDoc(), { wannaGo: readLS(LS_LIST, []), plans: readLS(LS_PLANS, []), prefs: readLS(LS_PREFS, null),
+    await fb.S.setDoc(userDoc(), { wannaGo: readLS(LS_LIST, []), plans: readLS(LS_PLANS, []), lists: readLS(LS_LISTS, []), prefs: readLS(LS_PREFS, null),
       profile: readLS(LS_PROFILE, null), updatedAt: fb.S.serverTimestamp() });
   }
   function cloudSave() {  // a few seconds after the last change, so browsing doesn't write on every tap
@@ -1807,7 +1827,10 @@
       box.innerHTML = "<div></div>";
       fb.verifier = new fb.A.RecaptchaVerifier(fb.auth, box.firstElementChild, { size: "invisible" });
       const timeout = new Promise((_, reject) => setTimeout(() => reject({ code: "timeout" }), 30000));
-      confirmation = await Promise.race([fb.A.signInWithPhoneNumber(fb.auth, pendingPhone, fb.verifier), timeout]);
+      // A guest (anonymous) session is upgraded in place, so plans and lists made as a guest stay yours.
+      const guest = fb.auth.currentUser?.isAnonymous ? fb.auth.currentUser : null;
+      confirmation = await Promise.race([guest
+        ? fb.A.linkWithPhoneNumber(guest, pendingPhone, fb.verifier) : fb.A.signInWithPhoneNumber(fb.auth, pendingPhone, fb.verifier), timeout]);
       renderLogin("code");
     } catch (err) {
       renderLogin("phone", loginError(err));
@@ -1837,7 +1860,14 @@
       sendCode();
     } else if (form?.dataset.loginForm === "code") {
       try {
-        const cred = await confirmation.confirm(form.code.value.trim());
+        let cred;
+        try { cred = await confirmation.confirm(form.code.value.trim()); }
+        catch (err) {  // this number already has an account: sign in to it instead
+          const credential = err?.code === "auth/credential-already-in-use" ? fb.A.PhoneAuthProvider.credentialFromError(err) : null;
+          if (!credential) throw err;
+          cred = await fb.A.signInWithCredential(fb.auth, credential);
+        }
+        setUser(fb.auth.currentUser);  // linking a guest doesn't fire the auth listener
         track(fb.A.getAdditionalUserInfo(cred)?.isNewUser ? "sign_up" : "login", { method: "phone" });
         closeLogin();
         toast("You're logged in. Your picks now follow you to any device.");
@@ -1860,6 +1890,7 @@
     } else if (act === "delete-yes") {
       try {
         await cleanupPlans(user.uid);
+        await cleanupLists(user.uid);
         await fb.S.deleteDoc(userDoc());
         await fb.A.deleteUser(user);
         track("delete_account");
@@ -1874,7 +1905,7 @@
   if (FIREBASE_CONFIG) {
     acctBtn.hidden = false;
     acctBtn.addEventListener("click", openLogin);
-    if (readLS(LS_SIGNED_IN, null) || readLS(LS_PLANS, []).length) loadFirebase().catch(() => {});  // restore the session and sync
+    if (readLS(LS_SIGNED_IN, null) || readLS(LS_PLANS, []).length || readLS(LS_LISTS, []).length) loadFirebase().catch(() => {});  // restore the session and sync
   }
 
   // ---------- plans: "Who's in?" ----------
@@ -2109,6 +2140,266 @@
     if (ev.target.id !== "planName" || !plan) return;
     const mine = plan.replies.get(plan.uid), name = ev.target.value.trim().replace(/\s+/g, " ").slice(0, 40);
     if (mine && name) answerPlan(mine.answer);
+  });
+
+  // ---------- shared Wanna Go lists ----------
+  // "Share this list with friends" makes a group page: each person who joins shares their own
+  // Wanna Go ids with it, and the page ranks shows by how many of the group want to go ("shows we'd
+  // all go to"). Firestore: lists/<12-letter id> (name, creator) and lists/<id>/members/<uid>
+  // (first name + that person's Wanna Go ids), each member's document writable only by them.
+  // Anyone holding the link can read it; nobody can list lists. Guests are anonymous, as in plans.
+  const listDlg = document.getElementById("list"), listCard = document.getElementById("listCard");
+  let lst = null;  // { id, doc, members: Map(uid -> {name, shows}), uid, unsub, filter }
+  let listSyncTimer = null;
+  const listRef = id => fb.S.doc(fb.db, "lists", id);
+  const memberRef = (id, uid) => fb.S.doc(fb.db, "lists", id, "members", uid);
+  const savedName = () => { try { return localStorage.getItem(LS_NAME) || ""; } catch { return ""; } };
+  const cleanName = v => String(v || "").trim().replace(/\s+/g, " ").slice(0, 40);
+
+  function rememberList(id, name, flags) {
+    const prev = readLS(LS_LISTS, []).find(x => x.id === id);
+    const entry = { id, n: name, o: flags.owner || prev?.o ? 1 : 0, j: flags.joined === undefined ? (prev?.j ? 1 : 0) : (flags.joined ? 1 : 0), t: Date.now() };
+    try { localStorage.setItem(LS_LISTS, JSON.stringify([entry, ...readLS(LS_LISTS, []).filter(x => x.id !== id)].slice(0, 30))); } catch {}
+    cloudSave();
+  }
+  function forgetList(id) {
+    try { localStorage.setItem(LS_LISTS, JSON.stringify(readLS(LS_LISTS, []).filter(x => x.id !== id))); } catch {}
+    cloudSave();
+  }
+  async function writeMembership(id, uid, name) {
+    await fb.S.setDoc(memberRef(id, uid), { name, shows: getWannaGo().slice(0, 100), updatedAt: fb.S.serverTimestamp() });
+  }
+  // Keep every list you've joined up to date with your Wanna Go (only with an existing session,
+  // so a cleared browser can't quietly become a second "you" in the group).
+  function listSyncSoon() {
+    if (!readLS(LS_LISTS, []).some(l => l.j)) return;
+    clearTimeout(listSyncTimer);
+    listSyncTimer = setTimeout(() => syncLists(), 2500);
+  }
+  async function syncLists() {
+    const joined = readLS(LS_LISTS, []).filter(l => l.j), name = savedName();
+    if (!joined.length || !name || !FIREBASE_CONFIG) return;
+    try { await loadFirebase(); } catch { return; }
+    const uid = fb.auth.currentUser?.uid;
+    if (!uid) return;
+    for (const l of joined) { try { await writeMembership(l.id, uid, name); } catch {} }
+  }
+  async function cleanupLists(uid) {  // deleting an account takes its lists and memberships with it
+    for (const l of readLS(LS_LISTS, [])) {
+      try { await fb.S.deleteDoc(memberRef(l.id, uid)); } catch {}
+      if (l.o) { try { await fb.S.deleteDoc(listRef(l.id)); } catch {} }
+    }
+    try { localStorage.removeItem(LS_LISTS); } catch {}
+  }
+
+  function openListDialog() {
+    closeShareMenu(false);
+    listDlg.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function closeList() {
+    if (listDlg.hidden) return;
+    try { lst?.unsub?.(); } catch {}
+    lst = null;
+    listDlg.hidden = true;
+    state.listId = "";
+    syncUrl();
+    document.body.style.overflow = viewer.hidden ? "" : "hidden";
+    renderList();
+  }
+  const listClose = `<button class="assist-close" data-list-close aria-label="Close">×</button>`;
+
+  // Step 1 for the person sharing: name the list, then it's created with their Wanna Go in it.
+  function startList() {
+    openListDialog();
+    listCard.innerHTML = `${listClose}<h2 id="listTitle">Share your Wanna Go list</h2>
+      <p class="assist-status">Friends who join add their own Wanna Go, and you all see the shows you'd go to together.</p>
+      <form id="listCreate">
+        <label class="plan-name">List name <input name="title" maxlength="60" value="Our Wanna Go" required></label>
+        <label class="plan-name">Your name <input name="name" maxlength="40" autocomplete="given-name" placeholder="So friends know whose picks are whose" value="${esc(savedName())}" required></label>
+        <button class="assist-book" style="width:100%;margin-top:16px">Create link</button>
+      </form>
+      <p class="assist-fine" id="listCreateNote">Anyone with the link will see your first name and the shows on your Wanna Go list. You can leave the list whenever you like. <a href="privacy.html">Privacy</a></p>`;
+    listCard.querySelector("input")?.focus({ preventScroll: true });
+  }
+  async function createList(title, name) {
+    try {
+      const uid = await planUid();
+      const id = randomId();
+      await fb.S.setDoc(listRef(id), { name: title, createdBy: uid, createdAt: fb.S.serverTimestamp() });
+      try { localStorage.setItem(LS_NAME, name); } catch {}
+      await writeMembership(id, uid, name);
+      rememberList(id, title, { owner: true, joined: true });
+      track("list_create");
+      openList(id, "new");
+    } catch (err) {
+      document.getElementById("listCreateNote").textContent = planError(err);
+    }
+  }
+
+  async function openList(id, from) {
+    openListDialog();
+    state.listId = id; syncUrl();
+    listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared Wanna Go</h2><p class="assist-status">Opening the list…</p>`;
+    try {
+      let uid = null;
+      try { uid = await planUid(); } catch { await loadFirebase(); }
+      const snap = await fb.S.getDoc(listRef(id));
+      if (state.listId !== id) return;
+      if (!snap.exists()) {
+        listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared Wanna Go</h2><p class="assist-msg">This list has been deleted, or the link isn't right. Ask your friend to share it again.</p>`;
+        forgetList(id);
+        return;
+      }
+      try { lst?.unsub?.(); } catch {}
+      lst = { id, doc: snap.data(), members: new Map(), uid, unsub: null, filter: "all", refreshed: false };
+      rememberList(id, lst.doc.name, {});
+      renderListShell();
+      lst.unsub = fb.S.onSnapshot(fb.S.collection(fb.db, "lists", id, "members"), qs => {
+        lst.members = new Map(qs.docs.map(d => [d.id, d.data()]));
+        const mine = lst.members.get(lst.uid);
+        if (mine && !lst.refreshed) {  // bring my entry up to date with my Wanna Go as I open it
+          lst.refreshed = true;
+          if (savedName()) writeMembership(id, lst.uid, mine.name).catch(() => {});
+        }
+        renderListBody();
+      }, () => { document.getElementById("listShows").innerHTML = `<p class="assist-msg">Couldn't load the list just now.</p>`; });
+      track("list_open", { from, owner: lst.doc.createdBy === uid });
+    } catch (err) {
+      listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared Wanna Go</h2><p class="assist-msg">${esc(planError(err))}</p>`;
+    }
+  }
+
+  function renderListShell() {
+    const owner = lst.doc.createdBy === lst.uid;
+    listCard.innerHTML = `${listClose}<h2 id="listTitle">${esc(lst.doc.name)}</h2>
+      <p class="assist-status" id="listLine"></p>
+      <div id="listMembers" class="assist-heard" style="margin-top:0"></div>
+      <div id="listJoin" hidden>
+        <label class="plan-name">Your name <input id="listName" maxlength="40" autocomplete="given-name" placeholder="So friends know whose picks are whose" value="${esc(savedName())}"></label>
+        <button class="assist-book" data-list-join style="width:100%;margin-top:12px">Join and share my Wanna Go</button>
+        <p class="assist-fine">Joining shares your first name and the shows on your Wanna Go list with anyone who has this link. You can leave any time.</p>
+      </div>
+      <div class="plan-ans two" id="listFilter" role="group" aria-label="Which shows">
+        <button type="button" data-list-filter="all" aria-pressed="true">Everyone's picks</button>
+        <button type="button" data-list-filter="shared" aria-pressed="false">Shows several of us want</button>
+      </div>
+      <div id="listShows" aria-live="polite"></div>
+      <div class="plan-acts"><button class="assist-book" data-share="list">${ICON_SHARE}<span style="margin-left:8px">Invite friends</span></button></div>
+      <div class="plan-quiet"><button data-list-leave hidden>Leave this list</button>${owner ? `<button data-list-delete>Delete this list</button>` : ""}</div>
+      <p class="assist-fine">Anyone with this link can see the names and picks here. <a href="privacy.html">Privacy</a></p>`;
+  }
+
+  function renderListBody() {
+    if (!lst || listDlg.hidden) return;
+    const mine = lst.members.get(lst.uid);
+    const names = [...lst.members.entries()].sort((a, b) => a[1].name.localeCompare(b[1].name));
+    document.getElementById("listLine").textContent = lst.members.size
+      ? `${lst.members.size} ${lst.members.size === 1 ? "person has" : "people have"} shared their Wanna Go.` : "Nobody has shared their Wanna Go yet.";
+    document.getElementById("listMembers").innerHTML = names.map(([uid, m]) =>
+      `<span class="tag${uid === lst.uid ? " me" : ""}">${esc(m.name)}${uid === lst.uid ? " (you)" : ""}</span>`).join("");
+    document.getElementById("listJoin").hidden = !!mine;
+    listCard.querySelector("[data-list-leave]").hidden = !mine;
+    listCard.querySelectorAll("[data-list-filter]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.listFilter === lst.filter)));
+
+    const who = new Map();  // show id -> names of the people who want to go
+    for (const [uid, m] of lst.members) for (const eid of m.shows || []) {
+      if (!eventById(eid)) continue;  // already over, or no longer listed
+      (who.get(eid) || who.set(eid, []).get(eid)).push(uid === lst.uid ? "You" : m.name);
+    }
+    let rows = [...who].map(([eid, n]) => [eventById(eid), n]);
+    if (lst.filter === "shared") rows = rows.filter(([, n]) => n.length >= 2);
+    rows.sort((a, b) => b[1].length - a[1].length || byDateTime(a[0], b[0]));
+    const mineIds = new Set(getWannaGo());
+    document.getElementById("listShows").innerHTML = rows.length
+      ? `<ul class="assist-list">${rows.slice(0, 40).map(([e, n]) => {
+          const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url, on = mineIds.has(e.id);
+          return `<li>
+            <div class="assist-row">
+              <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+              <div><h3>${esc(e.title)}</h3>
+              <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city].filter(Boolean).join(", "))}</p>
+              <p class="list-who"><b>${n.length} want${n.length === 1 ? "s" : ""} to go</b> · ${esc(n.join(", "))}</p></div>
+            </div>
+            <div class="assist-acts">
+              <a class="assist-book" href="${esc(link)}" target="_blank" rel="noopener" data-list-tickets="${esc(sources[0])}" data-eid="${e.id}">Tickets</a>
+              <button class="assist-details" data-list-plan="${e.id}">Plan it</button>
+              <button class="assist-details" data-list-save="${e.id}" aria-pressed="${on}">${on ? "✓ On my list" : "+ Wanna go"}</button>
+            </div></li>`; }).join("")}</ul>`
+      : `<p class="assist-msg">${lst.filter === "shared"
+          ? (lst.members.size < 2 ? "Once two or more people have the same show on their Wanna Go, it appears here." : "No show is on more than one list yet.")
+          : "No shows yet. Tap the heart on a show to add it to your Wanna Go list."}</p>`;
+  }
+
+  async function shareList(btn) {
+    if (!shareMenu.hidden && shareOpener === btn) { closeShareMenu(true); return; }
+    const url = `${location.origin}/?list=${lst.id}`, title = lst.doc.name;
+    const text = `Join “${title}” on gigsnshows 🎟️ Add the shows you want to see and we'll find what we'd all go to.`;
+    if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+      try { await navigator.share({ title, text, url }); track("share", { method: "phone", item_id: lst.id, list: true }); return; }
+      catch (err) { if (err.name === "AbortError") return; }
+    }
+    openShareMenu(btn, { title }, text, url);
+  }
+
+  document.addEventListener("submit", ev => {
+    if (ev.target.id !== "listCreate") return;
+    ev.preventDefault();
+    const f = ev.target, title = cleanName(f.title.value).slice(0, 60), name = cleanName(f.name.value);
+    if (!title || !name) return;
+    f.querySelector("button").disabled = true;
+    createList(title, name).finally(() => { const b = f.querySelector("button"); if (b) b.disabled = false; });
+  });
+  listDlg.addEventListener("click", async ev => {
+    if (ev.target === listDlg || ev.target.closest("[data-list-close]")) { closeList(); return; }
+    if (!lst) return;
+    const filter = ev.target.closest("[data-list-filter]");
+    if (filter) { lst.filter = filter.dataset.listFilter; renderListBody(); return; }
+    if (ev.target.closest('[data-share="list"]')) { shareList(ev.target.closest('[data-share="list"]')); return; }
+    const tickets = ev.target.closest("[data-list-tickets]");
+    if (tickets) { track("ticket_click", { platform: tickets.dataset.listTickets, item_name: eventById(tickets.dataset.eid)?.title, via: "list" }); return; }
+    const planIt = ev.target.closest("[data-list-plan]");
+    if (planIt) { startPlan(planIt.dataset.listPlan); return; }
+    const save = ev.target.closest("[data-list-save]");
+    if (save) {
+      toggleWannaGo(save.dataset.listSave);
+      clearTimeout(listSyncTimer);
+      await syncLists();  // so the group sees it straight away
+      renderListBody();
+      return;
+    }
+    if (ev.target.closest("[data-list-join]")) {
+      const name = cleanName(document.getElementById("listName").value);
+      if (!name) { document.getElementById("listName").focus(); toast("Add your name so friends know whose picks are whose."); return; }
+      if (!lst.uid) { toast("Couldn't join just now. Please try again."); return; }
+      try {
+        try { localStorage.setItem(LS_NAME, name); } catch {}
+        await writeMembership(lst.id, lst.uid, name);
+        rememberList(lst.id, lst.doc.name, { joined: true });
+        track("list_join");
+      } catch (err) { toast(planError(err)); }
+      return;
+    }
+    if (ev.target.closest("[data-list-leave]")) {
+      try {
+        await fb.S.deleteDoc(memberRef(lst.id, lst.uid));
+        if (lst.doc.createdBy === lst.uid) rememberList(lst.id, lst.doc.name, { joined: false }); else forgetList(lst.id);
+        toast("You've left the list.");
+      } catch (err) { toast(planError(err)); }
+      return;
+    }
+    const del = ev.target.closest("[data-list-delete]");
+    if (del) {
+      if (!del.dataset.sure) { del.dataset.sure = "1"; del.textContent = "Tap again to delete the list"; return; }
+      try {
+        const id = lst.id;
+        await fb.S.deleteDoc(memberRef(id, lst.uid)).catch(() => {});
+        await fb.S.deleteDoc(listRef(id));
+        forgetList(id);
+        closeList();
+        toast("List deleted.");
+      } catch (err) { toast(planError(err)); }
+    }
   });
 
   // ---------- book by voice ----------
@@ -2475,6 +2766,9 @@
     if (share) { shareEvent(share.dataset.share, share); return; }
     if (e.target.closest("[data-dismiss-shared]")) { state.sharedId = ""; render(); return; }
     if (e.target.closest("[data-onboard]")) { openOnboarding(); return; }
+    const openL = e.target.closest("[data-list-open]");
+    if (openL) { openList(openL.dataset.listOpen, "chip"); return; }
+    if (e.target.closest("[data-list-new]")) { startList(); return; }
     const when = e.target.closest("[data-when]");
     if (when) { setWhen(when.dataset.when); return; }
     if (e.target.closest("[data-when-pick]")) {
@@ -2562,6 +2856,7 @@
     if (ev.key !== "Escape") return;
     if (!shareMenu.hidden) closeShareMenu(true);
     else if (!planDlg.hidden) closePlan();
+    else if (!listDlg.hidden) closeList();
     else if (!loginDlg.hidden) closeLogin();
     else if (!assist.hidden) closeAssist();
     else if (!onboard.hidden) closeOnboarding();
@@ -2643,14 +2938,15 @@
       if (state.q) { searchBar.hidden = false; searchBtn.setAttribute("aria-expanded", "true"); qInput.value = state.q; }
       renderFooter(); render();
       track("city_view", { city: state.city });
-      if (state.sharedId || state.planId) track("shared_link_open", { status: state.planId ? "plan" : shared ? "opened" : "show_over" });
-      if (FIREBASE_CONFIG) refreshPlans();
-      if (state.planId) openPlan(state.planId, "link");  // a friend's "Who's in?" link opens on the plan
+      if (state.sharedId || state.planId || state.listId) track("shared_link_open", { status: state.planId ? "plan" : state.listId ? "list" : shared ? "opened" : "show_over" });
+      if (FIREBASE_CONFIG) { refreshPlans(); syncLists(); }
+      if (state.planId) openPlan(state.planId, "link");
+      else if (state.listId) openList(state.listId, "link");  // a friend's "Who's in?" link opens on the plan
       else if (shared) openViewer([shared.id], shared.id, "shared");  // a friend's link opens on the show itself
 
       let onboarded = false;
       try { onboarded = !!(localStorage.getItem(LS_ONBOARDED) || localStorage.getItem(LS_PREFS)); } catch {}
-      if (!onboarded && !state.sharedId && !state.planId) openOnboarding();  // don't get in the way of a friend's shared link
+      if (!onboarded && !state.sharedId && !state.planId && !state.listId) openOnboarding();  // don't get in the way of a friend's shared link
       else showConsentBanner();
 
       // Re-check every minute (and on returning to the tab) so a show vanishes once it starts.

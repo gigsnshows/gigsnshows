@@ -71,6 +71,34 @@ service cloud.firestore {
 
 Analytics events: `plan_create`, `plan_open` (from: new / own / link; owner), `plan_reply` (answer; role owner or friend), `shared_link_open` with status `plan`, and `ticket_click` with `via: plan`. Share pages (`/s/<id>`) pass a `?plan=` query through to the dashboard.
 
+**Shared Wanna Go lists.** In the Wanna Go row, "＋ Share this list with friends" makes a group page and a link (`/?list=<id>`). Friends who open it can see the group's picks and **Join**, which shares their first name and their own Wanna Go with the group; the page then ranks shows by how many of the group want to go, with a "Shows several of us want" filter for the overlap. Each show has **Tickets**, **Plan it** (starts a "Who's in?" plan) and **+ Wanna go**. A joined list stays in step with your Wanna Go list; you can leave it, and its creator can delete it. Lists you've made or opened show as chips in the Wanna Go row and follow you across devices if you log in. Logging in from a guest session now upgrades that session in place (`linkWithPhoneNumber`), so your plans and lists stay yours; if the number already has an account you're signed in to it instead.
+
+Firestore: `lists/<12-letter id>` (name, creator) and `lists/<id>/members/<uid>` (first name, Wanna Go ids). Add this inside `match /databases/{database}/documents { … }` next to the `users` and `plans` rules:
+
+```
+    match /lists/{listId} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if request.auth != null && listId.size() >= 12
+        && request.resource.data.keys().hasOnly(['name','createdBy','createdAt'])
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 60;
+      allow update: if false;
+      allow delete: if request.auth != null && resource.data.createdBy == request.auth.uid;
+      match /members/{userId} {
+        allow read: if exists(/databases/$(database)/documents/lists/$(listId));
+        allow create, update: if request.auth != null && request.auth.uid == userId
+          && exists(/databases/$(database)/documents/lists/$(listId))
+          && request.resource.data.keys().hasOnly(['name','shows','updatedAt'])
+          && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 40
+          && request.resource.data.shows is list && request.resource.data.shows.size() <= 100;
+        allow delete: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+```
+
+Analytics events: `list_create`, `list_open` (from: new / chip / link; owner), `list_join`, `shared_link_open` with status `list`, `ticket_click` with `via: list`.
+
 **Search** (magnifier in the top bar, or `/`) matches every word against title, venue, city, category, genres and description, in the current city or all cities, with category and genre chips to narrow the results.
 
 The **Home** tab is a browse-everything view — **For you** (interests and behaviour first, then shows listed by several platforms and happening soon; one card per show), **Wanna Go** (tap the heart under any card; saved in your browser), Tonight, This Weekend, Just Announced (shows first seen in the last few days), **From Your Favourite Venues** (edit the `FAVOURITE_VENUES` list at the top of the `<script>` in `index.html` to change which venues get a row), then one row per category.
