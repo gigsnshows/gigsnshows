@@ -1863,7 +1863,9 @@
         let cred;
         try { cred = await confirmation.confirm(form.code.value.trim()); }
         catch (err) {  // this number already has an account: sign in to it instead
-          const credential = err?.code === "auth/credential-already-in-use" ? fb.A.PhoneAuthProvider.credentialFromError(err) : null;
+          // Firebase reports "this number already has an account" under either of these codes.
+          const exists = ["auth/credential-already-in-use", "auth/account-exists-with-different-credential"].includes(err?.code);
+          const credential = exists ? fb.A.PhoneAuthProvider.credentialFromError(err) : null;
           if (!credential) throw err;
           cred = await fb.A.signInWithCredential(fb.auth, credential);
         }
