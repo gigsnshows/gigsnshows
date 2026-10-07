@@ -18,6 +18,7 @@ from pathlib import Path
 
 import yaml
 
+import health
 from scrapers.base import NOT_SHOWS, get_html, now_iso
 from scrapers import sharepages
 from scrapers.genres import catalog, language, languages, tag
@@ -76,10 +77,10 @@ def dedupe(events):
 def main(dry_run=False, only=None, remerge=False):
     sources = yaml.safe_load((ROOT / "sources.yaml").read_text())
     today = date.today().isoformat()
-    collected, failed = [], {}  # failed: source -> cities whose pages all came back empty
+    collected, failed, ran = [], {}, []  # failed: source -> cities whose pages all came back empty; ran: sources read
     if remerge:
         fresh = json.loads(FRESH.read_text())
-        collected, failed = fresh["events"], {k: set(v) for k, v in fresh["failed"].items()}
+        collected, failed, ran = fresh["events"], {k: set(v) for k, v in fresh["failed"].items()}, fresh.get("ran", [])
 
     for src in [] if remerge else sources:
         if only and only.lower() not in src["name"].lower():
@@ -89,6 +90,7 @@ def main(dry_run=False, only=None, remerge=False):
             print(f"\n{src['name']}  (skipped here on {WHERE}; read on {' and '.join(runs_on)})")
             continue
         parser = PARSERS[src.get("parser", "jsonld")]
+        ran.append(src["name"])
         print(f"\n{src['name']}  ({src.get('parser', 'jsonld')}{', rendered' if src.get('render') else ''})")
         tried, ok = set(), set()
         for entry in expand(src):
@@ -118,7 +120,7 @@ def main(dry_run=False, only=None, remerge=False):
             failed[src["name"]] = tried - ok
             print(f"  (no results for {', '.join(sorted(tried - ok))}; keeping their earlier shows)")
     if not remerge and not dry_run:
-        FRESH.write_text(json.dumps({"events": collected, "failed": {k: sorted(v) for k, v in failed.items()}},
+        FRESH.write_text(json.dumps({"events": collected, "failed": {k: sorted(v) for k, v in failed.items()}, "ran": ran},
                                     ensure_ascii=False))
 
     previous = json.loads(OUT.read_text()) if OUT.exists() else {}
@@ -147,6 +149,8 @@ def main(dry_run=False, only=None, remerge=False):
 
     if dry_run:
         return
+    # What each source returned this time, for the scheduled health check (even when it's nothing).
+    health.record(ran, collected, failed, today, WHERE, len(merged))
     if not merged:
         print("Nothing found; leaving the existing events.json untouched.")
         return

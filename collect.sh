@@ -25,7 +25,7 @@ main() {
   git clean -fdq s
   "$PYTHON" run.py
   for attempt in 1 2 3 4 5; do
-    git add data/events.json s
+    git add data/events.json data/health.json s
     if git diff --cached --quiet; then echo "no changes"; return 0; fi
     git "${BOT[@]}" commit --quiet -m "Refresh listings $(date +%F) ($COLLECTOR)"
     git push --quiet "$REPO" HEAD:main && { echo "uploaded"; return 0; }

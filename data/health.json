@@ -1,0 +1,112 @@
+{
+ "sources": {
+  "BookMyShow": {
+   "by": "seed",
+   "count": 75,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    75
+   ]
+  },
+  "BookMyShow Plays": {
+   "by": "seed",
+   "count": 181,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    181
+   ]
+  },
+  "BookMyShow Sports": {
+   "by": "seed",
+   "count": 76,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    76
+   ]
+  },
+  "District": {
+   "by": "seed",
+   "count": 347,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    347
+   ]
+  },
+  "NCPA": {
+   "by": "seed",
+   "count": 41,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    41
+   ]
+  },
+  "NMACC": {
+   "by": "seed",
+   "count": 21,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    21
+   ]
+  },
+  "Prithvi Theatre": {
+   "by": "seed",
+   "count": 26,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    26
+   ]
+  },
+  "Skillbox": {
+   "by": "seed",
+   "count": 228,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    228
+   ]
+  },
+  "The Piano Man": {
+   "by": "seed",
+   "count": 23,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    23
+   ]
+  },
+  "thumpN": {
+   "by": "seed",
+   "count": 91,
+   "failed_cities": [],
+   "last_ok": "2026-10-07T02:22:13Z",
+   "last_run": "2026-10-07T02:22:13Z",
+   "recent": [
+    91
+   ]
+  }
+ },
+ "total": {
+  "at": "2026-10-07T02:22:13Z",
+  "count": 1108,
+  "recent": [
+   1108
+  ]
+ },
+ "updated_at": "2026-10-07T02:22:13Z"
+}

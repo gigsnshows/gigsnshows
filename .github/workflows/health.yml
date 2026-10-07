@@ -1,0 +1,38 @@
+name: Health check
+
+# Twice a day, after the collectors have run (07:00 / 07:30 and 17:00 / 17:30 IST), this reads
+# data/health.json and the live site. If something is off the run fails, and GitHub emails you
+# about the failed run; open it (Actions tab) to see what and why. A source that returns far
+# fewer shows than usual, a collector that has stopped, the site or its certificate, or the
+# database being unreachable all count. See health.py for exactly what is checked.
+on:
+  schedule:
+    - cron: "0 3 * * *"    # 08:30 IST
+    - cron: "0 13 * * *"   # 18:30 IST
+  workflow_dispatch:
+    inputs:
+      test_alert:
+        description: "Fail on purpose, to check that the alert email reaches you"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests pyyaml
+      - run: python health.py check
+      - name: Test alert
+        if: ${{ inputs.test_alert }}
+        run: |
+          echo "This failure is a test: the Health check was run with 'Fail on purpose' ticked." >> "$GITHUB_STEP_SUMMARY"
+          echo "If you got an email about this run, alerts reach you."
+          exit 1
