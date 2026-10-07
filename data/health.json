@@ -1,33 +1,39 @@
 {
  "sources": {
   "BookMyShow": {
-   "by": "seed",
-   "count": 75,
+   "by": "mac",
+   "count": 114,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T13:04:21Z",
+   "last_run": "2026-10-07T13:04:21Z",
    "recent": [
-    75
+    75,
+    114
    ]
   },
   "BookMyShow Plays": {
-   "by": "seed",
-   "count": 181,
+   "by": "mac",
+   "count": 240,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T13:04:21Z",
+   "last_run": "2026-10-07T13:04:21Z",
    "recent": [
-    181
+    181,
+    240
    ]
   },
   "BookMyShow Sports": {
-   "by": "seed",
-   "count": 76,
-   "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "by": "mac",
+   "count": 81,
+   "failed_cities": [
+    "Goa",
+    "Pune"
+   ],
+   "last_ok": "2026-10-07T13:04:21Z",
+   "last_run": "2026-10-07T13:04:21Z",
    "recent": [
-    76
+    76,
+    81
    ]
   },
   "District": {
@@ -111,12 +117,13 @@
   }
  },
  "total": {
-  "at": "2026-10-07T12:01:57Z",
-  "count": 1139,
+  "at": "2026-10-07T13:04:21Z",
+  "count": 1186,
   "recent": [
    1108,
-   1139
+   1139,
+   1186
   ]
  },
- "updated_at": "2026-10-07T12:01:57Z"
+ "updated_at": "2026-10-07T13:04:21Z"
 }
