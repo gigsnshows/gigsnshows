@@ -40,7 +40,8 @@ CATEGORIES = ("music", "theatre", "sports", "comedy")
 # Classes and craft sessions some platforms list alongside shows (thumpN files them all as music).
 NOT_SHOWS = re.compile(
     r"\b(workshop|workshops|masterclass|pottery|painting|art date|block printing|clay|candle making|resin art|"
-    r"crochet|embroidery|terrarium|baking class|cooking class|sip and paint|paint and sip|craft)\b", re.I)
+    r"crochet|embroidery|terrarium|baking class|cooking class|sip and paint|paint and sip|craft|"
+    r"ikebana|tote bag|texture art|shan shui|kids art|art party|resin galaxy|paint your tote)\b", re.I)
 
 CATEGORY_KEYWORDS = {
     "comedy": ["comedy", "comic", "stand-up", "standup", "stand up", "improv", "open mic", "roast", "crowd work"],
@@ -61,6 +62,11 @@ def fetch(url, timeout=25):
     try:
         r = requests.get(url, headers=HEADERS, timeout=timeout)
         r.raise_for_status()
+        if "charset" not in r.headers.get("content-type", "").lower():
+            try:  # requests assumes Latin-1 when a page doesn't say (thumpN's "Bacardí" became "BacardÃ­"); these sites are UTF-8
+                return r.content.decode("utf-8")
+            except UnicodeDecodeError:
+                pass
         return r.text
     except Exception as exc:  # noqa: BLE001
         print(f"  ! fetch failed {url}: {exc}")
