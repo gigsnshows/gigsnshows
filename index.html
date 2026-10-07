@@ -253,6 +253,7 @@
   .chip small { margin-left: 6px; color: var(--ink-3); font-weight: 500; font-variant-numeric: tabular-nums; }
   .chip:hover { color: var(--ink); background: rgba(255,255,255,.12); }
   .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #000; }
+  .chip svg { width: 15px; height: 15px; margin: 0 6px -2px 0; }
   .chip[aria-pressed="true"] small { color: rgba(0,0,0,.5); }
 
   /* ---------- onboarding ---------- */
@@ -488,6 +489,26 @@
     background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); box-shadow: 0 2px 10px rgba(0,0,0,.4);
   }
   .plan-ans.two { grid-template-columns: repeat(2, 1fr); }
+  .plan-ans.one { grid-template-columns: 1fr; }
+  /* plans for a night: pick shows, then vote */
+  .night-list { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; max-height: 42vh; overflow-y: auto; }
+  .night-pick {
+    width: 100%; text-align: left; display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 14px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); color: inherit;
+  }
+  .night-pick h3 { margin: 0; font-size: 0.95rem; font-weight: 600; line-height: 1.3; }
+  .night-pick p { margin: 2px 0 0; color: var(--ink-2); font-size: 0.82rem; }
+  .night-pick .tick { margin-left: auto; flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--ink-3); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; }
+  .night-pick[aria-pressed="true"] { border-color: transparent; background: linear-gradient(135deg, color-mix(in srgb, var(--glow) 38%, transparent), color-mix(in srgb, var(--neon) 38%, transparent)); }
+  .night-pick[aria-pressed="true"] .tick { background: #fff; color: #000; border-color: #fff; }
+  .vote-row { display: flex; gap: 8px; margin-top: 10px; }
+  .vote-row button { flex: 1; height: 38px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.06); font-weight: 700; font-size: 0.88rem; }
+  .vote-row button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #000; }
+  .vote-row button[data-plan-vote-level="yes"][aria-pressed="true"] { background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); border-color: transparent; color: #fff; }
+  .vote-who { margin: 8px 0 0; color: var(--ink-2); font-size: 0.82rem; }
+  .vote-who b { color: var(--ink); font-weight: 600; }
+  .lead { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; font-size: 0.68rem; font-weight: 800; vertical-align: middle; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); color: #fff; }
+  .lead[hidden] { display: none; }
   .list-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
   .list-who { margin: 4px 0 0; color: var(--ink-2); font-size: 0.82rem; }
   .list-who b { color: var(--ink); font-weight: 600; }
@@ -947,6 +968,7 @@
         <button class="chip" data-when-pick aria-pressed="${picked}">${picked ? esc(dayLabel(state.when)) : "Pick a date"}</button>
         <input type="date" id="whenDate" min="${todayISO}" value="${picked ? state.when : ""}" aria-label="Pick a date" tabindex="-1">
       </span>
+      ${FIREBASE_CONFIG ? `<button class="chip" data-night-new>${ICON_PEOPLE}Plan a night out</button>` : ""}
     </div>`;
   }
 
@@ -1929,10 +1951,10 @@
     if (!fb.auth.currentUser) await fb.A.signInAnonymously(fb.auth);
     return fb.auth.currentUser.uid;
   }
-  function rememberPlan(id, eventId, owner) {
+  function rememberPlan(id, eventId, owner, night) {  // night: { ev: [show ids], n: title } for a plan for a whole night
     const prev = readLS(LS_PLANS, []);
     const was = prev.find(x => x.id === id);
-    const list = [{ id, e: eventId, o: owner || was?.o ? 1 : 0, t: Date.now() }, ...prev.filter(x => x.id !== id)].slice(0, 50);
+    const list = [{ ...was, id, e: eventId, o: owner || was?.o ? 1 : 0, t: Date.now(), ...(night || {}) }, ...prev.filter(x => x.id !== id)].slice(0, 50);
     try { localStorage.setItem(LS_PLANS, JSON.stringify(list)); } catch {}
     cloudSave();
   }
@@ -1963,13 +1985,19 @@
     } catch (err) { toast(planError(err)); }
   }
 
+  // A plan for a whole night lists several shows to vote on (eventIds); otherwise it's about one show.
+  const isNight = d => Array.isArray(d?.eventIds) && d.eventIds.length > 1;
+  const nightMeta = d => isNight(d) ? { ev: d.eventIds, n: d.title } : undefined;
+  const planEvents = d => (isNight(d) ? d.eventIds : [d.eventId]).map(eventById).filter(Boolean).sort(byDateTime);
+  const planStillOn = p => (p.ev || [p.e]).some(eventById);
+
   // The show a plan is about: today's listing if it's still on, else what the plan itself kept.
   function planShow() {
     const d = plan.doc;
     return eventById(d.eventId) || { id: d.eventId, title: d.title, date: d.date, time: d.time, venue: d.venue, city: d.city, image: d.image };
   }
   const planLink = () => {
-    const live = eventById(plan.doc.eventId);
+    const live = !isNight(plan.doc) && eventById(plan.doc.eventId);  // a night has no single show to preview
     return live ? `${shareLink(live)}?plan=${plan.id}` : `${location.origin}/?plan=${plan.id}`;
   };
 
@@ -1981,16 +2009,23 @@
     return c;
   }
   function planTiles() {
-    return readLS(LS_PLANS, []).map(p => [p, eventById(p.e)]).filter(([, e]) => e)
-      .sort((a, b) => byDateTime(a[1], b[1])).slice(0, 12).map(([p, e]) => {
-        const c = planInfo.get(p.id);
+    return readLS(LS_PLANS, []).map(p => [p, planEvents({ eventId: p.e, eventIds: p.ev })]).filter(([, es]) => es.length)
+      .sort((a, b) => byDateTime(a[1][0], b[1][0])).slice(0, 12).map(([p, es]) => {
+        const e = es[0], c = planInfo.get(p.id);
         const label = !c ? "Plan" : c.going || c.maybe ? `${c.going} going${c.maybe ? ` · ${c.maybe} maybe` : ""}` : "No answers yet";
-        return renderTile(e).replace(`<div class="tile" data-id="${e.id}">`, `<div class="tile" data-id="${e.id}" data-plan-id="${p.id}">`)
+        let tile = renderTile(e).replace(`<div class="tile" data-id="${e.id}">`, `<div class="tile" data-id="${e.id}" data-plan-id="${p.id}">`)
           .replace('<div class="art">', `<div class="art"><span class="plan-count">${esc(label)}</span>`);
+        if (p.ev) {  // a night out: its own title, and how many shows are in the running
+          tile = tile.replace(/<p class="name">.*?<\/p>/, `<p class="name">${esc(p.n || "A night out")}</p>`)
+            .replace(/<p class="venue">.*?<\/p>/, `<p class="venue">${es.length} shows to vote on</p>`)
+            .replace(/<span class="when[^>]*>.*?<\/span>/, `<span class="when">${esc(dayLabel(e.date))}</span>`)
+            .replace(/<span class="runs">.*?<\/span>/, "");
+        }
+        return tile;
       });
   }
   async function refreshPlans() {  // fetch each plan's tally; drop plans that were deleted
-    const mine = readLS(LS_PLANS, []).filter(p => eventById(p.e)).slice(0, 12);
+    const mine = readLS(LS_PLANS, []).filter(planStillOn).slice(0, 12);
     if (!mine.length) return;
     try { await loadFirebase(); } catch { return; }
     const gone = new Set();
@@ -2010,6 +2045,7 @@
     try { plan?.unsub?.(); } catch {}
     if (plan?.doc) planInfo.set(plan.id, countAnswers(plan.replies.values()));
     plan = null;
+    night = null;
     planDlg.hidden = true;
     state.planId = "";
     syncUrl();
@@ -2034,6 +2070,7 @@
         return;
       }
       try { plan?.unsub?.(); } catch {}
+      night = null;
       plan = { id, doc: snap.data(), replies: new Map(), uid, unsub: null };
       renderPlanShell();
       plan.unsub = fb.S.onSnapshot(fb.S.collection(fb.db, "plans", id, "replies"),
@@ -2046,6 +2083,7 @@
   }
 
   function renderPlanShell() {
+    if (isNight(plan.doc)) { renderNightShell(); return; }
     const e = planShow(), live = eventById(plan.doc.eventId), owner = plan.doc.createdBy === plan.uid;
     const sources = live && (live.sources || [live.source]);
     const link = live && ((live.links || { [live.source]: live.url })[sources[0]] || live.url);
@@ -2073,6 +2111,7 @@
   function renderPlanReplies() {
     if (!plan || planDlg.hidden) return;
     const mine = plan.replies.get(plan.uid);
+    if (isNight(plan.doc)) renderNightVotes(mine);
     planCard.querySelectorAll("[data-plan-ans]").forEach(b => b.setAttribute("aria-pressed", String(mine?.answer === b.dataset.planAns)));
     planCard.querySelector("[data-plan-remove]").hidden = !mine;
     const groups = ANSWERS.map(([k, label]) => [label, [...plan.replies.entries()].filter(([, r]) => r.answer === k)
@@ -2083,28 +2122,65 @@
       : `<p class="assist-msg">No answers yet. Be the first.</p>`;
   }
 
-  async function answerPlan(answer) {
+  function planName() {
     const input = document.getElementById("planName");
     const name = input.value.trim().replace(/\s+/g, " ").slice(0, 40);
-    if (!name) { input.focus(); toast("Add your name so friends know who's in."); return; }
+    if (!name) { input.focus(); toast("Add your name so friends know who's in."); return ""; }
+    try { localStorage.setItem(LS_NAME, name); } catch {}
+    return name;
+  }
+  async function writeReply(name, answer, votes) {
+    const data = { name, answer, updatedAt: fb.S.serverTimestamp() };
+    if (isNight(plan.doc)) data.votes = votes || {};
+    await fb.S.setDoc(replyRef(plan.id, plan.uid), data);
+    rememberPlan(plan.id, plan.doc.eventId, plan.doc.createdBy === plan.uid, nightMeta(plan.doc));
+    track("plan_reply", { answer, role: plan.doc.createdBy === plan.uid ? "owner" : "friend", night: isNight(plan.doc) });
+  }
+  function wantShow(eid) {  // saying you'd go puts it on your Wanna Go list too
+    const live = eventById(eid);
+    if (!live) return;
+    remember(live, WEIGHT.wannaGo);
+    if (!getWannaGo().includes(live.id)) toggleWannaGo(live.id);
+  }
+
+  async function answerPlan(answer) {
+    const name = planName();
+    if (!name) return;
     if (!plan.uid) { toast("Couldn't save your answer just now."); return; }
     try {
-      try { localStorage.setItem(LS_NAME, name); } catch {}
-      await fb.S.setDoc(replyRef(plan.id, plan.uid), { name, answer, updatedAt: fb.S.serverTimestamp() });
-      rememberPlan(plan.id, plan.doc.eventId, plan.doc.createdBy === plan.uid);
-      track("plan_reply", { answer, role: plan.doc.createdBy === plan.uid ? "owner" : "friend" });
-      const live = eventById(plan.doc.eventId);
-      if (answer === "going" && live) {
-        remember(live, WEIGHT.wannaGo);
-        if (!getWannaGo().includes(live.id)) toggleWannaGo(live.id);  // going to it: it's on your list too
+      if (isNight(plan.doc)) {  // the only button for a night is "Can't make it"; tap again to undo
+        const mine = plan.replies.get(plan.uid);
+        if (answer === "cant" && mine?.answer === "cant") await fb.S.deleteDoc(replyRef(plan.id, plan.uid));
+        else await writeReply(name, answer, answer === "cant" ? {} : mine?.votes);
+        return;
       }
+      await writeReply(name, answer);
+      if (answer === "going") wantShow(plan.doc.eventId);
+    } catch (err) { toast(planError(err)); }
+  }
+
+  // Voting on one show of a night. Your overall answer follows from your votes: any yes means
+  // you're going, only maybes means maybe; with no votes left your answer is removed.
+  async function votePlan(eid, level) {
+    const name = planName();
+    if (!name || !plan.uid) return;
+    const mine = plan.replies.get(plan.uid);
+    const votes = mine?.answer === "cant" ? {} : { ...(mine?.votes || {}) };
+    if (votes[eid] === level) delete votes[eid]; else votes[eid] = level;
+    const vals = Object.values(votes);
+    try {
+      if (!vals.length) { if (mine) await fb.S.deleteDoc(replyRef(plan.id, plan.uid)); return; }
+      await writeReply(name, vals.includes("yes") ? "going" : "maybe", votes);
+      if (votes[eid] === "yes") wantShow(eid);
     } catch (err) { toast(planError(err)); }
   }
 
   async function sharePlan(btn) {
     if (!shareMenu.hidden && shareOpener === btn) { closeShareMenu(true); return; }
     const e = planShow(), url = planLink();
-    const text = `Who's in? 🎟️ ${e.title} · ${whenLabel(e)}${e.venue ? " · " + e.venue : ""}`;
+    const text = isNight(plan.doc)
+      ? `${plan.doc.title} in ${plan.doc.city} 🎟️ Vote for what you'd go to: ${planEvents(plan.doc).map(x => x.title.split(/[|:]/)[0].trim()).join(", ")}`
+      : `Who's in? 🎟️ ${e.title} · ${whenLabel(e)}${e.venue ? " · " + e.venue : ""}`;
     if (navigator.share && matchMedia("(pointer: coarse)").matches) {
       try { await navigator.share({ title: e.title, text, url }); track("share", { method: "phone", item_id: e.id, plan: true }); return; }
       catch (err) { if (err.name === "AbortError") return; }
@@ -2114,7 +2190,13 @@
 
   planDlg.addEventListener("click", async ev => {
     if (ev.target === planDlg || ev.target.closest("[data-plan-close]")) { closePlan(); return; }
+    const nightBtn = ev.target.closest("[data-night-pick], [data-night-create]");
+    if (nightBtn && night) { nightClick(nightBtn); return; }
     if (!plan) return;
+    const vote = ev.target.closest("[data-plan-vote]");
+    if (vote) { votePlan(vote.dataset.planVote, vote.dataset.planVoteLevel); return; }
+    const one = ev.target.closest("[data-plan-one]");
+    if (one) { startPlan(one.dataset.planOne); return; }
     const ans = ev.target.closest("[data-plan-ans]");
     if (ans) { answerPlan(ans.dataset.planAns); return; }
     const share = ev.target.closest('[data-share="plan"]');
@@ -2141,8 +2223,141 @@
   planDlg.addEventListener("change", ev => {  // changing your name updates your answer
     if (ev.target.id !== "planName" || !plan) return;
     const mine = plan.replies.get(plan.uid), name = ev.target.value.trim().replace(/\s+/g, " ").slice(0, 40);
-    if (mine && name) answerPlan(mine.answer);
+    if (!mine || !name) return;
+    if (isNight(plan.doc)) writeReply(name, mine.answer, mine.votes).catch(err => toast(planError(err)));
+    else answerPlan(mine.answer);
   });
+  planDlg.addEventListener("input", ev => {  // the night builder's filter box
+    if (ev.target.id !== "nightQ" || !night) return;
+    night.q = ev.target.value;
+    renderNightList();
+  });
+  planDlg.addEventListener("change", ev => {  // ...and its date
+    if (ev.target.id !== "nightDate" || !night || !ev.target.value) return;
+    night.date = ev.target.value;
+    night.picks.clear();
+    renderNightList();
+  });
+
+  // ---------- plans for a night: choose the shows, friends vote ----------
+  let night = null;  // the builder: { date, picks: Set(show ids), q }
+  const NIGHT_MAX = 5;
+  const nightShows = () => {  // one entry per show on that day in the city, in time order
+    const seen = new Set(), q = norm(night.q);
+    return data.events.filter(e => e.city === state.city && e.date === night.date)
+      .sort(byDateTime).filter(e => !seen.has(showKey(e)) && seen.add(showKey(e)))
+      .filter(e => !q || norm(`${e.title} ${e.venue}`).includes(q));
+  };
+  function nightDefaultDate() {  // the picked date, else the next day with a few shows to choose between
+    if (isPickedDate(state.when) && state.when >= todayISO) return state.when;
+    for (let i = 0; i < 14; i++) {
+      const d = addDays(todayISO, i);
+      if (new Set(data.events.filter(e => e.city === state.city && e.date === d).map(showKey)).size >= 3) return d;
+    }
+    return todayISO;
+  }
+  function openNightBuilder() {
+    closeShareMenu(false);
+    night = { date: nightDefaultDate(), picks: new Set(), q: "" };
+    planDlg.hidden = false;
+    document.body.style.overflow = "hidden";
+    planCard.innerHTML = `<button class="assist-close" data-plan-close aria-label="Close">×</button>
+      <h2 id="planTitle">Plan a night out</h2>
+      <p class="assist-status">Pick a night in ${esc(state.city)} and up to ${NIGHT_MAX} shows. Friends vote on what they'd go to.</p>
+      <label class="plan-name">Which night? <input type="date" id="nightDate" min="${todayISO}" value="${night.date}"></label>
+      <label class="plan-name">Filter <input id="nightQ" type="search" placeholder="Search these shows" autocomplete="off"></label>
+      <ul class="night-list" id="nightList"></ul>
+      <button class="assist-book" data-night-create style="width:100%;margin-top:16px" disabled>Pick at least 2 shows</button>
+      <p class="assist-fine">Only people with the link will see your plan. Voting asks for a first name, shown to them.</p>`;
+    renderNightList();
+    track("night_builder_open");
+  }
+  function renderNightList() {
+    const list = nightShows();
+    document.getElementById("nightList").innerHTML = list.length ? list.slice(0, 40).map(e => `<li>
+        <button type="button" class="night-pick" data-night-pick="${e.id}" aria-pressed="${night.picks.has(e.id)}">
+          <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+          <div><h3>${esc(e.title)}</h3><p>${e.time ? esc(to12h(e.time)) + " · " : ""}${esc(e.venue.split(/[:|]/)[0].trim())}</p></div>
+          <span class="tick" aria-hidden="true">${night.picks.has(e.id) ? "✓" : ""}</span>
+        </button></li>`).join("")
+      : `<li><p class="assist-msg">${night.q ? "No shows match that." : `No shows listed in ${esc(state.city)} on ${esc(dayLabel(night.date))}. Try another night.`}</p></li>`;
+    const n = night.picks.size, btn = planCard.querySelector("[data-night-create]");
+    btn.disabled = n === 0;
+    btn.textContent = n === 0 ? "Pick at least 2 shows" : n === 1 ? "Just plan this show" : `Create plan with ${n} shows`;
+  }
+  async function nightClick(btn) {
+    const pick = btn.dataset.nightPick;
+    if (pick) {
+      if (night.picks.has(pick)) night.picks.delete(pick);
+      else if (night.picks.size >= NIGHT_MAX) { toast(`Up to ${NIGHT_MAX} shows per night.`); return; }
+      else night.picks.add(pick);
+      renderNightList();
+      return;
+    }
+    const ids = [...night.picks];
+    if (!ids.length || btn.disabled) return;
+    if (ids.length === 1) { night = null; closePlan(); startPlan(ids[0]); return; }
+    btn.disabled = true;
+    try {
+      const chosen = ids.map(eventById).filter(Boolean).sort(byDateTime);
+      const uid = await planUid(), id = randomId();
+      const doc = { eventId: chosen[0].id, title: `A night out · ${dayLabel(night.date)}`, date: night.date, time: "", venue: "", city: state.city,
+        image: chosen[0].image && chosen[0].image.length <= 600 ? chosen[0].image : "", createdBy: uid, createdAt: fb.S.serverTimestamp(),
+        eventIds: chosen.map(e => e.id) };
+      await fb.S.setDoc(planRef(id), doc);
+      rememberPlan(id, chosen[0].id, true, { ev: doc.eventIds, n: doc.title });
+      track("plan_create", { item_name: doc.title, shows: chosen.length, night: true });
+      night = null;
+      openPlan(id, "new");
+    } catch (err) { btn.disabled = false; toast(planError(err)); }
+  }
+
+  function renderNightShell() {
+    const d = plan.doc, owner = d.createdBy === plan.uid, shows = planEvents(d);
+    const name = (() => { try { return localStorage.getItem(LS_NAME) || ""; } catch { return ""; } })();
+    planCard.innerHTML = `<button class="assist-close" data-plan-close aria-label="Close">×</button>
+      <h2 id="planTitle">${esc(d.title)}</h2>
+      <p class="assist-status">${esc(d.city)} · ${owner ? "Share this so friends can vote on what to see." : "A friend is picking a night out. Vote for what you'd go to."}</p>
+      ${shows.length ? "" : `<p class="assist-msg">These shows have started or are no longer listed.</p>`}
+      <label class="plan-name">Your name <input id="planName" maxlength="40" autocomplete="given-name" placeholder="So friends know who voted" value="${esc(name)}"></label>
+      <ul class="assist-list" id="nightShows">${shows.map(e => {
+        const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url;
+        return `<li data-eid="${e.id}">
+          <div class="assist-row"><div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+            <div><h3>${esc(e.title)}<span class="lead" hidden>Most votes</span></h3><p>${e.time ? esc(to12h(e.time)) + " · " : ""}${esc(e.venue.split(/[:|]/)[0].trim())}${e.price_from ? ` · from ₹${Number(e.price_from).toLocaleString("en-IN")}` : ""}</p></div></div>
+          <div class="vote-row" role="group" aria-label="Would you go to ${esc(e.title)}?">
+            <button type="button" data-plan-vote="${e.id}" data-plan-vote-level="yes" aria-pressed="false">I'd go</button>
+            <button type="button" data-plan-vote="${e.id}" data-plan-vote-level="maybe" aria-pressed="false">Maybe</button>
+          </div>
+          <p class="vote-who" data-who></p>
+          <div class="assist-acts">
+            <a class="assist-details" style="display:flex;align-items:center;text-decoration:none;color:inherit" href="${esc(link)}" target="_blank" rel="noopener" data-plan-tickets="${esc(sources[0])}">Tickets</a>
+            <button class="assist-details" data-plan-one="${e.id}">Plan just this one</button>
+          </div></li>`; }).join("")}</ul>
+      <div class="plan-ans one" role="group" aria-label="Can you make it?"><button type="button" data-plan-ans="cant" aria-pressed="false">I can't make it that night</button></div>
+      <div id="planReplies" aria-live="polite"></div>
+      <div class="plan-acts"><button class="assist-book" data-share="plan">${ICON_SHARE}<span style="margin-left:8px">Invite friends</span></button></div>
+      <div class="plan-quiet"><button data-plan-remove hidden>Remove my votes</button>${owner ? `<button data-plan-delete>Delete this plan</button>` : ""}</div>
+      <p class="assist-fine">Anyone with this link can see the names and votes here. <a href="privacy.html">Privacy</a></p>`;
+  }
+  function renderNightVotes(mine) {  // my buttons, each show's tally, and which one is ahead
+    const tally = new Map();
+    for (const [uid, r] of plan.replies) for (const [eid, level] of Object.entries(r.votes || {})) {
+      const t = tally.get(eid) || { yes: [], maybe: [] };
+      (level === "yes" ? t.yes : level === "maybe" ? t.maybe : []).push(uid === plan.uid ? "You" : r.name);
+      tally.set(eid, t);
+    }
+    const score = eid => (tally.get(eid)?.yes.length || 0) * 2 + (tally.get(eid)?.maybe.length || 0);
+    const ranked = [...planCard.querySelectorAll("#nightShows > li")].map(li => [li.dataset.eid, score(li.dataset.eid)]).sort((a, b) => b[1] - a[1]);
+    const leader = ranked.length && ranked[0][1] > 0 && (ranked.length < 2 || ranked[0][1] > ranked[1][1]) ? ranked[0][0] : null;
+    planCard.querySelectorAll("#nightShows > li").forEach(li => {
+      const eid = li.dataset.eid, t = tally.get(eid) || { yes: [], maybe: [] };
+      li.querySelectorAll("[data-plan-vote]").forEach(b => b.setAttribute("aria-pressed", String(mine?.answer !== "cant" && mine?.votes?.[eid] === b.dataset.planVoteLevel)));
+      li.querySelector("[data-who]").innerHTML = t.yes.length || t.maybe.length
+        ? `<b>${t.yes.length} would go</b>${t.yes.length ? " · " + esc(t.yes.join(", ")) : ""}${t.maybe.length ? ` · maybe: ${esc(t.maybe.join(", "))}` : ""}` : "No votes yet";
+      li.querySelector(".lead").hidden = eid !== leader;
+    });
+  }
 
   // ---------- shared Wanna Go lists ----------
   // "Share this list with friends" makes a group page: each person who joins shares their own
@@ -2768,6 +2983,7 @@
     if (share) { shareEvent(share.dataset.share, share); return; }
     if (e.target.closest("[data-dismiss-shared]")) { state.sharedId = ""; render(); return; }
     if (e.target.closest("[data-onboard]")) { openOnboarding(); return; }
+    if (e.target.closest("[data-night-new]")) { openNightBuilder(); return; }
     const openL = e.target.closest("[data-list-open]");
     if (openL) { openList(openL.dataset.listOpen, "chip"); return; }
     if (e.target.closest("[data-list-new]")) { startList(); return; }

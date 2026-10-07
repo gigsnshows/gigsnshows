@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // A logged-in person's own saved picks (Wanna Go, interests, plans and lists they follow).
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // "Who's in?" plans, including plans for a whole night (eventIds: 2-5 shows to vote on).
+    // Anyone with a plan's link can read it; nobody can list plans.
+    match /plans/{planId} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if request.auth != null && planId.size() >= 12
+        && request.resource.data.keys().hasOnly(['eventId','title','date','time','venue','city','image','createdBy','createdAt','eventIds'])
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.eventId is string && request.resource.data.eventId.size() <= 40
+        && request.resource.data.title is string && request.resource.data.title.size() <= 200
+        && request.resource.data.date is string && request.resource.data.date.size() <= 10
+        && request.resource.data.time is string && request.resource.data.time.size() <= 5
+        && request.resource.data.venue is string && request.resource.data.venue.size() <= 200
+        && request.resource.data.city is string && request.resource.data.city.size() <= 60
+        && request.resource.data.image is string && request.resource.data.image.size() <= 600
+        && (!('eventIds' in request.resource.data)
+            || (request.resource.data.eventIds is list
+                && request.resource.data.eventIds.size() >= 2 && request.resource.data.eventIds.size() <= 5));
+      allow update: if false;
+      allow delete: if request.auth != null && resource.data.createdBy == request.auth.uid;
+
+      // One answer per person, writable only by that person. For a night, votes maps show id -> 'yes' | 'maybe'.
+      match /replies/{userId} {
+        allow read: if exists(/databases/$(database)/documents/plans/$(planId));
+        allow create, update: if request.auth != null && request.auth.uid == userId
+          && exists(/databases/$(database)/documents/plans/$(planId))
+          && request.resource.data.keys().hasOnly(['name','answer','updatedAt','votes'])
+          && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 40
+          && request.resource.data.answer in ['going','maybe','cant']
+          && (!('votes' in request.resource.data)
+              || (request.resource.data.votes is map && request.resource.data.votes.size() <= 5));
+        allow delete: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+    // Shared Wanna Go lists: same idea as plans.
+    match /lists/{listId} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if request.auth != null && listId.size() >= 12
+        && request.resource.data.keys().hasOnly(['name','createdBy','createdAt'])
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 60;
+      allow update: if false;
+      allow delete: if request.auth != null && resource.data.createdBy == request.auth.uid;
+
+      match /members/{userId} {
+        allow read: if exists(/databases/$(database)/documents/lists/$(listId));
+        allow create, update: if request.auth != null && request.auth.uid == userId
+          && exists(/databases/$(database)/documents/lists/$(listId))
+          && request.resource.data.keys().hasOnly(['name','shows','updatedAt'])
+          && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 40
+          && request.resource.data.shows is list && request.resource.data.shows.size() <= 100;
+        allow delete: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}

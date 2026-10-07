@@ -28,74 +28,15 @@ It lists up to five shows with posters; each **Book** button opens that show's t
 
 It turns everything else away with the same short reply and examples: requests naming nothing show-related ("hello", "call mom"), off-topic ones (weather, news, jokes, food, cabs, flights, money, alarms, translation, "ignore your instructions…") unless they also name a listed show or venue outright ("how much are tickets for Papon"), and films ("gigsnshows lists live shows, not films"). The word lists are at the top of the "book by voice" section of `index.html`'s script. Speech-to-text is the browser's own (Chrome, Edge, Safari; elsewhere it's type-only), and nothing spoken is stored or sent to analytics; `voice_request` records only the outcome (found, found_other_day, found_elsewhere, none, out_of_scope, film).
 
-**Who's in? (plans with friends).** In the swipe view, "Who's in? Plan with friends" turns a show into a plan: the person who starts it shares a link (it previews with the show's poster like any shared show), and anyone who opens it types a first name and taps Going / Maybe / Can't. Everyone sees the answers live. Saying Going also puts the show on your Wanna Go list. No login needed: Firebase signs friends in anonymously so each answer has an owner. Starting a plan on a show you already planned reopens the same plan. Home has a **Your plans** row (after Wanna Go) listing the plans you started or answered whose show is still on, each card showing who's coming ("3 going · 1 maybe"); tapping one opens the plan. Plan ids are kept in the browser and, if you log in, in your account, so the row follows you across devices; a plan its creator deleted drops out of the row. Answers can be changed or removed, and the creator can delete the plan.
+**Who's in? (plans with friends).** In the swipe view, "Who's in? Plan with friends" turns a show into a plan: the person who starts it shares a link (it previews with the show's poster like any shared show), and anyone who opens it types a first name and taps Going / Maybe / Can't. Everyone sees the answers live. Saying Going also puts the show on your Wanna Go list. No login needed: Firebase signs friends in anonymously so each answer has an owner. Starting a plan on a show you already planned reopens the same plan. **Plan a night out** (the chip at the end of the date row on Home): pick a night and up to five shows from what's on in the city, and friends vote **I'd go** / **Maybe** on each (or say they can't make it); every show shows who'd go and the one ahead gets a "Most votes" badge, with **Tickets** and **Plan just this one** on each. A night is a plan document with `eventIds` (2–5 shows) and each answer carries `votes` (show id → yes/maybe); a person's overall answer follows from their votes (any yes = going), and saying yes to a show also puts it on their Wanna Go list. Night plans share a generic link (a night has no single poster) with the show names in the message. Home has a **Your plans** row (after Wanna Go) listing the plans you started or answered whose show is still on, each card showing who's coming ("3 going · 1 maybe"); tapping one opens the plan. Plan ids are kept in the browser and, if you log in, in your account, so the row follows you across devices; a plan its creator deleted drops out of the row. Answers can be changed or removed, and the creator can delete the plan.
 
-Behind it: `plans/<12-letter id>` in Firestore (show details, creator) with `plans/<id>/replies/<uid>` (name, answer). Setup, beyond the login's: in the Firebase console, **Authentication → Sign-in method → Anonymous → Enable**, and use these Firestore rules (they replace the login-only ones):
+Behind it: `plans/<12-letter id>` in Firestore (show details, creator) with `plans/<id>/replies/<uid>` (name, answer). Setup, beyond the login's: in the Firebase console, **Authentication → Sign-in method → Anonymous → Enable**, and publish `firestore.rules` (the one source of truth for every collection: `users`, `plans`, `lists`) under Firestore → Rules.
 
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    // Anyone with a plan's link can read it; nobody can list plans.
-    match /plans/{planId} {
-      allow get: if true;
-      allow list: if false;
-      allow create: if request.auth != null && planId.size() >= 12
-        && request.resource.data.keys().hasOnly(['eventId','title','date','time','venue','city','image','createdBy','createdAt'])
-        && request.resource.data.createdBy == request.auth.uid
-        && request.resource.data.eventId is string && request.resource.data.eventId.size() <= 40
-        && request.resource.data.title is string && request.resource.data.title.size() <= 200
-        && request.resource.data.date is string && request.resource.data.date.size() <= 10
-        && request.resource.data.time is string && request.resource.data.time.size() <= 5
-        && request.resource.data.venue is string && request.resource.data.venue.size() <= 200
-        && request.resource.data.city is string && request.resource.data.city.size() <= 60
-        && request.resource.data.image is string && request.resource.data.image.size() <= 600;
-      allow update: if false;
-      allow delete: if request.auth != null && resource.data.createdBy == request.auth.uid;
-      match /replies/{userId} {
-        allow read: if exists(/databases/$(database)/documents/plans/$(planId));
-        allow create, update: if request.auth != null && request.auth.uid == userId
-          && exists(/databases/$(database)/documents/plans/$(planId))
-          && request.resource.data.keys().hasOnly(['name','answer','updatedAt'])
-          && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 40
-          && request.resource.data.answer in ['going','maybe','cant'];
-        allow delete: if request.auth != null && request.auth.uid == userId;
-      }
-    }
-  }
-}
-```
-
-Analytics events: `plan_create`, `plan_open` (from: new / own / link; owner), `plan_reply` (answer; role owner or friend), `shared_link_open` with status `plan`, and `ticket_click` with `via: plan`. Share pages (`/s/<id>`) pass a `?plan=` query through to the dashboard.
+Analytics events: `plan_create`, `plan_open` (from: new / own / link; owner), `plan_reply` (answer; role owner or friend; night), `night_builder_open`, `plan_create` also carries `night` and `shows`, `shared_link_open` with status `plan`, and `ticket_click` with `via: plan`. Share pages (`/s/<id>`) pass a `?plan=` query through to the dashboard.
 
 **Shared Wanna Go lists.** In the Wanna Go row, "＋ Share this list with friends" makes a group page and a link (`/?list=<id>`). Friends who open it can see the group's picks and **Join**, which shares their first name and their own Wanna Go with the group; the page then ranks shows by how many of the group want to go, with a "Shows several of us want" filter for the overlap. Each show has **Tickets**, **Plan it** (starts a "Who's in?" plan) and **+ Wanna go**. A joined list stays in step with your Wanna Go list; you can leave it, and its creator can delete it. Lists you've made or opened show as chips in the Wanna Go row and follow you across devices if you log in. Logging in from a guest session now upgrades that session in place (`linkWithPhoneNumber`), so your plans and lists stay yours; if the number already has an account you're signed in to it instead.
 
-Firestore: `lists/<12-letter id>` (name, creator) and `lists/<id>/members/<uid>` (first name, Wanna Go ids). Add this inside `match /databases/{database}/documents { … }` next to the `users` and `plans` rules:
-
-```
-    match /lists/{listId} {
-      allow get: if true;
-      allow list: if false;
-      allow create: if request.auth != null && listId.size() >= 12
-        && request.resource.data.keys().hasOnly(['name','createdBy','createdAt'])
-        && request.resource.data.createdBy == request.auth.uid
-        && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 60;
-      allow update: if false;
-      allow delete: if request.auth != null && resource.data.createdBy == request.auth.uid;
-      match /members/{userId} {
-        allow read: if exists(/databases/$(database)/documents/lists/$(listId));
-        allow create, update: if request.auth != null && request.auth.uid == userId
-          && exists(/databases/$(database)/documents/lists/$(listId))
-          && request.resource.data.keys().hasOnly(['name','shows','updatedAt'])
-          && request.resource.data.name is string && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 40
-          && request.resource.data.shows is list && request.resource.data.shows.size() <= 100;
-        allow delete: if request.auth != null && request.auth.uid == userId;
-      }
-    }
-```
+Firestore: `lists/<12-letter id>` (name, creator) and `lists/<id>/members/<uid>` (first name, Wanna Go ids); rules are in `firestore.rules`.
 
 Analytics events: `list_create`, `list_open` (from: new / chip / link; owner), `list_join`, `shared_link_open` with status `list`, `ticket_click` with `via: list`.
 
@@ -107,18 +48,7 @@ Each category tab has **genre chips** (Jazz & blues, Stand-up, Running, Marathi�
 
 Shared links point to `/s/<id>`, a tiny page per show that the collector writes (`scrapers/sharepages.py`) so WhatsApp and other apps preview the link with the show's poster, title, date and venue; it forwards straight to the show on the dashboard. Pages are kept for 30 days after the show.
 
-**Log in with a mobile number** (Firebase): optional. The account icon in the top bar texts a one-time code (Firebase Authentication, with an invisible reCAPTCHA); once logged in, the Wanna Go list, interests and For you history are kept in one Firestore document per person (`users/<uid>`) and merged with what the browser already had, so they follow the person to any device. Logging out keeps them in the account; **Delete my account** removes the number and the document. It stays switched off until `FIREBASE_CONFIG` at the top of the login section of `index.html`'s script is filled in. Firebase setup: create a project, add a Web app (its config goes into `FIREBASE_CONFIG`), enable **Authentication → Phone**, add `gigsnshows.com` under Authentication → Settings → Authorised domains, create a **Firestore** database (region `asia-south1`, Mumbai) and set its rules to:
-
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-  }
-}
-```
+**Log in with a mobile number** (Firebase): optional. The account icon in the top bar texts a one-time code (Firebase Authentication, with an invisible reCAPTCHA); once logged in, the Wanna Go list, interests and For you history are kept in one Firestore document per person (`users/<uid>`) and merged with what the browser already had, so they follow the person to any device. Logging out keeps them in the account; **Delete my account** removes the number and the document. It stays switched off until `FIREBASE_CONFIG` at the top of the login section of `index.html`'s script is filled in. Firebase setup: create a project, add a Web app (its config goes into `FIREBASE_CONFIG`), enable **Authentication → Phone** (and **Anonymous**, for plans and lists), add `gigsnshows.com` under Authentication → Settings → Authorised domains, set the SMS region policy to allow India only, create a **Firestore** database (region `asia-south1`, Mumbai) and publish `firestore.rules` under its Rules tab. The web config is public by design: what protects the data is the rules.
 
 `privacy.html` is the privacy policy the login and footer link to; people reach us through `contact.html`, a form that Web3Forms forwards to the inbox set up with its access key (`WEB3FORMS_KEY` in that file), so no address appears on the site. Analytics events: `login` / `sign_up` (method), `delete_account`.
 
