@@ -11,6 +11,13 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gigsnshows.com/">
 <link rel="canonical" href="https://gigsnshows.com/">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="gigsnshows">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"gigsnshows","url":"https://gigsnshows.com/","description":"Live music, theatre, stand-up and sports across India, picked around your taste."}</script>
 <meta property="og:image" content="https://gigsnshows.com/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
@@ -130,6 +137,7 @@
   .icon-btn:hover, .icon-btn[aria-expanded="true"] { background: rgba(255,255,255,.16); }
   .icon-btn svg { width: 17px; height: 17px; }
   .icon-btn[hidden] { display: none; }
+  .acct-btn { order: 1; }  /* search and city first, the account icon in the top right corner on every screen */
   .acct-btn.on { border-color: transparent; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
 
   /* ---------- search ---------- */
@@ -152,12 +160,19 @@
   .results-more { color: var(--ink-3); font-size: 0.85rem; }
 
   @media (max-width: 720px) {
-    .bar { grid-template-columns: 1fr auto; grid-template-areas: "logo city" "tabs tabs"; height: auto; column-gap: 12px; row-gap: 2px; padding-top: 10px; padding-bottom: 4px; }
-    .logo { grid-area: logo; }
-    .bar-right { grid-area: city; }
+    .bar { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "logo city" "tabs tabs"; height: auto; column-gap: 10px; row-gap: 2px; padding-top: 10px; padding-bottom: 4px; }
+    .logo { grid-area: logo; gap: 8px; }
+    /* Logo, search, city and account all fit one line at 360px; a long city name shortens instead of pushing the account icon off the screen. */
+    .bar-right { grid-area: city; min-width: 0; justify-content: flex-end; gap: 6px; }
+    .icon-btn { width: 34px; height: 34px; }
+    .city { min-width: 0; }
+    .city-btn { max-width: 100%; gap: 4px; padding: 6px 10px 6px 12px; }
+    .city-btn .pin { display: none; }
+    .city-btn .chev { flex: none; }
+    #cityLabel { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .tabs { grid-area: tabs; gap: 20px; }
-    .logo-word { font-size: 1.3rem; }
-    .logo-mark { width: 32px; height: 23px; }
+    .logo-word { font-size: 1.2rem; }
+    .logo-mark { width: 30px; height: 22px; }
   }
 
   /* ---------- trays ---------- */
@@ -248,6 +263,8 @@
     @keyframes pop { 50% { transform: scale(1.25); } }
   }
   .nope[aria-pressed="true"] { color: var(--neon); }
+  .assist-details.cal-btn { width: 40px; padding: 0; display: flex; align-items: center; justify-content: center; }
+  .cal-btn svg { width: 18px; height: 18px; }
 
   /* ---------- genre chips ---------- */
   .genre-bar { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 22px 20px 2px; margin: 0 -20px; }
@@ -396,13 +413,19 @@
   .slide-dates b { color: var(--ink); font-weight: 600; }
   .slide-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 12px; }
   .btn-tickets {
-    flex: 1.5; display: flex; align-items: center; justify-content: center; height: 46px; padding: 0 12px; border-radius: 999px;
+    flex: 1.5 0 auto; display: flex; align-items: center; justify-content: center; height: 46px; padding: 0 12px; border-radius: 999px;
     background: var(--ink); color: #000; font-weight: 700; font-size: 0.95rem; text-decoration: none; white-space: nowrap; overflow: hidden;
   }
   .btn-tickets:hover { background: #fff; }
   .slide-actions .icon-act { width: 46px; height: 46px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); color: var(--ink); }
   .slide-actions .icon-act svg { width: 20px; height: 20px; }
   .slide-actions .save svg { width: 23px; height: 23px; }
+  /* Heart, calendar, share and not-for-me share the row with the price button, which never clips. */
+  @media (max-width: 420px) {
+    .slide-actions { gap: 6px; }
+    .slide-actions .icon-act { flex: 0 1 40px; width: 40px; height: 40px; min-width: 30px; }
+    .btn-tickets { padding: 0 10px; font-size: 0.9rem; }
+  }
   .toast {
     position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 120; transform: translateX(-50%);
     max-width: calc(100% - 32px); padding: 10px 16px; border-radius: 999px; background: rgba(44,44,46,.96);
@@ -624,6 +647,7 @@
 <main class="wrap" id="main" aria-live="polite"></main>
 
 <div class="share-menu" id="shareMenu" role="dialog" aria-label="Share this show" hidden></div>
+<div class="share-menu" id="calMenu" role="dialog" aria-label="Add to calendar" hidden></div>
 
 <div class="onboard" id="onboard" role="dialog" aria-modal="true" aria-labelledby="obTitle" hidden></div>
 
@@ -695,6 +719,7 @@
   </div>
 </footer>
 
+<script src="calendar.js"></script>
 <script>
   // ---------- config ----------
   // Paste your newsletter signup link here (Buttondown, Substack, Mailchimp, a Google Form…)
@@ -1022,12 +1047,12 @@
     return `<button class="icon-act save" data-add="${id}" aria-pressed="${saved}" aria-label="${label}" title="${label}">${ICON_HEART}</button>`;
   }
   let toastTimer = null;
-  function toast(msg) {
+  function toast(msg, ms = 2600) {
     const t = document.getElementById("toast");
     t.textContent = msg;
     t.hidden = false;
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { t.hidden = true; }, 2600);
+    toastTimer = setTimeout(() => { t.hidden = true; }, ms);
   }
   const ICON_SHARE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>`;
   const ICON_CHAT = `<svg viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12z"/></svg>`;
@@ -1060,6 +1085,7 @@
   }
 
   function openShareMenu(btn, e, text, url) {
+    closeCalMenu(false);
     shareOpener = btn;
     shareMenu.innerHTML = `<p>${esc(e.title)}</p>
       <a href="https://wa.me/?text=${encodeURIComponent(text + "\n" + url)}" target="_blank" rel="noopener" data-close>${ICON_CHAT}WhatsApp</a>
@@ -1078,6 +1104,89 @@
     if (restoreFocus && shareOpener) shareOpener.focus({ preventScroll: true });
     shareOpener = null;
   }
+
+  // ---------- add to calendar ----------
+  // A Google Calendar link, or a .ics file that Apple Calendar, Outlook and the rest open. The file
+  // carries reminders (the day before, and 3 hours before), so the phone reminds you, app open or not.
+  const ICON_CAL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>`;
+  const calMenu = document.getElementById("calMenu");
+  let calOpener = null;
+  function calButton(id, style = "icon") {
+    return style === "pill"
+      ? `<button class="assist-details cal-btn" data-cal="${id}" aria-label="Add to calendar" title="Add to calendar">${ICON_CAL}</button>`
+      : `<button class="icon-act cal" data-cal="${id}" aria-label="Add to calendar" title="Add to calendar">${ICON_CAL}</button>`;
+  }
+  function calEvent(e) {
+    const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url;
+    return { id: e.id, title: e.title, date: e.date, time: e.time || "", venue: e.venue, city: e.city, link,
+      page: shareLink(e), hours: e.category === "sports" ? 3 : 2 };
+  }
+  function openCalMenu(btn) {
+    const e = eventById(btn.dataset.cal);
+    if (!e) return;
+    if (!calMenu.hidden && calOpener === btn) { closeCalMenu(true); return; }
+    closeShareMenu(false);
+    calOpener = btn;
+    calMenu.innerHTML = `<p>${esc(e.title)}</p>
+      <a href="${esc(gigsCal.gcalUrl(calEvent(e)))}" target="_blank" rel="noopener" data-cal-go="google">${ICON_CAL}Google Calendar</a>
+      <button type="button" data-cal-go="ics">${ICON_CAL}<span>Apple, Outlook, other</span></button>`;
+    calMenu.hidden = false;
+    const r = btn.getBoundingClientRect(), w = calMenu.offsetWidth, h = calMenu.offsetHeight;
+    const top = r.bottom + 8 + h > innerHeight ? r.top - h - 8 : r.bottom + 8;
+    calMenu.style.left = Math.max(8, Math.min(r.right - w, innerWidth - w - 8)) + "px";
+    calMenu.style.top = Math.max(8, top) + "px";
+    calMenu.querySelector("a").focus({ preventScroll: true });
+  }
+  function closeCalMenu(restoreFocus) {
+    if (calMenu.hidden) return;
+    calMenu.hidden = true;
+    if (restoreFocus && calOpener) calOpener.focus({ preventScroll: true });
+    calOpener = null;
+  }
+  calMenu.addEventListener("click", ev => {
+    const go = ev.target.closest("[data-cal-go]"), e = calOpener && eventById(calOpener.dataset.cal);
+    if (!go || !e) return;
+    remember(e, WEIGHT.wannaGo);
+    track("add_to_calendar", { method: go.dataset.calGo, item_name: e.title });
+    if (go.dataset.calGo === "ics") {
+      gigsCal.download([calEvent(e)], e.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "show");
+      toast("Calendar file saved. Open it to add the show, with reminders.", 4500);
+    }
+    setTimeout(() => closeCalMenu(false), 0);
+  });
+  function saveAllToCalendar() {
+    const events = getWannaGo().map(eventById).filter(Boolean).sort(byDateTime);
+    if (!events.length) return;
+    gigsCal.download(events.map(calEvent), "gigsnshows-wanna-go");
+    track("add_to_calendar", { method: "ics", count: events.length, via: "wanna_go" });
+    toast(`Saved ${events.length} ${events.length === 1 ? "show" : "shows"} to a calendar file. Open it to add them, with reminders.`, 4500);
+  }
+  document.addEventListener("click", ev => {
+    const open = ev.target.closest("[data-cal]");
+    if (open) { openCalMenu(open); return; }
+    if (ev.target.closest("[data-cal-all]")) saveAllToCalendar();
+  });
+
+  // ---------- install as an app ----------
+  // Chrome and Android offer a real install prompt; iPhones only have Share > Add to Home Screen.
+  let installPrompt = null;
+  const isStandalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  addEventListener("beforeinstallprompt", ev => { ev.preventDefault(); installPrompt = ev; });
+  addEventListener("appinstalled", () => { installPrompt = null; track("app_installed"); renderFooter(); });
+  async function installApp() {
+    if (installPrompt) {
+      installPrompt.prompt();
+      const choice = await installPrompt.userChoice.catch(() => ({}));
+      track("install_prompt", { result: choice.outcome || "unknown" });
+      installPrompt = null;
+      return;
+    }
+    const ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    track("install_help", { method: ios ? "ios" : "other" });
+    toast(ios ? "On iPhone: tap the Share button in Safari, then “Add to Home Screen”." : "In your browser's menu, choose “Install app” or “Add to Home screen”.", 6500);
+  }
+  document.addEventListener("click", ev => { if (ev.target.closest("[data-install]")) installApp(); });
+  if ("serviceWorker" in navigator) addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
 
   // ---------- render ----------
   const ICON_CHECK = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>`;
@@ -1270,7 +1379,8 @@
     const myLists = readLS(LS_LISTS, []);
     if (wannaGo.length || myLists.length) {
       const chips = `<div class="list-chips">${myLists.map(l => `<button class="chip" data-list-open="${esc(l.id)}">${esc(l.n)}</button>`).join("")}
-        <button class="chip" data-list-new>＋ Share this list with friends</button></div>`;
+        <button class="chip" data-list-new>＋ Share this list with friends</button>
+        ${wannaGo.length ? `<button class="chip" data-cal-all>Add all to calendar</button>` : ""}</div>`;
       sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e)),
         { bubbles: chips, empty: "Tap the heart on a show to add it here." }));
     }
@@ -1444,7 +1554,7 @@
       </a>
       <div class="foot">
         <span class="meta">${price}${via}</span>
-        ${saveButton(e.id, saved)}
+        ${saveButton(e.id, saved)}${saved ? calButton(e.id) : ""}
         <button class="icon-act share" data-share="${e.id}" aria-label="Share ${esc(e.title)}" title="Share">${ICON_SHARE}</button>
       </div>
     </div>`;
@@ -1461,6 +1571,7 @@
       + `<li><a href="contact.html">Contact</a></li>`
       + `<li><a href="privacy.html">Privacy</a></li>`
       + `<li><a href="terms.html">Terms</a></li>`
+      + (isStandalone() ? "" : `<li><button data-install>Get the app</button></li>`)
       + (SIGNUP_URL ? `<li><a href="${esc(SIGNUP_URL)}" target="_blank" rel="noopener">Get the weekly picks</a></li>` : "");
   }
 
@@ -1495,7 +1606,7 @@
         ${about}${dates}
         <div class="slide-actions">
           <a class="btn-tickets" href="${esc(links[sources[0]] || e.url)}" target="_blank" rel="noopener" data-ticket="${esc(sources[0])}">${price ? `${price} · ` : ""}Tickets</a>
-          ${saveButton(e.id, saved)}
+          ${saveButton(e.id, saved)}${calButton(e.id)}
           <button class="icon-act share" data-share="${e.id}" aria-label="Share ${esc(e.title)}" title="Share">${ICON_SHARE}</button>
           <button class="icon-act nope" data-nope="${e.id}" aria-pressed="false" aria-label="Not for me: show fewer like this" title="Not for me">${ICON_NOPE}</button>
         </div>
@@ -2133,6 +2244,7 @@
       <div class="plan-acts">
         <button class="assist-book" data-share="plan">${ICON_SHARE}<span style="margin-left:8px">Invite friends</span></button>
         ${live ? `<a class="assist-details" style="display:flex;align-items:center;text-decoration:none;color:inherit" href="${esc(link)}" target="_blank" rel="noopener" data-plan-tickets="${esc(sources[0])}">Tickets</a>` : ""}
+        ${live ? calButton(live.id, "pill") : ""}
       </div>
       <div class="plan-quiet"><button data-report>Report</button><button data-plan-remove hidden>Remove my answer</button>${owner ? `<button data-plan-delete>Delete this plan</button>` : ""}</div>
       <p class="assist-fine">Anyone with this link can see the names and answers here. <a href="privacy.html">Privacy</a></p>`;
@@ -2364,6 +2476,7 @@
           <div class="assist-acts">
             <a class="assist-details" style="display:flex;align-items:center;text-decoration:none;color:inherit" href="${esc(link)}" target="_blank" rel="noopener" data-plan-tickets="${esc(sources[0])}">Tickets</a>
             <button class="assist-details" data-plan-one="${e.id}">Plan just this one</button>
+            ${calButton(e.id, "pill")}
           </div></li>`; }).join("")}</ul>
       <div class="plan-ans one" role="group" aria-label="Can you make it?"><button type="button" data-plan-ans="cant" aria-pressed="false">I can't make it that night</button></div>
       <div id="planReplies" aria-live="polite"></div>
@@ -3155,6 +3268,7 @@
   });
   document.addEventListener("click", ev => {
     if (!shareMenu.hidden && !shareMenu.contains(ev.target) && !ev.target.closest("[data-share]")) closeShareMenu(false);
+    if (!calMenu.hidden && !calMenu.contains(ev.target) && !ev.target.closest("[data-cal]")) closeCalMenu(false);
     if (!cityPop.hidden && !ev.target.closest(".city")) closeCityMenu(false);
   });
   document.addEventListener("keydown", ev => {
@@ -3167,6 +3281,7 @@
     if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden && assist.hidden) { ev.preventDefault(); openSearch(); return; }
     if (ev.key !== "Escape") return;
     if (!reportDlg.hidden) closeReport();
+    else if (!calMenu.hidden) closeCalMenu(true);
     else if (!shareMenu.hidden) closeShareMenu(true);
     else if (!planDlg.hidden) closePlan();
     else if (!listDlg.hidden) closeList();

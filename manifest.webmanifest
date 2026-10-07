@@ -1,0 +1,21 @@
+{
+  "name": "gigsnshows",
+  "short_name": "gigsnshows",
+  "description": "Your kind of night out. Live music, theatre, stand-up and sports across India, picked around your taste.",
+  "id": "/",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "categories": ["entertainment", "events", "lifestyle"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Tonight", "url": "/?when=tonight&source=app", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

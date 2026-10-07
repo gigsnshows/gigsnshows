@@ -204,6 +204,13 @@ def site_checks():
             notes.append(f"certificate valid for {days} more days")
     except Exception as exc:  # noqa: BLE001
         errors.append(f"HTTPS check failed: {exc}")
+    for path in ("/calendar.js", "/manifest.webmanifest", "/sw.js"):  # the calendar buttons and the installable app
+        try:
+            r = get(SITE + path)
+            if r.status_code != 200:
+                warnings.append(f"{path}: HTTP {r.status_code} (the calendar buttons or the installable app won't work)")
+        except Exception as exc:  # noqa: BLE001
+            warnings.append(f"{path} unreachable: {exc}")
     try:  # plans can be read by anyone with the link; a missing one answers 404, a broken setup doesn't
         r = get(f"https://firestore.googleapis.com/v1/projects/gigsnshows/databases/(default)/documents/plans/healthcheck0000?key={FIREBASE_KEY}")
         if r.status_code == 404:

@@ -24,8 +24,9 @@ import re
 import shutil
 import unicodedata
 from collections import defaultdict
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
+from urllib.parse import urlencode
 
 from .genres import catalog
 
@@ -56,7 +57,7 @@ h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{fo
 .poster{width:100%;max-height:420px;object-fit:cover;border-radius:14px;margin:0 0 18px;background:#1c1c1e}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.tag{padding:3px 11px;border-radius:999px;background:rgba(255,255,255,.12);font-size:.8rem;font-weight:600}
 .dates{list-style:none;margin:0;padding:0;display:grid;gap:10px}.dates li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04)}
-.dates b{display:block}.dates span{color:var(--ink2);font-size:.9rem}
+.dates b{display:block}.dates span{color:var(--ink2);font-size:.9rem}.dates a.cal{display:inline-block;margin-top:4px;color:var(--ink2);font-size:.85rem}.dates a.cal:hover{color:var(--ink)}
 .btn{display:inline-block;padding:11px 20px;border-radius:999px;background:var(--ink);color:#000;font-weight:700;text-decoration:none;white-space:nowrap}
 .btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}.cta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
 .cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.cats a{padding:7px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-size:.9rem}.cats a[aria-current]{background:var(--ink);color:#000;border-color:var(--ink)}
@@ -107,6 +108,24 @@ def link_for(e):
     links = e.get("links") or {e["source"]: e.get("url")}
     src = (e.get("sources") or [e["source"]])[0]
     return links.get(src) or e.get("url") or "", re.sub(r" (Plays|Sports)$", "", src)
+
+
+def gcal_url(e, page):
+    """An add-to-Google-Calendar link for one date; the dashboard's own button makes the same link (and a .ics file)."""
+    hours = 3 if e["category"] == "sports" else 2
+    if e.get("time"):
+        start = datetime.strptime(f'{e["date"]} {e["time"]}', "%Y-%m-%d %H:%M")
+        dates = f"{start:%Y%m%dT%H%M%S}/{start + timedelta(hours=hours):%Y%m%dT%H%M%S}"
+    else:
+        day = datetime.strptime(e["date"], "%Y-%m-%d")
+        dates = f"{day:%Y%m%d}/{day + timedelta(days=1):%Y%m%d}"
+    tickets = link_for(e)[0]
+    q = {"action": "TEMPLATE", "text": e["title"], "dates": dates,
+         "details": "\n".join(x for x in [f"Tickets: {tickets}" if tickets else "", f"On gigsnshows: {page}"] if x),
+         "location": ", ".join(x for x in [e.get("venue"), e.get("city")] if x)}
+    if e.get("time"):
+        q["ctz"] = "Asia/Kolkata"
+    return "https://calendar.google.com/calendar/render?" + urlencode(q)
 
 
 def thumb(url):
@@ -206,7 +225,8 @@ def show_page(show, related):
     f = show.first
     dates = "".join(
         f'<li><div><b>{esc(when(e))}</b><span>{esc(venue_short(e))}{", " + esc(e["city"]) if e["city"] != show.city else ""}'
-        f'{esc(from_price(e.get("price_from")))}</span></div>'
+        f'{esc(from_price(e.get("price_from")))}</span>'
+        f'<a class="cal" href="{esc(gcal_url(e, f"{SITE}/{show.path}"))}" target="_blank" rel="noopener nofollow">Add to calendar</a></div>'
         f'<a class="btn alt" href="{esc(link_for(e)[0])}" target="_blank" rel="noopener nofollow">Tickets on {esc(link_for(e)[1])}</a></li>'
         for e in show.events)
     tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in [cat_head] + [GENRE_LABELS.get(g, g.replace("-", " ").title()) for g in show.genres[:3]])
