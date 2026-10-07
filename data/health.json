@@ -31,82 +31,92 @@
    ]
   },
   "District": {
-   "by": "seed",
-   "count": 347,
+   "by": "aws",
+   "count": 433,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T12:01:57Z",
+   "last_run": "2026-10-07T12:01:57Z",
    "recent": [
-    347
+    347,
+    433
    ]
   },
   "NCPA": {
-   "by": "seed",
+   "by": "aws",
    "count": 41,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T12:01:57Z",
+   "last_run": "2026-10-07T12:01:57Z",
    "recent": [
+    41,
     41
    ]
   },
   "NMACC": {
-   "by": "seed",
+   "by": "aws",
    "count": 21,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T12:01:57Z",
+   "last_run": "2026-10-07T12:01:57Z",
    "recent": [
+    21,
     21
    ]
   },
   "Prithvi Theatre": {
-   "by": "seed",
-   "count": 26,
+   "by": "aws",
+   "count": 55,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T12:01:57Z",
+   "last_run": "2026-10-07T12:01:57Z",
    "recent": [
-    26
+    26,
+    55
    ]
   },
   "Skillbox": {
-   "by": "seed",
-   "count": 228,
-   "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "by": "aws",
+   "count": 236,
+   "failed_cities": [
+    "Raipur"
+   ],
+   "last_ok": "2026-10-07T12:01:57Z",
+   "last_run": "2026-10-07T12:01:57Z",
    "recent": [
-    228
+    228,
+    236
    ]
   },
   "The Piano Man": {
-   "by": "seed",
+   "by": "aws",
    "count": 23,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T12:01:57Z",
+   "last_run": "2026-10-07T12:01:57Z",
    "recent": [
+    23,
     23
    ]
   },
   "thumpN": {
-   "by": "seed",
-   "count": 91,
+   "by": "aws",
+   "count": 108,
    "failed_cities": [],
-   "last_ok": "2026-10-07T02:22:13Z",
-   "last_run": "2026-10-07T02:22:13Z",
+   "last_ok": "2026-10-07T12:01:57Z",
+   "last_run": "2026-10-07T12:01:57Z",
    "recent": [
-    91
+    91,
+    108
    ]
   }
  },
  "total": {
-  "at": "2026-10-07T02:22:13Z",
-  "count": 1108,
+  "at": "2026-10-07T12:01:57Z",
+  "count": 1139,
   "recent": [
-   1108
+   1108,
+   1139
   ]
  },
- "updated_at": "2026-10-07T02:22:13Z"
+ "updated_at": "2026-10-07T12:01:57Z"
 }
