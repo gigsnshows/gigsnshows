@@ -22,17 +22,17 @@ main() {
   echo "=== $(date) on $COLLECTOR ==="
   git fetch --quiet "$REPO" main
   git reset --quiet --hard FETCH_HEAD   # latest code and listings
-  git clean -fdq s
+  git clean -fdq
   "$PYTHON" run.py
   for attempt in 1 2 3 4 5; do
-    git add data/events.json data/health.json s
+    git add -A  # listings, health record, share pages and the search pages (shows/, city folders, sitemap)
     if git diff --cached --quiet; then echo "no changes"; return 0; fi
     git "${BOT[@]}" commit --quiet -m "Refresh listings $(date +%F) ($COLLECTOR)"
     git push --quiet "$REPO" HEAD:main && { echo "uploaded"; return 0; }
     echo "another collector uploaded first; merging into its listings"
     git fetch --quiet "$REPO" main
     git reset --quiet --hard FETCH_HEAD
-    git clean -fdq s
+    git clean -fdq
     "$PYTHON" run.py --remerge
   done
   return 1

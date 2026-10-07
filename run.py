@@ -20,7 +20,7 @@ import yaml
 
 import health
 from scrapers.base import NOT_SHOWS, get_html, now_iso
-from scrapers import sharepages
+from scrapers import seo, sharepages
 from scrapers.genres import catalog, language, languages, tag
 from scrapers.parsers import PARSERS
 
@@ -173,6 +173,8 @@ def main(dry_run=False, only=None, remerge=False):
     cname = ROOT / "CNAME"
     sharepages.write(merged, ROOT, f"https://{cname.read_text().strip()}" if cname.exists() else "")
     print(f"wrote share pages to {ROOT / 's'}")
+    n_shows, n_cities = seo.write(merged, ROOT, today)
+    print(f"wrote {n_shows} show pages, {n_cities} city pages, sitemap.xml and robots.txt")
 
 
 if __name__ == "__main__":

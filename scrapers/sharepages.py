@@ -29,7 +29,7 @@ PAGE = """<!doctype html>
 <meta property="og:description" content="{desc}">
 {image}<meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="{url}">
+<meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="0; url={target}">
 <script>location.replace({target_js}+(location.search?"&"+location.search.slice(1):""))</script>
 </head>
