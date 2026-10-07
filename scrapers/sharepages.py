@@ -64,7 +64,10 @@ def write(events, root, site_url):
 
     for e in events:
         target = "/?" + urlencode({"city": e["city"].lower(), "event": e["id"]})
-        image = f'<meta property="og:image" content="{escape(e["image"])}">\n' if e.get("image") else ""
+        # A show's own poster if it has one, else the gigsnshows card (so a link never previews as bare text).
+        image = (f'<meta property="og:image" content="{escape(e["image"])}">\n' if e.get("image") else
+                 f'<meta property="og:image" content="{site_url}/og.jpg">\n<meta property="og:image:width" content="1200">\n'
+                 f'<meta property="og:image:height" content="630">\n')
         html = PAGE.format(title=escape(e["title"]), desc=escape(_description(e)), image=image,
                            url=f"{site_url}/s/{e['id']}", target=escape(target), target_js=json.dumps(target))
         page = folder / f"{e['id']}.html"
