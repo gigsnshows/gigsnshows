@@ -1743,10 +1743,11 @@
   let fb = null, user = null, confirmation = null, pendingPhone = "", saveTimer = null;
 
   // App Check proves to Firebase that a request comes from this site and not a script, so bots can't
-  // create accounts, send login texts (which cost money) or fill the database. The key is public by
-  // design (it only works on gigsnshows.com); its secret half lives in the Firebase console. Left empty,
-  // App Check is off. Fill it in only after the web app is registered under App Check in the console.
-  const APP_CHECK_SITE_KEY = "";
+  // create accounts, send login texts (which cost money) or fill the database. The key is a
+  // reCAPTCHA Enterprise ("Fraud Defense") site key: public by design, and it only works on
+  // gigsnshows.com. The web app is registered with it under Firebase console > App Check > Apps.
+  // Left empty, App Check is off.
+  const APP_CHECK_SITE_KEY = "6LeHUuMtAAAAAA7zMo4H-VqUSmK0etnh4yF1bzXs";
   let fbLoading = null;
   function loadFirebase() {
     if (!fbLoading) {
@@ -1756,7 +1757,7 @@
         if (APP_CHECK_SITE_KEY && location.hostname !== "localhost") {  // localhost has no key: it would need a console-registered debug token
           try {
             const C = await import(FIREBASE_SDK + "firebase-app-check.js");
-            C.initializeAppCheck(instance, { provider: new C.ReCaptchaV3Provider(APP_CHECK_SITE_KEY), isTokenAutoRefreshEnabled: true });
+            C.initializeAppCheck(instance, { provider: new C.ReCaptchaEnterpriseProvider(APP_CHECK_SITE_KEY), isTokenAutoRefreshEnabled: true });
           } catch (err) { console.warn("App Check unavailable", err); }  // never stop the site working because of it
         }
         fb = { auth: A.getAuth(instance), db: S.getFirestore(instance), A, S };
