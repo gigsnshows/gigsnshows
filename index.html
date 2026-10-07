@@ -495,6 +495,12 @@
     position: absolute; right: 10px; top: 10px; z-index: 1; padding: 4px 9px; border-radius: 999px; color: #fff; font-size: 0.74rem; font-weight: 700;
     background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); box-shadow: 0 2px 10px rgba(0,0,0,.4);
   }
+  .plan-name select, .plan-name textarea {
+    padding: 11px 14px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.07);
+    color: var(--ink); font: inherit; font-size: 0.95rem; font-weight: 400; width: 100%;
+  }
+  .plan-name textarea { min-height: 96px; resize: vertical; }
+  .plan-name select:focus, .plan-name textarea:focus { outline: 2px solid var(--glow); outline-offset: 1px; }
   .plan-ans.two { grid-template-columns: repeat(2, 1fr); }
   .plan-ans.one { grid-template-columns: 1fr; }
   /* plans for a night: pick shows, then vote */
@@ -641,6 +647,10 @@
 
 <div class="assist" id="plan" role="dialog" aria-modal="true" aria-labelledby="planTitle" hidden>
   <div class="assist-card" id="planCard"></div>
+</div>
+
+<div class="assist" id="report" role="dialog" aria-modal="true" aria-labelledby="reportTitle" hidden>
+  <div class="assist-card" id="reportCard"></div>
 </div>
 
 <div class="assist" id="login" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
@@ -1450,6 +1460,7 @@
       + `<li><button data-onboard>Your interests</button></li>`
       + `<li><a href="contact.html">Contact</a></li>`
       + `<li><a href="privacy.html">Privacy</a></li>`
+      + `<li><a href="terms.html">Terms</a></li>`
       + (SIGNUP_URL ? `<li><a href="${esc(SIGNUP_URL)}" target="_blank" rel="noopener">Get the weekly picks</a></li>` : "");
   }
 
@@ -1731,12 +1742,23 @@
   const acctBtn = document.getElementById("acctBtn");
   let fb = null, user = null, confirmation = null, pendingPhone = "", saveTimer = null;
 
+  // App Check proves to Firebase that a request comes from this site and not a script, so bots can't
+  // create accounts, send login texts (which cost money) or fill the database. The key is public by
+  // design (it only works on gigsnshows.com); its secret half lives in the Firebase console. Left empty,
+  // App Check is off. Fill it in only after the web app is registered under App Check in the console.
+  const APP_CHECK_SITE_KEY = "";
   let fbLoading = null;
   function loadFirebase() {
     if (!fbLoading) {
       fbLoading = (async () => {
         const [app, A, S] = await Promise.all(["firebase-app.js", "firebase-auth.js", "firebase-firestore.js"].map(f => import(FIREBASE_SDK + f)));
         const instance = app.initializeApp(FIREBASE_CONFIG);
+        if (APP_CHECK_SITE_KEY && location.hostname !== "localhost") {  // localhost has no key: it would need a console-registered debug token
+          try {
+            const C = await import(FIREBASE_SDK + "firebase-app-check.js");
+            C.initializeAppCheck(instance, { provider: new C.ReCaptchaV3Provider(APP_CHECK_SITE_KEY), isTokenAutoRefreshEnabled: true });
+          } catch (err) { console.warn("App Check unavailable", err); }  // never stop the site working because of it
+        }
         fb = { auth: A.getAuth(instance), db: S.getFirestore(instance), A, S };
         fb.auth.languageCode = "en";
         // A friend answering a plan is signed in anonymously so their answer has an owner; that isn't an account.
@@ -1840,7 +1862,7 @@
           <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-label="Mobile number" value="${esc(pendingPhone.slice(3))}" required>
           <button class="assist-go" aria-label="Text me a code">→</button>
         </form>${err}
-        <p class="assist-fine">We'll text you a one-time code; your operator's SMS charges may apply. By continuing you agree to our <a href="privacy.html">privacy policy</a>. Protected by reCAPTCHA: Google's <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a> apply.</p>`;
+        <p class="assist-fine">We'll text you a one-time code; your operator's SMS charges may apply. By continuing you agree to our <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>. Protected by reCAPTCHA: Google's <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a> apply.</p>`;
     }
     loginCard.querySelector("input, .login-acts button")?.focus({ preventScroll: true });
   }
@@ -2111,7 +2133,7 @@
         <button class="assist-book" data-share="plan">${ICON_SHARE}<span style="margin-left:8px">Invite friends</span></button>
         ${live ? `<a class="assist-details" style="display:flex;align-items:center;text-decoration:none;color:inherit" href="${esc(link)}" target="_blank" rel="noopener" data-plan-tickets="${esc(sources[0])}">Tickets</a>` : ""}
       </div>
-      <div class="plan-quiet"><button data-plan-remove hidden>Remove my answer</button>${owner ? `<button data-plan-delete>Delete this plan</button>` : ""}</div>
+      <div class="plan-quiet"><button data-report>Report</button><button data-plan-remove hidden>Remove my answer</button>${owner ? `<button data-plan-delete>Delete this plan</button>` : ""}</div>
       <p class="assist-fine">Anyone with this link can see the names and answers here. <a href="privacy.html">Privacy</a></p>`;
   }
 
@@ -2197,6 +2219,7 @@
 
   planDlg.addEventListener("click", async ev => {
     if (ev.target === planDlg || ev.target.closest("[data-plan-close]")) { closePlan(); return; }
+    if (ev.target.closest("[data-report]") && plan) { openReport("plan", plan.id, plan.doc.title); return; }
     const nightBtn = ev.target.closest("[data-night-pick], [data-night-create]");
     if (nightBtn && night) { nightClick(nightBtn); return; }
     if (!plan) return;
@@ -2344,7 +2367,7 @@
       <div class="plan-ans one" role="group" aria-label="Can you make it?"><button type="button" data-plan-ans="cant" aria-pressed="false">I can't make it that night</button></div>
       <div id="planReplies" aria-live="polite"></div>
       <div class="plan-acts"><button class="assist-book" data-share="plan">${ICON_SHARE}<span style="margin-left:8px">Invite friends</span></button></div>
-      <div class="plan-quiet"><button data-plan-remove hidden>Remove my votes</button>${owner ? `<button data-plan-delete>Delete this plan</button>` : ""}</div>
+      <div class="plan-quiet"><button data-report>Report</button><button data-plan-remove hidden>Remove my votes</button>${owner ? `<button data-plan-delete>Delete this plan</button>` : ""}</div>
       <p class="assist-fine">Anyone with this link can see the names and votes here. <a href="privacy.html">Privacy</a></p>`;
   }
   function renderNightVotes(mine) {  // my buttons, each show's tally, and which one is ahead
@@ -2510,7 +2533,7 @@
       </div>
       <div id="listShows" aria-live="polite"></div>
       <div class="plan-acts"><button class="assist-book" data-share="list">${ICON_SHARE}<span style="margin-left:8px">Invite friends</span></button></div>
-      <div class="plan-quiet"><button data-list-leave hidden>Leave this list</button>${owner ? `<button data-list-delete>Delete this list</button>` : ""}</div>
+      <div class="plan-quiet"><button data-report>Report</button><button data-list-leave hidden>Leave this list</button>${owner ? `<button data-list-delete>Delete this list</button>` : ""}</div>
       <p class="assist-fine">Anyone with this link can see the names and picks here. <a href="privacy.html">Privacy</a></p>`;
   }
 
@@ -2577,6 +2600,7 @@
   listDlg.addEventListener("click", async ev => {
     if (ev.target === listDlg || ev.target.closest("[data-list-close]")) { closeList(); return; }
     if (!lst) return;
+    if (ev.target.closest("[data-report]")) { openReport("list", lst.id, lst.doc.name); return; }
     const filter = ev.target.closest("[data-list-filter]");
     if (filter) { lst.filter = filter.dataset.listFilter; renderListBody(); return; }
     if (ev.target.closest('[data-share="list"]')) { shareList(ev.target.closest('[data-share="list"]')); return; }
@@ -2623,6 +2647,68 @@
         closeList();
         toast("List deleted.");
       } catch (err) { toast(planError(err)); }
+    }
+  });
+
+  // ---------- report a plan or list ----------
+  // Goes to our inbox through the same form service as the Contact page (no address on the site);
+  // the person who made the plan or list isn't told who reported it.
+  const WEB3FORMS_KEY = "8d57d1c2-af0f-4461-9ba6-2d8dd072f555";
+  const reportDlg = document.getElementById("report"), reportCard = document.getElementById("reportCard");
+  const REPORT_REASONS = ["Offensive or abusive", "Spam or scam", "Shows someone's private details", "Misleading", "Something else"];
+  let reporting = null;  // { kind, id, name }
+
+  function openReport(kind, id, name) {
+    reporting = { kind, id, name };
+    reportDlg.hidden = false;
+    reportCard.innerHTML = `<button class="assist-close" data-report-close aria-label="Close">×</button>
+      <h2 id="reportTitle">Report this ${kind}</h2>
+      <p class="assist-status">Tell us what's wrong and we'll take a look. We don't tell the person who made it that you reported it.</p>
+      <form id="reportForm" novalidate>
+        <label class="plan-name">What's the problem?
+          <select name="reason">${REPORT_REASONS.map(r => `<option>${esc(r)}</option>`).join("")}</select></label>
+        <label class="plan-name">Anything else we should know? (optional)
+          <textarea name="note" maxlength="500"></textarea></label>
+        <input class="bot" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <button class="assist-book" style="width:100%;margin-top:14px">Send report</button>
+      </form>
+      <p class="login-err" id="reportStatus" role="status"></p>
+      <p class="assist-fine">See our <a href="terms.html">terms</a>. You can leave a plan or list, or delete your own, at any time.</p>`;
+    reportCard.querySelector("select").focus({ preventScroll: true });
+    track("report_open", { kind });
+  }
+  function closeReport() {
+    if (reportDlg.hidden) return;
+    reportDlg.hidden = true;
+    reporting = null;
+  }
+  reportDlg.addEventListener("click", ev => {
+    if (ev.target === reportDlg || ev.target.closest("[data-report-close]")) closeReport();
+  });
+  reportDlg.addEventListener("submit", async ev => {
+    ev.preventDefault();
+    if (!reporting) return;
+    const f = ev.target, btn = f.querySelector("button"), status = document.getElementById("reportStatus");
+    btn.disabled = true;
+    status.style.color = ""; status.textContent = "Sending…";
+    try {
+      const link = `${location.origin}/?${reporting.kind}=${reporting.id}`;
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY, subject: `gigsnshows report: ${reporting.kind} ${reporting.id}`, from_name: "gigsnshows report",
+          name: "Report", topic: "Report", botcheck: f.botcheck.checked,
+          message: `${reporting.kind.toUpperCase()} REPORTED\nReason: ${f.reason.value}\nName: ${reporting.name}\nLink: ${link}\nId: ${reporting.id}\n\nNote: ${f.note.value.trim() || "(none)"}\n\nTo remove it: Firebase console > Firestore > Data > ${reporting.kind}s > ${reporting.id} > delete the document.`,
+        }),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.success) throw new Error(out.message || res.status);
+      track("report_submit", { kind: reporting.kind, reason: f.reason.value });
+      reportCard.innerHTML = `<button class="assist-close" data-report-close aria-label="Close">×</button><h2 id="reportTitle">Thanks</h2>
+        <p class="assist-msg">Your report is with us and we'll look at it. You can leave this ${esc(reporting.kind)} now if you like.</p>`;
+    } catch {
+      btn.disabled = false;
+      status.textContent = "Sorry, that didn't send. Please try again in a moment.";
     }
   });
 
@@ -3079,7 +3165,8 @@
     }
     if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden && assist.hidden) { ev.preventDefault(); openSearch(); return; }
     if (ev.key !== "Escape") return;
-    if (!shareMenu.hidden) closeShareMenu(true);
+    if (!reportDlg.hidden) closeReport();
+    else if (!shareMenu.hidden) closeShareMenu(true);
     else if (!planDlg.hidden) closePlan();
     else if (!listDlg.hidden) closeList();
     else if (!loginDlg.hidden) closeLogin();
