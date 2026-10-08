@@ -263,6 +263,14 @@
     @keyframes pop { 50% { transform: scale(1.25); } }
   }
   .nope[aria-pressed="true"] { color: var(--neon); }
+  .nl-card .nl-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 20px; border-radius: 18px;
+    border: 1px solid var(--line); background: linear-gradient(135deg, rgba(10,132,255,.14), rgba(139,92,246,.12) 50%, rgba(255,45,149,.14));
+  }
+  .nl-card h2 { font-size: 1.15rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .nl-card p { margin: 0; color: var(--ink-2); font-size: 0.92rem; }
+  .nl-actions { display: flex; align-items: center; gap: 14px; flex: none; }
+  @media (max-width: 640px) { .nl-card .nl-inner { flex-direction: column; align-items: flex-start; } }
   .assist-details.cal-btn { width: 40px; padding: 0; display: flex; align-items: center; justify-content: center; }
   .cal-btn svg { width: 18px; height: 18px; }
 
@@ -677,6 +685,10 @@
   <div class="assist-card" id="reportCard"></div>
 </div>
 
+<div class="assist" id="nl" role="dialog" aria-modal="true" aria-labelledby="nlTitle" hidden>
+  <div class="assist-card" id="nlCard"></div>
+</div>
+
 <div class="assist" id="login" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
   <div class="assist-card" id="loginCard"></div>
 </div>
@@ -725,6 +737,10 @@
   // Paste your newsletter signup link here (Buttondown, Substack, Mailchimp, a Google Form…)
   // Leave empty to hide the button. Nothing is emailed automatically.
   const SIGNUP_URL = "";
+
+  // The weekly picks email is sent with Buttondown. Put the newsletter's Buttondown username here
+  // (buttondown.com/<username>) to switch the signup on; leave it empty to hide it.
+  const NEWSLETTER_USERNAME = "";
 
   // Google Analytics 4. Paste your Measurement ID ("G-XXXXXXXXXX", from Admin → Data streams)
   // to switch it on; leave empty to turn it off. Visitors are asked before analytics cookies are
@@ -1389,6 +1405,9 @@
 
     if (tonight.length) sections.push(trayHtml("tonight", "Tonight", tonight.length, tonight.map(e => renderTile(e))));
     if (weekend.length) sections.push(trayHtml("weekend", "This Weekend", weekend.length, weekend.map(e => renderTile(e))));
+    if (NEWSLETTER_USERNAME && !state.when && !nlState()) sections.push(`<section class="tray nl-card" data-tray="newsletter"><div class="nl-inner">
+      <div><h2>The weekend, in your inbox</h2><p>Every Thursday: the shows we'd go to in your city, in one short email. Free, and one tap to unsubscribe.</p></div>
+      <div class="nl-actions"><button class="assist-book" data-nl-open="home">Get the weekly picks</button><button class="see-all" data-nl-dismiss>Not now</button></div></div></section>`);
     if (justAnnounced.length) sections.push(trayHtml("new", "Just Announced", justAnnounced.length, justAnnounced.map(e => renderTile(e))));
 
     const activeVenue = FAVOURITE_VENUES.find(v => v.key === state.favVenue);
@@ -1572,7 +1591,8 @@
       + `<li><a href="privacy.html">Privacy</a></li>`
       + `<li><a href="terms.html">Terms</a></li>`
       + (isStandalone() ? "" : `<li><button data-install>Get the app</button></li>`)
-      + (SIGNUP_URL ? `<li><a href="${esc(SIGNUP_URL)}" target="_blank" rel="noopener">Get the weekly picks</a></li>` : "");
+      + (NEWSLETTER_USERNAME ? `<li><button data-nl-open="footer">Weekly picks</button></li>`
+         : SIGNUP_URL ? `<li><a href="${esc(SIGNUP_URL)}" target="_blank" rel="noopener">Get the weekly picks</a></li>` : "");
   }
 
   function render() { renderCity(); renderTabs(); renderList(); syncUrl(); }
@@ -2826,6 +2846,67 @@
     }
   });
 
+  // ---------- weekly picks email (Buttondown) ----------
+  // The form posts straight to Buttondown's public signup address: the email, the city (their
+  // `metadata__city`, which the Thursday email reads to show each person their own city) and
+  // tags. Buttondown asks the person to confirm by email. We never see or keep the address.
+  const nlDlg = document.getElementById("nl"), nlCard = document.getElementById("nlCard");
+  const LS_NL = "whatsOn.newsletter";  // "subscribed" or "dismissed"
+  function nlState() { try { return localStorage.getItem(LS_NL) || ""; } catch { return ""; } }
+  function nlSet(v) { try { localStorage.setItem(LS_NL, v); } catch {} }
+  let nlFrom = "";
+
+  function openNewsletter(from) {
+    if (!NEWSLETTER_USERNAME) return;
+    nlFrom = from;
+    closeShareMenu(false);
+    nlDlg.hidden = false;
+    nlCard.innerHTML = `<button class="assist-close" data-nl-close aria-label="Close">×</button>
+      <h2 id="nlTitle">The weekend, in your inbox</h2>
+      <p class="assist-status">Every Thursday: the shows we'd go to in your city that weekend, in one short email. Free, and one tap to unsubscribe.</p>
+      <form id="nlForm" novalidate>
+        <label class="plan-name">Email <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></label>
+        <label class="plan-name">Your city <select name="city">${citiesByShows().map(c => `<option${c === state.city ? " selected" : ""}>${esc(c)}</option>`).join("")}</select></label>
+        <input class="bot" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <button class="assist-book" style="width:100%;margin-top:14px">Get the weekly picks</button>
+      </form>
+      <p class="login-err" id="nlStatus" role="status"></p>
+      <p class="assist-fine">Bigger cities get a full list; in smaller ones you'll get the highlights from across India. We send it with Buttondown, and your email and city are used only for this email. <a href="privacy.html">Privacy</a></p>`;
+    nlCard.querySelector("input").focus({ preventScroll: true });
+    track("newsletter_open", { from });
+  }
+  function closeNewsletter() { if (!nlDlg.hidden) nlDlg.hidden = true; }
+  nlDlg.addEventListener("click", ev => { if (ev.target === nlDlg || ev.target.closest("[data-nl-close]")) closeNewsletter(); });
+  nlDlg.addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const f = ev.target, btn = f.querySelector("button.assist-book"), status = document.getElementById("nlStatus");
+    const email = f.email.value.trim(), city = f.city.value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { status.textContent = "That email doesn't look right. Please check it."; f.email.focus(); return; }
+    btn.disabled = true;
+    status.textContent = "Signing you up…";
+    try {
+      if (!f.botcheck.checked) {  // a bot that ticks the hidden box is thanked and ignored
+        const body = new URLSearchParams({ email, embed: "1", metadata__city: city, utm_source: "gigsnshows", utm_medium: "site", utm_campaign: nlFrom });
+        body.append("tag", "weekly");
+        body.append("tag", "city-" + city.toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+        await fetch(`https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(NEWSLETTER_USERNAME)}`, { method: "POST", mode: "no-cors", body });
+      }
+      nlSet("subscribed");
+      track("newsletter_signup", { city, from: nlFrom });
+      nlCard.innerHTML = `<button class="assist-close" data-nl-close aria-label="Close">×</button><h2 id="nlTitle">Check your inbox</h2>
+        <p class="assist-msg">We've sent a confirmation email to <b>${esc(email)}</b>. Tap the link in it to finish. If it isn't there in a minute, look in spam.</p>`;
+      renderList();  // the Home card goes away
+    } catch {
+      btn.disabled = false;
+      status.textContent = "Sorry, that didn't go through. Please try again in a moment.";
+    }
+  });
+  document.addEventListener("click", ev => {
+    const open = ev.target.closest("[data-nl-open]");
+    if (open) { openNewsletter(open.dataset.nlOpen); return; }
+    if (ev.target.closest("[data-nl-dismiss]")) { nlSet("dismissed"); track("newsletter_dismiss"); renderList(); }
+  });
+
   // ---------- book by voice ----------
   // Say or type what you'd like to see or book. It's built for that and nothing else: a request
   // is read for a show, artist or venue, a kind of show, a day, a city, a budget and a number of
@@ -3281,6 +3362,7 @@
     if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden && assist.hidden) { ev.preventDefault(); openSearch(); return; }
     if (ev.key !== "Escape") return;
     if (!reportDlg.hidden) closeReport();
+    else if (!nlDlg.hidden) closeNewsletter();
     else if (!calMenu.hidden) closeCalMenu(true);
     else if (!shareMenu.hidden) closeShareMenu(true);
     else if (!planDlg.hidden) closePlan();
