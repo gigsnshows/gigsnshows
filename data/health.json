@@ -60,35 +60,38 @@
   },
   "District": {
    "by": "aws",
-   "count": 440,
+   "count": 441,
    "failed_cities": [],
-   "last_ok": "2026-10-08T02:01:23Z",
-   "last_run": "2026-10-08T02:01:23Z",
+   "last_ok": "2026-10-08T12:01:55Z",
+   "last_run": "2026-10-08T12:01:55Z",
    "recent": [
     347,
     433,
-    440
+    440,
+    441
    ]
   },
   "NCPA": {
    "by": "aws",
-   "count": 39,
+   "count": 40,
    "failed_cities": [],
-   "last_ok": "2026-10-08T02:01:23Z",
-   "last_run": "2026-10-08T02:01:23Z",
+   "last_ok": "2026-10-08T12:01:55Z",
+   "last_run": "2026-10-08T12:01:55Z",
    "recent": [
     41,
     41,
-    39
+    39,
+    40
    ]
   },
   "NMACC": {
    "by": "aws",
    "count": 21,
    "failed_cities": [],
-   "last_ok": "2026-10-08T02:01:23Z",
-   "last_run": "2026-10-08T02:01:23Z",
+   "last_ok": "2026-10-08T12:01:55Z",
+   "last_run": "2026-10-08T12:01:55Z",
    "recent": [
+    21,
     21,
     21,
     21
@@ -96,37 +99,40 @@
   },
   "Prithvi Theatre": {
    "by": "aws",
-   "count": 54,
+   "count": 56,
    "failed_cities": [],
-   "last_ok": "2026-10-08T02:01:23Z",
-   "last_run": "2026-10-08T02:01:23Z",
+   "last_ok": "2026-10-08T12:01:55Z",
+   "last_run": "2026-10-08T12:01:55Z",
    "recent": [
     26,
     55,
-    54
+    54,
+    56
    ]
   },
   "Skillbox": {
    "by": "aws",
-   "count": 238,
+   "count": 234,
    "failed_cities": [
     "Raipur"
    ],
-   "last_ok": "2026-10-08T02:01:23Z",
-   "last_run": "2026-10-08T02:01:23Z",
+   "last_ok": "2026-10-08T12:01:55Z",
+   "last_run": "2026-10-08T12:01:55Z",
    "recent": [
     228,
     236,
-    238
+    238,
+    234
    ]
   },
   "The Piano Man": {
    "by": "aws",
    "count": 23,
    "failed_cities": [],
-   "last_ok": "2026-10-08T02:01:23Z",
-   "last_run": "2026-10-08T02:01:23Z",
+   "last_ok": "2026-10-08T12:01:55Z",
+   "last_run": "2026-10-08T12:01:55Z",
    "recent": [
+    23,
     23,
     23,
     23
@@ -134,27 +140,29 @@
   },
   "thumpN": {
    "by": "aws",
-   "count": 90,
+   "count": 89,
    "failed_cities": [],
-   "last_ok": "2026-10-08T02:01:23Z",
-   "last_run": "2026-10-08T02:01:23Z",
+   "last_ok": "2026-10-08T12:01:55Z",
+   "last_run": "2026-10-08T12:01:55Z",
    "recent": [
     91,
     108,
-    90
+    90,
+    89
    ]
   }
  },
  "total": {
-  "at": "2026-10-08T02:21:14Z",
+  "at": "2026-10-08T12:01:55Z",
   "count": 1140,
   "recent": [
    1108,
    1139,
    1186,
    1192,
+   1140,
    1140
   ]
  },
- "updated_at": "2026-10-08T02:21:14Z"
+ "updated_at": "2026-10-08T12:01:55Z"
 }
