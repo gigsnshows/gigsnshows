@@ -234,11 +234,11 @@ def document(fragment, title):
 </td></tr></table></body></html>"""
 
 
-def combined(sendable, today, unsubscribe):
+def combined(sendable, today, unsubscribe, blocks=None):
     """One email for everyone. The mailing service shows each subscriber only the block for the city saved at signup
     (Buttondown's `subscriber.metadata.city`), and the highlights block to everyone else."""
     rows, subjects = [], []
-    for i, d in enumerate(sendable):
+    for i, d in enumerate([d for d in sendable if not blocks or d["city"] in blocks]):
         assert '"' not in d["city"] and "{" not in d["city"]
         test = f'subscriber.metadata.city == "{d["city"]}"'
         rows.append(f'{{% {"if" if i == 0 else "elif"} {test} %}}{city_rows(d, today)}')
@@ -253,7 +253,7 @@ def combined(sendable, today, unsubscribe):
     return subject, body
 
 
-def run(cities=None, out=OUT, today=None, unsubscribe=UNSUBSCRIBE):
+def run(cities=None, out=OUT, today=None, unsubscribe=UNSUBSCRIBE, blocks=None):
     today = today or today_in_india()
     events = json.loads(EVENTS.read_text())["events"]
     events = [e for e in events if e["date"] >= str(today)]
@@ -273,8 +273,8 @@ def run(cities=None, out=OUT, today=None, unsubscribe=UNSUBSCRIBE):
         (out / f"{slug(city)}.html").write_text(document(shell(city_rows(d, today), d["preheader"], today, unsubscribe), d["subject"]))
     sendable = [d for d in rows if not d["skip"]]
     if sendable and not cities:
-        subject, body = combined(sendable, today, unsubscribe)
-        (out / "buttondown.json").write_text(json.dumps({"subject": subject, "body": body, "cities": [d["city"] for d in sendable]}, indent=1, ensure_ascii=False) + "\n")
+        subject, body = combined(sendable, today, unsubscribe, blocks)
+        (out / "buttondown.json").write_text(json.dumps({"subject": subject, "body": body, "cities": [d["city"] for d in sendable if not blocks or d["city"] in blocks]}, indent=1, ensure_ascii=False) + "\n")
         (out / "buttondown.html").write_text(body)
     index = "".join(f'<li><a href="{slug(d["city"])}.html">{esc(d["city"])}</a> · {d["weekend_shows"]} shows this weekend · <i>{esc(d["subject"])}</i></li>' for d in rows if not d["skip"] or cities)
     (out / "index.html").write_text(f'<!doctype html><meta charset="utf-8"><title>Weekly picks</title><body style="font-family:sans-serif;max-width:720px;margin:30px auto;line-height:1.7"><h1>Weekly picks, built {today}</h1><ul>{index}</ul>')
@@ -287,8 +287,9 @@ if __name__ == "__main__":
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--today", help="YYYY-MM-DD, to build for another week")
     ap.add_argument("--unsubscribe", default=UNSUBSCRIBE)
+    ap.add_argument("--blocks", nargs="*", help="only put these cities' blocks in the combined email (the cities that have subscribers); the highlights block is always there")
     a = ap.parse_args()
-    rows, day = run(a.city, a.out, parse_day(a.today) if a.today else None, a.unsubscribe)
+    rows, day = run(a.city, a.out, parse_day(a.today) if a.today else None, a.unsubscribe, a.blocks)
     for d in rows:
         print(f"{'skip' if d['skip'] else 'ok  '} {d['city']:<18} {d['weekend_shows']:>3} on the weekend, {d['picks']} picks  {d['subject']}")
     print(f"written to {a.out} for the weekend after {day}")
