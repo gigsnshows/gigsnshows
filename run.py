@@ -12,7 +12,9 @@ data/events.json for the dashboard.
 
 import json
 import os
+import re
 import sys
+from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
@@ -53,6 +55,33 @@ def expand(src):
             urls = [src["url"].format(city=c, category=k) for c in as_list(cslugs) for k in as_list(catslugs)]
             out.append({"urls": urls, "city": city, "category": cat})
     return out
+
+
+def drop_tour_hubs(events):
+    """
+    BookMyShow lists a touring act's general page ("...-india-tour/<id>") under every city, each copy with the
+    tour's FIRST date. When the tour also has a page per city, those carry the real dates and the general
+    page's copies are wrong, so they're dropped (Diljit's tour: 21 Nov is Ahmedabad's date, but it showed for
+    Mumbai, whose show is 27 Nov). A general page with no per-city pages is kept: it's all we know.
+    """
+    norm = lambda s: re.sub(r"[^a-z0-9]", "", (s or "").lower())  # noqa: E731
+    cities = defaultdict(set)
+    titles = defaultdict(set)
+    for e in events:
+        cities[(e["source"], e["url"])].add(e["city"])
+        titles[(e["source"], e["url"])].add(norm(e["title"]))
+    hubs = set()
+    for key, cs in cities.items():
+        if len(cs) < 2:
+            continue
+        src, url = key
+        if any(e["source"] == src and e["url"] != url and any(t and norm(e["title"]).startswith(t) for t in titles[key]) for e in events):
+            hubs.add(key)
+    if hubs:
+        gone = [e for e in events if (e["source"], e["url"]) in hubs]
+        print(f"\nDropped {len(gone)} copies of {len(hubs)} general tour page(s) that have their own city pages: "
+              + "; ".join(sorted({e["title"] for e in gone})))
+    return [e for e in events if (e["source"], e["url"]) not in hubs]
 
 
 def dedupe(events):
@@ -142,7 +171,7 @@ def main(dry_run=False, only=None, remerge=False):
     if stale:
         print(f"\nNo fresh results from: {', '.join(sorted(stale))} — keeping {len(carried)} of their earlier upcoming shows")
 
-    upcoming = [e for e in collected if e["date"] >= today] + carried
+    upcoming = drop_tour_hubs([e for e in collected if e["date"] >= today] + carried)
     merged = dedupe(upcoming)
     merged.sort(key=lambda e: (e["date"], e["time"]))
     print(f"\n{len(collected)} scraped + {len(carried)} kept -> {len(merged)} unique upcoming events")
