@@ -132,7 +132,7 @@
   render: true
   wait_ms: 6000
   link_pattern: /event/
-  max_pages: 250            # the sitemap lists every thumpN show, across all cities
+  max_pages: 600            # the sitemap lists every thumpN show, newest LAST: a cap of 250 once cut off the whole Arijit Singh tour (271 events then)
   default_category: music
   urls:
     - {url: https://thumpn.com/sitemap.xml, city: Mumbai}

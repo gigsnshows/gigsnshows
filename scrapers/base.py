@@ -18,6 +18,7 @@ import json
 import re
 import time
 from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from urllib.parse import urljoin, urlparse
 
 import requests
@@ -176,6 +177,13 @@ def parse_date(text):
     if not has_year and dt.date() < date.today() - timedelta(days=7):
         dt = dt.replace(year=dt.year + 1)
     time_str = dt.strftime("%H:%M") if time_match or "T" in first else ""
+    if dt.tzinfo is not None and dt.utcoffset() == timedelta(0) and re.search(r"(Z|[+-]00:?00)$", text):
+        # A time in UTC (thumpN writes "2027-02-20T12:30:00Z"): show it as India time, which is 6 pm here, not 12:30
+        if dt.hour == 0 and dt.minute == 0:
+            time_str = ""  # midnight UTC means "no time given"
+        else:
+            dt = dt.astimezone(ZoneInfo("Asia/Kolkata"))
+            time_str = dt.strftime("%H:%M")
     return dt.date().isoformat(), time_str
 
 
