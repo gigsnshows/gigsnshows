@@ -475,6 +475,38 @@
   }
   .mic-fab:hover { transform: scale(1.06); box-shadow: 0 12px 30px rgba(0,0,0,.6), 0 0 26px rgba(255,45,149,.65); }
   .mic-fab svg { width: 24px; height: 24px; }
+  .getapp { position: relative; z-index: 21; display: flex; align-items: center; justify-content: center; min-height: 36px; padding: 6px 40px 6px 14px;
+    background: linear-gradient(90deg, rgba(10,132,255,.24), rgba(139,92,246,.22) 50%, rgba(255,45,149,.24)); border-bottom: 1px solid var(--line); }
+  .getapp[hidden] { display: none; }
+  .getapp .go { display: inline-flex; align-items: center; gap: 8px; font-size: 0.84rem; font-weight: 700; color: var(--ink); }
+  .getapp .go svg { width: 15px; height: 15px; }
+  .getapp .go i { font-style: normal; font-size: 1.1rem; line-height: 1; opacity: .8; }
+  .getapp .go:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .getapp .x { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; color: var(--ink-3); font-size: 1.2rem; }
+  .how-qr { display: flex; align-items: center; gap: 16px; margin: 18px 0 4px; }
+  .how-qr img { width: 150px; height: 150px; border-radius: 14px; flex: none; background: #fff; }
+  .how-qr p { margin: 0; color: var(--ink-2); font-size: 0.9rem; line-height: 1.45; }
+  .how-qr b { color: var(--ink); }
+  .install-bar { position: fixed; left: 12px; right: 12px; bottom: calc(86px + env(safe-area-inset-bottom)); z-index: 90; margin: 0 auto; max-width: 520px;
+    display: flex; align-items: center; gap: 12px; padding: 12px 10px 12px 14px; border-radius: 18px; background: rgba(28,28,30,.97);
+    border: 1px solid var(--line); box-shadow: 0 16px 40px rgba(0,0,0,.6); backdrop-filter: blur(16px); }
+  .install-bar[hidden] { display: none; }
+  .install-bar img { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+  .install-bar b { display: block; font-size: 0.95rem; line-height: 1.25; }
+  .install-bar span { display: block; font-size: 0.8rem; color: var(--ink-2); line-height: 1.3; }
+  .install-bar .go { margin-left: auto; height: 38px; padding: 0 16px; border-radius: 999px; background: var(--ink); color: #000; font-weight: 700; font-size: 0.88rem; flex: none; }
+  .install-bar .x { width: 32px; height: 32px; border-radius: 50%; color: var(--ink-3); font-size: 1.25rem; flex: none; }
+  .how-head { display: flex; align-items: center; gap: 14px; padding-right: 34px; }
+  .how-head img { width: 56px; height: 56px; border-radius: 14px; flex: none; }
+  .how-head h2 { font-size: 1.15rem; line-height: 1.2; }
+  .how-head p { margin: 4px 0 0; color: var(--ink-2); font-size: 0.88rem; }
+  .how-steps { list-style: none; counter-reset: s; margin: 18px 0 8px; padding: 0; display: grid; gap: 14px; }
+  .how-steps li { counter-increment: s; display: flex; align-items: flex-start; gap: 12px; }
+  .how-steps li::before { content: counter(s); flex: none; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.85rem; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
+  .how-steps b { display: block; line-height: 1.3; }
+  .how-steps span { color: var(--ink-2); font-size: 0.9rem; }
+  .how-steps svg { width: 16px; height: 16px; vertical-align: -3px; }
   .assist { position: fixed; inset: 0; z-index: 95; display: flex; align-items: flex-end; justify-content: center; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); }
   .assist[hidden] { display: none; }
   .assist-card {
@@ -614,6 +646,11 @@
 
 <div class="ambient" aria-hidden="true"></div>
 
+<div class="getapp" id="getApp" hidden>
+  <button class="go" data-getapp><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Get gigsnshows on your phone <i aria-hidden="true">›</i></button>
+  <button class="x" data-getapp-no aria-label="Hide this">×</button>
+</div>
+
 <header class="topbar" id="topbar">
   <div class="wrap bar">
     <a class="logo" href="./" aria-label="gigsnshows home">
@@ -681,6 +718,17 @@
     <button class="consent-no" data-consent="denied">No thanks</button>
     <button class="consent-ok" data-consent="granted">OK</button>
   </div>
+</div>
+
+<div class="assist" id="how" role="dialog" aria-modal="true" aria-labelledby="howTitle" hidden>
+  <div class="assist-card" id="howCard"></div>
+</div>
+
+<div class="install-bar" id="installBar" role="region" aria-label="Add to your home screen" hidden>
+  <img src="icon-192.png" alt="">
+  <div><b>Add gigsnshows to your home screen</b><span>Your shows, one tap away.</span></div>
+  <button class="go" data-install-go>Add</button>
+  <button class="x" data-install-no aria-label="Not now">×</button>
 </div>
 
 <div class="toast" id="toast" role="status" hidden></div>
@@ -965,6 +1013,7 @@
     const i = ids.indexOf(id);
     if (i > -1) ids.splice(i, 1); else { ids.push(id); track("wanna_go", { item_name: eventById(id)?.title }); remember(eventById(id), WEIGHT.wannaGo); }
     localStorage.setItem(LS_LIST, JSON.stringify(ids));
+    if (i === -1 && ids.length === 1) queueInstallOffer("saved_show");  // the first heart is the moment the app earns its place
     cloudSave();
     listSyncSoon();
     renderList();
@@ -1200,24 +1249,113 @@
   });
 
   // ---------- install as an app ----------
-  // Chrome and Android offer a real install prompt; iPhones only have Share > Add to Home Screen.
-  let installPrompt = null;
+  // A home-screen shortcut that opens full-screen, like an app: no store, nothing to download.
+  // Android and desktop Chrome/Edge offer a real install prompt; iPhones only have Share > Add to Home Screen.
+  let installPrompt = null, installPending = false;
+  const LS_INSTALL_NO = "whatsOn.installNo", LS_INSTALLED = "whatsOn.installed", LS_VISITS = "whatsOn.visits";
   const isStandalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
-  addEventListener("beforeinstallprompt", ev => { ev.preventDefault(); installPrompt = ev; });
-  addEventListener("appinstalled", () => { installPrompt = null; track("app_installed"); renderFooter(); });
-  async function installApp() {
-    if (installPrompt) {
-      installPrompt.prompt();
-      const choice = await installPrompt.userChoice.catch(() => ({}));
-      track("install_prompt", { result: choice.outcome || "unknown" });
-      installPrompt = null;
-      return;
-    }
-    const ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-    track("install_help", { method: ios ? "ios" : "other" });
-    toast(ios ? "On iPhone: tap the Share button in Safari, then “Add to Home Screen”." : "In your browser's menu, choose “Install app” or “Add to Home screen”.", 6500);
+  function platform() {
+    const ua = navigator.userAgent;
+    if (/Android/i.test(ua)) return "android";
+    return /iP(hone|ad|od)/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) ? "ios" : "desktop";
   }
-  document.addEventListener("click", ev => { if (ev.target.closest("[data-install]")) installApp(); });
+  const installBar = document.getElementById("installBar");
+  const howDlg = document.getElementById("how"), howCard = document.getElementById("howCard");
+  function hideInstallBar() { installBar.hidden = true; }
+  addEventListener("beforeinstallprompt", ev => { ev.preventDefault(); installPrompt = ev; });
+  addEventListener("appinstalled", () => {
+    installPrompt = null; hideInstallBar(); closeHow();
+    try { localStorage.setItem(LS_INSTALLED, "1"); } catch {}
+    syncGetApp();
+    track("app_installed"); renderFooter();
+  });
+  // One gentle offer, on phones only, when the app is useful (after saving a show, or on a return visit);
+  // never once installed, and quiet for 30 days after "Not now".
+  function installOffer(reason) {
+    if (!matchMedia("(max-width: 720px)").matches || isStandalone() || platform() === "desktop") return;
+    try {
+      if (localStorage.getItem(LS_INSTALLED) || Date.now() - Number(localStorage.getItem(LS_INSTALL_NO) || 0) < 30 * 864e5) return;
+      if (sessionStorage.getItem("whatsOn.offered")) return;
+      sessionStorage.setItem("whatsOn.offered", "1");
+    } catch {}
+    installBar.hidden = false;
+    track("install_offer", { reason });
+  }
+  function queueInstallOffer(reason) {  // from the swipe view the offer waits until it's closed
+    if (viewer.hidden) setTimeout(() => installOffer(reason), 1600); else installPending = true;
+  }
+  function openHow(from) {
+    const p = platform(), share = ICON_SHARE, desktop = p === "desktop";
+    const steps = p === "ios" ? [
+      ["Tap the Share button", `${share} at the bottom of Safari (in Chrome it's at the top right).`],
+      ["Scroll down and tap “Add to Home Screen”", "It's in the list under the share icons."],
+      ["Tap “Add”", "gigsnshows now sits on your home screen."],
+    ] : p === "android" ? [
+      ["Tap the ⋮ menu", "in the top corner of Chrome."],
+      ["Tap “Install app”", "or “Add to Home screen” if you see that instead."],
+      ["Tap “Install”", "gigsnshows now sits on your home screen."],
+    ] : [
+      ["Scan the code with your phone's camera", "and tap the link that appears."],
+      ["Add it to your home screen", "iPhone: Share, then Add to Home Screen. Android: ⋮ menu, then Install app."],
+      ["Open it like any app", "Full-screen, with your shows one tap away."],
+    ];
+    const qr = desktop ? `<div class="how-qr"><img src="qr-install.svg" alt="QR code that opens gigsnshows.com on your phone" width="150" height="150">
+      <p><b>Point your phone's camera at this.</b><br>It opens gigsnshows.com and shows you how to add it.</p></div>` : "";
+    howCard.innerHTML = `<button class="assist-close" data-how-close aria-label="Close">×</button>
+      <div class="how-head"><img src="icon-192.png" alt=""><div><h2 id="howTitle">${desktop ? "Get gigsnshows on your phone" : "Add gigsnshows to your home screen"}</h2>
+        <p>Opens full-screen like an app. No store, nothing to download.</p></div></div>
+      ${qr}<ol class="how-steps">${steps.map(([a, b]) => `<li><div><b>${a}</b>${b ? `<span>${b}</span>` : ""}</div></li>`).join("")}</ol>
+      ${installPrompt ? `<button class="assist-book" data-how-install style="width:100%;margin-top:6px">${desktop ? "Or install it on this computer" : "Install now"}</button>` : ""}
+      <p class="assist-fine">Takes about ten seconds.</p>`;
+    howDlg.hidden = false;
+    track("install_help", { method: p, from });
+  }
+  function closeHow() { if (!howDlg.hidden) howDlg.hidden = true; }
+  async function installApp(from = "footer") {
+    hideInstallBar();
+    if (installPrompt && from !== "link" && from !== "top-desktop") {
+      try {
+        installPrompt.prompt();
+        const choice = await installPrompt.userChoice.catch(() => ({}));
+        track("install_prompt", { result: choice.outcome || "unknown", from });
+        installPrompt = null;
+        return;
+      } catch {}  // the browser wants a tap: fall back to the steps, which have an Install button
+    }
+    openHow(from);
+  }
+  howDlg.addEventListener("click", ev => {
+    if (ev.target === howDlg || ev.target.closest("[data-how-close]")) closeHow();
+    else if (ev.target.closest("[data-how-install]") && installPrompt) { closeHow(); installPrompt.prompt(); installPrompt.userChoice.then(c => { track("install_prompt", { result: c.outcome, from: "dialog" }); installPrompt = null; }).catch(() => {}); }
+  });
+  document.addEventListener("click", ev => {
+    if (ev.target.closest("[data-install]")) { installApp("footer"); return; }
+    if (ev.target.closest("[data-install-go]")) { installApp("offer"); return; }
+    if (ev.target.closest("[data-install-no]")) {
+      try { localStorage.setItem(LS_INSTALL_NO, String(Date.now())); } catch {}
+      hideInstallBar(); track("install_offer_dismiss");
+    }
+  });
+  try {  // a return visit is a good moment too
+    if (!sessionStorage.getItem("whatsOn.counted")) {
+      sessionStorage.setItem("whatsOn.counted", "1");
+      const visits = Number(localStorage.getItem(LS_VISITS) || 0) + 1;
+      localStorage.setItem(LS_VISITS, String(visits));
+      if (visits >= 2) setTimeout(() => installOffer("return_visit"), 9000);
+    }
+  } catch {}
+  const getApp = document.getElementById("getApp"), LS_STRIP_NO = "whatsOn.stripNo";
+  function syncGetApp() {
+    let hide = isStandalone();
+    try { hide = hide || !!localStorage.getItem(LS_INSTALLED) || Date.now() - Number(localStorage.getItem(LS_STRIP_NO) || 0) < 30 * 864e5; } catch {}
+    getApp.hidden = hide;
+  }
+  syncGetApp();
+  document.addEventListener("click", ev => {
+    if (ev.target.closest("[data-getapp]")) { track("getapp_click", { device: platform() }); installApp(platform() === "desktop" ? "top-desktop" : "top"); return; }
+    if (ev.target.closest("[data-getapp-no]")) { try { localStorage.setItem(LS_STRIP_NO, String(Date.now())); } catch {} syncGetApp(); }
+  });
+  if (new URLSearchParams(location.search).get("install")) setTimeout(() => { if (!isStandalone()) installApp("link"); }, 1500);  // gigsnshows.com/?install=1
   if ("serviceWorker" in navigator) addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
 
   // ---------- render ----------
@@ -1716,6 +1854,7 @@
     closeShareMenu(false);
     if (!fromHistory && history.state?.viewer) history.back();
     if (dislikedInViewer) { dislikedInViewer = false; renderList(); }  // For you drops what you turned down
+    if (installPending) { installPending = false; setTimeout(() => installOffer("saved_show"), 900); }
   }
 
   viewer.addEventListener("click", e => {
@@ -3398,6 +3537,7 @@
     if (ev.key === "/" && !typing && viewer.hidden && onboard.hidden && assist.hidden) { ev.preventDefault(); openSearch(); return; }
     if (ev.key !== "Escape") return;
     if (!reportDlg.hidden) closeReport();
+    else if (!howDlg.hidden) closeHow();
     else if (!nlDlg.hidden) closeNewsletter();
     else if (!calMenu.hidden) closeCalMenu(true);
     else if (!shareMenu.hidden) closeShareMenu(true);
