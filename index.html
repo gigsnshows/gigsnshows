@@ -93,7 +93,9 @@
   }
   .logo-word b { font-weight: 500; margin: 0 0.02em; }
 
-  .tabs { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+  .tabs-row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .tabs { flex: 1; min-width: 0; display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+  .nl-btn { flex: none; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab { padding: 6px 0; white-space: nowrap; color: var(--ink-2); font-size: 0.92rem; font-weight: 500; transition: color 140ms ease; }
   .tab:hover { color: var(--ink); }
@@ -170,7 +172,8 @@
     .city-btn .pin { display: none; }
     .city-btn .chev { flex: none; }
     #cityLabel { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .tabs { grid-area: tabs; gap: 20px; }
+    .tabs-row { grid-area: tabs; }
+    .tabs { gap: 20px; }
     .logo-word { font-size: 1.2rem; }
     .logo-mark { width: 30px; height: 22px; }
   }
@@ -263,14 +266,6 @@
     @keyframes pop { 50% { transform: scale(1.25); } }
   }
   .nope[aria-pressed="true"] { color: var(--neon); }
-  .nl-card .nl-inner {
-    display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 20px; border-radius: 18px;
-    border: 1px solid var(--line); background: linear-gradient(135deg, rgba(10,132,255,.14), rgba(139,92,246,.12) 50%, rgba(255,45,149,.14));
-  }
-  .nl-card h2 { font-size: 1.15rem; margin: 0 0 4px; letter-spacing: -0.01em; }
-  .nl-card p { margin: 0; color: var(--ink-2); font-size: 0.92rem; }
-  .nl-actions { display: flex; align-items: center; gap: 14px; flex: none; }
-  @media (max-width: 640px) { .nl-card .nl-inner { flex-direction: column; align-items: flex-start; } }
   .assist-details.cal-btn { width: 40px; padding: 0; display: flex; align-items: center; justify-content: center; }
   .cal-btn svg { width: 18px; height: 18px; }
 
@@ -412,8 +407,19 @@
   .tag.cat { background: color-mix(in srgb, var(--c) 30%, transparent); }
   .tag.new { background: var(--glow); }
   .slide-title { margin: 2px 0 0; font-family: var(--brand-font); font-size: 1.6rem; font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; }
-  .slide-meta { margin: 0; font-size: 0.95rem; }
-  .slide-meta span { color: var(--ink-2); }
+  .slide-facts { display: grid; gap: 8px; margin: 6px 0 2px; }
+  .fact { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; color: var(--ink); text-decoration: none;
+    background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.12); }
+  a.fact:hover, a.fact:focus-visible { background: rgba(255,255,255,.15); }
+  .fact .ic { flex: none; width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(10,132,255,.30), rgba(255,45,149,.26)); }
+  .fact .ic svg { width: 21px; height: 21px; }
+  .fact b { display: block; font-size: 1.12rem; font-weight: 700; line-height: 1.2; }
+  .fact span { display: block; margin-top: 2px; font-size: 0.92rem; color: var(--ink-2); }
+  .fact span.muted { color: var(--ink-3); }
+  .fact .go { margin-left: auto; flex: none; color: var(--ink-3); font-size: 1.3rem; line-height: 1; }
+  .fact .today { display: inline; margin-left: 8px; color: var(--neon); font-size: 0.8rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  @media (max-height: 760px) { .slide-art { height: 30dvh; } .slide-about { -webkit-line-clamp: 3; } }
   .slide-about { margin: 2px 0 0; color: var(--ink-2); font-size: 0.9rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
   .slide-about.open { -webkit-line-clamp: unset; }
   .more { align-self: flex-start; color: var(--ink); font-size: 0.85rem; font-weight: 600; }
@@ -614,7 +620,12 @@
       </svg>
       <span class="logo-word">gigs<b>n</b>shows</span>
     </a>
-    <nav class="tabs" role="tablist" id="tabs" aria-label="Categories"></nav>
+    <div class="tabs-row">
+      <nav class="tabs" role="tablist" id="tabs" aria-label="Categories"></nav>
+      <button class="icon-btn nl-btn" id="nlBtn" data-nl-open="header" aria-label="Get the weekly picks by email" title="Weekly picks by email" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 6 8-6"/></svg>
+      </button>
+    </div>
     <div class="bar-right">
     <button class="icon-btn acct-btn" id="acctBtn" aria-label="Log in" aria-haspopup="dialog" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-3.6 4.1-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg>
@@ -1059,7 +1070,7 @@
   const ICON_PEOPLE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.8-3.3 3.1-5 6-5s5.2 1.7 6 5"/><path d="M16 5a3 3 0 0 1 0 6"/><path d="M18 15c1.8.6 2.9 2.2 3.3 5"/></svg>`;
   const ICON_NOPE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>`;
   function saveButton(id, saved) {
-    const label = saved ? "Remove from Wanna Go" : "Wanna go";
+    const label = saved ? "Remove from My shows" : "Save to My shows";
     return `<button class="icon-act save" data-add="${id}" aria-pressed="${saved}" aria-label="${label}" title="${label}">${ICON_HEART}</button>`;
   }
   let toastTimer = null;
@@ -1394,20 +1405,17 @@
     }
     const myLists = readLS(LS_LISTS, []);
     if (wannaGo.length || myLists.length) {
-      const chips = `<div class="list-chips">${myLists.map(l => `<button class="chip" data-list-open="${esc(l.id)}">${esc(l.n)}</button>`).join("")}
-        <button class="chip" data-list-new>＋ Share this list with friends</button>
+      const chips = `<div class="list-chips">${myLists.map(l => `<button class="chip" data-list-open="${esc(l.id)}">${esc(l.n === "Our Wanna Go" ? "Our shows" : l.n)}</button>`).join("")}
+        <button class="chip" data-list-new>＋ Share my shows with friends</button>
         ${wannaGo.length ? `<button class="chip" data-cal-all>Add all to calendar</button>` : ""}</div>`;
-      sections.push(trayHtml("wannago", "Wanna Go", wannaGo.length, wannaGo.map(e => renderTile(e)),
-        { bubbles: chips, empty: "Tap the heart on a show to add it here." }));
+      sections.push(trayHtml("wannago", "My shows", wannaGo.length, wannaGo.map(e => renderTile(e)),
+        { bubbles: chips, empty: "Tap the heart on a show to save it to My shows." }));
     }
     const myPlans = planTiles();
     if (myPlans.length) sections.push(trayHtml("plans", "Your plans", myPlans.length, myPlans, { unit: "plan", note: "Plans you started or answered. Tap one to see who's in." }));
 
     if (tonight.length) sections.push(trayHtml("tonight", "Tonight", tonight.length, tonight.map(e => renderTile(e))));
     if (weekend.length) sections.push(trayHtml("weekend", "This Weekend", weekend.length, weekend.map(e => renderTile(e))));
-    if (NEWSLETTER_USERNAME && !state.when && !nlState()) sections.push(`<section class="tray nl-card" data-tray="newsletter"><div class="nl-inner">
-      <div><h2>The weekend, in your inbox</h2><p>Every Thursday: the shows we'd go to in your city, in one short email. Free, and one tap to unsubscribe.</p></div>
-      <div class="nl-actions"><button class="assist-book" data-nl-open="home">Get the weekly picks</button><button class="see-all" data-nl-dismiss>Not now</button></div></div></section>`);
     if (justAnnounced.length) sections.push(trayHtml("new", "Just Announced", justAnnounced.length, justAnnounced.map(e => renderTile(e))));
 
     const activeVenue = FAVOURITE_VENUES.find(v => v.key === state.favVenue);
@@ -1602,6 +1610,26 @@
   const feed = document.getElementById("viewerFeed");
   let viewerIds = [], viewerIndex = 0, viewerObserver = null, dwellTimer = null, dislikedInViewer = false;
 
+  const ICON_PIN = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>`;
+  const ICON_DAY = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>`;
+  // When and where, big enough to read at a glance on a phone. The venue opens in Maps.
+  function factsHtml(e) {
+    const d = new Date(e.date + "T12:00:00");
+    const year = d.getFullYear() !== new Date().getFullYear() ? ` ${d.getFullYear()}` : "";
+    const dayText = `${fmtDay.format(d)} ${fmtDate.format(d)}${year}`;
+    const today = e.date === todayISO ? `<em class="today">Today</em>` : "";
+    const when = `<div class="fact"><div class="ic">${ICON_DAY}</div><div><b>${esc(dayText)}${today}</b>
+      <span class="${e.time ? "" : "muted"}">${e.time ? esc(to12h(e.time)) : "Time to be announced"}</span></div></div>`;
+    const raw = (e.venue || "").split(/[:|]/)[0].trim();
+    const name = raw.replace(new RegExp(`,\\s*${(e.city || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "i"), "").trim();
+    if (!name || /to be announced|to be decided|tba|multiple cities/i.test(name)) {
+      return `<div class="slide-facts">${when}<div class="fact"><div class="ic">${ICON_PIN}</div><div><b>Venue to be announced</b><span>${esc(e.city || "")}</span></div></div></div>`;
+    }
+    const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name} ${e.city || ""}`.trim())}`;
+    return `<div class="slide-facts">${when}<a class="fact" href="${esc(maps)}" target="_blank" rel="noopener" data-map="${esc(e.id)}"><div class="ic">${ICON_PIN}</div>
+      <div><b>${esc(name)}</b><span>${esc(e.city || "")} · Open in Maps</span></div><i class="go" aria-hidden="true">›</i></a></div>`;
+  }
+
   function slideHtml(e, i) {
     const sources = e.sources || [e.source];
     const links = e.links || { [e.source]: e.url };
@@ -1621,8 +1649,7 @@
       <div class="slide-info">
         <div class="slide-tags">${tags}</div>
         <h2 class="slide-title">${esc(e.title)}</h2>
-        <p class="slide-meta">${esc(whenLabel(e))}</p>
-        <p class="slide-meta"><span>${esc([e.venue, e.city].filter(Boolean).join(", "))}</span></p>
+        ${factsHtml(e)}
         ${about}${dates}
         <div class="slide-actions">
           <a class="btn-tickets" href="${esc(links[sources[0]] || e.url)}" target="_blank" rel="noopener" data-ticket="${esc(sources[0])}">${price ? `${price} · ` : ""}Tickets</a>
@@ -1690,6 +1717,8 @@
     if (e.target.closest("[data-viewer-close]")) { closeViewer(false); return; }
     const step = e.target.closest("[data-viewer-step]");
     if (step) { stepViewer(Number(step.dataset.viewerStep)); return; }
+    const mapLink = e.target.closest("[data-map]");
+    if (mapLink) { track("map_click", { item_name: eventById(mapLink.dataset.map)?.title }); return; }
     const add = e.target.closest("[data-add]");
     if (add) {
       toggleWannaGo(add.dataset.add);
@@ -1971,7 +2000,7 @@
     const close = `<button class="assist-close" data-login-close aria-label="Close">×</button>`;
     if (step === "account") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Your account</h2>
-        <p class="assist-status">Logged in as <b>${esc(prettyPhone(user.phoneNumber))}</b>. Your Wanna Go list, interests and For you picks are saved to your account and follow you to any device you log in on.</p>
+        <p class="assist-status">Logged in as <b>${esc(prettyPhone(user.phoneNumber))}</b>. The shows you save, your interests and For you picks are saved to your account and follow you to any device you log in on.</p>
         <div class="login-acts"><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
         <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
     } else if (step === "confirm-delete") {
@@ -1988,7 +2017,7 @@
         <div class="login-links"><button data-login="phone">Change number</button><button data-login="resend">Send a new code</button></div>`;
     } else {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Log in</h2>
-        <p class="assist-status">Keep your Wanna Go list and For you picks on every device.</p>
+        <p class="assist-status">Keep My shows and your For you picks on every device.</p>
         <form class="assist-form" data-login-form="phone">
           <span class="cc">+91</span>
           <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-label="Mobile number" value="${esc(pendingPhone.slice(3))}" required>
@@ -2593,14 +2622,14 @@
   // Step 1 for the person sharing: name the list, then it's created with their Wanna Go in it.
   function startList() {
     openListDialog();
-    listCard.innerHTML = `${listClose}<h2 id="listTitle">Share your Wanna Go list</h2>
-      <p class="assist-status">Friends who join add their own Wanna Go, and you all see the shows you'd go to together.</p>
+    listCard.innerHTML = `${listClose}<h2 id="listTitle">Share My shows with friends</h2>
+      <p class="assist-status">Friends who join add their own shows, and you all see the ones you'd go to together.</p>
       <form id="listCreate">
-        <label class="plan-name">List name <input name="title" maxlength="60" value="Our Wanna Go" required></label>
+        <label class="plan-name">List name <input name="title" maxlength="60" value="Our shows" required></label>
         <label class="plan-name">Your name <input name="name" maxlength="40" autocomplete="given-name" placeholder="So friends know whose picks are whose" value="${esc(savedName())}" required></label>
         <button class="assist-book" style="width:100%;margin-top:16px">Create link</button>
       </form>
-      <p class="assist-fine" id="listCreateNote">Anyone with the link will see your first name and the shows on your Wanna Go list. You can leave the list whenever you like. <a href="privacy.html">Privacy</a></p>`;
+      <p class="assist-fine" id="listCreateNote">Anyone with the link will see your first name and the shows in My shows. You can leave the list whenever you like. <a href="privacy.html">Privacy</a></p>`;
     listCard.querySelector("input")?.focus({ preventScroll: true });
   }
   async function createList(title, name) {
@@ -2621,14 +2650,14 @@
   async function openList(id, from) {
     openListDialog();
     state.listId = id; syncUrl();
-    listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared Wanna Go</h2><p class="assist-status">Opening the list…</p>`;
+    listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared shows</h2><p class="assist-status">Opening the list…</p>`;
     try {
       let uid = null;
       try { uid = await planUid(); } catch { await loadFirebase(); }
       const snap = await fb.S.getDoc(listRef(id));
       if (state.listId !== id) return;
       if (!snap.exists()) {
-        listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared Wanna Go</h2><p class="assist-msg">This list has been deleted, or the link isn't right. Ask your friend to share it again.</p>`;
+        listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared shows</h2><p class="assist-msg">This list has been deleted, or the link isn't right. Ask your friend to share it again.</p>`;
         forgetList(id);
         return;
       }
@@ -2647,7 +2676,7 @@
       }, () => { document.getElementById("listShows").innerHTML = `<p class="assist-msg">Couldn't load the list just now.</p>`; });
       track("list_open", { from, owner: lst.doc.createdBy === uid });
     } catch (err) {
-      listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared Wanna Go</h2><p class="assist-msg">${esc(planError(err))}</p>`;
+      listCard.innerHTML = `${listClose}<h2 id="listTitle">Shared shows</h2><p class="assist-msg">${esc(planError(err))}</p>`;
     }
   }
 
@@ -2658,8 +2687,8 @@
       <div id="listMembers" class="assist-heard" style="margin-top:0"></div>
       <div id="listJoin" hidden>
         <label class="plan-name">Your name <input id="listName" maxlength="40" autocomplete="given-name" placeholder="So friends know whose picks are whose" value="${esc(savedName())}"></label>
-        <button class="assist-book" data-list-join style="width:100%;margin-top:12px">Join and share my Wanna Go</button>
-        <p class="assist-fine">Joining shares your first name and the shows on your Wanna Go list with anyone who has this link. You can leave any time.</p>
+        <button class="assist-book" data-list-join style="width:100%;margin-top:12px">Join and share my shows</button>
+        <p class="assist-fine">Joining shares your first name and the shows in My shows with anyone who has this link. You can leave any time.</p>
       </div>
       <div class="plan-ans two" id="listFilter" role="group" aria-label="Which shows">
         <button type="button" data-list-filter="all" aria-pressed="true">Everyone's picks</button>
@@ -2676,7 +2705,7 @@
     const mine = lst.members.get(lst.uid);
     const names = [...lst.members.entries()].sort((a, b) => a[1].name.localeCompare(b[1].name));
     document.getElementById("listLine").textContent = lst.members.size
-      ? `${lst.members.size} ${lst.members.size === 1 ? "person has" : "people have"} shared their Wanna Go.` : "Nobody has shared their Wanna Go yet.";
+      ? `${lst.members.size} ${lst.members.size === 1 ? "person has" : "people have"} shared their shows.` : "Nobody has shared their shows yet.";
     document.getElementById("listMembers").innerHTML = names.map(([uid, m]) =>
       `<span class="tag${uid === lst.uid ? " me" : ""}">${esc(m.name)}${uid === lst.uid ? " (you)" : ""}</span>`).join("");
     document.getElementById("listJoin").hidden = !!mine;
@@ -2705,11 +2734,11 @@
             <div class="assist-acts">
               <a class="assist-book" href="${esc(link)}" target="_blank" rel="noopener" data-list-tickets="${esc(sources[0])}" data-eid="${e.id}">Tickets</a>
               <button class="assist-details" data-list-plan="${e.id}">Plan it</button>
-              <button class="assist-details" data-list-save="${e.id}" aria-pressed="${on}">${on ? "✓ On my list" : "+ Wanna go"}</button>
+              <button class="assist-details" data-list-save="${e.id}" aria-pressed="${on}">${on ? "✓ In My shows" : "+ Save to My shows"}</button>
             </div></li>`; }).join("")}</ul>`
       : `<p class="assist-msg">${lst.filter === "shared"
-          ? (lst.members.size < 2 ? "Once two or more people have the same show on their Wanna Go, it appears here." : "No show is on more than one list yet.")
-          : "No shows yet. Tap the heart on a show to add it to your Wanna Go list."}</p>`;
+          ? (lst.members.size < 2 ? "Once two or more people have the same show in My shows, it appears here." : "No show is on more than one list yet.")
+          : "No shows yet. Tap the heart on a show to save it to My shows."}</p>`;
   }
 
   async function shareList(btn) {
@@ -2855,6 +2884,9 @@
   function nlState() { try { return localStorage.getItem(LS_NL) || ""; } catch { return ""; } }
   function nlSet(v) { try { localStorage.setItem(LS_NL, v); } catch {} }
   let nlFrom = "";
+  const nlBtn = document.getElementById("nlBtn");
+  function syncNlButton() { nlBtn.hidden = !NEWSLETTER_USERNAME || nlState() === "subscribed"; }  // the envelope in the header
+  syncNlButton();
 
   function openNewsletter(from) {
     if (!NEWSLETTER_USERNAME) return;
@@ -2895,7 +2927,7 @@
       track("newsletter_signup", { city, from: nlFrom });
       nlCard.innerHTML = `<button class="assist-close" data-nl-close aria-label="Close">×</button><h2 id="nlTitle">Check your inbox</h2>
         <p class="assist-msg">We've sent a confirmation email to <b>${esc(email)}</b>. Tap the link in it to finish. If it isn't there in a minute, look in spam.</p>`;
-      renderList();  // the Home card goes away
+      syncNlButton();
     } catch {
       btn.disabled = false;
       status.textContent = "Sorry, that didn't go through. Please try again in a moment.";
@@ -2904,7 +2936,6 @@
   document.addEventListener("click", ev => {
     const open = ev.target.closest("[data-nl-open]");
     if (open) { openNewsletter(open.dataset.nlOpen); return; }
-    if (ev.target.closest("[data-nl-dismiss]")) { nlSet("dismissed"); track("newsletter_dismiss"); renderList(); }
   });
 
   // ---------- book by voice ----------
