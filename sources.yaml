@@ -48,6 +48,17 @@
     sports: sports
     comedy: [comedy, comedy-shows]
 
+# District's listing pages show at most 24 shows per city and kind, so big concerts can be missing from every one of
+# them (A. R. Rahman's Wonderment Tour was). This reads District's own sitemap of event pages as well; see
+# parse_district_sitemap in scrapers/parsers.py. Same source name, so its shows are labelled District too.
+- name: District
+  parser: district_sitemap
+  runs_on: [aws]
+  crawl_delay: 0.7
+  max_pages: 700            # new pages read per run, newest first; what's been read is remembered in data/district_pages.json
+  urls:
+    - {url: https://cdn.district.in/sitemap/event-detail-pages.xml, city: Mumbai}
+
 - name: NCPA
   parser: ncpa
   urls:

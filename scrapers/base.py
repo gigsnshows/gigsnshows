@@ -170,7 +170,15 @@ def parse_date(text):
     if not re.search(r"\d{1,2}\s*[A-Za-z]{3,}|[A-Za-z]{3,}\.?\s*\d{1,2}\b|\d{4}-\d{2}-\d{2}", first):
         return None, ""
     try:
-        dt = dateparser.parse(first, dayfirst=True, fuzzy=True, default=datetime(date.today().year, 1, 1))
+        if re.match(r"\d{4}-\d{2}-\d{2}", first):
+            # Year-month-day. The day-first rule below would read "2026-11-01" as 11 January, so any show whose day was
+            # 12 or less landed on the wrong date (or in the past, and was dropped).
+            try:
+                dt = dateparser.isoparse(first)
+            except ValueError:
+                dt = dateparser.parse(first, yearfirst=True, dayfirst=False, fuzzy=True, default=datetime(date.today().year, 1, 1))
+        else:
+            dt = dateparser.parse(first, dayfirst=True, fuzzy=True, default=datetime(date.today().year, 1, 1))
     except (ValueError, OverflowError):
         return None, ""
     has_year = re.search(r"\b(20\d{2})\b", first) is not None

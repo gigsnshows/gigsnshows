@@ -119,7 +119,8 @@ def main(dry_run=False, only=None, remerge=False):
             print(f"\n{src['name']}  (skipped here on {WHERE}; read on {' and '.join(runs_on)})")
             continue
         parser = PARSERS[src.get("parser", "jsonld")]
-        ran.append(src["name"])
+        if src["name"] not in ran:
+            ran.append(src["name"])
         print(f"\n{src['name']}  ({src.get('parser', 'jsonld')}{', rendered' if src.get('render') else ''})")
         tried, ok = set(), set()
         for entry in expand(src):
