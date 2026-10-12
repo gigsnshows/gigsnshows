@@ -610,6 +610,66 @@
   .assist-thumb { position: relative; flex: none; width: 54px; height: 54px; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
   .assist-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .assist-try { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  /* the ticket wallet */
+  .pill-early { display: inline-block; margin-left: 10px; padding: 2px 9px; border-radius: 999px; vertical-align: middle; color: #fff; font-family: var(--font); font-size: 0.66rem; font-weight: 800; letter-spacing: .02em; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
+  .wallet-promo { display: flex; gap: 20px; align-items: center; padding: 20px 22px; border-radius: 18px; border: 1px solid var(--line);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--glow) 16%, var(--bg-2)), color-mix(in srgb, var(--neon) 14%, var(--bg-2))); }
+  .wallet-promo .w-art { flex: none; width: 92px; height: 64px; transform: rotate(-8deg); filter: var(--logo-mark-fx); }
+  .wallet-promo h3 { margin: 0 0 4px; font-family: var(--brand-font); font-size: 1.2rem; font-weight: 700; }
+  .wallet-promo p { margin: 0; color: var(--ink-2); font-size: 0.93rem; max-width: 56ch; }
+  .wallet-promo .w-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  @media (max-width: 640px) { .wallet-promo { flex-direction: column; align-items: flex-start; gap: 12px; padding: 18px; } .wallet-promo .w-art { width: 76px; height: 53px; } }
+  .ticket-tile .art-link { width: 100%; height: 100%; padding: 0; text-align: left; cursor: pointer; }
+  .ticket-tile .body { display: block; width: 100%; text-align: left; }
+  .wallet-list { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
+  .wallet-row { display: flex; gap: 12px; align-items: center; width: 100%; padding: 12px 14px; border-radius: 14px; background: var(--fill); border: 1px solid var(--edge); text-align: left; }
+  .wallet-row:hover { background: var(--fill-2); }
+  .wallet-row > div:nth-child(2) { min-width: 0; }
+  .wallet-row h3 { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.3; }
+  .wallet-row p { margin: 2px 0 0; color: var(--ink-2); font-size: 0.86rem; }
+  .wallet-row .go { margin-left: auto; flex: none; color: var(--ink-3); font-size: 1.3rem; }
+  .wallet-sub { margin: 20px 0 4px; color: var(--ink-3); font-size: 0.74rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+  .wallet-inbox { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--line); font-size: 0.9rem; }
+  .wallet-inbox small { display: block; color: var(--ink-3); font-size: 0.78rem; }
+  .wallet-inbox button { flex: none; color: var(--ink-2); font-size: 0.85rem; text-decoration: underline; }
+  .wallet-note { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; background: color-mix(in srgb, var(--glow) 12%, transparent); color: var(--ink-2); font-size: 0.88rem; line-height: 1.45; }
+  .wallet-note b { color: var(--ink); }
+  .wallet-points { margin: 12px 0 0; padding-left: 1.15em; color: var(--ink-2); font-size: 0.92rem; line-height: 1.5; }
+  .wallet-points li { margin: 5px 0; }
+  .ticket-pass { margin-top: 14px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-2); }
+  .tp-top { padding: 16px 18px; background: linear-gradient(135deg, color-mix(in srgb, var(--glow) 26%, var(--bg-2)), color-mix(in srgb, var(--neon) 22%, var(--bg-2))); }
+  .tp-top h3 { margin: 0; font-size: 1.15rem; line-height: 1.25; font-weight: 700; }
+  .tp-top p { margin: 4px 0 0; color: var(--ink-2); font-size: 0.9rem; }
+  .tp-qr { display: grid; place-items: center; min-height: 120px; padding: 18px; background: #fff; border-top: 2px dashed var(--line); color: #555; font-size: 0.9rem; text-align: center; }
+  .tp-qr img, .tp-qr svg { width: min(250px, 66vw); height: auto; display: block; }
+  .tp-qr a { color: #0a56c9; font-weight: 700; }
+  .tp-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; padding: 14px 18px 16px; font-size: 0.9rem; }
+  .tp-facts span { display: block; color: var(--ink-3); font-size: 0.7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+  .tp-facts b { font-weight: 600; overflow-wrap: anywhere; }
+  .tp-sample { display: inline-block; margin-bottom: 8px; padding: 2px 9px; border-radius: 999px; background: var(--fill-3); color: var(--ink-2); font-size: 0.68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  /* the chat */
+  .assist-card.chatcard { display: flex; flex-direction: column; height: min(82vh, 700px); overflow: hidden; }
+  .chatcard .assist-status { flex: none; margin-bottom: 8px; }
+  .chatcard .assist-status:empty { display: none; }
+  .chatcard .assist-form { flex: none; padding-top: 10px; }
+  .chatcard .assist-fine { flex: none; margin: 8px 0 0; }
+  .chat-thread { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 8px 0 6px; scrollbar-width: thin; }
+  .bubble { max-width: 88%; padding: 10px 14px; border-radius: 18px; font-size: 0.95rem; line-height: 1.45; overflow-wrap: anywhere; }
+  .bubble p { margin: 0; }
+  .bubble.me { align-self: flex-end; background: var(--ink); color: var(--on-ink); border-bottom-right-radius: 6px; }
+  .bubble.bot { align-self: flex-start; background: var(--fill-2); border: 1px solid var(--edge); border-bottom-left-radius: 6px; }
+  .bubble.wide { align-self: stretch; max-width: 100%; padding: 0; background: none; border: 0; border-radius: 0; }
+  .bubble.wide .assist-list { margin-top: 0; }
+  .bubble.wide > .assist-msg:first-child, .bubble.wide > .assist-heard:first-child { margin-top: 0; }
+  .bubble.wide .assist-try { margin-top: 0; }
+  .bubble.typing { display: inline-flex; gap: 5px; padding: 14px 16px; }
+  .bubble.typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-3); }
+  @media (prefers-reduced-motion: no-preference) {
+    .bubble.typing span { animation: typing 1.2s ease-in-out infinite; }
+    .bubble.typing span:nth-child(2) { animation-delay: .15s; }
+    .bubble.typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes typing { 0%, 60%, 100% { opacity: .3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+  }
   /* plans: "Who's in?" */
   .slide-plan {
     align-self: flex-start; display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 15px; border-radius: 999px;
@@ -808,7 +868,7 @@
 
 <div class="toast" id="toast" role="status" hidden></div>
 
-<button class="mic-fab" id="micBtn" aria-label="Book a show by voice" aria-haspopup="dialog" title="Book a show by voice">
+<button class="mic-fab" id="micBtn" aria-label="Ask gigsnshows by voice or text" aria-haspopup="dialog" title="Ask gigsnshows">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
 </button>
 
@@ -828,25 +888,29 @@
   <div class="assist-card" id="nlCard"></div>
 </div>
 
+<div class="assist" id="wallet" role="dialog" aria-modal="true" aria-labelledby="walletTitle" hidden>
+  <div class="assist-card" id="walletCard"></div>
+</div>
+
 <div class="assist" id="login" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
   <div class="assist-card" id="loginCard"></div>
 </div>
 <div id="recaptcha"></div>
 
 <div class="assist" id="assist" role="dialog" aria-modal="true" aria-labelledby="assistTitle" hidden>
-  <div class="assist-card">
+  <div class="assist-card chatcard">
     <button class="assist-close" data-assist-close aria-label="Close">×</button>
-    <h2 id="assistTitle">Book a show</h2>
+    <h2 id="assistTitle">Ask gigsnshows</h2>
     <p class="assist-status" id="assistStatus" aria-live="polite"></p>
+    <div id="assistOut" class="chat-thread" aria-live="polite"></div>
     <form class="assist-form" id="assistForm">
       <button type="button" class="assist-mic" id="assistMic" aria-pressed="false" aria-label="Speak">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
       </button>
-      <input id="assistInput" type="text" autocomplete="off" enterkeyhint="search" aria-label="What would you like to book?">
-      <button class="assist-go" aria-label="Find the show">→</button>
+      <input id="assistInput" type="text" autocomplete="off" enterkeyhint="send" aria-label="Ask about shows">
+      <button class="assist-go" aria-label="Send">→</button>
     </form>
-    <div id="assistOut"></div>
-    <p class="assist-fine">Just for finding and booking live shows: it picks from the shows listed here and takes you to their tickets, where you choose seats and pay. Speech is turned into text by your browser.</p>
+    <p class="assist-fine">Ask in plain words, in English, Hindi or Hinglish. Answers come from an AI that only knows the shows listed here, so check the date and price on the ticket site. We count your messages, we don't keep what you wrote. Speech is turned into text by your browser. <a href="privacy.html">Privacy</a></p>
   </div>
 </div>
 
@@ -1622,6 +1686,7 @@
         <button class="see-all" data-onboard>${prefs ? "Edit" : "Personalise"}</button></span>`;
       sections.push(trayHtml("foryou", "For you", 0, recs.map(e => renderTile(e)), { seeAll: actions, note: forYouNote(prefs) }));
     }
+    sections.push(walletTrayHtml());
     const myLists = readLS(LS_LISTS, []);
     if (wannaGo.length || myLists.length) {
       const chips = `<div class="list-chips">${myLists.map(l => `<button class="chip" data-list-open="${esc(l.id)}">${esc(l.n === "Our Wanna Go" ? "Our shows" : l.n)}</button>`).join("")}
@@ -1814,6 +1879,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("footTabs").innerHTML = TABS.map(t => `<li><button data-foot-tab="${t.key}">${t.label}</button></li>`).join("")
       + `<li><button data-onboard>Your interests</button></li>`
+      + `<li><button data-wallet-open>Ticket wallet</button></li>`
       + `<li><a href="contact.html">Contact</a></li>`
       + `<li><a href="privacy.html">Privacy</a></li>`
       + `<li><a href="terms.html">Terms</a></li>`
@@ -2116,6 +2182,7 @@
     appId: "1:317639338415:web:413c9a4a4d67d98cc7675a",
   };
   const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/10.12.2/";
+  const API_BASE = "https://api.gigsnshows.com";  // the gigsnshows server: the chat and the ticket wallet
   const LS_LISTS = "whatsOn.lists";  // [{id, n: name, o: 1 if yours, j: 1 if you share your Wanna Go there, t}]
   const LS_PLANS = "whatsOn.plans";  // [{id, e: show id, o: 1 if you made it, t}]: plans you made or answered
   const LS_SIGNED_IN = "whatsOn.signedIn";  // load Firebase on the next visit only if you're logged in
@@ -2222,7 +2289,7 @@
     if (step === "account") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Your account</h2>
         <p class="assist-status">Logged in as <b>${esc(prettyPhone(user.phoneNumber))}</b>. The shows you save, your interests and For you picks are saved to your account and follow you to any device you log in on.</p>
-        <div class="login-acts"><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
+        <div class="login-acts"><button data-login="wallet">Your tickets</button><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
         <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
     } else if (step === "confirm-delete") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Delete your account?</h2>
@@ -2317,6 +2384,7 @@
     if (act === "phone") renderLogin("phone");
     else if (act === "resend") sendCode();
     else if (act === "account") renderLogin("account");
+    else if (act === "wallet") { closeLogin(); openWallet(); }
     else if (act === "delete") renderLogin("confirm-delete");
     else if (act === "logout") {
       await fb.A.signOut(fb.auth);
@@ -2324,6 +2392,9 @@
       toast("Logged out. Your picks stay saved to your account.");
     } else if (act === "delete-yes") {
       try {
+        // tickets, Gmail connections and Google's access go first; if that can't be done the account is kept, so nothing is left behind
+        const wiped = await walletApi("/wallet", { method: "DELETE" }).then(r => r.ok || r.status === 401 || r.status === 403).catch(() => false);
+        if (!wiped) { renderLogin("confirm-delete", "Couldn't clear your ticket wallet just now, so your account was kept. Please try again in a moment."); return; }
         await cleanupPlans(user.uid);
         await cleanupLists(user.uid);
         await fb.S.deleteDoc(userDoc());
@@ -2342,6 +2413,299 @@
     acctBtn.addEventListener("click", openLogin);
     if (readLS(LS_SIGNED_IN, null) || readLS(LS_PLANS, []).length || readLS(LS_LISTS, []).length) loadFirebase().catch(() => {});  // restore the session and sync
   }
+
+  // ---------- the ticket wallet ----------
+  // Tickets from every seller in one place. After a phone login and an optional "Connect Gmail" (read-only), the
+  // gigsnshows server finds the booking emails from ticket sellers, reads them with an AI and keeps the event,
+  // date, venue, booking ID, seats and the QR code, encrypted. Nothing is read until the person connects, and
+  // "Disconnect" revokes Google's access and deletes what was found. The sample wallet needs no login and no
+  // server: it only shows how the wallet looks.
+  const SAMPLE_QR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" shape-rendering="crispEdges" role="img" aria-label="Sample QR code"><path fill="#fff" d="M0 0h31v31h-31z"/><path class="qrline" stroke="#000" d="M1 1.5h7m2 0h1m5 0h1m1 0h4m1 0h7m-29 1h1m5 0h1m3 0h1m3 0h2m2 0h1m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m7 0h1m2 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h5m1 0h1m6 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h7m4 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h1m2 0h7m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h1m3 0h5m-21 1h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m-22 1h1m2 0h1m1 0h3m1 0h2m3 0h3m1 0h3m2 0h1m2 0h1m-29 1h1m2 0h1m1 0h2m1 0h5m3 0h4m1 0h3m1 0h3m-27 1h2m4 0h2m2 0h2m1 0h1m3 0h1m1 0h3m3 0h2m-27 1h1m2 0h1m1 0h2m1 0h3m4 0h2m2 0h4m1 0h1m1 0h2m-27 1h3m5 0h1m1 0h1m4 0h1m1 0h2m-21 1h1m1 0h1m2 0h2m3 0h2m5 0h2m3 0h1m2 0h4m-29 1h4m4 0h8m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m-27 1h1m1 0h2m1 0h2m1 0h1m3 0h3m1 0h1m2 0h2m5 0h1m-26 1h2m1 0h1m3 0h1m1 0h2m3 0h2m2 0h4m1 0h1m2 0h1m-29 1h1m2 0h1m2 0h2m2 0h1m2 0h1m2 0h1m6 0h2m2 0h2m-27 1h2m1 0h1m1 0h7m1 0h1m1 0h3m1 0h4m2 0h2m-29 1h1m1 0h6m1 0h1m1 0h1m2 0h1m5 0h5m1 0h1m-19 1h1m2 0h1m1 0h1m2 0h3m1 0h1m3 0h1m1 0h3m-29 1h7m2 0h6m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m-28 1h1m5 0h1m1 0h1m4 0h1m1 0h2m3 0h1m3 0h3m-27 1h1m1 0h3m1 0h1m2 0h1m4 0h4m2 0h5m2 0h2m-29 1h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m1 0h6m-28 1h1m1 0h3m1 0h1m3 0h1m1 0h1m4 0h1m1 0h1m4 0h3m1 0h1m-29 1h1m5 0h1m2 0h1m4 0h4m2 0h1m1 0h1m1 0h1m2 0h1m-28 1h7m1 0h1m1 0h4m3 0h1m2 0h6m1 0h1"/></svg>`;
+  const walletDlg = document.getElementById("wallet"), walletCard = document.getElementById("walletCard");
+  let wallet = { loaded: false, tickets: [], accounts: [], error: "", sample: false };
+  let walletView = { page: "list", id: "", note: "" }, walletPoll = null, walletBlobUrl = "";
+  const upcomingTickets = () => wallet.tickets.filter(t => t.date >= todayISO).sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+  const pastTickets = () => wallet.tickets.filter(t => t.date < todayISO).sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time));
+  const ticketById = id => wallet.tickets.find(t => t.id === id);
+  const ticketWhen = t => whenLabel({ date: t.date, time: t.time });
+  const agoText = ts => {
+    if (!ts) return "looking for tickets…";
+    const m = Math.round((Date.now() / 1000 - ts) / 60);
+    return m < 2 ? "checked just now" : m < 60 ? `checked ${m} min ago` : m < 1440 ? `checked ${Math.round(m / 60)} h ago` : `checked ${Math.round(m / 1440)} days ago`;
+  };
+
+  async function walletApi(path, opts = {}) {
+    await loadFirebase();
+    if (!user) throw new Error("login");
+    const token = await user.getIdToken();
+    return fetch(API_BASE + path, { ...opts, headers: { ...(opts.headers || {}), Authorization: `Bearer ${token}` } });
+  }
+
+  async function loadWallet() {
+    if (!user || wallet.sample) return;
+    try {
+      const res = await walletApi("/wallet");
+      if (!res.ok) throw new Error(String(res.status));
+      const body = await res.json();
+      wallet = { loaded: true, tickets: body.tickets || [], accounts: body.accounts || [], error: "", sample: false };
+    } catch {
+      wallet = { ...wallet, loaded: true, error: "Couldn't reach your wallet just now. Try again in a moment." };
+    }
+    renderList();
+    if (!walletDlg.hidden) renderWallet();
+  }
+
+  function sampleTickets() {
+    const seen = new Set(), picks = [];
+    const pool = data.events.filter(e => e.date >= todayISO && (!state.city || e.city === state.city)).sort(byDateTime);
+    for (const e of pool) { if (e.image && !seen.has(e.source)) { seen.add(e.source); picks.push(e); } if (picks.length === 4) break; }
+    const seats = ["Stalls · Row C", "General entry", "Gold · Row 2", ""], qty = [2, 1, 4, 2];
+    return picks.map((e, i) => ({ id: `sample-${i}`, title: e.title, date: e.date, time: e.time, venue: e.venue, city: e.city, platform: e.source,
+      booking_id: `SAMPLE-000${i + 1}`, quantity: qty[i], seats: seats[i], event_id: e.id, has_code: 1, sample: true }));
+  }
+
+  function ticketTile(t) {
+    const e = eventById(t.event_id);
+    const art = poster({ id: t.id, title: t.title, category: e?.category }) + (e?.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : "");
+    const meta = [t.quantity ? `${t.quantity} ${t.quantity === 1 ? "ticket" : "tickets"}` : "", t.seats].filter(Boolean).join(" · ");
+    return `<div class="tile ticket-tile" data-ticket="${esc(t.id)}">
+      <div class="art"><button class="art-link" data-ticket-open="${esc(t.id)}" aria-label="Open ticket: ${esc(t.title)}">${art}<span class="when ${t.date === todayISO ? "today" : ""}">${ticketWhen(t)}</span><span class="runs">${esc(t.platform || "Ticket")}</span></button></div>
+      <button class="body" data-ticket-open="${esc(t.id)}"><p class="name">${esc(t.title)}</p><p class="venue">${esc(t.venue || "")}</p></button>
+      <div class="foot"><span class="meta">${esc(meta || "Show ticket")}</span></div>
+    </div>`;
+  }
+
+  function walletTrayHtml() {
+    const tickets = wallet.sample ? upcomingTickets() : (user ? upcomingTickets() : []);
+    if (tickets.length) {
+      return trayHtml("wallet", "Your tickets", tickets.length, tickets.map(ticketTile),
+        { unit: "ticket", seeAll: `<button class="see-all" data-wallet-open>See all ›</button>` }).replace("</h2>", `<span class="pill-early">Early access</span></h2>`);
+    }
+    const art = `<svg class="w-art" viewBox="0 0 40 28" aria-hidden="true"><defs><linearGradient id="walletGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/><stop offset="1" stop-color="#ff2d95"/></linearGradient></defs><path fill="url(#walletGrad)" d="M5 4h30a3 3 0 0 1 3 3v4a3 3 0 0 0 0 6v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4a3 3 0 0 0 0-6V7a3 3 0 0 1 3-3z"/><path d="M28 7.5v13" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-dasharray=".01 3.2" opacity=".9"/><rect x="9" y="9" width="12" height="10" rx="1.6" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M12 12h6M12 15h4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+    const body = user && wallet.loaded && wallet.accounts.length
+      ? `<h3>No upcoming tickets yet</h3><p>Your wallet is connected. New bookings show up here by themselves, usually within the hour.</p><div class="w-acts"><button class="assist-book" data-wallet-open>Open wallet</button></div>`
+      : `<h3>One wallet for all your tickets</h3><p>Tickets booked on BookMyShow, District, thumpN and more, together in one place. No more hunting through emails and apps when you need them.</p>
+         <div class="w-acts"><button class="assist-book" data-wallet-connect>Connect Gmail</button><button class="assist-details" data-wallet-sample>See how it works</button></div>`;
+    return `<section class="tray" data-tray="wallet"><div class="tray-head"><h2>Ticket wallet<span class="pill-early">Early access</span></h2></div>
+      <div class="wallet-promo">${art}<div>${body}</div></div></section>`;
+  }
+
+  function openWallet(page = "list", id = "") {
+    walletView = { page, id, note: "" };
+    walletDlg.hidden = false;
+    document.body.style.overflow = "hidden";
+    track("wallet_open", { page, sample: wallet.sample });
+    renderWallet();
+    if (user && !wallet.sample) loadWallet();
+  }
+  function closeWallet() {
+    if (walletDlg.hidden) return;
+    walletDlg.hidden = true;
+    document.body.style.overflow = "";
+    clearInterval(walletPoll);
+    if (walletBlobUrl) { URL.revokeObjectURL(walletBlobUrl); walletBlobUrl = ""; }
+    if (wallet.sample) { wallet = { loaded: false, tickets: [], accounts: [], error: "", sample: false }; renderList(); }
+  }
+
+  function ticketRow(t) {
+    const e = eventById(t.event_id);
+    return `<li><button class="wallet-row" data-w="ticket" data-id="${esc(t.id)}">
+      <div class="assist-thumb">${e?.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+      <div><h3>${esc(t.title)}</h3><p>${esc(ticketWhen(t))}${t.venue ? " · " + esc(t.venue.split(/[:|]/)[0].trim()) : ""}</p><p>${esc([t.platform, t.quantity ? `${t.quantity} ${t.quantity === 1 ? "ticket" : "tickets"}` : ""].filter(Boolean).join(" · "))}</p></div>
+      <span class="go" aria-hidden="true">›</span></button></li>`;
+  }
+
+  function walletListPage() {
+    const sample = wallet.sample;
+    if (!sample && !user) {
+      return `<h2 id="walletTitle">Ticket wallet</h2>
+        <p class="assist-status">All your tickets in one place: bookings from BookMyShow, District, thumpN and more, found in your Gmail. Log in with your mobile number to start.</p>
+        <div class="login-acts"><button class="assist-book" data-w="login">Log in</button><button data-w="sample">See how it works</button></div>`;
+    }
+    if (!sample && !wallet.loaded) return `<h2 id="walletTitle">Your tickets</h2><p class="assist-status">Loading your wallet…</p>`;
+    const err = wallet.error ? `<p class="login-err" role="alert">${esc(wallet.error)}</p>` : "";
+    if (!sample && !wallet.accounts.length) {
+      return `<h2 id="walletTitle">Ticket wallet<span class="pill-early">Early access</span></h2>
+        <p class="assist-status">Connect your Gmail and the tickets you've booked on every seller appear here, with the QR code ready to show at the door.</p>
+        ${err}<div class="login-acts"><button class="assist-book" data-w="connect">Connect Gmail</button><button data-w="sample">See how it works</button></div>
+        <p class="assist-fine">Read-only, and only emails from ticket sellers are opened. <a href="privacy.html">How your data is handled</a></p>`;
+    }
+    const up = upcomingTickets(), past = pastTickets();
+    const looking = !sample && wallet.accounts.some(a => !a.last_sync);
+    const inboxes = sample ? "" : `<div class="wallet-sub">Connected inboxes</div>${wallet.accounts.map(a => `<div class="wallet-inbox">
+        <div>${esc(a.email)}<small>${a.status === "needs_reconnect" ? "Google needs you to reconnect" : a.status === "error" ? "Couldn't check just now" : esc(agoText(a.last_sync))}</small></div>
+        <button data-w="${a.status === "needs_reconnect" ? "connect" : "disconnect"}" data-id="${esc(a.id)}">${a.status === "needs_reconnect" ? "Reconnect" : "Disconnect"}</button></div>`).join("")}
+      <div class="login-acts"><button data-w="sync">Look for new tickets</button><button data-w="connect">Add another Gmail</button><button class="danger" data-w="wipe">Delete everything</button></div>`;
+    return `<h2 id="walletTitle">${sample ? "Your tickets" : "Your tickets"}<span class="pill-early">${sample ? "Sample" : "Early access"}</span></h2>
+      ${sample ? `<p class="wallet-note"><b>Sample tickets.</b> This is how your wallet looks once your Gmail is connected. These aren't real bookings.</p>` : ""}
+      ${looking ? `<p class="assist-status">Looking through your emails for tickets. This takes a minute.</p>` : ""}${err}
+      ${up.length ? `<ul class="wallet-list">${up.map(ticketRow).join("")}</ul>` : `<p class="assist-status">${looking ? "" : "No upcoming tickets yet. New bookings appear here by themselves."}</p>`}
+      ${past.length ? `<div class="wallet-sub">Earlier</div><ul class="wallet-list">${past.map(ticketRow).join("")}</ul>` : ""}
+      ${sample ? `<div class="login-acts"><button class="assist-book" data-w="connect">Connect Gmail</button></div>` : inboxes}
+      ${walletView.note ? `<p class="assist-fine">${esc(walletView.note)}</p>` : ""}`;
+  }
+
+  function walletTicketPage() {
+    const t = ticketById(walletView.id);
+    if (!t) return walletListPage();
+    const facts = [["Tickets", t.quantity ? String(t.quantity) : ""], ["Seats", t.seats], ["Booked on", t.platform], ["Booking ID", t.booking_id]].filter(f => f[1]);
+    return `<h2 id="walletTitle">Your ticket</h2>
+      <div class="ticket-pass">
+        <div class="tp-top">${t.sample ? `<span class="tp-sample">Sample ticket</span>` : ""}<h3>${esc(t.title)}</h3><p>${esc(ticketWhen(t))}${t.venue ? " · " + esc(t.venue.split(/[:|]/)[0].trim()) : ""}${t.city ? ", " + esc(t.city) : ""}</p></div>
+        <div class="tp-qr" id="walletQr">${t.sample ? SAMPLE_QR : t.has_code ? "Loading your ticket…" : "No QR code was found in this email. Show the booking ID at the venue."}</div>
+        <div class="tp-facts">${facts.map(([k, v]) => `<div><span>${k}</span><b>${esc(v)}</b></div>`).join("")}</div>
+      </div>
+      <p class="assist-fine">Turn your screen brightness up when you scan.</p>
+      <div class="login-acts"><button data-w="list">Back to tickets</button>${t.sample ? "" : `<button class="danger" data-w="remove" data-id="${esc(t.id)}">Remove from wallet</button>`}</div>`;
+  }
+
+  function walletConnectPage() {
+    return `<h2 id="walletTitle">Connect your Gmail</h2>
+      <p class="assist-status">We look in your inbox for booking confirmations from ticket sellers and put the tickets here.</p>
+      <ul class="wallet-points">
+        <li><b>Read-only.</b> We can't send, delete or change anything.</li>
+        <li>We only open emails from ticket sellers such as BookMyShow, District, thumpN and Skillbox. The rest of your inbox is never opened.</li>
+        <li>We keep the event, date, venue, booking ID, seats and QR code. Not prices or card details.</li>
+        <li>Disconnect any time: it removes our access at Google and deletes the tickets we found.</li>
+      </ul>
+      <p class="wallet-note"><b>Early access.</b> Google is still reviewing gigsnshows, so only invited testers can connect for now. If Google says access is blocked, your account isn't on the list yet: <a href="contact.html">tell us</a> and we'll add you.</p>
+      ${walletView.note ? `<p class="login-err" role="alert">${esc(walletView.note)}</p>` : ""}
+      <div class="login-acts"><button class="assist-book" data-w="google">Continue to Google</button><button data-w="list">Not now</button></div>
+      <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
+  }
+
+  function walletConfirmPage() {
+    const v = walletView;
+    const what = v.action === "disconnect" ? ["Disconnect this Gmail?", "This removes gigsnshows' access at Google and deletes the tickets found in it."]
+      : v.action === "wipe" ? ["Delete everything?", "This disconnects every Gmail and deletes all the tickets we found. Your account stays."]
+      : ["Remove this ticket?", "It's removed from your wallet. The email in your Gmail is untouched."];
+    return `<h2 id="walletTitle">${what[0]}</h2><p class="assist-status">${what[1]}</p>
+      <div class="login-acts"><button class="danger" data-w="confirm-yes">Yes, ${v.action === "remove" ? "remove it" : v.action === "wipe" ? "delete everything" : "disconnect"}</button><button data-w="list">Keep it</button></div>`;
+  }
+
+  function renderWallet() {
+    const close = `<button class="assist-close" data-w="close" aria-label="Close">×</button>`;
+    const page = walletView.page;
+    walletCard.innerHTML = close + (page === "ticket" ? walletTicketPage() : page === "connect" ? walletConnectPage() : page === "confirm" ? walletConfirmPage() : walletListPage());
+    if (page === "ticket") showTicketCode();
+  }
+
+  async function showTicketCode() {
+    const t = ticketById(walletView.id), box = document.getElementById("walletQr");
+    if (!t || t.sample || !t.has_code || !box) return;
+    try {
+      const res = await walletApi(`/wallet/ticket/${encodeURIComponent(t.id)}/code`);
+      if (!res.ok) throw new Error(String(res.status));
+      const blob = await res.blob();
+      if (walletBlobUrl) URL.revokeObjectURL(walletBlobUrl);
+      walletBlobUrl = URL.createObjectURL(blob);
+      if (walletView.id !== t.id || !document.getElementById("walletQr")) return;
+      box.innerHTML = /^image\//.test(blob.type) ? `<img src="${walletBlobUrl}" alt="Ticket QR code">`
+        : `<a href="${walletBlobUrl}" target="_blank" rel="noopener">Open your ticket (PDF)</a>`;
+    } catch {
+      box.textContent = "Couldn't load the QR code just now. Show your booking ID at the venue.";
+    }
+  }
+
+  async function connectGmail() {
+    await loadFirebase().catch(() => {});
+    if (!user) { closeWallet(); toast("Log in with your mobile number first, then connect Gmail."); openLogin(); return; }
+    wallet.sample = false;
+    if (walletDlg.hidden) openWallet("connect"); else { walletView = { page: "connect", id: "", note: "" }; renderWallet(); }
+  }
+  async function continueToGoogle(btn) {
+    btn.disabled = true; btn.textContent = "Opening Google…";
+    track("wallet_connect_start");
+    try {
+      const res = await walletApi("/auth/google/start");
+      if (!res.ok) throw new Error(String(res.status));
+      const { url } = await res.json();
+      location.href = url;
+    } catch (err) {
+      walletView.note = err.message === "login" ? "Please log in with your mobile number first." : "Couldn't reach Google just now. Please try again.";
+      renderWallet();
+    }
+  }
+  async function walletAct(action, id) {
+    try {
+      let res;
+      if (action === "remove") res = await walletApi(`/wallet/ticket/${encodeURIComponent(id)}`, { method: "DELETE" });
+      else if (action === "disconnect") res = await walletApi(`/wallet/account/${encodeURIComponent(id)}`, { method: "DELETE" });
+      else if (action === "wipe") res = await walletApi("/wallet", { method: "DELETE" });
+      if (!res.ok) throw new Error(String(res.status));
+      track("wallet_" + action);
+      toast(action === "remove" ? "Ticket removed." : action === "disconnect" ? "Gmail disconnected and its tickets deleted." : "Everything deleted.");
+      walletView = { page: "list", id: "", note: "" };
+      await loadWallet();
+    } catch {
+      walletView = { page: "list", id: "", note: "Couldn't do that just now. Please try again." };
+      renderWallet();
+    }
+  }
+  async function syncWallet() {
+    walletView.note = "Looking for new tickets…"; renderWallet();
+    try {
+      const res = await walletApi("/wallet/sync", { method: "POST" });
+      const out = res.ok ? await res.json() : {};
+      walletView.note = out.waited ? "Just checked. Try again in a minute." : out.added ? `Found ${out.added} new ${out.added === 1 ? "ticket" : "tickets"}.` : "No new tickets found.";
+    } catch { walletView.note = "Couldn't check just now. Please try again."; }
+    await loadWallet();
+  }
+
+  walletDlg.addEventListener("click", ev => {
+    if (ev.target === walletDlg) { closeWallet(); return; }
+    const b = ev.target.closest("[data-w]");
+    if (!b) return;
+    const id = b.dataset.id || "";
+    switch (b.dataset.w) {
+      case "close": closeWallet(); break;
+      case "list": walletView = { page: "list", id: "", note: "" }; renderWallet(); break;
+      case "ticket": walletView = { page: "ticket", id, note: "" }; renderWallet(); break;
+      case "login": closeWallet(); openLogin(); break;
+      case "sample": wallet = { loaded: true, tickets: sampleTickets(), accounts: [], error: "", sample: true }; walletView = { page: "list", id: "", note: "" }; renderList(); renderWallet(); track("wallet_sample"); break;
+      case "connect": connectGmail(); break;
+      case "google": continueToGoogle(b); break;
+      case "sync": syncWallet(); break;
+      case "disconnect": case "remove": walletView = { page: "confirm", id, action: b.dataset.w, note: "" }; renderWallet(); break;
+      case "wipe": walletView = { page: "confirm", id: "", action: "wipe", note: "" }; renderWallet(); break;
+      case "confirm-yes": walletAct(walletView.action, walletView.id); break;
+    }
+  });
+  document.addEventListener("click", ev => {
+    if (ev.target.closest("[data-wallet-connect]")) { connectGmail(); return; }
+    if (ev.target.closest("[data-wallet-sample]")) {
+      wallet = { loaded: true, tickets: sampleTickets(), accounts: [], error: "", sample: true };
+      renderList(); openWallet("list"); track("wallet_sample"); return;
+    }
+    if (ev.target.closest("[data-wallet-open]")) { openWallet("list"); return; }
+    const tk = ev.target.closest("[data-ticket-open]");
+    if (tk) openWallet("ticket", tk.dataset.ticketOpen);
+  });
+  document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !walletDlg.hidden) closeWallet(); });
+
+  // Coming back from Google: ?wallet=connected | cancelled | needs_gmail | failed
+  (function walletReturn() {
+    const status = new URLSearchParams(location.search).get("wallet");
+    if (!status) return;
+    const u = new URL(location.href); u.searchParams.delete("wallet");
+    history.replaceState(null, "", u.pathname + u.search + u.hash);
+    const say = { cancelled: "Gmail wasn't connected.", needs_gmail: "Please tick the Gmail permission on Google's screen so we can find your tickets.", failed: "Couldn't connect Gmail just now. Please try again." };
+    if (status !== "connected") { if (say[status]) toast(say[status], 5000); return; }
+    const ready = () => data.events.length ? Promise.resolve() : new Promise(r => setTimeout(r, 300)).then(ready);
+    Promise.all([loadFirebase(), ready()]).then(() => {
+      if (!user) return;
+      toast("Gmail connected. Looking for your tickets…", 5000);
+      openWallet("list");
+      let tries = 0;
+      walletPoll = setInterval(async () => {
+        await loadWallet();
+        if (++tries >= 10 || (wallet.accounts.length && wallet.accounts.every(a => a.last_sync))) clearInterval(walletPoll);
+      }, 4000);
+    }).catch(() => {});
+  })();
+  // A logged-in person's tickets load quietly so the row on the home page is ready.
+  const walletBoot = setInterval(() => { if (user) { clearInterval(walletBoot); loadWallet(); } }, 700);
+  setTimeout(() => clearInterval(walletBoot), 20000);
 
   // ---------- plans: "Who's in?" ----------
   // Share a show as a plan; friends open the link, say Going / Maybe / Can't with a first name,
@@ -3198,7 +3562,7 @@
     + "flights alarm timer translate calculate ignore instructions instruction pretend prompt chatgpt gpt homework money upi bank loan").split(" "));
   const LANGUAGE_WORDS = new Set("english hindi marathi gujarati tamil telugu kannada bengali punjabi urdu malayalam".split(" "));
   const GREETINGS = new Set("hello hi hey hiya namaste thanks thank thankyou ok okay bye goodbye yes no morning afternoon".split(" "));
-  const EXAMPLES = ["Comedy this weekend", "Live music tonight", "2 tickets for a play on Saturday", "Something under ₹500 this week"];
+  const EXAMPLES = ["Something funny this weekend", "Live music tonight", "Date night under ₹1,500", "Plays in Hindi"];
 
   // What a request asks for: { words, category, range: [from, to] | null, dayLabel, city, qty,
   // maxPrice, free, discover, film, offTopic, greeting }.
@@ -3348,11 +3712,29 @@
     } catch {}
   }
 
+  // The show cards under an answer: details, and a button that opens the ticket seller.
+  function assistCardsHtml(shows, city, n) {
+    return `<ul class="assist-list">${shows.map(e => {
+        const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url;
+        const price = e.price_from ? ` · from ₹${Number(e.price_from).toLocaleString("en-IN")}${n > 1 ? " each" : ""}` : "";
+        return `<li>
+          <div class="assist-row">
+            <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+            <div><h3>${esc(e.title)}</h3>
+            <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city !== city ? e.city : ""].filter(Boolean).join(", "))}${price}</p></div>
+          </div>
+          <div class="assist-acts">
+            <a class="assist-book" href="${esc(link)}" target="_blank" rel="noopener" data-assist-book="${e.id}" data-platform="${esc(sources[0])}">Book ${n ? `${n} ${n === 1 ? "ticket" : "tickets"} ` : ""}on ${esc(sources[0].replace(/ (Plays|Sports)$/, ""))}</a>
+            <button class="assist-details" data-assist-details="${e.id}">Details</button>
+          </div>
+        </li>`; }).join("")}</ul>`;
+  }
+
   function answerRequest(text, method) {
     const req = parseRequest(text);
     const city = req.city || state.city;
     const reply = (html, result, line) => {
-      assistOut.innerHTML = html;
+      addBubble("bot wide", html);
       track("voice_request", { method, result });
       if (method === "voice" && line) speak(line);
     };
@@ -3401,22 +3783,77 @@
     const first = shows[0];
     reply(`${chips}
       ${note ? `<p class="assist-msg">${esc(note)}</p>` : ""}
-      <ul class="assist-list">${shows.map(e => {
-        const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url;
-        const price = e.price_from ? ` · from ₹${Number(e.price_from).toLocaleString("en-IN")}${n > 1 ? " each" : ""}` : "";
-        return `<li>
-          <div class="assist-row">
-            <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
-            <div><h3>${esc(e.title)}</h3>
-            <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city !== city ? e.city : ""].filter(Boolean).join(", "))}${price}</p></div>
-          </div>
-          <div class="assist-acts">
-            <a class="assist-book" href="${esc(link)}" target="_blank" rel="noopener" data-assist-book="${e.id}" data-platform="${esc(sources[0])}">Book ${n ? `${n} ${n === 1 ? "ticket" : "tickets"} ` : ""}on ${esc(sources[0].replace(/ (Plays|Sports)$/, ""))}</a>
-            <button class="assist-details" data-assist-details="${e.id}">Details</button>
-          </div>
-        </li>`; }).join("")}</ul>`,
+      ${assistCardsHtml(shows, city, n)}`,
       found.where === "here" ? "found" : `found_${found.where}`,
       `I found ${shows.length === 1 ? "one show" : `${shows.length} shows`}. ${shows.length > 1 ? "The first is " : ""}${first.title.split(/[|:]/)[0].trim()}, ${whenLabel(first).replace(",", " at")}.`);
+  }
+
+  // ---------- the chat ----------
+  // What you type or say goes to the gigsnshows server (api.gigsnshows.com), where an AI looks through
+  // the listings for you and answers in a few words, with the shows as cards. Every show it names is
+  // checked against the listings first. If the server is busy or your 20 chats for the day are used,
+  // the quick finder above (answerRequest) answers instead, so there is always an answer.
+  const CHAT_API = API_BASE;
+  let chatHistory = [], chatBusy = false;
+  function chatId() {  // a random id for this browser, only so the daily limit can count
+    try {
+      let id = localStorage.getItem("gns-cid");
+      if (!id) {
+        id = ("d" + (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36))).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 40);
+        localStorage.setItem("gns-cid", id);
+      }
+      return id;
+    } catch { return "d" + Math.random().toString(36).slice(2, 14); }
+  }
+  const plain = t => String(t || "").replace(/[*_`#]+/g, "").replace(/\s+/g, " ").trim();
+  function addBubble(kind, html) {
+    const b = document.createElement("div");
+    b.className = `bubble ${kind}`;
+    b.innerHTML = html;
+    assistOut.append(b);
+    assistOut.scrollTop = assistOut.scrollHeight;
+    return b;
+  }
+  async function ask(text, method) {
+    text = String(text || "").trim().slice(0, 500);
+    if (!text || chatBusy) return;
+    chatBusy = true;
+    assistInput.value = "";
+    addBubble("me", esc(text));
+    chatHistory.push({ role: "user", content: text });
+    const typing = addBubble("bot typing", "<span></span><span></span><span></span>");
+    try {
+      const res = await fetch(`${CHAT_API}/chat`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cid: chatId(), city: state.city, messages: chatHistory.slice(-7) }),
+        signal: window.AbortSignal?.timeout ? AbortSignal.timeout(30000) : undefined,
+      });
+      if (res.status === 429) {
+        const kind = (await res.json().catch(() => null))?.detail?.kind;
+        typing.remove();
+        addBubble("bot", `<p>${kind === "person" ? "You've used today's 20 chats. They start fresh tomorrow. The quick finder is still here:" : "Lots of people are chatting right now. Here's what the quick finder found:"}</p>`);
+        track("chat_message", { method, result: kind === "person" ? "limit" : "busy" });
+        answerRequest(text, method);
+        return;
+      }
+      if (!res.ok) throw new Error(String(res.status));
+      const out = await res.json();
+      const said = plain(out.reply);
+      const shows = (out.show_ids || []).map(eventById).filter(Boolean);
+      if (!said) throw new Error("empty");
+      typing.remove();
+      addBubble("bot", `<p>${esc(said)}</p>`);
+      if (shows.length) addBubble("bot wide", assistCardsHtml(shows, state.city, null));
+      chatHistory.push({ role: "assistant", content: said, show_ids: shows.map(e => e.id) });
+      track("chat_message", { method, result: shows.length ? "found" : "talk" });
+      if (method === "voice") speak(said.split(/(?<=[.!?])\s/)[0]);
+    } catch {
+      typing.remove();
+      track("chat_message", { method, result: "fallback" });
+      answerRequest(text, method);
+    } finally {
+      chatBusy = false;
+    }
   }
 
   let recognition = null;
@@ -3429,27 +3866,30 @@
     r.onresult = ev => {
       const said = [...ev.results].map(x => x[0].transcript).join(" ").trim();
       assistInput.value = said;
-      if (ev.results[ev.results.length - 1].isFinal) { stopListening(); assistStatus.textContent = ""; answerRequest(said, "voice"); }
+      if (ev.results[ev.results.length - 1].isFinal) { stopListening(); assistStatus.textContent = ""; ask(said, "voice"); }
     };
     r.onerror = ev => {
       assistStatus.textContent = ev.error === "not-allowed" || ev.error === "service-not-allowed"
         ? "The microphone is blocked for this site. Allow it in your browser's settings, or type below."
         : ev.error === "no-speech" ? "I didn't catch that. Tap the mic and try again, or type below."
-        : ev.error === "aborted" ? "" : "Couldn't listen just now. Type what you'd like to book.";
+        : ev.error === "aborted" ? "" : "Couldn't listen just now. Type your question below.";
     };
     r.onend = () => { if (recognition === r) stopListening(); };
     try { r.start(); } catch { return; }
     assistMic.setAttribute("aria-pressed", "true");
-    assistStatus.textContent = "Listening… say what you'd like to book.";
+    assistStatus.textContent = "Listening… ask me anything about live shows.";
   }
 
   function openAssist() {
     closeShareMenu(false);
-    assistOut.innerHTML = `<div class="assist-try">${EXAMPLES.map(x => `<button class="chip" data-assist-try="${esc(x)}">${esc(x)}</button>`).join("")}</div>`;
+    if (!assistOut.children.length) {
+      addBubble("bot", "<p>Hi! Tell me what you're in the mood for and I'll find the shows.</p>");
+      addBubble("bot wide", `<div class="assist-try">${EXAMPLES.map(x => `<button class="chip" data-assist-try="${esc(x)}">${esc(x)}</button>`).join("")}</div>`);
+    }
     assistInput.value = "";
-    assistInput.placeholder = "2 tickets for stand-up this Saturday";
+    assistInput.placeholder = "Ask: a chilled Saturday under ₹800";
     assistMic.hidden = !Recognition;
-    assistStatus.textContent = Recognition ? "" : "Voice isn't available in this browser. Type what you'd like to book.";
+    assistStatus.textContent = Recognition ? "" : "Voice isn't available in this browser. Type your question below.";
     assist.hidden = false;
     document.body.style.overflow = "hidden";
     track("voice_open");
@@ -3469,12 +3909,12 @@
     ev.preventDefault();
     stopListening();
     assistStatus.textContent = "";
-    if (assistInput.value.trim()) answerRequest(assistInput.value, "typed");
+    if (assistInput.value.trim()) ask(assistInput.value, "typed");
   });
   assist.addEventListener("click", ev => {
     if (ev.target === assist || ev.target.closest("[data-assist-close]")) { closeAssist(); return; }
     const example = ev.target.closest("[data-assist-try]");
-    if (example) { stopListening(); assistStatus.textContent = ""; assistInput.value = example.dataset.assistTry; answerRequest(example.dataset.assistTry, "example"); return; }
+    if (example) { stopListening(); assistStatus.textContent = ""; ask(example.dataset.assistTry, "example"); return; }
     const book = ev.target.closest("[data-assist-book]");
     if (book) {
       const e = eventById(book.dataset.assistBook);

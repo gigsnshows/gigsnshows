@@ -56,7 +56,7 @@
 <main>
   <a class="home" href="./">gigsnshows</a>
   <h1>Privacy</h1>
-  <p class="updated">Last updated 11 October 2026</p>
+  <p class="updated">Last updated 12 October 2026</p>
 
   <p>gigsnshows lists live music, theatre, sports and stand-up from ticketing sites and venues. We don't sell tickets: when you book, you do it on the seller's own site, and their privacy policy applies there.</p>
 
@@ -66,8 +66,8 @@
   <h2>Analytics</h2>
   <p>Only if you tap OK on the cookie notice, we use Google Analytics to see which pages and features people use: for example which row a show was opened from, which ticket site was chosen, and words typed into search. It's never used for advertising. Until you say OK, Google receives only cookie-free signals that don't identify your device. Analytics data is deleted after 14 months.</p>
 
-  <h2>Booking by voice</h2>
-  <p>When you use the mic, your browser's own speech service (Google's in Chrome, Apple's in Safari) turns what you say into text. We don't record or keep your voice or what you said; analytics only notes whether a show was found.</p>
+  <h2>Asking gigsnshows (voice and chat)</h2>
+  <p>The mic and the chat box let you ask for shows in your own words. If you use the mic, your browser's own speech service (Google's in Chrome, Apple's in Safari) turns what you say into text. The words you say or type are then sent to our server in Mumbai, which asks <b>Anthropic's Claude</b> (an AI service) to look through the listings and write the answer. Anthropic's commercial terms say it does not train its models on this, and it may keep it briefly for safety checks under its own policy. We don't record your voice, and we <b>don't keep what you asked or what was answered</b>. To make the daily limit work, our server keeps only a count of messages per day, filed under a scrambled code made from a random ID your browser holds and from your network address, so neither is stored as it is. Please don't put personal details in a question. Analytics only notes whether a show was found.</p>
 
   <h2>Add to calendar and the home-screen app</h2>
   <p>“Add to calendar” builds the entry in your browser. The Google Calendar choice opens Google with the show's details; the file choice (Apple, Outlook and others) is made on your device and isn't sent to us. If you add gigsnshows to your home screen, your phone keeps a copy of the site and the latest listings so it can open without signal. Nothing about you is added to that copy, and clearing your browser's site data removes it.</p>
@@ -80,8 +80,14 @@
   <ul>
     <li><b>Your mobile number</b>, to send you a one-time code and recognise you. This is handled by Google's Firebase Authentication, which also runs a reCAPTCHA check to keep out bots.</li>
     <li><b>Your My shows, interests and For you history</b>, so they follow you to every device you log in on. These are stored in Google Cloud Firestore and can be read only by you.</li>
+    <li><b>Your tickets</b>, only if you connect Gmail (see the ticket wallet below). These are stored on our own server, not in Firestore.</li>
   </ul>
   <p>We use these only to log you in and keep your picks. We don't sell or share them, and we don't send marketing messages.</p>
+
+  <h2>Your ticket wallet (connecting Gmail)</h2>
+  <p>The wallet is optional and starts only if you log in and choose <b>Connect Gmail</b>. If you do, gigsnshows looks for your booking confirmations so your tickets can sit in one place. We ask Google for <b>read-only</b> access, which cannot send, delete or change anything. We only search for emails from ticket sellers (for example BookMyShow, District, thumpN and Skillbox) and open only those; <b>the rest of your inbox is never opened</b>. From a ticket email we keep the event, date, venue, booking ID and seats, and the ticket's QR code or PDF, so you can show it at the door. We do not keep prices, card details or anything else in the email. To read each email, its text is sent to an AI service (Anthropic's Claude), solely to pull out those booking details; it is not used for advertising or to train AI models. Your tickets and Google's access token are stored encrypted on our server in Mumbai, India. No one at gigsnshows reads your mail or your tickets, except with your permission to fix a problem or where the law requires it.</p>
+  <p>You can remove any ticket, <b>disconnect</b> a Gmail account (this revokes our access at Google and deletes the tickets found in it) or <b>delete everything</b> from the wallet page at any time. Deleting your account does the same. You can also remove our access in your Google Account under Security, then Third-party access. Until Google finishes reviewing gigsnshows, the wallet is open only to invited testers.</p>
+  <p>gigsnshows's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
 
   <h2>Plans with friends (“Who's in?”)</h2>
   <p>If you start a plan or answer one, we keep the plan (the show or shows, their date and venue), the <b>first name you typed</b> and your answer (Going, Maybe or Can't, and for a plan for a whole night which shows you'd go to). Anyone who has the plan's link can see the names and answers on it; nobody can browse plans without a link. You don't need to log in: your browser is given an anonymous identifier so your answer stays yours. This is stored in Google Cloud Firestore.</p>
@@ -95,7 +101,7 @@
   <p>If you report a plan or shared list, we receive your chosen reason, any note you add and the link to what you reported, delivered to our inbox by Web3Forms. We don't ask for your name or email and don't tell the person who made it. We use reports only to review and, where needed, remove content or block misuse. See our <a href="terms.html">terms</a>.</p>
 
   <h2>Deleting your data</h2>
-  <p>Tap the account icon at the top, then <b>Delete my account</b>. That removes your number and everything saved to your account straight away. You can also <a href="contact.html?topic=data">write to us</a> to ask what we hold about you, to correct it or to delete it, as India's Digital Personal Data Protection Act, 2023 provides.</p>
+  <p>Tap the account icon at the top, then <b>Delete my account</b>. That removes your number, everything saved to your account and any tickets and Gmail connections in your wallet straight away. You can also <a href="contact.html?topic=data">write to us</a> to ask what we hold about you, to correct it or to delete it, as India's Digital Personal Data Protection Act, 2023 provides.</p>
 
   <h2>Contact</h2>
   <p>Questions or complaints about your data: use our <a href="contact.html?topic=data">contact form</a>. We'll reply by email within 30 days. Messages sent through the form are delivered to our inbox by Web3Forms, and we use your name and email only to reply.</p>

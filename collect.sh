@@ -1,5 +1,5 @@
 #!/bin/bash
-# Collect listings and upload them. Runs on the AWS server (cron, 07:00 and 17:00 IST:
+# Collect listings and upload them. Runs on the AWS server (cron, 09:30, 13:30 and 17:30 IST, so listings are live by 10am, 2pm and 6pm:
 # everything except BookMyShow) and on the Mac (collect-local.sh: BookMyShow only).
 # Set COLLECTOR (aws / mac) and PYTHON before calling; sources.yaml's runs_on decides
 # which sources each one reads. Runs from its own clone, which it resets to GitHub's copy.
