@@ -3743,16 +3743,6 @@
   }
 
   const SCOPE_EXAMPLES = `Try <b>“comedy this weekend”</b>, <b>“two tickets for a Marathi play on Saturday”</b> or <b>“jazz under ₹1,000”</b>.`;
-  function speak(line) {
-    if (!("speechSynthesis" in window)) return;
-    try {
-      speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(line);
-      u.lang = "en-IN"; u.rate = 1.05;
-      speechSynthesis.speak(u);
-    } catch {}
-  }
-
   // The show cards under an answer: details, and a button that opens the ticket seller.
   function assistCardsHtml(shows, city, n) {
     return `<ul class="assist-list">${shows.map(e => {
@@ -3777,7 +3767,6 @@
     const reply = (html, result, line) => {
       addBubble("bot wide", html);
       track("voice_request", { method, result });
-      if (method === "voice" && line) speak(line);
     };
     const tryChips = `<div class="assist-try">${EXAMPLES.map(x => `<button class="chip" data-assist-try="${esc(x)}">${esc(x)}</button>`).join("")}</div>`;
     const asksForShows = req.words.length || req.category || req.range || req.discover || req.maxPrice || req.free;
@@ -3887,7 +3876,6 @@
       if (shows.length) addBubble("bot wide", assistCardsHtml(shows, state.city, null));
       chatHistory.push({ role: "assistant", content: said, show_ids: shows.map(e => e.id) });
       track("chat_message", { method, result: shows.length ? "found" : "talk" });
-      if (method === "voice") speak(said.length > 300 ? said.slice(0, 300).replace(/\s\S*$/, "") : said);  // the whole short answer, not just "Great news!"
     } catch {
       typing.remove();
       track("chat_message", { method, result: "fallback" });
@@ -3939,7 +3927,6 @@
   function closeAssist() {
     if (assist.hidden) return;
     stopListening();
-    try { speechSynthesis.cancel(); } catch {}
     assist.hidden = true;
     document.body.style.overflow = "";
     document.getElementById("micBtn").focus({ preventScroll: true });

@@ -155,6 +155,18 @@ def guess_category(text, fallback=None):
     return fallback
 
 
+# Some sources file every concert under their "performances" (theatre) list; a title that plainly says concert, band, DJ or unplugged is music.
+_STRONG_MUSIC = re.compile(r"\b(concert|unplugged|band|dj|jazz|sufi|ghazal|qawwali|orchestra|symphony|symphonic|philharmonic|live music|tribute|bhajans?|kirtan)\b", re.I)
+_THEATRE_WORDS = re.compile(r"\b(play|drama|theatre|theater|natak|nataka|ramleela|ramlila|dance|monologue|dastangoi|storytelling|theatrical)\b", re.I)
+
+
+def fix_category(e):
+    """Correct a show filed under the wrong list (a concert in the theatre list). Changes e in place; returns it."""
+    if e.get("category") == "theatre" and _STRONG_MUSIC.search(e.get("title", "")) and not _THEATRE_WORDS.search(e.get("title", "")):
+        e["category"] = "music"
+    return e
+
+
 def make_id(title, day, venue):
     raw = f"{title}|{day}|{venue}".lower()
     raw = re.sub(r"[^a-z0-9|]", "", raw)

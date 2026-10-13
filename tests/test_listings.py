@@ -158,3 +158,18 @@ def test_a_well_known_acts_page_needs_music_in_its_description_but_not_live_in_t
     assert _show_kind("25 Years Of The Raghu Dixit Project - Pune", "The music. Iconic songs and melodies.", loose=True) == "music"
     assert _show_kind("Timezone – Dhillon Plaza", "Level up your game, claw machines, in it for the laughs!", loose=True) is None
     assert _show_kind("Divine Banaras", "A Dev Diwali boat ride on the Ganga with fireworks.", loose=True) is None
+
+
+@pytest.mark.parametrize("title,before,after", [
+    ("A R Rahman – Wonderment Tour Live in Concert", "theatre", "music"),
+    ("Saturday Night Live - Bryan Adams Tribute Ft. LiveWire Band", "theatre", "music"),
+    ("‘Light of Bhakti: Bhajans Unplugged by Siyer’", "theatre", "music"),
+    ("Halloween Night (Bolly vs Kolly) ft. DJ Deepika", "theatre", "music"),
+    ("Hamlet", "theatre", "theatre"),
+    ("Aamne Saamne - Marathi Play", "theatre", "theatre"),
+    ("A Musical Play: Mamma Mia Concert Edition", "theatre", "theatre"),   # says play: leave it
+    ("Samay Raina Live", "comedy", "comedy"),
+])
+def test_a_concert_filed_under_theatre_is_music(title, before, after):
+    from scrapers.base import fix_category
+    assert fix_category({"title": title, "category": before})["category"] == after

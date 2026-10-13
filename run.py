@@ -21,7 +21,7 @@ from pathlib import Path
 import yaml
 
 import health
-from scrapers.base import NOT_SHOWS, get_html, now_iso
+from scrapers.base import NOT_SHOWS, fix_category, get_html, now_iso
 from scrapers import seo, sharepages
 from scrapers.genres import catalog, language, languages, tag
 from scrapers.parsers import COVERAGE, PARSERS
@@ -181,7 +181,7 @@ def main(dry_run=False, only=None, remerge=False):
     if stale:
         print(f"\nNo fresh results from: {', '.join(sorted(stale))} — keeping {len(carried)} of their earlier upcoming shows")
 
-    upcoming = drop_tour_hubs([e for e in collected if e["date"] >= today and not NOT_SHOWS.search(e["title"])] + carried)
+    upcoming = drop_tour_hubs([fix_category(e) for e in [*(e for e in collected if e["date"] >= today and not NOT_SHOWS.search(e["title"])), *carried]])
     merged = dedupe(upcoming)
     merged.sort(key=lambda e: (e["date"], e["time"]))
     print(f"\n{len(collected)} scraped + {len(carried)} kept -> {len(merged)} unique upcoming events")
