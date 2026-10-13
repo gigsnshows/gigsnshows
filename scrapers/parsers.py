@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 
 from .base import (collect_links, event, extract_jsonld_events, get_html, guess_category,
                    jsonld_to_event, meta_event, parse_date, summary)
-from .cities import detect_city
+from .cities import detect_city, nearest_city
 from .genres import language
 
 _visited = set()  # detail pages already read this run (same event linked from several city pages)
@@ -139,7 +139,7 @@ def parse_district(html, page_url, src, entry):
 DISTRICT_PAGES = Path(__file__).resolve().parent.parent / "data" / "district_pages.json"
 # Bump this whenever the rules for what counts as a show change (categories, filters): a page remembered as "not a show" under
 # older rules is then read again once. Without it a show the rules newly accept (Samay Raina Live) stays hidden for good.
-DISTRICT_RULES = 2
+DISTRICT_RULES = 3
 _MONTHS = "jan feb mar apr may jun jul aug sep oct nov dec".split()
 
 
@@ -161,6 +161,21 @@ def _description_category(text):
     if re.search(r"\b(stand-?up|stand up|comedian|comedians|comedy show|comedy night)\b", t):
         return "comedy"
     if re.search(r"\b(live in concert|live concert|in concert|live music|concert)\b", t):
+        return "music"
+    return None
+
+
+def _show_kind(title, description):
+    """The kind of show from its title, else its description. A title that says "... Live" ("Satinder Sartaaj Live in Delhi",
+    "Vivek Samtani Live") is a show: the description then only has to say which kind (laughter, or music). Titles with no
+    "live" need the narrower rule above, since water parks and classes describe themselves as fun too."""
+    kind = guess_category(title) or _description_category(description)
+    if kind or not re.search(r"\blive\b", title or "", re.I):
+        return kind
+    t = (description or "")[:600].lower()
+    if re.search(r"\b(laugh|laughs|laughter|comic|comedians?|humou?r|stand-?up|roast)\b", t):
+        return "comedy"
+    if re.search(r"\b(music|musical|singing|singer|songs?|concert|band|dj|sufi|bhangra|ghazal|qawwali|melod\w+)\b", t):
         return "music"
     return None
 
@@ -208,9 +223,13 @@ def parse_district_sitemap(html, page_url, src, entry):
         # almost anything, and this source also lists water parks and classes. A title that says nothing is left out; the
         # listing pages cover ordinary shows. No city is passed in: each show is filed under the city its own venue and
         # address name, and one that names none is left out.
-        kind = lambda n: guess_category(n["name"]) or _description_category(n.get("description"))  # noqa: E731
-        shows = [e for e in (jsonld_to_event(n, src["name"], None, kind(n), url) if kind(n) else None
+        kind = lambda n: _show_kind(n["name"], n.get("description"))  # noqa: E731
+        near = lambda n: nearest_city(*(((n.get("location") or {}).get("geo") or {}).get(k) for k in ("latitude", "longitude"))) if isinstance(n.get("location"), dict) else None  # noqa: E731
+        shows = [e for e in (jsonld_to_event(n, src["name"], near(n), kind(n), url) if kind(n) else None
                              for n in nodes) if e and e["city"] != "Unknown"]
+        for e in shows:  # "Satinder Sartaaj Live in Jalandhar": the title's city beats an address that also names the highway to Delhi
+            named = re.search(r"\blive in ([A-Za-z .]+?)\s*$", e["title"], re.I)
+            e["city"] = (named and detect_city(named.group(1))) or e["city"]
         if not nodes:  # some pages carry no structured data: fall back to the page's own title and date
             fallback = meta_event(page, src["name"], None, None, url)
             if fallback and guess_category(fallback["title"]) and fallback["city"] != "Unknown":
@@ -235,7 +254,7 @@ def parse_district_sitemap(html, page_url, src, entry):
 # read per run (the `SITEMAP_MAX_PAGES` environment variable overrides it, for a big first fill).
 
 BMS_PAGES = Path(__file__).resolve().parent.parent / "data" / "bms_pages.json"
-BMS_RULES = 2  # bump when the rules for what counts as a show change (see DISTRICT_RULES)
+BMS_RULES = 3  # bump when the rules for what counts as a show change (see DISTRICT_RULES)
 BMS_CONCERTY = re.compile(r"(tour|concert|live|festival|fest\b|unplugged|symphony|orchestra|world|india|night|jam\b|dj|band|music|sufi|"
                           r"ghazal|qawwali|opera|comedy|stand-?up|roast|singh|rahman|rehman|ghoshal|dosanjh|kumar|sharma|khan|"
                           r"gig|rock|jazz|indie|folk|bhajan|kirtan|mushaira|musical|karaoke|open-mic)")
@@ -246,7 +265,7 @@ def _node_category(node, title):
     for key, cat in (("Comedy", "comedy"), ("Music", "music"), ("Theat", "theatre"), ("Sport", "sports")):
         if key in kind:
             return cat
-    return guess_category(title) or _description_category(node.get("description"))
+    return _show_kind(title, node.get("description"))
 
 
 def parse_bms_sitemap(html, page_url, src, entry):

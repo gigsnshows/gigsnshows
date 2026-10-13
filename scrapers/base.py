@@ -47,7 +47,7 @@ NOT_SHOWS = re.compile(
     r"|(?:play|jump|fun|soft ?play|kids?|kidz|indoor) (?:area|zone|park|land|centre|center|garden|place)s?\b|\bkids? play\b|\bplay ?(?:n|'n'|and) ?learn\b|"
     r"\bindoor (?:rock )?climbing\b|\bgo-?kart(?:ing)?\b|\bkarting\b|\bshooting (?:range|academy|sports|foundation)\b|\bair rifle\b|\blive shoot\b|"
     r"\bsailing\b|\byacht\b|\bmuseum\b|\bstadium tour\b|\btheme park\b|\bwater ?park\b|\bamusement\b|\btrampoline\b|\bescape room\b|"
-    r"\blaser tag\b|\bcycling\b|\bcycle ride\b|\be-cycling\b|\bshort films?\b|\bfilm screening\b|\bmovie night\b",
+    r"\blaser tag\b|\bcycling\b|\bcycle ride\b|\be-cycling\b|\bshort films?\b|\bfilm screening\b|\bmovie night\b|\bflea market\b|\bbrand expo\b",
     re.I)
 
 CATEGORY_KEYWORDS = {
@@ -57,9 +57,9 @@ CATEGORY_KEYWORDS = {
     "sports": ["cricket", "football", "ipl", "isl", "kabaddi", "match", "marathon",
                "tennis", "badminton", "hockey", "10k", "5k", "run", "race", "championship",
                "t20i", "t20", "odi", "test cricket", "world cup"],
-    "music": ["concert", "live music", "gig", "band", "tour", "dj", "festival", "garba", "dandiya", "dandia", "raas", "navratri",
+    "music": ["concert", "live music", "gig", "gigs", "band", "tour", "dj", "festival", "garba", "dandiya", "dhandiya", "dandia", "raas", "raass", "navratri",
               "classical", "jazz", "indie", "rock", "hip hop", "sufi", "ghazal",
-              "orchestra", "recital", "philharmonic", "qawwali", "unplugged", "jam"],
+              "orchestra", "recital", "philharmonic", "qawwali", "unplugged", "jam", "jamming"],
 }
 
 # ---------------------------------------------------------------- fetching

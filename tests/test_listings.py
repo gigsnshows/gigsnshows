@@ -91,3 +91,37 @@ def test_a_page_remembered_as_not_a_show_is_read_again_when_the_rules_change(tmp
     reads.clear()
     parsers.parse_district_sitemap(sitemap, "x", {"name": "District"}, {"city": "Mumbai"})
     assert reads == []                                                     # up to date: left alone
+
+
+@pytest.mark.parametrize("title,description,kind", [
+    ("The Philosophy of Resonance – Satinder Sartaaj Live in Delhi", "Soulful Punjabi poetry, Sufi music and high-energy Bhangra in a live experience.", "music"),
+    ("Vivek Samtani Live", "Get ready for a night of unadulterated laughter with sharp wit.", "comedy"),
+    ("Asees Kaur Live at Rangtaari 2026", "An unforgettable celebration that brings music, culture and more.", "music"),
+    ("Chennai's First-Ever Dhandiya Night in a Theme Park", "", "music"),
+    ("Rang Raass 2026", "", "music"),
+    ("Tribute to Fred Again | High Big Gigs", "", "music"),
+    ("Jamming Night - Mumbai", "", "music"),
+    ("Kidz Water Park", "Laughter, fun and music for the whole family all day.", None),  # no "live" in the title: not enough
+    ("Pinnaca 2026", "", None),
+])
+def test_what_kind_of_show_from_title_and_description(title, description, kind):
+    from scrapers.parsers import _show_kind
+    assert _show_kind(title, description) == kind
+
+
+@pytest.mark.parametrize("lat,lng,city", [
+    (22.5638, 88.4649, "Kolkata"),   # Newtown
+    (26.8131, 81.0201, "Lucknow"),   # Ekana Stadium
+    (23.1499, 72.6847, "Ahmedabad"),  # Gift City, Gandhinagar
+    (19.0330, 73.0297, "Mumbai"),    # Navi Mumbai
+    (28.3765, 79.4653, None),        # Bareilly: no listed city near
+])
+def test_a_venue_with_no_known_city_name_is_placed_by_its_map_position(lat, lng, city):
+    from scrapers.cities import nearest_city
+    assert nearest_city(lat, lng) == city
+    assert nearest_city(None, None) is None
+
+
+@pytest.mark.parametrize("title", ["Raas Garba Flea Market & Brand Expo Vol - 8", "Diwali Flea Market"])
+def test_markets_are_not_shows(title):
+    assert NOT_SHOWS.search(title)

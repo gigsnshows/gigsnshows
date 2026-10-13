@@ -63,3 +63,38 @@ def detect_city(text):
     addresses run from street to city, and venue labels end 'Venue: City'."""
     matches = _PATTERN.findall(text or "")
     return _ALIAS_TO_CITY[matches[-1].lower()] if matches else None
+
+
+# Where a venue's address names no city we know ("Newtown, West Bengal", "Ekana Stadium, Uttar Pradesh"), its map position
+# does: the nearest city on this list, if one is within NEAR_KM.
+NEAR_KM = 35
+_COORDS = {
+    "Mumbai": (19.076, 72.878), "Delhi": (28.614, 77.209), "Bengaluru": (12.972, 77.594), "Pune": (18.520, 73.857),
+    "Hyderabad": (17.385, 78.487), "Chennai": (13.083, 80.270), "Kolkata": (22.573, 88.364), "Kochi": (9.932, 76.267),
+    "Goa": (15.491, 73.828), "Chandigarh": (30.733, 76.779), "Ahmedabad": (23.023, 72.572), "Vadodara": (22.307, 73.181),
+    "Mysuru": (12.296, 76.639), "Mangaluru": (12.914, 74.856), "Thiruvananthapuram": (8.524, 76.937),
+    "Kozhikode": (11.259, 75.780), "Visakhapatnam": (17.687, 83.219), "Puducherry": (11.934, 79.831),
+    "Aurangabad": (19.877, 75.343), "Nashik": (19.998, 73.789), "Alibaug": (18.641, 72.872), "Jaipur": (26.912, 75.787),
+    "Lucknow": (26.847, 80.947), "Indore": (22.720, 75.858), "Surat": (21.170, 72.831), "Nagpur": (21.146, 79.088),
+    "Bhopal": (23.259, 77.413), "Coimbatore": (11.017, 76.956), "Guwahati": (26.144, 91.736), "Dehradun": (30.316, 78.032),
+    "Udaipur": (24.585, 73.713), "Jodhpur": (26.239, 73.024), "Kolhapur": (16.705, 74.243), "Vijayawada": (16.506, 80.648),
+    "Bhubaneswar": (20.296, 85.825), "Patna": (25.594, 85.138), "Ranchi": (23.344, 85.310), "Raipur": (21.251, 81.630),
+    "Jalandhar": (31.326, 75.576), "Varanasi": (25.317, 82.973), "Agra": (27.177, 78.008), "Amritsar": (31.634, 74.872),
+    "Ludhiana": (30.901, 75.857), "Madurai": (9.925, 78.120), "Kanpur": (26.449, 80.332), "Lonavala": (18.750, 73.407),
+}
+
+
+def nearest_city(lat, lng):
+    """The listed city within NEAR_KM of a map position, or None."""
+    from math import asin, cos, radians, sin, sqrt
+    try:
+        lat, lng = float(lat), float(lng)
+    except (TypeError, ValueError):
+        return None
+    best, best_km = None, NEAR_KM
+    for city, (la, lo) in _COORDS.items():
+        a = sin(radians(la - lat) / 2) ** 2 + cos(radians(lat)) * cos(radians(la)) * sin(radians(lo - lng) / 2) ** 2
+        km = 12742 * asin(sqrt(a))
+        if km < best_km:
+            best, best_km = city, km
+    return best
