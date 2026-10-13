@@ -189,3 +189,20 @@ def test_lookalike_titles_stay(title):
 @pytest.mark.parametrize("title", ["Art Your Rock", "ZIMA - Zee Institute of Media Arts"])
 def test_a_rock_painting_class_and_an_institute_are_not_shows(title):
     assert NOT_SHOWS.search(title)
+
+
+def test_a_city_page_of_a_multi_city_tour_is_kept_even_though_it_names_the_tour_page_as_its_url(tmp_path, monkeypatch):
+    """Aditya Rikhari's Mumbai page says its url is the general tour page, which a city list had already returned: the Mumbai show was dropped."""
+    import json
+    from datetime import date
+    import scrapers.parsers as P
+    page = "https://in.bookmyshow.com/events/tour-mumbai/ET00111111"
+    mem = {page: {"t": date.today().isoformat(), "v": P.BMS_RULES,
+                  "e": [{"id": "a1", "title": "Tour - Mumbai", "city": "Mumbai", "date": "2099-01-01", "url": "https://in.bookmyshow.com/events/tour/ET00999999"}]}}
+    f = tmp_path / "bms.json"; f.write_text(json.dumps(mem)); monkeypatch.setattr(P, "BMS_PAGES", f)
+    monkeypatch.setattr(P, "_returned", {"et00999999"})   # the general tour page was already on a city list
+    html = f"<urlset><url><loc>{page}</loc></url></urlset>"
+    out = P.parse_bms_sitemap(html, "x", {"name": "BookMyShow", "watch": []}, {})
+    assert [e["city"] for e in out] == ["Mumbai"] and out[0]["url"] == page   # kept, and the Book button goes to the Mumbai page
+    monkeypatch.setattr(P, "_returned", {"et00111111"})   # but a page that itself came up in a list is skipped
+    assert P.parse_bms_sitemap(html, "x", {"name": "BookMyShow", "watch": []}, {}) == []

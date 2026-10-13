@@ -316,7 +316,15 @@ def parse_bms_sitemap(html, page_url, src, entry):
         BMS_PAGES.write_text(json.dumps(memory, ensure_ascii=False, separators=(",", ":")))
     except OSError as exc:
         print(f"      ! couldn't save {BMS_PAGES.name}: {exc}")
-    return [e for v in memory.values() for e in v["e"] if e["date"] >= today.isoformat() and _page_id(e["url"]) not in others]
+    # A city's page for a multi-city tour (Aditya Rikhari's Mumbai, Kolkata and Bengaluru dates) names the tour's general page as its own
+    # `url`, and that general page is usually already on the site from a city list. Matching on that url dropped the other cities' shows
+    # as "already covered". So: skip a page only when the PAGE itself (not what it points to) came up in a list, and send people to the page.
+    out = []
+    for page_url, v in memory.items():
+        if _page_id(page_url) in others:
+            continue
+        out.extend({**e, "url": page_url} for e in v["e"] if e["date"] >= today.isoformat())
+    return out
 
 
 # ---------------------------------------------------------------- ncpamumbai.com
