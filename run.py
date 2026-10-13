@@ -224,3 +224,7 @@ if __name__ == "__main__":
     args = sys.argv[1:]
     only = args[args.index("--only") + 1] if "--only" in args else None
     main(dry_run="--dry-run" in args, only=only, remerge="--remerge" in args, refilter="--refilter" in args)
+    # Everything is written by now. On the Mac the rendering browser's helper process once never exited and the run sat for 40 minutes
+    # without uploading anything, so leave without waiting for it.
+    sys.stdout.flush(); sys.stderr.flush()
+    os._exit(0)
