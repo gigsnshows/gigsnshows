@@ -2452,7 +2452,20 @@
     if (!walletDlg.hidden) renderWallet();
   }
 
+  // ?videodemo is for the launch video only: the wallet shows three tickets for the big tours, with no "sample" labels.
+  const VIDEO_DEMO = new URLSearchParams(location.search).has("videodemo");
+  function demoTickets() {
+    const want = [["rahman", "RAH-7Q2K9", 2, "Platinum \u00b7 Row C"], ["diljit", "DIL-3M8X1", 4, "Gold \u00b7 Row 4"], ["arijit", "ARJ-5T6B4", 2, "Silver \u00b7 Standing"]];
+    const out = [];
+    for (const [k, id, qty, seats] of want) {
+      const e = data.events.filter(x => x.date >= todayISO && x.title.toLowerCase().includes(k) && (!state.city || x.city === state.city)).sort(byDateTime)[0];
+      if (e) out.push({ id: `demo-${k}`, title: e.title, date: e.date, time: e.time, venue: e.venue, city: e.city, platform: (e.sources || [e.source])[0],
+        booking_id: id, quantity: qty, seats, event_id: e.id, has_code: 1, sample: true, demo: true });
+    }
+    return out;
+  }
   function sampleTickets() {
+    if (VIDEO_DEMO) { const d = demoTickets(); if (d.length === 3) return d; }
     const seen = new Set(), picks = [];
     const pool = data.events.filter(e => e.date >= todayISO && (!state.city || e.city === state.city)).sort(byDateTime);
     for (const e of pool) { if (e.image && !seen.has(e.source)) { seen.add(e.source); picks.push(e); } if (picks.length === 4) break; }
@@ -2533,12 +2546,12 @@
         <div>${esc(a.email)}<small>${a.status === "needs_reconnect" ? "Google needs you to reconnect" : a.status === "error" ? "Couldn't check just now" : esc(agoText(a.last_sync))}</small></div>
         <button data-w="${a.status === "needs_reconnect" ? "connect" : "disconnect"}" data-id="${esc(a.id)}">${a.status === "needs_reconnect" ? "Reconnect" : "Disconnect"}</button></div>`).join("")}
       <div class="login-acts"><button data-w="sync">Look for new tickets</button><button data-w="connect">Add another Gmail</button><button class="danger" data-w="wipe">Delete everything</button></div>`;
-    return `<h2 id="walletTitle">${sample ? "Your tickets" : "Your tickets"}<span class="pill-early">${sample ? "Sample" : "Early access"}</span></h2>
-      ${sample ? `<p class="wallet-note"><b>Sample tickets.</b> This is how your wallet looks once your Gmail is connected. These aren't real bookings.</p>` : ""}
+    return `<h2 id="walletTitle">Your tickets${VIDEO_DEMO ? "" : `<span class="pill-early">${sample ? "Sample" : "Early access"}</span>`}</h2>
+      ${sample && !VIDEO_DEMO ? `<p class="wallet-note"><b>Sample tickets.</b> This is how your wallet looks once your Gmail is connected. These aren't real bookings.</p>` : ""}
       ${looking ? `<p class="assist-status">Looking through your emails for tickets. This takes a minute.</p>` : ""}${err}
       ${up.length ? `<ul class="wallet-list">${up.map(ticketRow).join("")}</ul>` : `<p class="assist-status">${looking ? "" : "No upcoming tickets yet. New bookings appear here by themselves."}</p>`}
       ${past.length ? `<div class="wallet-sub">Earlier</div><ul class="wallet-list">${past.map(ticketRow).join("")}</ul>` : ""}
-      ${sample ? `<div class="login-acts"><button class="assist-book" data-w="start">Open my wallet</button></div>` : inboxes}
+      ${sample ? (VIDEO_DEMO ? "" : `<div class="login-acts"><button class="assist-book" data-w="start">Open my wallet</button></div>`) : inboxes}
       ${walletView.note ? `<p class="assist-fine">${esc(walletView.note)}</p>` : ""}`;
   }
 
@@ -2548,7 +2561,7 @@
     const facts = [["Tickets", t.quantity ? String(t.quantity) : ""], ["Seats", t.seats], ["Booked on", t.platform], ["Booking ID", t.booking_id]].filter(f => f[1]);
     return `<h2 id="walletTitle">Your ticket</h2>
       <div class="ticket-pass">
-        <div class="tp-top">${t.sample ? `<span class="tp-sample">Sample ticket</span>` : ""}<h3>${esc(t.title)}</h3><p>${esc(ticketWhen(t))}${t.venue ? " · " + esc(t.venue.split(/[:|]/)[0].trim()) : ""}${t.city ? ", " + esc(t.city) : ""}</p></div>
+        <div class="tp-top">${t.sample && !t.demo ? `<span class="tp-sample">Sample ticket</span>` : ""}<h3>${esc(t.title)}</h3><p>${esc(ticketWhen(t))}${t.venue ? " · " + esc(t.venue.split(/[:|]/)[0].trim()) : ""}${t.city ? ", " + esc(t.city) : ""}</p></div>
         <div class="tp-qr" id="walletQr">${t.sample ? SAMPLE_QR : t.has_code ? "Loading your ticket…" : "No QR code was found in this email. Show the booking ID at the venue."}</div>
         <div class="tp-facts">${facts.map(([k, v]) => `<div><span>${k}</span><b>${esc(v)}</b></div>`).join("")}</div>
       </div>
