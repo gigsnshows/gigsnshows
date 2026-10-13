@@ -184,3 +184,8 @@ def test_art_workshops_and_rage_rooms_are_not_shows(title):
 @pytest.mark.parametrize("title", ["Resident Evil Live Orchestra", "Tie Me Up: a play", "The Moon and Sixpence", "Date Night Comedy"])
 def test_lookalike_titles_stay(title):
     assert not NOT_SHOWS.search(title)
+
+
+@pytest.mark.parametrize("title", ["Art Your Rock", "ZIMA - Zee Institute of Media Arts"])
+def test_a_rock_painting_class_and_an_institute_are_not_shows(title):
+    assert NOT_SHOWS.search(title)

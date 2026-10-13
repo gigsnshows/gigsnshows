@@ -52,7 +52,7 @@ NOT_SHOWS = re.compile(
     r"|\b(?:conference|expo|summit|montessori|inter-?school|business school)\b|\bschool (?:athletics|chess|sports|annual)\b|\bslide school\b|"
     r"\bvirtual (?:run|ride|marathon)\b|\brun clubs?\b|\bmeet-?ups?\b|\bboard ?games?\b|\bstay \+"
     # Art workshops, play dates and rage rooms that thumpN lists beside gigs.
-    r"|\b(?:resin|tie dye|kintsugi|hirameki|sumi e|shell mirror|wax flower|cheriyal mask|drawing party|play ?date|rage (?:room|therapy)|talking to the moon)\b",
+    r"|\b(?:resin|tie dye|kintsugi|hirameki|sumi e|shell mirror|wax flower|cheriyal mask|drawing party|play ?date|rage (?:room|therapy)|talking to the moon|art your rock|institute of media)\b",
     re.I)
 
 CATEGORY_KEYWORDS = {
