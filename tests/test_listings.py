@@ -151,3 +151,10 @@ def test_trade_school_and_club_events_are_not_shows(title):
 @pytest.mark.parametrize("title", ["Hamilton", "Zakir Khan Live", "Sunburn Arena ft. DJ Snake", "Mumbai Half Marathon", "Comedy Club Night", "School of Rock"])
 def test_these_stay_shows(title):
     assert not NOT_SHOWS.search(title)
+
+
+def test_a_well_known_acts_page_needs_music_in_its_description_but_not_live_in_the_title():
+    from scrapers.parsers import _show_kind
+    assert _show_kind("25 Years Of The Raghu Dixit Project - Pune", "The music. Iconic songs and melodies.", loose=True) == "music"
+    assert _show_kind("Timezone – Dhillon Plaza", "Level up your game, claw machines, in it for the laughs!", loose=True) is None
+    assert _show_kind("Divine Banaras", "A Dev Diwali boat ride on the Ganga with fireworks.", loose=True) is None

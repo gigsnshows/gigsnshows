@@ -165,20 +165,21 @@ def _description_category(text):
     return None
 
 
-_COMEDIANS = ("samay", "vir-das", "anubhav", "biswa", "kenny", "zakir-khan", "bassi", "rahul-dua", "kanan", "tanmay", "abhishek-upmanyu")
-
-
-def _show_kind(title, description):
+def _show_kind(title, description, loose=False):
     """The kind of show from its title, else its description. A title that says "... Live" ("Satinder Sartaaj Live in Delhi",
     "Vivek Samtani Live") is a show: the description then only has to say which kind (laughter, or music). Titles with no
     "live" need the narrower rule above, since water parks and classes describe themselves as fun too."""
     kind = guess_category(title) or _description_category(description)
-    if kind or not re.search(r"\blive\b", title or "", re.I):
+    live = re.search(r"\blive\b", title or "", re.I)
+    if kind or not (loose or live):
         return kind
     t = (description or "")[:600].lower()
-    if re.search(r"\b(laugh|laughs|laughter|comic|comedians?|humou?r|stand-?up|roast)\b", t):
+    if live and re.search(r"\b(laugh|laughs|laughter|comic|comedians?|humou?r|stand-?up|roast)\b", t):
         return "comedy"
-    if re.search(r"\b(music|musical|singing|singer|songs?|concert|band|dj|sufi|bhangra|ghazal|qawwali|melod\w+)\b", t):
+    if not live and re.search(r"\b(comedians?|comic|stand-?up|comedy)\b", t):  # a well-known act's page: no "laughter" (an arcade has that too)
+        return "comedy"
+    words = r"music|musical|singing|singer|songs?|concert|band|dj|sufi|bhangra|ghazal|qawwali|melod\w+" if live else r"singer|singing|songs?|melod\w+|band|dj|sufi|bhangra|ghazal|qawwali|concert|tour"
+    if re.search(r"\b(" + words + r")\b", t):
         return "music"
     return None
 
@@ -226,11 +227,8 @@ def parse_district_sitemap(html, page_url, src, entry):
         # almost anything, and this source also lists water parks and classes. A title that says nothing is left out; the
         # listing pages cover ordinary shows. No city is passed in: each show is filed under the city its own venue and
         # address name, and one that names none is left out.
-        def kind(n):
-            k = _show_kind(n["name"], n.get("description"))
-            if k or not any(w in url for w in watch):
-                return k
-            return "comedy" if any(c in url for c in _COMEDIANS) else "music"  # a well-known act's page is a show whatever the title says
+        # a well-known act's page (its name is in the address) needs only the description to say music or laughter, not "Live" in the title
+        kind = lambda n: _show_kind(n["name"], n.get("description"), loose=any(w in url for w in watch))  # noqa: E731
         near = lambda n: nearest_city(*(((n.get("location") or {}).get("geo") or {}).get(k) for k in ("latitude", "longitude"))) if isinstance(n.get("location"), dict) else None  # noqa: E731
         shows = [e for e in (jsonld_to_event(n, src["name"], near(n), kind(n), url) if kind(n) else None
                              for n in nodes) if e and e["city"] != "Unknown"]
