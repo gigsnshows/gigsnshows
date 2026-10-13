@@ -210,6 +210,16 @@ def summary(text, limit=420):
     return text[:limit].rsplit(" ", 1)[0].rstrip(".,;:!-– ") + "…"
 
 
+def tidy_title(title, city=None):
+    """"A R Rahman | Wonderment Tour Live in Concert | Mumbai" -> "A R Rahman – Wonderment Tour Live in Concert": pipes read as dashes,
+    a closing city name (the site's own, it's the page's city already) and stray asterisks go."""
+    parts = [p.strip(" *_") for p in re.split(r"\s+\|\s+", title) if p.strip(" *_")]
+    if len(parts) > 1 and city and parts[-1].lower() == city.lower():
+        parts = parts[:-1]
+    out = " – ".join(parts) if parts else title
+    return re.sub(r"\s*[–-]\s*$", "", out).strip() or title
+
+
 def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place="", about=None, lang=None):
     """
     Build a normalised event dict; returns None if it lacks a title or date.
@@ -221,7 +231,9 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
     title = re.sub(r"\s+", " ", title or "").strip()
     if not title or not day or NOT_SHOWS.search(title):
         return None
+    raw_title = title  # ids are made from the title as the site wrote it, so a show's id (and anyone's saved copy) never changes
     city = detect_city(place or venue) or detect_city(title) or city
+    title = tidy_title(title, city)
     cat = category or guess_category(f"{title} {hint}", default)
     if cat not in CATEGORIES:
         return None
@@ -230,7 +242,7 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
         price = int(m.group(0).replace(",", "")) if m else None
     langs = language(cat, title, hint, place or venue) if lang is None else lang
     return {
-        "id": make_id(title, day, venue),
+        "id": make_id(raw_title, day, venue),
         "title": title,
         "category": cat,
         "genres": tag_genres(cat, title, f"{hint} {venue}", langs),

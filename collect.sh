@@ -30,9 +30,14 @@ main() {
     git "${BOT[@]}" commit --quiet -m "Refresh listings $(date +%F) ($COLLECTOR)"
     git push --quiet "$REPO" HEAD:main && { echo "uploaded"; return 0; }
     echo "another collector uploaded first; merging into its listings"
+    # What this machine's sitemap reader has already read (data/district_pages.json on the server, data/bms_pages.json
+    # on the Mac) would be lost by the reset below, and the reader would start again from nothing next time.
+    local MEMORY=data/district_pages.json; [ "$COLLECTOR" = mac ] && MEMORY=data/bms_pages.json
+    local KEEP; KEEP="$(mktemp)"; cp "$MEMORY" "$KEEP" 2>/dev/null || : > "$KEEP"
     git fetch --quiet "$REPO" main
     git reset --quiet --hard FETCH_HEAD
     git clean -fdq
+    [ -s "$KEEP" ] && cp "$KEEP" "$MEMORY"; rm -f "$KEEP"
     "$PYTHON" run.py --remerge
   done
   return 1

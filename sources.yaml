@@ -140,7 +140,7 @@
   render_details: true
   wait_ms: 3000
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
-  max_pages: 40            # pages read per run, well-known acts first; remembered in data/bms_pages.json
+  max_pages: 100           # pages read per run (about 15 s each), well-known acts first; remembered in data/bms_pages.json
   watch: *watch
   urls:
     - {url: https://in.bookmyshow.com/sitemap/events-synopsis.xml, city: Mumbai}

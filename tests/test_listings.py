@@ -6,7 +6,7 @@ import pytest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from run import dedupe  # noqa: E402
-from scrapers.base import NOT_SHOWS  # noqa: E402
+from scrapers.base import NOT_SHOWS, event, tidy_title  # noqa: E402
 
 
 @pytest.mark.parametrize("title", [
@@ -43,3 +43,23 @@ def test_different_nights_or_cities_stay_apart():
     out = dedupe([show("a", "Comedy Night", "A", "District"), show("b", "Comedy Night", "B", "Skillbox", date="2026-10-17"),
                   show("c", "Comedy Night", "C", "thumpN", city="Pune")])
     assert len(out) == 3
+
+
+@pytest.mark.parametrize("raw, city, tidy", [
+    ("A R Rahman | Wonderment Tour Live in Concert | Mumbai", "Mumbai", "A R Rahman \u2013 Wonderment Tour Live in Concert"),
+    ("Mere Krishn | A Live Theatrical Experience | Delhi", "Delhi", "Mere Krishn \u2013 A Live Theatrical Experience"),
+    ("*AN EVENING WITH POETRY*", "Mumbai", "AN EVENING WITH POETRY"),
+    ("DJ Ganesh Live at UNVRS Vagator \u2013 ", "Goa", "DJ Ganesh Live at UNVRS Vagator"),
+    ("Hamilton", "Mumbai", "Hamilton"),
+    ("Arijit Singh India Tour - Pune", "Pune", "Arijit Singh India Tour - Pune"),
+])
+def test_titles_are_tidied(raw, city, tidy):
+    assert tidy_title(raw, city) == tidy
+
+
+def test_tidying_a_title_never_changes_the_id():
+    """A show's id (and so anyone's saved copy of it) comes from the title as the site wrote it."""
+    a = event("A R Rahman | Wonderment Tour Live in Concert | Mumbai", "2026-11-01", "District", "Mumbai", "music", "Jio World Garden")
+    assert a["title"] == "A R Rahman \u2013 Wonderment Tour Live in Concert"
+    from scrapers.base import make_id
+    assert a["id"] == make_id("A R Rahman | Wonderment Tour Live in Concert | Mumbai", "2026-11-01", "Jio World Garden")
