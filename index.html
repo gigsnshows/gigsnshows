@@ -1779,12 +1779,47 @@
     return searchIndex.get(e.id);
   }
 
+  // Spellings people use for the same name, and a word nobody typed correctly ("arjit" finds "arijit").
+  const SAME_NAME = [["rahman", "rehman", "rahmaan", "rehmaan"], ["diljit", "diljeet"], ["arijit", "arijeet"], ["shreya", "shriya"], ["kapoor", "kapur"]];
+  const variants = w => (SAME_NAME.find(g => g.includes(w)) || [w]);
+  function editDistance(a, b) {  // letters added, dropped, changed, or two swapped
+    const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+    for (let j = 1; j <= b.length; j++) d[0][j] = j;
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) {
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+    }
+    return d[a.length][b.length];
+  }
+  let vocab = null;
+  function closeWord(w) {
+    if (w.length < 4) return null;
+    if (!vocab) { vocab = new Set(); data.events.forEach(e => norm(`${e.title} ${e.venue}`).split(" ").forEach(t => { if (t.length >= 4) vocab.add(t); })); }
+    const limit = w.length >= 8 ? 2 : 1;
+    let best = null, bestD = limit + 1;
+    for (const t of vocab) {
+      if (Math.abs(t.length - w.length) > limit) continue;
+      const dist = editDistance(w, t);
+      if (dist < bestD) { best = t; bestD = dist; }
+    }
+    return best;
+  }
+
   function renderSearch() {
     const q = state.q.trim();
-    const words = norm(q).split(" ").filter(Boolean);
-    const pool = (state.qScope === "all" ? data.events : data.events.filter(e => e.city === state.city)).filter(inWhen);
-    const inTitle = e => words.every(w => norm(e.title).includes(w));
-    const matches = pool.filter(e => words.every(w => searchable(e).includes(w))).sort(byDateTime);
+    let words = norm(q).split(" ").filter(Boolean);
+    const everything = data.events.filter(inWhen);
+    const find = ws => everything.filter(e => ws.every(w => variants(w).some(v => searchable(e).includes(v))));
+    let all = find(words), corrected = "";
+    if (!all.length) {  // nothing: try again with the words nobody has, swapped for the nearest word that is in a title
+      const fixed = words.map(w => everything.some(e => variants(w).some(v => searchable(e).includes(v))) ? w : (closeWord(w) || w));
+      if (fixed.join(" ") !== words.join(" ")) { const again = find(fixed); if (again.length) { all = again; words = fixed; corrected = fixed.join(" "); } }
+    }
+    const here = all.filter(e => e.city === state.city);
+    const widened = state.qScope === "city" && !here.length && all.length > 0;  // nothing in this city, plenty elsewhere: show it
+    const scope = widened ? "all" : state.qScope;
+    const inTitle = e => words.every(w => variants(w).some(v => norm(e.title).includes(v)));
+    const matches = (scope === "all" ? all : here).slice().sort(byDateTime);
     countGroups(matches);
     const found = groupShows(matches).sort((a, b) => (inTitle(b) - inTitle(a)) || byDateTime(a, b));
 
@@ -1800,7 +1835,7 @@
     const chip = (attr, val, on, label, n) =>
       `<button class="chip" ${attr}="${esc(val)}" aria-pressed="${on}">${esc(label)}${n != null ? `<small>${n}</small>` : ""}</button>`;
     const scopeRow = `<div class="genre-bar tight" role="toolbar" aria-label="Where to search">
-      ${chip("data-scope", "city", state.qScope === "city", `In ${state.city}`)}${chip("data-scope", "all", state.qScope === "all", "All cities")}</div>`;
+      ${chip("data-scope", "city", scope === "city", `In ${state.city}`, groupShows(here).length)}${chip("data-scope", "all", scope === "all", "All cities", groupShows(all).length)}</div>`;
     const cats = TABS.filter(t => catCounts[t.key]);
     const catRow = cats.length > 1 ? `<div class="genre-bar tight" role="toolbar" aria-label="Category">
       ${chip("data-qcat", "", !state.qCat, "All", found.length)}${cats.map(t => chip("data-qcat", t.key, state.qCat === t.key, t.label, catCounts[t.key])).join("")}</div>` : "";
@@ -1808,15 +1843,16 @@
     const genreRow = genres.length ? `<div class="genre-bar tight" role="toolbar" aria-label="Genre">
       ${chip("data-qgenre", "", !state.qGenre, "Any genre")}${genres.map(g => chip("data-qgenre", g, state.qGenre === g, genreName(g), genreCounts[g])).join("")}</div>` : "";
 
-    const where = (state.qScope === "all" ? "across all cities" : `in ${state.city}`) + (state.when ? ` ${whenText()}` : "");
+    const where = (scope === "all" ? "across all cities" : `in ${state.city}`) + (state.when ? ` ${whenText()}` : "");
+    const note = [corrected ? `Showing results for <b>${esc(corrected)}</b>.` : "", widened ? `Nothing in ${esc(state.city)} yet, so here they are across all cities.` : ""].filter(Boolean).join(" ");
     const LIMIT = 60;
     const body = shown.length
       ? `<section data-tray="search"><div class="results">${shown.slice(0, LIMIT).map(e => renderTile(e)).join("")}</div>
          ${shown.length > LIMIT ? `<p class="results-more">Showing the first ${LIMIT} of ${shown.length}. Add a word or pick a filter to narrow it down.</p>` : ""}</section>`
       : `<div class="empty"><b>No shows match “${esc(q)}” ${esc(where)} right now.</b><br>
-         Try fewer or different words${state.qScope === "city" ? `, or <button class="see-all" data-scope="all">search all cities</button>` : ""}.</div>`;
+         Try fewer or different words${scope === "city" ? `, or <button class="see-all" data-scope="all">search all cities</button>` : ""}.</div>`;
     document.getElementById("main").innerHTML = `<div class="results-head"><h2>“${esc(q)}”</h2>
-      <p>${shown.length} ${shown.length === 1 ? "show" : "shows"} ${esc(where)}</p></div>${scopeRow}${whenBar(true)}${catRow}${genreRow}${body}`;
+      <p>${shown.length} ${shown.length === 1 ? "show" : "shows"} ${esc(where)}${note ? ` · ${note}` : ""}</p></div>${scopeRow}${whenBar(true)}${catRow}${genreRow}${body}`;
   }
 
   // Hide an arrow once its tray can't scroll any further that way (or at all).
