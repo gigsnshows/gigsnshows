@@ -196,6 +196,10 @@ def parse_district_sitemap(html, page_url, src, entry):
         # address name, and one that names none is left out.
         shows = [e for e in (jsonld_to_event(n, src["name"], None, guess_category(n["name"]), url) if guess_category(n["name"]) else None
                              for n in nodes) if e and e["city"] != "Unknown"]
+        if not nodes:  # some pages carry no structured data: fall back to the page's own title and date
+            fallback = meta_event(page, src["name"], None, None, url)
+            if fallback and guess_category(fallback["title"]) and fallback["city"] != "Unknown":
+                shows = [{**fallback, "category": guess_category(fallback["title"])}]
         memory[url] = {"m": changed, "e": shows}
     listed = {u for u, _ in pages}
     memory = {u: v for u, v in memory.items() if u in listed}  # pages District has dropped are forgotten

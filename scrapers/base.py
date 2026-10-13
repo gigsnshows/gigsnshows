@@ -52,12 +52,12 @@ NOT_SHOWS = re.compile(
 
 CATEGORY_KEYWORDS = {
     "comedy": ["comedy", "comic", "stand-up", "standup", "stand up", "improv", "open mic", "roast", "crowd work"],
-    "theatre": ["theatre", "theater", "play", "drama", "musical", "natak", "monologue",
+    "theatre": ["theatre", "theater", "theatrical", "play", "drama", "musical", "natak", "monologue",
                 "dastangoi", "storytelling"],
     "sports": ["cricket", "football", "ipl", "isl", "kabaddi", "match", "marathon",
                "tennis", "badminton", "hockey", "10k", "5k", "run", "race", "championship",
                "t20i", "t20", "odi", "test cricket", "world cup"],
-    "music": ["concert", "live music", "gig", "band", "tour", "dj", "festival",
+    "music": ["concert", "live music", "gig", "band", "tour", "dj", "festival", "garba", "dandiya", "dandia", "raas", "navratri",
               "classical", "jazz", "indie", "rock", "hip hop", "sufi", "ghazal",
               "orchestra", "recital", "philharmonic", "qawwali", "unplugged", "jam"],
 }
