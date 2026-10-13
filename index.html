@@ -2154,7 +2154,18 @@
 
   onboard.addEventListener("click", e => {
     const act = e.target.closest("[data-ob]")?.dataset.ob;
-    if (act === "skip") { track("onboarding", { result: "skip" }); closeOnboarding(); return; }
+    if (act === "skip") {
+      track("onboarding", { result: "skip" });
+      const city = ob && ob.city;  // skipping the taste question still keeps the city they picked
+      closeOnboarding();
+      if (city && city !== state.city) {
+        try { localStorage.setItem(LS_CITY, city); } catch {}
+        Object.assign(state, { city, tab: "all", genre: "", favVenue: "all" });
+        render();
+        window.scrollTo({ top: 0 });
+      }
+      return;
+    }
     if (act === "next") { ob.step = 2; renderOnboarding(); return; }
     if (act === "back") { ob.step = 1; renderOnboarding(); return; }
     if (act === "done") { finishOnboarding(); return; }
