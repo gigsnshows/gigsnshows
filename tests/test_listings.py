@@ -173,3 +173,14 @@ def test_a_well_known_acts_page_needs_music_in_its_description_but_not_live_in_t
 def test_a_concert_filed_under_theatre_is_music(title, before, after):
     from scrapers.base import fix_category
     assert fix_category({"title": title, "category": before})["category"] == after
+
+
+@pytest.mark.parametrize("title", ["Resin Trinket Tray Date", "Tie Dye Art", "Japanese Bowl Kintsugi", "Candle Wax Flower Tree", "Bad Drawing Party", "Playdate with Parents",
+                                   "Play Date With Parents", "Rage Room Mumbai", "Rage Therapy", "Talking to the Moon", "Japanese Sumi e Art", "DIY Shell Mirror"])
+def test_art_workshops_and_rage_rooms_are_not_shows(title):
+    assert NOT_SHOWS.search(title)
+
+
+@pytest.mark.parametrize("title", ["Resident Evil Live Orchestra", "Tie Me Up: a play", "The Moon and Sixpence", "Date Night Comedy"])
+def test_lookalike_titles_stay(title):
+    assert not NOT_SHOWS.search(title)

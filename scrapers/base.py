@@ -50,7 +50,9 @@ NOT_SHOWS = re.compile(
     r"\blaser tag\b|\bcycling\b|\bcycle ride\b|\be-cycling\b|\bshort films?\b|\bfilm screening\b|\bmovie night\b|\bflea market\b|\bbrand expo\b|\bchristmas market\b"
     # Trade events, schools' own events, virtual challenges, clubs and accommodation packages.
     r"|\b(?:conference|expo|summit|montessori|inter-?school|business school)\b|\bschool (?:athletics|chess|sports|annual)\b|\bslide school\b|"
-    r"\bvirtual (?:run|ride|marathon)\b|\brun clubs?\b|\bmeet-?ups?\b|\bboard ?games?\b|\bstay \+",
+    r"\bvirtual (?:run|ride|marathon)\b|\brun clubs?\b|\bmeet-?ups?\b|\bboard ?games?\b|\bstay \+"
+    # Art workshops, play dates and rage rooms that thumpN lists beside gigs.
+    r"|\b(?:resin|tie dye|kintsugi|hirameki|sumi e|shell mirror|wax flower|cheriyal mask|drawing party|play ?date|rage (?:room|therapy)|talking to the moon)\b",
     re.I)
 
 CATEGORY_KEYWORDS = {
