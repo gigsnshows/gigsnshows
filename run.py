@@ -68,12 +68,14 @@ def drop_tour_hubs(events):
     norm = lambda s: re.sub(r"[^a-z0-9]", "", (s or "").lower())  # noqa: E731
     cities = defaultdict(set)
     titles = defaultdict(set)
+    dates = defaultdict(set)
     for e in events:
         cities[(e["source"], e["url"])].add(e["city"])
         titles[(e["source"], e["url"])].add(norm(e["title"]))
+        dates[(e["source"], e["url"])].add(e["date"])
     hubs = set()
     for key, cs in cities.items():
-        if len(cs) < 2:
+        if len(cs) < 2 or len(dates[key]) > 1:  # copies of a general page all carry the tour's first date; a page with different dates per city is real
             continue
         src, url = key
         if any(e["source"] == src and e["url"] != url and any(t and norm(e["title"]).startswith(t) for t in titles[key]) for e in events):

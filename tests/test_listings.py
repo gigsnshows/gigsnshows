@@ -206,3 +206,18 @@ def test_a_city_page_of_a_multi_city_tour_is_kept_even_though_it_names_the_tour_
     assert [e["city"] for e in out] == ["Mumbai"] and out[0]["url"] == page   # kept, and the Book button goes to the Mumbai page
     monkeypatch.setattr(P, "_returned", {"et00111111"})   # but a page that itself came up in a list is skipped
     assert P.parse_bms_sitemap(html, "x", {"name": "BookMyShow", "watch": []}, {}) == []
+
+
+def test_one_page_with_a_different_date_in_each_city_is_not_a_tour_hub_copy():
+    from run import drop_tour_hubs
+    mk = lambda city, day, url, title: {"title": title, "city": city, "date": day, "url": url, "source": "BookMyShow"}
+    page = "https://in.bookmyshow.com/events/baithak-live-by-akanksha-grover/ET001"
+    other = "https://in.bookmyshow.com/events/baithak-live-by-akanksha-grover-talk/ET002"
+    kept = drop_tour_hubs([mk("Mumbai", "2027-02-27", page, "Baithak live by Akanksha Grover"), mk("Kolkata", "2026-11-20", page, "Baithak live by Akanksha Grover"),
+                           mk("Delhi", "2027-01-30", other, "Baithak live by Akanksha Grover - Talk")])
+    assert len(kept) == 3
+    # a real general page: the same first date copied under every city, with per-city pages of its own
+    hub = "https://in.bookmyshow.com/events/aura-india-tour/ET010"
+    evs = [mk("Mumbai", "2026-11-21", hub, "Aura India Tour"), mk("Delhi", "2026-11-21", hub, "Aura India Tour"),
+           mk("Mumbai", "2026-11-27", "https://in.bookmyshow.com/events/aura-india-tour-mumbai/ET011", "Aura India Tour, Mumbai")]
+    assert [e["url"] for e in drop_tour_hubs(evs)] == ["https://in.bookmyshow.com/events/aura-india-tour-mumbai/ET011"]

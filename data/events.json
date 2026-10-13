@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T13:31:57Z",
+  "updated_at": "2026-10-13T13:34:27Z",
   "cities": [
     "Agra",
     "Ahmedabad",
@@ -271,7 +271,7 @@
       "Other Indian languages"
     ]
   ],
-  "count": 2374,
+  "count": 2391,
   "events": [
     {
       "id": "1729f7f9f1ce",
@@ -4664,12 +4664,10 @@
       "source": "BookMyShow",
       "about": "Book online tickets for Two of a Kind: Comedy Show FT. Anshu & Angad in Delhi-NCR on BookMyShow which is a comedy-shows event",
       "sources": [
-        "BookMyShow",
-        "thumpN"
+        "BookMyShow"
       ],
       "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/bogo-a-standup-comedy-show-ft-aashna-vivek/ET00516538",
-        "thumpN": "https://thumpn.com/event/GDF538/two-of-a-kind-comedy-show-anshu-angad-gurugram-oct-14-2026"
+        "BookMyShow": "https://in.bookmyshow.com/events/bogo-a-standup-comedy-show-ft-aashna-vivek/ET00516538"
       },
       "first_seen": "2026-10-13"
     },
@@ -10191,12 +10189,10 @@
       "source": "BookMyShow",
       "about": "This isn’t a show. It’s a jam session for comics who want to sharpen their craft. They perform for each other, break down what worked, discuss what didn’t, and share feedback in real time. If you’re curious about stand-up or planning to start, sitting in on a jam gives you a realistic sense of how comedians practice and grow. It’s relaxed, supportive, and meant for anyone who wants to learn by observing the…",
       "sources": [
-        "BookMyShow",
-        "District"
+        "BookMyShow"
       ],
       "links": {
-        "BookMyShow": "https://in.bookmyshow.com/events/comedy-jam-learn-stand-up-from-the-inside/ET00471872",
-        "District": "https://www.district.in/events/comedy-jam-learn-standup-from-the-inside-nov21-2025-buy-tickets"
+        "BookMyShow": "https://in.bookmyshow.com/events/comedy-jam-learn-stand-up-from-the-inside/ET00471872"
       },
       "first_seen": "2026-10-13"
     },
@@ -11682,6 +11678,33 @@
       }
     },
     {
+      "id": "4ff7cbecdd80",
+      "title": "Aamchya Pidhichi Goshtach Vegali",
+      "category": "comedy",
+      "genres": [
+        "comedy-regional"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Mumbai",
+      "venue": "Prabodhankar Thackeray Audi: Borivali(W)",
+      "date": "2026-10-16",
+      "time": "20:30",
+      "price_from": 300,
+      "url": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-aamchya-pidhichi-goshtach-vegali-1-2026-10-9-t-20-37-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Aamchya Pidhichi Goshtach Vegali in Mumbai on BookMyShow which is a Marathi comedy play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "953a5d6580c6",
       "title": "Classic Rock ft. Medium rare",
       "category": "music",
@@ -13139,6 +13162,33 @@
       ],
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/mookajjiya-kanasugalu/ET00319661"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "07a3c4c0d7ce",
+      "title": "Farewell : An Entropy of Separation",
+      "category": "theatre",
+      "genres": [
+        "theatre-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Hyderabad",
+      "venue": "Rangbhoomi Spaces & Events:Hyderabad",
+      "date": "2026-10-17",
+      "time": "15:30",
+      "price_from": 700,
+      "url": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-farewell-an-entropy-of-separation-0-2026-8-1-t-8-32-41.jpg",
+      "source": "BookMyShow Plays",
+      "about": "The mind seeks familiarity over newness, and family becomes our first place of comfort and safety. But what if this familiarity is shaped by pain? What if the same patterns repeat in every relationship, mistaken for security? Science says genes and cells never truly die, they live on through generations. But what if, beyond biology, it is the social structure that shapes us? What if not real blood, but ‘believed…",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604"
       },
       "first_seen": "2026-10-13"
     },
@@ -21014,6 +21064,33 @@
       "first_seen": "2026-10-07"
     },
     {
+      "id": "7a7736aa15f3",
+      "title": "Aamchya Pidhichi Goshtach Vegali",
+      "category": "comedy",
+      "genres": [
+        "comedy-regional"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Mumbai",
+      "venue": "Dinanath Mangeshkar Natyagruha: Vile Parle",
+      "date": "2026-10-17",
+      "time": "20:30",
+      "price_from": 300,
+      "url": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-aamchya-pidhichi-goshtach-vegali-1-2026-10-9-t-20-37-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Aamchya Pidhichi Goshtach Vegali in Mumbai on BookMyShow which is a Marathi comedy play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "7344d140c264",
       "title": "ANIRUDH DJ NIGHT Tribute night",
       "category": "music",
@@ -23926,6 +24003,33 @@
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/all-the-best/ET00384424"
       },
       "first_seen": "2026-10-07"
+    },
+    {
+      "id": "2b409686146f",
+      "title": "Aamchya Pidhichi Goshtach Vegali",
+      "category": "comedy",
+      "genres": [
+        "comedy-regional"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Pune",
+      "venue": "Bal Gandharva Rang Mandir: Pune",
+      "date": "2026-10-18",
+      "time": "17:00",
+      "price_from": 400,
+      "url": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-aamchya-pidhichi-goshtach-vegali-1-2026-10-9-t-20-37-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Aamchya Pidhichi Goshtach Vegali in Mumbai on BookMyShow which is a Marathi comedy play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "3617b8129a3e",
@@ -31013,6 +31117,33 @@
       "first_seen": "2026-10-02"
     },
     {
+      "id": "11eb1a218b8e",
+      "title": "Aamchya Pidhichi Goshtach Vegali",
+      "category": "comedy",
+      "genres": [
+        "comedy-regional"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Mumbai",
+      "venue": "Yashwant Natya Mandir: Matunga",
+      "date": "2026-10-20",
+      "time": "16:00",
+      "price_from": 300,
+      "url": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-aamchya-pidhichi-goshtach-vegali-1-2026-10-9-t-20-37-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Aamchya Pidhichi Goshtach Vegali in Mumbai on BookMyShow which is a Marathi comedy play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "9c5ac56a9dc2",
       "title": "BHRAMACHA BHOPLA",
       "category": "comedy",
@@ -33922,6 +34053,33 @@
       }
     },
     {
+      "id": "0017b1c33707",
+      "title": "Farewell : An Entropy of Separation",
+      "category": "theatre",
+      "genres": [
+        "theatre-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Nagpur",
+      "venue": "Rangmandap: Nagpur",
+      "date": "2026-10-24",
+      "time": "15:00",
+      "price_from": 900,
+      "url": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-farewell-an-entropy-of-separation-0-2026-8-1-t-8-32-41.jpg",
+      "source": "BookMyShow Plays",
+      "about": "The mind seeks familiarity over newness, and family becomes our first place of comfort and safety. But what if this familiarity is shaped by pain? What if the same patterns repeat in every relationship, mistaken for security? Science says genes and cells never truly die, they live on through generations. But what if, beyond biology, it is the social structure that shapes us? What if not real blood, but ‘believed…",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "a494b838089a",
       "title": "THE CHESS NEXUS",
       "category": "sports",
@@ -35022,6 +35180,34 @@
       }
     },
     {
+      "id": "865937fb1de2",
+      "title": "Animal - Marathi Play",
+      "category": "theatre",
+      "genres": [
+        "drama",
+        "theatre-marathi"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Vadodara",
+      "venue": "Medical College Auditorium: Vadodara",
+      "date": "2026-10-24",
+      "time": "19:00",
+      "price_from": 500,
+      "url": "https://in.bookmyshow.com/plays/animal-marathi-play/ET00506007",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-animal-marathi-play-0-2026-7-8-t-11-39-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Animal - Marathi Play in Vadodara on BookMyShow which is a Marathi drama play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/animal-marathi-play/ET00506007"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "5c6f2a397be3",
       "title": "SAJANKA LIVE AT SUNBURN UNION",
       "category": "music",
@@ -35921,6 +36107,33 @@
       "links": {
         "District": "https://www.district.in/events/latent-under-rated-by-shrikant-rahul-oct24-2026-buy-tickets"
       }
+    },
+    {
+      "id": "e3e78d1f7295",
+      "title": "Aamchya Pidhichi Goshtach Vegali",
+      "category": "comedy",
+      "genres": [
+        "comedy-regional"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Mumbai",
+      "venue": "Vishnudas Bhave Natyagruha: Navi Mumbai",
+      "date": "2026-10-24",
+      "time": "20:30",
+      "price_from": 300,
+      "url": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-aamchya-pidhichi-goshtach-vegali-1-2026-10-9-t-20-37-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Aamchya Pidhichi Goshtach Vegali in Mumbai on BookMyShow which is a Marathi comedy play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "a193babf5201",
@@ -37179,6 +37392,34 @@
       ],
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/systuum-fark-ya-faayda/ET00515697"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "37f897ba5d9c",
+      "title": "Animal - Marathi Play",
+      "category": "theatre",
+      "genres": [
+        "drama",
+        "theatre-marathi"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Ahmedabad",
+      "venue": "Thakorbhai Desai Hall: Ahmedabad",
+      "date": "2026-10-25",
+      "time": "15:00",
+      "price_from": 400,
+      "url": "https://in.bookmyshow.com/plays/animal-marathi-play/ET00506007",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-animal-marathi-play-0-2026-7-8-t-11-39-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Animal - Marathi Play in Vadodara on BookMyShow which is a Marathi drama play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/animal-marathi-play/ET00506007"
       },
       "first_seen": "2026-10-13"
     },
@@ -39316,6 +39557,33 @@
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/sanga-kasa-jagaycha/ET00494978"
       },
       "first_seen": "2026-10-07"
+    },
+    {
+      "id": "181b8b1653b6",
+      "title": "Aamchya Pidhichi Goshtach Vegali",
+      "category": "comedy",
+      "genres": [
+        "comedy-regional"
+      ],
+      "lang": [
+        "marathi"
+      ],
+      "city": "Mumbai",
+      "venue": "Mahakavi Kalidas Natyamandir: Mulund",
+      "date": "2026-10-25",
+      "time": "20:30",
+      "price_from": 300,
+      "url": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-aamchya-pidhichi-goshtach-vegali-1-2026-10-9-t-20-37-43.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Aamchya Pidhichi Goshtach Vegali in Mumbai on BookMyShow which is a Marathi comedy play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/aamchya-pidhichi-goshtach-vegali/ET00496230"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "a9fa51a72d3e",
@@ -49785,6 +50053,29 @@
       "first_seen": "2026-10-08"
     },
     {
+      "id": "caf8998caa08",
+      "title": "Baithak live by Akanksha Grover",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Kala Mandir Auditorium: Kolkata",
+      "date": "2026-11-20",
+      "time": "19:00",
+      "price_from": 999,
+      "url": "https://in.bookmyshow.com/events/baithak-live-by-akanksha-grover/ET00492266",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-baithak-live-by-akanksha-grover-0-2026-3-20-t-11-47-45.jpg",
+      "source": "BookMyShow",
+      "about": "Book online tickets for Baithak live by Akanksha Grover in Mumbai on BookMyShow which is a music-shows event",
+      "sources": [
+        "BookMyShow"
+      ],
+      "links": {
+        "BookMyShow": "https://in.bookmyshow.com/events/baithak-live-by-akanksha-grover/ET00492266"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "34c6ced8058f",
       "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Bengaluru",
       "category": "music",
@@ -51488,6 +51779,34 @@
       ],
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/narayani/ET00521194"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "2fca1f7e1983",
+      "title": "Farewell: An Entropy of Separation",
+      "category": "theatre",
+      "genres": [
+        "drama",
+        "theatre-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Mumbai",
+      "venue": "Sophia Bhabha Auditorium: Mumbai",
+      "date": "2026-11-27",
+      "time": "19:30",
+      "price_from": 500,
+      "url": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ethdbtp689",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-farewell-an-entropy-of-separation-0-2026-10-3-t-17-46-34.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Farewell: An Entropy of Separation in Delhi-NCR on BookMyShow which is a Hindi drama play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ethdbtp689"
       },
       "first_seen": "2026-10-13"
     },
@@ -53544,12 +53863,10 @@
       "source": "BookMyShow Plays",
       "about": "Book tickets online for Raghunath in Kolkata on BookMyShow which is a drama play",
       "sources": [
-        "BookMyShow Plays",
-        "District"
+        "BookMyShow Plays"
       ],
       "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/raghunath/ET00519212",
-        "District": "https://www.district.in/events/raghunath-dec5-2026-buy-tickets"
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/raghunath/ET00519212"
       },
       "first_seen": "2026-10-13"
     },
@@ -54074,6 +54391,33 @@
       ],
       "links": {
         "BookMyShow Sports": "https://in.bookmyshow.com/sports/dhash-bengaluru-half-marathon-2026/ET00520743"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "a6c1a2eeff5a",
+      "title": "Farewell : An Entropy of Separation",
+      "category": "theatre",
+      "genres": [
+        "theatre-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Lucknow",
+      "venue": "Kaifi Azmi Auditorium: Lucknow",
+      "date": "2026-12-06",
+      "time": "18:00",
+      "price_from": 1000,
+      "url": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-farewell-an-entropy-of-separation-0-2026-8-1-t-8-32-41.jpg",
+      "source": "BookMyShow Plays",
+      "about": "The mind seeks familiarity over newness, and family becomes our first place of comfort and safety. But what if this familiarity is shaped by pain? What if the same patterns repeat in every relationship, mistaken for security? Science says genes and cells never truly die, they live on through generations. But what if, beyond biology, it is the social structure that shapes us? What if not real blood, but ‘believed…",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604"
       },
       "first_seen": "2026-10-13"
     },
@@ -54789,6 +55133,34 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "27b5202c1ac3",
+      "title": "Farewell: An Entropy of Separation",
+      "category": "theatre",
+      "genres": [
+        "drama",
+        "theatre-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Kolkata",
+      "venue": "Science City Mini Auditorium: Kolkata",
+      "date": "2026-12-12",
+      "time": "16:00",
+      "price_from": 499,
+      "url": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ethdbtp689",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-farewell-an-entropy-of-separation-0-2026-10-3-t-17-46-34.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Farewell: An Entropy of Separation in Delhi-NCR on BookMyShow which is a Hindi drama play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ethdbtp689"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "4ed232260330",
       "title": "Unity Concert 2026 – Season 2 ft. Jasmine Sandlas",
       "category": "music",
@@ -54877,12 +55249,10 @@
       "source": "BookMyShow Plays",
       "about": "Book tickets online for Papa Painter in Kolkata on BookMyShow which is a comedy play",
       "sources": [
-        "BookMyShow Plays",
-        "District"
+        "BookMyShow Plays"
       ],
       "links": {
-        "BookMyShow Plays": "https://in.bookmyshow.com/plays/papa-painter/ET00519309",
-        "District": "https://www.district.in/events/papa-painter-dec12-2026-buy-tickets"
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/papa-painter/ET00519309"
       },
       "first_seen": "2026-10-13"
     },
@@ -55565,6 +55935,34 @@
       "links": {
         "NCPA": "https://www.ncpamumbai.com/event/jeff-tain-watts-quartet-live-at-the-ncpa/"
       }
+    },
+    {
+      "id": "cbdf31ab7abb",
+      "title": "Farewell: An Entropy of Separation",
+      "category": "theatre",
+      "genres": [
+        "drama",
+        "theatre-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Delhi",
+      "venue": "Little Theatre Group (LTG) Auditorium: Delhi",
+      "date": "2026-12-16",
+      "time": "15:00",
+      "price_from": 299,
+      "url": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ethdbtp689",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-farewell-an-entropy-of-separation-0-2026-10-3-t-17-46-34.jpg",
+      "source": "BookMyShow Plays",
+      "about": "Book tickets online for Farewell: An Entropy of Separation in Delhi-NCR on BookMyShow which is a Hindi drama play",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ethdbtp689"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "44dcc0994818",
@@ -58189,6 +58587,33 @@
       }
     },
     {
+      "id": "3d69e551e095",
+      "title": "Farewell : An Entropy of Separation",
+      "category": "theatre",
+      "genres": [
+        "theatre-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Pune",
+      "venue": "The Box: Pune",
+      "date": "2027-01-31",
+      "time": "11:00",
+      "price_from": 1000,
+      "url": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-farewell-an-entropy-of-separation-0-2026-8-1-t-8-32-41.jpg",
+      "source": "BookMyShow Plays",
+      "about": "The mind seeks familiarity over newness, and family becomes our first place of comfort and safety. But what if this familiarity is shaped by pain? What if the same patterns repeat in every relationship, mistaken for security? Science says genes and cells never truly die, they live on through generations. But what if, beyond biology, it is the social structure that shapes us? What if not real blood, but ‘believed…",
+      "sources": [
+        "BookMyShow Plays"
+      ],
+      "links": {
+        "BookMyShow Plays": "https://in.bookmyshow.com/plays/farewell-an-entropy-of-separation/ET00481604"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "4d4bef35b9b6",
       "title": "Ufff... Yellam Sari Agidum",
       "category": "theatre",
@@ -58406,12 +58831,10 @@
       "source": "BookMyShow Sports",
       "about": "Book tickets online for HARE KRISHNA RUN 2027 - 2nd Edition, a running sport event happening in Hyderabad, on BookMyShow.",
       "sources": [
-        "BookMyShow Sports",
-        "District"
+        "BookMyShow Sports"
       ],
       "links": {
-        "BookMyShow Sports": "https://in.bookmyshow.com/sports/hare-krishna-run-2027-2nd-edition/ET00511332",
-        "District": "https://www.district.in/events/hare-krishna-run-2027-2nd-edition-feb6-2027-buy-tickets"
+        "BookMyShow Sports": "https://in.bookmyshow.com/sports/hare-krishna-run-2027-2nd-edition/ET00511332"
       },
       "first_seen": "2026-10-13"
     },
@@ -59014,6 +59437,29 @@
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/ufff-yellam-sari-agidum/ET00490625"
       },
       "first_seen": "2026-10-12"
+    },
+    {
+      "id": "f85589e351e7",
+      "title": "Baithak live by Akanksha Grover",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Shanmukhananda Hall: Mumbai",
+      "date": "2027-02-27",
+      "time": "19:00",
+      "price_from": 999,
+      "url": "https://in.bookmyshow.com/events/baithak-live-by-akanksha-grover/ET00492266",
+      "image": "https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-baithak-live-by-akanksha-grover-0-2026-3-20-t-11-47-45.jpg",
+      "source": "BookMyShow",
+      "about": "Book online tickets for Baithak live by Akanksha Grover in Mumbai on BookMyShow which is a music-shows event",
+      "sources": [
+        "BookMyShow"
+      ],
+      "links": {
+        "BookMyShow": "https://in.bookmyshow.com/events/baithak-live-by-akanksha-grover/ET00492266"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "b6d2135ed4a2",
