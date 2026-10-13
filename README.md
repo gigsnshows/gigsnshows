@@ -109,7 +109,7 @@ If a browser-rendered source returns 0 events, open its URL in a normal browser,
 This site lives at **https://gigsnshows.com** (repo `gigsnshows/gigsnshows`, domain DNS at GoDaddy pointing to GitHub Pages).
 
 **Collectors.** Different sites refuse different machines, so each source's `runs_on` in `sources.yaml` says where it's read:
-- **The AWS server** (Lightsail, Mumbai, `65.0.208.93`) reads everything except BookMyShow at 09:30, 13:30 and 17:30 IST (so fresh listings are live by 10am, 2pm and 6pm; each run takes about half an hour): `collect.sh` from a clone at `~/gigsnshows`, scheduled by the `ubuntu` user's crontab, log in `~/collect.log`. District refuses GitHub's servers but accepts this one.
+- **The AWS server** (Lightsail, Mumbai, `65.0.208.93`) reads everything except BookMyShow at 09:30, 13:30 and 17:30 IST (so fresh listings are live by 10am, 2pm and 6pm; each run takes about half an hour): `collect.sh` from a clone at `~/gigsnshows`, scheduled by the `ubuntu` user's crontab (wrapped in `flock -n /tmp/gns-collect.lock`, so a manual run and a scheduled one can't overlap), log in `~/collect.log`. District refuses GitHub's servers but accepts this one.
 - **The Mac** reads BookMyShow only (it refuses cloud servers, AWS included) at 09:35, 13:35 and 17:35 (about 20 minutes each), or on wake if asleep: `collect-local.sh` from `~/.gigsnshows-collector`, scheduled by `~/Library/LaunchAgents/com.gigsnshows.collect.plist`, log in `~/Library/Logs/gigsnshows-collect.log`. To stop it: `launchctl bootout gui/$(id -u)/com.gigsnshows.collect`. While the Mac is shut, BookMyShow's shows stay as last collected.
 - **GitHub Actions** ("Refresh listings") is now a manual backup only.
 
