@@ -7,6 +7,7 @@ To support a new site layout, add a function here and register it in PARSERS.
 """
 
 import json
+import os
 import re
 from datetime import date, datetime
 from pathlib import Path
@@ -28,11 +29,22 @@ DAY_WORD_RE = re.compile(r"\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b")
 
 # ---------------------------------------------------------------- generic
 
+_returned = set()  # ids of the BookMyShow-style event pages ("ET00515069") returned this run
+COVERAGE = {}  # per sitemap reader: pages listed, pages still to read, well-known acts' pages still to read; run.py records it
+
+
+def _page_id(url):
+    m = re.search(r"/(et[0-9a-z]{6,12})/?(?:[?#].*)?$", (url or "").lower())
+    return m.group(1) if m else None
+
+
 def parse_jsonld(html, page_url, src, entry):
     nodes = extract_jsonld_events(html)
     evs = [jsonld_to_event(n, src["name"], entry.get("city"), entry.get("category"), page_url,
                            default=src.get("default_category")) for n in nodes]
-    return [e for e in evs if e]
+    evs = [e for e in evs if e]
+    _returned.update(i for i in (_page_id(e["url"]) for e in evs) if i)
+    return evs
 
 
 def parse_detail_pages(html, page_url, src, entry):
@@ -161,9 +173,13 @@ def parse_district_sitemap(html, page_url, src, entry):
         seen = memory.get(url)
         if seen is None or (seen["m"] != changed and seen["e"]):  # new, or a show whose page has changed
             todo.append((changed, url))
-    todo.sort(reverse=True)
-    limit = src.get("max_pages", 600)
-    print(f"      {len(pages)} pages in the sitemap, {len(todo)} to read" + (f", reading the newest {limit}" if len(todo) > limit else ""))
+    watch = [w.lower() for w in src.get("watch", [])]
+    todo.sort(key=lambda t: t[0], reverse=True)  # newest first
+    todo.sort(key=lambda t: 0 if any(w in t[1] for w in watch) else 1)  # then (the sort is stable) well-known acts first
+    limit = int(os.environ.get("SITEMAP_MAX_PAGES") or src.get("max_pages", 600))
+    print(f"      {len(pages)} pages in the sitemap, {len(todo)} to read" + (f", reading the first {limit}" if len(todo) > limit else ""))
+    COVERAGE["District"] = {"listed": len(pages), "unread": max(0, len(todo) - limit),
+                            "watched_unread": sum(1 for _, u in todo[limit:] if any(w in u for w in watch))}
     for changed, url in todo[:limit]:
         page = get_html(url, delay=src.get("crawl_delay", 0))
         if not page:
@@ -190,8 +206,71 @@ def parse_district_sitemap(html, page_url, src, entry):
     return [e for u, v in memory.items() if u not in _district_listed for e in v["e"] if e["date"] >= today.isoformat()]
 
 
+# ---------------------------------------------------------------- bookmyshow.com: every event in its sitemap
+#
+# BookMyShow's city pages show only some of what's on: its own sitemap lists 5,000+ event pages (only current ones; the
+# listing pages gave us about 60 of the music and comedy ones). This reads the sitemap's concert-like pages one by one
+# (BookMyShow's robots.txt asks for 10 seconds between requests, so it's slow), the pages of well-known acts first
+# (`watch:` in sources.yaml), skipping pages the city pages already returned. Pages read are remembered in
+# data/bms_pages.json; a show's page is read again after 10 days, a page that wasn't a show never. At most `max_pages` are
+# read per run (the `SITEMAP_MAX_PAGES` environment variable overrides it, for a big first fill).
+
+BMS_PAGES = Path(__file__).resolve().parent.parent / "data" / "bms_pages.json"
+BMS_CONCERTY = re.compile(r"(tour|concert|live|festival|fest\b|unplugged|symphony|orchestra|world|india|night|jam\b|dj|band|music|sufi|"
+                          r"ghazal|qawwali|opera|comedy|stand-?up|roast|singh|rahman|rehman|ghoshal|dosanjh|kumar|sharma|khan|"
+                          r"gig|rock|jazz|indie|folk|bhajan|kirtan|mushaira|musical|karaoke|open-mic)")
+
+
+def _node_category(node, title):
+    kind = str(node.get("@type") or "")
+    for key, cat in (("Comedy", "comedy"), ("Music", "music"), ("Theat", "theatre"), ("Sport", "sports")):
+        if key in kind:
+            return cat
+    return guess_category(title)
+
+
+def parse_bms_sitemap(html, page_url, src, entry):
+    try:
+        memory = json.loads(BMS_PAGES.read_text())
+    except (OSError, ValueError):
+        memory = {}
+    today = date.today()
+    others = set(_returned)  # pages the city listings already returned this run
+    watch = [w.lower() for w in src.get("watch", [])]
+    todo = []
+    for url in re.findall(r"<loc>\s*(.*?)\s*</loc>", html):
+        m = re.search(r"/events/([^/]+)/(et[0-9a-z]+)/?$", url, re.I)  # ids come in both cases: ET00515069 and et5g31o909
+        if not m or _page_id(url) in others or not BMS_CONCERTY.search(m.group(1)):
+            continue
+        seen = memory.get(url)
+        stale = seen and seen["e"] and (today - date.fromisoformat(seen["t"])).days >= 10
+        if seen is None or stale:
+            todo.append((0 if any(w in m.group(1) for w in watch) else 1, 0 if seen is None else 1, url))
+    todo.sort()
+    limit = int(os.environ.get("SITEMAP_MAX_PAGES") or src.get("max_pages", 40))
+    print(f"      {len(todo)} concert-like pages to read" + (f", reading the first {limit}" if len(todo) > limit else ""))
+    COVERAGE["BookMyShow"] = {"listed": len(re.findall(r"<loc>", html)), "unread": max(0, len(todo) - limit),
+                              "watched_unread": sum(1 for k, _, _ in todo[limit:] if k == 0)}
+    for _, _, url in todo[:limit]:
+        page = get_html(url, src.get("render_details", True), src.get("wait_ms", 3000), scroll=False, delay=src.get("crawl_delay", 10))
+        if not page:
+            continue  # not remembered, so the next run tries again
+        nodes = extract_jsonld_events(page)
+        shows = [e for e in (jsonld_to_event(n, src["name"], None, _node_category(n, n.get("name") or ""), url) if _node_category(n, n.get("name") or "") else None
+                             for n in nodes) if e and e["city"] != "Unknown"]
+        memory[url] = {"t": today.isoformat(), "e": shows}
+    listed = set(re.findall(r"<loc>\s*(.*?)\s*</loc>", html))
+    memory = {u: v for u, v in memory.items() if u in listed}  # pages BookMyShow has dropped are forgotten
+    try:
+        BMS_PAGES.write_text(json.dumps(memory, ensure_ascii=False, separators=(",", ":")))
+    except OSError as exc:
+        print(f"      ! couldn't save {BMS_PAGES.name}: {exc}")
+    return [e for v in memory.values() for e in v["e"] if e["date"] >= today.isoformat() and _page_id(e["url"]) not in others]
+
+
 # ---------------------------------------------------------------- ncpamumbai.com
 
+_ncpa_listed = set()  # event pages the home-page reader returned this run
 NCPA_GENRES = {
     "theatre": "theatre",
     "indian music": "music",
@@ -246,6 +325,7 @@ def parse_ncpa(html, page_url, src, entry):
             if not title or title.lower().startswith(("view", "book")) or href in seen or not last_date:
                 continue
             seen.add(href)
+            _ncpa_listed.add(href.rstrip("/").lower())
             day, _ = parse_date(last_date)
             category = None if genre in (None, "skip") else genre
             if genre == "skip":
@@ -256,6 +336,49 @@ def parse_ncpa(html, page_url, src, entry):
             ev = event(title, day, src["name"], entry.get("city"), category,
                        "NCPA", "", None, href, last_img, default=src.get("default_category"))
             if ev:
+                out.append(ev)
+    return out
+
+
+# NCPA's home page lists only part of its calendar (a harmonium recital, a ghazal evening and a play were all missing).
+# Its sitemaps list every event page with the date it last changed; this reads the pages changed in the last 90 days.
+# An event page says "Venue <hall> Date Time 22 November 2026 | 10:30 am-12:30 pm ... Non Member Price Rs. 500".
+
+# NCPA also runs talks, screenings, classes and exhibitions; these aren't shows.
+_NCPA_NOT_SHOWS = re.compile(r"movies? under the stars|illustrated talks?|literature live|listening sessions?|page to stage|masterclass|"
+                             r"demystifying|short film|reality check|screening|lecture|in conversation|\btalks?\b|workshop|"
+                             r"connections india|photograph|exhibition|guided|orientation", re.I)
+_NCPA_DATE = re.compile(r"(\d{1,2} [A-Z][a-z]+ 20\d\d)\s*\|\s*(\d{1,2}(?::\d{2})?\s*[ap]m)", re.I)
+
+
+def parse_ncpa_sitemap(html, page_url, src, entry):
+    today = date.today()
+    cutoff = (today.toordinal() - 90)
+    out = []
+    for url, changed in re.findall(r"<url>\s*<loc>(.*?)</loc>(?:\s*<lastmod>(.*?)</lastmod>)?", html, re.S):
+        if "/event/" not in url or not changed or date.fromisoformat(changed[:10]).toordinal() < cutoff:
+            continue
+        if url.rstrip("/").lower() in _ncpa_listed:
+            continue
+        page = get_html(url, delay=src.get("crawl_delay", 0.5))
+        if not page:
+            continue
+        soup = BeautifulSoup(page, "lxml")
+        title = re.sub(r"\s*[-–|]\s*NCPA\s*$", "", soup.title.get_text(" ", strip=True) if soup.title else "").strip()
+        text = re.sub(r"\s+", " ", soup.get_text(" ", strip=True))
+        m = re.search(r"Venue (.+?) Date Time", text)
+        hall = m.group(1).strip() if m else ""
+        details = text.split("Event Details", 1)[1][:300] if "Event Details" in text else ""
+        category = guess_category(title) or guess_category(f"{title} {details}")
+        if category not in ("music", "theatre", "comedy") or _NCPA_NOT_SHOWS.search(title):
+            continue  # talks, masterclasses, screenings and exhibitions are left out
+        prices = [int(x.replace(",", "")) for x in re.findall(r"Price Rs\. ?([\d,]+)", text)]
+        og = soup.find("meta", property="og:image")
+        for day_text, time_text in dict.fromkeys(_NCPA_DATE.findall(text)):  # the page repeats its dates
+            day, hhmm = parse_date(f"{day_text}, {time_text.upper()}")
+            ev = event(title, day, src["name"], "Mumbai", category, "NCPA", hhmm, min(prices) if prices else None, url,
+                       og["content"] if og and og.get("content") else None, hint=details, place=f"NCPA, {hall}, Mumbai")
+            if ev and ev["date"] >= today.isoformat():
                 out.append(ev)
     return out
 
@@ -354,6 +477,8 @@ PARSERS = {
     "detail_pages": parse_detail_pages,
     "district": parse_district,
     "district_sitemap": parse_district_sitemap,
+    "bms_sitemap": parse_bms_sitemap,
+    "ncpa_sitemap": parse_ncpa_sitemap,
     "ncpa": parse_ncpa,
     "prithvi": parse_prithvi,
     "pianoman": parse_pianoman,

@@ -55,6 +55,12 @@
   parser: district_sitemap
   runs_on: [aws]
   crawl_delay: 0.7
+  watch: &watch [rahman, rehman, diljit, arijit, shreya, sunidhi, badshah, honey-singh, yo-yo, prateek, kuhad, ap-dhillon, dhillon,
+                 karan-aujla, aujla, sonu-nigam, coldplay, ed-sheeran, bryan-adams, lauv, martin-garrix, zakir, anirudh, ilaiyaraaja,
+                 sid-sriram, jubin, atif, neha-kakkar, papon, armaan, vishal, mohit-chauhan, kailash-kher, lucky-ali, euphoria,
+                 nucleya, divine, raftaar, emiway, zakir-khan, vir-das, anubhav, biswa, samay-raina, kenny, rolling-loud, sunburn,
+                 nh7, lollapalooza, wonderment, aditya-rikhari, darshan-raval, krishna-das, gorillaz, pritam, shankar-mahadevan]
+  # ^ well-known acts: their pages are read first, and health.py checks they are all in the listings
   max_pages: 700            # new pages read per run, newest first; what's been read is remembered in data/district_pages.json
   urls:
     - {url: https://cdn.district.in/sitemap/event-detail-pages.xml, city: Mumbai}
@@ -64,12 +70,26 @@
   urls:
     - {url: https://www.ncpamumbai.com/, city: Mumbai}
 
+# NCPA's home page lists only part of its calendar; this also reads every event page changed in the last 90 days (from its
+# sitemaps), keeping the music and theatre ones. See parse_ncpa_sitemap in scrapers/parsers.py.
+- name: NCPA
+  parser: ncpa_sitemap
+  crawl_delay: 0.5
+  urls:
+    - {url: https://www.ncpamumbai.com/event-sitemap.xml, city: Mumbai}
+    - {url: https://www.ncpamumbai.com/event-sitemap2.xml, city: Mumbai}
+    - {url: https://www.ncpamumbai.com/event-sitemap3.xml, city: Mumbai}
+    - {url: https://www.ncpamumbai.com/event-sitemap4.xml, city: Mumbai}
+    - {url: https://www.ncpamumbai.com/event-sitemap5.xml, city: Mumbai}
+
 - name: NMACC
   parser: detail_pages
   render: true
   link_pattern: /performing-arts/
+  max_pages: 130            # its sitemap lists about 110 show pages; the calendar page alone showed only part of them (Ajay-Atul Live was missing)
   urls:
     - {url: https://www.nmacc.com/calendar/, city: Mumbai}
+    - {url: https://www.nmacc.com/sitemap.xml, city: Mumbai}
 
 - name: BookMyShow
   runs_on: [mac]            # refuses cloud servers (GitHub and AWS alike)
@@ -110,6 +130,20 @@
   default_category: sports
   url: https://in.bookmyshow.com/explore/sports-{city}
   cities: *bms_cities
+
+# BookMyShow's city pages show only some of what's on; its sitemap lists 5,000+ current event pages. This reads the
+# concert-like ones as well; see parse_bms_sitemap in scrapers/parsers.py. Same source name, so they're labelled BookMyShow.
+- name: BookMyShow
+  parser: bms_sitemap
+  runs_on: [mac]
+  render: true
+  render_details: true
+  wait_ms: 3000
+  crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
+  max_pages: 40            # pages read per run, well-known acts first; remembered in data/bms_pages.json
+  watch: *watch
+  urls:
+    - {url: https://in.bookmyshow.com/sitemap/events-synopsis.xml, city: Mumbai}
 
 - name: Prithvi Theatre
   parser: prithvi           # the site's own schedule feed; Mumbai only

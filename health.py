@@ -65,7 +65,7 @@ def save(h):
 
 # ---------------------------------------------------------------- recording (called by run.py)
 
-def record(ran, collected, failed, today, where, total):
+def record(ran, collected, failed, today, where, total, coverage=None):
     """
     ran: names of the sources this run actually read; collected: what they returned;
     failed: source -> cities that came back empty; total: unique listings after merging.
@@ -79,6 +79,8 @@ def record(ran, collected, failed, today, where, total):
         if n:
             s["last_ok"] = at
         s["recent"] = (s.get("recent", []) + [n])[-14:]
+    if coverage:  # what each sitemap reader found still unread (see parsers.COVERAGE)
+        h.setdefault("coverage", {}).update({k: {**v, "at": at} for k, v in coverage.items()})
     t = h.setdefault("total", {"recent": []})
     t.update(count=total, at=at)
     t["recent"] = (t.get("recent", []) + [total])[-20:]
@@ -148,6 +150,11 @@ def check_sources(h, sources):
             problems.append(f"{len(s['failed_cities'])} cities empty")
         rows.append((name, where, count, f"{med:.0f}" if med else "-", f"{age:.0f}h" if age is not None else "never",
                      "; ".join(problems) or "ok"))
+    for name, c in sorted(h.get("coverage", {}).items()):
+        if c.get("watched_unread"):
+            errors.append(f"{name}: {c['watched_unread']} pages of well-known acts (Rahman, Diljit, Arijit...) are listed on the site but haven't been read yet")
+        elif c.get("unread", 0) > 150:
+            warnings.append(f"{name}: {c['unread']} of its {c['listed']} listed pages still to read (a first fill takes a few runs)")
     t = h.get("total", {})
     base = t.get("recent", [])[:-1]
     if len(base) >= 3 and t.get("count") is not None:

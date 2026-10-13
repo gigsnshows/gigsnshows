@@ -24,7 +24,7 @@ import health
 from scrapers.base import NOT_SHOWS, get_html, now_iso
 from scrapers import seo, sharepages
 from scrapers.genres import catalog, language, languages, tag
-from scrapers.parsers import PARSERS
+from scrapers.parsers import COVERAGE, PARSERS
 
 # Which machine this run is on: "aws" (the Lightsail server), "mac" or "github" (Actions).
 # Some sites refuse some of them, so each source's `runs_on` in sources.yaml says where it's read.
@@ -180,7 +180,7 @@ def main(dry_run=False, only=None, remerge=False):
     if dry_run:
         return
     # What each source returned this time, for the scheduled health check (even when it's nothing).
-    health.record(ran, collected, failed, today, WHERE, len(merged))
+    health.record(ran, collected, failed, today, WHERE, len(merged), COVERAGE)
     if not merged:
         print("Nothing found; leaving the existing events.json untouched.")
         return
