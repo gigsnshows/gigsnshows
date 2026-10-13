@@ -1652,9 +1652,15 @@
     return parts.length ? `Because you like ${parts.slice(0, 3).join(" · ")}` : "";
   }
 
+  // Navratri week brings hundreds of Garba and Dandiya nights: real tickets, but they would bury the concerts, comedy and plays on
+  // every row. They get a row of their own and stay out of the others (the Music tab, search and the chat still have them).
+  const isFestive = e => /\b(garba|dandiya|dandia|raas|navratri)\b/i.test(e.title);
+
   function renderHome() {
-    const evs = data.events.filter(e => e.city === state.city && inWhen(e));
-    countGroups(evs);
+    const all = data.events.filter(e => e.city === state.city && inWhen(e));
+    countGroups(all);
+    const evs = all.filter(e => !isFestive(e));
+    const festive = groupShows(all.filter(isFestive).sort(byDateTime));
     const list = getWannaGo();
     // With a date picked, Tonight / This Weekend would just repeat the rest of the page.
     const tonight = state.when ? [] : groupShows(evs.filter(e => e.date === todayISO).sort(byDateTime));
@@ -1698,6 +1704,7 @@
     if (tonight.length) sections.push(trayHtml("tonight", "Tonight", tonight.length, tonight.map(e => renderTile(e))));
     if (weekend.length) sections.push(trayHtml("weekend", "This Weekend", weekend.length, weekend.map(e => renderTile(e))));
     if (justAnnounced.length) sections.push(trayHtml("new", "Just Announced", justAnnounced.length, justAnnounced.map(e => renderTile(e))));
+    if (festive.length) sections.push(trayHtml("navratri", "Garba & Dandiya nights", festive.length, festive.slice(0, 24).map(e => renderTile(e))));
 
     const activeVenue = FAVOURITE_VENUES.find(v => v.key === state.favVenue);
     const favShown = activeVenue ? favAll.filter(activeVenue.match) : favAll;
@@ -1721,12 +1728,13 @@
     const nothing = state.when
       ? `<div class="empty"><b>Nothing listed in ${esc(state.city)} ${esc(whenText())}.</b><br>Try another day, or <button class="see-all" data-when="">any time</button>.</div>`
       : `<div class="empty"><b>Nothing listed for ${esc(state.city)} yet.</b><br>Listings refresh every morning. Check back tomorrow.</div>`;
-    document.getElementById("main").innerHTML = whenBar() + sections.join("") + (evs.length ? "" : nothing);
+    document.getElementById("main").innerHTML = whenBar() + sections.join("") + (all.length ? "" : nothing);
   }
 
   function renderCategory() {
     const tab = TABS.find(t => t.key === state.tab);
-    const dated = data.events.filter(e => e.city === state.city && e.category === state.tab && inWhen(e)).sort(byDateTime);
+    // the festive nights come after everything else in a category, soonest first within each group
+    const dated = data.events.filter(e => e.city === state.city && e.category === state.tab && inWhen(e)).sort((a, b) => isFestive(a) - isFestive(b) || byDateTime(a, b));
     countGroups(dated);
     const inCategory = groupShows(dated);
     const main = document.getElementById("main");
