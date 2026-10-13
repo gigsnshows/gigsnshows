@@ -19,7 +19,7 @@
   (function () {
     var t = "";
     try { t = localStorage.getItem("gns-theme") || ""; } catch (e) {}
-    if (t !== "light" && t !== "dark") t = "dark";   // first visit: the neon dark look; the toggle remembers a change
+    if (t !== "light" && t !== "dark") t = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";   // no saved choice: follow the device
     document.documentElement.setAttribute("data-theme", t);
   })();
 </script>
@@ -48,15 +48,15 @@ h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{fo
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-size:.85rem}footer a{color:var(--ink2);margin-right:16px;text-decoration:none}
 @media(max-width:560px){h1{font-size:1.6rem}.cities{columns:1}.dates li{flex-direction:column;align-items:flex-start}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Sports in Indore", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/prime-engage-jr-chess-championship-indore-ce481de5a3/", "name": "Prime Engage Jr. Chess Championship | Indore"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Sports in Indore", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/prime-engage-jr-chess-championship-ce481de5a3/", "name": "Prime Engage Jr. Chess Championship"}]}</script>
 </head>
 <body>
 <header><div class="wrap"><a class="home" href="/">gigsnshows</a><nav class="top"><a href="/cities/">All cities</a><a href="/">Open the app</a></nav></div></header>
 <main><div class="wrap">
 <p class="crumbs"><a href="/">Home</a> › <a href="/indore/">Indore</a> › Sports</p>
 <h1>Sports in Indore</h1><p class="lead">1 upcoming sports shows in Indore, soonest first, from every major ticketing site.</p>
-<div class="cats"><a href="/indore/">All</a><a href="/indore/music/">Live music (14)</a><a href="/indore/theatre/">Theatre (2)</a><a href="/indore/sports/" aria-current=page>Sports (1)</a><a href="/indore/stand-up/">Stand-up comedy (5)</a></div>
-<ul class="list"><li><img src="https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KT1ZNVT9SJNAMA9JMEY5Y3RV.jpeg" alt="" loading="lazy"><div><a class="t" href="/shows/prime-engage-jr-chess-championship-indore-ce481de5a3/">Prime Engage Jr. Chess Championship | Indore</a><p>Sat 28 Nov, 9 am · Indore Public School · from ₹499</p></div></li></ul>
+<div class="cats"><a href="/indore/">All</a><a href="/indore/music/">Live music (13)</a><a href="/indore/theatre/">Theatre (2)</a><a href="/indore/sports/" aria-current=page>Sports (1)</a><a href="/indore/stand-up/">Stand-up comedy (5)</a></div>
+<ul class="list"><li><img src="https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KT1ZNVT9SJNAMA9JMEY5Y3RV.jpeg" alt="" loading="lazy"><div><a class="t" href="/shows/prime-engage-jr-chess-championship-ce481de5a3/">Prime Engage Jr. Chess Championship</a><p>Sat 28 Nov, 9 am · Indore Public School · from ₹499</p></div></li></ul>
 
 <div class="cta"><a class="btn" href="/?city=indore&amp;tab=sports">Open Indore on gigsnshows</a></div>
 </div></main>

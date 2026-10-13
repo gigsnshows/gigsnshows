@@ -19,7 +19,7 @@
   (function () {
     var t = "";
     try { t = localStorage.getItem("gns-theme") || ""; } catch (e) {}
-    if (t !== "light" && t !== "dark") t = "dark";   // first visit: the neon dark look; the toggle remembers a change
+    if (t !== "light" && t !== "dark") t = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";   // no saved choice: follow the device
     document.documentElement.setAttribute("data-theme", t);
   })();
 </script>
@@ -48,7 +48,7 @@ h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{fo
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-size:.85rem}footer a{color:var(--ink2);margin-right:16px;text-decoration:none}
 @media(max-width:560px){h1{font-size:1.6rem}.cities{columns:1}.dates li{flex-direction:column;align-items:flex-start}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Live shows in Ranchi", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/casa-bacardi-on-tour-ranchi-527f6cbbe7/", "name": "Casa Bacardí On Tour | Ranchi"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Live shows in Ranchi", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/casa-bacardi-on-tour-527f6cbbe7/", "name": "Casa Bacardí On Tour"}]}</script>
 </head>
 <body>
 <header><div class="wrap"><a class="home" href="/">gigsnshows</a><nav class="top"><a href="/cities/">All cities</a><a href="/">Open the app</a></nav></div></header>
@@ -56,7 +56,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-si
 <p class="crumbs"><a href="/">Home</a> › Ranchi</p>
 <h1>Live shows in Ranchi</h1><p class="lead">1 upcoming concerts, plays, stand-up shows and sports events in Ranchi, soonest first, from every major ticketing site.</p>
 <div class="cats"><a href="/ranchi/" aria-current=page>All</a><a href="/ranchi/music/">Live music (1)</a></div>
-<ul class="list"><li><img src="https://media.thumpn.com/prod-mum1/event/evt-JFWZ9L/cover-image/evt-jfwz9l-d893.webp" alt="" loading="lazy"><div><a class="t" href="/shows/casa-bacardi-on-tour-ranchi-527f6cbbe7/">Casa Bacardí On Tour | Ranchi</a><p>Sat 9 Jan, 5:30 pm · Venue To Be Announced</p></div></li></ul>
+<ul class="list"><li><img src="https://media.thumpn.com/prod-mum1/event/evt-JFWZ9L/cover-image/evt-jfwz9l-d893.webp" alt="" loading="lazy"><div><a class="t" href="/shows/casa-bacardi-on-tour-527f6cbbe7/">Casa Bacardí On Tour</a><p>Sat 9 Jan, 5:30 pm · Venue To Be Announced</p></div></li></ul>
 
 <div class="cta"><a class="btn" href="/?city=ranchi">Open Ranchi on gigsnshows</a></div>
 </div></main>

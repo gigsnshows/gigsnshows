@@ -19,7 +19,7 @@
   (function () {
     var t = "";
     try { t = localStorage.getItem("gns-theme") || ""; } catch (e) {}
-    if (t !== "light" && t !== "dark") t = "dark";   // first visit: the neon dark look; the toggle remembers a change
+    if (t !== "light" && t !== "dark") t = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";   // no saved choice: follow the device
     document.documentElement.setAttribute("data-theme", t);
   })();
 </script>
@@ -48,7 +48,7 @@ h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{fo
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-size:.85rem}footer a{color:var(--ink2);margin-right:16px;text-decoration:none}
 @media(max-width:560px){h1{font-size:1.6rem}.cities{columns:1}.dates li{flex-direction:column;align-items:flex-start}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Live shows in Jodhpur", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/all-india-clat-lr-tour-cca688f906/", "name": "All India CLAT LR Tour"}, {"@type": "ListItem", "position": 2, "url": "https://gigsnshows.com/shows/akshay-srivastava-live-standup-comedy-ed59016093/", "name": "Akshay Srivastava Live Standup Comedy"}, {"@type": "ListItem", "position": 3, "url": "https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-7e9c0b530d/", "name": "Sonu Nigam - The Revolution India Tour"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Live shows in Jodhpur", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/all-india-clat-lr-tour-cca688f906/", "name": "All India CLAT LR Tour"}, {"@type": "ListItem", "position": 2, "url": "https://gigsnshows.com/shows/akshay-srivastava-live-standup-comedy-ed59016093/", "name": "Akshay Srivastava Live – Standup Comedy"}, {"@type": "ListItem", "position": 3, "url": "https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-7e9c0b530d/", "name": "Sonu Nigam - The Revolution India Tour"}]}</script>
 </head>
 <body>
 <header><div class="wrap"><a class="home" href="/">gigsnshows</a><nav class="top"><a href="/cities/">All cities</a><a href="/">Open the app</a></nav></div></header>
@@ -56,7 +56,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-si
 <p class="crumbs"><a href="/">Home</a> › Jodhpur</p>
 <h1>Live shows in Jodhpur</h1><p class="lead">3 upcoming concerts, plays, stand-up shows and sports events in Jodhpur, soonest first, from every major ticketing site.</p>
 <div class="cats"><a href="/jodhpur/" aria-current=page>All</a><a href="/jodhpur/music/">Live music (2)</a><a href="/jodhpur/stand-up/">Stand-up comedy (1)</a></div>
-<ul class="list"><li><img src="https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-all-india-clat-lr-tour-0-2026-9-29-t-18-52-44.jpg" alt="" loading="lazy"><div><a class="t" href="/shows/all-india-clat-lr-tour-cca688f906/">All India CLAT LR Tour</a><p>Thu 15 Oct, 10 am · JIET Auditorium · from ₹99</p></div></li><li><img src="https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-akshay-srivastava-live-standup-comedy-0-2026-8-9-t-19-52-58.jpg" alt="" loading="lazy"><div><a class="t" href="/shows/akshay-srivastava-live-standup-comedy-ed59016093/">Akshay Srivastava Live Standup Comedy</a><p>Fri 30 Oct, 6:30 pm · Mox Vox · from ₹299</p></div></li><li><img src="https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01KXEN7XM8GHJAZ74MF8G2RASG.png" alt="" loading="lazy"><div><a class="t" href="/shows/sonu-nigam-the-revolution-india-tour-7e9c0b530d/">Sonu Nigam - The Revolution India Tour</a><p>Sat 20 Feb, 7 pm · Venue to be announced · from ₹1,399</p></div></li></ul>
+<ul class="list"><li><img src="https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-all-india-clat-lr-tour-0-2026-9-29-t-18-52-44.jpg" alt="" loading="lazy"><div><a class="t" href="/shows/all-india-clat-lr-tour-cca688f906/">All India CLAT LR Tour</a><p>Thu 15 Oct, 10 am · JIET Auditorium · from ₹99</p></div></li><li><img src="https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M2G2JRDKK8BXDMZDP9YBNS2S.png" alt="" loading="lazy"><div><a class="t" href="/shows/akshay-srivastava-live-standup-comedy-ed59016093/">Akshay Srivastava Live – Standup Comedy</a><p>Fri 30 Oct, 6:30 pm · Mox Vox JODHPUR · from ₹399</p></div></li><li><img src="https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01KXEN7XM8GHJAZ74MF8G2RASG.png" alt="" loading="lazy"><div><a class="t" href="/shows/sonu-nigam-the-revolution-india-tour-7e9c0b530d/">Sonu Nigam - The Revolution India Tour</a><p>Sat 20 Feb, 7 pm · Venue to be announced · from ₹1,399</p></div></li></ul>
 
 <div class="cta"><a class="btn" href="/?city=jodhpur">Open Jodhpur on gigsnshows</a></div>
 </div></main>

@@ -19,7 +19,7 @@
   (function () {
     var t = "";
     try { t = localStorage.getItem("gns-theme") || ""; } catch (e) {}
-    if (t !== "light" && t !== "dark") t = "dark";   // first visit: the neon dark look; the toggle remembers a change
+    if (t !== "light" && t !== "dark") t = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";   // no saved choice: follow the device
     document.documentElement.setAttribute("data-theme", t);
   })();
 </script>
@@ -48,7 +48,7 @@ h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{fo
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-size:.85rem}footer a{color:var(--ink2);margin-right:16px;text-decoration:none}
 @media(max-width:560px){h1{font-size:1.6rem}.cities{columns:1}.dates li{flex-direction:column;align-items:flex-start}}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Sports in Thrissur", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/malappuram-fc-vs-thrissur-magic-fc-17th-oct-2026-5f1421f64b/", "name": "Malappuram FC Vs Thrissur Magic FC | 17th Oct 2026"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Sports in Thrissur", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://gigsnshows.com/shows/malappuram-fc-vs-thrissur-magic-fc-17th-oct-2026-cfdd596c53/", "name": "Malappuram FC Vs Thrissur Magic FC – 17th Oct 2026"}]}</script>
 </head>
 <body>
 <header><div class="wrap"><a class="home" href="/">gigsnshows</a><nav class="top"><a href="/cities/">All cities</a><a href="/">Open the app</a></nav></div></header>
@@ -56,7 +56,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-si
 <p class="crumbs"><a href="/">Home</a> › <a href="/thrissur/">Thrissur</a> › Sports</p>
 <h1>Sports in Thrissur</h1><p class="lead">1 upcoming sports shows in Thrissur, soonest first, from every major ticketing site.</p>
 <div class="cats"><a href="/thrissur/">All</a><a href="/thrissur/sports/" aria-current=page>Sports (1)</a></div>
-<ul class="list"><li><img src="https://1840729241.rsc.cdn77.org/media/event_cover/OFBtUWVaUXNlUkpZTmdmMVJsRHlnZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789914222wcqTcgZeem1IZd5h.png.webp" alt="" loading="lazy"><div><a class="t" href="/shows/malappuram-fc-vs-thrissur-magic-fc-17th-oct-2026-5f1421f64b/">Malappuram FC Vs Thrissur Magic FC | 17th Oct 2026</a><p>Sat 17 Oct, 7:30 pm · Manjeri, Payyanad Stadium</p></div></li></ul>
+<ul class="list"><li><img src="https://1840729241.rsc.cdn77.org/media/event_cover/OFBtUWVaUXNlUkpZTmdmMVJsRHlnZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1789914222wcqTcgZeem1IZd5h.png.webp" alt="" loading="lazy"><div><a class="t" href="/shows/malappuram-fc-vs-thrissur-magic-fc-17th-oct-2026-cfdd596c53/">Malappuram FC Vs Thrissur Magic FC – 17th Oct 2026</a><p>Sat 17 Oct, 7:30 pm · Manjeri, Payyanad Stadium</p></div></li></ul>
 
 <div class="cta"><a class="btn" href="/?city=thrissur&amp;tab=sports">Open Thrissur on gigsnshows</a></div>
 </div></main>

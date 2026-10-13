@@ -19,7 +19,7 @@
   (function () {
     var t = "";
     try { t = localStorage.getItem("gns-theme") || ""; } catch (e) {}
-    if (t !== "light" && t !== "dark") t = "dark";   // first visit: the neon dark look; the toggle remembers a change
+    if (t !== "light" && t !== "dark") t = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";   // no saved choice: follow the device
     document.documentElement.setAttribute("data-theme", t);
   })();
 </script>
@@ -55,7 +55,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-si
 <main><div class="wrap">
 <p class="crumbs"><a href="/">Home</a> › <a href="/lucknow/">Lucknow</a> › Stand-up comedy</p>
 <h1>Stand-up comedy in Lucknow</h1><p class="lead">1 upcoming stand-up shows in Lucknow, soonest first, from every major ticketing site.</p>
-<div class="cats"><a href="/lucknow/">All</a><a href="/lucknow/music/">Live music (19)</a><a href="/lucknow/theatre/">Theatre (5)</a><a href="/lucknow/sports/">Sports (1)</a><a href="/lucknow/stand-up/" aria-current=page>Stand-up comedy (1)</a></div>
+<div class="cats"><a href="/lucknow/">All</a><a href="/lucknow/music/">Live music (20)</a><a href="/lucknow/theatre/">Theatre (5)</a><a href="/lucknow/sports/">Sports (1)</a><a href="/lucknow/stand-up/" aria-current=page>Stand-up comedy (1)</a></div>
 <ul class="list"><li><img src="https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4QW64X4954XHDM82F5TR5KG.jpg" alt="" loading="lazy"><div><a class="t" href="/shows/married-bachelor-4c4c80c0ed/">Married Bachelor</a><p>Sat 17 Oct, 7 pm · Lucknow Events Club (LEC) · from ₹399</p></div></li></ul>
 
 <div class="cta"><a class="btn" href="/?city=lucknow&amp;tab=comedy">Open Lucknow on gigsnshows</a></div>
