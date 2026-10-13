@@ -2327,7 +2327,7 @@
     const close = `<button class="assist-close" data-login-close aria-label="Close">×</button>`;
     if (step === "account") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Your account</h2>
-        <p class="assist-status">Logged in as <b>${esc(prettyPhone(user.phoneNumber))}</b>. The shows you save, your interests and For you picks are saved to your account and follow you to any device you log in on.</p>
+        <p class="assist-status">Logged in as <b>${esc(user ? prettyPhone(user.phoneNumber) : "+91 98\u2022\u2022\u2022 \u2022\u2022210")}</b>. The shows you save, your interests and For you picks are saved to your account and follow you to any device you log in on.</p>
         <div class="login-acts"><button data-login="wallet">Ticket wallet<span class="pill-early">Early access</span></button><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
         <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
     } else if (step === "confirm-delete") {
@@ -2379,7 +2379,7 @@
   async function openLogin() {
     loginDlg.hidden = false;
     document.body.style.overflow = "hidden";
-    if (user) renderLogin("account");
+    if (user || VIDEO_DEMO) renderLogin("account");  // ?videodemo (the launch video) shows a logged-in account
     else renderLogin("phone");
   }
   function closeLogin() {
@@ -2424,7 +2424,11 @@
     if (act === "phone") renderLogin("phone");
     else if (act === "resend") sendCode();
     else if (act === "account") renderLogin("account");
-    else if (act === "wallet") { closeLogin(); openWallet(); }
+    else if (act === "wallet") {
+      closeLogin();
+      if (VIDEO_DEMO && !user) wallet = { loaded: true, tickets: sampleTickets(), accounts: [], error: "", sample: true };
+      openWallet();
+    }
     else if (act === "delete") renderLogin("confirm-delete");
     else if (act === "logout") {
       await fb.A.signOut(fb.auth);
