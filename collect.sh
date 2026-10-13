@@ -32,7 +32,7 @@ main() {
     echo "another collector uploaded first; merging into its listings"
     # What this machine's sitemap reader has already read (data/district_pages.json on the server, data/bms_pages.json
     # on the Mac) would be lost by the reset below, and the reader would start again from nothing next time.
-    local MEMORY=data/district_pages.json; [ "$COLLECTOR" = mac ] && MEMORY=data/bms_pages.json
+    local MEMORY=data/district_pages.json; [ "$COLLECTOR" = mac ] && MEMORY="${GNS_BMS_PAGES:-data/bms_pages.json}"  # (outside the clone when GNS_BMS_PAGES is set)
     local KEEP; KEEP="$(mktemp)"; cp "$MEMORY" "$KEEP" 2>/dev/null || : > "$KEEP"
     git fetch --quiet "$REPO" main
     git reset --quiet --hard FETCH_HEAD

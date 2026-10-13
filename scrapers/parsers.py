@@ -260,7 +260,10 @@ def parse_district_sitemap(html, page_url, src, entry):
 # data/bms_pages.json; a show's page is read again after 10 days, a page that wasn't a show never. At most `max_pages` are
 # read per run (the `SITEMAP_MAX_PAGES` environment variable overrides it, for a big first fill).
 
-BMS_PAGES = Path(__file__).resolve().parent.parent / "data" / "bms_pages.json"
+# Kept outside the repository's working tree when GNS_BMS_PAGES says so (the Mac's collect-local.sh does): the collector resets and
+# cleans its clone at the start of every run, and a file that isn't committed was lost each time, so the same 100 pages were
+# read again and again.
+BMS_PAGES = Path(os.environ.get("GNS_BMS_PAGES") or Path(__file__).resolve().parent.parent / "data" / "bms_pages.json")
 BMS_RULES = 3  # bump when the rules for what counts as a show change (see DISTRICT_RULES)
 BMS_CONCERTY = re.compile(r"(tour|concert|live|festival|fest\b|unplugged|symphony|orchestra|world|india|night|jam\b|dj|band|music|sufi|"
                           r"ghazal|qawwali|opera|comedy|stand-?up|roast|singh|rahman|rehman|ghoshal|dosanjh|kumar|sharma|khan|"
@@ -297,15 +300,19 @@ def parse_bms_sitemap(html, page_url, src, entry):
     print(f"      {len(todo)} concert-like pages to read" + (f", reading the first {limit}" if len(todo) > limit else ""))
     COVERAGE["BookMyShow"] = {"listed": len(re.findall(r"<loc>", html)), "unread": max(0, len(todo) - limit),
                               "watched_unread": sum(1 for k, _, _ in todo[limit:] if k == 0)}
+    read = failed = 0
     for _, _, url in todo[:limit]:
         page = get_html(url, src.get("render_details", True), src.get("wait_ms", 3000), scroll=False, delay=src.get("crawl_delay", 10))
         if not page:
+            failed += 1
             continue  # not remembered, so the next run tries again
+        read += 1
         nodes = extract_jsonld_events(page)
         shows = [e for e in (jsonld_to_event(n, src["name"], None, _node_category(n, n.get("name") or ""), url) if _node_category(n, n.get("name") or "") else None
                              for n in nodes) if e and e["city"] != "Unknown"]
         memory[url] = {"t": today.isoformat(), "e": shows, "v": BMS_RULES}
     listed = set(re.findall(r"<loc>\s*(.*?)\s*</loc>", html))
+    print(f"      read {read} pages, {failed} failed; {len(memory)} remembered in {BMS_PAGES}")
     memory = {u: v for u, v in memory.items() if u in listed}  # pages BookMyShow has dropped are forgotten
     try:
         BMS_PAGES.write_text(json.dumps(memory, ensure_ascii=False, separators=(",", ":")))
