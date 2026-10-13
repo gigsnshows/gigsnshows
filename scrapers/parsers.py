@@ -151,6 +151,17 @@ def _district_over(slug, today):
     return bool(re.search(r"-20(1\d|2[0-5])(-|$)", slug.replace("-buy-tickets", "")))
 
 
+def _description_category(text):
+    """For a title that says nothing ("Samay Raina Live"): a few clear words in the opening of the description. Kept narrow on purpose:
+    a description that merely mentions "sports" or "play" once put a water park among the shows."""
+    t = (text or "")[:500].lower()
+    if re.search(r"\b(stand-?up|stand up|comedian|comedians|comedy show|comedy night)\b", t):
+        return "comedy"
+    if re.search(r"\b(live in concert|live concert|in concert|live music|concert)\b", t):
+        return "music"
+    return None
+
+
 def _district_title(name, city):
     """"A R Rahman | Wonderment Tour Live in Concert | Mumbai" -> "A R Rahman – Wonderment Tour Live in Concert"."""
     parts = [p.strip() for p in re.split(r"\s+\|\s+", name or "") if p.strip()]
@@ -194,7 +205,8 @@ def parse_district_sitemap(html, page_url, src, entry):
         # almost anything, and this source also lists water parks and classes. A title that says nothing is left out; the
         # listing pages cover ordinary shows. No city is passed in: each show is filed under the city its own venue and
         # address name, and one that names none is left out.
-        shows = [e for e in (jsonld_to_event(n, src["name"], None, guess_category(n["name"]), url) if guess_category(n["name"]) else None
+        kind = lambda n: guess_category(n["name"]) or _description_category(n.get("description"))  # noqa: E731
+        shows = [e for e in (jsonld_to_event(n, src["name"], None, kind(n), url) if kind(n) else None
                              for n in nodes) if e and e["city"] != "Unknown"]
         if not nodes:  # some pages carry no structured data: fall back to the page's own title and date
             fallback = meta_event(page, src["name"], None, None, url)
@@ -230,7 +242,7 @@ def _node_category(node, title):
     for key, cat in (("Comedy", "comedy"), ("Music", "music"), ("Theat", "theatre"), ("Sport", "sports")):
         if key in kind:
             return cat
-    return guess_category(title)
+    return guess_category(title) or _description_category(node.get("description"))
 
 
 def parse_bms_sitemap(html, page_url, src, entry):

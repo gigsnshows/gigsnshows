@@ -63,3 +63,12 @@ def test_tidying_a_title_never_changes_the_id():
     assert a["title"] == "A R Rahman \u2013 Wonderment Tour Live in Concert"
     from scrapers.base import make_id
     assert a["id"] == make_id("A R Rahman | Wonderment Tour Live in Concert | Mumbai", "2026-11-01", "Jio World Garden")
+
+
+def test_a_title_with_no_clue_is_classed_from_the_description():
+    from scrapers.parsers import _description_category
+    assert _description_category("Samay Raina is back on the road. Catch Samay Raina Live for an evening of stand-up, stories and chaos.") == "comedy"
+    assert _description_category("An evening of music with A.R. Rahman, as his compositions come alive in a spectacular live concert.") == "music"
+    assert _description_category("Splash around all day in our water park. Sports, slides and a lazy river.") is None   # not a show
+    assert _description_category("Create pottery with loved ones. Play with clay and take home your piece.") is None
+    assert _description_category("") is None and _description_category(None) is None
