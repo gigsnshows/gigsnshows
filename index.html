@@ -3904,7 +3904,7 @@
   function openAssist() {
     closeShareMenu(false);
     if (!assistOut.children.length) {
-      addBubble("bot", "<p>Hi! Tell me what you're in the mood for and I'll find the shows.</p>");
+      addBubble("bot", "<p>Hi! Tell me what you're in the mood for and I'll find the shows. Tap <b>Book</b> on any card to go straight to the ticket seller.</p>");
       addBubble("bot wide", `<div class="assist-try">${EXAMPLES.map(x => `<button class="chip" data-assist-try="${esc(x)}">${esc(x)}</button>`).join("")}</div>`);
     }
     assistInput.value = "";
