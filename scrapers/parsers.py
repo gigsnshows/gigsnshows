@@ -165,6 +165,9 @@ def _description_category(text):
     return None
 
 
+_COMEDIANS = ("samay", "vir-das", "anubhav", "biswa", "kenny", "zakir-khan", "bassi", "rahul-dua", "kanan", "tanmay", "abhishek-upmanyu")
+
+
 def _show_kind(title, description):
     """The kind of show from its title, else its description. A title that says "... Live" ("Satinder Sartaaj Live in Delhi",
     "Vivek Samtani Live") is a show: the description then only has to say which kind (laughter, or music). Titles with no
@@ -223,7 +226,11 @@ def parse_district_sitemap(html, page_url, src, entry):
         # almost anything, and this source also lists water parks and classes. A title that says nothing is left out; the
         # listing pages cover ordinary shows. No city is passed in: each show is filed under the city its own venue and
         # address name, and one that names none is left out.
-        kind = lambda n: _show_kind(n["name"], n.get("description"))  # noqa: E731
+        def kind(n):
+            k = _show_kind(n["name"], n.get("description"))
+            if k or not any(w in url for w in watch):
+                return k
+            return "comedy" if any(c in url for c in _COMEDIANS) else "music"  # a well-known act's page is a show whatever the title says
         near = lambda n: nearest_city(*(((n.get("location") or {}).get("geo") or {}).get(k) for k in ("latitude", "longitude"))) if isinstance(n.get("location"), dict) else None  # noqa: E731
         shows = [e for e in (jsonld_to_event(n, src["name"], near(n), kind(n), url) if kind(n) else None
                              for n in nodes) if e and e["city"] != "Unknown"]

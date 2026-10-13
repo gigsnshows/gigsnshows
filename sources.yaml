@@ -59,7 +59,9 @@
                  karan-aujla, aujla, sonu-nigam, coldplay, ed-sheeran, bryan-adams, lauv, martin-garrix, zakir, anirudh, ilaiyaraaja,
                  sid-sriram, jubin, atif, neha-kakkar, papon, armaan, vishal, mohit-chauhan, kailash-kher, lucky-ali, euphoria,
                  nucleya, divine, raftaar, emiway, zakir-khan, vir-das, anubhav, biswa, samay-raina, kenny, rolling-loud, sunburn,
-                 nh7, lollapalooza, wonderment, aditya-rikhari, darshan-raval, krishna-das, gorillaz, pritam, shankar-mahadevan]
+                 nh7, lollapalooza, wonderment, aditya-rikhari, darshan-raval, krishna-das, gorillaz, pritam, shankar-mahadevan,
+                 sartaaj, sandlas, asees, parmish, raghu-dixit, fred-again, hanumankind, seedhe, anuv-jain, jasleen, arjun-kanungo,
+                 amit-trivedi, hariharan, ritviz, prabh-deep, sapna-choudhary, b-praak, guru-randhawa, mika-singh, rahul-dua, kanan, tanmay, bassi]
   # ^ well-known acts: their pages are read first, and health.py checks they are all in the listings
   max_pages: 700            # new pages read per run, newest first; what's been read is remembered in data/district_pages.json
   urls:

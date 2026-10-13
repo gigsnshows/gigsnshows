@@ -59,7 +59,7 @@ CATEGORY_KEYWORDS = {
                "t20i", "t20", "odi", "test cricket", "world cup"],
     "music": ["concert", "live music", "gig", "gigs", "band", "tour", "dj", "festival", "garba", "dandiya", "dhandiya", "dandia", "raas", "raass", "navratri",
               "classical", "jazz", "indie", "rock", "hip hop", "sufi", "ghazal",
-              "orchestra", "recital", "philharmonic", "qawwali", "unplugged", "jam", "jamming"],
+              "orchestra", "symphonic", "recital", "philharmonic", "qawwali", "unplugged", "jam", "jamming"],
 }
 
 # ---------------------------------------------------------------- fetching

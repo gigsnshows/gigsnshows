@@ -125,3 +125,15 @@ def test_a_venue_with_no_known_city_name_is_placed_by_its_map_position(lat, lng,
 @pytest.mark.parametrize("title", ["Raas Garba Flea Market & Brand Expo Vol - 8", "Diwali Flea Market"])
 def test_markets_are_not_shows(title):
     assert NOT_SHOWS.search(title)
+
+
+def test_small_towns_on_a_tour_are_cities():
+    from scrapers.cities import detect_city
+    assert detect_city("Satinder Sartaaj Live in Hisar") == "Hisar"
+    assert detect_city("Divine - Banaras") == "Varanasi"
+    assert detect_city("Parade Ground, Yamunanagar, Haryana") == "Yamuna Nagar"
+
+
+def test_symphonic_is_music():
+    from scrapers.base import guess_category
+    assert guess_category("Red Bull Symphonic with Sunidhi Chauhan") == "music"

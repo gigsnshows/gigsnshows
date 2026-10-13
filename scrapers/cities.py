@@ -53,6 +53,12 @@ CITIES = {
         "Lonavala", "Dubai", "Abu Dhabi", "Singapore", "Bangkok", "Kathmandu", "Colombo", "Dhaka"]},
 }
 
+# Smaller cities that big tours stop in (Satinder Sartaaj's tour plays a dozen of them).
+CITIES.update({c: [c.lower()] for c in ["Bathinda", "Rohtak", "Hisar", "Ambala", "Karnal", "Kota", "Hoshiarpur", "Gurdaspur", "Panipat"]})
+CITIES["Ganganagar"] = ["sri ganganagar", "ganganagar"]
+CITIES["Yamuna Nagar"] = ["yamuna nagar", "yamunanagar"]
+CITIES["Varanasi"] = ["varanasi", "banaras", "benares"]
+
 _ALIAS_TO_CITY = {alias: city for city, aliases in CITIES.items() for alias in aliases}
 _PATTERN = re.compile(
     r"\b(" + "|".join(re.escape(a) for a in sorted(_ALIAS_TO_CITY, key=len, reverse=True)) + r")\b", re.I)
@@ -81,6 +87,9 @@ _COORDS = {
     "Bhubaneswar": (20.296, 85.825), "Patna": (25.594, 85.138), "Ranchi": (23.344, 85.310), "Raipur": (21.251, 81.630),
     "Jalandhar": (31.326, 75.576), "Varanasi": (25.317, 82.973), "Agra": (27.177, 78.008), "Amritsar": (31.634, 74.872),
     "Ludhiana": (30.901, 75.857), "Madurai": (9.925, 78.120), "Kanpur": (26.449, 80.332), "Lonavala": (18.750, 73.407),
+    "Hisar": (29.149, 75.722), "Rohtak": (28.895, 76.607), "Bathinda": (30.211, 74.945), "Ambala": (30.378, 76.776),
+    "Karnal": (29.686, 76.990), "Kota": (25.213, 75.864), "Hoshiarpur": (31.532, 75.912), "Gurdaspur": (32.041, 75.405),
+    "Panipat": (29.391, 76.968), "Ganganagar": (29.922, 73.877), "Yamuna Nagar": (30.130, 77.289),
 }
 
 
