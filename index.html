@@ -2328,7 +2328,7 @@
     if (step === "account") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Your account</h2>
         <p class="assist-status">Logged in as <b>${esc(user ? prettyPhone(user.phoneNumber) : "+91 98\u2022\u2022\u2022 \u2022\u2022210")}</b>. The shows you save, your interests and For you picks are saved to your account and follow you to any device you log in on.</p>
-        <div class="login-acts"><button data-login="wallet">Ticket wallet<span class="pill-early">Early access</span></button><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
+        <div class="login-acts"><button data-login="wallet">Ticket wallet</button><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
         <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
     } else if (step === "confirm-delete") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Delete your account?</h2>
@@ -2557,7 +2557,7 @@
     if (!sample && !wallet.loaded) return `<h2 id="walletTitle">Your tickets</h2><p class="assist-status">Loading your wallet…</p>`;
     const err = wallet.error ? `<p class="login-err" role="alert">${esc(wallet.error)}</p>` : "";
     if (!sample && !wallet.accounts.length) {
-      return `<h2 id="walletTitle">Ticket wallet<span class="pill-early">Early access</span></h2>
+      return `<h2 id="walletTitle">Ticket wallet</h2>
         <p class="assist-status">Connect your Gmail and the tickets you've booked on every seller appear here, with the QR code ready to show at the door.</p>
         ${err}<div class="login-acts"><button class="assist-book" data-w="connect">Connect Gmail</button><button data-w="sample">See how it works</button></div>
         <p class="assist-fine">Read-only, and only emails from ticket sellers are opened. <a href="privacy.html">How your data is handled</a></p>`;
@@ -2568,7 +2568,7 @@
         <div>${esc(a.email)}<small>${a.status === "needs_reconnect" ? "Google needs you to reconnect" : a.status === "error" ? "Couldn't check just now" : esc(agoText(a.last_sync))}</small></div>
         <button data-w="${a.status === "needs_reconnect" ? "connect" : "disconnect"}" data-id="${esc(a.id)}">${a.status === "needs_reconnect" ? "Reconnect" : "Disconnect"}</button></div>`).join("")}
       <div class="login-acts"><button data-w="sync">Look for new tickets</button><button data-w="connect">Add another Gmail</button><button class="danger" data-w="wipe">Delete everything</button></div>`;
-    return `<h2 id="walletTitle">Your tickets${VIDEO_DEMO ? "" : `<span class="pill-early">${sample ? "Sample" : "Early access"}</span>`}</h2>
+    return `<h2 id="walletTitle">Your tickets${sample && !VIDEO_DEMO ? `<span class="pill-early">Sample</span>` : ""}</h2>
       ${sample && !VIDEO_DEMO ? `<p class="wallet-note"><b>Sample tickets.</b> This is how your wallet looks once your Gmail is connected. These aren't real bookings.</p>` : ""}
       ${looking ? `<p class="assist-status">Looking through your emails for tickets. This takes a minute.</p>` : ""}${err}
       ${up.length ? `<ul class="wallet-list">${up.map(ticketRow).join("")}</ul>` : `<p class="assist-status">${looking ? "" : "No upcoming tickets yet. New bookings appear here by themselves."}</p>`}
@@ -2600,7 +2600,7 @@
         <li>We keep the event, date, venue, booking ID, seats and QR code. Not prices or card details.</li>
         <li>Disconnect any time: it removes our access at Google and deletes the tickets we found.</li>
       </ul>
-      <p class="wallet-note"><b>Early access.</b> Google is still reviewing gigsnshows, so only invited testers can connect for now. If Google says access is blocked, your account isn't on the list yet: <a href="contact.html">tell us</a> and we'll add you.</p>
+      <p class="wallet-note"><b>Good to know.</b> Google is still reviewing gigsnshows, so only invited testers can connect for now. If Google says access is blocked, your account isn't on the list yet: <a href="contact.html">tell us</a> and we'll add you.</p>
       ${walletView.note ? `<p class="login-err" role="alert">${esc(walletView.note)}</p>` : ""}
       <div class="login-acts"><button class="assist-book" data-w="google">Continue to Google</button><button data-w="list">Not now</button></div>
       <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
