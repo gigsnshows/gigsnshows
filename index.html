@@ -3846,7 +3846,7 @@
       if (shows.length) addBubble("bot wide", assistCardsHtml(shows, state.city, null));
       chatHistory.push({ role: "assistant", content: said, show_ids: shows.map(e => e.id) });
       track("chat_message", { method, result: shows.length ? "found" : "talk" });
-      if (method === "voice") speak((said.match(/^.*?[.!?](?:\s|$)/) || [said])[0].trim());
+      if (method === "voice") speak(said.length > 300 ? said.slice(0, 300).replace(/\s\S*$/, "") : said);  // the whole short answer, not just "Great news!"
     } catch {
       typing.remove();
       track("chat_message", { method, result: "fallback" });
