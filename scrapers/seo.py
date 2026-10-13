@@ -40,7 +40,7 @@ CATEGORIES = {  # key -> (url slug, page heading, short label)
 }
 GENRE_LABELS = {slug_: label for entries in catalog().values() for slug_, label in entries}  # "theatre-hindi" -> "Hindi"
 SCHEMA_TYPE = {"music": "MusicEvent", "theatre": "TheaterEvent", "sports": "SportsEvent", "comedy": "ComedyEvent"}
-MAX_ON_CITY_PAGE = 150
+MAX_ON_CITY_PAGE = 500  # Mumbai alone has 330+ upcoming shows; at 150 the A. R. Rahman concert (1 Nov) was not on its page
 GRADIENT = "linear-gradient(90deg,#0a84ff,#8b5cf6 50%,#ff2d95)"
 
 THEME_JS = """<script>

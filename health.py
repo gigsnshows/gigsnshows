@@ -109,8 +109,12 @@ def hours_since(ts):
 
 def check_sources(h, sources):
     errors, warnings, rows = [], [], []
+    done = set()
     for src in sources:
         name = src["name"]
+        if name in done:
+            continue  # a source read two ways (District, BookMyShow, NCPA) is checked once
+        done.add(name)
         runs_on = src.get("runs_on", ["aws", "github"])
         where = "aws" if "aws" in runs_on else "mac" if "mac" in runs_on else None
         s = h["sources"].get(name)
