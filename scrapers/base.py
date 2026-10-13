@@ -42,7 +42,13 @@ CATEGORIES = ("music", "theatre", "sports", "comedy")
 NOT_SHOWS = re.compile(
     r"\b(workshop|workshops|masterclass|pottery|painting|art date|block printing|clay|candle making|resin art|"
     r"crochet|embroidery|terrarium|baking class|cooking class|sip and paint|paint and sip|craft|"
-    r"ikebana|tote bag|texture art|shan shui|kids art|art party|resin galaxy|paint your tote)\b", re.I)
+    r"ikebana|tote bag|texture art|shan shui|kids art|art party|resin galaxy|paint your tote)\b"
+    # Activities and attractions that District and BookMyShow list beside shows (a kids' play area is not a play).
+    r"|(?:play|jump|fun|soft ?play|kids?|kidz|indoor) (?:area|zone|park|land|centre|center|garden|place)s?\b|\bkids? play\b|\bplay ?(?:n|'n'|and) ?learn\b|"
+    r"\bindoor (?:rock )?climbing\b|\bgo-?kart(?:ing)?\b|\bkarting\b|\bshooting (?:range|academy|sports|foundation)\b|\bair rifle\b|\blive shoot\b|"
+    r"\bsailing\b|\byacht\b|\bmuseum\b|\bstadium tour\b|\btheme park\b|\bwater ?park\b|\bamusement\b|\btrampoline\b|\bescape room\b|"
+    r"\blaser tag\b|\bcycling\b|\bcycle ride\b|\be-cycling\b|\bshort films?\b|\bfilm screening\b|\bmovie night\b",
+    re.I)
 
 CATEGORY_KEYWORDS = {
     "comedy": ["comedy", "comic", "stand-up", "standup", "stand up", "improv", "open mic", "roast", "crowd work"],

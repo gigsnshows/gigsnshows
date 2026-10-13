@@ -84,10 +84,18 @@ def drop_tour_hubs(events):
     return [e for e in events if (e["source"], e["url"]) not in hubs]
 
 
+def _same_show_key(e):
+    """The same night, city and title (letters and digits only): two platforms often spell the venue differently, which gave the show two ids."""
+    return (e["date"], e["city"], re.sub(r"[^a-z0-9]", "", e["title"].lower()))
+
+
 def dedupe(events):
     """Same show on two platforms -> one entry that remembers every source."""
-    merged = {}
+    merged, same = {}, {}
     for e in events:
+        twin = same.get(_same_show_key(e))
+        if twin is not None and twin["id"] != e["id"]:
+            e = {**e, "id": twin["id"]}  # fold it into the entry we already have
         if e["id"] in merged:
             m = merged[e["id"]]
             if e["source"] not in m["sources"]:
@@ -100,6 +108,7 @@ def dedupe(events):
             e["sources"] = [e["source"]]
             e["links"] = {e["source"]: e["url"]}
             merged[e["id"]] = e
+            same.setdefault(_same_show_key(e), e)
     return list(merged.values())
 
 
@@ -172,7 +181,7 @@ def main(dry_run=False, only=None, remerge=False):
     if stale:
         print(f"\nNo fresh results from: {', '.join(sorted(stale))} — keeping {len(carried)} of their earlier upcoming shows")
 
-    upcoming = drop_tour_hubs([e for e in collected if e["date"] >= today] + carried)
+    upcoming = drop_tour_hubs([e for e in collected if e["date"] >= today and not NOT_SHOWS.search(e["title"])] + carried)
     merged = dedupe(upcoming)
     merged.sort(key=lambda e: (e["date"], e["time"]))
     print(f"\n{len(collected)} scraped + {len(carried)} kept -> {len(merged)} unique upcoming events")

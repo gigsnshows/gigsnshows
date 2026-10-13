@@ -1,0 +1,45 @@
+"""What counts as a show, and when two listings are the same show. Run: python -m pytest tests (from the repo root)."""
+import os
+import sys
+
+import pytest
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from run import dedupe  # noqa: E402
+from scrapers.base import NOT_SHOWS  # noqa: E402
+
+
+@pytest.mark.parametrize("title", [
+    "Kidz Play Park", "Tiny Twinkles Play Zone", "Wild Wonders Kids Play Area", "Play 'N' Learn \u2013 Inorbit Mall Malad",
+    "Infinity Play Go-karting", "The Rising Gun Shooting Range", "Ziel Shooting Academy", "Private Open Sailing",
+    "Xs 63 - Yacht Sailing in Mumbai", "MCA Museum & Stadium Tour", "Mumbai Midnight Cycling", "Jaipur Sunrise E-CYCLING TOUR",
+    "Indoor Rock Climbing \u2013 High Rock, Powai", "AN EVENING WITH SHORT FILMS", "Pottery Workshop",
+])
+def test_activities_are_not_shows(title):
+    assert NOT_SHOWS.search(title)
+
+
+@pytest.mark.parametrize("title", [
+    "A R Rahman \u2013 Wonderment Tour Live in Concert", "Aamne Saamne - Marathi Play", "Diljit Dosanjh - RuPay Aura India Tour, Mumbai",
+    "Hamilton", "Archery Premier League", "Playboy: a comedy", "The Play That Goes Wrong", "SBI Green Marathon S7", "Papon Live In Concert",
+    "Sunburn Festival", "Where Cocktails Meet Jazz at The Hedonist",
+])
+def test_real_shows_are_kept(title):
+    assert not NOT_SHOWS.search(title)
+
+
+def show(i, title, venue, source, date="2026-10-16", city="Goa"):
+    return {"id": i, "title": title, "venue": venue, "source": source, "date": date, "city": city, "url": f"https://x/{i}", "image": None,
+            "price_from": None, "lang": [], "time": ""}
+
+
+def test_same_show_on_two_platforms_is_one_entry():
+    out = dedupe([show("a", "Classic Rock ft. Medium rare", "Hard Rock Cafe | Chennai", "District", city="Chennai"),
+                  show("b", "CLASSIC ROCK ft. Medium Rare", "Hard Rock Cafe Chennai", "Skillbox", city="Chennai")])
+    assert len(out) == 1 and out[0]["sources"] == ["District", "Skillbox"] and set(out[0]["links"]) == {"District", "Skillbox"}
+
+
+def test_different_nights_or_cities_stay_apart():
+    out = dedupe([show("a", "Comedy Night", "A", "District"), show("b", "Comedy Night", "B", "Skillbox", date="2026-10-17"),
+                  show("c", "Comedy Night", "C", "thumpN", city="Pune")])
+    assert len(out) == 3
