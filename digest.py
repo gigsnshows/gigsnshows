@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-The weekly picks email.
+The picks email: weekly (the weekend ahead) or, with --daily, every morning (tonight, tomorrow, what's coming up).
 
 Builds the email from data/events.json: for each city the best shows for the coming weekend, a few
 for early next week, and what was just announced. Nothing is sent from here.
@@ -9,6 +9,7 @@ for early next week, and what was just announced. Nothing is sent from here.
     python digest.py --city Mumbai Pune    previews of only these cities
     python digest.py --out some/folder     somewhere else
     python digest.py --today 2026-10-08    pretend it's another day (the email is built for the weekend after it)
+    python digest.py --daily               the daily email instead, into build/digest/daily/ (tonight, tomorrow, coming up, just announced)
 
 It writes <city>.html (a preview of what a subscriber in that city sees), an index.html to flip
 through them, and buttondown.json / buttondown.html: ONE email for everyone, with a block per city
@@ -37,9 +38,12 @@ UNSUBSCRIBE = "{{ unsubscribe_url }}"  # Buttondown's merge tag; Brevo uses {{ u
 MIN_WEEKEND_SHOWS = 3  # a city with fewer shows than this on the weekend doesn't get an email
 WEEKEND_PICKS, NEXT_PICKS, NEW_PICKS = 6, 3, 3
 RECENT_DAYS = 7  # "just announced" means first listed within this many days
+DAILY_PICKS = (("Tonight", 4), ("Tomorrow", 3), ("Coming up", 3), ("Just announced", 2))
+DAILY_RECENT_DAYS = 3
 CATEGORY_LABEL = {"music": "Live music", "theatre": "Theatre", "comedy": "Stand-up", "sports": "Sports"}
 GLOW, VIOLET, NEON = "#0a84ff", "#8b5cf6", "#ff2d95"
 FAVOURITE_VENUES = re.compile(r"ncpa|nmacc|antisocial|svp|dome|^prithvi|piano man", re.I)  # the home page's "From Your Favourite Venues"
+FESTIVE = re.compile(r"\b(garba|garbha|dandiya|dhandiya|dandia|raas|raass|navratri)\b", re.I)
 NOT_A_NIGHT_OUT = re.compile(r"\b(meet-?up|cycling|run club|board ?games?|ranking|virtual|playdate)\b", re.I)
 
 
@@ -105,7 +109,8 @@ def pick(shows, span, count, today, taken):
             show, e = row[0], row[1]
             same_kind = sum(1 for c in chosen if c[0].category == show.category)
             same_venue = sum(1 for c in chosen if venue_short(c[1]) == venue_short(e))
-            return row[3] - 1.2 * same_kind - 1.5 * same_venue
+            same_season = sum(1 for c in chosen if FESTIVE.search(c[0].title)) if FESTIVE.search(show.title) else 0  # not a list of garba nights
+            return row[3] - 1.2 * same_kind - 1.5 * same_venue - 1.5 * same_season
         best = max(rows, key=adjusted)
         rows.remove(best)
         chosen.append(best)
@@ -133,14 +138,49 @@ def build(city, shows, today):
             "skip": count_weekend < MIN_WEEKEND_SHOWS, "sections": sections, "picks": len(flat)}
 
 
+def build_daily(city, shows, today):
+    """The daily email for one city. Keeps the weekly dict's shape (`weekend` is [today, tomorrow], `weekend_shows` counts
+    the shows on those two days) so the same rendering and the per-city blocks work for both."""
+    tomorrow = today + timedelta(days=1)
+    taken = set()
+    day = lambda d: (d, d)  # noqa: E731
+    ahead = windows(today)[0] if today.weekday() <= 3 else (tomorrow + timedelta(days=1), tomorrow + timedelta(days=3))
+    count_today = sum(1 for s in shows if any(in_window(e, day(today)) for e in s.events))
+    count_two = sum(1 for s in shows if any(in_window(e, (today, tomorrow)) for e in s.events))
+    sections = [("Tonight", pick(shows, day(today), DAILY_PICKS[0][1], today, taken)),
+                ("Tomorrow", pick(shows, day(tomorrow), DAILY_PICKS[1][1], today, taken)),
+                ("Coming up", pick(shows, ahead, DAILY_PICKS[2][1], today, taken))]
+    fresh = [s for s in shows if s.id not in taken and any(e.get("first_seen") and (today - parse_day(e["first_seen"][:10])).days <= DAILY_RECENT_DAYS for e in s.events)]
+    sections.append(("Just announced", pick(fresh, (ahead[1] + timedelta(days=1), today + timedelta(days=400)), DAILY_PICKS[3][1], today, taken)))
+    sections = [(name, rows) for name, rows in sections if rows]
+    flat = [r for _, rows in sections for r in rows]
+    names = [r[0].title for r in sections[0][1]] if sections else []  # best first
+    first_two = ", ".join(clip_title(n) for n in names[:2])
+    lead = "Tonight" if sections and sections[0][0] == "Tonight" else "Tomorrow" if sections and sections[0][0] == "Tomorrow" else "What's on"
+    more = max((count_today if lead == "Tonight" else count_two) - 2, 0)
+    subject = f"{lead} in {city}: {first_two}" + (f" and {more} more" if more and first_two else "") if first_two and lead != "What's on" else f"What's on in {city}"
+    pre = f"{today:%a} {today.day} {today:%b}: " + ", ".join(
+        sorted({CATEGORY_LABEL.get(r[0].category, r[0].category).lower() for r in flat}, key=lambda x: ["live music", "theatre", "stand-up", "sports"].index(x) if x in ["live music", "theatre", "stand-up", "sports"] else 9))
+    return {"city": city, "kind": "daily", "subject": subject, "preheader": pre, "weekend": [str(today), str(tomorrow)], "weekend_shows": count_two,
+            "tonight": count_today, "lead": lead, "skip": count_two < MIN_WEEKEND_SHOWS, "sections": sections, "picks": len(flat)}
+
+
 def clip_title(title, limit=34):
     t = re.sub(r"\s+", " ", re.sub(r"\s*[|:–—-]\s.*$", "", title)).strip(" |:–—-")
     t = t if len(t) >= 6 else title
-    return t if len(t) <= limit else t[:limit].rsplit(" ", 1)[0].rstrip(",.;:!-– ") + "…"
+    if len(t) <= limit:
+        return t
+    words = t[:limit].rsplit(" ", 1)[0].split()
+    while len(words) > 1 and words[-1].lower().strip(".,") in {"ft", "feat", "&", "x", "with", "and", "the", "at", "by", "presents"}:
+        words.pop()  # not "Duos ft…"
+    return " ".join(words).rstrip(",.;:!-– ") + "…"
+
+
+KIND = {"kind": "weekly"}  # which email is being built; set once in run()
 
 
 def utm(city, today):
-    return f"utm_source=weekly&utm_medium=email&utm_campaign={slug(city)}-{today:%Y%m%d}"
+    return f"utm_source={KIND['kind']}&utm_medium=email&utm_campaign={slug(city)}-{today:%Y%m%d}"
 
 
 def show_url(show, city, today):
@@ -186,16 +226,19 @@ def city_rows(d, today):
             body.append(card(show, e, n_dates, city, today, hero=first))
             first = False
     total = f"{d['weekend_shows']} shows" if d["weekend_shows"] != 1 else "1 show"
+    daily = d.get("kind") == "daily"
+    heading = f"{d['lead']} in {city}" if daily else f"This weekend in {city}"
+    sub = f"{total} tonight and tomorrow; here are the ones we'd go to." if daily else f"{total} on this weekend; here are the ones we'd go to."
     return f"""<tr><td style="padding:22px 24px 6px">
-<div style="font-size:22px;line-height:1.25;font-weight:800;color:#111">This weekend in {esc(city)}</div>
-<div style="padding-top:4px;font-size:14px;color:#555">{esc(d['preheader'])}. {esc(total)} on this weekend; here are the ones we'd go to.</div></td></tr>
+<div style="font-size:22px;line-height:1.25;font-weight:800;color:#111">{esc(heading)}</div>
+<div style="padding-top:4px;font-size:14px;color:#555">{esc(d['preheader'])}. {esc(sub)}</div></td></tr>
 <tr><td style="padding:12px 24px 8px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
 {"".join(body)}
 </table></td></tr>
 <tr><td align="center" style="padding:6px 24px 26px"><a href="{esc(f"{SITE}/?city={slug(city)}&{utm(city, today)}")}" style="display:inline-block;padding:13px 26px;border-radius:999px;background:#111;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">See everything on in {esc(city)}</a></td></tr>"""
 
 
-def fallback_rows(biggest, today):
+def fallback_rows(biggest, today, heading="This weekend across India"):
     """For subscribers whose city has too little on (or who didn't say): the biggest cities' best picks."""
     body = []
     for d in biggest:
@@ -204,12 +247,12 @@ def fallback_rows(biggest, today):
         for show, e, n_dates, _ in d["sections"][0][1][:2]:
             body.append(card(show, e, n_dates, d["city"], today, hero=False))
     return f"""<tr><td style="padding:22px 24px 6px">
-<div style="font-size:22px;line-height:1.25;font-weight:800;color:#111">This weekend across India</div>
+<div style="font-size:22px;line-height:1.25;font-weight:800;color:#111">{esc(heading)}</div>
 <div style="padding-top:4px;font-size:14px;color:#555">{{% if subscriber.metadata.city %}}We don't have much on yet in {{{{ subscriber.metadata.city }}}}, so here are the highlights from the biggest cities.{{% else %}}Here are the highlights from the biggest cities.{{% endif %}}</div></td></tr>
 <tr><td style="padding:6px 24px 8px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
 {"".join(body)}
 </table></td></tr>
-<tr><td align="center" style="padding:6px 24px 26px"><a href="{esc(f"{SITE}/?utm_source=weekly&utm_medium=email&utm_campaign=india-{today:%Y%m%d}")}" style="display:inline-block;padding:13px 26px;border-radius:999px;background:#111;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">Pick your city on gigsnshows</a></td></tr>"""
+<tr><td align="center" style="padding:6px 24px 26px"><a href="{esc(f"{SITE}/?utm_source={KIND['kind']}&utm_medium=email&utm_campaign=india-{today:%Y%m%d}")}" style="display:inline-block;padding:13px 26px;border-radius:999px;background:#111;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none">Pick your city on gigsnshows</a></td></tr>"""
 
 
 def shell(rows, preheader, today, unsubscribe):
@@ -217,11 +260,11 @@ def shell(rows, preheader, today, unsubscribe):
     return f"""<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f2f2f7">{esc(preheader)}</div>
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
 <tr><td style="padding:22px 24px;background:{VIOLET};background-image:linear-gradient(90deg,{GLOW},{VIOLET} 55%,{NEON})">
-<a href="{esc(SITE)}/?utm_source=weekly&amp;utm_medium=email&amp;utm_campaign=header-{today:%Y%m%d}" style="font-size:24px;font-weight:800;letter-spacing:-.02em;color:#ffffff;text-decoration:none">gigs<span style="font-weight:500">n</span>shows</a>
+<a href="{esc(SITE)}/?utm_source={KIND['kind']}&amp;utm_medium=email&amp;utm_campaign=header-{today:%Y%m%d}" style="font-size:24px;font-weight:800;letter-spacing:-.02em;color:#ffffff;text-decoration:none">gigs<span style="font-weight:500">n</span>shows</a>
 <div style="padding-top:2px;font-size:13px;color:rgba(255,255,255,.88)">Your kind of night out</div></td></tr>
 {rows}
 <tr><td style="padding:16px 24px 22px;background:#fafafc;border-top:1px solid #e6e6ec;font-size:12px;line-height:1.55;color:#777">
-You're getting this because you signed up for weekly picks at gigsnshows.com. We list shows from ticketing sites and venues; always check the seller's page before you buy.
+You're getting this because you signed up for {KIND['kind']} picks at gigsnshows.com. We list shows from ticketing sites and venues; always check the seller's page before you buy.
 <br><a href="{unsubscribe}" style="color:#777">Unsubscribe</a> · <a href="{esc(SITE)}/privacy.html" style="color:#777">Privacy</a></td></tr>
 </table>"""
 
@@ -245,16 +288,19 @@ def combined(sendable, today, unsubscribe, blocks=None):
         subjects.append(f'{{% {"if" if i == 0 else "elif"} {test} %}}{d["subject"].replace("{", "").replace("}", "")}')
     biggest = sorted(sendable, key=lambda d: -d["weekend_shows"])[:6]
     w0, w1 = parse_day(sendable[0]["weekend"][0]), parse_day(sendable[0]["weekend"][1])
-    pre = f"{w0:%a} {w0.day} – {w1:%a} {w1.day} {w1:%b}: the shows we'd go to"
-    all_rows = "".join(rows) + "{% else %}" + fallback_rows(biggest, today) + "{% endif %}"
-    subject = "".join(subjects) + "{% else %}This weekend across India: " + ", ".join(
+    daily = sendable[0].get("kind") == "daily"
+    pre = f"{w0:%a} {w0.day} {w0:%b}: the shows we'd go to" if daily else f"{w0:%a} {w0.day} – {w1:%a} {w1.day} {w1:%b}: the shows we'd go to"
+    all_rows = "".join(rows) + "{% else %}" + fallback_rows(biggest, today, "Tonight across India" if daily else "This weekend across India") + "{% endif %}"
+    subject = "".join(subjects) + "{% else %}" + ("Tonight across India: " if daily else "This weekend across India: ") + ", ".join(
         clip_title(d["sections"][0][1][0][0].title) for d in biggest[:2]) + " and more{% endif %}"
     body = "<!-- buttondown-editor-mode: fancy -->\n" + shell(all_rows, pre, today, unsubscribe)
     return subject, body
 
 
-def run(cities=None, out=OUT, today=None, unsubscribe=UNSUBSCRIBE, blocks=None):
+def run(cities=None, out=OUT, today=None, unsubscribe=UNSUBSCRIBE, blocks=None, daily=False):
     today = today or today_in_india()
+    KIND["kind"] = "daily" if daily else "weekly"
+    make = build_daily if daily else build
     events = json.loads(EVENTS.read_text())["events"]
     events = [e for e in events if e["date"] >= str(today)]
     by_city = {}
@@ -266,7 +312,7 @@ def run(cities=None, out=OUT, today=None, unsubscribe=UNSUBSCRIBE, blocks=None):
     for city in sorted(by_city):
         if cities and city not in cities:
             continue
-        d = build(city, by_city[city], today)
+        d = make(city, by_city[city], today)
         rows.append(d)
         if d["skip"] and not cities:
             continue
@@ -276,20 +322,23 @@ def run(cities=None, out=OUT, today=None, unsubscribe=UNSUBSCRIBE, blocks=None):
         subject, body = combined(sendable, today, unsubscribe, blocks)
         (out / "buttondown.json").write_text(json.dumps({"subject": subject, "body": body, "cities": [d["city"] for d in sendable if not blocks or d["city"] in blocks]}, indent=1, ensure_ascii=False) + "\n")
         (out / "buttondown.html").write_text(body)
-    index = "".join(f'<li><a href="{slug(d["city"])}.html">{esc(d["city"])}</a> · {d["weekend_shows"]} shows this weekend · <i>{esc(d["subject"])}</i></li>' for d in rows if not d["skip"] or cities)
-    (out / "index.html").write_text(f'<!doctype html><meta charset="utf-8"><title>Weekly picks</title><body style="font-family:sans-serif;max-width:720px;margin:30px auto;line-height:1.7"><h1>Weekly picks, built {today}</h1><ul>{index}</ul>')
+    span = "tonight and tomorrow" if daily else "this weekend"
+    index = "".join(f'<li><a href="{slug(d["city"])}.html">{esc(d["city"])}</a> · {d["weekend_shows"]} shows {span} · <i>{esc(d["subject"])}</i></li>' for d in rows if not d["skip"] or cities)
+    (out / "index.html").write_text(f'<!doctype html><meta charset="utf-8"><title>{KIND["kind"].title()} picks</title><body style="font-family:sans-serif;max-width:720px;margin:30px auto;line-height:1.7"><h1>{KIND["kind"].title()} picks, built {today}</h1><ul>{index}</ul>')
     return rows, today
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--city", nargs="*", help="only these cities (previews; skips the combined email)")
-    ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--daily", action="store_true", help="the daily email (tonight, tomorrow, coming up) instead of the weekend one")
+    ap.add_argument("--out", default=None)
     ap.add_argument("--today", help="YYYY-MM-DD, to build for another week")
     ap.add_argument("--unsubscribe", default=UNSUBSCRIBE)
     ap.add_argument("--blocks", nargs="*", help="only put these cities' blocks in the combined email (the cities that have subscribers); the highlights block is always there")
     a = ap.parse_args()
-    rows, day = run(a.city, a.out, parse_day(a.today) if a.today else None, a.unsubscribe, a.blocks)
+    a.out = a.out or str(OUT / "daily" if a.daily else OUT)
+    rows, day = run(a.city, a.out, parse_day(a.today) if a.today else None, a.unsubscribe, a.blocks, a.daily)
     for d in rows:
-        print(f"{'skip' if d['skip'] else 'ok  '} {d['city']:<18} {d['weekend_shows']:>3} on the weekend, {d['picks']} picks  {d['subject']}")
-    print(f"written to {a.out} for the weekend after {day}")
+        print(f"{'skip' if d['skip'] else 'ok  '} {d['city']:<18} {d['weekend_shows']:>3} on the {'two days' if a.daily else 'weekend'}, {d['picks']} picks  {d['subject']}")
+    print(f"written to {a.out} for {'' if a.daily else 'the weekend after '}{day}")
