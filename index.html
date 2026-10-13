@@ -795,9 +795,6 @@
     </a>
     <div class="tabs-row">
       <nav class="tabs" role="tablist" id="tabs" aria-label="Categories"></nav>
-      <button class="icon-btn nl-btn" id="nlBtn" data-nl-open="header" aria-label="Get the weekly picks by email" title="Weekly picks by email" hidden>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 6 8-6"/></svg>
-      </button>
     </div>
     <div class="bar-right">
     <button class="icon-btn acct-btn" id="acctBtn" aria-label="Log in" aria-haspopup="dialog" hidden>
@@ -1940,10 +1937,9 @@
         <div class="slide-actions">
           <a class="btn-tickets" href="${esc(links[sources[0]] || e.url)}" target="_blank" rel="noopener" data-ticket="${esc(sources[0])}">${price ? `${price} · ` : ""}Tickets</a>
           ${saveButton(e.id, saved)}${calButton(e.id)}
-          <button class="icon-act share" data-share="${e.id}" aria-label="Share ${esc(e.title)}" title="Share">${ICON_SHARE}</button>
           <button class="icon-act nope" data-nope="${e.id}" aria-pressed="false" aria-label="Not for me: show fewer like this" title="Not for me">${ICON_NOPE}</button>
         </div>
-        <button class="slide-plan" data-plan="${e.id}">${ICON_PEOPLE}Who's in? Plan with friends</button>
+        <button class="slide-plan" data-plan="${e.id}">${ICON_PEOPLE}Who's in?</button>
         <p class="also">Tickets on ${esc(sources[0])}${also ? `; also on ${also}` : ""}</p>
       </div>
     </article>`;
@@ -2372,7 +2368,8 @@
         setUser(fb.auth.currentUser);  // linking a guest doesn't fire the auth listener
         track(fb.A.getAdditionalUserInfo(cred)?.isNewUser ? "sign_up" : "login", { method: "phone" });
         closeLogin();
-        toast("You're logged in. Your picks now follow you to any device.");
+        if (openWalletAfterLogin) { openWalletAfterLogin = false; toast("You're logged in."); openWallet("list"); }
+        else toast("You're logged in. Your picks now follow you to any device.");
       } catch (err) {
         renderLogin("code", loginError(err));
       }
@@ -2485,7 +2482,7 @@
     const body = user && wallet.loaded && wallet.accounts.length
       ? `<h3>No upcoming tickets yet</h3><p>Your wallet is connected. New bookings show up here by themselves, usually within the hour.</p><div class="w-acts"><button class="assist-book" data-wallet-open>Open wallet</button></div>`
       : `<h3>One wallet for all your tickets</h3><p>Tickets booked on BookMyShow, District, thumpN and more, together in one place. No more hunting through emails and apps when you need them.</p>
-         <div class="w-acts"><button class="assist-book" data-wallet-connect>Connect Gmail</button><button class="assist-details" data-wallet-sample>See how it works</button></div>`;
+         <div class="w-acts"><button class="assist-book" data-wallet-start>Open ticket wallet</button><button class="assist-details" data-wallet-sample>See how it works</button></div>`;
     return `<section class="tray" data-tray="wallet"><div class="tray-head"><h2>Ticket wallet<span class="pill-early">Early access</span></h2></div>
       <div class="wallet-promo">${art}<div>${body}</div></div></section>`;
   }
@@ -2541,7 +2538,7 @@
       ${looking ? `<p class="assist-status">Looking through your emails for tickets. This takes a minute.</p>` : ""}${err}
       ${up.length ? `<ul class="wallet-list">${up.map(ticketRow).join("")}</ul>` : `<p class="assist-status">${looking ? "" : "No upcoming tickets yet. New bookings appear here by themselves."}</p>`}
       ${past.length ? `<div class="wallet-sub">Earlier</div><ul class="wallet-list">${past.map(ticketRow).join("")}</ul>` : ""}
-      ${sample ? `<div class="login-acts"><button class="assist-book" data-w="connect">Connect Gmail</button></div>` : inboxes}
+      ${sample ? `<div class="login-acts"><button class="assist-book" data-w="start">Open my wallet</button></div>` : inboxes}
       ${walletView.note ? `<p class="assist-fine">${esc(walletView.note)}</p>` : ""}`;
   }
 
@@ -2607,6 +2604,17 @@
     }
   }
 
+  // "Ticket wallet" from the home page or the footer: logged in, it opens; logged out, it asks for the mobile number first
+  // and opens the wallet right after. Connect Gmail only appears inside the wallet, once someone is logged in.
+  let openWalletAfterLogin = false;
+  async function startWallet() {
+    await loadFirebase().catch(() => {});
+    if (user) { openWallet("list"); return; }
+    openWalletAfterLogin = true;
+    toast("Log in with your mobile number to open your ticket wallet.", 4000);
+    openLogin();
+  }
+
   async function connectGmail() {
     await loadFirebase().catch(() => {});
     if (!user) { closeWallet(); toast("Log in with your mobile number first, then connect Gmail."); openLogin(); return; }
@@ -2664,6 +2672,7 @@
       case "login": closeWallet(); openLogin(); break;
       case "sample": wallet = { loaded: true, tickets: sampleTickets(), accounts: [], error: "", sample: true }; walletView = { page: "list", id: "", note: "" }; renderList(); renderWallet(); track("wallet_sample"); break;
       case "connect": connectGmail(); break;
+      case "start": closeWallet(); startWallet(); break;
       case "google": continueToGoogle(b); break;
       case "sync": syncWallet(); break;
       case "disconnect": case "remove": walletView = { page: "confirm", id, action: b.dataset.w, note: "" }; renderWallet(); break;
@@ -2672,12 +2681,12 @@
     }
   });
   document.addEventListener("click", ev => {
-    if (ev.target.closest("[data-wallet-connect]")) { connectGmail(); return; }
+    if (ev.target.closest("[data-wallet-start]")) { startWallet(); return; }
     if (ev.target.closest("[data-wallet-sample]")) {
       wallet = { loaded: true, tickets: sampleTickets(), accounts: [], error: "", sample: true };
       renderList(); openWallet("list"); track("wallet_sample"); return;
     }
-    if (ev.target.closest("[data-wallet-open]")) { openWallet("list"); return; }
+    if (ev.target.closest("[data-wallet-open]")) { user ? openWallet("list") : startWallet(); return; }
     const tk = ev.target.closest("[data-ticket-open]");
     if (tk) openWallet("ticket", tk.dataset.ticketOpen);
   });
@@ -2956,7 +2965,7 @@
     const e = planShow(), url = planLink();
     const text = isNight(plan.doc)
       ? `${plan.doc.title} in ${plan.doc.city} 🎟️ Vote for what you'd go to: ${planEvents(plan.doc).map(x => x.title.split(/[|:]/)[0].trim()).join(", ")}`
-      : `Who's in? 🎟️ ${e.title} · ${whenLabel(e)}${e.venue ? " · " + e.venue : ""}`;
+      : `Who's in? 🙋\n🎟️ ${e.title}\n🗓️ ${whenLabel(e)}${e.venue ? " · 📍 " + e.venue.split(/[:|]/)[0].trim() : ""}\nTap the link and answer: Going ✅ · Maybe 🤔 · Can't ❌`;
     if (navigator.share && matchMedia("(pointer: coarse)").matches) {
       try { await navigator.share({ title: e.title, text, url }); track("share", { method: "phone", item_id: e.id, plan: true }); return; }
       catch (err) { if (err.name === "AbortError") return; }
@@ -3469,8 +3478,7 @@
   function nlState() { try { return localStorage.getItem(LS_NL) || ""; } catch { return ""; } }
   function nlSet(v) { try { localStorage.setItem(LS_NL, v); } catch {} }
   let nlFrom = "";
-  const nlBtn = document.getElementById("nlBtn");
-  function syncNlButton() { nlBtn.hidden = !NEWSLETTER_USERNAME || nlState() === "subscribed"; }  // the envelope in the header
+  function syncNlButton() {}  // the header envelope is gone: the weekly picks are offered from the footer only
   syncNlButton();
 
   function openNewsletter(from) {
@@ -3870,7 +3878,7 @@
     };
     r.onerror = ev => {
       assistStatus.textContent = ev.error === "not-allowed" || ev.error === "service-not-allowed"
-        ? "The microphone is blocked for this site. Allow it in your browser's settings, or type below."
+        ? "The microphone is blocked. Allow it for this site in your browser's settings (on iPhone, Dictation must be on in Settings > General > Keyboard), or tap the microphone on your keyboard and speak into the box."
         : ev.error === "no-speech" ? "I didn't catch that. Tap the mic and try again, or type below."
         : ev.error === "aborted" ? "" : "Couldn't listen just now. Type your question below.";
     };
@@ -3889,7 +3897,7 @@
     assistInput.value = "";
     assistInput.placeholder = "Ask: a chilled Saturday under ₹800";
     assistMic.hidden = !Recognition;
-    assistStatus.textContent = Recognition ? "" : "Voice isn't available in this browser. Type your question below.";
+    assistStatus.textContent = Recognition ? "" : "This browser can't listen for you. Tap the microphone on your keyboard to speak, or just type.";
     assist.hidden = false;
     document.body.style.overflow = "hidden";
     track("voice_open");
