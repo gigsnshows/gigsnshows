@@ -612,13 +612,6 @@
   .assist-try { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   /* the ticket wallet */
   .pill-early { display: inline-block; margin-left: 10px; padding: 2px 9px; border-radius: 999px; vertical-align: middle; color: #fff; font-family: var(--font); font-size: 0.66rem; font-weight: 800; letter-spacing: .02em; background: linear-gradient(135deg, var(--glow), #8b5cf6 50%, var(--neon)); }
-  .wallet-promo { display: flex; gap: 20px; align-items: center; padding: 20px 22px; border-radius: 18px; border: 1px solid var(--line);
-    background: linear-gradient(135deg, color-mix(in srgb, var(--glow) 16%, var(--bg-2)), color-mix(in srgb, var(--neon) 14%, var(--bg-2))); }
-  .wallet-promo .w-art { flex: none; width: 92px; height: 64px; transform: rotate(-8deg); filter: var(--logo-mark-fx); }
-  .wallet-promo h3 { margin: 0 0 4px; font-family: var(--brand-font); font-size: 1.2rem; font-weight: 700; }
-  .wallet-promo p { margin: 0; color: var(--ink-2); font-size: 0.93rem; max-width: 56ch; }
-  .wallet-promo .w-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-  @media (max-width: 640px) { .wallet-promo { flex-direction: column; align-items: flex-start; gap: 12px; padding: 18px; } .wallet-promo .w-art { width: 76px; height: 53px; } }
   .ticket-tile .art-link { width: 100%; height: 100%; padding: 0; text-align: left; cursor: pointer; }
   .ticket-tile .body { display: block; width: 100%; text-align: left; }
   .wallet-list { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
@@ -1689,7 +1682,6 @@
         <button class="see-all" data-onboard>${prefs ? "Edit" : "Personalise"}</button></span>`;
       sections.push(trayHtml("foryou", "For you", 0, recs.map(e => renderTile(e)), { seeAll: actions, note: forYouNote(prefs) }));
     }
-    sections.push(walletTrayHtml());
     const myLists = readLS(LS_LISTS, []);
     if (wannaGo.length || myLists.length) {
       const chips = `<div class="list-chips">${myLists.map(l => `<button class="chip" data-list-open="${esc(l.id)}">${esc(l.n === "Our Wanna Go" ? "Our shows" : l.n)}</button>`).join("")}
@@ -1920,7 +1912,6 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("footTabs").innerHTML = TABS.map(t => `<li><button data-foot-tab="${t.key}">${t.label}</button></li>`).join("")
       + `<li><button data-onboard>Your interests</button></li>`
-      + `<li><button data-wallet-open>Ticket wallet</button></li>`
       + `<li><a href="contact.html">Contact</a></li>`
       + `<li><a href="privacy.html">Privacy</a></li>`
       + `<li><a href="terms.html">Terms</a></li>`
@@ -2329,7 +2320,7 @@
     if (step === "account") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Your account</h2>
         <p class="assist-status">Logged in as <b>${esc(prettyPhone(user.phoneNumber))}</b>. The shows you save, your interests and For you picks are saved to your account and follow you to any device you log in on.</p>
-        <div class="login-acts"><button data-login="wallet">Your tickets</button><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
+        <div class="login-acts"><button data-login="wallet">Ticket wallet<span class="pill-early">Early access</span></button><button data-login="logout">Log out</button><button class="danger" data-login="delete">Delete my account</button></div>${err}
         <p class="assist-fine"><a href="privacy.html">Privacy policy</a></p>`;
     } else if (step === "confirm-delete") {
       loginCard.innerHTML = `${close}<h2 id="loginTitle">Delete your account?</h2>
@@ -2518,31 +2509,6 @@
       booking_id: `SAMPLE-000${i + 1}`, quantity: qty[i], seats: seats[i], event_id: e.id, has_code: 1, sample: true }));
   }
 
-  function ticketTile(t) {
-    const e = eventById(t.event_id);
-    const art = poster({ id: t.id, title: t.title, category: e?.category }) + (e?.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : "");
-    const meta = [t.quantity ? `${t.quantity} ${t.quantity === 1 ? "ticket" : "tickets"}` : "", t.seats].filter(Boolean).join(" · ");
-    return `<div class="tile ticket-tile" data-ticket="${esc(t.id)}">
-      <div class="art"><button class="art-link" data-ticket-open="${esc(t.id)}" aria-label="Open ticket: ${esc(t.title)}">${art}<span class="when ${t.date === todayISO ? "today" : ""}">${ticketWhen(t)}</span><span class="runs">${esc(t.platform || "Ticket")}</span></button></div>
-      <button class="body" data-ticket-open="${esc(t.id)}"><p class="name">${esc(t.title)}</p><p class="venue">${esc(t.venue || "")}</p></button>
-      <div class="foot"><span class="meta">${esc(meta || "Show ticket")}</span></div>
-    </div>`;
-  }
-
-  function walletTrayHtml() {
-    const tickets = wallet.sample ? upcomingTickets() : (user ? upcomingTickets() : []);
-    if (tickets.length) {
-      return trayHtml("wallet", "Your tickets", tickets.length, tickets.map(ticketTile),
-        { unit: "ticket", seeAll: `<button class="see-all" data-wallet-open>See all ›</button>` }).replace("</h2>", `<span class="pill-early">Early access</span></h2>`);
-    }
-    const art = `<svg class="w-art" viewBox="0 0 40 28" aria-hidden="true"><defs><linearGradient id="walletGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a84ff"/><stop offset="1" stop-color="#ff2d95"/></linearGradient></defs><path fill="url(#walletGrad)" d="M5 4h30a3 3 0 0 1 3 3v4a3 3 0 0 0 0 6v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4a3 3 0 0 0 0-6V7a3 3 0 0 1 3-3z"/><path d="M28 7.5v13" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-dasharray=".01 3.2" opacity=".9"/><rect x="9" y="9" width="12" height="10" rx="1.6" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M12 12h6M12 15h4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>`;
-    const body = user && wallet.loaded && wallet.accounts.length
-      ? `<h3>No upcoming tickets yet</h3><p>Your wallet is connected. New bookings show up here by themselves, usually within the hour.</p><div class="w-acts"><button class="assist-book" data-wallet-open>Open wallet</button></div>`
-      : `<h3>One wallet for all your tickets</h3><p>Tickets booked on BookMyShow, District, thumpN and more, together in one place. No more hunting through emails and apps when you need them.</p>
-         <div class="w-acts"><button class="assist-book" data-wallet-start>Open ticket wallet</button><button class="assist-details" data-wallet-sample>See how it works</button></div>`;
-    return `<section class="tray" data-tray="wallet"><div class="tray-head"><h2>Ticket wallet<span class="pill-early">Early access</span></h2></div>
-      <div class="wallet-promo">${art}<div>${body}</div></div></section>`;
-  }
 
   function openWallet(page = "list", id = "") {
     walletView = { page, id, note: "" };
@@ -2738,14 +2704,6 @@
     }
   });
   document.addEventListener("click", ev => {
-    if (ev.target.closest("[data-wallet-start]")) { startWallet(); return; }
-    if (ev.target.closest("[data-wallet-sample]")) {
-      wallet = { loaded: true, tickets: sampleTickets(), accounts: [], error: "", sample: true };
-      renderList(); openWallet("list"); track("wallet_sample"); return;
-    }
-    if (ev.target.closest("[data-wallet-open]")) { user ? openWallet("list") : startWallet(); return; }
-    const tk = ev.target.closest("[data-ticket-open]");
-    if (tk) openWallet("ticket", tk.dataset.ticketOpen);
   });
   document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !walletDlg.hidden) closeWallet(); });
 
