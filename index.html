@@ -858,9 +858,6 @@
 
 <div class="toast" id="toast" role="status" hidden></div>
 
-<button class="mic-fab" id="micBtn" aria-label="Ask gigsnshows by voice or text" aria-haspopup="dialog" title="Ask gigsnshows">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11.5" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
-</button>
 
 <div class="assist" id="list" role="dialog" aria-modal="true" aria-labelledby="listTitle" hidden>
   <div class="assist-card" id="listCard"></div>
@@ -3929,9 +3926,10 @@
     stopListening();
     assist.hidden = true;
     document.body.style.overflow = "";
-    document.getElementById("micBtn").focus({ preventScroll: true });
+    document.getElementById("micBtn")?.focus({ preventScroll: true });
   }
-  document.getElementById("micBtn").addEventListener("click", openAssist);
+  // The assistant has no entry point on the page for now (the floating mic button was removed); openAssist() is kept so it can be put behind an "Ask" box.
+  document.getElementById("micBtn")?.addEventListener("click", openAssist);
   assistMic.addEventListener("click", () => assistMic.getAttribute("aria-pressed") === "true" ? stopListening() : startListening());
   document.getElementById("assistForm").addEventListener("submit", ev => {
     ev.preventDefault();
