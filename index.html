@@ -2981,12 +2981,19 @@
     } catch (err) { toast(planError(err)); }
   }
 
+  // long hall names make the invite wrap over several lines in WhatsApp
+  function shortVenue(v) {
+    const s = (v || "").split(/[:|]/)[0].trim();
+    if (s.length <= 36) return s;
+    const cut = s.slice(0, 36), sp = cut.lastIndexOf(" ");
+    return cut.slice(0, sp > 16 ? sp : 36) + "…";
+  }
   async function sharePlan(btn) {
     if (!shareMenu.hidden && shareOpener === btn) { closeShareMenu(true); return; }
     const e = planShow(), url = planLink();
     const text = isNight(plan.doc)
       ? `${plan.doc.title} in ${plan.doc.city} 🎟️ Vote for what you'd go to: ${planEvents(plan.doc).map(x => x.title.split(/[|:]/)[0].trim()).join(", ")}`
-      : `Who's in? 🙋\n🎟️ ${e.title}\n🗓️ ${whenLabel(e)}${e.venue ? " · 📍 " + e.venue.split(/[:|]/)[0].trim() : ""}\nTap the link and answer: Going ✅ · Maybe 🤔 · Can't ❌`;
+      : `Who's in? 🙋\n🎟️ ${e.title}\n🗓️ ${whenLabel(e)}${e.venue ? " · 📍 " + shortVenue(e.venue) : ""}\nTap the link and answer: Going ✅ · Maybe 🤔 · Can't ❌`;
     if (navigator.share && matchMedia("(pointer: coarse)").matches) {
       try { await navigator.share({ title: e.title, text, url }); track("share", { method: "phone", item_id: e.id, plan: true }); return; }
       catch (err) { if (err.name === "AbortError") return; }
