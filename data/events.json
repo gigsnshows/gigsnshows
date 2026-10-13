@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T08:56:55Z",
+  "updated_at": "2026-10-13T10:17:50Z",
   "cities": [
     "Agra",
     "Ahmedabad",
@@ -21,6 +21,7 @@
     "Indore",
     "Jaipur",
     "Jalandhar",
+    "Jammu",
     "Jodhpur",
     "Kanpur",
     "Kochi",
@@ -261,7 +262,7 @@
       "Other Indian languages"
     ]
   ],
-  "count": 2217,
+  "count": 2267,
   "events": [
     {
       "id": "1729f7f9f1ce",
@@ -287,6 +288,31 @@
         "NCPA": "https://www.ncpamumbai.com/event/soi-chamber-orchestra-28/"
       },
       "first_seen": "2026-09-23"
+    },
+    {
+      "id": "acb4b6e30705",
+      "title": "Hate My Job Standup Comedy Show presented by Ink-A-Laugh",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Ink A Laugh Standup Comedy Club vile parle west",
+      "date": "2026-10-13",
+      "time": "00:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/inkalaugh-presents-hate-my-job-standup-comedy-show-sep26-2025-buy-tickets",
+      "image": "https://cdn.district.in/events/cd-media/image/upload/v1762834811/nildmi7lsozuyuc9giks.jpg",
+      "source": "District",
+      "about": "Relive the daily grind through comedy as performers turn workplace woes, impossible bosses, and relatable office fails into laugh-out-loud moments. There is no better way to turn those professional frustrations into pure comic relief. Walk in weary and walk out wondering if Monday meetings might just inspire your next burst of laughter.Ready to turn job struggles into giggles? Relive the daily grind through comedy…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/inkalaugh-presents-hate-my-job-standup-comedy-show-sep26-2025-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "52276ac3a7fd",
@@ -339,31 +365,6 @@
       "first_seen": "2026-10-13"
     },
     {
-      "id": "acb4b6e30705",
-      "title": "Hate My Job Standup Comedy Show presented by Ink-A-Laugh",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Mumbai",
-      "venue": "Ink A Laugh Standup Comedy Club vile parle west",
-      "date": "2026-10-13",
-      "time": "00:00",
-      "price_from": 249,
-      "url": "https://www.district.in/events/inkalaugh-presents-hate-my-job-standup-comedy-show-sep26-2025-buy-tickets",
-      "image": null,
-      "source": "District",
-      "about": "Relive the daily grind through comedy as performers turn workplace woes, impossible bosses, and relatable office fails into laugh-out-loud moments. There is no better way to turn those professional frustrations into pure comic relief. Walk in weary and walk out wondering if Monday meetings might just inspire your next burst of laughter.Ready to turn job struggles into giggles? Relive the daily grind through comedy…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/inkalaugh-presents-hate-my-job-standup-comedy-show-sep26-2025-buy-tickets"
-      },
-      "first_seen": "2026-10-13"
-    },
-    {
       "id": "e11a2176074d",
       "title": "Tuning Tuesday",
       "category": "music",
@@ -374,7 +375,7 @@
       "date": "2026-10-13",
       "time": "00:00",
       "price_from": 100,
-      "url": "https://www.district.in/events/tuning-tuesday-sep22-2026-buy-tickets",
+      "url": "https://www.district.in/events/tuning-tuesday-oct13-2026-buy-tickets",
       "image": null,
       "source": "District",
       "about": "Soulful Live Music at Somewhere!Experience an enchanting evening of soulful live music at Somewhere, where captivating performances, great food, and a relaxed ambience come together for the perfect night out.Unwind with friends and soak in the inviting atmosphere as talented artists set the mood with soothing melodies and engaging live performances.Pair the music with your favourite food and beverages, and settle in…",
@@ -382,7 +383,7 @@
         "District"
       ],
       "links": {
-        "District": "https://www.district.in/events/tuning-tuesday-sep22-2026-buy-tickets"
+        "District": "https://www.district.in/events/tuning-tuesday-oct13-2026-buy-tickets"
       },
       "first_seen": "2026-10-06"
     },
@@ -433,6 +434,54 @@
       ],
       "links": {
         "District": "https://www.district.in/events/comedy-nights-in-connaught-place-aug2-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "f52f15e838c6",
+      "title": "Sex Jokes Night",
+      "category": "comedy",
+      "genres": [],
+      "lang": [],
+      "city": "Delhi",
+      "venue": "The Comedy Theatre - Hauz Khass Village",
+      "date": "2026-10-13",
+      "time": "00:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/sex-jokes-night-mar29-2026-buy-tickets",
+      "image": "https://cdn.district.in/events/cd-media/image/upload/v1774719025/qj38rhhlkkvfseqjyori.jpg",
+      "source": "District",
+      "about": "Get ready for a night of laughter and cheeky humor as we present \"Sex Jokes Night\"!An evening of adult-only comedy, featuring a lineup of daring comedians who will push the boundaries of what's considered \"proper\" conversation.What to Expect:- Raunchy jokes and witty one-liners- Unapologetic humor that will leave you blushing- A night of non-stop laughter and entertainment- A strictly adult-only audience (18+…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/sex-jokes-night-mar29-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "f155b399d68b",
+      "title": "All Star Lineup - A Curated Stand Up Comedy Show",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Delhi",
+      "venue": "The Comedy Theatre - Hauz Khass Village",
+      "date": "2026-10-13",
+      "time": "00:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/all-star-lineup-a-curated-stand-up-comedy-show-may1-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1HYCM3GJ795EV3J8ZDH5ZZV.jpg",
+      "source": "District",
+      "about": "The poster does not provide any indication or suggestion of who will be in the lineup. It is a surprising lineup, and depending on your luck, you may get to see your favourite artist. You may find some famous acts, including these, on the poster in the show, and you might not.A curated stand-up comedy show, in which you get a chance to witness some of the best comics from all over India. The poster does not provide…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/all-star-lineup-a-curated-stand-up-comedy-show-may1-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -488,29 +537,6 @@
       "first_seen": "2026-10-12"
     },
     {
-      "id": "64b7cb35f9e9",
-      "title": "Sex Jokes Night",
-      "category": "comedy",
-      "genres": [],
-      "lang": [],
-      "city": "Hyderabad",
-      "venue": "The comedy Theatre - Hyderabad",
-      "date": "2026-10-13",
-      "time": "00:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/sex-jokes-night-sep29-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3MG7WCEMY56N4XJQ5ZEQ8WD.jpg",
-      "source": "District",
-      "about": "Sex Jokes Night is an adult-only comedy experience featuring daring comedians and cheeky humour that explores the lighter side of grown-up conversations.What To Expect• Witty one-liners and risqué jokes• Unfiltered adult humour• An evening of laughter and entertainment• A strictly 18+ audienceThe show brings together bold comedy and playful humour for an entertaining night designed exclusively for adults. Sex Jokes…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sex-jokes-night-sep29-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-13"
-    },
-    {
       "id": "dccc8118eeea",
       "title": "All Star Lineup - A Curated Stand Up Comedy Show",
       "category": "comedy",
@@ -532,6 +558,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/all-star-lineup-a-curated-stand-up-comedy-show-mar9-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "64b7cb35f9e9",
+      "title": "Sex Jokes Night",
+      "category": "comedy",
+      "genres": [],
+      "lang": [],
+      "city": "Hyderabad",
+      "venue": "The comedy Theatre - Hyderabad",
+      "date": "2026-10-13",
+      "time": "00:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/sex-jokes-night-sep29-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3MG7WCEMY56N4XJQ5ZEQ8WD.jpg",
+      "source": "District",
+      "about": "Sex Jokes Night is an adult-only comedy experience featuring daring comedians and cheeky humour that explores the lighter side of grown-up conversations.What To Expect• Witty one-liners and risqué jokes• Unfiltered adult humour• An evening of laughter and entertainment• A strictly 18+ audienceThe show brings together bold comedy and playful humour for an entertaining night designed exclusively for adults. Sex Jokes…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/sex-jokes-night-sep29-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -610,29 +659,6 @@
       "first_seen": "2026-10-13"
     },
     {
-      "id": "29dbc4211aff",
-      "title": "Raw & Unprotected",
-      "category": "comedy",
-      "genres": [],
-      "lang": [],
-      "city": "Indore",
-      "venue": "Comedy Cottage & Events",
-      "date": "2026-10-13",
-      "time": "00:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/raw-unprotected-apr14-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1775993210/itvzcsrhtqciyiavljde.png",
-      "source": "District",
-      "about": "Welcome to Raw & Unprotected — where comedy is real, bold, and absolutely unfiltered.Catch Indore’s local comics bringing their funniest takes on life, relationships, and everything in between. From light humor to savage punchlines, nothing is off-limits here.If you like your comedy a little wild and unpredictable, this is your scene. Welcome to Raw & Unprotected — where comedy is real, bold, and absolutely…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/raw-unprotected-apr14-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-09"
-    },
-    {
       "id": "f01e5bea338d",
       "title": "The Stand-Up Comedy Mic",
       "category": "comedy",
@@ -656,6 +682,29 @@
         "District": "https://www.district.in/events/the-standup-comedy-mic-may26-2026-buy-tickets"
       },
       "first_seen": "2026-10-12"
+    },
+    {
+      "id": "29dbc4211aff",
+      "title": "Raw & Unprotected",
+      "category": "comedy",
+      "genres": [],
+      "lang": [],
+      "city": "Indore",
+      "venue": "Comedy Cottage & Events",
+      "date": "2026-10-13",
+      "time": "00:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/raw-unprotected-apr14-2026-buy-tickets",
+      "image": "https://cdn.district.in/events/cd-media/image/upload/v1775993210/itvzcsrhtqciyiavljde.png",
+      "source": "District",
+      "about": "Welcome to Raw & Unprotected — where comedy is real, bold, and absolutely unfiltered.Catch Indore’s local comics bringing their funniest takes on life, relationships, and everything in between. From light humor to savage punchlines, nothing is off-limits here.If you like your comedy a little wild and unpredictable, this is your scene. Welcome to Raw & Unprotected — where comedy is real, bold, and absolutely…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/raw-unprotected-apr14-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-09"
     },
     {
       "id": "a1b18d202a29",
@@ -1109,7 +1158,7 @@
       "venue": "Ink A Laugh Standup Comedy Club vile parle west",
       "date": "2026-10-13",
       "time": "16:00",
-      "price_from": 249,
+      "price_from": null,
       "url": "https://www.district.in/events/inkalaugh-presents-roasting-relationships-standup-comedy-show-sep26-2025-buy-tickets",
       "image": null,
       "source": "District",
@@ -2072,6 +2121,29 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "4105b48b2e07",
+      "title": "Amdavad Navratri Festival – ANF 2026",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Nijanand Farm -2 Gift City",
+      "date": "2026-10-13",
+      "time": "20:00",
+      "price_from": 400,
+      "url": "https://www.district.in/events/amdavad-navratri-festival-anf-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3EAB665DMST91SBC1KN5KB4.png",
+      "source": "District",
+      "about": "Gandhinagar get ready to experience Navratri like never before!Step into ANF 2026 — a spectacular stadium-style celebration where Garba, live music, culture, art, food and entertainment come together under one grand venue.Experience the energy of the Central Garba Arena, enjoy an electrifying 16-member live artist troupe, and celebrate with a special Centre Artist at the heart of the festivities.Explore the Kala…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/amdavad-navratri-festival-anf-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "de0ba82c4a8d",
       "title": "Tuesday Comedy Festival",
       "category": "comedy",
@@ -2116,6 +2188,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/open-mic-night-circl-launch-week-oct13-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "09c94ada8988",
+      "title": "Garba Ni Ramjhat and Premium Mandli 2026",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Madhav party lawns",
+      "date": "2026-10-13",
+      "time": "20:00",
+      "price_from": 599,
+      "url": "https://www.district.in/events/garba-ni-ramjhat-and-premium-mandli-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1DJCXS3WAC4Z6FVF9C63ZC7.png",
+      "source": "District",
+      "about": "Celebrate the spirit of Navratri with Premium Mandli and Garba Ni Ramjhat, a grand 9 hour Garba event that brings together tradition, music, and energy like never before.Join us for an incredible night featuring a dynamic blend of traditional and modern Garba artists, creating a high energy experience that stays true to the festive spirit of Navratri.Why You Should Attend:A massive open area designed for Garba…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/garba-ni-ramjhat-and-premium-mandli-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -2727,9 +2822,9 @@
       "venue": "Ink A Laugh Standup Comedy Club vile parle west",
       "date": "2026-10-13",
       "time": "22:45",
-      "price_from": null,
+      "price_from": 249,
       "url": "https://www.district.in/events/are-you-wet-a-standup-comedy-show-jun12-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KTVKZK0YWR8WQSJHB16P597C.png",
+      "image": null,
       "source": "District",
       "about": "Leave your sensitivities at the door and get ready for ARE YOU WET? --- a standup comedy show that goes exactly where it shouldn't. Featuring a killer lineup of the city’s funniest, most fearless comedians, this show dives headfirst into the hilariously taboo, the aggressively relatable, and the beautifully inappropriate. From dating disasters and bedroom blunders to the intrusive thoughts we all have but never say…",
       "sources": [
@@ -2752,9 +2847,9 @@
       "venue": "Ink A Laugh Standup Comedy Club vile parle west",
       "date": "2026-10-13",
       "time": "23:00",
-      "price_from": null,
+      "price_from": 249,
       "url": "https://www.district.in/events/the-dirty-talk-1159pm-oct8-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1759762714/dzqrt2x2kks7c3r58fj3.jpg",
+      "image": null,
       "source": "District",
       "about": "Not for the faint-hearted, this night is strictly for adults who think humour should be a little bold. Get ready for cheeky jokes, playful storytelling, and no-holds-barred punchlines on all things risqué. Leave your blushes at the door and your judgement at home; this show lets comedians say what everyone else is just thinking.Dare to laugh without limits? Not for the faint-hearted, this night is strictly for…",
       "sources": [
@@ -3823,6 +3918,29 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "038f961d7601",
+      "title": "Amdavad Navratri Festival – ANF 2026",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Nijanand Farm -2 Gift City",
+      "date": "2026-10-14",
+      "time": "20:00",
+      "price_from": 400,
+      "url": "https://www.district.in/events/amdavad-navratri-festival-anf-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3EAB665DMST91SBC1KN5KB4.png",
+      "source": "District",
+      "about": "Gandhinagar get ready to experience Navratri like never before!Step into ANF 2026 — a spectacular stadium-style celebration where Garba, live music, culture, art, food and entertainment come together under one grand venue.Experience the energy of the Central Garba Arena, enjoy an electrifying 16-member live artist troupe, and celebrate with a special Centre Artist at the heart of the festivities.Explore the Kala…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/amdavad-navratri-festival-anf-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "43c4e939fa04",
       "title": "Duos ft. Prashasti Singh & Shreeja Chaturvedi: KCC",
       "category": "comedy",
@@ -3844,6 +3962,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/duos-ft-prashasti-singh-shreeja-chaturvedi-kcc-oct14-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "c7c1505271ca",
+      "title": "Garba Ni Ramjhat and Premium Mandli 2026",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Madhav party lawns",
+      "date": "2026-10-14",
+      "time": "20:00",
+      "price_from": 599,
+      "url": "https://www.district.in/events/garba-ni-ramjhat-and-premium-mandli-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1DJCXS3WAC4Z6FVF9C63ZC7.png",
+      "source": "District",
+      "about": "Celebrate the spirit of Navratri with Premium Mandli and Garba Ni Ramjhat, a grand 9 hour Garba event that brings together tradition, music, and energy like never before.Join us for an incredible night featuring a dynamic blend of traditional and modern Garba artists, creating a high energy experience that stays true to the festive spirit of Navratri.Why You Should Attend:A massive open area designed for Garba…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/garba-ni-ramjhat-and-premium-mandli-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -4383,32 +4524,6 @@
       ],
       "links": {
         "District": "https://www.district.in/events/one-man-many-layers-ft-nikhil-oct8-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-12"
-    },
-    {
-      "id": "80a15afb6d04",
-      "title": "Pujoe Paglami & Navaratri Celebrations at Five Mad Men",
-      "category": "music",
-      "genres": [
-        "electronic",
-        "bollywood"
-      ],
-      "lang": [],
-      "city": "Kolkata",
-      "venue": "Five Mad Men | Street 25, GP Block",
-      "date": "2026-10-15",
-      "time": "00:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/pujoe-paglami-at-five-mad-men-navaratri-included-oct10-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4DD06GSMJBE884N4DRDHG72.jpeg",
-      "source": "District",
-      "about": "This Durga Puja, turn up the madness! Expect high-energy beats, festive vibes, great food, flowing drinks and a night made for letting loose.Come celebrate Pujo the Mad Men way! The Madness starts from 10th October, the schedule as below:10th October, Saturday, Agamani - Collage takes the stage at Five Mad Men for Agomoni Rock — a live set packed with Bengali cult classics, alongside crowd-favourite pop numbers from…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/pujoe-paglami-at-five-mad-men-navaratri-included-oct10-2026-buy-tickets"
       },
       "first_seen": "2026-10-12"
     },
@@ -5526,6 +5641,31 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "0af2b70a31b3",
+      "title": "Techno Garba Night – Tabletop Socials - Garba Meetup",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Chandigarh",
+      "venue": "PartyDay By Hopup",
+      "date": "2026-10-15",
+      "time": "19:00",
+      "price_from": 1749,
+      "url": "https://www.district.in/events/tabletop-socials-garba-meetup-oct15-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M4AM7H7MC4N5N3X05WGRSEHC.jpg",
+      "source": "District",
+      "about": "💃✨ THIS NAVRATRI, DON’T JUST WATCH GARBA — DANCE IT & LIVE IT! ✨💃Ready to finally get your Garba moves right? 👀Food, Mocktails, DJ, Dandiya Sticks, Bowling arena access Included.Join Tabletop Socials for a fun, beginner-friendly Garba Techno where you’ll learn the basics, groove to festive beats and meet new people along the way. 🪩🕺🌈 Perfect for beginners & all levels💃 Learn easy Garba steps & moves🎶 Dance to…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/tabletop-socials-garba-meetup-oct15-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "c84a69b1632a",
       "title": "Hyderabad’s Biggest Navratri Utsav 2026",
       "category": "music",
@@ -5624,6 +5764,52 @@
       ],
       "links": {
         "District": "https://www.district.in/events/dandiya-dhamal-2026-ft-jignesh-barot-kaviraj-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "a7081202bc76",
+      "title": "Amdavad Navratri Festival – ANF 2026",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Nijanand Farm -2 Gift City",
+      "date": "2026-10-15",
+      "time": "20:00",
+      "price_from": 400,
+      "url": "https://www.district.in/events/amdavad-navratri-festival-anf-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3EAB665DMST91SBC1KN5KB4.png",
+      "source": "District",
+      "about": "Gandhinagar get ready to experience Navratri like never before!Step into ANF 2026 — a spectacular stadium-style celebration where Garba, live music, culture, art, food and entertainment come together under one grand venue.Experience the energy of the Central Garba Arena, enjoy an electrifying 16-member live artist troupe, and celebrate with a special Centre Artist at the heart of the festivities.Explore the Kala…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/amdavad-navratri-festival-anf-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "0547b938bf62",
+      "title": "Garba Ni Ramjhat and Premium Mandli 2026",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Madhav party lawns",
+      "date": "2026-10-15",
+      "time": "20:00",
+      "price_from": 599,
+      "url": "https://www.district.in/events/garba-ni-ramjhat-and-premium-mandli-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1DJCXS3WAC4Z6FVF9C63ZC7.png",
+      "source": "District",
+      "about": "Celebrate the spirit of Navratri with Premium Mandli and Garba Ni Ramjhat, a grand 9 hour Garba event that brings together tradition, music, and energy like never before.Join us for an incredible night featuring a dynamic blend of traditional and modern Garba artists, creating a high energy experience that stays true to the festive spirit of Navratri.Why You Should Attend:A massive open area designed for Garba…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/garba-ni-ramjhat-and-premium-mandli-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -5958,6 +6144,31 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "245acdfacf9d",
+      "title": "Acoustic Friday",
+      "category": "music",
+      "genres": [
+        "indie"
+      ],
+      "lang": [],
+      "city": "Delhi",
+      "venue": "Somewhere Restaurant & Bar | Middle Circle, Connaught Place",
+      "date": "2026-10-16",
+      "time": "",
+      "price_from": null,
+      "url": "https://www.district.in/events/acoustic-friday-oct9-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M482QZW64WCCMESR7HQ7RQ7J.png",
+      "source": "District",
+      "about": "Soulful Live Music at Somewhere!Experience an enchanting evening of soulful live music at Somewhere, where captivating performances, great food, and a relaxed ambience come together for the perfect night out.Unwind with friends and soak in the inviting atmosphere as talented artists set the mood with soothing melodies and engaging live performances.Pair the music with your favourite food and beverages, and settle in…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/acoustic-friday-oct9-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "9d883a69dd6d",
       "title": "Let Your Stories Meet Mine By Nishant Tanwar",
       "category": "comedy",
@@ -5983,29 +6194,29 @@
       "first_seen": "2026-10-12"
     },
     {
-      "id": "0b07ab0cca2b",
-      "title": "Rajat Chauhan Live",
+      "id": "70a27925a8da",
+      "title": "Incognito Mode - ON! (Indiranagar)",
       "category": "comedy",
       "genres": [
         "standup"
       ],
       "lang": [],
       "city": "Bengaluru",
-      "venue": "The Comedy Theatre - Indiranagar, Bangalore",
+      "venue": "Bloom Creative Zone - Indiranagar",
       "date": "2026-10-16",
       "time": "",
       "price_from": null,
-      "url": "https://www.district.in/events/rajat-chauhan-live-aug22-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1753370033/exx1jbznwviqipko1kfz.png",
+      "url": "https://www.district.in/events/incognito-mode-on-indiranagar-jul10-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KWV6FJY2XT41AX9DDWC32NWD.jpeg",
       "source": "District",
-      "about": "Rajat Chauhan, Delhi based comedian with 1 million subscribers, 65+ millions on YouTube is coming to tickle your funny bones at The Comedy Theatre Club: Indiranagar!Engineer by education, he started following his real passion after completing 7 years in corporate world and now has been regular in this new age Standup Comedy scene for around 6 years. He is regaling audiences with his brand of observational humor…",
+      "about": "Welcome to the dark side of your browser.Ever had a thought so bad you would not even type it into a search bar? We turned it into a stand-up show.Incognito Mode - ON is a premium comedy lineup featuring jokes that definitely should not be in your search history. Leave the safe, corporate talk behind and enter the underground of stand-up where our comedians completely log off their filters.What to expect:Unfiltered…",
       "sources": [
         "District"
       ],
       "links": {
-        "District": "https://www.district.in/events/rajat-chauhan-live-aug22-2025-buy-tickets"
+        "District": "https://www.district.in/events/incognito-mode-on-indiranagar-jul10-2026-buy-tickets"
       },
-      "first_seen": "2026-10-12"
+      "first_seen": "2026-10-13"
     },
     {
       "id": "19817b88e310",
@@ -6031,6 +6242,31 @@
         "District": "https://www.district.in/events/the-silliest-show-tonight-by-improv-lore-buy-tickets"
       },
       "first_seen": "2026-10-09"
+    },
+    {
+      "id": "0b07ab0cca2b",
+      "title": "Rajat Chauhan Live",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "The Comedy Theatre - Indiranagar, Bangalore",
+      "date": "2026-10-16",
+      "time": "",
+      "price_from": 499,
+      "url": "https://www.district.in/events/rajat-chauhan-live-aug22-2025-buy-tickets",
+      "image": null,
+      "source": "District",
+      "about": "Rajat Chauhan, Delhi based comedian with 1 million subscribers, 65+ millions on YouTube is coming to tickle your funny bones at The Comedy Theatre Club: Indiranagar!Engineer by education, he started following his real passion after completing 7 years in corporate world and now has been regular in this new age Standup Comedy scene for around 6 years. He is regaling audiences with his brand of observational humor…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/rajat-chauhan-live-aug22-2025-buy-tickets"
+      },
+      "first_seen": "2026-10-12"
     },
     {
       "id": "9b44c70cc3c6",
@@ -7480,6 +7716,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/rangrezza-oct16-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "509ff0b45f89",
+      "title": "Bannerghatta Road Biggest Dhandiya Event 5.0",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Unalii Brewpark",
+      "date": "2026-10-16",
+      "time": "18:00",
+      "price_from": 99,
+      "url": "https://www.district.in/events/bannerghatta-road-biggest-dhandiya-event-50-oct16-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M48QRK64GWJDSE9EM7MF7M36.jpg",
+      "source": "District",
+      "about": "Great Indian Dhandiya Night 5.0Get ready for three unforgettable nights of Dhandiya music dance and festive celebrationsUnalii Brew Park Bannerghatta Road Hulimavu Bengaluru KarnatakaWhat to expectMassive festive decorNon stop musicGarba dancersNeon live dholsRain proof setupHuge dance floorIndias Top DJsFree Dhandiya sticks for all And many more surprisesCome dressed in your festive best grab your Dhandiya sticks…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/bannerghatta-road-biggest-dhandiya-event-50-oct16-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -10201,6 +10460,31 @@
       "first_seen": "2026-10-12"
     },
     {
+      "id": "0c3a999dd32e",
+      "title": "House Rules ft. Nairoo",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Belmarose Restaurant and High Energy Bar",
+      "date": "2026-10-16",
+      "time": "22:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/house-rules-ft-nairoo-sbbkmfko",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1791885522o2cIECKrwifDZYY3.jpg.webp",
+      "source": "Skillbox",
+      "about": "HOUSE RULES takes over Friday night at Belmarose. This week, DJ Nairoo is on the decks, bringing his signature sound to the night. Get your crew together, make your Friday plans and join us for another night of HOUSE RULES at Belmarose.",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/house-rules-ft-nairoo-sbbkmfko"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "7f3e7f54d302",
       "title": "DJ Ganesh Live at UNVRS Vagator",
       "category": "music",
@@ -10308,9 +10592,9 @@
       "venue": "Somewhere Restaurant & Bar | Middle Circle, Connaught Place",
       "date": "2026-10-17",
       "time": "",
-      "price_from": null,
+      "price_from": 100,
       "url": "https://www.district.in/events/saturday-strings-oct10-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4837PEA8EVV48AZP354S1T4.png",
+      "image": null,
       "source": "District",
       "about": "Soulful Live Music at Somewhere!Experience an enchanting evening of soulful live music at Somewhere, where captivating performances, great food, and a relaxed ambience come together for the perfect night out.Unwind with friends and soak in the inviting atmosphere as talented artists set the mood with soothing melodies and engaging live performances.Pair the music with your favourite food and beverages, and settle in…",
       "sources": [
@@ -10518,31 +10802,6 @@
       "first_seen": "2026-10-12"
     },
     {
-      "id": "c3018bc8b8c1",
-      "title": "Dark Jokes Only",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Jaipur",
-      "venue": "Jaipur Comedy Club",
-      "date": "2026-10-17",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/dark-jokes-only-sep13-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2BE2H48G0NFG7T1FDJ1ERC0.jpg",
-      "source": "District",
-      "about": "Dark Jokes Only is a stand-up comedy show that’s wrong in all the right ways. If you’re easily offended, this isn’t your vibe. If you’re not, welcome home. Dark Jokes Only is a stand-up comedy show that’s wrong in all the right ways. If you’re easily offended, this isn’t your vibe. If you’re not, welcome home. Dark Jokes Only is a stand-up comedy show that’s wrong in all the right ways. If you’re easily offended…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/dark-jokes-only-sep13-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-12"
-    },
-    {
       "id": "6f46a8ae54e1",
       "title": "Best of Jaipur",
       "category": "comedy",
@@ -10564,6 +10823,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/best-of-jaipur-oct3-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-12"
+    },
+    {
+      "id": "c3018bc8b8c1",
+      "title": "Dark Jokes Only",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Jaipur",
+      "venue": "Jaipur Comedy Club",
+      "date": "2026-10-17",
+      "time": "",
+      "price_from": null,
+      "url": "https://www.district.in/events/dark-jokes-only-sep13-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2BE2H48G0NFG7T1FDJ1ERC0.jpg",
+      "source": "District",
+      "about": "Dark Jokes Only is a stand-up comedy show that’s wrong in all the right ways. If you’re easily offended, this isn’t your vibe. If you’re not, welcome home. Dark Jokes Only is a stand-up comedy show that’s wrong in all the right ways. If you’re easily offended, this isn’t your vibe. If you’re not, welcome home. Dark Jokes Only is a stand-up comedy show that’s wrong in all the right ways. If you’re easily offended…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/dark-jokes-only-sep13-2026-buy-tickets"
       },
       "first_seen": "2026-10-12"
     },
@@ -10860,31 +11144,6 @@
       "links": {
         "BookMyShow Sports": "https://in.bookmyshow.com/sports/real-life-self-defense-learn-to-protect-yourself/ET00521552"
       }
-    },
-    {
-      "id": "784e85b7ddec",
-      "title": "7Padel - JUNIOR PADEL AMERICANO I UNDER 12",
-      "category": "sports",
-      "genres": [
-        "racquet"
-      ],
-      "lang": [],
-      "city": "Mumbai",
-      "venue": "7Padel | Wings",
-      "date": "2026-10-17",
-      "time": "10:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/7padel-junior-padel-americano-i-under-12-oct17-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3BPR6EWQMD1JTXF1Z0NJ1XG.jpg",
-      "source": "District",
-      "about": "U12 Americano – Play, Rotate & Have Fun!A fun, fast-paced U12 Americano designed to give young players plenty of match play while keeping the atmosphere friendly, social and competitive.Players register individually and rotate partners and opponents throughout the session, giving them the chance to play with different kids, make new friends and experience a variety of match-ups.Age Category: Under 12Format…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/7padel-junior-padel-americano-i-under-12-oct17-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-04"
     },
     {
       "id": "39be5f10c936",
@@ -11441,9 +11700,9 @@
       "venue": "7Padel | WTC",
       "date": "2026-10-17",
       "time": "15:00",
-      "price_from": 3700,
+      "price_from": null,
       "url": "https://www.district.in/events/7padel-interschool-padel-challenge-wtc-cuffe-parade-oct17-2026-buy-tickets",
-      "image": null,
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2092GBFEGRSY2VC32MF923Y.jpeg",
       "source": "District",
       "about": "INTER-SCHOOL PADEL CHALLENGEA friendly yet competitive Inter-School Padel Challenge bringing together parents from NMAJS and Cathedral for a battle on the court.12 parents from each school will compete in teams across a Mexicano format, with players rotating throughout the matches. Every game contributes points to the overall school leaderboard.At the end of the challenge, the school with the highest cumulative…",
       "sources": [
@@ -13132,29 +13391,6 @@
       "first_seen": "2026-10-09"
     },
     {
-      "id": "56bbf7cf75c5",
-      "title": "Radhe Events – Dandiya Night",
-      "category": "music",
-      "genres": [],
-      "lang": [],
-      "city": "Hyderabad",
-      "venue": "Highball Sports Complex | Secunderabad",
-      "date": "2026-10-17",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/radhe-events-oct16-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3PCZ2D4S5F94TAQRM4V2MQ7.png",
-      "source": "District",
-      "about": "Radhe Events is your trusted partner for creating memorable celebrations and beautifully planned events. From weddings and receptions to birthdays, engagements, baby showers, corporate events, and special occasions, we take care of every detail with creativity and professionalism.We offer complete event solutions including decoration, stage setup, floral arrangements, lighting, themes, entertainment, photography &…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/radhe-events-oct16-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-13"
-    },
-    {
       "id": "00ba6e704741",
       "title": "Bengali Comedy Evening: Saptami Special",
       "category": "comedy",
@@ -13302,6 +13538,29 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "f5299b84bfc4",
+      "title": "Jhoom and Dhoom - Dandiya Night",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Hyderabad",
+      "venue": "Vishwanaadha Gardens",
+      "date": "2026-10-17",
+      "time": "17:00",
+      "price_from": 99,
+      "url": "https://www.district.in/events/jhoom-and-dhoom-dhandiya-night-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M458VN5WHEACEJBMYND656DX.png",
+      "source": "District",
+      "about": "Jhoom & Dhoom x AURA+ Dandiya NightWhat is it about?A high-energy Dandiya Night bringing together music, dance, fashion, food and Gen-Z experiences - all under one roof. Come with your friends, dress up, dance your heart out, explore exciting stalls and enjoy an evening full of festive energy.What is included?Dandiya & DanceDJ & MusicFood StallsFashion & Lifestyle StallsInteractive ExperiencesAURA+ Official App…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/jhoom-and-dhoom-dhandiya-night-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "902953ec743c",
       "title": "Dandiya Nights Dhol Baaje Season 4.0",
       "category": "music",
@@ -13397,6 +13656,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/whitefields-biggest-dandiya-utsav-season-9-oct16-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "238bdf6998b2",
+      "title": "Tricity Dandiya Night",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Chandigarh",
+      "venue": "Libra Orchids",
+      "date": "2026-10-17",
+      "time": "17:00",
+      "price_from": 799,
+      "url": "https://www.district.in/events/tricity-dandiya-night-2k26-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M0HHWJ93QX1HQCE1KPY1H969.jpeg",
+      "source": "District",
+      "about": "✨ Get Ready for an Unforgettable Dandiya Celebration! ✨Step into a vibrant evening of Dandiya, Garba, Live DJ, Live Band Performances, Music, Entertainment and festive vibes. 💃🕺🎶Event Highlights:• Traditional Dandiya & Garba 💃• Live DJ Performance 🎧• Live Band Performance 🎸• Special Entertainment & Performances 🔥• Festive Lights & Ambience ✨• Fun-filled experience for friends, couples & families ❤️",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/tricity-dandiya-night-2k26-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -14062,6 +14346,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/panchi-the-dandiya-night-20-oct15-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "f52bc9ac8b04",
+      "title": "Radhe Events – Dandiya Night",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Hyderabad",
+      "venue": "Highball Sports Complex | Secunderabad",
+      "date": "2026-10-17",
+      "time": "17:00",
+      "price_from": 499,
+      "url": "https://www.district.in/events/radhe-events-oct16-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3PCPHJDQ5E72DKAJ0VSCQRH.png",
+      "source": "District",
+      "about": "Radhe Events is your trusted partner for creating memorable celebrations and beautifully planned events. From weddings and receptions to birthdays, engagements, baby showers, corporate events, and special occasions, we take care of every detail with creativity and professionalism.We offer complete event solutions including decoration, stage setup, floral arrangements, lighting, themes, entertainment, photography &…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/radhe-events-oct16-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -15136,12 +15443,10 @@
       "source": "District",
       "about": "Get ready for three unforgettable nights of music, dance, and festive celebrations at Naacho Navaratri.Join at Kalyan Lakshmi Gardens, for a vibrant Navaratri celebration filled with Garba, Dandiya, DJ music, entertainment, and festive vibes.Bring your friends and family and enjoy an evening of traditional celebrations with a modern touch.Event Highlights• Garba and Dandiya• DJ and Live Music• Festive Decorations•…",
       "sources": [
-        "District",
-        "BookMyShow"
+        "District"
       ],
       "links": {
-        "District": "https://www.district.in/events/naacho-navratri-oct16-2026-buy-tickets",
-        "BookMyShow": "https://in.bookmyshow.com/events/naacho-navaratri/ET00519189"
+        "District": "https://www.district.in/events/naacho-navratri-oct16-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -15214,6 +15519,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/dandiya-vibes-oct16-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "37c839e930b9",
+      "title": "Dandiya Raas 2.0",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Bhubaneswar",
+      "venue": "Cuttack Club",
+      "date": "2026-10-17",
+      "time": "18:00",
+      "price_from": 371,
+      "url": "https://www.district.in/events/dandiya-raas-20-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M4DARTMMC1M9CWT1H9V7PBA4.jpeg",
+      "source": "District",
+      "about": "Dandiya Raas 2.0 is a vibrant celebration of music, dance, culture, and togetherness. Get ready for an electrifying evening filled with DJ beats, energetic Dandiya, Garba vibes, colourful lights, and non-stop entertainment.Bringing Cuttack together for an unforgettable festive night, Dandiya Raas 2.0 is all about dancing, celebrating, and creating memories with friends and family.Come dressed in your festive best…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/dandiya-raas-20-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -15371,6 +15701,31 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "2f2f66505cea",
+      "title": "Garba Ni Ratri",
+      "category": "music",
+      "genres": [
+        "devotional"
+      ],
+      "lang": [],
+      "city": "Ludhiana",
+      "venue": "F2 Raceway, Ayali Rd",
+      "date": "2026-10-17",
+      "time": "18:00",
+      "price_from": 750,
+      "url": "https://www.district.in/events/garba-ni-ratri-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3AGQREYM7DEJYRB4ZQXBRM7.jpg",
+      "source": "District",
+      "about": "Navratri in Punjab is about to get a serious upgrade. 🪔This time, Garba-ni-ratri brings an experience you haven’t had before. Premium atmosphere, premium celebs, and premium dandiya, all in one place.The night begins with Maha Aarti, so be there on time to start it the right way. After that, the floor is all yours:- Premium DJs for full-on garba nights- Authentic Navratri food that hits right at the heart…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/garba-ni-ratri-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "4efe742df587",
       "title": "Dandiya Night Celebration With Rangrezza",
       "category": "music",
@@ -15513,6 +15868,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/jalsa-dandiya-6o-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "846eb168d604",
+      "title": "Bannerghatta Road Biggest Dhandiya Event 5.0",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Unalii Brewpark",
+      "date": "2026-10-17",
+      "time": "18:00",
+      "price_from": 99,
+      "url": "https://www.district.in/events/bannerghatta-road-biggest-dhandiya-event-50-oct16-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M48QRK64GWJDSE9EM7MF7M36.jpg",
+      "source": "District",
+      "about": "Great Indian Dhandiya Night 5.0Get ready for three unforgettable nights of Dhandiya music dance and festive celebrationsUnalii Brew Park Bannerghatta Road Hulimavu Bengaluru KarnatakaWhat to expectMassive festive decorNon stop musicGarba dancersNeon live dholsRain proof setupHuge dance floorIndias Top DJsFree Dhandiya sticks for all And many more surprisesCome dressed in your festive best grab your Dhandiya sticks…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/bannerghatta-road-biggest-dhandiya-event-50-oct16-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -16006,6 +16384,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/lulu-dandiya-mahotsav-2026-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "d316db287b27",
+      "title": "Dandiya Nights by the Beach at MGM Beach Resorts",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Chennai",
+      "venue": "MGM Beach Resorts",
+      "date": "2026-10-17",
+      "time": "18:00",
+      "price_from": 299,
+      "url": "https://www.district.in/events/dandiya-nights-by-the-beach-at-mgm-beach-resorts-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M45F9MP4W2578F4AWAATFWD2.jpeg",
+      "source": "District",
+      "about": "Join us at MGM Beach Resorts for an evening filled with vibrant music, energetic Dandiya, live performances, delicious food, and refreshing beverages — all set against the beautiful coastal backdrop.🌟 Event Highlights:• 🎧 DJ Music• 🎤 Live Performances• 💃 Dandiya Sticks• 🥘 Chaat & Snack Counter• 🍹 Beverage Counter• 🥂 Welcome Drinks• 🌊 Festive celebrations by the beachCome dressed in your festive best, grab your…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/dandiya-nights-by-the-beach-at-mgm-beach-resorts-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -17335,29 +17738,6 @@
       "first_seen": "2026-10-13"
     },
     {
-      "id": "1c2424a51243",
-      "title": "Nishant Suri Live",
-      "category": "comedy",
-      "genres": [],
-      "lang": [],
-      "city": "Delhi",
-      "venue": "The Comedy Theatre - Hauz Khass Village",
-      "date": "2026-10-17",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/nishant-suri-live-apr16-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1H2EWVP44X3319KGC7TVXSN.jpg",
-      "source": "District",
-      "about": "Catch the very funny Nishant Suri live with his solo show. Hurry up and come watch him live!",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/nishant-suri-live-apr16-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-11"
-    },
-    {
       "id": "0ecec22f9f2e",
       "title": "MONROE Presented by Raeeth",
       "category": "music",
@@ -17723,6 +18103,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/krisa-garba-nights-2026-the-grand-navratri-experience-oct16-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "b5aeaa163cd3",
+      "title": "Kesariya Garba Night",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Kanpur",
+      "venue": "Prera Greens Banquet",
+      "date": "2026-10-17",
+      "time": "19:00",
+      "price_from": 149,
+      "url": "https://www.district.in/events/kesariya-garba-night-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M35BCV3WDEP37H41X37M32B9.png",
+      "source": "District",
+      "about": "Get ready to experience Kesariya Garba Night 2026, Kanpur’s grand Navratri celebration at Prera Greens, Mainawati Marg, Bithoor! 🪔✨Celebrate the spirit of Navratri with an unforgettable evening filled with Garba, Dandiya, music, lights and festive energy. Bring your friends, family or your special someone and get ready to dance the night away in a vibrant festive atmosphere.🎶 DJ & Music💃 Garba & Dandiya💡 Grand LED…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/kesariya-garba-night-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -18894,7 +19299,7 @@
       "venue": "Kreate by Kraft",
       "date": "2026-10-17",
       "time": "20:00",
-      "price_from": null,
+      "price_from": 299,
       "url": "https://www.district.in/events/jamming-night-chennai-jun27-2026-buy-tickets",
       "image": null,
       "source": "District",
@@ -19096,6 +19501,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/lions-disco-dandia-2026-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "4540d7a5a283",
+      "title": "Jamming Night - Mumbai",
+      "category": "music",
+      "genres": [
+        "open-jam"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Butterfly High",
+      "date": "2026-10-17",
+      "time": "20:00",
+      "price_from": 299,
+      "url": "https://www.district.in/events/jamming-night-mumbai-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M487YHQTN4RAAHQ516P2DC0S.jpg",
+      "source": "District",
+      "about": "Welcome to Jamming Night, where tunes aren’t just played—they’re felt, shared, and celebrated.Participants can bring their instrument, their voice, or simply their love for rhythm and join a cozy circle of music enthusiasts who come together to jam for the sheer joy of it.Whether a seasoned musician, a passionate beginner, or someone who simply grooves to every beat, everyone has a space to create, collaborate, and…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/jamming-night-mumbai-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -19600,9 +20030,9 @@
       "venue": "Hard Rock Cafe | Hitech City, Hyderabad",
       "date": "2026-10-17",
       "time": "21:00",
-      "price_from": null,
+      "price_from": 249,
       "url": "https://www.district.in/events/bollywood-rock-ft-nakshatra-band-oct17-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3VH7TMGXNBW320RWPZZE48S.jpg",
+      "image": null,
       "source": "District",
       "about": "Get ready for a high-energy night where the magic of Bollywood meets the power of rock! Nakshatra Band takes the stage with a dynamic set packed with your favourite Bollywood hits, reimagined with electrifying guitar riffs, powerful vocals, punchy drums and an infectious live-band energy.From timeless classics to chart-topping favourites, expect familiar melodies with a whole new edge. Sing along to the songs you…",
       "sources": [
@@ -19685,6 +20115,29 @@
         "District": "https://www.district.in/events/egyptian-afro-night-ft-dj-trux-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-12"
+    },
+    {
+      "id": "89f5e12043f0",
+      "title": "Hungrito Ratri 2026 - Navratri & Garba at Clarinet Greens",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Clarinet Greens",
+      "date": "2026-10-17",
+      "time": "21:00",
+      "price_from": 1749,
+      "url": "https://www.district.in/events/test-event-for-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M4GGT51T9SZ7NBC9CKTDZAPN.png",
+      "source": "District",
+      "about": "Hungrito Ratri 2026 Ahmedabad Navratri Garba at Clarinet Greens Hungrito Ratri 2026 is a threenight Navratri Garba experience at Clarinet Greens Ahmedabad bringing together live Garba music culture festive spaces food and the unmistakable energy of Navratri Hungrito has spent more than a decade creating experiences around food music culture and entertainment This Navratri that experience takes a new form with…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/test-event-for-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "2f20827459ec",
@@ -20144,31 +20597,6 @@
         "District": "https://www.district.in/events/introduction-to-squash-by-swyng-bellandur-mar7-2026-buy-tickets"
       },
       "first_seen": "2026-10-11"
-    },
-    {
-      "id": "3a151211eed1",
-      "title": "Pati Patni Aur Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Bengaluru",
-      "venue": "The Comedy Theatre - Indiranagar, Bangalore",
-      "date": "2026-10-18",
-      "time": "",
-      "price_from": 499,
-      "url": "https://www.district.in/events/pre-saadi-show-a-stand-comedy-lineup-show-dec12-2025-buy-tickets",
-      "image": null,
-      "source": "District",
-      "about": "Shreya Priyam Roy and Onkar Yadav are teaming up for a hilarious stand-up comedy show called \"Pre Saadi\"! They're known for their dark, observational humor and sharp wit, making them a perfect duo for a laughter riot.Shreya Priyam Roy is a rising star in the Indian comedy scene, with a background in history and a knack for social commentary. Onkar Yadav, her partner in comedy and life, brings his unique perspective…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/pre-saadi-show-a-stand-comedy-lineup-show-dec12-2025-buy-tickets"
-      },
-      "first_seen": "2026-10-12"
     },
     {
       "id": "fa79d67bfe2a",
@@ -20900,6 +21328,31 @@
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/hi-dosti-tutaychi-naay/ET00496727"
       }
+    },
+    {
+      "id": "241663abfa32",
+      "title": "Made of Dreams: An Evening of Poetry & Possibility by Aditi Sinha",
+      "category": "theatre",
+      "genres": [
+        "storytelling"
+      ],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Underline Center",
+      "date": "2026-10-18",
+      "time": "14:00",
+      "price_from": 399,
+      "url": "https://www.district.in/events/made-of-dreams-an-evening-of-poetry-possibility-by-aditi-sinha-oct18-2026-buy-tickets",
+      "image": null,
+      "source": "District",
+      "about": "✨ Made of Dreams: Poetry & Open Mic EveningFor those who dream wildly, feel deeply, and find magic in words.An intimate evening of poetry, storytelling, open mic and live art, where words are shared and art is created in real time.📝 Poetry & stories from AditiA solo performance of poems and stories about dreams, ambition, identity, growing up, and finding your way back to yourself.🎤 Open mic slotsA space for you to…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/made-of-dreams-an-evening-of-poetry-possibility-by-aditi-sinha-oct18-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "55f64eeffd3e",
@@ -24241,6 +24694,31 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "23723df74bf5",
+      "title": "Garba Ni Ratri",
+      "category": "music",
+      "genres": [
+        "devotional"
+      ],
+      "lang": [],
+      "city": "Ludhiana",
+      "venue": "F2 Raceway, Ayali Rd",
+      "date": "2026-10-18",
+      "time": "18:00",
+      "price_from": 750,
+      "url": "https://www.district.in/events/garba-ni-ratri-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3AGQREYM7DEJYRB4ZQXBRM7.jpg",
+      "source": "District",
+      "about": "Navratri in Punjab is about to get a serious upgrade. 🪔This time, Garba-ni-ratri brings an experience you haven’t had before. Premium atmosphere, premium celebs, and premium dandiya, all in one place.The night begins with Maha Aarti, so be there on time to start it the right way. After that, the floor is all yours:- Premium DJs for full-on garba nights- Authentic Navratri food that hits right at the heart…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/garba-ni-ratri-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "f91edb79912d",
       "title": "Dandiya Night Celebration With Rangrezza",
       "category": "music",
@@ -24362,6 +24840,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/raastara-04-hyderabads-grand-raas-dandiya-festival-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "490e23d057dc",
+      "title": "Bannerghatta Road Biggest Dhandiya Event 5.0",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Unalii Brewpark",
+      "date": "2026-10-18",
+      "time": "18:00",
+      "price_from": 99,
+      "url": "https://www.district.in/events/bannerghatta-road-biggest-dhandiya-event-50-oct16-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M48QRK64GWJDSE9EM7MF7M36.jpg",
+      "source": "District",
+      "about": "Great Indian Dhandiya Night 5.0Get ready for three unforgettable nights of Dhandiya music dance and festive celebrationsUnalii Brew Park Bannerghatta Road Hulimavu Bengaluru KarnatakaWhat to expectMassive festive decorNon stop musicGarba dancersNeon live dholsRain proof setupHuge dance floorIndias Top DJsFree Dhandiya sticks for all And many more surprisesCome dressed in your festive best grab your Dhandiya sticks…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/bannerghatta-road-biggest-dhandiya-event-50-oct16-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -24674,6 +25175,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/lulu-dandiya-mahotsav-2026-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "56973c31f4af",
+      "title": "Dandiya Nights by the Beach at MGM Beach Resorts",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Chennai",
+      "venue": "MGM Beach Resorts",
+      "date": "2026-10-18",
+      "time": "18:00",
+      "price_from": 299,
+      "url": "https://www.district.in/events/dandiya-nights-by-the-beach-at-mgm-beach-resorts-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M45F9MP4W2578F4AWAATFWD2.jpeg",
+      "source": "District",
+      "about": "Join us at MGM Beach Resorts for an evening filled with vibrant music, energetic Dandiya, live performances, delicious food, and refreshing beverages — all set against the beautiful coastal backdrop.🌟 Event Highlights:• 🎧 DJ Music• 🎤 Live Performances• 💃 Dandiya Sticks• 🥘 Chaat & Snack Counter• 🍹 Beverage Counter• 🥂 Welcome Drinks• 🌊 Festive celebrations by the beachCome dressed in your festive best, grab your…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/dandiya-nights-by-the-beach-at-mgm-beach-resorts-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -25830,9 +26356,9 @@
       "venue": "The Comedy Theatre - Hauz Khass Village",
       "date": "2026-10-18",
       "time": "19:00",
-      "price_from": null,
+      "price_from": 249,
       "url": "https://www.district.in/events/insaan-ki-vyatha-ek-comedy-katha-oct23-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M46GZ8N5VFE8FP115AB5XKCM.jpg",
+      "image": null,
       "source": "District",
       "about": "Naushad Ansari brings you an honest, relatable comedy experience where real-life struggles turn into stories worth laughing about.Life rarely goes the way you plan it. Sometimes, you take things seriously, make mistakes, face unexpected turns and years later, somehow, those same moments become the funniest stories you can tell.In this show, Naushad shares what happened, why it felt serious back then, and why it's…",
       "sources": [
@@ -26483,6 +27009,31 @@
       "first_seen": "2026-10-12"
     },
     {
+      "id": "ba8975786fd5",
+      "title": "Sur Space - Pujo Jamming Dairies",
+      "category": "music",
+      "genres": [
+        "open-jam"
+      ],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Five Mad Men | Street 25, GP Block",
+      "date": "2026-10-18",
+      "time": "19:30",
+      "price_from": null,
+      "url": "https://www.district.in/events/sur-space-pujo-jamming-dairies-oct18-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4K1AYQVQK4FQEECF1VV77KP.jpg",
+      "source": "District",
+      "about": "This Pujo, let the city vibe to the rhythm of music, madness, and unforgettable connections! 🎸🥁Sur Space – Pujo Jamming Diaries brings together passionate musicians, soulful melodies, Bollywood favourites, and spontaneous jams for an evening full of energy, nostalgia, and community.From singing your heart out to grooving with fellow music lovers, experience the magic of live music where every beat tells a story and…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/sur-space-pujo-jamming-dairies-oct18-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "23ac973ce3e9",
       "title": "KAO - Dandiya Raas 2K26",
       "category": "music",
@@ -26947,6 +27498,29 @@
       "first_seen": "2026-10-07"
     },
     {
+      "id": "dcbf6fccf968",
+      "title": "SOCIAL PRESENTS DURGA PUJA SPECIAL Ft NEIL – Parkstreet SOCIAL",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Park Street SOCIAL",
+      "date": "2026-10-18",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/social-presents-durga-puja-special-ft-neil-parkstreet-social-sbbbsqfy",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1791882254seacVHiahxiztPoc.png.webp",
+      "source": "Skillbox",
+      "about": "SOCIAL PRESENTS DURGA PUJA SPECIAL Ft NEIL | Parkstreet SOCIAL",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/social-presents-durga-puja-special-ft-neil-parkstreet-social-sbbbsqfy"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "c4f997d382ac",
       "title": "TECHNARCHY: OCT EDITION",
       "category": "music",
@@ -27111,31 +27685,6 @@
       }
     },
     {
-      "id": "adde6807aabe",
-      "title": "Kaccha Papad",
-      "category": "comedy",
-      "genres": [
-        "comedy-open-mic"
-      ],
-      "lang": [],
-      "city": "Delhi",
-      "venue": "The Comedy Theatre - Hauz Khass Village",
-      "date": "2026-10-18",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/kacha-papad-oct18-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4SX0W56PT4CRQS3KNJVYKZK.jpg",
-      "source": "District",
-      "about": "Rahul Girdhar is performing live with a brand-new set — raw, unfiltered, and still in the making! This trial show is where fresh jokes are born, old jokes get upgraded, and unexpected moments become the funniest ones.If you enjoy watching a comedian experiment, improvise, and build material right in front of you, come be part of this intimate work-in-progress session.Your laughs, reactions, and groans will help…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/kacha-papad-oct18-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-13"
-    },
-    {
       "id": "448425ab4d60",
       "title": "Offbeat Garba",
       "category": "music",
@@ -27155,6 +27704,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/offbeat-garba-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "e418a8ba93c1",
+      "title": "Hungrito Ratri 2026 - Navratri & Garba at Clarinet Greens",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Clarinet Greens",
+      "date": "2026-10-18",
+      "time": "21:00",
+      "price_from": 1749,
+      "url": "https://www.district.in/events/test-event-for-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M4GGT51T9SZ7NBC9CKTDZAPN.png",
+      "source": "District",
+      "about": "Hungrito Ratri 2026 Ahmedabad Navratri Garba at Clarinet Greens Hungrito Ratri 2026 is a threenight Navratri Garba experience at Clarinet Greens Ahmedabad bringing together live Garba music culture festive spaces food and the unmistakable energy of Navratri Hungrito has spent more than a decade creating experiences around food music culture and entertainment This Navratri that experience takes a new form with…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/test-event-for-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -28062,6 +28634,29 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "509b938fcaed",
+      "title": "Asees Kaur Live at Rangtaari 2026",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Bhubaneswar",
+      "venue": "Baliyatra Boita Gate",
+      "date": "2026-10-19",
+      "time": "18:00",
+      "price_from": 439,
+      "url": "https://www.district.in/events/asees-kaur-live-at-rangtaari-oct19-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3EXVRSDB4EQA7RB738H6ASS.jpeg",
+      "source": "District",
+      "about": "Rangtaari 2026 Is Here!The wait is over! Get ready for an unforgettable celebration as Asees Kaur Live at Rangtaari 2026 brings music, culture, celebration, and purpose together on one magnificent stage.Celebrating 5 successful years of Rangtaari, this edition becomes even more special as it commemorates 150 glorious years of India's National Song, “Vande Mataram.”Presented as an initiative of the Yuvaadyam…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/asees-kaur-live-at-rangtaari-oct19-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "152e19631e0e",
       "title": "Raasotsav Dandiya Night",
       "category": "music",
@@ -28849,6 +29444,29 @@
       }
     },
     {
+      "id": "1e47ea30d97c",
+      "title": "Hungrito Ratri 2026 - Navratri & Garba at Clarinet Greens",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Clarinet Greens",
+      "date": "2026-10-19",
+      "time": "21:00",
+      "price_from": 1749,
+      "url": "https://www.district.in/events/test-event-for-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M4GGT51T9SZ7NBC9CKTDZAPN.png",
+      "source": "District",
+      "about": "Hungrito Ratri 2026 Ahmedabad Navratri Garba at Clarinet Greens Hungrito Ratri 2026 is a threenight Navratri Garba experience at Clarinet Greens Ahmedabad bringing together live Garba music culture festive spaces food and the unmistakable energy of Navratri Hungrito has spent more than a decade creating experiences around food music culture and entertainment This Navratri that experience takes a new form with…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/test-event-for-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "c44c6fdb1569",
       "title": "Adult Comedy Show",
       "category": "comedy",
@@ -29130,6 +29748,31 @@
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/shikayla-gelo-ek/ET00420951"
       }
+    },
+    {
+      "id": "aca61db1282c",
+      "title": "Rang Raass 2026 – Farishtay Trust",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Maharaja Agrasena Bhavana",
+      "date": "2026-10-20",
+      "time": "17:00",
+      "price_from": 199,
+      "url": "https://www.district.in/events/rang-raass-2026-bangalores-grand-dandiya-night-by-farishtay-trust-live-artist-awards-oct20-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3ZPS2QT5FFC1K9TWH930FA6.jpg",
+      "source": "District",
+      "about": "This Navratri, your Dandiya can change a life.Get ready, Bangalore! This is not just another Garba night. RANG RAAS 2026 brings together traditional Garba, Dandiya, music, food, and celebration, all while supporting a meaningful cause.ABOUT THE CAUSEOrganized by Farishtay Charitable Trust, the event supports the rescue and rehabilitation of girls and women affected by human trafficking and forced prostitution by…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/rang-raass-2026-bangalores-grand-dandiya-night-by-farishtay-trust-live-artist-awards-oct20-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "c69a0d727e02",
@@ -29506,6 +30149,29 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "2a3d059f15bd",
+      "title": "SOCIAL PRESENTS DURGA PUJA SPECIAL Ft RAJ ROY – Parkstreet SOCIAL",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Park Street SOCIAL",
+      "date": "2026-10-20",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/social-presents-durga-puja-special-ft-raj-roy-parkstreet-social-sbaznsyh",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17918820686OkMdeNOw9YbrLlJ.jpg.webp",
+      "source": "Skillbox",
+      "about": "SOCIAL PRESENTS DURGA PUJA SPECIAL Ft RAJ ROY | Parkstreet SOCIAL",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/social-presents-durga-puja-special-ft-raj-roy-parkstreet-social-sbaznsyh"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "8256769ca856",
       "title": "Alt Comedy Showcase Night: KCC",
       "category": "comedy",
@@ -29763,6 +30429,31 @@
       "first_seen": "2026-10-02"
     },
     {
+      "id": "505fe39679d8",
+      "title": "SOCIAL PRESENTS DURGA PUJA SPECIAL Ft DJ RIK – Parkstreet SOCIAL",
+      "category": "music",
+      "genres": [
+        "electronic"
+      ],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Park Street SOCIAL",
+      "date": "2026-10-21",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/social-presents-durga-puja-special-ft-dj-rik-parkstreet-social-sbbgckvg",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1791883956NDEO1R0YEIOfJk28.png.webp",
+      "source": "Skillbox",
+      "about": "SOCIAL PRESENTS DURGA PUJA SPECIAL Ft DJ RIK | Parkstreet SOCIAL",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/social-presents-durga-puja-special-ft-dj-rik-parkstreet-social-sbbgckvg"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "1682287952b5",
       "title": "'THE DEY WAY' - Mohini Dey || GOM 26",
       "category": "music",
@@ -29787,6 +30478,32 @@
         "The Piano Man": "https://www.thepianoman.in/event/detail/2/the-dey-way-mohini-dey-gom-26-four-thousand-nine-hundred-thirty-three"
       },
       "first_seen": "2026-10-09"
+    },
+    {
+      "id": "9412a0ba406c",
+      "title": "Arvid Jullander Trio",
+      "category": "music",
+      "genres": [
+        "jazz",
+        "western-classical"
+      ],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "The Humming Tree",
+      "date": "2026-10-21",
+      "time": "21:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/arvid-jullander-trio-sweden-oct21-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4D3TMPX917AW9P94RHS0P7H.jpg",
+      "source": "District",
+      "about": "This event will take place Under The Tree.About the Band:ARVID JULLANDER TRIO (SWEDEN) is a contemporary jazz trio built around improvisation, interaction and musical freedom.The trio (Double Bass/ Piano/Drums) is led by Swedish bassist Arvid Jullander and features a dynamic approach to jazz that combines original compositions with personal interpretations of well-known songs.Arvid Jullander is a Swedish bassist…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/arvid-jullander-trio-sweden-oct21-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "5e6589e20bc4",
@@ -30956,6 +31673,31 @@
         "District": "https://www.district.in/events/the-yellow-diary-icwf-tour-dehradune-oct24-2026-buy-tickets"
       },
       "first_seen": "2026-10-08"
+    },
+    {
+      "id": "369915099d3d",
+      "title": "Tribute to Fred Again - ft. Drexo.bpm – High Big Gigs",
+      "category": "music",
+      "genres": [
+        "tribute"
+      ],
+      "lang": [],
+      "city": "Pune",
+      "venue": "High Spirits Cafe",
+      "date": "2026-10-23",
+      "time": "21:00",
+      "price_from": 299,
+      "url": "https://www.district.in/events/fred-again-set-ft-drexobpm-high-big-gigs-oct23-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M48GFJBATE2C8XZYE89PYSYP.png",
+      "source": "District",
+      "about": "Step into a night built around the sound, energy and emotion of Fred Again..Drexo.bpm presents a special Fred Again.. inspired set, bringing together the infectious energy of UK Garage, House and Electronic music with atmospheric melodies, rhythmic grooves and carefully curated transitions designed for the dancefloor.Expect an immersive musical journey that moves between euphoric highs, emotional moments and…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/fred-again-set-ft-drexobpm-high-big-gigs-oct23-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "48bdc6d73097",
@@ -33166,7 +33908,7 @@
       "venue": "Kreate by Kraft",
       "date": "2026-10-24",
       "time": "20:00",
-      "price_from": 299,
+      "price_from": null,
       "url": "https://www.district.in/events/jam-podalam-tamil-jamming-sep26-2026-buy-tickets",
       "image": null,
       "source": "District",
@@ -33564,31 +34306,6 @@
       "links": {
         "BookMyShow": "https://in.bookmyshow.com/events/siddhi-the-divine-band/ET00515985"
       }
-    },
-    {
-      "id": "4a6582780353",
-      "title": "Tribute to PinkFloyd & Linkin Park ft. Strings on Fire",
-      "category": "music",
-      "genres": [
-        "tribute"
-      ],
-      "lang": [],
-      "city": "Hyderabad",
-      "venue": "Hard Rock Cafe | Hitech City, Hyderabad",
-      "date": "2026-10-24",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/pinkfloyd-linkin-park-tribute-ft-string-on-fire-oct24-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3NK3311M0YVJG4VT1AJAVSR.jpg",
-      "source": "District",
-      "about": "Get ready for a powerful night that brings together two iconic sounds from different generations! Strings on Fire pays tribute to the timeless brilliance of Pink Floyd and the electrifying energy of Linkin Park.From atmospheric classics and unforgettable guitar solos to hard-hitting anthems and powerful vocals, experience the best of both worlds in one explosive live set.Two legendary bands. Two distinct eras. One…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/pinkfloyd-linkin-park-tribute-ft-string-on-fire-oct24-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-11"
     },
     {
       "id": "a33d116f4559",
@@ -35539,6 +36256,29 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "83a513d59df2",
+      "title": "PawRatri - Navratri with Pets",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "HRCWA Durga Puja Ground",
+      "date": "2026-10-25",
+      "time": "18:00",
+      "price_from": 699,
+      "url": "https://www.district.in/events/pawratri-navratri-with-pets-oct25-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M40DZWA9RARM4Z8RARTN0HZE.jpg",
+      "source": "District",
+      "about": "PawRatri is a one of a kind event that is meant for the pets and the parents alike. Navratri is all about family, fun and togetherness. But without your pets, your family is incomplete.PawRatri will have something for each member of the family. The parents can dance to the garba beats and the pets can gorge on the sumptuous treats.Salient Features:- Silent Garba: Headphone for guest to enjoy the garba music in the…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/pawratri-navratri-with-pets-oct25-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "290529e20c07",
       "title": "Evolution by Arvind Sunder",
       "category": "comedy",
@@ -36149,7 +36889,7 @@
       "venue": "Pandit Farms",
       "date": "2026-10-25",
       "time": "20:00",
-      "price_from": null,
+      "price_from": 990,
       "url": "https://www.district.in/events/javed-akhtar-mai-koi-aaisa-geet-gaoon-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4MXSZQZFTRYQ1J70ETB3XJ2.jpeg",
       "source": "District",
@@ -37299,7 +38039,7 @@
       "url": "https://www.district.in/events/apna-open-mic-76th-edition-ahmedabad-oct29-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4AR0YYZSY6XGF8GJGVCYN98.jpg",
       "source": "District",
-      "about": "Apna Open Mic is a well-known regular open mic event in Gujarat, where we are inviting Fresh Talents to showcase their talent on an emerging and non-judgmental platform at this event.In this Open Mic Edition, we are welcoming entries of Comedy, Poetry, Storytelling, Acting, Monologue, Singing, Music, and all other performing art forms.- Only Clean Content is allowed.- The slot will be of 4 minutes, which should be…",
+      "about": "APNA OPEN MIC - Ahmedabad (76th Edition)Presented by Cafe Comedy29th October | 8:30 PM | Mishty Studio, Ahmedabad.Apna Open Mic is a well-known regular open mic event in Gujarat, where we are inviting Fresh Talents to showcase their talent on an emerging and non-judgmental platform at this event.In this Open Mic Edition, we are welcoming entries of Comedy, Poetry, Storytelling, Acting, Monologue, Singing, Music, and…",
       "sources": [
         "District"
       ],
@@ -37380,7 +38120,7 @@
       "url": "https://www.district.in/events/the-amit-khuva-show-clean-gujarati-standup-comedy-oct29-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4J7FYC3EE5N1R4VXRRN9D83.jpeg",
       "source": "District",
-      "about": "The Amit Khuva Show is where he experiments, explores, and performs the comedy that could become his next biggest hit.It's a show where some jokes are spontaneous, some are being performed for the first time, and some are his greatest hits with a new twist!Some jokes will make it into future tours. Some may never be heard again.That's what makes every 'The Amit Khuva Show' unique.Expect 90 minutes of sharp…",
+      "about": "'The Amit Khuva Show' is where he experiments, explores, and performs the comedy that could become his next biggest hit.It's a show where some jokes are spontaneous, some are being performed for the first time, and some are his greatest hits with a new twist!Some jokes will make it into future tours. Some may never be heard again.That's what makes every 'The Amit Khuva Show' unique.Expect 90 minutes of sharp…",
       "sources": [
         "District"
       ],
@@ -38134,6 +38874,34 @@
       "first_seen": "2026-10-03"
     },
     {
+      "id": "3a89068c043c",
+      "title": "Puuluup",
+      "category": "music",
+      "genres": [
+        "folk",
+        "pop"
+      ],
+      "lang": [],
+      "city": "Hyderabad",
+      "venue": "Windmills Craftwork",
+      "date": "2026-10-30",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/puuluup-oct30-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4D0NZ83KGGBBKWWQKQ3MW87.jpg",
+      "source": "District",
+      "about": "Puuluup is an Estonian nu-folk duo formed by Ramo Teder and Marko Veisson, blending traditional folk with world music, underground and pop influences. At the heart of their sound is the hiiu kannel, an ancient bowed lyre transformed through effects, looping and unconventional playing techniques. Their music creates hypnotic, dance-driven grooves with dark, cinematic textures, bringing together tradition and modern…",
+      "sources": [
+        "District",
+        "Skillbox"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/puuluup-oct30-2026-buy-tickets",
+        "Skillbox": "https://www.skillboxes.com/events/puuluup-sbosaxyv"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "88d55167ee4f",
       "title": "Ghutne 2.0 ft. Shashwat Maheshwari: KCC",
       "category": "comedy",
@@ -38204,32 +38972,6 @@
         "Skillbox": "https://www.skillboxes.com/events/gauley-bhai-live-26-bangalore-sbledhpj"
       },
       "first_seen": "2026-10-09"
-    },
-    {
-      "id": "aae4220c9972",
-      "title": "Puuluup",
-      "category": "music",
-      "genres": [
-        "folk",
-        "pop"
-      ],
-      "lang": [],
-      "city": "Hyderabad",
-      "venue": "Windmills Craftworks [Madhapur]",
-      "date": "2026-10-30",
-      "time": "20:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/puuluup-sbosaxyv",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/cnVQdTdwc1JxRm1CRTkvd1g5N1p4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1791358746hLAYIsoc2Q0ubsSR.jpg.webp",
-      "source": "Skillbox",
-      "about": "Puuluup is an Estonian nu-folk duo formed by Ramo Teder and Marko Veisson, blending traditional folk with world music, underground and pop influences. At the heart of their sound is the hiiu kannel, an ancient bowed lyre transformed through effect",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/puuluup-sbosaxyv"
-      },
-      "first_seen": "2026-10-07"
     },
     {
       "id": "61df3f5b1fdb",
@@ -38811,7 +39553,7 @@
       "time": "14:00",
       "price_from": null,
       "url": "https://www.skillboxes.com/events/horrorcon-india-sbufizpt",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1791293229OIiBpTl8EoDsxiNa.png.webp",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1791295218GxOpIwtYZbL3G9dS.png.webp",
       "source": "Skillbox",
       "about": "Halloween does not get bigger than this ! Enter a world where horror meets pop culture in the most electrifying Halloween celebration India has ever seen! Join us for the craziest weekend of the year at HorrorCon India 2026.",
       "sources": [
@@ -40243,6 +40985,31 @@
       "first_seen": "2026-10-05"
     },
     {
+      "id": "db31f15c507c",
+      "title": "Jamming Night - Mumbai",
+      "category": "music",
+      "genres": [
+        "open-jam"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Butterfly High",
+      "date": "2026-10-31",
+      "time": "20:00",
+      "price_from": 299,
+      "url": "https://www.district.in/events/jamming-night-mumbai-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M487YHQTN4RAAHQ516P2DC0S.jpg",
+      "source": "District",
+      "about": "Welcome to Jamming Night, where tunes aren’t just played—they’re felt, shared, and celebrated.Participants can bring their instrument, their voice, or simply their love for rhythm and join a cozy circle of music enthusiasts who come together to jam for the sheer joy of it.Whether a seasoned musician, a passionate beginner, or someone who simply grooves to every beat, everyone has a space to create, collaborate, and…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/jamming-night-mumbai-oct17-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "bd3d519c81a6",
       "title": "Reble Live In Hyderabad",
       "category": "music",
@@ -40463,9 +41230,9 @@
       "venue": "Hard Rock Cafe | Hitech City, Hyderabad",
       "date": "2026-10-31",
       "time": "21:00",
-      "price_from": 499,
+      "price_from": null,
       "url": "https://www.district.in/events/halloween-special-ft-root-three-five-oct31-2026-buy-tickets",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/UTNTdDVEd0M1SUlXcG02aHZIUHpqZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1790676867ADrHdwzfRKFnpzuN.jpg.webp",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3NKC0SBNV2W1DJW9B1Y534E.jpg",
       "source": "District",
       "about": "Get ready for a spooktacular night of live music, electrifying performances and Halloween madness with Root Three Five!Expect an exciting mix of crowd favourites, infectious rhythms and high-energy rock as the band sets the stage for a thrilling Halloween celebration. Put on your best costume, gather your crew and get ready for a night filled with great music, spooky vibes and unforgettable moments.Costumes on…",
       "sources": [
@@ -41220,9 +41987,9 @@
       "venue": "Akan Hyderabad",
       "date": "2026-11-01",
       "time": "15:30",
-      "price_from": 799,
+      "price_from": null,
       "url": "https://www.district.in/events/retro-to-metro-tamil-jamming-hyderabad-nov1-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3RCDK5M9G1B81KYPCYAJS5B.jpg",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3RCDV370ZFQZ8PP9BVB2NK5.jpg",
       "source": "District",
       "about": "Vanakkam Hyderabad Makkaley!After 50+ sold-out shows, Unherd is back, and this time we are going bigger than ever with Hyderabad's biggest Jamming Styled Sing Along Concert - Retro to Metro.This is not just a concert. This is a full-scale Tamil makkal celebration.From our thatha-paati playlist to today`s situationship anthems, from cassette days to Spotify days, from mass kuthu to viral bangers - every era comes…",
       "sources": [
@@ -41776,6 +42543,31 @@
       }
     },
     {
+      "id": "75dcb62112ec",
+      "title": "A R Rahman – Wonderment Tour Live in Concert",
+      "category": "theatre",
+      "genres": [
+        "musical"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Jio World Garden",
+      "date": "2026-11-01",
+      "time": "19:00",
+      "price_from": 3999,
+      "url": "https://www.district.in/events/a-r-rahman-wonderment-tour-live-in-concert-mumbai-2026-buy-tickets",
+      "image": null,
+      "source": "District",
+      "about": "Experience an extraordinary evening of music with A.R. Rahman, as his iconic compositions come alive in a spectacular live concert.From timeless melodies that have become part of our lives to powerful musical moments that continue to inspire generations, the evening celebrates the maestro’s unparalleled musical legacy. With a live orchestra, breathtaking visuals and immersive production, expect a concert experience…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/a-r-rahman-wonderment-tour-live-in-concert-mumbai-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "a278f5801f01",
       "title": "Krishna Das India Tour 2026",
       "category": "music",
@@ -41799,31 +42591,6 @@
         "District": "https://www.district.in/events/krishna-das-india-tour-2026-ahmedabad-buy-tickets"
       },
       "first_seen": "2026-09-25"
-    },
-    {
-      "id": "116a6f1d3e78",
-      "title": "A R Rahman – Wonderment Tour Live in Concert",
-      "category": "music",
-      "genres": [
-        "western-classical"
-      ],
-      "lang": [],
-      "city": "Mumbai",
-      "venue": "Jio World Garden",
-      "date": "2026-11-01",
-      "time": "19:00",
-      "price_from": 2999,
-      "url": "https://www.district.in/events/a-r-rahman-wonderment-tour-live-in-concert-mumbai-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M4S27TZMKX7CFBK63768YHCT.jpeg",
-      "source": "District",
-      "about": "Experience an extraordinary evening of music with A.R. Rahman, as his iconic compositions come alive in a spectacular live concert.From timeless melodies that have become part of our lives to powerful musical moments that continue to inspire generations, the evening celebrates the maestro’s unparalleled musical legacy. With a live orchestra, breathtaking visuals and immersive production, expect a concert experience…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/a-r-rahman-wonderment-tour-live-in-concert-mumbai-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-13"
     },
     {
       "id": "048548f7398c",
@@ -42086,32 +42853,6 @@
       }
     },
     {
-      "id": "f1505b0e3ce3",
-      "title": "Shuruaat Aap Se Kyu Na Ho...? Ft. Aaket Panchal",
-      "category": "theatre",
-      "genres": [
-        "comedy-play",
-        "storytelling"
-      ],
-      "lang": [],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2026-11-01",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/shuruaat-aap-se-kyu-na-ho-ft-aaket-panchal-may30-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "about": "After receiving love for his first solo show “Senti Mat Ho Yaar”, Aaket Panchal returns with his second solo trial show “SHURUAAT AAPSE KYU NA HO…???” 🎤Having already toured Senti Mat Ho Yaar twice and performed 70+ standup shows across different venues, Aaket brings a more confident, relatable, and unfiltered style of comedy to the stage.This trial show is packed with fresh observations, everyday chaos, awkward…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/shuruaat-aap-se-kyu-na-ho-ft-aaket-panchal-may30-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-12"
-    },
-    {
       "id": "5509b94e0fac",
       "title": "Don't Angry Me – A Comedy Show",
       "category": "theatre",
@@ -42138,6 +42879,32 @@
         "District": "https://www.district.in/events/dont-angry-me-a-comedy-show-nov1-2026-buy-tickets"
       },
       "first_seen": "2026-10-06"
+    },
+    {
+      "id": "f1505b0e3ce3",
+      "title": "Shuruaat Aap Se Kyu Na Ho...? Ft. Aaket Panchal",
+      "category": "theatre",
+      "genres": [
+        "comedy-play",
+        "storytelling"
+      ],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Art House India",
+      "date": "2026-11-01",
+      "time": "21:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/shuruaat-aap-se-kyu-na-ho-ft-aaket-panchal-may30-2026-buy-tickets",
+      "image": null,
+      "source": "District",
+      "about": "After receiving love for his first solo show “Senti Mat Ho Yaar”, Aaket Panchal returns with his second solo trial show “SHURUAAT AAPSE KYU NA HO…???” 🎤Having already toured Senti Mat Ho Yaar twice and performed 70+ standup shows across different venues, Aaket brings a more confident, relatable, and unfiltered style of comedy to the stage.This trial show is packed with fresh observations, everyday chaos, awkward…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/shuruaat-aap-se-kyu-na-ho-ft-aaket-panchal-may30-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-12"
     },
     {
       "id": "0e16df24129f",
@@ -43271,9 +44038,9 @@
       "venue": "The Comedy Theatre - Hauz Khass Village",
       "date": "2026-11-07",
       "time": "20:00",
-      "price_from": 399,
+      "price_from": null,
       "url": "https://www.district.in/events/married-bachelor-oct2-2026-buy-tickets",
-      "image": null,
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M260DVBN1PSQAEN3ZC40FNFZ.png",
       "source": "District",
       "about": "This show is a hilarious take on the journey of transition of a boy from a careless bachelor to a Pookie husband.Gourav has performed across India and Internationally, with more than 100M views across YouTube, OTT and TV.Looking for an hour of family friendly comedy? Married Bachelor is the perfect show for you",
       "sources": [
@@ -43281,6 +44048,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/married-bachelor-oct2-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "86e819f40e7a",
+      "title": "Jamming Night - Mumbai",
+      "category": "music",
+      "genres": [
+        "open-jam"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Butterfly High",
+      "date": "2026-11-07",
+      "time": "20:00",
+      "price_from": 299,
+      "url": "https://www.district.in/events/jamming-night-mumbai-oct17-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M487YHQTN4RAAHQ516P2DC0S.jpg",
+      "source": "District",
+      "about": "Welcome to Jamming Night, where tunes aren’t just played—they’re felt, shared, and celebrated.Participants can bring their instrument, their voice, or simply their love for rhythm and join a cozy circle of music enthusiasts who come together to jam for the sheer joy of it.Whether a seasoned musician, a passionate beginner, or someone who simply grooves to every beat, everyone has a space to create, collaborate, and…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/jamming-night-mumbai-oct17-2026-buy-tickets"
       },
       "first_seen": "2026-10-13"
     },
@@ -43501,9 +44293,9 @@
       "venue": "Pandit Farms",
       "date": "2026-11-10",
       "time": "06:30",
-      "price_from": 499,
+      "price_from": null,
       "url": "https://www.district.in/events/kaushiki-chakraborty-padwa-pahat-concert-2026-buy-tickets",
-      "image": null,
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M0S9T45JTR7Q1EB3CYT6YYM2.jpg",
       "source": "District",
       "about": "Sakal Media Group proudly brings to you the most distinctive and leading classical vocalist in India, \"Kaushiki Chakraborty\" for the traditionally iconic Padwa Pahat Concert at Pandit Farms!Soak in the Diwali fervour in the crisp air of the auspicious early Padwa morning through Kaushiki Chakraborty's legendary classical presentations!",
       "sources": [
@@ -46424,6 +47216,29 @@
       "first_seen": "2026-10-06"
     },
     {
+      "id": "54c38d2f6204",
+      "title": "Vivek Samtani Live",
+      "category": "comedy",
+      "genres": [],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Mysore Association",
+      "date": "2026-11-20",
+      "time": "20:00",
+      "price_from": 499,
+      "url": "https://www.district.in/events/vivek-samtani-live-nov20-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M2JPQN49HG6VYM6H8427KP40.png",
+      "source": "District",
+      "about": "Get ready for a night of unadulterated laughter with Vivek Samtani Live.Vivek takes the stage with his sharp wit, clever observations, and hilarious storytelling, covering everything from everyday struggles to the absurdities of modern life.With his unique brand of humour and engaging delivery, the show promises an evening filled with laughter, relatable moments, and memorable comedy.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/vivek-samtani-live-nov20-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "b17fbbc62848",
       "title": "Danza in the city vol. 121",
       "category": "music",
@@ -48693,31 +49508,6 @@
       }
     },
     {
-      "id": "7acebcfdb41b",
-      "title": "Miracle Vibes Hub Open Mic & Creative Jamming Night",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "lang": [],
-      "city": "Bengaluru",
-      "venue": "Trishan School Of Music - BEML",
-      "date": "2026-11-28",
-      "time": "18:30",
-      "price_from": 250,
-      "url": "https://www.district.in/events/miracle-vibes-hub-nov28-2026-buy-tickets",
-      "image": null,
-      "source": "District",
-      "about": "Welcome to Miracle Vibes Hub Open Mic & Creative Jamming Night, where creativity comes alive and every voice finds a stage!Whether you're a singer, musician, poet, storyteller, comedian, artist, or someone who simply loves discovering new talent, this event is the perfect place to connect, perform, and have fun.",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/miracle-vibes-hub-nov28-2026-buy-tickets"
-      },
-      "first_seen": "2026-10-13"
-    },
-    {
       "id": "3414fafe42fd",
       "title": "Kuch Panne by Kopal Productions",
       "category": "theatre",
@@ -48739,6 +49529,31 @@
         "District": "https://www.district.in/events/kuch-panne-by-kopal-productions-nov28-2026-buy-tickets"
       },
       "first_seen": "2026-10-09"
+    },
+    {
+      "id": "7acebcfdb41b",
+      "title": "Miracle Vibes Hub Open Mic & Creative Jamming Night",
+      "category": "comedy",
+      "genres": [
+        "comedy-open-mic"
+      ],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Trishan School Of Music - BEML",
+      "date": "2026-11-28",
+      "time": "18:30",
+      "price_from": 250,
+      "url": "https://www.district.in/events/miracle-vibes-hub-nov28-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M48XWFRW63465TFDRW75GA4S.jpg",
+      "source": "District",
+      "about": "Welcome to Miracle Vibes Hub Open Mic & Creative Jamming Night, where creativity comes alive and every voice finds a stage!Whether you're a singer, musician, poet, storyteller, comedian, artist, or someone who simply loves discovering new talent, this event is the perfect place to connect, perform, and have fun.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/miracle-vibes-hub-nov28-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "8cc96b6a71b2",
@@ -49458,6 +50273,32 @@
       "first_seen": "2026-10-12"
     },
     {
+      "id": "426d2b13ca79",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Jalandhar",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Jalandhar",
+      "venue": "Lovely Professional University",
+      "date": "2026-11-29",
+      "time": "19:00",
+      "price_from": 1000,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-jalandhar-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1CFX778F8Y0ZZMDQ98RG7BG.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-jalandhar-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "973c4fa25746",
       "title": "Niladri Kumaar EKKA Tour 2026",
       "category": "music",
@@ -50156,9 +50997,9 @@
       "venue": "Pandit Farms",
       "date": "2026-12-05",
       "time": "19:30",
-      "price_from": 499,
+      "price_from": null,
       "url": "https://www.district.in/events/raghav-chaitanya-live-in-concert-buy-tickets",
-      "image": null,
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M28E5S3J1PXKH9D7GF9NT78F.jpg",
       "source": "District",
       "about": "Sakal Suhana Swasthyam presents Raghav Chaitanya Live is an immersive musical experience bringing soulful melodies, powerful vocals, and unforgettable energy to the stage. Get ready to sing along to your favorite hits, feel every emotion, and create memories with friends. An evening filled with music, magic, and pure entertainment awaits you.",
       "sources": [
@@ -50593,9 +51434,9 @@
       "venue": "Pandit Farms",
       "date": "2026-12-06",
       "time": "19:30",
-      "price_from": null,
+      "price_from": 499,
       "url": "https://www.district.in/events/sanju-rathod-live-in-concert-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M28CXPDB192GP39M6452E6EN.jpg",
+      "image": null,
       "source": "District",
       "about": "Sakal Suhana Swasthyam presents Sanju Rathod live-in concert. Experience the versatile artist behind some of the most loved Marathi and Hindi tracks, as he brings his signature style, powerful vocals and high-energy stage presence to an unforgettable live concert.From soulful melodies to foot-tapping beats and crowd-favourite hits, expect a musical experience that will have you singing along, dancing and enjoying…",
       "sources": [
@@ -51188,6 +52029,29 @@
       "links": {
         "BookMyShow": "https://in.bookmyshow.com/events/mohit-chauhan-live-in-guwahati/ET00515266"
       }
+    },
+    {
+      "id": "4ed232260330",
+      "title": "Unity Concert 2026 – Season 2 ft. Jasmine Sandlas",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Aquatica Ground",
+      "date": "2026-12-12",
+      "time": "16:00",
+      "price_from": 999,
+      "url": "https://www.district.in/events/unity-concert-2026-season-2-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M4G5Y62SMV88GGB8YM6JPGPV.png",
+      "source": "District",
+      "about": "Kolkata, get ready to turn the volume all the way up! Unity Concert 2026 is back with an electrifying night featuring the unstoppable Jasmine Sandlas, live at Aquatica Grounds.From Punjabi beats to high-energy anthems, expect a night of music, madness and unforgettable moments.Come with your squad, sing your heart out and experience the energy live!Because some nights aren’t just attended — they’re lived.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/unity-concert-2026-season-2-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "b391d52b0961",
@@ -53171,7 +54035,7 @@
       "venue": "Thalassa Beach Boutique Resort",
       "date": "2026-12-31",
       "time": "16:00",
-      "price_from": 2200,
+      "price_from": null,
       "url": "https://www.district.in/events/anjunadeep-open-air-goa-2026-buy-tickets",
       "image": null,
       "source": "District",
@@ -53209,6 +54073,32 @@
         "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-chandigarh-2026-buy-tickets"
       },
       "first_seen": "2026-09-25"
+    },
+    {
+      "id": "1623824490f6",
+      "title": "New Year Eve Kirtan & Bhajan Jamming",
+      "category": "music",
+      "genres": [
+        "devotional",
+        "open-jam"
+      ],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Delta Tower",
+      "date": "2026-12-31",
+      "time": "21:00",
+      "price_from": 799,
+      "url": "https://www.district.in/events/kirtan-bhajan-jamming-dec31-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M30QA6TKQC4A52HYBN5NNRER.jpeg",
+      "source": "District",
+      "about": "Welcome 2027 In The Bhakti Flow!What if the New Year could begin not with noise, crowds, and the usual party, but with music, devotion, joyful chanting, and meaningful connection?Experience an intimate evening of Krishna Bhajans, Kirtan, chanting, music, and dance as 2026 comes to an end.What Awaits You?Soulful Bhajans & KirtanSing along, close your eyes, and let the music carry you.Chanting & MantraCreate a…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/kirtan-bhajan-jamming-dec31-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "f636ed2bbf0e",
@@ -53465,6 +54355,32 @@
       "first_seen": "2026-09-25"
     },
     {
+      "id": "e0dee831bb67",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Hyderabad",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Hyderabad",
+      "venue": "Venue to be announced",
+      "date": "2027-01-09",
+      "time": "19:00",
+      "price_from": 1000,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-hyderabad-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1CFM3GJ9WGD65GNBGENNG2S.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-hyderabad-2026-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "7ad247015499",
       "title": "10 Mani Doctor - Dark & Adult Standup Comedy show",
       "category": "theatre",
@@ -53615,6 +54531,32 @@
       "first_seen": "2026-10-13"
     },
     {
+      "id": "32398c7af836",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Pune",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Pune",
+      "venue": "Mayfield Yash Garden",
+      "date": "2027-01-15",
+      "time": "19:00",
+      "price_from": 1000,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-pune-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C4R9MSPWYQ45V3JMCMHAEY.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-pune-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "d21bcb7b3f23",
       "title": "‘Gulaab – Ghazals by Shilpa Rao’",
       "category": "theatre",
@@ -53674,7 +54616,7 @@
       "venue": "Thalassa Beach Boutique Resort",
       "date": "2027-01-16",
       "time": "12:00",
-      "price_from": null,
+      "price_from": 4999,
       "url": "https://www.district.in/events/goa-sunsplash-2027-jan15-2027-buy-tickets",
       "image": null,
       "source": "District",
@@ -53862,6 +54804,32 @@
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/obanchito-golpoguchcho-by-nandikar/ET00509459"
       }
+    },
+    {
+      "id": "4659388dbb6c",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Mumbai",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "MMRDA Grounds",
+      "date": "2027-01-17",
+      "time": "19:00",
+      "price_from": 1000,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-mumbai-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C5FD07HJPQPP184N3P5CJQ.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-mumbai-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "0daad078b4f5",
@@ -54656,6 +55624,32 @@
       "first_seen": "2026-10-12"
     },
     {
+      "id": "bd01c411c90e",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Jammu",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Jammu",
+      "venue": "Venue to be announced",
+      "date": "2027-02-07",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-jammu-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C329MCJSEPY2HKN2VFKWPE.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-jammu-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "54d48bd81f61",
       "title": "Concert 2027",
       "category": "music",
@@ -54679,6 +55673,32 @@
         "District": "https://www.district.in/events/concert-2027-feb9-2027-buy-tickets"
       },
       "first_seen": "2026-09-25"
+    },
+    {
+      "id": "f549633baa6f",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Delhi",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Delhi",
+      "venue": "Jawaharlal Nehru Stadium",
+      "date": "2027-02-13",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-delhi-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C2K4ZC7CGXAGK14WEVP4TD.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-delhi-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "d570762fe5a8",
@@ -54829,6 +55849,32 @@
         "District": "https://www.district.in/events/shreya-ghoshal-the-unstoppable-india-tour-delhi-buy-tickets"
       },
       "first_seen": "2026-10-02"
+    },
+    {
+      "id": "576053d049e7",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Panchkula",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Chandigarh",
+      "venue": "Dusshera Ground Panchkula",
+      "date": "2027-02-19",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-panchkula-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C2BRY17PJBJ2K0HB3EWRQ6.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-panchkula-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "98b27d88bd9d",
@@ -55127,6 +56173,32 @@
       }
     },
     {
+      "id": "104ba9c44ff8",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Ahmedabad",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "EKA Arena",
+      "date": "2027-02-28",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-ahmedabad-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C16Y4YAYTX31XVK2B910P4.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-ahmedabad-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "a8f2c6cca2ce",
       "title": "Samay Raina Live – Pune – Mayfield Estate",
       "category": "comedy",
@@ -55302,6 +56374,32 @@
       "first_seen": "2026-10-02"
     },
     {
+      "id": "a5ed8234d88b",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Dehradun",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Dehradun",
+      "venue": "Parade Ground",
+      "date": "2027-03-07",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-dehradun-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C0YXF9F00F7KY2CACNE2E4.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-dehradun-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "fca9bad3f5e2",
       "title": "Samay Raina Live – Mumbai – Shanmukhananda",
       "category": "comedy",
@@ -55402,6 +56500,32 @@
       "first_seen": "2026-10-10"
     },
     {
+      "id": "80e8fd9c7efa",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Ludhiana",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Ludhiana",
+      "venue": "Punjab Agricultural University",
+      "date": "2027-03-14",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-ludhiana-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1C0NC44P2G5FT4K69B89VBY.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-ludhiana-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "09de2583a2a5",
       "title": "UNTOLD Dubai 2027",
       "category": "music",
@@ -55478,6 +56602,32 @@
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/ufff-yellam-sari-agidum/ET00490625"
       }
+    },
+    {
+      "id": "284ae56bdae4",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Amritsar",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Amritsar",
+      "venue": "Khalsa College",
+      "date": "2027-03-20",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-amritsar-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1BZA3BRJVMJBCTK0TXJMZ2R.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-amritsar-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     },
     {
       "id": "219394e7c59b",
@@ -55580,20 +56730,20 @@
       }
     },
     {
-      "id": "2a5c8c8a76da",
+      "id": "ad396b408388",
       "title": "Shreya Ghoshal - The Unstoppable India Tour",
-      "category": "theatre",
+      "category": "music",
       "genres": [
-        "musical"
+        "tribute"
       ],
       "lang": [],
       "city": "Mumbai",
       "venue": "Jio World Garden",
       "date": "2027-03-27",
       "time": "18:00",
-      "price_from": 5000,
+      "price_from": 2000,
       "url": "https://www.district.in/events/shreya-ghoshal-the-unstoppable-india-tour-mumbai-buy-tickets",
-      "image": null,
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M3KZAV1Y1VD0CPVNPJMHPY4G.jpg",
       "source": "District",
       "about": "The Unstoppable India Tour is a celebration of Shreya Ghoshal’s remarkable journey an evening that brings together timeless classics, fan favourites and unforgettable musical moments that have defined an era.It is a tribute to the enduring bond between Shreya and her audience, whose unwavering love and support continue to inspire every note she sings. Experience the magic of a voice that continues to evolve while…",
       "sources": [
@@ -55807,6 +56957,58 @@
       "first_seen": "2026-10-12"
     },
     {
+      "id": "16075b85c364",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Ranchi",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Ranchi",
+      "venue": "Venue to be announced",
+      "date": "2027-05-07",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-ranchi-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1XRS01FJD8CKP7EFK0P07PY.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-ranchi-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
+      "id": "ce41b3868dd9",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Kolkata",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Venue to be announced",
+      "date": "2027-05-09",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-kolkata-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1XS3Z93TGKSHARE31TMQWW4.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-kolkata-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
+    },
+    {
       "id": "709434c92824",
       "title": "Arijit Singh India Tour - Hyderabad",
       "category": "music",
@@ -55830,6 +57032,32 @@
         "thumpN": "https://thumpn.com/event/SMEXPR/arijit-singh-india-tour-hyderabad"
       },
       "first_seen": "2026-10-10"
+    },
+    {
+      "id": "8312cf60afa4",
+      "title": "The Philosophy of Resonance – Satinder Sartaaj Live in Shimla",
+      "category": "music",
+      "genres": [
+        "sufi",
+        "folk"
+      ],
+      "lang": [],
+      "city": "Shimla",
+      "venue": "Ridge, Shimla",
+      "date": "2027-05-15",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-shimla-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M1XS9KAN2Y3KBK18XEZC5X3M.jpg",
+      "source": "District",
+      "about": "Dr. Satinder Sartaaj brings together soulful Punjabi poetry, Sufi music and high-energy Bhangra in an unforgettable live experience. Known for his powerful vocals and poetic storytelling, he takes the audience through moments of deep emotion, reflection and celebration. Expect beautiful verses, energetic performances, immersive visuals and an evening that stays with you long after the show ends.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-philosophy-of-resonance-satinder-sartaaj-live-in-shimla-2027-buy-tickets"
+      },
+      "first_seen": "2026-10-13"
     }
   ]
 }
