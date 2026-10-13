@@ -6,6 +6,7 @@ data/events.json for the dashboard.
     python run.py                 normal run
     python run.py --dry-run       show counts, don't write
     python run.py --only District only run sources whose name contains this (wherever it runs)
+    python run.py --refilter      read nothing: re-apply the current rules (not-a-show list, categories) to the published listings
     python run.py --remerge       re-merge this machine's last results into the current
                                   events.json (after another collector uploaded first)
 """
@@ -112,7 +113,7 @@ def dedupe(events):
     return list(merged.values())
 
 
-def main(dry_run=False, only=None, remerge=False):
+def main(dry_run=False, only=None, remerge=False, refilter=False):
     sources = yaml.safe_load((ROOT / "sources.yaml").read_text())
     today = date.today().isoformat()
     collected, failed, ran = [], {}, []  # failed: source -> cities whose pages all came back empty; ran: sources read
@@ -120,7 +121,7 @@ def main(dry_run=False, only=None, remerge=False):
         fresh = json.loads(FRESH.read_text())
         collected, failed, ran = fresh["events"], {k: set(v) for k, v in fresh["failed"].items()}, fresh.get("ran", [])
 
-    for src in [] if remerge else sources:
+    for src in [] if (remerge or refilter) else sources:  # --refilter reads nothing: it re-applies today's rules to the listings already published
         if only and only.lower() not in src["name"].lower():
             continue
         runs_on = src.get("runs_on", DEFAULT_RUNS_ON)
@@ -158,7 +159,7 @@ def main(dry_run=False, only=None, remerge=False):
         if "cities" in src and ok and tried - ok:
             failed[src["name"]] = tried - ok
             print(f"  (no results for {', '.join(sorted(tried - ok))}; keeping their earlier shows)")
-    if not remerge and not dry_run:
+    if not remerge and not refilter and not dry_run:
         FRESH.write_text(json.dumps({"events": collected, "failed": {k: sorted(v) for k, v in failed.items()}, "ran": ran},
                                     ensure_ascii=False))
 
@@ -189,7 +190,8 @@ def main(dry_run=False, only=None, remerge=False):
     if dry_run:
         return
     # What each source returned this time, for the scheduled health check (even when it's nothing).
-    health.record(ran, collected, failed, today, WHERE, len(merged), COVERAGE)
+    if not refilter:
+        health.record(ran, collected, failed, today, WHERE, len(merged), COVERAGE)
     if not merged:
         print("Nothing found; leaving the existing events.json untouched.")
         return
@@ -206,7 +208,7 @@ def main(dry_run=False, only=None, remerge=False):
 
     OUT.parent.mkdir(exist_ok=True)
     cities = sorted({e["city"] for e in merged})
-    OUT.write_text(json.dumps({"updated_at": now_iso(), "cities": cities, "genres": catalog(), "languages": languages(),
+    OUT.write_text(json.dumps({"updated_at": previous.get("updated_at", now_iso()) if refilter else now_iso(), "cities": cities, "genres": catalog(), "languages": languages(),
                                "count": len(merged), "events": merged}, indent=2, ensure_ascii=False))
     print(f"wrote {OUT}")
     cname = ROOT / "CNAME"
@@ -219,4 +221,4 @@ def main(dry_run=False, only=None, remerge=False):
 if __name__ == "__main__":
     args = sys.argv[1:]
     only = args[args.index("--only") + 1] if "--only" in args else None
-    main(dry_run="--dry-run" in args, only=only, remerge="--remerge" in args)
+    main(dry_run="--dry-run" in args, only=only, remerge="--remerge" in args, refilter="--refilter" in args)
