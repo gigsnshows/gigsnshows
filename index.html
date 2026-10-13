@@ -14,11 +14,11 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#000000">
 <script>
-  /* choose the colours before anything paints: the person's saved choice, otherwise dark */
+  /* choose the colours before anything paints: the person's saved choice, otherwise the device's light or dark setting */
   (function () {
     var t = "";
     try { t = localStorage.getItem("gns-theme") || ""; } catch (e) {}
-    if (t !== "light" && t !== "dark") t = "dark";   // first visit: the neon dark look; the toggle remembers a change
+    if (t !== "light" && t !== "dark") t = window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";   // no saved choice: follow the device
     document.documentElement.setAttribute("data-theme", t);
     var m = document.querySelector('meta[name="theme-color"]');
     if (m) m.setAttribute("content", t === "light" ? "#f5f5f7" : "#000000");
@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  /* dark is the default look; light is chosen with the toggle (the header button, or the footer link on phones).
+  /* the page follows the device's light or dark setting until the person uses the toggle (the header button, or the footer link on phones),
      .viewer (the swipe-through poster view) keeps the dark palette in both. */
   :root, .viewer {
     color-scheme: dark;
@@ -4085,6 +4085,9 @@
   setTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark", false);
   function toggleTheme() { setTheme(document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light", true); }
   themeBtn.addEventListener("click", toggleTheme);
+  // with no saved choice, follow the device when it flips (for example at sunset)
+  const deviceLight = window.matchMedia ? matchMedia("(prefers-color-scheme: light)") : null;
+  deviceLight?.addEventListener?.("change", e => { let saved = ""; try { saved = localStorage.getItem("gns-theme") || ""; } catch {} if (saved !== "light" && saved !== "dark") setTheme(e.matches ? "light" : "dark", false); });
 
   const searchBtn = document.getElementById("searchBtn");
   const searchBar = document.getElementById("searchBar");
