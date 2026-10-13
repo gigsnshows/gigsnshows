@@ -137,6 +137,9 @@ def parse_district(html, page_url, src, entry):
 # newest first, so the first few runs fill the memory and later runs read only what's new.
 
 DISTRICT_PAGES = Path(__file__).resolve().parent.parent / "data" / "district_pages.json"
+# Bump this whenever the rules for what counts as a show change (categories, filters): a page remembered as "not a show" under
+# older rules is then read again once. Without it a show the rules newly accept (Samay Raina Live) stays hidden for good.
+DISTRICT_RULES = 2
 _MONTHS = "jan feb mar apr may jun jul aug sep oct nov dec".split()
 
 
@@ -182,8 +185,8 @@ def parse_district_sitemap(html, page_url, src, entry):
         if not url.endswith("-buy-tickets") or url in _district_listed or _district_over(url.rsplit("/", 1)[-1], today):
             continue
         seen = memory.get(url)
-        if seen is None or (seen["m"] != changed and seen["e"]):  # new, or a show whose page has changed
-            todo.append((changed, url))
+        if seen is None or (seen["m"] != changed and seen["e"]) or (not seen["e"] and seen.get("v", 1) < DISTRICT_RULES):
+            todo.append((changed, url))  # new, or a show whose page has changed, or "not a show" under older rules
     watch = [w.lower() for w in src.get("watch", [])]
     todo.sort(key=lambda t: t[0], reverse=True)  # newest first
     todo.sort(key=lambda t: 0 if any(w in t[1] for w in watch) else 1)  # then (the sort is stable) well-known acts first
@@ -212,7 +215,7 @@ def parse_district_sitemap(html, page_url, src, entry):
             fallback = meta_event(page, src["name"], None, None, url)
             if fallback and guess_category(fallback["title"]) and fallback["city"] != "Unknown":
                 shows = [{**fallback, "category": guess_category(fallback["title"])}]
-        memory[url] = {"m": changed, "e": shows}
+        memory[url] = {"m": changed, "e": shows, "v": DISTRICT_RULES}
     listed = {u for u, _ in pages}
     memory = {u: v for u, v in memory.items() if u in listed}  # pages District has dropped are forgotten
     try:
@@ -232,6 +235,7 @@ def parse_district_sitemap(html, page_url, src, entry):
 # read per run (the `SITEMAP_MAX_PAGES` environment variable overrides it, for a big first fill).
 
 BMS_PAGES = Path(__file__).resolve().parent.parent / "data" / "bms_pages.json"
+BMS_RULES = 2  # bump when the rules for what counts as a show change (see DISTRICT_RULES)
 BMS_CONCERTY = re.compile(r"(tour|concert|live|festival|fest\b|unplugged|symphony|orchestra|world|india|night|jam\b|dj|band|music|sufi|"
                           r"ghazal|qawwali|opera|comedy|stand-?up|roast|singh|rahman|rehman|ghoshal|dosanjh|kumar|sharma|khan|"
                           r"gig|rock|jazz|indie|folk|bhajan|kirtan|mushaira|musical|karaoke|open-mic)")
@@ -259,7 +263,7 @@ def parse_bms_sitemap(html, page_url, src, entry):
         if not m or _page_id(url) in others or not BMS_CONCERTY.search(m.group(1)):
             continue
         seen = memory.get(url)
-        stale = seen and seen["e"] and (today - date.fromisoformat(seen["t"])).days >= 10
+        stale = seen and ((seen["e"] and (today - date.fromisoformat(seen["t"])).days >= 10) or (not seen["e"] and seen.get("v", 1) < BMS_RULES))
         if seen is None or stale:
             todo.append((0 if any(w in m.group(1) for w in watch) else 1, 0 if seen is None else 1, url))
     todo.sort()
@@ -274,7 +278,7 @@ def parse_bms_sitemap(html, page_url, src, entry):
         nodes = extract_jsonld_events(page)
         shows = [e for e in (jsonld_to_event(n, src["name"], None, _node_category(n, n.get("name") or ""), url) if _node_category(n, n.get("name") or "") else None
                              for n in nodes) if e and e["city"] != "Unknown"]
-        memory[url] = {"t": today.isoformat(), "e": shows}
+        memory[url] = {"t": today.isoformat(), "e": shows, "v": BMS_RULES}
     listed = set(re.findall(r"<loc>\s*(.*?)\s*</loc>", html))
     memory = {u: v for u, v in memory.items() if u in listed}  # pages BookMyShow has dropped are forgotten
     try:

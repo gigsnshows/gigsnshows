@@ -72,3 +72,22 @@ def test_a_title_with_no_clue_is_classed_from_the_description():
     assert _description_category("Splash around all day in our water park. Sports, slides and a lazy river.") is None   # not a show
     assert _description_category("Create pottery with loved ones. Play with clay and take home your piece.") is None
     assert _description_category("") is None and _description_category(None) is None
+
+
+def test_a_page_remembered_as_not_a_show_is_read_again_when_the_rules_change(tmp_path, monkeypatch):
+    """Samay Raina Live was filed as 'not a show' under the first rules and stayed hidden, because remembered pages were never reread."""
+    import json
+    from scrapers import parsers
+    mem = tmp_path / "district_pages.json"
+    url = "https://www.district.in/events/samay-raina-live-mumbai-shanmukhananda-1-2027-buy-tickets"
+    mem.write_text(json.dumps({url: {"m": "2026-10-12", "e": []}}))          # remembered under the older rules (no "v")
+    monkeypatch.setattr(parsers, "DISTRICT_PAGES", mem)
+    reads = []
+    monkeypatch.setattr(parsers, "get_html", lambda u, *a, **k: reads.append(u) or None)
+    sitemap = f"<urlset><url><loc>{url}</loc><lastmod>2026-10-12</lastmod></url></urlset>"
+    parsers.parse_district_sitemap(sitemap, "x", {"name": "District"}, {"city": "Mumbai"})
+    assert reads == [url]                                                  # read again
+    mem.write_text(json.dumps({url: {"m": "2026-10-12", "e": [], "v": parsers.DISTRICT_RULES}}))
+    reads.clear()
+    parsers.parse_district_sitemap(sitemap, "x", {"name": "District"}, {"city": "Mumbai"})
+    assert reads == []                                                     # up to date: left alone
