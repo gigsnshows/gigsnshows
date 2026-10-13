@@ -137,3 +137,17 @@ def test_small_towns_on_a_tour_are_cities():
 def test_symphonic_is_music():
     from scrapers.base import guess_category
     assert guess_category("Red Bull Symphonic with Sunidhi Chauhan") == "music"
+
+
+@pytest.mark.parametrize("title", [
+    "India Retail Investors Expo & Conference 2026 – Chennai", "Moto Summit Kochi 2026", "Aim Montessori Dasara Mahotsava - Harikatha",
+    "Skanda International School Chess Championship", "WINTER ARC 2026 VIRTUAL RUN & RIDE CHALLENGE", "Small World Run Club",
+    "The Fun Boardgames Meetup", "Near-Venue Stay + Festival / Double", "Seed Business School Festival 2026 - Mumbai", "Slide School - Motoverse 2026",
+])
+def test_trade_school_and_club_events_are_not_shows(title):
+    assert NOT_SHOWS.search(title)
+
+
+@pytest.mark.parametrize("title", ["Hamilton", "Zakir Khan Live", "Sunburn Arena ft. DJ Snake", "Mumbai Half Marathon", "Comedy Club Night", "School of Rock"])
+def test_these_stay_shows(title):
+    assert not NOT_SHOWS.search(title)

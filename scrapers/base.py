@@ -47,7 +47,10 @@ NOT_SHOWS = re.compile(
     r"|(?:play|jump|fun|soft ?play|kids?|kidz|indoor) (?:area|zone|park|land|centre|center|garden|place)s?\b|\bkids? play\b|\bplay ?(?:n|'n'|and) ?learn\b|"
     r"\bindoor (?:rock )?climbing\b|\bgo-?kart(?:ing)?\b|\bkarting\b|\bshooting (?:range|academy|sports|foundation)\b|\bair rifle\b|\blive shoot\b|"
     r"\bsailing\b|\byacht\b|\bmuseum\b|\bstadium tour\b|\btheme park\b|\bwater ?park\b|\bamusement\b|\btrampoline\b|\bescape room\b|"
-    r"\blaser tag\b|\bcycling\b|\bcycle ride\b|\be-cycling\b|\bshort films?\b|\bfilm screening\b|\bmovie night\b|\bflea market\b|\bbrand expo\b",
+    r"\blaser tag\b|\bcycling\b|\bcycle ride\b|\be-cycling\b|\bshort films?\b|\bfilm screening\b|\bmovie night\b|\bflea market\b|\bbrand expo\b|\bchristmas market\b"
+    # Trade events, schools' own events, virtual challenges, clubs and accommodation packages.
+    r"|\b(?:conference|expo|summit|montessori|inter-?school|business school)\b|\bschool (?:athletics|chess|sports|annual)\b|\bslide school\b|"
+    r"\bvirtual (?:run|ride|marathon)\b|\brun clubs?\b|\bmeet-?ups?\b|\bboard ?games?\b|\bstay \+",
     re.I)
 
 CATEGORY_KEYWORDS = {
