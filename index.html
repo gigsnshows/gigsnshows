@@ -1013,6 +1013,20 @@
   function track(name, params = {}) {
     if (ANALYTICS_ON) gtag("event", name, params);
   }
+  // Our own head-count, for people who decline analytics cookies: no cookie, nothing stored on the device, no address kept
+  // (see the privacy page). It is skipped when the browser says Do Not Track / Global Privacy Control, and for the demo mode.
+  const COUNT_ON = /(^|\.)gigsnshows\.com$/.test(location.hostname)
+    && navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl && !new URLSearchParams(location.search).has("videodemo");
+  const LANDED_FROM = new URLSearchParams(location.search).get("utm_source") || "";  // read now: the address is tidied once the page loads
+  function count(fields = {}) {
+    if (!COUNT_ON) return;
+    try {
+      let host = "";
+      try { host = new URL(document.referrer).hostname; } catch {}
+      const body = JSON.stringify({ r: host, s: LANDED_FROM, w: innerWidth, ...fields });
+      fetch("https://api.gigsnshows.com/hit", { method: "POST", body, mode: "no-cors", credentials: "omit", keepalive: true }).catch(() => {});
+    } catch {}
+  }
 
   function showConsentBanner() {
     let asked = true;
@@ -2321,6 +2335,7 @@
     "timeout": "Couldn't send the code just now. Please try again.",
   };
   const loginError = err => LOGIN_ERRORS[err?.code] || "Something went wrong. Please try again.";
+  const loginErrorCode = err => /^(auth\/[a-z-]{3,40}|timeout)$/.test(err?.code || "") ? err.code : "other";  // for the funnel counts
 
   function renderLogin(step, error = "") {
     const err = `<p class="login-err" role="alert">${esc(error)}</p>`;
@@ -2356,6 +2371,7 @@
   }
 
   async function sendCode() {
+    track("code_requested"); count({ e: "code_requested" });
     renderLogin("phone");
     loginCard.querySelector(".assist-status").textContent = "Sending your code…";
     try {
@@ -2370,13 +2386,17 @@
       const guest = fb.auth.currentUser?.isAnonymous ? fb.auth.currentUser : null;
       confirmation = await Promise.race([guest
         ? fb.A.linkWithPhoneNumber(guest, pendingPhone, fb.verifier) : fb.A.signInWithPhoneNumber(fb.auth, pendingPhone, fb.verifier), timeout]);
+      track("code_sent"); count({ e: "code_sent" });
       renderLogin("code");
     } catch (err) {
+      const why = loginErrorCode(err);
+      track("login_error", { step: "send", reason: why }); count({ e: "send_error:" + why });
       renderLogin("phone", loginError(err));
     }
   }
 
   async function openLogin() {
+    if (!user && !VIDEO_DEMO) { track("login_start"); count({ e: "login_open" }); }
     loginDlg.hidden = false;
     document.body.style.overflow = "hidden";
     if (user || VIDEO_DEMO) renderLogin("account");  // ?videodemo (the launch video) shows a logged-in account
@@ -2409,11 +2429,15 @@
           cred = await fb.A.signInWithCredential(fb.auth, credential);
         }
         setUser(fb.auth.currentUser);  // linking a guest doesn't fire the auth listener
-        track(fb.A.getAdditionalUserInfo(cred)?.isNewUser ? "sign_up" : "login", { method: "phone" });
+        const isNew = !!fb.A.getAdditionalUserInfo(cred)?.isNewUser;
+        track(isNew ? "sign_up" : "login", { method: "phone" });
+        count({ e: isNew ? "signup_ok" : "login_ok" });
         closeLogin();
         if (openWalletAfterLogin) { openWalletAfterLogin = false; toast("You're logged in."); openWallet("list"); }
         else toast("You're logged in. Your picks now follow you to any device.");
       } catch (err) {
+        const why = loginErrorCode(err);
+        track("login_error", { step: "code", reason: why }); count({ e: "code_error:" + why });
         renderLogin("code", loginError(err));
       }
     }
@@ -4190,6 +4214,7 @@
       if (state.q) { searchBar.hidden = false; searchBtn.setAttribute("aria-expanded", "true"); qInput.value = state.q; }
       renderFooter(); render();
       track("city_view", { city: state.city });
+      count({ c: String(state.city).toLowerCase().replace(/[^a-z0-9]+/g, "-") });
       if (state.sharedId || state.planId || state.listId) track("shared_link_open", { status: state.planId ? "plan" : state.listId ? "list" : shared ? "opened" : "show_over" });
       if (FIREBASE_CONFIG) { refreshPlans(); syncLists(); }
       if (state.planId) openPlan(state.planId, "link");
