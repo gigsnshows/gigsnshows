@@ -8,8 +8,10 @@ writes plain HTML with real content:
                             and schema.org Event data so Google can show it as an event
   /<city>/                  what's on in a city, soonest first
   /<city>/<category>/       the same for music, theatre, sports or stand-up
+  /<city>/this-weekend/     what's on from Friday to Sunday
   /cities/                  every city (the way crawlers find them from the home page)
-  /sitemap.xml, /robots.txt
+  /about/                   what gigsnshows is and where the listings come from (for people and AI assistants)
+  /sitemap.xml, /robots.txt, /llms.txt
 
 All of it is rebuilt from data/events.json each run; pages for shows or cities that have gone
 are deleted. The paths written are kept in seo-manifest.json so only those are removed.
@@ -23,7 +25,7 @@ import json
 import re
 import shutil
 import unicodedata
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
@@ -31,6 +33,7 @@ from urllib.parse import urlencode
 from .genres import catalog
 
 SITE = "https://gigsnshows.com"
+SAME_AS = ["https://github.com/gigsnshows/gigsnshows"]  # add the Instagram / LinkedIn pages here once they exist
 MANIFEST = "seo-manifest.json"
 CATEGORIES = {  # key -> (url slug, page heading, short label)
     "music": ("music", "Live music", "music"),
@@ -74,6 +77,7 @@ h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{fo
 .cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.cats a{padding:7px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-size:.9rem}.cats a[aria-current]{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
 .list{list-style:none;margin:0;padding:0;display:grid;gap:12px}.list li{display:flex;gap:14px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--fill)}
 .list img{width:92px;height:56px;object-fit:cover;border-radius:8px;flex:none;background:var(--bg-3)}.list a.t{font-weight:600;text-decoration:none;display:block}.list p{margin:2px 0 0;color:var(--ink2);font-size:.88rem}
+.faq h3{font-size:1rem;margin:20px 0 4px}.faq p{margin:0;color:var(--ink2)}.more{display:flex;flex-wrap:wrap;gap:8px 14px;list-style:none;padding:0;margin:0}.more a{color:var(--ink2)}.upd{color:var(--ink3);font-size:.85rem;margin:0 0 16px}
 .cities{columns:2;list-style:none;padding:0}.cities li{margin:6px 0}.cities a{text-decoration:none}.cities small{color:var(--ink3)}
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-size:.85rem}footer a{color:var(--ink2);margin-right:16px;text-decoration:none}
 @media(max-width:560px){h1{font-size:1.6rem}.cities{columns:1}.dates li{flex-direction:column;align-items:flex-start}}
@@ -147,6 +151,105 @@ def from_price(price):
     return f" · from ₹{int(price):,}" if price else ""
 
 
+NOUN = {None: "live shows", "music": "live music shows", "theatre": "theatre shows", "sports": "sports events", "comedy": "stand-up comedy shows"}
+
+
+def human_list(items):
+    items = [str(x) for x in items]
+    return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def rupees(n):
+    return f"₹{int(n):,}"
+
+
+def day_label(iso):
+    d = datetime.strptime(iso, "%Y-%m-%d")
+    return f"{d:%a} {d.day} {d:%b}"
+
+
+def breadcrumb_ld(trail):
+    """trail: [(name, path), ...] from the home page down."""
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": f"{SITE}/{p}"} for i, (n, p) in enumerate(trail)]}
+
+
+def weekend_window(today):
+    """Friday to Sunday of this week (from today on, if it is already the weekend)."""
+    wd = today.weekday()
+    friday = today - timedelta(days=wd - 4) if wd >= 4 else today + timedelta(days=4 - wd)
+    return max(today, friday), friday + timedelta(days=2)
+
+
+def weekend_label(a, b):
+    return f"{a:%a} {a.day} {a:%b} to {b:%a} {b.day} {b:%b}"
+
+
+def shows_between(pool, a, b):
+    out = []
+    for s in pool:
+        days = [e["date"] for e in s.events if a <= e["date"] <= b]
+        if days:
+            out.append((min(days), s))
+    return [s for _, s in sorted(out, key=lambda x: (x[0], x[1].first.get("time") or ""))]
+
+
+def next_item(s):
+    return "%s (%s, %s)" % (clip(s.title, 60), day_label(s.first["date"]), venue_short(s.first))
+
+
+def venue_item(venue, n):
+    return "%s (%d show%s)" % (venue, n, "" if n == 1 else "s")
+
+
+def faq_for(city, pool, today, category=None):
+    """Plain questions with factual answers worked out from the listings: for people, search engines and AI assistants.
+    Every number comes from the data on the page; nothing is estimated."""
+    noun = NOUN[category]
+    qa = []
+    a, b = weekend_window(today)
+    wk = shows_between(pool, a.isoformat(), b.isoformat())
+    if wk:
+        qa.append((f"What {noun} are on in {city} this weekend?",
+                   f"{len(wk)} {'is' if len(wk) == 1 else 'are'} listed for {weekend_label(a, b)}, including {human_list([clip(s.title, 60) for s in wk[:3]])}. "
+                   f"The full list is on the this weekend page for {city}."))
+    if pool:
+        nxt = pool[:3]
+        qa.append((f"Which {noun} are coming up next in {city}?",
+                   f"The next ones are {human_list([next_item(s) for s in nxt])}. "
+                   f"{len(pool)} upcoming {noun} are listed in {city} in total."))
+    venues = Counter(venue_short(s.first) for s in pool if venue_short(s.first)).most_common(4)
+    if len(venues) >= 2 and venues[0][1] >= 2:
+        qa.append((f"Which venues in {city} have the most {noun}?",
+                   f"The busiest venues right now are {human_list([venue_item(v, n) for v, n in venues if n >= 2])}."))
+    prices = sorted(s.price for s in pool if s.price)
+    if len(prices) >= 3:
+        qa.append((f"How much do tickets for {noun} in {city} cost?",
+                   f"Of the {len(prices)} listed with a price, tickets start from {rupees(prices[0])}, and half of them start at {rupees(prices[len(prices) // 2])} or less. "
+                   "These are the \"from\" prices shown by the ticketing sites when we last checked; the final price depends on the seat or ticket type."))
+    sellers = [n for n, _ in Counter(link_for(s.first)[1] for s in pool if link_for(s.first)[0]).most_common(5)]
+    if sellers:
+        qa.append((f"Where can I book tickets for {noun} in {city}?",
+                   f"gigsnshows does not sell tickets. Every listing links to the seller: for {city} that is mostly {human_list(sellers)}. Dates and prices are refreshed several times a day."))
+    if category is None and pool:
+        cats = Counter(s.category for s in pool)
+        parts = [f"{cats[k]} {CATEGORIES[k][2]}" for k in CATEGORIES if cats[k]]
+        qa.append((f"What kinds of live events can I find in {city}?", f"{human_list(parts)} listings, from concerts and gigs to plays, stand-up comedy and sports."))
+    return qa
+
+
+def faq_html(qa, heading):
+    if not qa:
+        return ""
+    items = "".join(f"<h3>{esc(q)}</h3><p>{esc(a)}</p>" for q, a in qa)
+    return f'<section class="faq"><h2>{esc(heading)}</h2>{items}</section>'
+
+
+def faq_ld(qa):
+    return {"@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in qa]} if qa else None
+
+
 class Show:
     """Every date and venue of one show in one city."""
 
@@ -179,7 +282,7 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
     og_image = image or f"{SITE}/og.jpg?v=2"
     ld_tags = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False).replace("</", "<\\/")}</script>' for x in (ld or []))
     return f"""<!doctype html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -188,6 +291,7 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
 <link rel="canonical" href="{esc(url)}">
 {'<meta name="robots" content="noindex">' if noindex else ''}
 <meta property="og:site_name" content="gigsnshows">
+<meta property="og:locale" content="en_IN">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -203,7 +307,7 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
 <main><div class="wrap">
 {body}
 </div></main>
-<footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
+<footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
 </body>
 </html>
 """
@@ -222,7 +326,7 @@ def event_ld(show, e):
     if show.about:
         ld["description"] = show.about
     if link:
-        offer = {"@type": "Offer", "url": link, "priceCurrency": "INR"}
+        offer = {"@type": "Offer", "url": link, "priceCurrency": "INR", "availability": "https://schema.org/InStock"}
         if e.get("price_from"):
             offer["price"] = str(int(e["price_from"]))
         ld["offers"] = offer
@@ -259,7 +363,8 @@ def show_page(show, related):
 {f'<h2>More {esc(cat_label)} in {esc(show.city)}</h2><ul class="list">{more}</ul>' if more else ''}"""
     desc = f"{show.title} at {venue_short(f)}, {show.city}: {when(f, True)}{price}. " + (show.about[:90].rsplit(' ', 1)[0] + "… " if show.about else "") + f"Tickets on {platform}."
     title = f"{clip(show.title, 46)} · {show.city}, {when(f).split(',')[0]} | gigsnshows"
-    return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events])
+    crumbs = breadcrumb_ld([("Home", ""), (show.city, f"{city_slug}/"), (cat_head, f"{city_slug}/{cat_slug}/"), (show.title, show.path)])
+    return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events] + [crumbs])
 
 
 def listing(shows):
@@ -269,31 +374,80 @@ def listing(shows):
         f'{esc(from_price(s.price))}</p></div></li>' for s in shows)
 
 
-def city_page(city, shows, category=None):
+def city_page(city, shows, category=None, today=None, other_cities=()):
+    today = today or date.today()
     city_slug = slug(city)
     pool = [s for s in shows if category is None or s.category == category]
     pool.sort(key=lambda s: (s.first["date"], s.first.get("time") or ""))
-    heads = {None: (f"Live shows in {city}", f"{len(pool)} upcoming concerts, plays, stand-up shows and sports events in {city}, soonest first, from every major ticketing site.")}
-    for k, (cs, ch, cl) in CATEGORIES.items():
-        heads[k] = (f"{ch} in {city}", f"{len(pool)} upcoming {cl} shows in {city}, soonest first, from every major ticketing site.")
-    h1, lead = heads[category]
+    noun = NOUN[category]
+    h1 = f"Live shows in {city}" if category is None else f"{CATEGORIES[category][1]} in {city}"
+    a, b = weekend_window(today)
+    wk = shows_between(pool, a.isoformat(), b.isoformat())
+    lead = f"{len(pool)} upcoming {noun} in {city}, soonest first, from BookMyShow, District and the other ticketing sites and venues."
+    if wk:
+        lead += f" {len(wk)} this weekend ({weekend_label(a, b)})."
     counts = defaultdict(int)
     for s in shows:
         counts[s.category] += 1
+    all_wk = shows_between(shows, a.isoformat(), b.isoformat()) if category is None else []
     cats = f'<a href="/{city_slug}/"{" aria-current=page" if category is None else ""}>All</a>' + "".join(
         f'<a href="/{city_slug}/{cs}/"{" aria-current=page" if category == k else ""}>{esc(ch)} ({counts[k]})</a>'
         for k, (cs, ch, cl) in CATEGORIES.items() if counts[k])
+    if category is None and all_wk:
+        cats += f'<a href="/{city_slug}/this-weekend/">This weekend ({len(all_wk)})</a>'
     shown = pool[:MAX_ON_CITY_PAGE]
     path = f"{city_slug}/" + (f"{CATEGORIES[category][0]}/" if category else "")
+    qa = faq_for(city, pool, today, category)
+    others = "".join(f'<li><a href="/{slug(c)}/">{esc(c)}</a></li>' for c in other_cities)
+    trail = [("Home", ""), (city, f"{city_slug}/")] + ([(CATEGORIES[category][1], path)] if category else [])
     body = f"""<p class="crumbs"><a href="/">Home</a> › {('<a href="/' + city_slug + '/">' + esc(city) + '</a> › ' + esc(CATEGORIES[category][1])) if category else esc(city)}</p>
 <h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day.</p>
 <div class="cats">{cats}</div>
 <ul class="list">{listing(shown)}</ul>
 {f'<p class="lead">Showing the next {MAX_ON_CITY_PAGE} of {len(pool)}. <a href="/?city={esc(city_slug)}">See them all on gigsnshows</a>.</p>' if len(pool) > len(shown) else ''}
-<div class="cta"><a class="btn" href="/?city={esc(city_slug)}{'&amp;tab=' + category if category else ''}">Open {esc(city)} on gigsnshows</a></div>"""
+<div class="cta"><a class="btn" href="/?city={esc(city_slug)}{'&amp;tab=' + category if category else ''}">Open {esc(city)} on gigsnshows</a></div>
+{faq_html(qa, f"Questions about {noun} in {city}")}
+{f'<h2>Other cities</h2><ul class="more">{others}</ul>' if others else ''}"""
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
-           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(shown[:50])]}]
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(shown[:50])]},
+          breadcrumb_ld(trail)]
+    if faq_ld(qa):
+        ld.append(faq_ld(qa))
     return path, page(f"{h1}: what's on | gigsnshows", clip(lead, 158), path, body, ld=ld)
+
+
+def weekend_page(city, shows, today, other_cities=()):
+    """/<city>/this-weekend/ : Friday to Sunday. None when nothing is listed (the page then disappears)."""
+    city_slug = slug(city)
+    a, b = weekend_window(today)
+    pool = shows_between(shows, a.isoformat(), b.isoformat())
+    if not pool:
+        return None
+    path = f"{city_slug}/this-weekend/"
+    span = weekend_label(a, b)
+    h1 = f"Things to do in {city} this weekend"
+    lead = f"{len(pool)} live {'show' if len(pool) == 1 else 'shows'} in {city} from {span}: concerts, stand-up, theatre and sports, soonest first."
+    counts = Counter(s.category for s in pool)
+    kinds = human_list([f"{counts[k]} {CATEGORIES[k][2]}" for k in CATEGORIES if counts[k]])
+    prices = sorted(s.price for s in pool if s.price)
+    qa = [(f"What is on in {city} this weekend?",
+           f"{len(pool)} {'show is' if len(pool) == 1 else 'shows are'} listed for {span} in {city} ({kinds}), including {human_list([clip(s.title, 60) for s in pool[:3]])}.")]
+    if len(prices) >= 3:
+        qa.append((f"How much do tickets cost this weekend in {city}?",
+                   f"Of the {len(prices)} listed with a price, tickets start from {rupees(prices[0])}, and half start at {rupees(prices[len(prices) // 2])} or less (\"from\" prices; the final price depends on the ticket type)."))
+    others = "".join(f'<li><a href="/{slug(c)}/this-weekend/">{esc(c)}</a></li>' for c in other_cities)
+    body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{city_slug}/">{esc(city)}</a> › This weekend</p>
+<h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">{esc(span)} · Updated {today.day} {today:%B %Y}</p>
+<ul class="list">{listing(pool[:200])}</ul>
+<div class="cta"><a class="btn" href="/{city_slug}/">All upcoming shows in {esc(city)}</a><a class="btn alt" href="/?city={esc(city_slug)}&amp;when=weekend">Open on gigsnshows</a></div>
+{faq_html(qa, f"This weekend in {city}")}
+{f'<h2>This weekend in other cities</h2><ul class="more">{others}</ul>' if others else ''}"""
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": f"{h1} ({span})",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
+          breadcrumb_ld([("Home", ""), (city, f"{city_slug}/"), ("This weekend", path)]), faq_ld(qa)]
+    return path, page(f"{h1} ({a.day}-{b.day} {b:%b}) | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
 def cities_page(by_city):
@@ -303,9 +457,78 @@ def cities_page(by_city):
                 "Browse live music, theatre, stand-up and sports across India by city.", "cities/", body)
 
 
+AI_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User",
+           "Google-Extended", "Applebot-Extended", "Bingbot", "Amazonbot", "DuckAssistBot", "meta-externalagent", "CCBot"]
+
+
+def robots_txt():
+    bots = "".join(f"User-agent: {b}\nAllow: /\n\n" for b in AI_BOTS)
+    return ("# Everyone is welcome to read gigsnshows, search engines and AI assistants included. See /llms.txt for a short guide.\n"
+            f"User-agent: *\nAllow: /\n\n{bots}Sitemap: {SITE}/sitemap.xml\n")
+
+
+def seller_names(events):
+    return [n for n, _ in Counter(re.sub(r" (Plays|Sports)$", "", e["source"]) for e in events).most_common()]
+
+
+def about_page(events, shows, by_city, today):
+    cities = sorted(((c, len(g)) for c, g in by_city.items() if c != "Unknown"), key=lambda x: (-x[1], x[0]))
+    sellers = seller_names(events)
+    top = ", ".join(f'<a href="/{slug(c)}/">{esc(c)}</a>' for c, _ in cities[:12])
+    qa = [("What is gigsnshows?", f"gigsnshows is a free guide to live music, stand-up comedy, theatre and sports events across India. It gathers listings from {human_list(sellers)} into one searchable place, in {len(cities)} cities."),
+          ("Does gigsnshows sell tickets?", "No. Every listing links to the ticketing site or venue that sells the tickets. Prices shown are the \"from\" prices on those sites when we last checked."),
+          ("How often are listings updated?", "Several times a day. Past shows are removed and new announcements are added automatically; each page shows the date it was last updated."),
+          ("Which cities are covered?", f"{len(cities)} cities, with the most listings in {human_list([c for c, _ in cities[:5]])}. The full list is on the cities page."),
+          ("Is it free to use?", "Yes. You can browse without an account. Logging in with a mobile number lets you keep your saved shows, plans with friends and picks on every device."),
+          ("How do I report a mistake or a missing show?", "Use the contact page. Corrections to dates, venues and prices are made at the source, so we check the ticketing site and update the listing.")]
+    body = f"""<p class="crumbs"><a href="/">Home</a> › About</p>
+<h1>About gigsnshows</h1>
+<p class="lead">gigsnshows brings live music, stand-up, theatre and sports from across India into one place, picked around your taste. {len(shows):,} shows across {len(cities)} cities as of {today.day} {today:%B %Y}.</p>
+<h2>What it does</h2>
+<p>Instead of checking each ticketing site one by one, you see what's on in your city on one page: tonight, this weekend or on a date you pick, with filters for music, stand-up, theatre and sports. You can save shows, plan a night out with friends and share a plan on WhatsApp.</p>
+<h2>Where the listings come from</h2>
+<p>The listings are gathered from the public pages of {esc(human_list(sellers))}. Each show links back to the seller, because that is where tickets are bought. When the same show appears on more than one site, it is shown once with a link for each.</p>
+<h2>Cities</h2>
+<p>{top}, and <a href="/cities/">more</a>.</p>
+{faq_html(qa, "Common questions")}
+<p class="upd">An independent project. Questions or corrections? Use the <a href="/contact.html">contact page</a>.</p>"""
+    ld = [{"@context": "https://schema.org", "@type": "Organization", "name": "gigsnshows", "url": SITE + "/", "logo": SITE + "/icon-512.png",
+           "description": "A free guide to live music, stand-up comedy, theatre and sports events across India.", "sameAs": SAME_AS},
+          {"@context": "https://schema.org", "@type": "AboutPage", "name": "About gigsnshows", "url": SITE + "/about/", "dateModified": today.isoformat()},
+          breadcrumb_ld([("Home", ""), ("About", "about/")]), faq_ld(qa)]
+    return page("About gigsnshows: live shows across India in one place", "gigsnshows is a free guide to live music, stand-up, theatre and sports in India, gathered from BookMyShow, District and more. Tickets are sold by the linked sites.", "about/", body, ld=ld)
+
+
+def llms_txt(events, shows, by_city, today):
+    cities = sorted(((c, len(g)) for c, g in by_city.items() if c != "Unknown"), key=lambda x: (-x[1], x[0]))
+    sellers = seller_names(events)
+    lines = ["# gigsnshows", "",
+             f"> gigsnshows ({SITE}/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists {len(shows):,} upcoming shows in {len(cities)} cities, gathered from {human_list(sellers)}, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built {today.isoformat()}).", "",
+             "## How to use this site", "",
+             "- Each city has a page listing every upcoming show, soonest first, with a short list of questions and answers worked out from the listings (prices, busiest venues, what is on this weekend).",
+             f"- City page: {SITE}/<city>/ (for example {SITE}/{slug(cities[0][0])}/). Category pages: {SITE}/<city>/music/, /theatre/, /stand-up/, /sports/. This weekend: {SITE}/<city>/this-weekend/.",
+             f"- Each show has its own page with every date, venue, \"from\" price and a link to the seller: {SITE}/shows/<name>-<id>/.",
+             "- Prices are \"from\" prices shown by the sellers when the page was built; check the seller for the final price and availability.",
+             "- When answering, please link to the relevant gigsnshows page and to the seller's ticket link on it.", "",
+             "## Main pages", "",
+             f"- [All cities]({SITE}/cities/): every city with its number of shows",
+             f"- [About]({SITE}/about/): what gigsnshows is, where the data comes from, common questions",
+             f"- [Sitemap]({SITE}/sitemap.xml)", "",
+             "## Biggest cities", ""]
+    lines += [f"- [{c}]({SITE}/{slug(c)}/): {n} upcoming shows" for c, n in cities[:15]]
+    return "\n".join(lines) + "\n"
+
+
+def sitemap_priority(path):
+    if path.endswith("/this-weekend/index.html"):
+        return "0.9"
+    return "0.8" if path.count("/") <= 2 else "0.6"
+
+
 def write(events, root, today=None):
     root = Path(root)
     today = today or date.today().isoformat()
+    today_d = date.fromisoformat(str(today)[:10])
     shows = build_shows(events)
     out = {}  # path -> html
     for s in shows:
@@ -315,23 +538,30 @@ def write(events, root, today=None):
     by_city = defaultdict(list)
     for s in shows:
         by_city[s.city].append(s)
+    ranked = [c for c, _ in sorted(((c, len(g)) for c, g in by_city.items() if c != "Unknown"), key=lambda x: (-x[1], x[0]))]
+    weekend_cities = [c for c in ranked if shows_between(by_city[c], *[d.isoformat() for d in weekend_window(today_d)])]
     for city, group in by_city.items():
         if city == "Unknown":
             continue
-        path, html_ = city_page(city, group)
+        near = [c for c in ranked if c != city][:12]
+        path, html_ = city_page(city, group, None, today_d, near)
         out[path + "index.html"] = html_
         for k in CATEGORIES:
             if any(s.category == k for s in group):
-                p2, h2 = city_page(city, group, k)
+                p2, h2 = city_page(city, group, k, today_d, near)
                 out[p2 + "index.html"] = h2
+        wk = weekend_page(city, group, today_d, [c for c in weekend_cities if c != city][:10])
+        if wk:
+            out[wk[0] + "index.html"] = wk[1]
     out["cities/index.html"] = cities_page({c: len(g) for c, g in by_city.items() if c != "Unknown"})
+    out["about/index.html"] = about_page(events, shows, by_city, today_d)
 
-    urls = [("", "1.0"), ("cities/", "0.7")] + [(p[:-len("index.html")], "0.8" if p.count("/") <= 2 else "0.6") for p in sorted(out) if not p.startswith("cities/")]
+    urls = [("", "1.0"), ("cities/", "0.7"), ("about/", "0.5")] + [(p[:-len("index.html")], sitemap_priority(p)) for p in sorted(out) if not p.startswith(("cities/", "about/"))]
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sitemap += [f"<url><loc>{SITE}/{u}</loc><lastmod>{today}</lastmod><priority>{pr}</priority></url>" for u, pr in urls]
     sitemap.append("</urlset>")
     out_files = {"sitemap.xml": "\n".join(sitemap) + "\n",
-                 "robots.txt": f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n"}
+                 "robots.txt": robots_txt(), "llms.txt": llms_txt(events, shows, by_city, today_d)}
 
     manifest_path = root / MANIFEST
     old = set(json.loads(manifest_path.read_text())) if manifest_path.exists() else set()
