@@ -19,8 +19,12 @@ main() {
   export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/gigsnshows_deploy -o IdentitiesOnly=yes"
   : "${COLLECTOR:?set COLLECTOR to aws or mac}" "${PYTHON:=python3}"
 
+  # GitHub sometimes drops a connection for a moment ("early EOF", "Broken pipe"). With set -e that used to end the whole run
+  # and throw away 30 minutes of results (the Mac's 15 Oct 09:36 run), so network steps are tried a few times first.
+  net() { local i; for i in 1 2 3 4; do "$@" && return 0; echo "network step failed ($*), try $i of 4"; sleep $((i * 20)); done; return 1; }
+
   echo "=== $(date) on $COLLECTOR ==="
-  git fetch --quiet "$REPO" main
+  net git fetch --quiet "$REPO" main
   git reset --quiet --hard FETCH_HEAD   # latest code and listings
   git clean -fdq
   "$PYTHON" run.py
@@ -29,12 +33,12 @@ main() {
     if git diff --cached --quiet; then echo "no changes"; return 0; fi
     git "${BOT[@]}" commit --quiet -m "Refresh listings $(date +%F) ($COLLECTOR)"
     git push --quiet "$REPO" HEAD:main && { echo "uploaded"; return 0; }
-    echo "another collector uploaded first; merging into its listings"
+    echo "upload did not go through (another collector uploaded first, or the connection dropped); merging into the latest listings"
     # What this machine's sitemap reader has already read (data/district_pages.json on the server, data/bms_pages.json
     # on the Mac) would be lost by the reset below, and the reader would start again from nothing next time.
     local MEMORY=data/district_pages.json; [ "$COLLECTOR" = mac ] && MEMORY="${GNS_BMS_PAGES:-data/bms_pages.json}"  # (outside the clone when GNS_BMS_PAGES is set)
     local KEEP; KEEP="$(mktemp)"; cp "$MEMORY" "$KEEP" 2>/dev/null || : > "$KEEP"
-    git fetch --quiet "$REPO" main
+    net git fetch --quiet "$REPO" main
     git reset --quiet --hard FETCH_HEAD
     git clean -fdq
     [ -s "$KEEP" ] && cp "$KEEP" "$MEMORY"; rm -f "$KEEP"
