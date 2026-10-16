@@ -221,3 +221,30 @@ def test_one_page_with_a_different_date_in_each_city_is_not_a_tour_hub_copy():
     evs = [mk("Mumbai", "2026-11-21", hub, "Aura India Tour"), mk("Delhi", "2026-11-21", hub, "Aura India Tour"),
            mk("Mumbai", "2026-11-27", "https://in.bookmyshow.com/events/aura-india-tour-mumbai/ET011", "Aura India Tour, Mumbai")]
     assert [e["url"] for e in drop_tour_hubs(evs)] == ["https://in.bookmyshow.com/events/aura-india-tour-mumbai/ET011"]
+
+
+def test_detail_pages_looks_again_when_the_listing_comes_back_empty(monkeypatch):
+    from scrapers import parsers
+    page = '<a href="https://in.bookmyshow.com/plays/a-play/ET001">A play</a><a href="https://in.bookmyshow.com/plays/b-play/ET002">B</a>'
+    calls = []
+    def fake_get_html(url, use_render=False, wait_ms=2500, scroll=True, delay=0):
+        calls.append((url, wait_ms))
+        if url.endswith("plays-hyderabad"):   # the listing: still empty on the first extra look, full on the second
+            return page if len([c for c in calls if c[0].endswith("plays-hyderabad")]) >= 2 else "<html></html>"
+        return ""                             # the event pages themselves: not needed here
+    monkeypatch.setattr(parsers, "get_html", fake_get_html)
+    monkeypatch.setattr(parsers, "_visited", set())
+    src = {"name": "BookMyShow Plays", "render": True, "render_details": True, "link_pattern": "/plays/", "wait_ms": 1000}
+    parsers.parse_detail_pages("<html></html>", "https://in.bookmyshow.com/explore/plays-hyderabad", src, {"city": "Hyderabad"})
+    listing_calls = [c for c in calls if c[0].endswith("plays-hyderabad")]
+    assert [c[1] for c in listing_calls] == [3000, 4000]                    # two more looks, waiting longer each time
+    assert {c[0] for c in calls} >= {"https://in.bookmyshow.com/plays/a-play/ET001", "https://in.bookmyshow.com/plays/b-play/ET002"}  # and then it read the shows
+
+
+def test_detail_pages_does_not_look_again_for_a_plain_page(monkeypatch):
+    from scrapers import parsers
+    calls = []
+    monkeypatch.setattr(parsers, "get_html", lambda *a, **k: calls.append(a) or "")
+    monkeypatch.setattr(parsers, "_visited", set())
+    parsers.parse_detail_pages("<html></html>", "https://example.com/list", {"name": "X", "render": False}, {})
+    assert calls == []

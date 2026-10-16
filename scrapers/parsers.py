@@ -49,7 +49,17 @@ def parse_jsonld(html, page_url, src, entry):
 
 def parse_detail_pages(html, page_url, src, entry):
     """Collect event links from a listing page, then read each event's own page."""
-    links = [l for l in collect_links(html, page_url, src.get("link_pattern", "/event")) if l not in _visited]
+    pattern = src.get("link_pattern", "/event")
+    found = collect_links(html, page_url, pattern)
+    # A rendered listing sometimes comes back before its shows have appeared: about half of BookMyShow's Hyderabad, Chennai and
+    # Kolkata plays pages did, run after run, so those cities were reported as failed. Look again, waiting longer, before giving up.
+    for attempt in (1, 2):
+        if found or not src.get("render"):
+            break
+        print(f"      no event links on the page yet; looking again, waiting longer ({attempt} of 2)")
+        html = get_html(page_url, True, src.get("wait_ms", 2500) * (attempt + 2), delay=src.get("crawl_delay", 0)) or ""
+        found = collect_links(html, page_url, pattern)
+    links = [l for l in found if l not in _visited]
     limit = src.get("max_pages", 60)
     print(f"      {len(links)} new event links found" + (f", reading first {limit}" if len(links) > limit else ""))
     out = []

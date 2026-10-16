@@ -7,4 +7,5 @@
 export PATH="/Library/Frameworks/Python.framework/Versions/3.14/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
 export COLLECTOR=mac PYTHON=python3
 export GNS_BMS_PAGES="$HOME/.gigsnshows-bms-pages.json"  # what the BookMyShow reader has read: kept outside the clone, which is reset every run
-exec /bin/bash "${0:A:h}/collect.sh"
+# caffeinate: the Mac must not doze off in the 20 to 30 minutes a run takes (a run cut short loses its results)
+exec caffeinate -i /bin/bash "${0:A:h}/collect.sh"
