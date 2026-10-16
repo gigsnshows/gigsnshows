@@ -16,12 +16,11 @@
  "sources": {
   "BookMyShow": {
    "by": "mac",
-   "count": 1001,
+   "count": 1022,
    "failed_cities": [],
-   "last_ok": "2026-10-16T09:09:09Z",
-   "last_run": "2026-10-16T09:09:09Z",
+   "last_ok": "2026-10-16T13:44:31Z",
+   "last_run": "2026-10-16T13:44:31Z",
    "recent": [
-    119,
     118,
     120,
     300,
@@ -34,23 +33,17 @@
     798,
     850,
     961,
-    1001
+    1001,
+    1022
    ]
   },
   "BookMyShow Plays": {
    "by": "mac",
-   "count": 197,
-   "failed_cities": [
-    "Ahmedabad",
-    "Chennai",
-    "Hyderabad",
-    "Jaipur",
-    "Kolkata"
-   ],
-   "last_ok": "2026-10-16T09:09:09Z",
-   "last_run": "2026-10-16T09:09:09Z",
+   "count": 295,
+   "failed_cities": [],
+   "last_ok": "2026-10-16T13:44:31Z",
+   "last_run": "2026-10-16T13:44:31Z",
    "recent": [
-    223,
     68,
     163,
     189,
@@ -63,24 +56,19 @@
     252,
     283,
     284,
-    197
+    197,
+    295
    ]
   },
   "BookMyShow Sports": {
    "by": "mac",
-   "count": 56,
+   "count": 87,
    "failed_cities": [
-    "Ahmedabad",
-    "Bengaluru",
-    "Chandigarh",
-    "Delhi",
-    "Goa",
-    "Jaipur"
+    "Goa"
    ],
-   "last_ok": "2026-10-16T09:09:09Z",
-   "last_run": "2026-10-16T09:09:09Z",
+   "last_ok": "2026-10-16T13:44:31Z",
+   "last_run": "2026-10-16T13:44:31Z",
    "recent": [
-    102,
     21,
     46,
     49,
@@ -93,7 +81,8 @@
     74,
     88,
     92,
-    56
+    56,
+    87
    ]
   },
   "District": {
@@ -261,10 +250,9 @@
   }
  },
  "total": {
-  "at": "2026-10-16T12:34:38Z",
-  "count": 3032,
+  "at": "2026-10-16T13:44:31Z",
+  "count": 3087,
   "recent": [
-   2233,
    2360,
    2331,
    2374,
@@ -283,8 +271,9 @@
    2978,
    2987,
    2997,
-   3032
+   3032,
+   3087
   ]
  },
- "updated_at": "2026-10-16T12:34:38Z"
+ "updated_at": "2026-10-16T13:44:31Z"
 }
