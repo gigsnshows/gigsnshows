@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,516 upcoming shows in 66 cities, gathered from District, BookMyShow, Skillbox, thumpN, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-16).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,522 upcoming shows in 66 cities, gathered from District, BookMyShow, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-16).
 
 ## How to use this site
 
@@ -18,18 +18,18 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 439 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 413 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 392 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 191 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 171 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 124 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 435 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 419 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 394 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 190 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 172 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 123 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 88 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 88 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 87 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 84 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 64 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 58 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 86 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 65 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 59 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 57 upcoming shows
 - [Indore](https://gigsnshows.com/indore/): 41 upcoming shows
-- [Dehradun](https://gigsnshows.com/dehradun/): 23 upcoming shows
-- [Surat](https://gigsnshows.com/surat/): 22 upcoming shows
+- [Dehradun](https://gigsnshows.com/dehradun/): 24 upcoming shows
+- [Surat](https://gigsnshows.com/surat/): 21 upcoming shows
