@@ -154,6 +154,43 @@ def from_price(price):
 NOUN = {None: "live shows", "music": "live music shows", "theatre": "theatre shows", "sports": "sports events", "comedy": "stand-up comedy shows"}
 
 
+KIND = {"music": "concert", "theatre": "play", "comedy": "comedy show", "sports": "match"}  # the word people type after a name
+ALIASES_FILE = Path(__file__).resolve().parent.parent / "seo-aliases.json"
+
+
+def load_aliases():
+    """seo-aliases.json: {"Show name": ["other spelling", ...]}. Keys starting with _ are notes."""
+    try:
+        raw = json.loads(ALIASES_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return {show_key(k): [a for a in v if a] for k, v in raw.items() if not k.startswith("_") and isinstance(v, list)}
+
+
+ALIASES = load_aliases()
+
+
+def aliases_for(title):
+    """Other spellings people search for, matched on the start of the show name."""
+    key = show_key(title)
+    for k, names in ALIASES.items():
+        if k and key.startswith(k):
+            return names
+    return []
+
+
+KIND_WORDS = ("concert", "tour", "live", "show", "play", "match", "tickets", "fest", "festival", "night", "comedy", "league")
+
+
+def kind_word(show):
+    """" concert" / " play" / ... only for a short name that doesn't already say what it is."""
+    k = KIND.get(show.category)
+    t = show.title.lower()
+    if not k or len(show.title) > 30 or any(re.search(rf"\b{w}", t) for w in KIND_WORDS):
+        return ""
+    return " " + k
+
+
 def human_list(items):
     items = [str(x) for x in items]
     return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
@@ -348,6 +385,7 @@ def show_page(show, related):
     more = "".join(f'<li>{thumb(r.image)}<div><a class="t" href="/{r.path}">{esc(r.title)}</a>'
                    f'<p>{esc(when(r.first))} · {esc(venue_short(r.first))}</p></div></li>' for r in related)
     price = from_price(show.price)
+    aliases = aliases_for(show.title)
     body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{city_slug}/">{esc(show.city)}</a> › <a href="/{city_slug}/{cat_slug}/">{esc(cat_head)}</a></p>
 <article>
 {f'<img class="poster" src="{esc(show.image)}" alt="{esc(show.title)}" loading="eager">' if show.image else ''}
@@ -355,14 +393,20 @@ def show_page(show, related):
 <p class="meta">{esc(when(f))} · {esc(venue_short(f))}, {esc(show.city)}{esc(price)}{f' · {len(show.events)} dates' if len(show.events) > 1 else ''}</p>
 <div class="tags">{tags}</div>
 {f'<p class="lead">{esc(show.about)}</p>' if show.about else ''}
+{f'<p class="upd">Also searched as: {esc(", ".join(aliases))}</p>' if aliases else ''}
 <h2>{'Dates and venues' if len(show.events) > 1 else 'Date and venue'}</h2>
 <ul class="dates">{dates}</ul>
 <div class="cta"><a class="btn" href="{esc(link)}" target="_blank" rel="noopener nofollow">Get tickets on {esc(platform)}</a>
 <a class="btn alt" href="/?city={esc(city_slug)}&amp;event={esc(f['id'])}">Save it, share it or plan it with friends</a></div>
 </article>
 {f'<h2>More {esc(cat_label)} in {esc(show.city)}</h2><ul class="list">{more}</ul>' if more else ''}"""
-    desc = f"{show.title} at {venue_short(f)}, {show.city}: {when(f, True)}{price}. " + (show.about[:90].rsplit(' ', 1)[0] + "… " if show.about else "") + f"Tickets on {platform}."
-    title = f"{clip(show.title, 46)} · {show.city}, {when(f).split(',')[0]} | gigsnshows"
+    kind = kind_word(show)
+    name = clip(show.title, 44)  # long names are cut so the city and date still fit in a search result title
+    in_city = "" if show.city.lower() in show.title.lower() else f" in {show.city}"
+    desc = (f"{name}{kind}{in_city}: {venue_short(f)}, {when(f, True)}{price}. Tickets on {platform}. "
+            + (f"Also searched as {', '.join(aliases[:2])}. " if aliases else "")
+            + (show.about[:70].rsplit(' ', 1)[0] + "…" if show.about else ""))
+    title = f"{name}{kind}{in_city}, {when(f).split(',')[0]} | gigsnshows"
     crumbs = breadcrumb_ld([("Home", ""), (show.city, f"{city_slug}/"), (cat_head, f"{city_slug}/{cat_slug}/"), (show.title, show.path)])
     return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events] + [crumbs])
 

@@ -1,0 +1,13 @@
+{
+  "_note": "Other spellings people type for a show or artist. Used on the show page's title line and 'Also searched as' text. Add more as Search Console shows new ones. Keys match the start of the show name.",
+  "Mere Krishn": ["Mere Krishna", "Merekrishna", "Mere Krishn play"],
+  "Humare Ram": ["Hamare Ram", "Humare Ram play"],
+  "Raftaar": ["Raftar", "Raftaar live concert"],
+  "Khalid": ["Khaled", "Khalid concert"],
+  "Adam Port": ["Adam.Port"],
+  "Samay Raina": ["Samay Raina show"],
+  "Aditya Rikhari": ["Aditya Rikhari concert"],
+  "Darshan Raval": ["Darshan Raval concert"],
+  "Faheem Abdullah": ["Faheem Abdullah concert"],
+  "Diljit Dosanjh": ["Diljit concert", "Aura tour"]
+}
