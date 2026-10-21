@@ -63,3 +63,12 @@ def test_day_pages_exist_only_when_something_is_on():
     r = seo.day_page("Mumbai", s, d, "today")
     assert r and r[0] == "mumbai/today/" and "Things to do in Mumbai today" in r[1]
     assert seo.day_page("Mumbai", s, date(2030, 1, 1), "tomorrow") is None
+
+
+def test_area_page_for_satellite_town():
+    evs = [ev(i, f"Show {i}", "2026-10-25", city="Delhi", venue="The Laugh Store: DLF Cyberhub, Gurugram") for i in range(3)]
+    evs.append(ev(9, "Other", "2026-10-25", city="Delhi", venue="Kamani Auditorium: Delhi"))
+    s = seo.build_shows(evs)
+    r = seo.area_page("Gurugram", s, date(2026, 10, 21))
+    assert r and r[0] == "gurugram/" and "Show 1" in r[1] and "Kamani" not in r[1]
+    assert seo.area_page("Noida", s, date(2026, 10, 21)) is None

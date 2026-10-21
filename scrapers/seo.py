@@ -10,6 +10,7 @@ writes plain HTML with real content:
   /<city>/<category>/       the same for music, theatre, sports or stand-up
   /<city>/this-weekend/     what's on from Friday to Sunday
   /<city>/today/, /<city>/tomorrow/   what's on that day
+  /<town>/                  satellite towns (Noida, Gurugram, Ghaziabad...) filed under their metro
   /cities/                  every city (the way crawlers find them from the home page)
   /about/                   what gigsnshows is and where the listings come from (for people and AI assistants)
   /sitemap.xml, /robots.txt, /llms.txt
@@ -540,6 +541,70 @@ def day_page(city, shows, today, which, other_cities=()):
     return path, page(f"{h1} ({day.day} {day:%b}) | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
+# Satellite towns of a metro. The data files them under the metro (cities.py: Gurgaon -> Delhi), so show pages stay
+# at /delhi/...; these extra pages let people searching "events in Gurugram" land on a page about just that town.
+AREAS = {
+    "Greater Noida": ("Delhi", ["greater noida"]),
+    "Noida": ("Delhi", ["noida"]),
+    "Gurugram": ("Delhi", ["gurugram", "gurgaon", "cyberhub", "cyber hub"]),
+    "Ghaziabad": ("Delhi", ["ghaziabad"]),
+    "Faridabad": ("Delhi", ["faridabad"]),
+}
+MIN_AREA_SHOWS = 3
+
+
+def area_of(show):
+    text = " ".join(str(show.first.get(k) or "") for k in ("venue", "city_text")).lower()
+    for area, (_, words) in AREAS.items():  # order matters: Greater Noida before Noida
+        if any(w in text for w in words):
+            return area
+    return None
+
+
+def area_page(area, shows, today):
+    """/<town>/ for a satellite town: its shows only. None when too few are listed (thin pages are not worth indexing)."""
+    metro = AREAS[area][0]
+    pool = [s for s in shows if s.city == metro and area_of(s) == area]
+    pool.sort(key=lambda s: (s.first["date"], s.first.get("time") or ""))
+    if len(pool) < MIN_AREA_SHOWS:
+        return None
+    area_slug = slug(area)
+    metro_slug = slug(metro)
+    path = f"{area_slug}/"
+    h1 = f"Live shows in {area}"
+    wk_a, wk_b = weekend_window(today)
+    wk = shows_between(pool, wk_a.isoformat(), wk_b.isoformat())
+    lead = f"{len(pool)} upcoming live shows in {area} ({metro} NCR), soonest first: concerts, stand-up, theatre and sports."
+    if wk:
+        lead += f" {len(wk)} this weekend ({weekend_label(wk_a, wk_b)})."
+    counts = Counter(s.category for s in pool)
+    kinds = human_list([f"{counts[k]} {CATEGORIES[k][2]}" for k in CATEGORIES if counts[k]])
+    venues = Counter(venue_short(s.first) for s in pool if venue_short(s.first) and "announced" not in venue_short(s.first).lower()).most_common(4)
+    prices = sorted(s.price for s in pool if s.price)
+    qa = [(f"What shows are on in {area}?",
+           f"{len(pool)} upcoming shows are listed in {area} ({kinds}). The next ones are {human_list([next_item(s) for s in pool[:3]])}.")]
+    if wk:
+        qa.append((f"What is on in {area} this weekend?",
+                   f"{len(wk)} {'is' if len(wk) == 1 else 'are'} listed for {weekend_label(wk_a, wk_b)}, including {human_list([clip(s.title, 60) for s in wk[:3]])}."))
+    if len(venues) >= 2 and venues[0][1] >= 2:
+        qa.append((f"Which venues in {area} have shows?",
+                   f"The busiest right now are {human_list([venue_item(v, n) for v, n in venues if n >= 2])}."))
+    if len(prices) >= 3:
+        qa.append((f"How much do tickets in {area} cost?",
+                   f"Of the {len(prices)} listed with a price, tickets start from {rupees(prices[0])}, and half start at {rupees(prices[len(prices) // 2])} or less (\"from\" prices; the final price depends on the ticket type)."))
+    shown = pool[:MAX_ON_CITY_PAGE]
+    body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{metro_slug}/">{esc(metro)}</a> › {esc(area)}</p>
+<h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day.</p>
+<ul class="list">{listing(shown)}</ul>
+<div class="cta"><a class="btn" href="/{metro_slug}/">All shows in {esc(metro)} NCR</a><a class="btn alt" href="/?city={esc(metro_slug)}">Open on gigsnshows</a></div>
+{faq_html(qa, f"Questions about shows in {area}")}"""
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(shown[:50])]},
+          breadcrumb_ld([("Home", ""), (metro, f"{metro_slug}/"), (area, path)]), faq_ld(qa)]
+    return path, page(f"{h1}: concerts, comedy, theatre | gigsnshows", clip(lead, 158), path, body, ld=ld)
+
+
 def cities_page(by_city):
     items = "".join(f'<li><a href="/{slug(c)}/">{esc(c)}</a> <small>{n} shows</small></li>' for c, n in sorted(by_city.items(), key=lambda x: (-x[1], x[0])))
     body = f'<h1>Live shows by city</h1><p class="lead">Pick your city to see what\'s on: concerts, plays, stand-up and sports.</p><ul class="cities">{items}</ul>'
@@ -648,6 +713,16 @@ def write(events, root, today=None):
             dp = day_page(city, group, today_d, which, [c for c in day_cities[which] if c != city][:10])
             if dp:
                 out[dp[0] + "index.html"] = dp[1]
+    area_links = {}
+    for area in AREAS:
+        ap = area_page(area, shows, today_d)
+        if ap and slug(area) not in by_city and slug(area) not in {slug(c) for c in by_city}:
+            out[ap[0] + "index.html"] = ap[1]
+            area_links.setdefault(AREAS[area][0], []).append(area)
+    for metro, areas in area_links.items():  # link them from the metro page
+        key = f"{slug(metro)}/index.html"
+        links = "".join(f'<li><a href="/{slug(a)}/">{esc(a)}</a></li>' for a in areas)
+        out[key] = out[key].replace('<div class="cta">', f'<h2>Nearby towns</h2><ul class="more">{links}</ul><div class="cta">', 1)
     out["cities/index.html"] = cities_page({c: len(g) for c, g in by_city.items() if c != "Unknown"})
     out["about/index.html"] = about_page(events, shows, by_city, today_d)
 
