@@ -9,6 +9,7 @@ writes plain HTML with real content:
   /<city>/                  what's on in a city, soonest first
   /<city>/<category>/       the same for music, theatre, sports or stand-up
   /<city>/this-weekend/     what's on from Friday to Sunday
+  /<city>/today/, /<city>/tomorrow/   what's on that day
   /cities/                  every city (the way crawlers find them from the home page)
   /about/                   what gigsnshows is and where the listings come from (for people and AI assistants)
   /sitemap.xml, /robots.txt, /llms.txt
@@ -439,6 +440,12 @@ def city_page(city, shows, category=None, today=None, other_cities=()):
         for k, (cs, ch, cl) in CATEGORIES.items() if counts[k])
     if category is None and all_wk:
         cats += f'<a href="/{city_slug}/this-weekend/">This weekend ({len(all_wk)})</a>'
+    if category is None:
+        for w, (off, _, lab, _) in DAYS.items():
+            d = (today + timedelta(days=off)).isoformat()
+            n = len(shows_between(shows, d, d))
+            if n:
+                cats += f'<a href="/{city_slug}/{w}/">{lab} ({n})</a>'
     shown = pool[:MAX_ON_CITY_PAGE]
     path = f"{city_slug}/" + (f"{CATEGORIES[category][0]}/" if category else "")
     qa = faq_for(city, pool, today, category)
@@ -492,6 +499,45 @@ def weekend_page(city, shows, today, other_cities=()):
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
           breadcrumb_ld([("Home", ""), (city, f"{city_slug}/"), ("This weekend", path)]), faq_ld(qa)]
     return path, page(f"{h1} ({a.day}-{b.day} {b:%b}) | gigsnshows", clip(lead, 158), path, body, ld=ld)
+
+
+DAYS = {"today": (0, "today", "Today", "tonight"), "tomorrow": (1, "tomorrow", "Tomorrow", "tomorrow")}
+
+
+def day_page(city, shows, today, which, other_cities=()):
+    """/<city>/today/ and /<city>/tomorrow/ : shows on that one day. None when nothing is listed (the page then disappears)."""
+    offset, word, label, app_when = DAYS[which]
+    city_slug = slug(city)
+    day = today + timedelta(days=offset)
+    iso = day.isoformat()
+    pool = shows_between(shows, iso, iso)
+    if not pool:
+        return None
+    path = f"{city_slug}/{which}/"
+    span = f"{day:%A} {day.day} {day:%B}"
+    h1 = f"Things to do in {city} {word}"
+    lead = f"{len(pool)} live {'show' if len(pool) == 1 else 'shows'} in {city} {word}, {span}: concerts, stand-up, theatre and sports, earliest first."
+    counts = Counter(s.category for s in pool)
+    kinds = human_list([f"{counts[k]} {CATEGORIES[k][2]}" for k in CATEGORIES if counts[k]])
+    prices = sorted(s.price for s in pool if s.price)
+    qa = [(f"What is on in {city} {word}?",
+           f"{len(pool)} {'show is' if len(pool) == 1 else 'shows are'} listed for {span} in {city} ({kinds}), including {human_list([clip(s.title, 60) for s in pool[:3]])}.")]
+    if len(prices) >= 3:
+        qa.append((f"How much do tickets cost {word} in {city}?",
+                   f"Of the {len(prices)} listed with a price, tickets start from {rupees(prices[0])}, and half start at {rupees(prices[len(prices) // 2])} or less (\"from\" prices; the final price depends on the ticket type)."))
+    other_day = "tomorrow" if which == "today" else "today"
+    others = "".join(f'<li><a href="/{slug(c)}/{which}/">{esc(c)}</a></li>' for c in other_cities)
+    body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{city_slug}/">{esc(city)}</a> › {label}</p>
+<h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">{esc(span)} · Updated {today.day} {today:%B %Y}</p>
+<ul class="list">{listing(pool[:200])}</ul>
+<div class="cta"><a class="btn" href="/{city_slug}/">All upcoming shows in {esc(city)}</a><a class="btn alt" href="/?city={esc(city_slug)}&amp;when={app_when}">Open on gigsnshows</a></div>
+{faq_html(qa, f"{label} in {city}")}
+{f'<h2>{label} in other cities</h2><ul class="more">{others}</ul>' if others else ''}"""
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": f"{h1} ({span})",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
+          breadcrumb_ld([("Home", ""), (city, f"{city_slug}/"), (label, path)]), faq_ld(qa)]
+    return path, page(f"{h1} ({day.day} {day:%b}) | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
 def cities_page(by_city):
@@ -564,7 +610,7 @@ def llms_txt(events, shows, by_city, today):
 
 
 def sitemap_priority(path):
-    if path.endswith("/this-weekend/index.html"):
+    if path.endswith(("/this-weekend/index.html", "/today/index.html", "/tomorrow/index.html")):
         return "0.9"
     return "0.8" if path.count("/") <= 2 else "0.6"
 
@@ -584,6 +630,7 @@ def write(events, root, today=None):
         by_city[s.city].append(s)
     ranked = [c for c, _ in sorted(((c, len(g)) for c, g in by_city.items() if c != "Unknown"), key=lambda x: (-x[1], x[0]))]
     weekend_cities = [c for c in ranked if shows_between(by_city[c], *[d.isoformat() for d in weekend_window(today_d)])]
+    day_cities = {w: [c for c in ranked if shows_between(by_city[c], (today_d + timedelta(days=DAYS[w][0])).isoformat(), (today_d + timedelta(days=DAYS[w][0])).isoformat())] for w in DAYS}
     for city, group in by_city.items():
         if city == "Unknown":
             continue
@@ -597,6 +644,10 @@ def write(events, root, today=None):
         wk = weekend_page(city, group, today_d, [c for c in weekend_cities if c != city][:10])
         if wk:
             out[wk[0] + "index.html"] = wk[1]
+        for which in DAYS:
+            dp = day_page(city, group, today_d, which, [c for c in day_cities[which] if c != city][:10])
+            if dp:
+                out[dp[0] + "index.html"] = dp[1]
     out["cities/index.html"] = cities_page({c: len(g) for c, g in by_city.items() if c != "Unknown"})
     out["about/index.html"] = about_page(events, shows, by_city, today_d)
 

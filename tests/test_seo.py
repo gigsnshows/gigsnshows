@@ -54,3 +54,12 @@ def test_every_json_ld_block_parses_and_pages_are_indian_english(tmp_path):
     assert "GPTBot" in (tmp_path / "robots.txt").read_text()
     assert "gigsnshows does not sell tickets" in (tmp_path / "llms.txt").read_text()
     assert (tmp_path / "mumbai" / "this-weekend" / "index.html").exists()
+
+
+def test_day_pages_exist_only_when_something_is_on():
+    s = shows()
+    first = min(x.first["date"] for x in s if x.city == "Mumbai")
+    d = date.fromisoformat(first)
+    r = seo.day_page("Mumbai", s, d, "today")
+    assert r and r[0] == "mumbai/today/" and "Things to do in Mumbai today" in r[1]
+    assert seo.day_page("Mumbai", s, date(2030, 1, 1), "tomorrow") is None
