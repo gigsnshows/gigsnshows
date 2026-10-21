@@ -72,3 +72,14 @@ def test_area_page_for_satellite_town():
     r = seo.area_page("Gurugram", s, date(2026, 10, 21))
     assert r and r[0] == "gurugram/" and "Show 1" in r[1] and "Kamani" not in r[1]
     assert seo.area_page("Noida", s, date(2026, 10, 21)) is None
+
+
+def test_occasion_pages():
+    evs = [ev(i, f"Spooky Night {i}", "2026-10-31") for i in range(3)] + [ev(9, "Jazz", "2026-10-31")]
+    s = seo.build_shows(evs)
+    r = seo.occasion_page("Mumbai", s, date(2026, 10, 21), "halloween")
+    assert r and r[0] == "mumbai/halloween/" and "Jazz" not in r[1]
+    assert seo.occasion_page("Mumbai", s, date(2026, 11, 3), "halloween") is None      # over
+    assert seo.occasion_page("Mumbai", s, date(2026, 10, 21), "diwali") is None         # nothing matches
+    nye = [ev(20 + i, f"Party {i}", "2026-12-31") for i in range(3)]
+    assert seo.occasion_page("Mumbai", seo.build_shows(nye), date(2026, 12, 1), "new-years-eve")
