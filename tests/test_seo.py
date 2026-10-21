@@ -83,3 +83,10 @@ def test_occasion_pages():
     assert seo.occasion_page("Mumbai", s, date(2026, 10, 21), "diwali") is None         # nothing matches
     nye = [ev(20 + i, f"Party {i}", "2026-12-31") for i in range(3)]
     assert seo.occasion_page("Mumbai", seo.build_shows(nye), date(2026, 12, 1), "new-years-eve")
+
+
+def test_ticket_links_carry_utm():
+    assert seo.tagged("https://x.in/a") == "https://x.in/a?utm_source=gigsnshows&utm_medium=referral"
+    assert seo.tagged("https://x.in/a?id=1").endswith("&utm_source=gigsnshows&utm_medium=referral")
+    assert seo.tagged("https://x.in/a?utm_source=z") == "https://x.in/a?utm_source=z"
+    assert seo.tagged("") == ""

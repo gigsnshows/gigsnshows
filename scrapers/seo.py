@@ -122,10 +122,17 @@ def venue_short(e):
     return re.split(r"[:|]", e.get("venue") or "")[0].strip()
 
 
+def tagged(url):
+    """Ticketing links carry utm_source=gigsnshows so the seller sees the visits we send in their own analytics."""
+    if not url or "utm_source=" in url or not url.startswith("http"):
+        return url
+    return url + ("&" if "?" in url else "?") + "utm_source=gigsnshows&utm_medium=referral"
+
+
 def link_for(e):
     links = e.get("links") or {e["source"]: e.get("url")}
     src = (e.get("sources") or [e["source"]])[0]
-    return links.get(src) or e.get("url") or "", re.sub(r" (Plays|Sports)$", "", src)
+    return tagged(links.get(src) or e.get("url") or ""), re.sub(r" (Plays|Sports)$", "", src)
 
 
 def gcal_url(e, page):
@@ -347,7 +354,7 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
 <main><div class="wrap">
 {body}
 </div></main>
-<footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
+<footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/list-event.html">List your event</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
 </body>
 </html>
 """

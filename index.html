@@ -1929,6 +1929,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("footTabs").innerHTML = TABS.map(t => `<li><button data-foot-tab="${t.key}">${t.label}</button></li>`).join("")
       + `<li><button data-onboard>Your interests</button></li>`
+      + `<li><a href="list-event.html">List your event</a></li>`
       + `<li><a href="contact.html">Contact</a></li>`
       + `<li><a href="privacy.html">Privacy</a></li>`
       + `<li><a href="terms.html">Terms</a></li>`
@@ -2086,6 +2087,20 @@
       remember(eventById(ticket.closest(".slide").dataset.id), WEIGHT.ticket);
     }
   });
+  // Ticketing links carry utm_source=gigsnshows so sellers see the visits we send in their own analytics.
+  function tagTicketLink(a) {
+    try {
+      if (!a || !a.href || a.dataset.noUtm || !/^https?:/.test(a.href)) return;
+      const u = new URL(a.href);
+      if (u.hostname.endsWith(location.hostname) || u.searchParams.has("utm_source")) return;
+      if (!a.matches("[data-ticket], .art-link, .body, .btn-tickets, [data-plan-tickets], [data-list-tickets], .assist-book")) return;
+      u.searchParams.set("utm_source", "gigsnshows"); u.searchParams.set("utm_medium", "referral");
+      a.href = u.toString();
+    } catch {}
+  }
+  ["pointerdown", "click", "contextmenu", "auxclick", "touchstart"].forEach(t =>
+    document.addEventListener(t, ev => tagTicketLink(ev.target.closest && ev.target.closest("a[href]")), true));
+
   window.addEventListener("popstate", () => closeViewer(true));
 
   // ---------- onboarding: city, then interests ----------
