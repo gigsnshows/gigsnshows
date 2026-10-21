@@ -32,7 +32,7 @@ main() {
     git add -A  # listings, health record, share pages and the search pages (shows/, city folders, sitemap)
     if git diff --cached --quiet; then echo "no changes"; return 0; fi
     git "${BOT[@]}" commit --quiet -m "Refresh listings $(date +%F) ($COLLECTOR)"
-    git push --quiet "$REPO" HEAD:main && { echo "uploaded"; return 0; }
+    git push --quiet "$REPO" HEAD:main && { echo "uploaded"; "$PYTHON" indexnow.py HEAD~1 || true; return 0; }
     echo "upload did not go through (another collector uploaded first, or the connection dropped); merging into the latest listings"
     # What this machine's sitemap reader has already read (data/district_pages.json on the server, data/bms_pages.json
     # on the Mac) would be lost by the reset below, and the reader would start again from nothing next time.
