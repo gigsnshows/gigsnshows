@@ -36,6 +36,8 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -6 40 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230a84ff'/%3E%3Cstop offset='1' stop-color='%23ff2d95'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M5 4h30a3 3 0 0 1 3 3v4a3 3 0 0 0 0 6v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4a3 3 0 0 0 0-6V7a3 3 0 0 1 3-3z'/%3E%3Cpath d='M28 7.5v13' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' stroke-dasharray='.01 3.2'/%3E%3Cpolygon fill='%23fff' points='15,8.8 16.29,12.22 19.95,12.39 17.09,14.68 18.06,18.21 15,16.2 11.94,18.21 12.91,14.68 10.05,12.39 13.71,12.22'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://wsrv.nl" crossorigin>
+<script>/* start downloading the listings now, before the rest of the page is parsed */window.__events = fetch("data/events.json", { cache: "no-store" });</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap" rel="stylesheet">
@@ -301,6 +303,14 @@
   }
   .tile:hover .art, .tile:focus-within .art { transform: scale(1.035); box-shadow: 0 16px 34px var(--shadow); }
   .art-link { position: absolute; inset: 0; display: block; }
+  /* shown for the moment before the listings arrive */
+  .skel { display: grid; gap: 14px; padding-top: 18px; }
+  .skel i { display: block; height: 20px; width: 150px; border-radius: 8px; }
+  .skel div { display: flex; gap: 12px; overflow: hidden; }
+  .skel b { flex: 0 0 172px; height: 232px; border-radius: 14px; }
+  .skel i, .skel b { background: linear-gradient(90deg, var(--surface-2, rgba(128,128,128,.14)) 25%, rgba(128,128,128,.26) 50%, var(--surface-2, rgba(128,128,128,.14)) 75%); background-size: 200% 100%; animation: skel 1.3s linear infinite; }
+  @keyframes skel { to { background-position: -200% 0; } }
+  @media (prefers-reduced-motion: reduce) { .skel i, .skel b { animation: none; } }
   .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .art .poster {
     position: absolute; inset: 0; padding: 38px 14px 12px; display: flex; flex-direction: column; justify-content: center;
@@ -835,7 +845,7 @@
   </div>
 </div>
 
-<main class="wrap" id="main" aria-live="polite"></main>
+<main class="wrap" id="main" aria-live="polite"><div class="skel" aria-hidden="true"><i></i><div><b></b><b></b><b></b><b></b></div><i></i><div><b></b><b></b><b></b><b></b></div></div></main>
 
 <div class="share-menu" id="shareMenu" role="dialog" aria-label="Share this show" hidden></div>
 <div class="share-menu" id="calMenu" role="dialog" aria-label="Add to calendar" hidden></div>
@@ -1016,6 +1026,19 @@
     s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
     document.head.appendChild(s);
   }
+  // Posters come from the ticketing sites at full size (often 1,280 to 4,000 px wide, 100 to 650 KB each) but show at
+  // about 170 px, so they go through a free image resizer (wsrv.nl) that returns a small WebP. If it ever fails,
+  // the original poster is used instead, so a poster never goes missing because of the resizer.
+  function sized(url, w) {
+    if (!url || !/^https?:\/\//.test(url) || url.indexOf("wsrv.nl") > -1) return url;
+    return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w}&output=webp&q=72&we`;
+  }
+  window.imgFail = function (img) { if (img.dataset.o) { img.src = img.dataset.o; delete img.dataset.o; } else img.remove(); };
+  function imgTag(url, w, lazy = true) {
+    const s = sized(url, w);
+    return `<img src="${esc(s)}"${s !== url ? ` data-o="${esc(url)}"` : ""} alt=""${lazy ? ` loading="lazy"` : ""} onerror="imgFail(this)">`;
+  }
+
   function track(name, params = {}) {
     if (ANALYTICS_ON) gtag("event", name, params);
   }
@@ -1737,8 +1760,19 @@
     const nothing = state.when
       ? `<div class="empty"><b>Nothing listed in ${esc(state.city)} ${esc(whenText())}.</b><br>Try another day, or <button class="see-all" data-when="">any time</button>.</div>`
       : `<div class="empty"><b>Nothing listed for ${esc(state.city)} yet.</b><br>Listings refresh every morning. Check back tomorrow.</div>`;
-    document.getElementById("main").innerHTML = whenBar() + sections.join("") + (all.length ? "" : nothing);
+    // Paint the first few shelves at once and add the rest while the phone is idle, so the first screen appears sooner.
+    const main = document.getElementById("main"), FIRST = 3, token = ++homeToken;
+    main.innerHTML = whenBar() + sections.slice(0, FIRST).join("") + (sections.length > FIRST ? "" : all.length ? "" : nothing);
+    let at = FIRST;
+    const idle = window.requestIdleCallback || (f => setTimeout(f, 40));
+    const more = () => {
+      if (token !== homeToken) return;  // the page was drawn again meanwhile
+      if (at < sections.length) { main.insertAdjacentHTML("beforeend", sections[at++]); refreshArrows(main.lastElementChild); idle(more); }
+      else if (!all.length) main.insertAdjacentHTML("beforeend", nothing);
+    };
+    if (sections.length > FIRST || !all.length) idle(more);
   }
+  let homeToken = 0;
 
   function renderCategory() {
     const tab = TABS.find(t => t.key === state.tab);
@@ -1865,8 +1899,8 @@
   }
 
   // Hide an arrow once its tray can't scroll any further that way (or at all).
-  function refreshArrows() {
-    document.querySelectorAll(".shelf-wrap").forEach(wrap => {
+  function refreshArrows(root = document) {
+    root.querySelectorAll(".shelf-wrap").forEach(wrap => {
       const shelf = wrap.querySelector(".shelf");
       const prev = wrap.querySelector(".arrow.prev");
       const next = wrap.querySelector(".arrow.next");
@@ -1879,7 +1913,7 @@
       update();
     });
   }
-  window.addEventListener("resize", refreshArrows);
+  window.addEventListener("resize", () => refreshArrows());
 
   // Deterministic poster art for events without an image, keyed by id.
   function poster(e) {
@@ -1894,7 +1928,7 @@
     const sources = e.sources || [e.source];
     const links = e.links || { [e.source]: e.url };
     const href = links[sources[0]] || "#";
-    const art = poster(e) + (e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : "");
+    const art = poster(e) + (e.image ? imgTag(e.image, 400) : "");
     const price = e.price_from ? `from <b>₹${Number(e.price_from).toLocaleString("en-IN")}</b> · ` : "";
     const via = sources.length > 1 ? `<span class="multi">${sources.length} platforms</span>` : esc(sources[0].replace(/ (Plays|Sports)$/, ""));
     const saved = getWannaGo().includes(e.id);
@@ -1980,8 +2014,8 @@
     const price = e.price_from ? `From ₹${Number(e.price_from).toLocaleString("en-IN")}` : "";
     const also = sources.slice(1).map(s => `<a href="${esc(links[s])}" target="_blank" rel="noopener" data-ticket="${esc(s)}">${esc(s)}</a>`).join(", ");
     return `<article class="slide" data-id="${e.id}" data-i="${i}">
-      <div class="slide-bg"${e.image ? ` data-bg="${esc(e.image)}"` : ""}></div>
-      <div class="slide-art">${poster(e)}${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+      <div class="slide-bg"${e.image ? ` data-bg="${esc(sized(e.image, 240))}"` : ""}></div>
+      <div class="slide-art">${poster(e)}${e.image ? imgTag(e.image, 900) : ""}</div>
       <div class="slide-info">
         <div class="slide-tags">${tags}</div>
         <h2 class="slide-title">${esc(e.title)}</h2>
@@ -2587,7 +2621,7 @@
   function ticketRow(t) {
     const e = eventById(t.event_id);
     return `<li><button class="wallet-row" data-w="ticket" data-id="${esc(t.id)}">
-      <div class="assist-thumb">${e?.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+      <div class="assist-thumb">${e?.image ? `${imgTag(e.image, 160)}` : ""}</div>
       <div><h3>${esc(t.title)}</h3><p>${esc(ticketWhen(t))}${t.venue ? " · " + esc(t.venue.split(/[:|]/)[0].trim()) : ""}</p><p>${esc([t.platform, t.quantity ? `${t.quantity} ${t.quantity === 1 ? "ticket" : "tickets"}` : ""].filter(Boolean).join(" · "))}</p></div>
       <span class="go" aria-hidden="true">›</span></button></li>`;
   }
@@ -2948,7 +2982,7 @@
       <h2 id="planTitle">Who's in?</h2>
       <p class="assist-status">${owner ? "Share this plan with your friends so they can say if they're coming." : "A friend is asking who's coming. Say if you're in."}</p>
       <div class="assist-row">
-        <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" onerror="this.remove()">` : ""}</div>
+        <div class="assist-thumb">${e.image ? `${imgTag(e.image, 160)}` : ""}</div>
         <div><h3 style="margin:0;font-size:1.05rem;font-weight:600;line-height:1.3">${esc(e.title)}</h3>
         <p class="assist-msg" style="margin:3px 0 0">${esc(whenLabel(e))}${e.venue ? " · " + esc(e.venue.split(/[:|]/)[0].trim()) : ""}${e.city ? ", " + esc(e.city) : ""}</p></div>
       </div>
@@ -3141,7 +3175,7 @@
     const list = nightShows();
     document.getElementById("nightList").innerHTML = list.length ? list.slice(0, 40).map(e => `<li>
         <button type="button" class="night-pick" data-night-pick="${e.id}" aria-pressed="${night.picks.has(e.id)}">
-          <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+          <div class="assist-thumb">${e.image ? `${imgTag(e.image, 160)}` : ""}</div>
           <div><h3>${esc(e.title)}</h3><p>${e.time ? esc(to12h(e.time)) + " · " : ""}${esc(e.venue.split(/[:|]/)[0].trim())}</p></div>
           <span class="tick" aria-hidden="true">${night.picks.has(e.id) ? "✓" : ""}</span>
         </button></li>`).join("")
@@ -3188,7 +3222,7 @@
       <ul class="assist-list" id="nightShows">${shows.map(e => {
         const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url;
         return `<li data-eid="${e.id}">
-          <div class="assist-row"><div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+          <div class="assist-row"><div class="assist-thumb">${e.image ? `${imgTag(e.image, 160)}` : ""}</div>
             <div><h3>${esc(e.title)}<span class="lead" hidden>Most votes</span></h3><p>${e.time ? esc(to12h(e.time)) + " · " : ""}${esc(e.venue.split(/[:|]/)[0].trim())}${e.price_from ? ` · from ₹${Number(e.price_from).toLocaleString("en-IN")}` : ""}</p></div></div>
           <div class="vote-row" role="group" aria-label="Would you go to ${esc(e.title)}?">
             <button type="button" data-plan-vote="${e.id}" data-plan-vote-level="yes" aria-pressed="false">I'd go</button>
@@ -3399,7 +3433,7 @@
           const sources = e.sources || [e.source], link = (e.links || { [e.source]: e.url })[sources[0]] || e.url, on = mineIds.has(e.id);
           return `<li>
             <div class="assist-row">
-              <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+              <div class="assist-thumb">${e.image ? `${imgTag(e.image, 160)}` : ""}</div>
               <div><h3>${esc(e.title)}</h3>
               <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city].filter(Boolean).join(", "))}</p>
               <p class="list-who"><b>${n.length} want${n.length === 1 ? "s" : ""} to go</b> · ${esc(n.join(", "))}</p></div>
@@ -3796,7 +3830,7 @@
         const price = e.price_from ? ` · from ₹${Number(e.price_from).toLocaleString("en-IN")}${n > 1 ? " each" : ""}` : "";
         return `<li>
           <div class="assist-row">
-            <div class="assist-thumb">${e.image ? `<img src="${esc(e.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</div>
+            <div class="assist-thumb">${e.image ? `${imgTag(e.image, 160)}` : ""}</div>
             <div><h3>${esc(e.title)}</h3>
             <p>${esc(whenLabel(e))} · ${esc([e.venue.split(/[:|]/)[0].trim(), e.city !== city ? e.city : ""].filter(Boolean).join(", "))}${price}</p></div>
           </div>
@@ -4219,7 +4253,7 @@
   });
 
   // ---------- load ----------
-  fetch("data/events.json", { cache: "no-store" })
+  (window.__events || fetch("data/events.json", { cache: "no-store" }))
     .then(r => r.json())
     .then(json => {
       data = json;

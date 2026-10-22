@@ -90,3 +90,10 @@ def test_ticket_links_carry_utm():
     assert seo.tagged("https://x.in/a?id=1").endswith("&utm_source=gigsnshows&utm_medium=referral")
     assert seo.tagged("https://x.in/a?utm_source=z") == "https://x.in/a?utm_source=z"
     assert seo.tagged("") == ""
+
+
+def test_posters_go_through_resizer_with_fallback():
+    t = seo.thumb("https://cdn.example.com/a b/p.jpg?x=1")
+    assert t.startswith('<img src="https://wsrv.nl/?url=https%3A%2F%2Fcdn.example.com') and "w=160" in t
+    assert 'data-o="https://cdn.example.com/a b/p.jpg?x=1"' in t and "onerror=" in t
+    assert seo.thumb("") == "" and seo.sized("/local.png", 160) == "/local.png"

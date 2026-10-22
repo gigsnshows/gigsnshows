@@ -31,7 +31,7 @@ import unicodedata
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 
 from .genres import catalog
 
@@ -153,8 +153,23 @@ def gcal_url(e, page):
     return "https://calendar.google.com/calendar/render?" + urlencode(q)
 
 
+def sized(url, w):
+    """Posters are full-size on the ticketing sites (1,280 to 4,000 px, 100 to 650 KB); the resizer returns a small WebP."""
+    if not url or not url.startswith("http"):
+        return url
+    return f"https://wsrv.nl/?url={quote(url, safe='')}&w={w}&output=webp&q=72&we"
+
+
+IMG_FALLBACK = "if(this.dataset.o){this.src=this.dataset.o;this.removeAttribute('data-o')}"
+
+
+def img_tag(url, w, attrs="", alt="", loading="lazy"):
+    """A resized poster that falls back to the original if the resizer fails."""
+    return f'<img {attrs}src="{esc(sized(url, w))}" data-o="{esc(url)}" alt="{alt}" loading="{loading}" onerror="{esc(IMG_FALLBACK)}">'
+
+
 def thumb(url):
-    return f'<img src="{esc(url)}" alt="" loading="lazy">' if url else ""
+    return img_tag(url, 160) if url else ""
 
 
 def from_price(price):
@@ -398,7 +413,7 @@ def show_page(show, related):
     aliases = aliases_for(show.title)
     body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{city_slug}/">{esc(show.city)}</a> › <a href="/{city_slug}/{cat_slug}/">{esc(cat_head)}</a></p>
 <article>
-{f'<img class="poster" src="{esc(show.image)}" alt="{esc(show.title)}" loading="eager">' if show.image else ''}
+{img_tag(show.image, 800, 'class="poster" ', esc(show.title), "eager") if show.image else ''}
 <h1>{esc(show.title)}</h1>
 <p class="meta">{esc(when(f))} · {esc(venue_short(f))}, {esc(show.city)}{esc(price)}{f' · {len(show.events)} dates' if len(show.events) > 1 else ''}</p>
 <div class="tags">{tags}</div>
