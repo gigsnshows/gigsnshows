@@ -106,6 +106,9 @@ def dedupe(events):
                 m["links"][e["source"]] = e["url"]
             m["image"] = m["image"] or e["image"]
             m["price_from"] = m["price_from"] or e["price_from"]
+            for k in ("end", "on_sale", "organizer"):  # facts one platform states and the other doesn't
+                if e.get(k) and not m.get(k):
+                    m[k] = e[k]
             m["lang"] = m.get("lang", []) + [x for x in e.get("lang", []) if x not in m.get("lang", [])]
         else:
             e["sources"] = [e["source"]]

@@ -248,3 +248,22 @@ def test_detail_pages_does_not_look_again_for_a_plain_page(monkeypatch):
     monkeypatch.setattr(parsers, "_visited", set())
     parsers.parse_detail_pages("<html></html>", "https://example.com/list", {"name": "X", "render": False}, {})
     assert calls == []
+
+
+def test_jsonld_keeps_end_sale_start_and_real_organizer():
+    from scrapers import base
+    node = {"name": "Sufi Night", "startDate": "2026-11-07T14:30:00.000Z", "endDate": "2026-11-07T17:30:00.000Z",
+            "location": {"name": "NCPA", "address": {"addressLocality": "Mumbai"}},
+            "organizer": {"@type": "Organization", "name": "Associated Broadcasting Company Private Limited"},
+            "offers": {"@type": "AggregateOffer", "lowPrice": 999, "offers": [{"@type": "Offer", "validFrom": "2026-09-20T04:30:00.000Z"}]}}
+    e = base.jsonld_to_event(node, "District", "Mumbai", "music", "https://d/x")
+    assert e["time"] == "20:00" and e["end"] == "2026-11-07T23:00"
+    assert e["on_sale"] == "2026-09-20T10:00" and e["organizer"] == "Associated Broadcasting Company Private Limited"
+
+
+def test_jsonld_ignores_ticket_sellers_and_unknown_times():
+    from scrapers import base
+    node = {"name": "Illustrated Talk", "startDate": "2026-11-07T05:30", "endDate": "2026-11-07T08:00",
+            "location": {"name": "Hall", "address": {"addressLocality": "Mumbai"}}, "organizer": {"name": "BookMyShow"}}
+    e = base.jsonld_to_event(node, "BookMyShow", "Mumbai", "talks", "https://b/x") or base.jsonld_to_event(node, "BookMyShow", "Mumbai", "music", "https://b/x")
+    assert e and "organizer" not in e and "end" not in e and "on_sale" not in e

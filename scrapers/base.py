@@ -237,7 +237,33 @@ def tidy_title(title, city=None):
     return re.sub(r"\s*[–-]\s*$", "", out).strip() or title
 
 
-def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place="", about=None, lang=None):
+SELLERS = re.compile(r"bookmyshow|district|paytm|insider|zomato|ticketmaster|ticketgenie|townscript|allevents|meraevents|skillbox|thumpn|^tbd$|^n/?a$", re.I)
+IST = timezone(timedelta(hours=5, minutes=30))
+
+
+def ist_iso(text):
+    """An ISO timestamp from a site (UTC 'Z' or with an offset) as local India time, 'YYYY-MM-DDTHH:MM'. '' if it isn't a full timestamp."""
+    if not isinstance(text, str) or not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}", text.strip()):
+        return ""
+    try:
+        dt = dateparser.isoparse(text.strip())
+    except ValueError:
+        return ""
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=IST)
+    return dt.astimezone(IST).strftime("%Y-%m-%dT%H:%M")
+
+
+def real_organizer(value):
+    """The organizer's name when the site names one: not a ticket seller, not a placeholder."""
+    if isinstance(value, list):
+        value = value[0] if value else None
+    name = value.get("name") if isinstance(value, dict) else value
+    name = re.sub(r"\s+", " ", name).strip() if isinstance(name, str) else ""
+    return "" if len(name) < 3 or SELLERS.search(name) else name[:120]
+
+
+def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place="", about=None, lang=None, extra=None):
     """
     Build a normalised event dict; returns None if it lacks a title or date.
     `city` is only the listing page's city: the show's own venue/address (`place`, or
@@ -258,7 +284,7 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
         m = re.search(r"\d[\d,]*", price)
         price = int(m.group(0).replace(",", "")) if m else None
     langs = language(cat, title, hint, place or venue) if lang is None else lang
-    return {
+    out = {
         "id": make_id(raw_title, day, venue),
         "title": title,
         "category": cat,
@@ -274,6 +300,8 @@ def event(title, day, source, city, category=None, venue="", time="", price=None
         "source": source,
         "about": summary(hint if about is None else about),
     }
+    out.update({k: v for k, v in (extra or {}).items() if v})  # end, on_sale, organizer: only what the site really states
+    return out
 
 
 def collect_links(html, base_url, pattern):
@@ -351,9 +379,29 @@ def jsonld_to_event(node, source, city=None, category=None, page_url="", default
         lang = lang.get("name") or ""
     hint = " ".join(" ".join(map(str, v)) if isinstance(v, list) else str(v)
                     for v in (node.get("description", ""), genre, lang))
+    extra = {}
+    start_local = ist_iso(start)
+    end_local = ist_iso(node.get("endDate"))
+    if time and start_local and end_local and end_local > start_local:  # an end time only means something next to a real start time
+        extra["end"] = end_local
+    sale = [ist_iso(o.get("validFrom")) for o in _offer_list(node.get("offers")) if isinstance(o, dict)]
+    sale = min((x for x in sale if x), default="")
+    if sale and (not start_local or sale < start_local):
+        extra["on_sale"] = sale
+    extra["organizer"] = real_organizer(node.get("organizer"))
     return event(node.get("name"), day, source, city, category, venue, time, price,
                  node.get("url") or page_url, image, hint=hint, default=default, place=place,
-                 about=node.get("description") or "")
+                 about=node.get("description") or "", extra=extra)
+
+
+def _offer_list(offers):
+    """Every Offer inside an offers value (one Offer, a list, or an AggregateOffer holding a list)."""
+    out = []
+    for o in offers if isinstance(offers, list) else [offers]:
+        if isinstance(o, dict):
+            out.append(o)
+            out.extend(_offer_list(o.get("offers")) if o.get("offers") else [])
+    return out
 
 
 def meta_event(html, source, city, category, page_url, default=None):

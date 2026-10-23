@@ -174,3 +174,23 @@ def test_app_links_are_not_crawled_or_followed(tmp_path):
     h = show.read_text()
     assert 'rel="nofollow" href="/?city=mumbai&amp;event=' in h
     assert 'href="/?' not in h.replace('rel="nofollow" href="/?', "")
+
+
+def _show_ld(tmp_path, e):
+    tmp_path.mkdir(parents=True)
+    seo.write([e], tmp_path, "2026-10-14")
+    page = next((tmp_path / "shows").glob("*/index.html")).read_text()
+    blocks = [json.loads(b.replace("<\\/", "</")) for b in re.findall(r'<script type="application/ld\+json">(.*?)</script>', page, flags=re.S)]
+    return next(b for b in blocks if "Event" in str(b.get("@type")))
+
+
+def test_event_data_carries_only_what_the_source_states(tmp_path):
+    bare = _show_ld(tmp_path / "a", ev("a", "Jazz Night", "2026-10-20", price=500))
+    assert "endDate" not in bare and "organizer" not in bare and "validFrom" not in bare["offers"]
+    full = {**ev("b", "Rock Fest", "2026-10-20", price=500), "end": "2026-10-20T23:00", "on_sale": "2026-09-01T10:00", "organizer": "Acme Live Pvt Ltd"}
+    ld = _show_ld(tmp_path / "b", full)
+    assert ld["endDate"] == "2026-10-20T23:00:00+05:30" and ld["organizer"] == {"@type": "Organization", "name": "Acme Live Pvt Ltd"}
+    assert ld["offers"]["validFrom"] == "2026-09-01T10:00:00+05:30"
+    bad = {**ev("c", "Folk Night", "2026-10-20", price=500), "end": "2026-10-20T10:00", "on_sale": "2026-10-25T10:00"}  # ends before it starts; on sale after it starts
+    ld = _show_ld(tmp_path / "c", bad)
+    assert "endDate" not in ld and "validFrom" not in ld["offers"]

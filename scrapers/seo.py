@@ -388,6 +388,10 @@ def event_ld(show, e):
           "location": {"@type": "Place", "name": venue_short(e) or e["city"],
                        "address": {"@type": "PostalAddress", "addressLocality": e["city"], "addressCountry": "IN"}},
           "url": f"{SITE}/{show.path}"}
+    if e.get("end") and e.get("time") and e["end"] > f"{e['date']}T{e['time']}":
+        ld["endDate"] = e["end"] + ":00+05:30"  # only when the ticketing site states it
+    if e.get("organizer"):
+        ld["organizer"] = {"@type": "Organization", "name": e["organizer"]}  # the promoter the site names, never the ticket seller
     if show.image:
         ld["image"] = [show.image]
     if show.about:
@@ -396,6 +400,8 @@ def event_ld(show, e):
         offer = {"@type": "Offer", "url": link, "priceCurrency": "INR", "availability": "https://schema.org/InStock"}
         if e.get("price_from"):
             offer["price"] = str(int(e["price_from"]))
+        if e.get("on_sale") and e["on_sale"] < f"{e['date']}T{e.get('time') or '23:59'}":
+            offer["validFrom"] = e["on_sale"] + ":00+05:30"  # when tickets went on sale, as the site states
         ld["offers"] = offer
     return ld
 
