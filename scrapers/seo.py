@@ -332,7 +332,7 @@ def show_faq(show):
     if prices:
         qa.append((f"How much are tickets for {t}?", f"Tickets start from ₹{int(min(prices)):,}, as listed by {sellers[0]} when this page was built. The final price depends on the seat or tier and can change, so check the seller before booking."))
     qa.append((f"Where can I book tickets for {t}?", f"Tickets are sold by {human_list(sellers)}; the booking links are on this page. gigsnshows does not sell tickets."))
-    langs = [l for l in (f.get("lang") or []) if l]
+    langs = [l[:1].upper() + l[1:] for l in (f.get("lang") or []) if l]
     if langs:
         qa.append((f"What language is {t} in?", f"Listed language: {human_list(langs)}."))
     return qa
