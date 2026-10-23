@@ -164,3 +164,13 @@ def test_relisted_show_is_live_again(tmp_path):
     gone = next(p for p in (tmp_path / "shows").iterdir() if p.name.startswith("raas-night"))
     assert "This event has ended." not in (gone / "index.html").read_text()
     assert "shows/%s/index.html" % gone.name not in (tmp_path / "seo-ended.json").read_text()
+
+
+def test_app_links_are_not_crawled_or_followed(tmp_path):
+    seo.write([ev(1, "A Show", "2026-11-10")], tmp_path, "2026-10-23")
+    robots = (tmp_path / "robots.txt").read_text()
+    assert "Disallow: /*?*event=" in robots and "Disallow: /*?*city=" in robots
+    show = next((tmp_path / "shows").iterdir()) / "index.html"
+    h = show.read_text()
+    assert 'rel="nofollow" href="/?city=mumbai&amp;event=' in h
+    assert 'href="/?' not in h.replace('rel="nofollow" href="/?', "")

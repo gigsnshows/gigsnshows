@@ -346,7 +346,7 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
     url = f"{SITE}/{path}"
     og_image = image or f"{SITE}/og.jpg?v=2"
     ld_tags = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False).replace("</", "<\\/")}</script>' for x in (ld or []))
-    return f"""<!doctype html>
+    doc = f"""<!doctype html>
 <html lang="en-IN">
 <head>
 <meta charset="utf-8">
@@ -376,6 +376,8 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
 </body>
 </html>
 """
+    # links into the app (/?city=...&event=...) show the same home page; search engines should not crawl or follow them
+    return doc.replace('<a class="btn alt" href="/?', '<a class="btn alt" rel="nofollow" href="/?').replace('<a class="btn" href="/?', '<a class="btn" rel="nofollow" href="/?').replace('<a href="/?', '<a rel="nofollow" href="/?')
 
 
 def event_ld(show, e):
@@ -803,10 +805,14 @@ AI_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-Searc
            "Google-Extended", "Applebot-Extended", "Bingbot", "Amazonbot", "DuckAssistBot", "meta-externalagent", "CCBot"]
 
 
+# the app's own links show the home page again under another address (canonical points to /), so they are not for crawling
+APP_LINKS = "".join(f"Disallow: /*?*{k}=\n" for k in ("city", "event", "tab", "when", "list", "plan", "q"))
+
+
 def robots_txt():
     bots = "".join(f"User-agent: {b}\nAllow: /\n\n" for b in AI_BOTS)
     return ("# Everyone is welcome to read gigsnshows, search engines and AI assistants included. See /llms.txt for a short guide.\n"
-            f"User-agent: *\nAllow: /\n\n{bots}Sitemap: {SITE}/sitemap.xml\n")
+            f"User-agent: *\nAllow: /\n{APP_LINKS}\n{bots}Sitemap: {SITE}/sitemap.xml\n")
 
 
 def seller_names(events):
