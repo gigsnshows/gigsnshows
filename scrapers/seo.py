@@ -38,6 +38,7 @@ from .genres import catalog
 SITE = "https://gigsnshows.com"
 SAME_AS = ["https://github.com/gigsnshows/gigsnshows"]  # add the Instagram / LinkedIn pages here once they exist
 MANIFEST = "seo-manifest.json"
+LASTMOD = "seo-lastmod.json"  # path -> [content hash, date it last really changed]
 CATEGORIES = {  # key -> (url slug, page heading, short label)
     "music": ("music", "Live music", "music"),
     "theatre": ("theatre", "Theatre", "theatre"),
@@ -769,6 +770,26 @@ def sitemap_priority(path):
     return "0.8" if path.count("/") <= 2 else "0.6"
 
 
+def real_lastmod(root, pages, today):
+    """When each page last REALLY changed. Google learns to ignore <lastmod> if every URL says "today", so a page's date
+    only moves when its content does (the daily "Updated 23 October 2026" line is left out of the comparison)."""
+    f = Path(root) / LASTMOD
+    try:
+        old = json.loads(f.read_text())
+    except (OSError, ValueError):
+        old = {}
+    new, out = {}, {}
+    for rel, html_ in pages.items():
+        key = rel[:-len("index.html")]
+        digest = hashlib.sha1(re.sub(r'<p class="upd">[^<]*Updated [^<]*</p>', "", html_).encode()).hexdigest()[:12]
+        prev = old.get(key)
+        day = prev[1] if prev and prev[0] == digest else today
+        new[key] = [digest, day]
+        out[key] = day
+    f.write_text(json.dumps(new, sort_keys=True, separators=(",", ":")) + "\n")
+    return out
+
+
 def write(events, root, today=None):
     root = Path(root)
     today = today or date.today().isoformat()
@@ -820,9 +841,10 @@ def write(events, root, today=None):
     out["cities/index.html"] = cities_page({c: len(g) for c, g in by_city.items() if c != "Unknown"})
     out["about/index.html"] = about_page(events, shows, by_city, today_d)
 
+    lastmod = real_lastmod(root, out, str(today)[:10])
     urls = [("", "1.0"), ("cities/", "0.7"), ("about/", "0.5")] + [(p[:-len("index.html")], sitemap_priority(p)) for p in sorted(out) if not p.startswith(("cities/", "about/"))]
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    sitemap += [f"<url><loc>{SITE}/{u}</loc><lastmod>{today}</lastmod><priority>{pr}</priority></url>" for u, pr in urls]
+    sitemap += [f"<url><loc>{SITE}/{u}</loc><lastmod>{lastmod.get(u, today)}</lastmod><priority>{pr}</priority></url>" for u, pr in urls]
     sitemap.append("</urlset>")
     out_files = {"sitemap.xml": "\n".join(sitemap) + "\n",
                  "robots.txt": robots_txt(), "llms.txt": llms_txt(events, shows, by_city, today_d)}

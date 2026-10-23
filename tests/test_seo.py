@@ -103,3 +103,16 @@ def test_static_images_reserve_their_space():
     assert 'width="92" height="56"' in seo.thumb("https://x.in/p.jpg")
     html_ = seo.show_page(seo.build_shows([ev(1, "Big Show", "2026-11-01") | {"image": "https://x.in/p.jpg"}])[0], [])
     assert 'class="poster" width="800" height="450"' in html_ and "aspect-ratio:16/9" in html_
+
+
+def test_lastmod_moves_only_when_a_page_really_changes(tmp_path):
+    evs = [ev(1, "Show One", "2026-11-20"), ev(2, "Show Two", "2026-11-21")]
+    seo.write(evs, tmp_path, "2026-10-20")
+    seo.write(evs, tmp_path, "2026-10-22")                      # same content, two days later
+    sm = (tmp_path / "sitemap.xml").read_text()
+    show = [u for u in re.findall(r"<loc>([^<]*/shows/[^<]*)</loc><lastmod>([^<]*)", sm)]
+    assert show and all(d == "2026-10-20" for _, d in show)
+    seo.write(evs + [ev(3, "Show Three", "2026-11-22", city="Delhi")], tmp_path, "2026-10-23")   # Delhi gains a show
+    sm = (tmp_path / "sitemap.xml").read_text()
+    assert re.search(r"/delhi/</loc><lastmod>2026-10-23", sm)
+    assert re.search(r"/shows/show-one-[0-9a-f]+/</loc><lastmod>2026-10-20", sm)
