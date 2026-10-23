@@ -223,3 +223,18 @@ def test_llms_txt_points_to_live_pages_and_home_intro_is_refreshed(tmp_path):
     home = (tmp_path / "index.html").read_text()
     assert "4 upcoming shows in 1 cities" in home or "4 upcoming shows in 1 city" in home or "4 upcoming shows" in home
     assert "gigsnshows does not sell tickets" in home
+
+
+def test_insights_page_quotes_only_what_the_listings_say(tmp_path):
+    evs = [ev(str(i), f"Show {i}", f"2026-10-{15 + i % 10}", city="Mumbai" if i % 3 else "Delhi", price=100 * (i % 7 + 1), venue="Blue Room") for i in range(30)]
+    seo.write(evs, tmp_path, "2026-10-14")
+    page = (tmp_path / "insights" / "index.html").read_text()
+    assert "30 upcoming live shows in 2 cities as of 14 October 2026" in page
+    assert "Which Indian city has the most live shows?" in page and "Mumbai has the most, with 20" in page
+    assert '"@type": "Dataset"' in page and "How these numbers are counted" in page
+    assert "insights/" in (tmp_path / "sitemap.xml").read_text() and "/insights/" in (tmp_path / "llms.txt").read_text()
+
+
+def test_insights_page_skipped_for_tiny_listings(tmp_path):
+    seo.write([ev("a", "Jazz", "2026-10-20")], tmp_path, "2026-10-14")
+    assert not (tmp_path / "insights").exists()

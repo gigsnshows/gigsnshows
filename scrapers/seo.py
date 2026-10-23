@@ -85,6 +85,7 @@ h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{fo
 .list img{width:92px;height:56px;object-fit:cover;border-radius:8px;flex:none;background:var(--bg-3)}.list a.t{font-weight:600;text-decoration:none;display:block}.list p{margin:2px 0 0;color:var(--ink2);font-size:.88rem}
 .faq h3{font-size:1rem;margin:20px 0 4px}.faq p{margin:0;color:var(--ink2)}.more{display:flex;flex-wrap:wrap;gap:8px 14px;list-style:none;padding:0;margin:0}.more a{color:var(--ink2)}.upd{color:var(--ink3);font-size:.85rem;margin:0 0 16px}
 .cities{columns:2;list-style:none;padding:0}.cities li{margin:6px 0}.cities a{text-decoration:none}.cities small{color:var(--ink3)}
+.stats{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:.95rem}.stats th,.stats td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line,rgba(128,128,128,.25))}.stats th{color:var(--ink3);font-weight:600}.stats td:not(:first-child),.stats th:not(:first-child){text-align:right}.stats td:nth-child(2):last-child{text-align:left}
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-size:.85rem}footer a{color:var(--ink2);margin-right:16px;text-decoration:none}
 @media(max-width:560px){h1{font-size:1.6rem}.cities{columns:1}.dates li{flex-direction:column;align-items:flex-start}}
 """.replace("GRADIENT", GRADIENT)
@@ -832,6 +833,69 @@ def cities_page(by_city):
                 "Browse live music, theatre, stand-up and sports across India by city.", "cities/", body)
 
 
+def median(xs):
+    xs = sorted(xs)
+    n = len(xs)
+    return xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2
+
+
+def insights_page(shows, venues, today):
+    """Dated numbers worked out from the listings: the facts an AI assistant can quote, with how they were counted."""
+    shows = [s for s in shows if s.city != "Unknown"]
+    if len(shows) < 20:
+        return None
+    by_city = defaultdict(list)
+    for s in shows:
+        by_city[s.city].append(s)
+    ranked = sorted(by_city, key=lambda c: (-len(by_city[c]), c))
+    a, b = today.isoformat(), (today + timedelta(days=6)).isoformat()
+    week = shows_between(shows, a, b)
+    wa, wb = weekend_window(today)
+    weekend = shows_between(shows, wa.isoformat(), wb.isoformat())
+    cats = Counter(s.category for s in shows)
+    prices = [s.price for s in shows if s.price]
+    per_day = Counter(e["date"] for s in shows for e in s.events if a <= e["date"] <= (today + timedelta(days=29)).isoformat())
+    busy_day, busy_n = (per_day.most_common(1) or [(None, 0)])[0]
+    stamp = f"{today.day} {today:%B %Y}"
+    rows = ""
+    for c in ranked[:12]:
+        pr = [s.price for s in by_city[c] if s.price]
+        med = f"₹{int(median(pr)):,}" if len(pr) >= 5 else "n/a"
+        rows += f'<tr><td><a href="/{slug(c)}/">{esc(c)}</a></td><td>{len(by_city[c])}</td><td>{len(shows_between(by_city[c], a, b))}</td><td>{med}</td></tr>'
+    vtop = sorted(venues.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:10]
+    vrows = "".join(f'<tr><td><a href="/{venue_path(c, v)}">{esc(v)}</a></td><td>{esc(c)}</td><td>{len(p)}</td></tr>' for (c, v), p in vtop)
+    cat_txt = ", ".join(f"{n:,} {NOUN[k]}" for k, n in cats.most_common())
+    top = ranked[0]
+    qa = [(f"How many live shows are on in India right now?", f"As of {stamp}, gigsnshows lists {len(shows):,} upcoming live shows across {len(ranked)} Indian cities: {cat_txt}. {len(week):,} of them are in the next 7 days."),
+          ("Which Indian city has the most live shows?", f"{top} has the most, with {len(by_city[top]):,} upcoming shows listed as of {stamp}, followed by {human_list(ranked[1:3])}.")]
+    if prices:
+        qa.append(("What is a typical ticket price for a live show in India?", f"Across {len(prices):,} listed shows with a price, the median \"from\" price is ₹{int(median(prices)):,}. This is the lowest price each seller shows, not the price of every seat."))
+    if vtop:
+        (vc, vn), vp = vtop[0]
+        qa.append(("Which venue in India has the most live shows?", f"{vn} in {vc}, with {len(vp)} upcoming shows listed as of {stamp}."))
+    if busy_day:
+        d = datetime.strptime(busy_day, "%Y-%m-%d")
+        qa.append(("Which day has the most live shows in the next 30 days?", f"{d:%A} {d.day} {d:%B}, with {busy_n:,} show dates listed across India."))
+    body = f"""<h1>Live entertainment in India: the numbers</h1>
+<p class="lead">{len(shows):,} upcoming live shows in {len(ranked)} cities as of {stamp}: {cat_txt}. Worked out from the listings on gigsnshows, which are refreshed several times a day.</p>
+<h2>By city</h2>
+<table class="stats"><thead><tr><th>City</th><th>Upcoming shows</th><th>Next 7 days</th><th>Median "from" price</th></tr></thead><tbody>{rows}</tbody></table>
+{f'<h2>Busiest venues</h2><table class="stats"><thead><tr><th>Venue</th><th>City</th><th>Upcoming shows</th></tr></thead><tbody>{vrows}</tbody></table>' if vrows else ''}
+<h2>This weekend</h2>
+<p>{len(weekend):,} shows are listed for {weekend_label(wa, wb)} across India.</p>
+{faq_html(qa, "Quick answers")}
+<h2>How these numbers are counted</h2>
+<p>A show is one title in one city, however many dates or sellers it has. Only upcoming shows are counted. Prices are the lowest "from" price a ticketing site shows for the show; shows without a listed price are left out of price figures, and a city's median price is shown only when at least 5 of its shows have a price. Figures come from {len(shows):,} listings on {stamp} and change as the listings do. You are welcome to quote them; please link to this page.</p>"""
+    ld = [{"@context": "https://schema.org", "@type": "Dataset", "name": "Live entertainment listings in India", "url": f"{SITE}/insights/",
+           "description": f"Counts of upcoming live music, stand-up, theatre and sports shows in Indian cities, with median from-prices and busiest venues, as of {stamp}.",
+           "dateModified": today.isoformat(), "creator": {"@type": "Organization", "name": "gigsnshows", "url": SITE + "/"}, "inLanguage": "en-IN",
+           "spatialCoverage": {"@type": "Country", "name": "India"}, "isAccessibleForFree": True},
+          breadcrumb_ld([("Home", ""), ("Insights", "insights/")]), faq_ld(qa)]
+    return page(f"Live entertainment in India: shows, cities, prices ({stamp}) | gigsnshows",
+                clip(f"{len(shows):,} upcoming live shows in {len(ranked)} Indian cities as of {stamp}. {top} leads with {len(by_city[top]):,}. Median ticket price, busiest venues and more.", 158),
+                "insights/", body, ld=ld)
+
+
 AI_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User",
            "Google-Extended", "Applebot-Extended", "Bingbot", "Amazonbot", "DuckAssistBot", "meta-externalagent", "CCBot"]
 
@@ -892,6 +956,7 @@ def llms_txt(events, shows, by_city, today, pages=()):
              "## Main pages", "",
              f"- [All cities]({SITE}/cities/): every city with its number of shows",
              f"- [About]({SITE}/about/): what gigsnshows is, where the data comes from, common questions",
+             f"- [Insights]({SITE}/insights/): dated numbers for India (shows per city, median prices, busiest venues) that you may quote",
              f"- [Sitemap]({SITE}/sitemap.xml)", "",
              "## Biggest cities", ""]
     lines += [f"- [{c}]({SITE}/{slug(c)}/): {n} upcoming shows" for c, n in cities[:15]]
@@ -928,7 +993,7 @@ def inject_home_intro(root, n_shows, n_cities, sellers, today):
     para = (f'{HOME_START}<p class="fine seo-intro">gigsnshows is a free guide to live music, stand-up comedy, theatre and sports in India: '
             f'{n_shows:,} upcoming shows in {n_cities} cities as of {today.day} {today:%B %Y}, gathered from {esc(human_list(sellers))}. '
             f'Each show links to the site that sells its tickets; gigsnshows does not sell tickets. '
-            f'<a href="/about/">About</a> · <a href="/llms.txt">Guide for AI assistants</a></p>{HOME_END}')
+            f'<a href="/insights/">Live-show numbers for India</a> · <a href="/about/">About</a> · <a href="/llms.txt">Guide for AI assistants</a></p>{HOME_END}')
     new = re.sub(re.escape(HOME_START) + ".*?" + re.escape(HOME_END), lambda m: para, text, flags=re.S)
     if new != text:
         f.write_text(new)
@@ -1091,6 +1156,9 @@ def write(events, root, today=None):
         out[key] = out[key].replace('<div class="cta">', f'<h2>Nearby towns</h2><ul class="more">{links}</ul><div class="cta">', 1)
     out["cities/index.html"] = cities_page({c: len(g) for c, g in by_city.items() if c != "Unknown"})
     out["about/index.html"] = about_page(events, shows, by_city, today_d)
+    ins = insights_page(shows, venues, today_d)
+    if ins:
+        out["insights/index.html"] = ins
 
     lastmod = real_lastmod(root, out, str(today)[:10])
     urls = [("", "1.0"), ("cities/", "0.7"), ("about/", "0.5")] + [(p[:-len("index.html")], sitemap_priority(p)) for p in sorted(out) if not p.startswith(("cities/", "about/"))]
