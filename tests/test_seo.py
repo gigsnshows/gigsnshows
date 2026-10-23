@@ -137,3 +137,30 @@ def test_small_venues_and_one_city_shows_get_no_hub(tmp_path):
     evs = [ev(1, "A", "2026-11-10", venue="Tiny Room"), ev(2, "B", "2026-11-11", venue="Tiny Room"), ev(3, "Solo Tour", "2026-12-01"), ev(4, "Solo Tour", "2026-12-02", city="Delhi")]
     seo.write(evs, tmp_path, "2026-10-23")
     assert not (tmp_path / "mumbai" / "venue").exists() and not (tmp_path / "tour").exists()
+
+
+def test_gone_shows_become_ended_pages_then_disappear(tmp_path):
+    evs = [ev(1, "Raas Night", "2026-10-20"), ev(2, "Other Gig", "2026-12-20")]
+    seo.write(evs, tmp_path, "2026-10-19")
+    gone = next(p for p in (tmp_path / "shows").iterdir() if p.name.startswith("raas-night"))
+    assert "Get tickets" in (gone / "index.html").read_text()
+    seo.write(evs[1:], tmp_path, "2026-10-23")                       # the show has dropped out of the listings
+    h = (gone / "index.html").read_text()
+    assert "This event has ended." in h and "Get tickets" not in h and "Tickets on" not in h and "calendar.google" not in h
+    assert "(ended) | gigsnshows" in h and '"offers"' not in h and "What is on in Mumbai" in h
+    assert f"/shows/{gone.name}/" not in (tmp_path / "sitemap.xml").read_text()
+    assert f"shows/{gone.name}/index.html" in (tmp_path / "seo-manifest.json").read_text()
+    seo.write(evs[1:], tmp_path, "2026-11-20")                       # still kept after a month
+    assert gone.exists()
+    seo.write(evs[1:], tmp_path, "2027-02-10")                       # more than 90 days: removed
+    assert not gone.exists()
+
+
+def test_relisted_show_is_live_again(tmp_path):
+    evs = [ev(1, "Raas Night", "2026-10-20"), ev(2, "Other Gig", "2026-12-20")]
+    seo.write(evs, tmp_path, "2026-10-19")
+    seo.write(evs[1:], tmp_path, "2026-10-23")
+    seo.write(evs, tmp_path, "2026-10-24")
+    gone = next(p for p in (tmp_path / "shows").iterdir() if p.name.startswith("raas-night"))
+    assert "This event has ended." not in (gone / "index.html").read_text()
+    assert "shows/%s/index.html" % gone.name not in (tmp_path / "seo-ended.json").read_text()

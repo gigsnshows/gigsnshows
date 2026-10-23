@@ -38,6 +38,8 @@ from .genres import catalog
 SITE = "https://gigsnshows.com"
 SAME_AS = ["https://github.com/gigsnshows/gigsnshows"]  # add the Instagram / LinkedIn pages here once they exist
 MANIFEST = "seo-manifest.json"
+ENDED = "seo-ended.json"  # show page path -> date the show ended; kept for ENDED_KEEP_DAYS
+ENDED_KEEP_DAYS = 90
 LASTMOD = "seo-lastmod.json"  # path -> [content hash, date it last really changed]
 CATEGORIES = {  # key -> (url slug, page heading, short label)
     "music": ("music", "Live music", "music"),
@@ -889,6 +891,60 @@ def real_lastmod(root, pages, today):
     return out
 
 
+def ended_page(html_, today):
+    """Turn a show page whose show has gone into an "ended" page: same URL and content, ticket buttons removed, with
+    links on to what is on now. The URL keeps the ranking and links it earned instead of becoming a 404."""
+    m = re.search(r"<title>(.*?)</title>", html_, re.S)
+    if m:
+        old_title = m.group(1)
+        new_title = old_title.replace(" | gigsnshows", " (ended) | gigsnshows") if " | gigsnshows" in old_title else old_title + " (ended)"
+        html_ = html_.replace(old_title, new_title)
+    html_ = re.sub(r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")([^"]*)"',
+                   lambda m: m.group(1) + "This event has ended. " + re.sub(r" ?Tickets on [^.]*\.", "", m.group(2)).strip() + '"', html_)
+    html_ = re.sub(r'<a class="cal" [^>]*>.*?</a>', "", html_, flags=re.S)
+    html_ = re.sub(r'<a class="btn alt" href="https?://[^"]*"[^>]*>Tickets on [^<]*</a>', "", html_)
+    crumbs = re.findall(r'<a href="(/[a-z0-9-]+/(?:[a-z0-9-]+/)?)">([^<]+)</a>', re.search(r'<p class="crumbs">.*?</p>', html_, re.S).group(0)) if '<p class="crumbs">' in html_ else []
+    links = " · ".join(f'<a href="{h}">What is on in {t}</a>' for h, t in crumbs[:2]) or '<a href="/">See what is on now</a>'
+    notice = f'<div class="cta"><p class="lead"><b>This event has ended.</b> {links}</p></div>'
+    html_ = re.sub(r'<div class="cta">.*?</div>', notice, html_, count=1, flags=re.S)
+
+    def fix_ld(m):
+        try:
+            data = json.loads(m.group(1))
+        except ValueError:
+            return m.group(0)
+        for d in data if isinstance(data, list) else [data]:
+            d.pop("offers", None)
+        return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+    return re.sub(r'<script type="application/ld\+json">(.*?)</script>', fix_ld, html_, flags=re.S)
+
+
+def keep_ended_pages(root, old, written, live_ids, today):
+    """Pages of shows that have gone are kept as "ended" pages for ENDED_KEEP_DAYS, then removed. Returns the paths kept."""
+    f = Path(root) / ENDED
+    try:
+        ended = json.loads(f.read_text())
+    except (OSError, ValueError):
+        ended = {}
+    expired = set()
+    for rel in list(ended):
+        age = (date.fromisoformat(today) - date.fromisoformat(ended[rel])).days
+        if rel in written or age > ENDED_KEEP_DAYS:   # back on sale, or too old
+            if rel not in written:
+                expired.add(rel)
+            del ended[rel]
+    for rel in sorted(old - written):
+        if not (rel.startswith("shows/") and rel.endswith("/index.html")) or rel in ended or rel in expired or not (Path(root) / rel).exists():
+            continue
+        if rel.split("/")[1][-10:] in live_ids:        # the same show lives on under a new address
+            continue
+        page_ = Path(root) / rel
+        page_.write_text(ended_page(page_.read_text(), today))
+        ended[rel] = today
+    f.write_text(json.dumps(ended, sort_keys=True, indent=0) + "\n")
+    return set(ended)
+
+
 def write(events, root, today=None):
     root = Path(root)
     today = today or date.today().isoformat()
@@ -977,6 +1033,8 @@ def write(events, root, today=None):
         if not f.exists() or f.read_text() != content:
             f.write_text(content)
         written.add(rel)
+    kept = keep_ended_pages(root, old, written, {s.id for s in shows}, str(today)[:10])
+    written |= kept
     for rel in old - written:  # shows and cities that have gone
         (root / rel).unlink(missing_ok=True)
         folder = (root / rel).parent
