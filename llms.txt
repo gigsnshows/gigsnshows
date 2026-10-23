@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,254 upcoming shows in 65 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-23).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,264 upcoming shows in 65 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-23).
 
 ## How to use this site
 
@@ -18,18 +18,81 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 422 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 425 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 332 upcoming shows
 - [Bengaluru](https://gigsnshows.com/bengaluru/): 331 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 327 upcoming shows
 - [Pune](https://gigsnshows.com/pune/): 177 upcoming shows
 - [Hyderabad](https://gigsnshows.com/hyderabad/): 155 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 112 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 111 upcoming shows
 - [Kolkata](https://gigsnshows.com/kolkata/): 102 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 67 upcoming shows
 - [Goa](https://gigsnshows.com/goa/): 65 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 63 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 50 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 62 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 51 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 40 upcoming shows
-- [Indore](https://gigsnshows.com/indore/): 36 upcoming shows
+- [Indore](https://gigsnshows.com/indore/): 37 upcoming shows
 - [Surat](https://gigsnshows.com/surat/): 25 upcoming shows
 - [Vadodara](https://gigsnshows.com/vadodara/): 25 upcoming shows
+
+## What is on now (rebuilt every day)
+
+- [Today in Mumbai](https://gigsnshows.com/mumbai/today/)
+- [Today in Delhi](https://gigsnshows.com/delhi/today/)
+- [Today in Bengaluru](https://gigsnshows.com/bengaluru/today/)
+- [Today in Pune](https://gigsnshows.com/pune/today/)
+- [Today in Hyderabad](https://gigsnshows.com/hyderabad/today/)
+- [Tomorrow in Mumbai](https://gigsnshows.com/mumbai/tomorrow/)
+- [Tomorrow in Delhi](https://gigsnshows.com/delhi/tomorrow/)
+- [Tomorrow in Bengaluru](https://gigsnshows.com/bengaluru/tomorrow/)
+- [Tomorrow in Pune](https://gigsnshows.com/pune/tomorrow/)
+- [Tomorrow in Hyderabad](https://gigsnshows.com/hyderabad/tomorrow/)
+- [This weekend in Mumbai](https://gigsnshows.com/mumbai/this-weekend/)
+- [This weekend in Delhi](https://gigsnshows.com/delhi/this-weekend/)
+- [This weekend in Bengaluru](https://gigsnshows.com/bengaluru/this-weekend/)
+- [This weekend in Pune](https://gigsnshows.com/pune/this-weekend/)
+- [This weekend in Hyderabad](https://gigsnshows.com/hyderabad/this-weekend/)
+
+## Seasonal and occasion pages
+
+- [Halloween in Mumbai](https://gigsnshows.com/mumbai/halloween/)
+- [Halloween in Delhi](https://gigsnshows.com/delhi/halloween/)
+- [Halloween in Bengaluru](https://gigsnshows.com/bengaluru/halloween/)
+- [Halloween in Hyderabad](https://gigsnshows.com/hyderabad/halloween/)
+- [Diwali in Mumbai](https://gigsnshows.com/mumbai/diwali/)
+- [Diwali in Delhi](https://gigsnshows.com/delhi/diwali/)
+
+## Tours playing several cities
+
+- [23 Va Majala](https://gigsnshows.com/tour/23-va-majala/)
+- [Aakash Mehta The Wedding Show Stand Up Comedy](https://gigsnshows.com/tour/aakash-mehta-the-wedding-show-stand-up-comedy/)
+- [Abhishek Bhutwani Live](https://gigsnshows.com/tour/abhishek-bhutwani-live/)
+- [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
+- [Akshay Srivastava Live](https://gigsnshows.com/tour/akshay-srivastava-live/)
+- [All India Clat Lr Tour](https://gigsnshows.com/tour/all-india-clat-lr-tour/)
+- [All The Best](https://gigsnshows.com/tour/all-the-best/)
+- [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)
+- [Ashywn Singh The Imperfect Ally Tour](https://gigsnshows.com/tour/ashywn-singh-the-imperfect-ally-tour/)
+- [Bangtanverse Carnival Fan Tour](https://gigsnshows.com/tour/bangtanverse-carnival-fan-tour/)
+- [Bhramacha Bhopla](https://gigsnshows.com/tour/bhramacha-bhopla/)
+- [Bhumika](https://gigsnshows.com/tour/bhumika/)
+- [Casa Bacardi On Tour](https://gigsnshows.com/tour/casa-bacardi-on-tour/)
+- [Crowd Ctrl Ft Aakash Mehta](https://gigsnshows.com/tour/crowd-ctrl-ft-aakash-mehta/)
+- [Darshan Raval S Love Letters India Tour](https://gigsnshows.com/tour/darshan-raval-s-love-letters-india-tour/)
+
+## Venues
+
+- [Art House India](https://gigsnshows.com/ahmedabad/venue/art-house-india/)
+- [Backspace Ahmedabad](https://gigsnshows.com/ahmedabad/venue/backspace-ahmedabad/)
+- [Backspace](https://gigsnshows.com/ahmedabad/venue/backspace/)
+- [Doozer Club](https://gigsnshows.com/ahmedabad/venue/doozer-club/)
+- [Hk Hall](https://gigsnshows.com/ahmedabad/venue/hk-hall/)
+- [Mehdi Nawaz Jung Hall](https://gigsnshows.com/ahmedabad/venue/mehdi-nawaz-jung-hall/)
+- [Mishty Mini Studio](https://gigsnshows.com/ahmedabad/venue/mishty-mini-studio/)
+- [Mishty Studio](https://gigsnshows.com/ahmedabad/venue/mishty-studio/)
+- [Natarani Amphitheatre](https://gigsnshows.com/ahmedabad/venue/natarani-amphitheatre/)
+- [Sproute Cafe](https://gigsnshows.com/ahmedabad/venue/sproute-cafe/)
+- [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
+- [Abv Artisanal Bier Village](https://gigsnshows.com/bengaluru/venue/abv-artisanal-bier-village/)
+- [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
+- [Big Pitcher](https://gigsnshows.com/bengaluru/venue/big-pitcher/)
+- [Blurred](https://gigsnshows.com/bengaluru/venue/blurred/)

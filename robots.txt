@@ -1,6 +1,13 @@
 # Everyone is welcome to read gigsnshows, search engines and AI assistants included. See /llms.txt for a short guide.
 User-agent: *
 Allow: /
+Disallow: /*?*city=
+Disallow: /*?*event=
+Disallow: /*?*tab=
+Disallow: /*?*when=
+Disallow: /*?*list=
+Disallow: /*?*plan=
+Disallow: /*?*q=
 
 User-agent: GPTBot
 Allow: /
