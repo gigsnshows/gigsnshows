@@ -396,7 +396,7 @@ def event_ld(show, e):
     return ld
 
 
-def show_page(show, related):
+def show_page(show, related, hubs=""):
     cat_slug, cat_head, cat_label = CATEGORIES[show.category]
     city_slug = slug(show.city)
     link, platform = link_for(show.first)
@@ -418,6 +418,7 @@ def show_page(show, related):
 <h1>{esc(show.title)}</h1>
 <p class="meta">{esc(when(f))} · {esc(venue_short(f))}, {esc(show.city)}{esc(price)}{f' · {len(show.events)} dates' if len(show.events) > 1 else ''}</p>
 <div class="tags">{tags}</div>
+{hubs}
 {f'<p class="lead">{esc(show.about)}</p>' if show.about else ''}
 {f'<p class="upd">Also searched as: {esc(", ".join(aliases))}</p>' if aliases else ''}
 <h2>{'Dates and venues' if len(show.events) > 1 else 'Date and venue'}</h2>
@@ -695,6 +696,100 @@ def occasion_page(city, shows, today, key, other_cities=()):
     return path, page(f"{h1} | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
+MIN_VENUE_SHOWS = 3
+MIN_TOUR_CITIES = 3
+
+
+def venue_groups(shows):
+    """(city, venue) -> its shows, for venues with enough shows to be worth a page of their own."""
+    g = defaultdict(list)
+    for s in shows:
+        v = venue_short(s.first)
+        if s.city != "Unknown" and v and "announced" not in v.lower() and len(slug(v)) >= 3:
+            g[(s.city, v)].append(s)
+    return {k: sorted(v, key=lambda s: (s.first["date"], s.first.get("time") or "")) for k, v in g.items() if len(v) >= MIN_VENUE_SHOWS}
+
+
+def venue_path(city, venue):
+    return f"{slug(city)}/venue/{slug(venue)}/"
+
+
+def venue_page(city, venue, pool, today):
+    """/<city>/venue/<venue>/ : everything coming up at one venue. A page that lasts longer than any one show."""
+    city_slug = slug(city)
+    path = venue_path(city, venue)
+    h1 = f"Shows at {venue}, {city}"
+    counts = Counter(s.category for s in pool)
+    kinds = human_list([f"{counts[k]} {CATEGORIES[k][2]}" for k in CATEGORIES if counts[k]])
+    lead = f"{len(pool)} upcoming shows at {venue} in {city} ({kinds}), soonest first, with links to book on the ticketing site."
+    prices = sorted(s.price for s in pool if s.price)
+    qa = [(f"What is on at {venue}?",
+           f"{len(pool)} upcoming shows are listed at {venue}, {city}. The next ones are {human_list([next_item(s) for s in pool[:3]])}.")]
+    if len(prices) >= 3:
+        qa.append((f"How much are tickets at {venue}?",
+                   f"Of the {len(prices)} shows with a price, tickets start from {rupees(prices[0])}, and half start at {rupees(prices[len(prices) // 2])} or less (\"from\" prices; the final price depends on the ticket type)."))
+    sellers = [n for n, _ in Counter(link_for(s.first)[1] for s in pool if link_for(s.first)[0]).most_common(3)]
+    if sellers:
+        qa.append((f"Where can I book tickets for {venue}?",
+                   f"gigsnshows does not sell tickets. Each listing links to the seller, for {venue} mostly {human_list(sellers)}."))
+    body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{city_slug}/">{esc(city)}</a> › {esc(venue)}</p>
+<h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day.</p>
+<ul class="list">{listing(pool[:200])}</ul>
+<div class="cta"><a class="btn" href="/{city_slug}/">All shows in {esc(city)}</a><a class="btn alt" href="/?city={esc(city_slug)}&amp;q={esc(quote(venue))}">Open on gigsnshows</a></div>
+{faq_html(qa, f"Questions about {venue}")}"""
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
+          breadcrumb_ld([("Home", ""), (city, f"{city_slug}/"), (venue, path)]), faq_ld(qa)]
+    return path, page(f"{h1}: what's on | gigsnshows", clip(lead, 158), path, body, ld=ld)
+
+
+def tour_groups(shows):
+    """show title key -> its shows in different cities, for the same show touring 3+ cities."""
+    g = defaultdict(list)
+    for s in shows:
+        if s.city != "Unknown":
+            g[show_key(s.title)].append(s)
+    return {k: sorted(v, key=lambda s: (s.first["date"], s.city)) for k, v in g.items() if k and len({s.city for s in v}) >= MIN_TOUR_CITIES}
+
+
+def tour_path(group):
+    return f"tour/{slug(clip(group[0].title, 60))}/"
+
+
+def tour_page(group, today):
+    """/tour/<show>/ : one show playing in several cities, with every date. For searches like "<artist> india tour"."""
+    title = group[0].title
+    path = tour_path(group)
+    cities = []
+    for s in group:
+        if s.city not in cities:
+            cities.append(s.city)
+    first_day, last_day = group[0].first["date"], max(e["date"] for s in group for e in s.events)
+    h1 = f"{clip(title, 70)}: dates and cities"
+    lead = f"{clip(title, 70)} is listed in {len(cities)} cities, {when_range(first_day, last_day)}: {human_list(cities[:8])}{' and more' if len(cities) > 8 else ''}."
+    rows = "".join(
+        f'<li><div><b>{esc(c)}</b><span>' + esc("; ".join(f"{when(e)} · {venue_short(e)}" for s in group if s.city == c for e in s.events[:3])) + "</span></div>"
+        + "".join(f'<a class="btn alt" href="/{s.path}">Details and tickets</a>' for s in group if s.city == c)[:400] + "</li>"
+        for c in cities)
+    qa = [(f"Which cities is {clip(title, 70)} coming to?", f"It is listed in {human_list(cities)}."),
+          (f"When does {clip(title, 70)} start?", f"The first listed date is {when_range(first_day, first_day)} in {group[0].city}.")]
+    body = f"""<p class="crumbs"><a href="/">Home</a> › {esc(clip(title, 50))}</p>
+<h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day.</p>
+<ul class="dates">{rows}</ul>
+{faq_html(qa, f"About {clip(title, 50)}")}"""
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": f"{s.title}, {s.city}"} for i, s in enumerate(group[:50])]},
+          breadcrumb_ld([("Home", ""), (clip(title, 50), path)]), faq_ld(qa)]
+    return path, page(f"{h1} | gigsnshows", clip(lead, 158), path, body, ld=ld)
+
+
+def when_range(a, b):
+    da, db = date.fromisoformat(a), date.fromisoformat(b)
+    return f"{da.day} {da:%b}" if a == b else f"{da.day} {da:%b} to {db.day} {db:%b %Y}"
+
+
 def cities_page(by_city):
     items = "".join(f'<li><a href="/{slug(c)}/">{esc(c)}</a> <small>{n} shows</small></li>' for c, n in sorted(by_city.items(), key=lambda x: (-x[1], x[0])))
     body = f'<h1>Live shows by city</h1><p class="lead">Pick your city to see what\'s on: concerts, plays, stand-up and sports.</p><ul class="cities">{items}</ul>'
@@ -765,6 +860,10 @@ def llms_txt(events, shows, by_city, today):
 
 
 def sitemap_priority(path):
+    if path.startswith("tour/"):
+        return "0.8"
+    if "/venue/" in path:
+        return "0.7"
     if path.endswith(("/this-weekend/index.html", "/today/index.html", "/tomorrow/index.html", "/halloween/index.html", "/diwali/index.html", "/new-years-eve/index.html")):
         return "0.9"
     return "0.8" if path.count("/") <= 2 else "0.6"
@@ -796,10 +895,18 @@ def write(events, root, today=None):
     today_d = date.fromisoformat(str(today)[:10])
     shows = build_shows(events)
     out = {}  # path -> html
+    venues, tours = venue_groups(shows), tour_groups(shows)
     for s in shows:
         related = [r for r in shows if r.city == s.city and r.category == s.category and r.id != s.id]
         related.sort(key=lambda r: abs((datetime.strptime(r.first["date"], "%Y-%m-%d") - datetime.strptime(s.first["date"], "%Y-%m-%d")).days))
-        out[s.path + "index.html"] = show_page(s, related[:6])
+        hubs = []
+        vg = venues.get((s.city, venue_short(s.first)))
+        if vg:
+            hubs.append(f'<a href="/{venue_path(s.city, venue_short(s.first))}">All shows at {esc(venue_short(s.first))}</a>')
+        tg = tours.get(show_key(s.title))
+        if tg:
+            hubs.append(f'<a href="/{tour_path(tg)}">{esc(s.title if len(s.title) < 40 else "This show")} in {len({x.city for x in tg})} cities</a>')
+        out[s.path + "index.html"] = show_page(s, related[:6], f'<p class="upd">{" · ".join(hubs)}</p>' if hubs else "")
     by_city = defaultdict(list)
     for s in shows:
         by_city[s.city].append(s)
@@ -828,6 +935,18 @@ def write(events, root, today=None):
             dp = day_page(city, group, today_d, which, [c for c in day_cities[which] if c != city][:10])
             if dp:
                 out[dp[0] + "index.html"] = dp[1]
+    for (vcity, vname), pool in venues.items():
+        vp = venue_page(vcity, vname, pool, today_d)
+        out[vp[0] + "index.html"] = vp[1]
+    for tg in tours.values():
+        tp = tour_page(tg, today_d)
+        out[tp[0] + "index.html"] = tp[1]
+    for vcity in {c for c, _ in venues}:  # link the biggest venues from each city page
+        top = sorted(((v, len(p)) for (c, v), p in venues.items() if c == vcity), key=lambda x: (-x[1], x[0]))[:10]
+        key = f"{slug(vcity)}/index.html"
+        links = "".join(f'<li><a href="/{venue_path(vcity, v)}">{esc(v)} ({n})</a></li>' for v, n in top)
+        if key in out and links:
+            out[key] = out[key].replace('<div class="cta">', f'<h2>Popular venues in {esc(vcity)}</h2><ul class="more">{links}</ul><div class="cta">', 1)
     area_links = {}
     for area in AREAS:
         ap = area_page(area, shows, today_d)

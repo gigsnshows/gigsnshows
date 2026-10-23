@@ -116,3 +116,24 @@ def test_lastmod_moves_only_when_a_page_really_changes(tmp_path):
     sm = (tmp_path / "sitemap.xml").read_text()
     assert re.search(r"/delhi/</loc><lastmod>2026-10-23", sm)
     assert re.search(r"/shows/show-one-[0-9a-f]+/</loc><lastmod>2026-10-20", sm)
+
+
+def test_venue_and_tour_hub_pages(tmp_path):
+    evs = [ev(i, f"Gig {i}", f"2026-11-{10 + i}", venue="Blue Hall: Bandra") for i in range(3)]
+    evs += [ev(10 + i, "Big Artist India Tour", f"2026-12-0{i + 1}", city=c) for i, c in enumerate(["Mumbai", "Delhi", "Pune"])]
+    seo.write(evs, tmp_path, "2026-10-23")
+    v = (tmp_path / "mumbai" / "venue" / "blue-hall" / "index.html").read_text()
+    assert "Shows at Blue Hall, Mumbai" in v and "Gig 1" in v
+    t = (tmp_path / "tour" / "big-artist-india-tour" / "index.html").read_text()
+    assert "listed in 3 cities" in t and "Delhi" in t and "Pune" in t
+    assert "/mumbai/venue/blue-hall/" in (tmp_path / "mumbai" / "index.html").read_text()
+    shows_dir = tmp_path / "shows"
+    assert any("All shows at Blue Hall" in p.read_text() for p in shows_dir.glob("*/index.html"))
+    sm = (tmp_path / "sitemap.xml").read_text()
+    assert "/tour/big-artist-india-tour/" in sm and "/mumbai/venue/blue-hall/" in sm
+
+
+def test_small_venues_and_one_city_shows_get_no_hub(tmp_path):
+    evs = [ev(1, "A", "2026-11-10", venue="Tiny Room"), ev(2, "B", "2026-11-11", venue="Tiny Room"), ev(3, "Solo Tour", "2026-12-01"), ev(4, "Solo Tour", "2026-12-02", city="Delhi")]
+    seo.write(evs, tmp_path, "2026-10-23")
+    assert not (tmp_path / "mumbai" / "venue").exists() and not (tmp_path / "tour").exists()
