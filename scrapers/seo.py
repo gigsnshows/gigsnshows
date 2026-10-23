@@ -71,7 +71,7 @@ header{padding:18px 0;border-bottom:1px solid var(--line)}header .wrap{display:f
 main{padding:24px 0 48px}.crumbs{font-size:.85rem;color:var(--ink3);margin:0 0 14px}.crumbs a{color:var(--ink2);text-decoration:none}
 h1{font-family:var(--brand);font-size:2rem;line-height:1.15;margin:0 0 8px}h2{font-size:1.15rem;margin:32px 0 10px}
 .meta{color:var(--ink2);margin:0 0 14px}.lead{color:var(--ink2);margin:0 0 18px}
-.poster{width:100%;max-height:420px;object-fit:cover;border-radius:14px;margin:0 0 18px;background:var(--bg-3)}
+.poster{width:100%;aspect-ratio:16/9;max-height:420px;object-fit:cover;border-radius:14px;margin:0 0 18px;background:var(--bg-3)}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}.tag{padding:3px 11px;border-radius:999px;background:var(--fill-2);font-size:.8rem;font-weight:600}
 .dates{list-style:none;margin:0;padding:0;display:grid;gap:10px}.dates li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--fill)}
 .dates b{display:block}.dates span{color:var(--ink2);font-size:.9rem}.dates a.cal{display:inline-block;margin-top:4px;color:var(--ink2);font-size:.85rem}.dates a.cal:hover{color:var(--ink)}
@@ -169,7 +169,7 @@ def img_tag(url, w, attrs="", alt="", loading="lazy"):
 
 
 def thumb(url):
-    return img_tag(url, 160) if url else ""
+    return img_tag(url, 160, 'width="92" height="56" ') if url else ""
 
 
 def from_price(price):
@@ -413,7 +413,7 @@ def show_page(show, related):
     aliases = aliases_for(show.title)
     body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{city_slug}/">{esc(show.city)}</a> › <a href="/{city_slug}/{cat_slug}/">{esc(cat_head)}</a></p>
 <article>
-{img_tag(show.image, 800, 'class="poster" ', esc(show.title), "eager") if show.image else ''}
+{img_tag(show.image, 800, 'class="poster" width="800" height="450" ', esc(show.title), "eager") if show.image else ''}
 <h1>{esc(show.title)}</h1>
 <p class="meta">{esc(when(f))} · {esc(venue_short(f))}, {esc(show.city)}{esc(price)}{f' · {len(show.events)} dates' if len(show.events) > 1 else ''}</p>
 <div class="tags">{tags}</div>

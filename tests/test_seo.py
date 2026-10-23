@@ -94,6 +94,12 @@ def test_ticket_links_carry_utm():
 
 def test_posters_go_through_resizer_with_fallback():
     t = seo.thumb("https://cdn.example.com/a b/p.jpg?x=1")
-    assert t.startswith('<img src="https://wsrv.nl/?url=https%3A%2F%2Fcdn.example.com') and "w=160" in t
+    assert 'src="https://wsrv.nl/?url=https%3A%2F%2Fcdn.example.com' in t and "w=160" in t
     assert 'data-o="https://cdn.example.com/a b/p.jpg?x=1"' in t and "onerror=" in t
     assert seo.thumb("") == "" and seo.sized("/local.png", 160) == "/local.png"
+
+
+def test_static_images_reserve_their_space():
+    assert 'width="92" height="56"' in seo.thumb("https://x.in/p.jpg")
+    html_ = seo.show_page(seo.build_shows([ev(1, "Big Show", "2026-11-01") | {"image": "https://x.in/p.jpg"}])[0], [])
+    assert 'class="poster" width="800" height="450"' in html_ and "aspect-ratio:16/9" in html_
