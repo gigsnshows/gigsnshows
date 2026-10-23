@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,351 upcoming shows in 65 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-23).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,361 upcoming shows in 65 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-23).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 449 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 357 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 450 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 358 upcoming shows
 - [Bengaluru](https://gigsnshows.com/bengaluru/): 345 upcoming shows
 - [Pune](https://gigsnshows.com/pune/): 179 upcoming shows
 - [Hyderabad](https://gigsnshows.com/hyderabad/): 162 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 112 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 100 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 114 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 103 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 68 upcoming shows
 - [Goa](https://gigsnshows.com/goa/): 67 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 63 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 51 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 41 upcoming shows
-- [Indore](https://gigsnshows.com/indore/): 38 upcoming shows
+- [Indore](https://gigsnshows.com/indore/): 39 upcoming shows
 - [Vadodara](https://gigsnshows.com/vadodara/): 29 upcoming shows
-- [Surat](https://gigsnshows.com/surat/): 26 upcoming shows
+- [Surat](https://gigsnshows.com/surat/): 25 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -70,7 +70,6 @@
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
 - [Akshay Srivastava Live](https://gigsnshows.com/tour/akshay-srivastava-live/)
 - [All India Clat Lr Tour](https://gigsnshows.com/tour/all-india-clat-lr-tour/)
-- [All Star Lineup A Curated Stand Up Comedy Show](https://gigsnshows.com/tour/all-star-lineup-a-curated-stand-up-comedy-show/)
 - [All The Best](https://gigsnshows.com/tour/all-the-best/)
 - [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)
 - [Animal Marathi Play](https://gigsnshows.com/tour/animal-marathi-play/)
@@ -79,10 +78,12 @@
 - [Best In Standup Ft Various Artists](https://gigsnshows.com/tour/best-in-standup-ft-various-artists/)
 - [Bhramacha Bhopla](https://gigsnshows.com/tour/bhramacha-bhopla/)
 - [Bhumika](https://gigsnshows.com/tour/bhumika/)
+- [Casa Bacardi On Tour](https://gigsnshows.com/tour/casa-bacardi-on-tour/)
 
 ## Venues
 
 - [Art House India](https://gigsnshows.com/ahmedabad/venue/art-house-india/)
+- [Backspace Ahmedabad](https://gigsnshows.com/ahmedabad/venue/backspace-ahmedabad/)
 - [Backspace](https://gigsnshows.com/ahmedabad/venue/backspace/)
 - [Doozer Club](https://gigsnshows.com/ahmedabad/venue/doozer-club/)
 - [Hk Hall](https://gigsnshows.com/ahmedabad/venue/hk-hall/)
@@ -96,4 +97,3 @@
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Big Pitcher](https://gigsnshows.com/bengaluru/venue/big-pitcher/)
 - [Blurred](https://gigsnshows.com/bengaluru/venue/blurred/)
-- [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
