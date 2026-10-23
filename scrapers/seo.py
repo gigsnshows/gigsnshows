@@ -315,6 +315,29 @@ def faq_ld(qa):
             "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in qa]} if qa else None
 
 
+def show_faq(show):
+    """Direct answers about one show, worked out from its listing. These are the questions people (and AI assistants) ask."""
+    f, t, city = show.first, show.title, show.city
+    qa = []
+    if len(show.events) == 1:
+        qa.append((f"When is {t} in {city}?", f"{t} is on {when(f, True)} at {venue_short(f) or city}, {city}."))
+    else:
+        shown = "; ".join(f"{when(e, True)} at {venue_short(e) or e['city']}" + (f", {e['city']}" if e["city"] != city else "") for e in show.events[:8])
+        qa.append((f"When is {t} in {city}?", f"{t} has {len(show.events)} listed dates in {city}: {shown}" + ("; and more." if len(show.events) > 8 else ".")))
+    venues = list(dict.fromkeys(venue_short(e) for e in show.events if venue_short(e)))
+    if venues:
+        qa.append((f"Where is {t} being held?", f"At {human_list(venues[:4])}, {city}."))
+    sellers = list(dict.fromkeys(link_for(e)[1] for e in show.events))
+    prices = [e["price_from"] for e in show.events if e.get("price_from")]
+    if prices:
+        qa.append((f"How much are tickets for {t}?", f"Tickets start from ₹{int(min(prices)):,}, as listed by {sellers[0]} when this page was built. The final price depends on the seat or tier and can change, so check the seller before booking."))
+    qa.append((f"Where can I book tickets for {t}?", f"Tickets are sold by {human_list(sellers)}; the booking links are on this page. gigsnshows does not sell tickets."))
+    langs = [l for l in (f.get("lang") or []) if l]
+    if langs:
+        qa.append((f"What language is {t} in?", f"Listed language: {human_list(langs)}."))
+    return qa
+
+
 class Show:
     """Every date and venue of one show in one city."""
 
@@ -422,6 +445,7 @@ def show_page(show, related, hubs=""):
                    f'<p>{esc(when(r.first))} · {esc(venue_short(r.first))}</p></div></li>' for r in related)
     price = from_price(show.price)
     aliases = aliases_for(show.title)
+    qa = show_faq(show)
     body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/{city_slug}/">{esc(show.city)}</a> › <a href="/{city_slug}/{cat_slug}/">{esc(cat_head)}</a></p>
 <article>
 {img_tag(show.image, 800, 'class="poster" width="800" height="450" ', esc(show.title), "eager") if show.image else ''}
@@ -435,6 +459,7 @@ def show_page(show, related, hubs=""):
 <ul class="dates">{dates}</ul>
 <div class="cta"><a class="btn" href="{esc(link)}" target="_blank" rel="noopener nofollow">Get tickets on {esc(platform)}</a>
 <a class="btn alt" href="/?city={esc(city_slug)}&amp;event={esc(f['id'])}">Save it, share it or plan it with friends</a></div>
+{faq_html(qa, f"Questions about {show.title}")}
 </article>
 {f'<h2>More {esc(cat_label)} in {esc(show.city)}</h2><ul class="list">{more}</ul>' if more else ''}"""
     kind = kind_word(show)
@@ -445,7 +470,7 @@ def show_page(show, related, hubs=""):
             + (show.about[:70].rsplit(' ', 1)[0] + "…" if show.about else ""))
     title = f"{name}{kind}{in_city}, {when(f).split(',')[0]} | gigsnshows"
     crumbs = breadcrumb_ld([("Home", ""), (show.city, f"{city_slug}/"), (cat_head, f"{city_slug}/{cat_slug}/"), (show.title, show.path)])
-    return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events] + [crumbs])
+    return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events] + [crumbs, faq_ld(qa)])
 
 
 def listing(shows):
@@ -853,7 +878,7 @@ def about_page(events, shows, by_city, today):
     return page("About gigsnshows: live shows across India in one place", "gigsnshows is a free guide to live music, stand-up, theatre and sports in India, gathered from BookMyShow, District and more. Tickets are sold by the linked sites.", "about/", body, ld=ld)
 
 
-def llms_txt(events, shows, by_city, today):
+def llms_txt(events, shows, by_city, today, pages=()):
     cities = sorted(((c, len(g)) for c, g in by_city.items() if c != "Unknown"), key=lambda x: (-x[1], x[0]))
     sellers = seller_names(events)
     lines = ["# gigsnshows", "",
@@ -870,7 +895,43 @@ def llms_txt(events, shows, by_city, today):
              f"- [Sitemap]({SITE}/sitemap.xml)", "",
              "## Biggest cities", ""]
     lines += [f"- [{c}]({SITE}/{slug(c)}/): {n} upcoming shows" for c, n in cities[:15]]
+    big = [c for c, _ in cities[:10]]
+    now = [f"- [{label} in {c}]({SITE}/{slug(c)}/{sub}/)" for sub, label in (("today", "Today"), ("tomorrow", "Tomorrow"), ("this-weekend", "This weekend"))
+           for c in big[:5] if f"{slug(c)}/{sub}/index.html" in pages]
+    if now:
+        lines += ["", "## What is on now (rebuilt every day)", ""] + now
+    occ = [f"- [{OCCASIONS[k]['name']} in {c}]({SITE}/{slug(c)}/{k}/)"
+           for k in OCCASIONS for c in big[:5] if f"{slug(c)}/{k}/index.html" in pages][:20]
+    if occ:
+        lines += ["", "## Seasonal and occasion pages", ""] + occ
+    tours = sorted((p for p in pages if p.startswith("tour/")))[:15]
+    if tours:
+        lines += ["", "## Tours playing several cities", ""] + [f"- [{p.split('/')[1].replace('-', ' ').title()}]({SITE}/{p[:-len('index.html')]})" for p in tours]
+    ven = sorted((p for p in pages if "/venue/" in p))[:15]
+    if ven:
+        lines += ["", "## Venues", ""] + [f"- [{p.split('/')[-2].replace('-', ' ').title()}]({SITE}/{p[:-len('index.html')]})" for p in ven]
     return "\n".join(lines) + "\n"
+
+
+HOME_START, HOME_END = "<!--seo-intro-->", "<!--/seo-intro-->"
+
+
+def inject_home_intro(root, n_shows, n_cities, sellers, today):
+    """The home page is drawn by script, which many AI crawlers do not run. This one paragraph in its footer, kept current
+    here, tells them (and people) what the site is and how big it is."""
+    f = Path(root) / "index.html"
+    if not f.exists():
+        return
+    text = f.read_text()
+    if HOME_START not in text:
+        return
+    para = (f'{HOME_START}<p class="fine seo-intro">gigsnshows is a free guide to live music, stand-up comedy, theatre and sports in India: '
+            f'{n_shows:,} upcoming shows in {n_cities} cities as of {today.day} {today:%B %Y}, gathered from {esc(human_list(sellers))}. '
+            f'Each show links to the site that sells its tickets; gigsnshows does not sell tickets. '
+            f'<a href="/about/">About</a> · <a href="/llms.txt">Guide for AI assistants</a></p>{HOME_END}')
+    new = re.sub(re.escape(HOME_START) + ".*?" + re.escape(HOME_END), lambda m: para, text, flags=re.S)
+    if new != text:
+        f.write_text(new)
 
 
 def sitemap_priority(path):
@@ -919,12 +980,15 @@ def ended_page(html_, today):
     links = " · ".join(f'<a href="{h}">What is on in {t}</a>' for h, t in crumbs[:2]) or '<a href="/">See what is on now</a>'
     notice = f'<div class="cta"><p class="lead"><b>This event has ended.</b> {links}</p></div>'
     html_ = re.sub(r'<div class="cta">.*?</div>', notice, html_, count=1, flags=re.S)
+    html_ = re.sub(r'<section class="faq">.*?</section>', "", html_, flags=re.S)  # its answers are about booking a show that is on
 
     def fix_ld(m):
         try:
             data = json.loads(m.group(1))
         except ValueError:
             return m.group(0)
+        if isinstance(data, dict) and data.get("@type") == "FAQPage":
+            return ""
         for d in data if isinstance(data, list) else [data]:
             d.pop("offers", None)
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
@@ -1034,7 +1098,8 @@ def write(events, root, today=None):
     sitemap += [f"<url><loc>{SITE}/{u}</loc><lastmod>{lastmod.get(u, today)}</lastmod><priority>{pr}</priority></url>" for u, pr in urls]
     sitemap.append("</urlset>")
     out_files = {"sitemap.xml": "\n".join(sitemap) + "\n",
-                 "robots.txt": robots_txt(), "llms.txt": llms_txt(events, shows, by_city, today_d)}
+                 "robots.txt": robots_txt(), "llms.txt": llms_txt(events, shows, by_city, today_d, set(out))}
+    inject_home_intro(root, len(shows), len(by_city) - ("Unknown" in by_city), seller_names(events), today_d)
 
     manifest_path = root / MANIFEST
     old = set(json.loads(manifest_path.read_text())) if manifest_path.exists() else set()

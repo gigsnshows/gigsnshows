@@ -194,3 +194,32 @@ def test_event_data_carries_only_what_the_source_states(tmp_path):
     bad = {**ev("c", "Folk Night", "2026-10-20", price=500), "end": "2026-10-20T10:00", "on_sale": "2026-10-25T10:00"}  # ends before it starts; on sale after it starts
     ld = _show_ld(tmp_path / "c", bad)
     assert "endDate" not in ld and "validFrom" not in ld["offers"]
+
+
+def test_show_pages_answer_the_obvious_questions(tmp_path):
+    e = {**ev("a", "Jazz Night", "2026-10-20", price=500, venue="Blue Room"), "lang": ["English"]}
+    ld_page = (tmp_path / "x")
+    ld_page.mkdir()
+    seo.write([e], ld_page, "2026-10-14")
+    page = next((ld_page / "shows").glob("*/index.html")).read_text()
+    assert "When is Jazz Night in Mumbai?" in page and "Tue 20 Oct 2026, 8 pm at Blue Room, Mumbai" in page
+    assert "Tickets start from ₹500" in page and "does not sell tickets" in page and "Listed language: English" in page
+    assert '"@type": "FAQPage"' in page
+
+
+def test_ended_page_drops_booking_answers():
+    e = ev("a", "Jazz Night", "2026-10-20", price=500)
+    page = seo.show_page(seo.build_shows([e])[0], [])
+    ended = seo.ended_page(page, "2026-10-21")
+    assert "Where can I book tickets" in page and "Where can I book tickets" not in ended and "FAQPage" not in ended
+
+
+def test_llms_txt_points_to_live_pages_and_home_intro_is_refreshed(tmp_path):
+    evs = [ev(str(i), f"Show {i}", "2026-10-14", venue="Blue Room") for i in range(4)]
+    (tmp_path / "index.html").write_text("<footer><!--seo-intro--><!--/seo-intro--></footer>")
+    seo.write(evs, tmp_path, "2026-10-14")
+    llms = (tmp_path / "llms.txt").read_text()
+    assert "## What is on now" in llms and "/mumbai/today/" in llms and "## Venues" in llms
+    home = (tmp_path / "index.html").read_text()
+    assert "4 upcoming shows in 1 cities" in home or "4 upcoming shows in 1 city" in home or "4 upcoming shows" in home
+    assert "gigsnshows does not sell tickets" in home
