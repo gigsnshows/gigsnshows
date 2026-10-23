@@ -122,8 +122,69 @@ def when(e, with_year=False):
     return out
 
 
+def _vkey(name):
+    """A venue name with case, punctuation, '&'/'and', 'center'/'centre' and a leading 'The' ignored, so spelling variants meet."""
+    k = name.lower().replace("&", " and ")
+    k = re.sub(r"\bcenter\b", "centre", k)
+    k = re.sub(r"[^a-z0-9]+", " ", k).strip()
+    return re.sub(r"^the ", "", k)
+
+
+# Different names for one and the same place. Separate branches (The Piano Man in Saket and in Gurugram) are deliberately NOT merged.
+VENUE_SAME = {
+    "Prithvi House": "Prithvi Theatre", "Prithvi Cafe": "Prithvi Theatre",
+    "Backspace Todi Mills": "Backspace", "Backspace Pune": "Backspace", "Backspace Ahmedabad": "Backspace",
+    "The Piano Man Gurugram, 32nd Avenue": "The Piano Man Gurugram",
+    "The Piano Man Eldeco Centre, Saket": "The Piano Man Saket", "The Piano Man New Delhi (Eldeco Centre)": "The Piano Man Saket",
+    "Jio World Garden, BKC": "Jio World Garden", "The Comedy Theatre, Indiranagar": "The Comedy Theatre - Indiranagar, Bangalore",
+    "Phoenix Market City": "Phoenix Marketcity", "Phoenix Market City, Whitefield": "Phoenix Marketcity",
+    "Sunburn Union Bangalore": "Sunburn Union", "Kalagrama (Backside Bangalore University)": "Kalagrama Bengaluru University",
+    "Tripura Vasini, Palace Grounds": "Tripura Vasini White Petals", "Chimbai Village Theatre by JGS": "Chimbai Village Theatre",
+    "CIDCO Exhibition Center": "CIDCO Exhibition & Convention Centre", "Funkaar Studio": "Funkaar",
+    "Ink A Laugh Standup Comedy Club vile parle west": "Ink-A-Laugh Comedy Club",
+    "The Stables - Peninsula Redpine": "The Stables", "The Stables India": "The Stables",
+    "Balgandharva Natyagruh": "Bal Gandharva Rang Mandir", "The High Spirits Cafe": "High Spirits Cafe", "High Spirits": "High Spirits Cafe",
+    "Laugh and Vibe Club, Koregaon Park": "Laugh and Vibe Club", "Mahalakshmi Lawns, Kharadi": "Mahalakshmi Lawns",
+    "Comedy County by HITCHIN": "Comedy County", "JLN Stadium, Gate No. 1": "JLN Stadium", "JLN STADIUM GATE 1": "JLN Stadium",
+    "Yashobhoomi Convention Centre": "Yashobhoomi", "Kala Mandir Auditorium": "Kala Mandir",
+    "Kolkata Centre for Creativity (KCC)": "Kolkata Centre for Creativity", "Vivekananda Yuba Bharati Krirangan (VYBK)": "Vivekananda Yuba Bharati Krirangan",
+    "Gachibowli": "Gachibowli Stadium", "Hard Rock Cafe Hitech City Hyderabad": "Hard Rock Cafe", "Insomnia Night Club, Khajaguda": "Insomnia",
+    "Lake Shore Mall - Y Junction": "Lake Shore Mall", "Lake Shore Mall, Y Junction": "Lake Shore Mall",
+    "The Street Comedy Club Hyderabad": "The Street Comedy Club", "Studio XO Bar": "Studio XO",
+    "Comedy Cottage and Coco Events": "Comedy Cottage & Events", "Lucknow Events Club (LEC)": "Lucknow Events Club",
+    "Mahakavi Kalidas Kalamandir": "Mahakavi Kalidas Kala Mandir",
+}
+VENUE_ALIASES = {_vkey(k): v for k, v in VENUE_SAME.items()}
+VENUE_PREFIXES = (("unvrs club", "UNVRS Club"),)
+VENUE_NAMES = {}  # (city, _vkey) -> the spelling most listings use; filled by build_venue_names() for each run
+
+
+def canon_venue(raw, city=None):
+    if not raw:
+        return raw
+    k = _vkey(raw)
+    if k in VENUE_ALIASES:
+        return VENUE_ALIASES[k]
+    for pre, name in VENUE_PREFIXES:
+        if k.startswith(pre):
+            return name
+    return VENUE_NAMES.get((city, k), raw)
+
+
 def venue_short(e):
-    return re.split(r"[:|]", e.get("venue") or "")[0].strip()
+    return canon_venue(re.split(r"[:|]", e.get("venue") or "")[0].strip(), e.get("city"))
+
+
+def build_venue_names(events):
+    """Pick one spelling per venue and city (not the SHOUTING one, then the most used), so 'THE HUMMING TREE' and 'The Humming Tree' are one venue."""
+    seen = defaultdict(Counter)
+    for e in events:
+        raw = re.split(r"[:|]", e.get("venue") or "")[0].strip()
+        if raw and _vkey(raw) not in VENUE_ALIASES:
+            seen[(e.get("city"), _vkey(raw))][raw] += 1
+    VENUE_NAMES.clear()
+    for key, c in seen.items():
+        VENUE_NAMES[key] = sorted(c, key=lambda r: (r.isupper(), -c[r], r))[0]
 
 
 def tagged(url):
@@ -1090,6 +1151,7 @@ def write(events, root, today=None):
     root = Path(root)
     today = today or date.today().isoformat()
     today_d = date.fromisoformat(str(today)[:10])
+    build_venue_names(events)
     shows = build_shows(events)
     out = {}  # path -> html
     venues, tours = venue_groups(shows), tour_groups(shows)

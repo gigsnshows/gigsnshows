@@ -238,3 +238,19 @@ def test_insights_page_quotes_only_what_the_listings_say(tmp_path):
 def test_insights_page_skipped_for_tiny_listings(tmp_path):
     seo.write([ev("a", "Jazz", "2026-10-20")], tmp_path, "2026-10-14")
     assert not (tmp_path / "insights").exists()
+
+
+def test_venue_spelling_variants_are_one_venue_but_branches_stay_apart():
+    evs = [ev("1", "A", "2026-10-20", venue="THE HUMMING TREE", city="Bengaluru"), ev("2", "B", "2026-10-21", venue="The Humming Tree", city="Bengaluru"),
+           ev("3", "C", "2026-10-22", venue="The Humming Tree", city="Bengaluru"),
+           ev("4", "D", "2026-10-20", venue="Prithvi House", city="Mumbai"), ev("5", "E", "2026-10-21", venue="Prithvi Theatre", city="Mumbai"),
+           ev("6", "F", "2026-10-22", venue="The Piano Man Gurugram, 32nd Avenue", city="Delhi"), ev("7", "G", "2026-10-22", venue="The Piano Man Gurugram", city="Delhi"),
+           ev("8", "H", "2026-10-22", venue="The Piano Man Eldeco Centre, Saket", city="Delhi"),
+           ev("9", "I", "2026-10-22", venue="Nerds Of Comedy", city="Delhi"), ev("10", "J", "2026-10-22", venue="Nerds of Comedy", city="Delhi")]
+    seo.build_venue_names(evs)
+    names = {e["id"]: seo.venue_short(e) for e in evs}
+    assert names["1"] == names["2"] == "The Humming Tree"
+    assert names["4"] == names["5"] == "Prithvi Theatre"
+    assert names["6"] == names["7"] == "The Piano Man Gurugram" and names["8"] == "The Piano Man Saket"
+    assert names["9"] == names["10"]
+    assert seo.canon_venue("Something Unknown", "Pune") == "Something Unknown"
