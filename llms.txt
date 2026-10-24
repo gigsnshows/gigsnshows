@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,266 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-24).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,274 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-24).
 
 ## How to use this site
 
@@ -19,13 +19,13 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 420 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 424 upcoming shows
 - [Bengaluru](https://gigsnshows.com/bengaluru/): 360 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 332 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 333 upcoming shows
 - [Pune](https://gigsnshows.com/pune/): 161 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 154 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 155 upcoming shows
 - [Kolkata](https://gigsnshows.com/kolkata/): 107 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 104 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 105 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 71 upcoming shows
 - [Goa](https://gigsnshows.com/goa/): 71 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 61 upcoming shows
