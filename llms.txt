@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,371 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, Prithvi Theatre, NCPA, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-24).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,367 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-24).
 
 ## How to use this site
 
@@ -19,16 +19,16 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 441 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 372 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 438 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 371 upcoming shows
 - [Delhi](https://gigsnshows.com/delhi/): 346 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 163 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 161 upcoming shows
 - [Hyderabad](https://gigsnshows.com/hyderabad/): 156 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 108 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 107 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 109 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 107 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 71 upcoming shows
 - [Goa](https://gigsnshows.com/goa/): 71 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 64 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 66 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 51 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 39 upcoming shows
 - [Indore](https://gigsnshows.com/indore/): 37 upcoming shows
@@ -83,7 +83,6 @@
 ## Venues
 
 - [Art House India](https://gigsnshows.com/ahmedabad/venue/art-house-india/)
-- [Backspace Ahmedabad](https://gigsnshows.com/ahmedabad/venue/backspace-ahmedabad/)
 - [Backspace](https://gigsnshows.com/ahmedabad/venue/backspace/)
 - [Doozer Club](https://gigsnshows.com/ahmedabad/venue/doozer-club/)
 - [Hk Hall](https://gigsnshows.com/ahmedabad/venue/hk-hall/)
@@ -97,3 +96,4 @@
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Big Pitcher](https://gigsnshows.com/bengaluru/venue/big-pitcher/)
 - [Bloom Creative Zone Indiranagar](https://gigsnshows.com/bengaluru/venue/bloom-creative-zone-indiranagar/)
+- [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
