@@ -281,6 +281,17 @@ def kind_word(show):
     return " " + k
 
 
+SMALL_WORDS = {"in", "of", "the", "at", "and", "on", "to", "for", "a", "by", "with", "x"}
+
+
+def calm_caps(name):
+    """'KHALID LIVE IN DELHI NCR' -> 'Khalid Live in Delhi NCR' for the search-result title; names already in mixed case are left alone."""
+    letters = [c for c in name if c.isalpha()]
+    if len(letters) < 8 or not name.isupper():
+        return name
+    return " ".join(w.lower() if w.lower() in SMALL_WORDS else w if len(w) <= 3 else w.capitalize() for w in name.split(" "))
+
+
 def human_list(items):
     items = [str(x) for x in items]
     return items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
@@ -530,7 +541,10 @@ def show_page(show, related, hubs=""):
     desc = (f"{name}{kind}{in_city}: {venue_short(f)}, {when(f, True)}{price}. Tickets on {platform}. "
             + (f"Also searched as {', '.join(aliases[:2])}. " if aliases else "")
             + (show.about[:70].rsplit(' ', 1)[0] + "…" if show.about else ""))
-    title = f"{name}{kind}{in_city}, {when(f).split(',')[0]} | gigsnshows"
+    shown = calm_caps(clip(show.title, 80))
+    day = when(f).split(",")[0]
+    tail = f"{kind}{'' if 'ticket' in show.title.lower() else ' Tickets'}{in_city}, {day} | gigsnshows"
+    title = f"{clip(shown, max(30, 76 - len(tail)))}{tail}"  # "tickets" is in most of what people type to find a show; long names give way to it
     crumbs = breadcrumb_ld([("Home", ""), (show.city, f"{city_slug}/"), (cat_head, f"{city_slug}/{cat_slug}/"), (show.title, show.path)])
     return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events] + [crumbs, faq_ld(qa)])
 
@@ -1096,7 +1110,8 @@ def ended_page(html_, today):
     m = re.search(r"<title>(.*?)</title>", html_, re.S)
     if m:
         old_title = m.group(1)
-        new_title = old_title.replace(" | gigsnshows", " (ended) | gigsnshows") if " | gigsnshows" in old_title else old_title + " (ended)"
+        old_plain = old_title.replace(" Tickets", "", 1)  # an ended show has no tickets to offer
+        new_title = old_plain.replace(" | gigsnshows", " (ended) | gigsnshows") if " | gigsnshows" in old_plain else old_plain + " (ended)"
         html_ = html_.replace(old_title, new_title)
     html_ = re.sub(r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")([^"]*)"',
                    lambda m: m.group(1) + "This event has ended. " + re.sub(r" ?Tickets on [^.]*\.", "", m.group(2)).strip() + '"', html_)

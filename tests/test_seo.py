@@ -266,3 +266,18 @@ def test_existing_ended_pages_lose_their_event_markup(tmp_path):
     assert "MusicEvent" in page.read_text()
     seo.write([ev("z", "Other", "2026-10-30")], tmp_path, "2026-10-22")
     assert "MusicEvent" not in page.read_text() and "BreadcrumbList" in page.read_text()
+
+
+def test_show_titles_say_tickets_and_calm_shouting_names():
+    assert seo.calm_caps("KHALID LIVE IN DELHI NCR") == "Khalid Live in Delhi NCR"
+    assert seo.calm_caps("The Humming Tree") == "The Humming Tree" and seo.calm_caps("DJ") == "DJ"
+    e = ev("a", "KHALID LIVE IN DELHI NCR", "2026-12-13", city="Delhi")
+    page = seo.show_page(seo.build_shows([e])[0], [])
+    title = re.search(r"<title>(.*?)</title>", page).group(1)
+    assert title == "Khalid Live in Delhi NCR Tickets, Sun 13 Dec | gigsnshows"
+    assert "<h1>KHALID LIVE IN DELHI NCR</h1>" in page          # the page itself keeps the show's own name
+    ended = seo.ended_page(page, "2026-12-14")
+    assert "<title>Khalid Live in Delhi NCR, Sun 13 Dec (ended) | gigsnshows</title>" in ended
+    long = ev("b", "A Very Long Name For A Concert Tour That Goes On", "2026-12-13", city="Delhi")
+    t2 = re.search(r"<title>(.*?)</title>", seo.show_page(seo.build_shows([long])[0], [])).group(1)
+    assert len(t2) <= 80
