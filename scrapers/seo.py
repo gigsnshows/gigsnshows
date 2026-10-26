@@ -893,7 +893,7 @@ def tour_page(group, today):
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": f"{s.title}, {s.city}"} for i, s in enumerate(group[:50])]},
           breadcrumb_ld([("Home", ""), (clip(title, 50), path)]), faq_ld(qa)]
-    return path, page(f"{h1} | gigsnshows", clip(lead, 158), path, body, ld=ld)
+    return path, page(f"{clip(title, 46)}: dates and cities | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
 def when_range(a, b):

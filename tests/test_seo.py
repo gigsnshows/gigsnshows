@@ -281,3 +281,11 @@ def test_show_titles_say_tickets_and_calm_shouting_names():
     long = ev("b", "A Very Long Name For A Concert Tour That Goes On", "2026-12-13", city="Delhi")
     t2 = re.search(r"<title>(.*?)</title>", seo.show_page(seo.build_shows([long])[0], [])).group(1)
     assert len(t2) <= 80
+
+
+def test_tour_page_title_stays_short():
+    evs = [ev(str(i), "A Very Long Name For A Concert Tour That Visits Many Cities In India", f"2026-11-{10 + i}", city=c)
+           for i, c in enumerate(["Mumbai", "Delhi", "Pune", "Chennai"])]
+    shows = seo.build_shows(evs)
+    path, html_ = seo.tour_page(seo.tour_groups(shows)[next(iter(seo.tour_groups(shows)))], date(2026, 10, 14))
+    assert len(re.search(r"<title>(.*?)</title>", html_).group(1)) <= 80
