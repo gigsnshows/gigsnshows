@@ -212,6 +212,8 @@ def test_ended_page_drops_booking_answers():
     page = seo.show_page(seo.build_shows([e])[0], [])
     ended = seo.ended_page(page, "2026-10-21")
     assert "Where can I book tickets" in page and "Where can I book tickets" not in ended and "FAQPage" not in ended
+    assert "ComedyEvent" in page or "MusicEvent" in page
+    assert "MusicEvent" not in ended and "Event\"" not in ended and "BreadcrumbList" in ended
 
 
 def test_llms_txt_points_to_live_pages_and_home_intro_is_refreshed(tmp_path):
@@ -254,3 +256,13 @@ def test_venue_spelling_variants_are_one_venue_but_branches_stay_apart():
     assert names["6"] == names["7"] == "The Piano Man Gurugram" and names["8"] == "The Piano Man Saket"
     assert names["9"] == names["10"]
     assert seo.canon_venue("Something Unknown", "Pune") == "Something Unknown"
+
+
+def test_existing_ended_pages_lose_their_event_markup(tmp_path):
+    seo.write([ev(str(i), f"Show {i}", "2026-10-20") for i in range(3)], tmp_path, "2026-10-14")
+    page = next((tmp_path / "shows").glob("*/index.html"))
+    rel = page.relative_to(tmp_path).as_posix()
+    (tmp_path / seo.ENDED).write_text(json.dumps({rel: "2026-10-21"}))   # an ended page made before this rule
+    assert "MusicEvent" in page.read_text()
+    seo.write([ev("z", "Other", "2026-10-30")], tmp_path, "2026-10-22")
+    assert "MusicEvent" not in page.read_text() and "BreadcrumbList" in page.read_text()

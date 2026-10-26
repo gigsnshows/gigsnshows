@@ -1115,10 +1115,23 @@ def ended_page(html_, today):
             return m.group(0)
         if isinstance(data, dict) and data.get("@type") == "FAQPage":
             return ""
+        if isinstance(data, dict) and "Event" in str(data.get("@type")):
+            return ""  # a show that is over is no longer an event to attend: no Event markup (Google asks for ticket offers on those)
         for d in data if isinstance(data, list) else [data]:
             d.pop("offers", None)
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
     return re.sub(r'<script type="application/ld\+json">(.*?)</script>', fix_ld, html_, flags=re.S)
+
+
+def drop_event_markup(html_):
+    """Remove the Event JSON-LD blocks from a page (the other blocks stay)."""
+    def one(m):
+        try:
+            data = json.loads(m.group(1).replace("<\\/", "</"))
+        except ValueError:
+            return m.group(0)
+        return "" if isinstance(data, dict) and "Event" in str(data.get("@type")) else m.group(0)
+    return re.sub(r'<script type="application/ld\+json">(.*?)</script>', one, html_, flags=re.S)
 
 
 def keep_ended_pages(root, old, written, live_ids, today):
@@ -1143,6 +1156,13 @@ def keep_ended_pages(root, old, written, live_ids, today):
         page_ = Path(root) / rel
         page_.write_text(ended_page(page_.read_text(), today))
         ended[rel] = today
+    for rel in ended:  # pages ended before Event markup was dropped from them
+        page_ = Path(root) / rel
+        if page_.exists():
+            text = page_.read_text()
+            cleaned = drop_event_markup(text)
+            if cleaned != text:
+                page_.write_text(cleaned)
     f.write_text(json.dumps(ended, sort_keys=True, indent=0) + "\n")
     return set(ended)
 
