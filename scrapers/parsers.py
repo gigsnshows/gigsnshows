@@ -14,7 +14,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from .base import (collect_links, event, extract_jsonld_events, get_html, guess_category,
+from .base import (collect_links, event, extract_jsonld_events, get_html, reset_browser, guess_category,
                    jsonld_to_event, meta_event, parse_date, summary)
 from .cities import detect_city, nearest_city
 from .genres import language
@@ -57,6 +57,8 @@ def parse_detail_pages(html, page_url, src, entry):
         if found or not src.get("render"):
             break
         print(f"      no event links on the page yet; looking again, waiting longer ({attempt} of 2)")
+        if attempt == 2:
+            reset_browser()  # last try: a brand-new browser, in case this one has been flagged
         html = get_html(page_url, True, src.get("wait_ms", 2500) * (attempt + 2), delay=src.get("crawl_delay", 0)) or ""
         found = collect_links(html, page_url, pattern)
     links = [l for l in found if l not in _visited]

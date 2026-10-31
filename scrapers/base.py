@@ -108,6 +108,17 @@ def _close_browser():
         _playwright.stop()
 
 
+def reset_browser():
+    """Throw away the shared browser (and everything it remembers) so the next page starts from a clean slate."""
+    global _browser
+    try:
+        if _browser is not None and _browser.is_connected():
+            _browser.close()
+    except Exception:  # noqa: BLE001
+        pass
+    _browser = None
+
+
 def render(url, wait_ms=2500, scroll=True):
     """Load a page in headless Chromium and return the rendered HTML."""
     try:
@@ -116,7 +127,10 @@ def render(url, wait_ms=2500, scroll=True):
         print("  ! playwright not installed; run: pip install playwright && playwright install chromium")
         return None
     try:
-        page = _get_browser().new_page(user_agent=HEADERS["User-Agent"])
+        # A fresh context per page: no cookies or storage carry over from the previous page. BookMyShow returned a
+        # stripped listing for every city after the first, which looks like it was reacting to the session it remembered.
+        context = _get_browser().new_context(user_agent=HEADERS["User-Agent"])
+        page = context.new_page()
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=45000)
             page.wait_for_timeout(wait_ms)
@@ -126,7 +140,7 @@ def render(url, wait_ms=2500, scroll=True):
                     page.wait_for_timeout(500)
             return page.content()
         finally:
-            page.close()
+            context.close()
     except Exception as exc:  # noqa: BLE001
         print(f"  ! render failed {url}: {exc}")
         return None
