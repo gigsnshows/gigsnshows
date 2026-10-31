@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,817 upcoming shows in 67 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-31).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,856 upcoming shows in 68 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-31).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 361 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 256 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 253 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 123 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 111 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 104 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 82 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 57 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 55 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 351 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 282 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 261 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 132 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 120 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 111 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 85 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 60 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 57 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 51 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 39 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 30 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 38 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 31 upcoming shows
 - [Indore](https://gigsnshows.com/indore/): 29 upcoming shows
-- [Vadodara](https://gigsnshows.com/vadodara/): 23 upcoming shows
-- [Surat](https://gigsnshows.com/surat/): 20 upcoming shows
+- [Guwahati](https://gigsnshows.com/guwahati/): 19 upcoming shows
+- [Nagpur](https://gigsnshows.com/nagpur/): 19 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -68,19 +68,19 @@
 
 - [23 Va Majala](https://gigsnshows.com/tour/23-va-majala/)
 - [Aakash Mehta The Wedding Show Stand Up Comedy](https://gigsnshows.com/tour/aakash-mehta-the-wedding-show-stand-up-comedy/)
-- [Aamchya Pidhichi Goshtach Vegali](https://gigsnshows.com/tour/aamchya-pidhichi-goshtach-vegali/)
+- [Abijit Ganguly Live](https://gigsnshows.com/tour/abijit-ganguly-live/)
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
-- [Alag Is Not Galat](https://gigsnshows.com/tour/alag-is-not-galat/)
 - [Allow Me A Standup Comedy Show By Rahul Dua](https://gigsnshows.com/tour/allow-me-a-standup-comedy-show-by-rahul-dua/)
-- [Animal Marathi Play](https://gigsnshows.com/tour/animal-marathi-play/)
+- [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)
 - [Ashywn Singh The Imperfect Ally Tour](https://gigsnshows.com/tour/ashywn-singh-the-imperfect-ally-tour/)
 - [Bangtanverse Carnival Fan Tour](https://gigsnshows.com/tour/bangtanverse-carnival-fan-tour/)
-- [Bhramacha Bhopla](https://gigsnshows.com/tour/bhramacha-bhopla/)
-- [Bhumika](https://gigsnshows.com/tour/bhumika/)
 - [Casa Bacardi On Tour](https://gigsnshows.com/tour/casa-bacardi-on-tour/)
 - [Chirag Panjwani Live](https://gigsnshows.com/tour/chirag-panjwani-live/)
 - [Crowd Ctrl Ft Aakash Mehta](https://gigsnshows.com/tour/crowd-ctrl-ft-aakash-mehta/)
 - [Darshan Raval S Love Letters India Tour](https://gigsnshows.com/tour/darshan-raval-s-love-letters-india-tour/)
+- [Evolution By Arvind Sunder](https://gigsnshows.com/tour/evolution-by-arvind-sunder/)
+- [Family Remote Ft Harmeet Singh Kohli](https://gigsnshows.com/tour/family-remote-ft-harmeet-singh-kohli/)
+- [Farewell An Entropy Of Separation](https://gigsnshows.com/tour/farewell-an-entropy-of-separation/)
 
 ## Venues
 
@@ -93,9 +93,9 @@
 - [Natarani Amphitheatre](https://gigsnshows.com/ahmedabad/venue/natarani-amphitheatre/)
 - [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
 - [Bangalore International Centre](https://gigsnshows.com/bengaluru/venue/bangalore-international-centre/)
+- [Banter Comedy Club](https://gigsnshows.com/bengaluru/venue/banter-comedy-club/)
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
 - [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
 - [Decathlon Sports Kalyan Nagar](https://gigsnshows.com/bengaluru/venue/decathlon-sports-kalyan-nagar/)
 - [Depot18 Sports](https://gigsnshows.com/bengaluru/venue/depot18-sports/)
-- [District Arena Terraform](https://gigsnshows.com/bengaluru/venue/district-arena-terraform/)
