@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,857 upcoming shows in 67 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-31).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,954 upcoming shows in 67 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-10-31).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 351 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 282 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 261 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 134 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 121 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 110 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 87 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 60 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 57 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 51 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 35 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 363 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 299 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 283 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 146 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 132 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 112 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 90 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 63 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 56 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 53 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 39 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 32 upcoming shows
-- [Indore](https://gigsnshows.com/indore/): 29 upcoming shows
+- [Indore](https://gigsnshows.com/indore/): 31 upcoming shows
+- [Surat](https://gigsnshows.com/surat/): 20 upcoming shows
 - [Guwahati](https://gigsnshows.com/guwahati/): 19 upcoming shows
-- [Nagpur](https://gigsnshows.com/nagpur/): 19 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -72,7 +72,7 @@
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
 - [Allow Me A Standup Comedy Show By Rahul Dua](https://gigsnshows.com/tour/allow-me-a-standup-comedy-show-by-rahul-dua/)
 - [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)
-- [Ashywn Singh The Imperfect Ally Tour](https://gigsnshows.com/tour/ashywn-singh-the-imperfect-ally-tour/)
+- [Ashwyn Singh The Imperfect Ally Tour](https://gigsnshows.com/tour/ashwyn-singh-the-imperfect-ally-tour/)
 - [Bangtanverse Carnival Fan Tour](https://gigsnshows.com/tour/bangtanverse-carnival-fan-tour/)
 - [Casa Bacardi On Tour](https://gigsnshows.com/tour/casa-bacardi-on-tour/)
 - [Chirag Panjwani Live](https://gigsnshows.com/tour/chirag-panjwani-live/)
@@ -93,9 +93,9 @@
 - [Natarani Amphitheatre](https://gigsnshows.com/ahmedabad/venue/natarani-amphitheatre/)
 - [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
 - [Bangalore International Centre](https://gigsnshows.com/bengaluru/venue/bangalore-international-centre/)
+- [Banter Comedy Club](https://gigsnshows.com/bengaluru/venue/banter-comedy-club/)
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
 - [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
 - [Decathlon Sports Kalyan Nagar](https://gigsnshows.com/bengaluru/venue/decathlon-sports-kalyan-nagar/)
 - [Depot18 Sports](https://gigsnshows.com/bengaluru/venue/depot18-sports/)
-- [District Arena Terraform](https://gigsnshows.com/bengaluru/venue/district-arena-terraform/)
