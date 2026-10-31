@@ -56,7 +56,6 @@
 <url><loc>https://gigsnshows.com/bengaluru/venue/decathlon-sports-kalyan-nagar/</loc><lastmod>2026-10-30</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/bengaluru/venue/depot18-sports/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/bengaluru/venue/district-arena-terraform/</loc><lastmod>2026-10-29</lastmod><priority>0.7</priority></url>
-<url><loc>https://gigsnshows.com/bengaluru/venue/hamilton/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/bengaluru/venue/hard-rock-cafe-whitefield/</loc><lastmod>2026-10-28</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/bengaluru/venue/hard-rock-cafe/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/bengaluru/venue/icb-indian-craft-brewery/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
@@ -142,6 +141,7 @@
 <url><loc>https://gigsnshows.com/delhi/tomorrow/</loc><lastmod>2026-10-31</lastmod><priority>0.9</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/aiwan-e-ghalib-auditorium/</loc><lastmod>2026-10-29</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/dlf-club-5/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
+<url><loc>https://gigsnshows.com/delhi/venue/drama/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/hideout-comedy-club/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/hideout-studio/</loc><lastmod>2026-10-30</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/jawaharlal-nehru-stadium/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
@@ -150,7 +150,6 @@
 <url><loc>https://gigsnshows.com/delhi/venue/kedarnath-sahni-auditorium/</loc><lastmod>2026-10-30</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/laughter-nation-comedy-club-hauz-khas-village/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/little-theatre-group-ltg-auditorium/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
-<url><loc>https://gigsnshows.com/delhi/venue/moriva/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/studio-xo/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/the-comedy-theatre-hauz-khass-village/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/delhi/venue/the-comedy-theatre/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
@@ -213,7 +212,7 @@
 <url><loc>https://gigsnshows.com/hyderabad/this-weekend/</loc><lastmod>2026-10-31</lastmod><priority>0.9</priority></url>
 <url><loc>https://gigsnshows.com/hyderabad/today/</loc><lastmod>2026-10-31</lastmod><priority>0.9</priority></url>
 <url><loc>https://gigsnshows.com/hyderabad/tomorrow/</loc><lastmod>2026-10-31</lastmod><priority>0.9</priority></url>
-<url><loc>https://gigsnshows.com/hyderabad/venue/aaromale-cafe-and-creative-community/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
+<url><loc>https://gigsnshows.com/hyderabad/venue/aaromale/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/hyderabad/venue/akan/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/hyderabad/venue/big-bull-club/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/hyderabad/venue/gachibowli-stadium/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
@@ -322,7 +321,7 @@
 <url><loc>https://gigsnshows.com/lucknow/today/</loc><lastmod>2026-10-31</lastmod><priority>0.9</priority></url>
 <url><loc>https://gigsnshows.com/lucknow/tomorrow/</loc><lastmod>2026-10-31</lastmod><priority>0.9</priority></url>
 <url><loc>https://gigsnshows.com/lucknow/venue/gate-no-6-janeshwar-misra-park/</loc><lastmod>2026-10-30</lastmod><priority>0.7</priority></url>
-<url><loc>https://gigsnshows.com/lucknow/venue/lucknow-events-club/</loc><lastmod>2026-10-28</lastmod><priority>0.7</priority></url>
+<url><loc>https://gigsnshows.com/lucknow/venue/lucknow-events-club/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/ludhiana/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/ludhiana/music/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/ludhiana/stand-up/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -349,18 +348,17 @@
 <url><loc>https://gigsnshows.com/mumbai/tomorrow/</loc><lastmod>2026-10-31</lastmod><priority>0.9</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/3-art-house/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/7padel/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
+<url><loc>https://gigsnshows.com/mumbai/venue/antisocial-lower-parel/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/backspace/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/cidco-exhibition-convention-centre/</loc><lastmod>2026-10-29</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/dinanath-mangeshkar-natyagruha/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/dome-svp-stadium/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/funkaar/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/ink-a-laugh-comedy-club/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
-<url><loc>https://gigsnshows.com/mumbai/venue/jamshed-bhabha-theatre/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/jio-world-garden/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/khar-comedy-club/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/mahakavi-kalidas-natyamandir/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/mahalaxmi-race-course/</loc><lastmod>2026-10-23</lastmod><priority>0.7</priority></url>
-<url><loc>https://gigsnshows.com/mumbai/venue/mysore-association-auditorium/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/ncpa/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/prabodhankar-thackeray-audi/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
 <url><loc>https://gigsnshows.com/mumbai/venue/prithvi-theatre/</loc><lastmod>2026-10-31</lastmod><priority>0.7</priority></url>
@@ -465,6 +463,7 @@
 <url><loc>https://gigsnshows.com/shows/18-stand-up-sutra-uncensored-comedy-koregaonpark-83c9862ac3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/2-much-comedy-live-standup-comedy-3f33029fd9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/200-no-deposit-bonus-200-free-spins-real-money-2026-cashouts-041674a225/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/200-no-deposit-bonus-200-free-spins-real-money-how-to-check-acdeda1096/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/23-va-majala-0ab64aa946/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/23-va-majala-46d141e205/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/23-va-majala-5cb6be4926/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -574,6 +573,7 @@
 <url><loc>https://gigsnshows.com/shows/alpha-racing-cup-mumbai-round-6-1aacc3857b/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/alt-comedy-showcase-night-kcc-b98f2bf41e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/alt-diwali-by-until-unless-862e7dde52/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/alt-diwali-by-untill-unless-61020e4624/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/altaf-raja-live-cd57186ac3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/aman-shreeja-live-488b31d216/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/amar-swar-a-musical-tribute-sd-burman-rd-burman-33846e81a1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -699,7 +699,6 @@
 <url><loc>https://gigsnshows.com/shows/bhajan-jamming-shiva-concert-199056b49c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bhajan-jamming-with-krsna-sansaar-1889e1de16/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bhakti-raas-by-bhagavat-live-9100d48aca/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/bhangoner-gaan-by-the-tagore-boys-0035139a66/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bhen-code-ft-shreya-shashi-shikha-f4f3310f22/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bhramacha-bhopla-3ac70d6fe2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bhumika-66dfb8c38e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -714,10 +713,9 @@
 <url><loc>https://gigsnshows.com/shows/bitmela-ft-aashish-solanki-live-mela-dj-night-dfc515cf5e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/blind-men-club-0ee0aa0c90/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/boh-b-presents-a-very-besharam-diwali-party-9c6be71427/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/bolly-mayhem-sunday-ft-dilnawaz-band-82b6a6d6f2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/bollyjazz-15th-anniversary-edition-gom-26-db535e37bd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bollywood-dance-party-with-crooner-s-collective-07f5db673d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bollywood-mayhem-diwali-edition-185b6bd17a/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/bombay-baithak-x-the-living-room-presents-threads-ragas-5da94ff862/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bombay-theatre-co-s-annoyance-a-840dd36e58/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/bombay-velvet-2-0-ft-dj-ganesh-at-dragonfly-1be36e4d7e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/box-cricket-by-unclub-bengaluru-0850cbb91a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -799,7 +797,6 @@
 <url><loc>https://gigsnshows.com/shows/comedy-duo-with-advit-mohunta-and-tushar-poojari-b2932a5512/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-express-vicky-and-adi-s-standup-7535f415bb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-in-thane-7d3f5244d1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/comedy-jam-learn-stand-up-from-the-inside-4892781967/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-janta-party-stand-up-comedy-specials-641d76f0dc/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-left-right-and-centre-ff0d2c47a2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-night-in-jaipur-b92a63ee58/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -807,6 +804,7 @@
 <url><loc>https://gigsnshows.com/shows/comedy-nights-in-connaught-place-d75f47c8f3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-open-mic-a-standup-stage-for-all-2a6c191716/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-open-mic-a42ad68540/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/comedy-show-agra-1d3b8c7346/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/comedy-unplugged-3ba02b34e0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/commonwealth-kabaddi-championship-2026-1f10748a30/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/concert-2027-0e7decc48b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -829,7 +827,6 @@
 <url><loc>https://gigsnshows.com/shows/dance-for-dance-festival-2026-6561858505/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dance-like-a-man-52fd77f77a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dandiya-dance-party-244ff55c8f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/dark-jokes-only-542d81b1aa/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/darshan-raval-s-love-letters-india-tour-1adbaa2100/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/darshan-raval-s-love-letters-india-tour-97f0c26bda/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/darshan-raval-s-love-letters-india-tour-afe497d34a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -856,7 +853,6 @@
 <url><loc>https://gigsnshows.com/shows/dgtl-goa-2026-1b1f84ce72/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dhurandhar-badminton-tournament-2026-23781755b3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dhvani-bhanushali-live-in-bengaluru-7677762fbb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/dia-de-los-muertos-sabrina-terence-and-sinister-suuzxmyparty-40a4dde8c4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dil-dhoondhta-hai-an-unforgettable-celebration-of-music-8ba8758e7c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dil-toh-bachha-hai-ji-20a0526645/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/diljit-dosanjh-rupay-aura-india-tour-ahmedabad-1559239648/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -894,7 +890,6 @@
 <url><loc>https://gigsnshows.com/shows/diy-sock-puppet-98346cabf9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/diy-sunglass-holder-78a4323195/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dj-chetas-live-at-unvrs-goa-e8599f19dc/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/dj-sazi-live-at-hamilton-b629b9aa98/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dnd-2-0-dance-and-diwali-f8a223a054/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/do-chashmish-ft-karunesh-talwar-aakash-mehta-1291a485b9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/do-chashmish-ft-karunesh-talwar-aakash-mehta-kcc-4c4e9a56c7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -915,6 +910,7 @@
 <url><loc>https://gigsnshows.com/shows/dukhan-60c7e15de1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dumber-dumbest-an-alt-comedy-show-6718d6fbf4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dump-him-storytelling-9a21d6c187/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/duos-ft-swati-sachdeva-urooj-ashfaq-kcc-6bbb6ab62f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/duplessy-and-the-violins-of-the-world-11c2b720c9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/durbar-evenings-by-godawan-estuary-water-tajdar-junaid-prese-bdfb95bb63/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/dwarka-legends-half-marathon-c350d16013/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -923,7 +919,7 @@
 <url><loc>https://gigsnshows.com/shows/echoes-of-the-ramayana-a-live-theatrical-experience-d848f2d06f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ecstatic-dance-festival-india-2027-64ff8f468e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/eden-of-sounds-into-the-new-dawn-edc06d237e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/eden-s-garten-hard-rock-74e7a0869e/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/eden-s-garten-hard-rock-74e7a0869e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ee-bandhana-idu-amrutha-kshana-beeb672ea8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ek-akela-iss-sheher-mein-69f2168c82/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ek-aur-dronacharya-08a86e9f05/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
@@ -935,14 +931,13 @@
 <url><loc>https://gigsnshows.com/shows/eka-lagnachi-pudhchi-gosht-dd0dcd4e04/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ekada-pahava-karun-4b3ef19949/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/eklavya-the-wronged-968436eb15/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/ekok-nachiketa-2026-51e7ecb60a/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/ekok-nachiketa-2026-51e7ecb60a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/el-clasico-india-tour-2026-e94912c54c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/enai-presented-by-raeeth-71775ea405/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/english-comedy-evening-4c7df951bd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/english-karaoke-nights-9f6ae5c6ea/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/english-open-mic-night-be279860bd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/enter-the-blue-dimension-futuristic-blue-night-1dd779134a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/eto-sur-ar-eto-gaan-7e9bf92408/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/evergreen-romantic-songs-by-javed-ali-f60164ac16/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/every-brilliant-thing-606f07c14e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/evolution-a-standup-comedy-show-acb15c30c8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -952,7 +947,6 @@
 <url><loc>https://gigsnshows.com/shows/evolution-by-arvind-sunder-ef576a62e3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/evolution-vol-2-the-future-610406f3c4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/f1-sim-racing-india-open-2026-5706d461fb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/f4ces-1niti4l1s4t1on-9551ca36ff/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/faheem-abdullah-the-unbecoming-india-tour-ahmedabad-b62e217de2/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/faheem-abdullah-the-unbecoming-india-tour-delhi-0db485b394/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/faheem-abdullah-the-unbecoming-india-tour-hyderabad-00b3d9e995/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -975,7 +969,7 @@
 <url><loc>https://gigsnshows.com/shows/federal-bank-kochi-marathon-2027-7426dd5d9e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/festival-of-festive-music-2026-2295ad7e97/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/festive-bazaar-2026-mindspace-fusion-1a7491ba79/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/fifty-fifty-stand-up-comedy-show-3c09fda836/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/fifty-fifty-stand-up-comedy-show-3c09fda836/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/fifty-shades-of-ha-ha-stand-up-comedy-show-d604265ee1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/fit-mumbai-marathon-e456cc3ca4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/folk-bhim-lalkar-f4376c786b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1010,7 +1004,6 @@
 <url><loc>https://gigsnshows.com/shows/gaia-3-day-festival-pass-c78edeb593/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gajendra-singh-suneel-lodhi-live-by-onelife-d8e2f26614/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gajendra-verma-mann-mera-tour-live-in-bengaluru-fe4fa9cdd3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/gallan-te-geet-the-punjabi-women-s-edit-e67d7bb0b5/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gamaka-open-mic-9ec9df53e0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ganesh-live-9f39be55c6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ganesh-live-c0929223a1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1038,19 +1031,16 @@
 <url><loc>https://gigsnshows.com/shows/get-set-shoot-f3b9fb986d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/get-set-shoot-igsc-new-delhi-f63e908c74/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghalib-in-new-delhi-c3fc141352/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-05d7bb87ca/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-0664b76c3d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-4168a416d8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-51e03f432a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-5374345634/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-7e10c6b78e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-850637a940/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-cf924d7d1b/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-cf924d7d1b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-d778a79f79/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-e36c78da02/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-e96ec8f0e4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-ec3c76acf2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-f9226a04a0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghar-an-open-mic-for-words-by-tape-a-tale-noida-b17e27a58f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghazal-ki-mehfil-ranjeet-rajwada-live-in-nagpur-e8b86570a6/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ghaziabad-hasega-a-stand-up-comedy-night-cac99f8bf3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1058,10 +1048,10 @@
 <url><loc>https://gigsnshows.com/shows/global-youth-festival-ahmedabad-edition-2027-963fb1d5be/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/global-youth-festival-pune-edition-2027-aee86da458/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/go-with-the-flow-a-comedy-gameshow-798643d9d4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/goa-is-a-bebinca-a-food-theatre-experience-cb9b39675e/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/goa-is-a-bebinca-a-food-theatre-experience-cb9b39675e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/godawan-durbar-evenings-orchestral-qawwali-project-21a8ce9604/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/godawan-durbar-evenings-orchestral-qawwali-project-a1b4b48213/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/godawan-durbar-evenings-orchestral-qawwali-project-b3a36ff865/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/godawan-durbar-evenings-orchestral-qawwali-project-b3a36ff865/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/godawan-durbar-evenings-orchestral-qawwali-project-ee17f0db1a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/goflorun-edition-3-women-only-a17cf25b18/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gokulam-fc-vs-samaleswari-sc-31st-oct-2026-ee7307d466/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
@@ -1070,7 +1060,7 @@
 <url><loc>https://gigsnshows.com/shows/gondhali-by-ashish-patil-d99b0ee5d7/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/goodboy-1da25ab0c3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gorillaz-the-mountain-tour-2027-84e6035e77/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/gorillaz-the-mountain-tour-2027-8ba9cd1422/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/gorillaz-the-mountain-tour-2027-8ba9cd1422/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gorillaz-the-mountain-tour-2027-b838875c86/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gourmet-coffee-festival-65ceca8378/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gourmet-coffee-festival-pune-9124fc8e05/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1094,6 +1084,7 @@
 <url><loc>https://gigsnshows.com/shows/guns-n-roses-india-2026-guwahati-187be8b493/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gupi-baghar-kando-5aab22b231/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gurdas-maan-pride-of-punjab-live-in-concert-pune-b1b1a73b65/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/gurnazar-live-1971c30243/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gurugram-festival-season-3-f4b3c21e4c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/gurugram-legends-half-marathon-2026-4912cec259/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/guwahati-international-marathon-80117aef86/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1148,7 +1139,7 @@
 <url><loc>https://gigsnshows.com/shows/hasna-jaroori-hai-2ea7000b04/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hate-my-job-standup-comedy-show-presented-by-ink-a-laugh-830cb908b1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hayate-sufi-ft-hamsar-hayat-nizami-9914a93da8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/hayavadana-7775fa2954/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/hayavadana-7775fa2954/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/healthon-half-marathon-cba09b99c0/</loc><lastmod>2026-10-26</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/healthon-half-marathon-kanpur-4905b73311/</loc><lastmod>2026-10-26</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hearts-unfiltered-61b69cefa7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1157,9 +1148,9 @@
 <url><loc>https://gigsnshows.com/shows/hero-community-run-2026-05a898f55b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hi-dosti-tutaychi-naay-96db458333/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/high-on-batata-comedy-trial-show-by-aditya-sawant-2a511036a0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/high-on-batata-comedy-trial-show-by-aditya-sawant-a956f4f736/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/high-on-batata-comedy-trial-show-by-aditya-sawant-a956f4f736/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/high-on-batata-comedy-trial-show-de44cc6d66/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/himanshu-dixit-live-dbe376d84c/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/himanshu-dixit-live-dbe376d84c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hindi-thoda-maalum-hinglish-comedy-openmic-show-ae3cdbe5fb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hiphop-tamizha-the-sing-along-night-6979bd09a3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/home-festival-2026-7ecde0544e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1187,7 +1178,6 @@
 <url><loc>https://gigsnshows.com/shows/hyderabad-comic-con-83c303c458/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hyderabad-open-chess-championship-2026-3b8ee11a0b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hyfit-games-fitness-festival-9d787b026a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/hyrox-adda-57715db471/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/hyrox-simulation-da5a44d75f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/i-play-rocky-run-0890dc9bbe/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/i-play-rocky-run-4624b4bbd9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1271,6 +1261,7 @@
 <url><loc>https://gigsnshows.com/shows/jamming-night-chandigarh-6e3a76f592/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/jamming-night-f727674a88/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/jamming-night-mumbai-f9f483291e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/jamming-night-pune-f938145677/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/japanese-momigami-8fa10de28b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/japanese-oshibana-a5be2b5be0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/jashn-e-diwali-1e5bdc60fc/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1299,10 +1290,12 @@
 <url><loc>https://gigsnshows.com/shows/kahanibaaz-by-ashish-vidyarthi-0169ac185b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/kahanibaaz-by-ashish-vidyarthi-0894587296/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/kahanibaaz-by-ashish-vidyarthi-b6ad754de1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/kahaniyan-sunaata-hun-3b4ddf81b9/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/kahaniyan-sunaata-hun-by-neelesh-misra-323d6b9a4e/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/kahaniyan-sunaata-hun-3b4ddf81b9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/kahaniyan-sunaata-hun-by-neelesh-misra-323d6b9a4e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/kahaniyan-tour-by-parth-srivastava-c69075f3d6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/kahat-kabir-by-anirudh-varma-collective-323e322484/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/kaifi-aur-main-delhi-theatre-festival-866f8a3250/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/kala-mandir-kolkata-ee1c7b1d1b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/kala-unboxed-vidushi-vishakha-hari-anupam-joshi-carnatic-voc-1ade2341d0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/kalaripayattu-motoverse-2026-0d7bd2b8e0/</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/kammanahalli-comedy-show-ba66953089/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1388,20 +1381,18 @@
 <url><loc>https://gigsnshows.com/shows/latin-bolly-bash-diwali-edition-salsa-socials-887eda875a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/laughda-club-weekend-comedy-night-fd8da26238/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/laughter-leaks-standup-comedy-3a8630b719/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/laughter-therapy-hyderabad-3a4f90c486/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/laxmikant-pyarelal-live-concert-4261956106/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/layatharanga-live-in-concert-239ff47f14/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/lazer-crazer-battlezone-delhi-23b2d08a37/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/lazer-crazer-battlezone-noida-9140ad5841/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/lazer-crazer-noida-2-0-03c41214cc/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/learn-musical-instrument-by-our-xpert-music-tutor-d88cba7aa8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/let-s-laugh-kolkata-a-standup-comedy-show-94ee2101c4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/let-s-jam-192-with-ojas-joshi-0c19ec8b53/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/let-s-jam-72-with-ojas-joshi-40ad993761/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/let-your-stories-meet-mine-a-stand-up-comedy-show-7d0cdc2f54/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/let-your-stories-meet-mine-a-stand-up-comedy-show-cf9bac6244/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/let-your-stories-meet-mine-by-nishant-tanwar-9e8b72ecfe/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/let-your-stories-meet-mine-ft-nishant-tanwar-ee722d5911/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/lets-jam-192-with-ojas-joshi-0c19ec8b53/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/lets-jam-72-with-ojas-joshi-40ad993761/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/level-up-halloween-bowling-arcade-games-house-music-6b336e759f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/level-up-play-fest-centrio-mall-8ae2c483b8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/level-up-play-fest-centrio-mall-dehradun-df81b0f8d1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1418,7 +1409,7 @@
 <url><loc>https://gigsnshows.com/shows/little-beats-festival-whitefield-671a12af3c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/little-giants-festival-9eeda1130a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/live-comedy-in-wakad-9pm-by-feelz-comedy-c4dba28e7f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/live-music-at-gostops-060ef32e5b/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/live-music-at-gostops-060ef32e5b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/live-music-at-gostops-1053e30b46/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/live-music-at-gostops-6f6c2a21fb/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/live-music-at-gostops-baga-goa-561079a4f9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1459,7 +1450,6 @@
 <url><loc>https://gigsnshows.com/shows/main-ab-bhi-wahin-hun-by-pankaj-jeena-a8794a5e02/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/main-ab-bhi-wahin-hun-by-pankaj-jeena-e4e46e1d72/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/main-pal-do-pal-ka-shayar-hoon-079d12191b/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/maine-kuch-galat-bola-ft-rajat-dikshit-58cfe2cf5f/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/majlis-6-0-d4aa744b5c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/malappuram-fc-vs-calicut-fc-1st-nov-2026-96be785dea/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/mamangam-dance-company-s-vattam-ac2304191b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1476,6 +1466,7 @@
 <url><loc>https://gigsnshows.com/shows/manoj-muntashir-s-krishna-radha-se-ranbhumi-tak-701c7efa38/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/marathi-vangmayacha-gholeev-itihas-be1aafd556/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/marga-music-festival-2026-81a24bcbbd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/married-bachelor-60235c2d09/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/married-bachelor-standup-comedy-by-gaurav-mahna-2f86036950/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/marwadi-dreams-stand-up-comedy-show-by-mayank-parekh-c3da9b2ed7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/marwadi-dreams-standup-comedy-by-mayank-parakh-0037ef3d7a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1496,7 +1487,7 @@
 <url><loc>https://gigsnshows.com/shows/mercury-classic-rock-09fb1a4458/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/mere-krishn-a-live-theatrical-experience-of-shree-krishn-lif-0002231dac/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/mere-krishn-a-live-theatrical-experience-of-shree-krishn-s-l-00a8711541/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/mere-krishn-a-live-theatrical-experience-of-shree-krishn-s-l-2ec86b88ad/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/mere-krishn-a-live-theatrical-experience-of-shree-krishn-s-l-2ec86b88ad/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/mere-krishn-a-live-theatrical-experience-of-shree-krishn-s-l-3dd42b09b5/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/mere-krishn-a-live-theatrical-experience-of-shree-krishn-s-l-8be1c43613/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/mere-krishn-a-live-theatrical-experience-of-shree-krishn-s-l-b754691282/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1619,7 +1610,7 @@
 <url><loc>https://gigsnshows.com/shows/oaksmith-live-with-sunanda-sharma-6f17e2f700/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/oddoneout-comedy-fest-ft-ravi-gupta-kullu-692cf79757/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/offer-dafa8a0798/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/office-chugli-stand-up-comedy-crowd-work-show-971ea7fa93/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/office-chugli-standup-comedy-crowdwork-show-971ea7fa93/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/offweek-india-b8c8e36324/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/oktoberfest-goa-2026-590ca729a8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/olly-fest-6f715112bd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1628,6 +1619,7 @@
 <url><loc>https://gigsnshows.com/shows/on-the-big-beautiful-musical-path-d0b2ff57ea/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/on-the-spot-improv-f59d1e8bdd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/on-the-spot-open-mic-5693d89fa4/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/one-night-at-bflat-chasing-the-blues-85fd73c5c2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/one-night-in-toki-o-21fd9c01d9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/one-night-one-tribute-kishore-kumar-evergreen-jam-cf7190e9a1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/one-night-one-tribute-kk-and-arijit-singh-jamming-c7e0192204/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1702,7 +1694,7 @@
 <url><loc>https://gigsnshows.com/shows/osho-jain-mere-ghar-chalo-india-tour-b404200dae/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/osho-jain-mere-ghar-chalo-india-tour-b8fe841c45/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/osho-jain-mere-ghar-chalo-india-tour-c45d35e0d3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/osho-jain-mere-ghar-chalo-india-tour-d11c720814/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/osho-jain-mere-ghar-chalo-india-tour-d11c720814/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/osho-jain-mere-ghar-chalo-india-tour-e64890fa05/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/osho-jain-mere-ghar-chalo-india-tour-f303e5c6b0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/osman-mir-aamir-mir-live-in-concert-47de0fda79/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1712,7 +1704,7 @@
 <url><loc>https://gigsnshows.com/shows/out-of-syllabus-sapan-verma-2026-new-tour-5925a958d8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/out-of-syllabus-sapan-verma-2026-new-tour-bfa9cf38a3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/out-of-syllabus-sapan-verma-2026-new-tour-c67adc8d64/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/out-of-syllabus-sapan-verma-2026-new-tour-d24aec42f0/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/out-of-syllabus-sapan-verma-2026-new-tour-d24aec42f0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/out-of-syllabus-sapan-verma-2026-new-tour-fd552b69be/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/overconfidence-standup-comedy-by-ravi-khurana-86638f6322/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/padelball-championship-2026-jungle-trail-eebaaa7846/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1735,7 +1727,7 @@
 <url><loc>https://gigsnshows.com/shows/papon-live-in-concert-cbce486d84/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/papon-live-in-concert-e32dc5f556/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/papon-live-in-concert-ecf47d2520/</loc><lastmod>2026-10-26</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/paresh-pahuja-live-in-surat-87694e8fda/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/paresh-pahuja-live-in-surat-87694e8fda/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/partner-s-in-crime-5da5c5f184/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/parvati-la-cantante-892a362772/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/parvinder-singh-caec958e7f/</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
@@ -1758,7 +1750,7 @@
 <url><loc>https://gigsnshows.com/shows/pinnaca-2026-e67b79416e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pixel-art-5f22b1af12/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/piyu-tame-yad-aavya-live-musical-night-1ba812f6c3/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/play-basketball-get-active-again-f03d6a1856/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/play-basketball-get-active-again-f03d6a1856/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/plug-n-play-de31006c92/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/poetry-open-mic-6deb837ed7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/poetry-open-mic-by-mic-loft-b50f93a868/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1774,21 +1766,23 @@
 <url><loc>https://gigsnshows.com/shows/prajwal-raj-live-a-stand-up-comedy-solo-50bb78e92b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/praroh-s-baab-a-f6f052d349/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/prashasti-singh-trial-show-ef8e4e19a3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-18dd7dc42b/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-18dd7dc42b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-3467d63ab8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-61f8aa5a48/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-6386804cd1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-8be1d464f9/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-9bc1e83dcf/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-9bc1e83dcf/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pratyush-chaubey-live-in-mumbai-be774e99b6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pravit-arora-live-23baeaa6ca/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pre-diwali-bash-desi-night-d341e7634c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/pre-diwali-bash-ft-dj-mikie-d897dc1592/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/prime-engage-jr-chess-championship-898c426245/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/prime-engage-jr-chess-championship-9bfe13847e/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/prime-engage-jr-chess-championship-ce481de5a3/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/primetime-comedy-show-b64e736842/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/primetime-theatre-s-everything-we-forgot-to-say-dcda374d64/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pritish-narula-live-in-saharanpur-standup-comedy-1fb35a252a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/privacy-settings-81925090d8/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/privacy-settings-81925090d8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/priyanka-barve-and-vaibhav-joshi-live-in-concert-9b64f0e6a1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/progressive-rock-band-ft-abhishek-thakur-fe0646818e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pseudo-gujarati-ft-nishant-tanwar-c81b6827c2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1796,6 +1790,7 @@
 <url><loc>https://gigsnshows.com/shows/pulancha-vyakti-valli-aani-gangot-744a5eb0b5/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/punaha-theatre-udupi-s-pushp-eb5fb3524e/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/punch-pe-punch-hinglish-stand-up-comedy-show-da7aae7a88/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/pune-comic-con-accaadbc69/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/pune-improv-jam-858f2d7974/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/punha-nakki-bhetu-f770ac1a54/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/punit-pania-live-at-bangalore-international-centre-2c28425815/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
@@ -1855,6 +1850,7 @@
 <url><loc>https://gigsnshows.com/shows/renault-hifaf-festival-pass-5cc12b3591/</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/retired-not-hurt-a-tamil-stand-up-show-05156b03f5/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/retired-not-hurt-a-tamil-stand-up-show-81cee15a66/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/retro-budhwar-ft-gaurav-singh-12c696003a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/retro-metro-kannada-jam-6cc50abf78/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/retro-rock-pop-ft-tidal-wave-from-goa-f71610523a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/retro-tamil-night-at-goat-restrobar-191297f97e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1864,7 +1860,6 @@
 <url><loc>https://gigsnshows.com/shows/rising-notes-orchestra-and-choir-576c7a48d5/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/rising-stars-of-comedy-standup-comedy-2dac9e6de7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/risky-by-harman-preet-singh-e8e7da1779/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/roast-battle-chennai-96a1752e59/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/rock-bottom-a-standup-solo-by-shubham-pujari-350c812cbc/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/rock-bottom-a-standup-solo-by-shubham-pujari-cb07b4bd46/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/rock-revival-ft-soul-smoke-37617639d4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1892,7 +1887,7 @@
 <url><loc>https://gigsnshows.com/shows/rupali-tyagi-live-5eedc2b907/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/rupali-tyagi-live-841f98f2f7/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/rupali-tyagi-live-906cdf1f99/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/rupali-tyagi-live-9d660b70ab/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/rupali-tyagi-live-9d660b70ab/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ruuh-bakhsh-725a0e0fb7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/ryce-blr-ep-1-badminton-4af8f2d61e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/s-x-jokes-only-an-adult-comedy-show-9dd0e13c23/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1911,7 +1906,7 @@
 <url><loc>https://gigsnshows.com/shows/samay-raina-live-delhi-yashobhoomi-6b4f776336/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/samay-raina-live-mumbai-dome-svp-stadium-a81387757a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/samay-raina-live-mumbai-sri-shanmukhananda-chandrasekarendra-d0b747a114/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/samay-raina-live-pune-mayfield-estate-2e8f536479/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/samay-raina-live-pune-mayfield-estate-2e8f536479/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sambhavami-yugey-yugey-5e06e65fc4/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sambhavami-yugey-yugey-9c5fbb9f7c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/same-same-but-diflent-standup-comedy-9d8a274775/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1926,7 +1921,6 @@
 <url><loc>https://gigsnshows.com/shows/sapan-verma-live-ae4bb909f3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/saransh-productions-hamsa-cc60db2744/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/saturday-big-bollywood-jashn-night-4caed0b34e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/saturday-biggest-bollywood-halloween-night-at-rooftop-skyye-066281528e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/saturday-brunch-munch-punch-comedy-show-aed20eed26/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/saturday-comedy-night-7cf2e7ff12/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/saturday-evening-live-7pm-by-feelz-comedy-f7eec80a04/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -1959,7 +1953,7 @@
 <url><loc>https://gigsnshows.com/shows/sbi-green-marathon-s7-trivandrum-a56dbc5246/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/scandalous-saturday-at-the-game-palacio-hyderabad-6042e58ca7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/scary-halloween-ft-indian-bandana-by-dj-sourabh-b3a5609729/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/seedhe-mauj-stand-up-comedy-show-a231b0e5bb/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/seedhe-mauj-stand-up-comedy-show-a231b0e5bb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/seeta-geeta-a-standup-comedy-show-9d18f27438/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/seeta-geeta-a-standup-comedy-show-c9f06f5d7c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/seeta-geeta-a-standup-comedy-show-e27002a184/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2048,7 +2042,7 @@
 <url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-2f4354656c/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-7e9c0b530d/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-85c711f38a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-8f1d5656b8/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-8f1d5656b8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-a34f1bb905/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-fe320aad31/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sonu-nigam-the-revolution-india-tour-navi-mumbai-7dc4d1b01d/</loc><lastmod>2026-10-26</lastmod><priority>0.8</priority></url>
@@ -2060,7 +2054,6 @@
 <url><loc>https://gigsnshows.com/shows/spark-run-2026-up-darshan-park-c312e4a65d/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/spb-lives-with-sp-charan-451d87ad12/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/spender-bender-live-kcc-1511a128cf/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/spindoctor-live-at-hamilton-95c274bf6d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/spitty-hello-world-tour-mumbai-d18d39e61b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/spitty-hello-world-tour-new-delhi-df5d6859c6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/spoiler-alert-a-standup-comedy-solo-by-anshu-mor-4beb2efe03/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2126,6 +2119,7 @@
 <url><loc>https://gigsnshows.com/shows/sufi-qawwali-night-ft-mehfil-e-nayab-10f8b042e8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sufi-raag-at-the-terrace-ghaziabad-7bec05d03f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sufiyana-dcaec7c35d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/sufiyana-friday-ft-akshita-11623026db/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sufiyana-shaam-with-nizami-brothers-6e9d0be13f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sukhwinder-singh-live-in-thane-a38238f818/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/sunburn-arena-ft-dj-snake-050ae3781b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2151,7 +2145,7 @@
 <url><loc>https://gigsnshows.com/shows/swarazankar-music-festival-c4139380e8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/swarnim-musicals-495829cd50/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/swayam-live-in-goa-baa18e5aa6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/swayam-live-in-kolkata-d1a72bfb2d/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/swayam-live-in-kolkata-d1a72bfb2d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/swayamsiddha-kunti-b3b074e014/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/swayamvara-silks-presents-vidhu-prathap-live-kottarakkara-519d53d1a3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/swiftie-night-birthday-edition-a279fc37f8/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2166,6 +2160,7 @@
 <url><loc>https://gigsnshows.com/shows/tab-tum-kahaan-the-by-sundeep-sharma-e873b05955/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/taj-palace-delhi-presents-sukhwinder-singh-live-8c5f3d4a54/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tales-of-tomorrow-live-at-hammerzz-d-dropp-bb073c6f99/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/talli-tuesday-ft-dj-mikie-1781e89d03/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tamanna-s-pop-quintet-9cfd374b0c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tamboo-s-yo-brother-this-is-95-a-musical-707fe0aa60/</loc><lastmod>2026-10-27</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tamil-jam-90s-and-2000s-reloaded-retro-music-night-17ac78f494/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2180,12 +2175,13 @@
 <url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-171ded1229/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-2c7b11771d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-8fcae5c876/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-bba224c21a/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-bba224c21a/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-c710d8f4e3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-ddba74116e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/taylor-swift-s-the-eras-night-3-0-ffd45a52fb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/teachers-open-comedy-festival-b33c9aebfd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tedxcvs-play-a1f1f9aaa2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/teeling-dublin-nights-pocket-iv-90dfe721bb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/teen-prahar-a-unique-musical-experience-f214a2f796/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/telangana-half-marathon-2k27-b7384f7787/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/telling-lies-a-standup-solo-by-aashish-solanki-26dd81cfd3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2218,17 +2214,16 @@
 <url><loc>https://gigsnshows.com/shows/the-drawing-room-by-argo-a3ddbdd007/</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-forest-and-the-self-cf1c6832ef/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-funny-five-f8977a2464/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/the-grand-utopia-delhi-2026-kartikkeya-10fd0cfe4b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-great-indian-musical-civilization-to-nation-ba19e2e091/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-great-indian-science-festival-4e40d4ba55/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-heart-song-by-parvathy-baul-and-george-brooks-0cb54b884b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-jazz-masters-listening-session-fb653b2f49/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-late-night-comedy-show-cbee26b892/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-line-up-a-stand-up-comedy-show-02740b72a3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/the-magic-music-experience-9c3e67a982/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/the-magic-music-experience-9c3e67a982/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-magic-of-mukesh-live-musical-night-83c6fa39e1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-magic-of-mukesh-live-musical-night-b192c8d788/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/the-magic-of-mukesh-live-musical-night-c687cc9b37/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/the-magic-of-mukesh-live-musical-night-c687cc9b37/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-mahima-sogani-show-c49ac6b6cf/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-midnight-comedy-show-0e47e105ff/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-narcissist-7fa28b17ff/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2267,7 +2262,6 @@
 <url><loc>https://gigsnshows.com/shows/the-pop-order-by-prateeksha-2711269d6e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-raghu-dixit-project-and-hooligaanism-689527b5df/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-raghu-dixit-project-live-in-bangalore-33fad3b9d3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/the-raghu-dixit-trio-live-at-2-pints-whitefield-4bf76eb7c6/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-srk-birthday-special-themed-jam-4bee1109cd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-srk-special-jam-bengaluru-a9c95420f6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-srk-special-jam-dcf8ac9ab1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2276,6 +2270,7 @@
 <url><loc>https://gigsnshows.com/shows/the-symphony-queens-96396706b6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-synergy-bhajan-jamming-10de3de0eb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-thing-with-feathers-bengaluru-theatre-festival-59000fedbd/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/the-ultimate-championship-002782ab05/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-ultimate-saturday-night-experience-un80-0265a4eb7c/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-unhinged-af-improv-comedy-show-be601dde3d/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/the-unity-ultra-run-ab13717d81/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2302,6 +2297,7 @@
 <url><loc>https://gigsnshows.com/shows/tolly-x-bolly-musical-jamming-by-nikhitha-ce8ae97698/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tolly-x-bolly-musical-jamming-ft-likhitha-e5ab5df7d6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tollywood-jamming-night-halloween-special-8d7fc1b1ef/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/tollywood-jamming-night-halloween-special-aishwarya-164e6ba8be/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tollywood-musical-jamming-ft-anjali-63b0e875be/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/tollywood-musical-jamming-ft-aparna-897f74320b/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/toronto-to-paris-ft-raj-sheth-5817be1d72/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2340,7 +2336,7 @@
 <url><loc>https://gigsnshows.com/shows/unromantic-a-stand-up-trial-show-by-ronit-rao-4944655e31/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/untested-db87bf6b33/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/untold-dubai-2027-5b87bf77aa/</loc><lastmod>2026-10-26</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/urubanga-f7d8be53b6/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/urubanga-f7d8be53b6/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/usha-uthup-live-in-borivali-3d732cd4f4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/usha-uthup-with-live-orchestra-d59aa994a9/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/utkarsh-calling-utkarsh-a-standup-comedy-show-7b38c5191f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2349,7 +2345,6 @@
 <url><loc>https://gigsnshows.com/shows/vaibhav-pani-live-at-antisocial-31f650d5eb/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/vaidai-gujarati-standup-comedy-show-0ff1dda3c7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/vanam-s-i-don-t-want-a-husband-i-want-a-wife-57e2ecf9db/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/vandana-ki-sufi-bethak-d7a1ccb603/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/vedanta-presents-jaigarh-heritage-festival-2026-75a02ff4a7/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/veera-rani-abbakka-db95f25f15/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/veil-of-darkness-0459b24e2f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2357,6 +2352,7 @@
 <url><loc>https://gigsnshows.com/shows/vibe-music-jam-113e49d6b3/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/vichha-mazi-puri-kara-e4862d3c18/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/vichha-mazi-puri-kara-eec2609cc4/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/victor-ruiz-at-antisocial-mumbai-f515ee9fcc/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/victor-ruiz-c3b70d02f2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/vijay-antony-live-in-concert-bangalore-089e7721c0/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/vikkals-comedy-cafe-a-standup-comedy-mic-a292e42e74/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2389,7 +2385,6 @@
 <url><loc>https://gigsnshows.com/shows/wicked-hour-uncensored-comedy-in-ahmedabad-6419c4c9e2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/wicked-wonderland-a-halloween-themed-night-24b8d5bf97/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/wicked-wonderland-halloween-night-party-7bee1568db/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/shows/wine-tasting-food-pairing-1425ead8b1/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/wings-of-love-2027-kolkata-ft-kumar-sanu-and-udit-narayan-d559072f25/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/with-love-aap-ki-saiyaara-9f60350ca2/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/woh-waale-jokes-a-standup-comedy-show-0fd6ecfe33/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2412,6 +2407,7 @@
 <url><loc>https://gigsnshows.com/shows/zar-the-star-call-centre-revenge-india-tour-2026-980f71b803/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/zar-the-star-call-centre-revenge-india-tour-2026-delhi-ncr-eaaec7472e/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/zariyaa-wellness-and-happiness-festival-3dd6b5a1ae/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/shows/zenith-tribe-x-souldout-presents-ape-drums-183d588a6f/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/shows/zero-gravity-32de3e5012/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/siliguri/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/siliguri/music/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -2432,7 +2428,7 @@
 <url><loc>https://gigsnshows.com/thrissur/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/thrissur/sports/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/23-va-majala/</loc><lastmod>2026-10-30</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/tour/aakash-mehta-the-wedding-show-stand-up-comedy/</loc><lastmod>2026-10-26</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/tour/aakash-mehta-the-wedding-show-stand-up-comedy/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/abijit-ganguly-live/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/allow-me-a-standup-comedy-show-by-rahul-dua/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority></url>
@@ -2448,7 +2444,7 @@
 <url><loc>https://gigsnshows.com/tour/farewell-an-entropy-of-separation/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/gaurav-baisla-live/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/ghar-an-open-mic-for-words-by-tape-a-tale/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/tour/godawan-durbar-evenings-orchestral-qawwali-project/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/tour/godawan-durbar-evenings-orchestral-qawwali-project/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/gorillaz-the-mountain-tour-2027/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/gujarati-ane-by-amit-khuva-standup-comedy/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/halki-halki-fati-by-vikas-kush-sharma/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority></url>
@@ -2490,17 +2486,17 @@
 <url><loc>https://gigsnshows.com/tour/shreeman-shreemati/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/shreya-ghoshal-the-unstoppable-india-tour/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/sonu-nigam-the-revolution-india-tour/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/tour/spoiler-alert-a-standup-comedy-solo-by-anshu-mor/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/tour/spoiler-alert-a-standup-comedy-solo-by-anshu-mor/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/straight-up-a-stand-up-solo-by-jaspreet-singh/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/tab-tum-kahaan-the-by-sundeep-sharma/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/taylor-swift-s-the-eras-night-3-0/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/tour/telling-lies-a-standup-solo-by-aashish-solanki/</loc><lastmod>2026-10-29</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/tour/telling-lies-a-standup-solo-by-aashish-solanki/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/the-magic-of-mukesh-live-musical-night/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/times-internet-half-marathon/</loc><lastmod>2026-10-24</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/ufff-yellam-sari-agidum/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/vipul-goyal-unleashed/</loc><lastmod>2026-10-28</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/tour/vishnu-pai-live/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
-<url><loc>https://gigsnshows.com/tour/zar-the-star-call-centre-revenge-india-tour-2026/</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
+<url><loc>https://gigsnshows.com/tour/zar-the-star-call-centre-revenge-india-tour-2026/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/udaipur/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/udaipur/music/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 <url><loc>https://gigsnshows.com/udaipur/stand-up/</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
