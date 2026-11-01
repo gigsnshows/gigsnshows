@@ -143,6 +143,10 @@ def check_sources(h, sources):
             if count == 0:
                 errors.append(f"{name}: returned nothing on its last run (usually {med:.0f}); the old listings are being kept")
                 problems.append("returned nothing")
+            elif count < DROP_ERROR * med and s.get("failed_cities"):
+                # Cities that came back empty keep their earlier shows, so a low count here is a partial read, not lost listings.
+                warnings.append(f"{name}: returned {count} shows on its last run, below the usual {med:.0f} (earlier shows kept for {', '.join(s['failed_cities'])})")
+                problems.append(f"{count} vs usual {med:.0f}, partial")
             elif count < DROP_ERROR * med:
                 errors.append(f"{name}: returned {count} shows on its last run, well below the usual {med:.0f}")
                 problems.append(f"{count} vs usual {med:.0f}")
