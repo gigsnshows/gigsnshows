@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,744 upcoming shows in 67 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-01).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,744 upcoming shows in 67 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-01).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 349 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 251 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 246 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 352 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 256 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 247 upcoming shows
 - [Pune](https://gigsnshows.com/pune/): 126 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 112 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 102 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 109 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 105 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 82 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 51 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 44 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 42 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 35 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 31 upcoming shows
-- [Indore](https://gigsnshows.com/indore/): 30 upcoming shows
-- [Vadodara](https://gigsnshows.com/vadodara/): 20 upcoming shows
-- [Guwahati](https://gigsnshows.com/guwahati/): 17 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 54 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 47 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 40 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 33 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 33 upcoming shows
+- [Indore](https://gigsnshows.com/indore/): 29 upcoming shows
+- [Vadodara](https://gigsnshows.com/vadodara/): 19 upcoming shows
+- [Surat](https://gigsnshows.com/surat/): 18 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -75,10 +75,10 @@
 - [Ashwyn Singh The Imperfect Ally Tour](https://gigsnshows.com/tour/ashwyn-singh-the-imperfect-ally-tour/)
 - [Bangtanverse Carnival Fan Tour](https://gigsnshows.com/tour/bangtanverse-carnival-fan-tour/)
 - [Bhramacha Bhopla](https://gigsnshows.com/tour/bhramacha-bhopla/)
+- [Bhumika](https://gigsnshows.com/tour/bhumika/)
 - [Casa Bacardi On Tour](https://gigsnshows.com/tour/casa-bacardi-on-tour/)
 - [Chirag Panjwani Live](https://gigsnshows.com/tour/chirag-panjwani-live/)
 - [Crowd Ctrl Ft Aakash Mehta](https://gigsnshows.com/tour/crowd-ctrl-ft-aakash-mehta/)
-- [Darshan Raval S Love Letters India Tour](https://gigsnshows.com/tour/darshan-raval-s-love-letters-india-tour/)
 
 ## Venues
 
@@ -95,5 +95,5 @@
 - [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
 - [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
 - [Decathlon Sports Kalyan Nagar](https://gigsnshows.com/bengaluru/venue/decathlon-sports-kalyan-nagar/)
+- [Dialogues Cafe Koramangala](https://gigsnshows.com/bengaluru/venue/dialogues-cafe-koramangala/)
 - [District Arena Terraform](https://gigsnshows.com/bengaluru/venue/district-arena-terraform/)
-- [Hard Rock Cafe Whitefield](https://gigsnshows.com/bengaluru/venue/hard-rock-cafe-whitefield/)
