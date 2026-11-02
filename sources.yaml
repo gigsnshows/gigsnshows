@@ -112,7 +112,8 @@
 # So these read the listing page for links, then pull the real event data
 # (a *TheaterEvent/SportsEvent node) off each individual event page instead.
 - name: BookMyShow Plays
-  runs_on: [mac]            # refuses cloud servers (GitHub and AWS alike)
+  runs_on: [mac]
+  warmup: https://in.bookmyshow.com/            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: detail_pages
   render: true
@@ -123,7 +124,8 @@
   cities: *bms_cities
 
 - name: BookMyShow Sports
-  runs_on: [mac]            # refuses cloud servers (GitHub and AWS alike)
+  runs_on: [mac]
+  warmup: https://in.bookmyshow.com/            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
   parser: detail_pages
   render: true

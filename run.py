@@ -138,6 +138,8 @@ def main(dry_run=False, only=None, remerge=False, refilter=False):
             ran.append(src["name"])
         print(f"\n{src['name']}  ({src.get('parser', 'jsonld')}{', rendered' if src.get('render') else ''})")
         tried, ok = set(), set()
+        if src.get("warmup"):  # a first, ordinary visit to the site's front page; BookMyShow's first listing of a morning run came back empty without it
+            get_html(src["warmup"], True, 6000, delay=src.get("crawl_delay", 0))
         for entry in expand(src):
             city, cat = entry.get("city"), entry.get("category")
             evs = []

@@ -16,7 +16,7 @@ main() {
   cd "$HERE"
   local REPO=git@github.com:gigsnshows/gigsnshows.git
   local BOT=(-c user.name=listings-bot -c user.email=bot@users.noreply.github.com)
-  export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/gigsnshows_deploy -o IdentitiesOnly=yes"
+  export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/gigsnshows_deploy -o IdentitiesOnly=yes -o ConnectTimeout=30 -o ServerAliveInterval=15 -o ServerAliveCountMax=3"  # give up on a dead connection instead of hanging (the Mac's 2 Nov 13:35 run sat silent after its first fetch)
   : "${COLLECTOR:?set COLLECTOR to aws or mac}" "${PYTHON:=python3}"
 
   # GitHub sometimes drops a connection for a moment ("early EOF", "Broken pipe"). With set -e that used to end the whole run
