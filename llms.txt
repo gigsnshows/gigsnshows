@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,686 upcoming shows in 66 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-03).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,700 upcoming shows in 66 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-03).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 340 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 267 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 255 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 135 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 341 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 268 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 251 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 137 upcoming shows
 - [Kolkata](https://gigsnshows.com/kolkata/): 98 upcoming shows
 - [Hyderabad](https://gigsnshows.com/hyderabad/): 96 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 70 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 56 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 40 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 40 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 30 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 57 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 43 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 41 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 31 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 29 upcoming shows
 - [Indore](https://gigsnshows.com/indore/): 21 upcoming shows
 - [Guwahati](https://gigsnshows.com/guwahati/): 17 upcoming shows
-- [Vadodara](https://gigsnshows.com/vadodara/): 15 upcoming shows
+- [Vadodara](https://gigsnshows.com/vadodara/): 16 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -87,7 +87,6 @@
 - [Hk Hall](https://gigsnshows.com/ahmedabad/venue/hk-hall/)
 - [Mehdi Nawaz Jung Hall](https://gigsnshows.com/ahmedabad/venue/mehdi-nawaz-jung-hall/)
 - [Natarani Amphitheatre](https://gigsnshows.com/ahmedabad/venue/natarani-amphitheatre/)
-- [Sproute Cafe](https://gigsnshows.com/ahmedabad/venue/sproute-cafe/)
 - [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
 - [Bangalore International Centre](https://gigsnshows.com/bengaluru/venue/bangalore-international-centre/)
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
@@ -96,3 +95,4 @@
 - [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
 - [Comedy Square](https://gigsnshows.com/bengaluru/venue/comedy-square/)
 - [District Arena Terraform](https://gigsnshows.com/bengaluru/venue/district-arena-terraform/)
+- [Hard Rock Cafe Whitefield](https://gigsnshows.com/bengaluru/venue/hard-rock-cafe-whitefield/)
