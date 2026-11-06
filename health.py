@@ -15,6 +15,7 @@ A problem is an error (fails the run, so you get an email) or a warning (only sh
 run's summary). What counts as which is in the constants below.
 """
 
+import time
 import json
 import os
 import socket
@@ -36,6 +37,7 @@ STALE_AFTER = {"aws": (20, 20), "mac": (30, 60), "home": (24, 36)}  # (warn, err
 DROP_ERROR, DROP_WARN = 0.5, 0.75  # a run below this share of the usual count
 TOTAL_DROP_ERROR = 0.7  # all listings together
 CERT_WARN_DAYS, CERT_ERROR_DAYS = 21, 7
+RETRY_WAIT = 20  # seconds between tries when the live site answers with a server error
 FIREBASE_KEY = "AIzaSyD6SaNLKN7HSd9VxzsoApAZponyV0JPAV4"  # public web key, as in index.html
 
 
@@ -177,7 +179,16 @@ def site_checks():
     errors, warnings, notes = [], [], []
 
     def get(url, **kw):
-        return requests.get(url, timeout=25, headers={"User-Agent": "gigsnshows-health/1.0"}, **kw)
+        # GitHub Pages sometimes answers 5xx for a minute (the 503 of 5 Nov, 01:59 IST); try again before calling the site down.
+        for attempt in range(3):
+            try:
+                r = requests.get(url, timeout=25, headers={"User-Agent": "gigsnshows-health/1.0"}, **kw)
+                if r.status_code < 500 or attempt == 2:
+                    return r
+            except requests.RequestException:
+                if attempt == 2:
+                    raise
+            time.sleep(RETRY_WAIT)
 
     try:
         r = get(SITE + "/")
