@@ -1,0 +1,64 @@
+name: Deploy site
+
+# Publishes the site to GitHub Pages, and tries again if GitHub's deploy step times out (it did twice on 6 Nov,
+# each time on GitHub's side). It needs Settings -> Pages -> Source set to "GitHub Actions"; until then it only
+# runs by hand (Actions tab -> Run workflow). Once the source is switched, add the push trigger below.
+on:
+  # push:
+  #   branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true   # collectors often push minutes apart; only the newest listings need to go out
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble the site (leave out the collectors, tests and their working files)
+        run: |
+          mkdir _site
+          tar -cf - --exclude=./.git --exclude=./.github --exclude=./_site --exclude=./scrapers --exclude=./tests \
+            --exclude=__pycache__ --exclude='*.py' --exclude='*.sh' --exclude='*.yaml' --exclude=./requirements.txt \
+            --exclude=./data/district_pages.json --exclude=./data/health.json . | tar -xf - -C _site
+          touch _site/.nojekyll
+          echo "files: $(find _site -type f | wc -l)"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy (attempt 1)
+        id: d1
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          timeout: 420000
+      - name: Wait before trying again
+        if: steps.d1.outcome == 'failure'
+        run: sleep 90
+      - name: Deploy (attempt 2)
+        id: d2
+        if: steps.d1.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          timeout: 420000
+      - name: Wait before trying again
+        if: steps.d1.outcome == 'failure' && steps.d2.outcome == 'failure'
+        run: sleep 90
+      - name: Deploy (attempt 3)
+        id: d3
+        if: steps.d1.outcome == 'failure' && steps.d2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+      - name: Say which attempt worked
+        if: always()
+        run: echo "attempts - 1:${{ steps.d1.outcome }} 2:${{ steps.d2.outcome }} 3:${{ steps.d3.outcome }}" >> "$GITHUB_STEP_SUMMARY"

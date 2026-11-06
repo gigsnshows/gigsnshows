@@ -14,7 +14,7 @@ from html import escape
 from pathlib import Path
 from urllib.parse import urlencode
 
-KEEP_DAYS_AFTER = 30
+KEEP_DAYS_AFTER = 7
 
 PAGE = """<!doctype html>
 <html lang="en">
