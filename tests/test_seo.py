@@ -289,3 +289,16 @@ def test_tour_page_title_stays_short():
     shows = seo.build_shows(evs)
     path, html_ = seo.tour_page(seo.tour_groups(shows)[next(iter(seo.tour_groups(shows)))], date(2026, 10, 14))
     assert len(re.search(r"<title>(.*?)</title>", html_).group(1)) <= 80
+
+
+def test_new_occasions_and_the_india_wide_hub():
+    xmas = [ev(30 + i, f"Christmas Carol Night {i}", "2026-12-24") for i in range(3)]
+    s = seo.build_shows(xmas)
+    assert seo.occasion_page("Mumbai", s, date(2026, 12, 1), "christmas")
+    assert "Christmas across India" in seo.occasion_page("Mumbai", s, date(2026, 12, 1), "christmas", hub=True)[1]
+    assert "across India" not in seo.occasion_page("Mumbai", s, date(2026, 12, 1), "christmas")[1]
+    by_city = {"Mumbai": s, "Delhi": s}
+    r = seo.occasion_hub("christmas", s, by_city, ["Mumbai", "Delhi"], date(2026, 12, 1))
+    assert r and r[0] == "christmas/" and "/mumbai/christmas/" in r[1] and "/delhi/christmas/" in r[1]
+    assert seo.occasion_hub("christmas", s, by_city, ["Mumbai"], date(2026, 12, 1)) is None   # one city: no hub
+    assert seo.occasion_hub("christmas", s, by_city, ["Mumbai", "Delhi"], date(2027, 1, 2)) is None  # over

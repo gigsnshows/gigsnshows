@@ -754,6 +754,12 @@ OCCASIONS = {
                "words": r"diwali|deepavali|dipawali|dhanteras|bhai dooj|bhaubeej|laxmi puja", "date_label": "Diwali 2026 (8 November)"},
     "new-years-eve": {"name": "New Year's Eve", "window": ("2026-12-26", "2027-01-01"), "anchor": "2026-12-31",
                       "words": r"new year|nye\b|\b31st\b|year end|year-end", "date_label": "New Year's Eve 2026"},
+    "christmas": {"name": "Christmas", "window": ("2026-12-18", "2026-12-26"), "anchor": "2026-12-24",
+                  "words": r"christmas|xmas|x-mas|santa\b|carol", "date_label": "Christmas 2026"},
+    "valentines-day": {"name": "Valentine's Day", "window": ("2027-02-08", "2027-02-15"), "anchor": None,
+                       "words": r"valentine|date night|couples? night|love songs", "date_label": "Valentine's Day 2027 (14 February)"},
+    "holi": {"name": "Holi", "window": ("2027-02-25", "2027-03-04"), "anchor": None,
+             "words": r"\bholi\b|rangotsav|rang barse|colou?rs? (?:festival|party|carnival)", "date_label": "Holi 2027 (3 March)"},
 }
 MIN_OCCASION_SHOWS = 3
 
@@ -772,7 +778,7 @@ def occasion_shows(shows, key):
     return sorted(out, key=lambda s: (min(e["date"] for e in s.events if a <= e["date"] <= b), s.first.get("time") or ""))
 
 
-def occasion_page(city, shows, today, key, other_cities=()):
+def occasion_page(city, shows, today, key, other_cities=(), hub=False):
     """/<city>/<occasion>/ . None when too few shows match or the occasion is over."""
     o = OCCASIONS[key]
     if today.isoformat() > o["window"][1]:
@@ -798,12 +804,41 @@ def occasion_page(city, shows, today, key, other_cities=()):
 <h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
 <p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day.</p>
 <ul class="list">{listing(pool[:200])}</ul>
-<div class="cta"><a class="btn" href="/{city_slug}/">All upcoming shows in {esc(city)}</a><a class="btn alt" href="/?city={esc(city_slug)}">Open on gigsnshows</a></div>
+<div class="cta"><a class="btn" href="/{city_slug}/">All upcoming shows in {esc(city)}</a><a class="btn alt" href="/?city={esc(city_slug)}">Open on gigsnshows</a>{f'<a class="btn alt" href="/{key}/">{esc(name)} across India</a>' if hub else ''}</div>
 {faq_html(qa, f"{name} in {city}")}
 {f'<h2>{esc(name)} in other cities</h2><ul class="more">{others}</ul>' if others else ''}"""
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
           breadcrumb_ld([("Home", ""), (city, f"{city_slug}/"), (name, path)]), faq_ld(qa)]
+    return path, page(f"{h1} | gigsnshows", clip(lead, 158), path, body, ld=ld)
+
+
+def occasion_hub(key, shows, by_city, cities, today):
+    """/<occasion>/ : the occasion across India, for searches that name no city ("halloween 2026", "diwali events"). None when
+    fewer than two cities have an occasion page of their own, or the occasion is over."""
+    o = OCCASIONS[key]
+    if today.isoformat() > o["window"][1] or len(cities) < 2:
+        return None
+    pool = occasion_shows(shows, key)
+    name, path = o["name"], f"{key}/"
+    counts = [(c, len(occasion_shows(by_city[c], key))) for c in cities]
+    counts.sort(key=lambda x: (-x[1], x[0]))
+    h1 = f"{name} events in India"
+    lead = f"{len(pool)} {name} shows and events across {len(counts)} cities, {o['date_label']}: concerts, parties, stand-up and more."
+    top = human_list([c for c, _ in counts[:3]])
+    qa = [(f"Where are the most {name} events in India?",
+           f"{top} have the most listed {name} events right now; {len(pool)} are listed across {len(counts)} cities in all.")]
+    city_links = "".join(f'<li><a href="/{slug(c)}/{key}/">{esc(c)} ({n})</a></li>' for c, n in counts)
+    body = f"""<p class="crumbs"><a href="/">Home</a> › {esc(name)}</p>
+<h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day.</p>
+<h2>{esc(name)} events by city</h2><ul class="more">{city_links}</ul>
+<h2>Happening soonest</h2><ul class="list">{listing(pool[:40])}</ul>
+<div class="cta"><a class="btn" href="/cities/">All cities</a><a class="btn alt" href="/">Open on gigsnshows</a></div>
+{faq_html(qa, f"{name} in India")}"""
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
+          breadcrumb_ld([("Home", ""), (name, path)]), faq_ld(qa)]
     return path, page(f"{h1} | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
@@ -1222,13 +1257,17 @@ def write(events, root, today=None):
         if wk:
             out[wk[0] + "index.html"] = wk[1]
         for okey in OCCASIONS:
-            op = occasion_page(city, group, today_d, okey, [c for c in ranked if c != city and c in occ_cities[okey]][:10])
+            op = occasion_page(city, group, today_d, okey, [c for c in ranked if c != city and c in occ_cities[okey]][:10], hub=len(occ_cities[okey]) >= 2)
             if op:
                 out[op[0] + "index.html"] = op[1]
         for which in DAYS:
             dp = day_page(city, group, today_d, which, [c for c in day_cities[which] if c != city][:10])
             if dp:
                 out[dp[0] + "index.html"] = dp[1]
+    for okey in OCCASIONS:
+        hp = occasion_hub(okey, shows, by_city, [c for c in ranked if c in occ_cities[okey]], today_d)
+        if hp:
+            out[hp[0] + "index.html"] = hp[1]
     for (vcity, vname), pool in venues.items():
         vp = venue_page(vcity, vname, pool, today_d)
         out[vp[0] + "index.html"] = vp[1]
