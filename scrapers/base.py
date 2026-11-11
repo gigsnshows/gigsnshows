@@ -277,6 +277,16 @@ def real_organizer(value):
     return "" if len(name) < 3 or SELLERS.search(name) else name[:120]
 
 
+def organizer_url(value):
+    """The organizer's own web address when the site states one (never a ticket seller's page)."""
+    if isinstance(value, list):
+        value = value[0] if value else None
+    url = value.get("url") or value.get("sameAs") if isinstance(value, dict) else ""
+    url = url[0] if isinstance(url, list) and url else url
+    url = url.strip() if isinstance(url, str) else ""
+    return url[:300] if re.match(r"https?://[^\s/]+\.[^\s/]+", url) and not SELLERS.search(url) else ""
+
+
 def event(title, day, source, city, category=None, venue="", time="", price=None, url="", image=None, hint="", default=None, place="", about=None, lang=None, extra=None):
     """
     Build a normalised event dict; returns None if it lacks a title or date.
@@ -403,6 +413,7 @@ def jsonld_to_event(node, source, city=None, category=None, page_url="", default
     if sale and (not start_local or sale < start_local):
         extra["on_sale"] = sale
     extra["organizer"] = real_organizer(node.get("organizer"))
+    extra["organizer_url"] = organizer_url(node.get("organizer")) if extra["organizer"] else ""
     return event(node.get("name"), day, source, city, category, venue, time, price,
                  node.get("url") or page_url, image, hint=hint, default=default, place=place,
                  about=node.get("description") or "", extra=extra)

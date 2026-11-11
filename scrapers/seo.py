@@ -486,8 +486,10 @@ def event_ld(show, e):
           "url": f"{SITE}/{show.path}"}
     if e.get("end") and e.get("time") and e["end"] > f"{e['date']}T{e['time']}":
         ld["endDate"] = e["end"] + ":00+05:30"  # only when the ticketing site states it
-    if e.get("organizer"):
-        ld["organizer"] = {"@type": "Organization", "name": e["organizer"]}  # the promoter the site names, never the ticket seller
+    if e.get("organizer") and e.get("organizer_url"):
+        # The promoter the site names, never the ticket seller. Only with its web address: Google reports an organizer
+        # without a url as an issue (Search Console, 11 Nov), and we will not invent one.
+        ld["organizer"] = {"@type": "Organization", "name": e["organizer"], "url": e["organizer_url"]}
     if show.image:
         ld["image"] = [show.image]
     if show.about:

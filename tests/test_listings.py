@@ -267,3 +267,10 @@ def test_jsonld_ignores_ticket_sellers_and_unknown_times():
             "location": {"name": "Hall", "address": {"addressLocality": "Mumbai"}}, "organizer": {"name": "BookMyShow"}}
     e = base.jsonld_to_event(node, "BookMyShow", "Mumbai", "talks", "https://b/x") or base.jsonld_to_event(node, "BookMyShow", "Mumbai", "music", "https://b/x")
     assert e and "organizer" not in e and "end" not in e and "on_sale" not in e
+
+
+def test_organizer_url_only_when_stated_and_not_a_seller():
+    from scrapers.base import organizer_url
+    assert organizer_url({"name": "Acme", "url": "https://acme.example/about"}) == "https://acme.example/about"
+    assert organizer_url({"name": "Acme", "url": "https://in.bookmyshow.com/x"}) == ""
+    assert organizer_url({"name": "Acme"}) == "" and organizer_url("Acme") == "" and organizer_url(None) == ""

@@ -187,9 +187,9 @@ def _show_ld(tmp_path, e):
 def test_event_data_carries_only_what_the_source_states(tmp_path):
     bare = _show_ld(tmp_path / "a", ev("a", "Jazz Night", "2026-10-20", price=500))
     assert "endDate" not in bare and "organizer" not in bare and "validFrom" not in bare["offers"]
-    full = {**ev("b", "Rock Fest", "2026-10-20", price=500), "end": "2026-10-20T23:00", "on_sale": "2026-09-01T10:00", "organizer": "Acme Live Pvt Ltd"}
+    full = {**ev("b", "Rock Fest", "2026-10-20", price=500), "end": "2026-10-20T23:00", "on_sale": "2026-09-01T10:00", "organizer": "Acme Live Pvt Ltd", "organizer_url": "https://acmelive.example"}
     ld = _show_ld(tmp_path / "b", full)
-    assert ld["endDate"] == "2026-10-20T23:00:00+05:30" and ld["organizer"] == {"@type": "Organization", "name": "Acme Live Pvt Ltd"}
+    assert ld["endDate"] == "2026-10-20T23:00:00+05:30" and ld["organizer"] == {"@type": "Organization", "name": "Acme Live Pvt Ltd", "url": "https://acmelive.example"}
     assert ld["offers"]["validFrom"] == "2026-09-01T10:00:00+05:30"
     bad = {**ev("c", "Folk Night", "2026-10-20", price=500), "end": "2026-10-20T10:00", "on_sale": "2026-10-25T10:00"}  # ends before it starts; on sale after it starts
     ld = _show_ld(tmp_path / "c", bad)
@@ -302,3 +302,8 @@ def test_new_occasions_and_the_india_wide_hub():
     assert r and r[0] == "christmas/" and "/mumbai/christmas/" in r[1] and "/delhi/christmas/" in r[1]
     assert seo.occasion_hub("christmas", s, by_city, ["Mumbai"], date(2026, 12, 1)) is None   # one city: no hub
     assert seo.occasion_hub("christmas", s, by_city, ["Mumbai", "Delhi"], date(2027, 1, 2)) is None  # over
+
+
+def test_organizer_without_a_web_address_stays_out_of_the_markup(tmp_path):
+    named = {**ev("d", "Indie Night", "2026-10-20", price=500), "organizer": "Acme Live Pvt Ltd"}
+    assert "organizer" not in _show_ld(tmp_path / "d", named)
