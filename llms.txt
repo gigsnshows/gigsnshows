@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,966 upcoming shows in 66 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-10).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,968 upcoming shows in 66 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-11).
 
 ## How to use this site
 
@@ -19,19 +19,19 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 374 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 302 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 283 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 141 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 124 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 110 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 373 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 293 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 287 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 143 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 126 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 109 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 89 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 86 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 57 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 43 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 37 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 56 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 45 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 38 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 36 upcoming shows
-- [Indore](https://gigsnshows.com/indore/): 28 upcoming shows
+- [Indore](https://gigsnshows.com/indore/): 30 upcoming shows
 - [Guwahati](https://gigsnshows.com/guwahati/): 22 upcoming shows
 - [Vadodara](https://gigsnshows.com/vadodara/): 20 upcoming shows
 
@@ -55,7 +55,6 @@
 
 ## Tours playing several cities
 
-- [3 Am Thoughts By Manjeet Thakur](https://gigsnshows.com/tour/3-am-thoughts-by-manjeet-thakur/)
 - [Aamer Peeran S Wide Range A Stand Up Comedy Show](https://gigsnshows.com/tour/aamer-peeran-s-wide-range-a-stand-up-comedy-show/)
 - [Abijit Ganguly Live](https://gigsnshows.com/tour/abijit-ganguly-live/)
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
@@ -70,6 +69,7 @@
 - [Chirag Panjwani Live](https://gigsnshows.com/tour/chirag-panjwani-live/)
 - [Crowd Ctrl Ft Aakash Mehta](https://gigsnshows.com/tour/crowd-ctrl-ft-aakash-mehta/)
 - [Darshan Raval S Love Letters India Tour](https://gigsnshows.com/tour/darshan-raval-s-love-letters-india-tour/)
+- [Diy Sock Puppet](https://gigsnshows.com/tour/diy-sock-puppet/)
 
 ## Venues
 
@@ -83,8 +83,8 @@
 - [Natarani Amphitheatre](https://gigsnshows.com/ahmedabad/venue/natarani-amphitheatre/)
 - [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
 - [Airtel Arena](https://gigsnshows.com/bengaluru/venue/airtel-arena/)
-- [Banter Comedy Club](https://gigsnshows.com/bengaluru/venue/banter-comedy-club/)
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
 - [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
 - [Dnd The Venue](https://gigsnshows.com/bengaluru/venue/dnd-the-venue/)
+- [Hard Rock Cafe](https://gigsnshows.com/bengaluru/venue/hard-rock-cafe/)
