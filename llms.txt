@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,155 upcoming shows in 69 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-12).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,161 upcoming shows in 69 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-12).
 
 ## How to use this site
 
@@ -20,14 +20,14 @@
 ## Biggest cities
 
 - [Mumbai](https://gigsnshows.com/mumbai/): 401 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 333 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 309 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 155 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 155 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 112 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 93 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 338 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 310 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 157 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 154 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 108 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 94 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 87 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 62 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 63 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 50 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 43 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 38 upcoming shows
@@ -62,9 +62,9 @@
 - [Abijit Ganguly Live](https://gigsnshows.com/tour/abijit-ganguly-live/)
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
 - [Alan Walker Legend Of Atlantis](https://gigsnshows.com/tour/alan-walker-legend-of-atlantis/)
+- [All The Best](https://gigsnshows.com/tour/all-the-best/)
 - [Allow Me A Standup Comedy Show By Rahul Dua](https://gigsnshows.com/tour/allow-me-a-standup-comedy-show-by-rahul-dua/)
 - [Amar Photo Studio](https://gigsnshows.com/tour/amar-photo-studio/)
-- [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)
 - [Animal Marathi Play](https://gigsnshows.com/tour/animal-marathi-play/)
 - [Arvind Sunder Live](https://gigsnshows.com/tour/arvind-sunder-live/)
 - [Assi Kinne Punjabi Aa By Balraj Syal](https://gigsnshows.com/tour/assi-kinne-punjabi-aa-by-balraj-syal/)
@@ -82,9 +82,9 @@
 - [Mishty Studio](https://gigsnshows.com/ahmedabad/venue/mishty-studio/)
 - [Natarani Amphitheatre](https://gigsnshows.com/ahmedabad/venue/natarani-amphitheatre/)
 - [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
+- [Sant Eknath Rang Mandir](https://gigsnshows.com/aurangabad/venue/sant-eknath-rang-mandir/)
 - [Airtel Arena](https://gigsnshows.com/bengaluru/venue/airtel-arena/)
+- [Bhanu Nenapina Nani Angala](https://gigsnshows.com/bengaluru/venue/bhanu-nenapina-nani-angala/)
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Bloom Creative Zone Indiranagar](https://gigsnshows.com/bengaluru/venue/bloom-creative-zone-indiranagar/)
 - [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
-- [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
-- [Drava](https://gigsnshows.com/bengaluru/venue/drava/)
