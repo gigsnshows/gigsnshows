@@ -86,6 +86,7 @@
         <option>Listing or selling my shows on gigsnshows</option>
       </select>
     </label>
+    <label>Which show is it about? <small>optional; a name or a link</small> <input name="about" maxlength="300"></label>
     <label>Message <textarea name="message" required maxlength="5000"></textarea></label>
     <input class="bot" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
     <button id="send">Send message</button>
@@ -104,7 +105,19 @@
   const say = (msg, kind) => { status.textContent = msg; status.className = `status ${kind}`; };
 
   // Arriving from "My data" links (?topic=data) preselects that topic.
-  if (new URLSearchParams(location.search).get("topic") === "data") form.topic.selectedIndex = 2;
+  const params = new URLSearchParams(location.search);
+  if (params.get("topic") === "data") form.topic.selectedIndex = 2;
+
+  // So we know which show a question is about (a question like "when does the concert end?" names none): a show page's
+  // "Ask us about this show" link passes its name, and otherwise the page the visitor came from on this site, when it
+  // was a show. It goes in a field they can see, change or clear.
+  const cameFrom = (() => {
+    try {
+      const r = new URL(document.referrer);
+      return r.origin === location.origin && (r.pathname.startsWith("/shows/") || r.searchParams.has("event")) ? r.href.slice(0, 300) : "";
+    } catch { return ""; }
+  })();
+  form.about.value = (params.get("show") || "").slice(0, 300) || cameFrom;
 
   form.addEventListener("submit", async ev => {
     ev.preventDefault();
@@ -124,6 +137,7 @@
           name: form.name.value.trim(),
           email: form.email.value.trim(),
           topic: form.topic.value,
+          about_show: form.about.value.trim() || "(not given)",
           message: form.message.value.trim(),
           botcheck: form.botcheck.checked,
         }),

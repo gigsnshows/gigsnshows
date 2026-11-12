@@ -535,6 +535,7 @@ def show_page(show, related, hubs=""):
 <div class="cta"><a class="btn" href="{esc(link)}" target="_blank" rel="noopener nofollow">Get tickets on {esc(platform)}</a>
 <a class="btn alt" href="/?city={esc(city_slug)}&amp;event={esc(f['id'])}">Save it, share it or plan it with friends</a></div>
 {faq_html(qa, f"Questions about {show.title}")}
+<p class="upd">Something we haven't answered? <a href="/contact.html?show={quote(f'{clip(show.title, 90)} ({SITE}/{show.path})')}" rel="nofollow">Ask us about this show</a>.</p>
 </article>
 {f'<h2>More {esc(cat_label)} in {esc(show.city)}</h2><ul class="list">{more}</ul>' if more else ''}"""
     kind = kind_word(show)
