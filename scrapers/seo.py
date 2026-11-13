@@ -510,7 +510,7 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
 <main><div class="wrap">
 {body}
 </div></main>
-<footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/list-event.html">List your event</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
+<footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a>{'<a href="/artists/">Artists</a>' if ARTISTS_LIVE else ''}<a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/list-event.html">List your event</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
 {COUNT_JS}</body>
 </html>
 """
@@ -935,6 +935,114 @@ def venue_page(city, venue, pool, today):
     return path, page(f"{h1}: what's on | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
+# ---------- artist pages ----------
+# /artists/<name>/ : every listed show of one performer, across cities. For searches like "charlie jeer delhi" or
+# "osho jain tour dates" (17% of people who saw us for the first clicked, 13 Nov). The listings carry no performer
+# field, so a name is read from the title only where the wording marks it as one ("<Name> Live", "by <Name>",
+# "ft. <Name>", "<Name> - ... Tour"), and it only gets a page when it turns up in two or more shows.
+MIN_ARTIST_SHOWS = 2
+ARTISTS_LIVE = False  # set while a site is being written, once there is an /artists/ page for the footer to link to
+_TOK = r"(?:[A-Z][A-Za-z'’.]+|[A-Z]{2,})"
+_NAME = rf"((?:DJ |The )?{_TOK}(?: {_TOK}){{1,2}}|DJ {_TOK})"
+ARTIST_PATTERNS = [re.compile(x) for x in (
+    rf"^{_NAME} (?:Live|LIVE)\b",
+    rf"\b(?:by|By|BY|ft\.?|Ft\.?|FT\.?|feat\.?|Feat\.?|featuring|Featuring)\s+{_NAME}",
+    rf"[–\-:|]\s*{_NAME} (?:Live|LIVE)\b",
+    rf"^{_NAME}\s*[-–:]\s.*\b(?:Tour|TOUR)\b",
+    rf"^{_NAME}['’][sS] .*\b(?:Tour|TOUR)\b",
+    rf"^{_NAME} (?:India Tour|in Concert|In Concert|Standup|Stand[- ]up)",
+)]
+NOT_A_NAME = set("""comedy night nights show shows standup stand live music open mic club festival jam jamming bollywood sufi
+punjabi hindi english gujarati marathi telugu tamil kannada bengali india indian tour the and friends presents special
+edition new year eve party karaoke dj band concert experience weekend saturday sunday friday crowd work crowdwork trial
+jokes comics comedians lineup line up all stars best of mumbai delhi bengaluru bangalore pune hyderabad chennai kolkata
+goa official tribute biggest various artist artists carnival exp radar spotify project walk fan edition season""".split())
+NOT_THE_ARTIST = re.compile(r"tribute|\bjam\b|jamming|karaoke|sing-?along|\bfan (?:tour|meet|night)|\bhits of\b|\bwalk\b", re.I)
+
+
+def artist_candidates(title):
+    out = set()
+    for pat in ARTIST_PATTERNS:
+        for m in pat.finditer(title or ""):
+            name = m.group(1).strip(" .'’")
+            words = [w.lower().strip(".'’") for w in name.split()]
+            if len(name) < 5 or any(w in NOT_A_NAME for w in words if w not in ("dj", "the")):
+                continue
+            out.add(" ".join("DJ" if w.lower() == "dj" else w if "." in w or not w.isupper() else w.capitalize() for w in name.split()))
+    return out
+
+
+def artist_groups(shows):
+    """performer name -> their music and comedy shows (soonest first), for names found in 2+ shows."""
+    pool = [s for s in shows if s.category in ("music", "comedy") and s.city != "Unknown" and not NOT_THE_ARTIST.search(s.title)]
+    names = {}
+    for s in pool:
+        for n in artist_candidates(s.title):
+            names.setdefault(n.lower(), n)
+    groups = {}
+    for key, name in names.items():
+        rx = re.compile(r"(?<![A-Za-z])" + re.escape(key) + r"(?![A-Za-z])", re.I)
+        hit = [s for s in pool if rx.search(s.title)]
+        if len(hit) >= MIN_ARTIST_SHOWS:
+            groups[name] = sorted(hit, key=lambda s: (s.first["date"], s.city))
+    for name in sorted(groups, key=len):  # "Akshay Srivastav" and "Akshay Srivastava" are one person: keep the fuller spelling
+        longer = [n for n in groups if n != name and n.lower().startswith(name.lower()) and len(n) - len(name) <= 2]
+        if longer and name in groups:
+            keep = longer[0]
+            groups[keep] = sorted({s.id: s for s in groups[keep] + groups.pop(name)}.values(), key=lambda s: (s.first["date"], s.city))
+    return groups
+
+
+def artist_path(name):
+    return f"artists/{slug(name)}/"
+
+
+def artist_page(name, group, today):
+    path = artist_path(name)
+    cities = []
+    for s in group:
+        if s.city not in cities:
+            cities.append(s.city)
+    first, last_day = group[0], max(e["date"] for s in group for e in s.events)
+    prices = [s.price for s in group if s.price]
+    h1 = f"{name}: shows and tour dates in India"
+    lead = (f"{len(group)} upcoming {name} shows are listed in {len(cities)} {'city' if len(cities) == 1 else 'cities'}, "
+            f"{when_range(first.first['date'], last_day)}: {human_list(cities[:8])}{' and more' if len(cities) > 8 else ''}.")
+    rows = "".join(
+        f'<li>{thumb(s.image)}<div><a class="t" href="/{s.path}">{esc(s.title)}</a>'
+        f'<p><b>{esc(s.city)}</b> · {esc(when(s.first))} · {esc(venue_short(s.first))}'
+        f'{f" · {len(s.events)} dates" if len(s.events) > 1 else ""}{esc(from_price(s.price))}</p></div></li>' for s in group[:120])
+    qa = [(f"Where is {name} performing next?",
+           f"The next listed show is {first.title} in {first.city} on {when(first.first, with_year=True)} at {venue_short(first.first)}."),
+          (f"Which cities is {name} coming to?", f"{name} is listed in {human_list(cities)}.")]
+    if prices:
+        qa.append((f"How much are {name} tickets?",
+                   f"Listed prices start from {rupees(min(prices))}. Each show page shows its own price and links to the ticket seller."))
+    body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/artists/">Artists</a> › {esc(name)}</p>
+<h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day. Shows are matched to {esc(name)} by the name in each listing's title.</p>
+<ul class="list">{rows}</ul>
+<div class="cta"><a class="btn" href="/artists/">All artists</a><a class="btn alt" href="/?q={esc(quote(name))}">Open on gigsnshows</a></div>
+{faq_html(qa, f"Questions about {name}")}"""
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": f"{s.title}, {s.city}"} for i, s in enumerate(group[:50])]},
+          breadcrumb_ld([("Home", ""), ("Artists", "artists/"), (name, path)]), faq_ld(qa)]
+    return path, page(f"{clip(name, 40)}: shows and tour dates | gigsnshows", clip(lead, 158), path, body, ld=ld)
+
+
+def artists_index(groups, today):
+    ranked = sorted(groups.items(), key=lambda x: (-len(x[1]), x[0]))
+    lead = f"{len(ranked)} singers, bands and comedians with two or more upcoming shows listed in India, each with every date and city."
+    links = "".join(f'<li><a href="/{artist_path(n)}">{esc(n)} ({len(g)})</a></li>' for n, g in ranked)
+    body = f"""<p class="crumbs"><a href="/">Home</a> › Artists</p>
+<h1>Artists on tour in India</h1><p class="lead">{esc(lead)}</p>
+<p class="upd">Updated {today.day} {today:%B %Y}.</p>
+<ul class="more">{links}</ul>
+<div class="cta"><a class="btn" href="/cities/">Browse by city</a><a class="btn alt" href="/">Open on gigsnshows</a></div>"""
+    return page("Artists on tour in India: singers, bands, comedians | gigsnshows", clip(lead, 158), "artists/", body,
+                ld=[breadcrumb_ld([("Home", ""), ("Artists", "artists/")])])
+
+
 def tour_groups(shows):
     """show title key -> its shows in different cities, for the same show touring 3+ cities."""
     g = defaultdict(list)
@@ -1124,6 +1232,9 @@ def llms_txt(events, shows, by_city, today, pages=()):
            for k in OCCASIONS for c in big[:5] if f"{slug(c)}/{k}/index.html" in pages][:20]
     if occ:
         lines += ["", "## Seasonal and occasion pages", ""] + occ
+    acts = sorted(p for p in pages if p.startswith("artists/") and p != "artists/index.html")[:40]
+    if acts:
+        lines += ["", "## Artists with several shows listed", "", f"- [All artists]({SITE}/artists/)"] + [f"- [{p.split('/')[1].replace('-', ' ').title()}]({SITE}/{p[:-len('index.html')]})" for p in acts]
     tours = sorted((p for p in pages if p.startswith("tour/")))[:15]
     if tours:
         lines += ["", "## Tours playing several cities", ""] + [f"- [{p.split('/')[1].replace('-', ' ').title()}]({SITE}/{p[:-len('index.html')]})" for p in tours]
@@ -1155,7 +1266,7 @@ def inject_home_intro(root, n_shows, n_cities, sellers, today):
 
 
 def sitemap_priority(path):
-    if path.startswith("tour/"):
+    if path.startswith(("tour/", "artists/")):
         return "0.8"
     if "/venue/" in path:
         return "0.7"
@@ -1270,6 +1381,13 @@ def write(events, root, today=None):
     shows = build_shows(events)
     out = {}  # path -> html
     venues, tours = venue_groups(shows), tour_groups(shows)
+    global ARTISTS_LIVE
+    artists = artist_groups(shows)
+    ARTISTS_LIVE = bool(artists)
+    artist_of = {}
+    for aname, agroup in artists.items():
+        for a_show in agroup:
+            artist_of.setdefault(a_show.id, aname)
     for s in shows:
         related = [r for r in shows if r.city == s.city and r.category == s.category and r.id != s.id]
         related.sort(key=lambda r: abs((datetime.strptime(r.first["date"], "%Y-%m-%d") - datetime.strptime(s.first["date"], "%Y-%m-%d")).days))
@@ -1280,6 +1398,8 @@ def write(events, root, today=None):
         tg = tours.get(show_key(s.title))
         if tg:
             hubs.append(f'<a href="/{tour_path(tg)}">{esc(s.title if len(s.title) < 40 else "This show")} in {len({x.city for x in tg})} cities</a>')
+        if s.id in artist_of:
+            hubs.append(f'<a href="/{artist_path(artist_of[s.id])}">All {esc(artist_of[s.id])} shows</a>')
         out[s.path + "index.html"] = show_page(s, related[:6], f'<p class="upd">{" · ".join(hubs)}</p>' if hubs else "")
     by_city = defaultdict(list)
     for s in shows:
@@ -1319,6 +1439,11 @@ def write(events, root, today=None):
     for tg in tours.values():
         tp = tour_page(tg, today_d)
         out[tp[0] + "index.html"] = tp[1]
+    for aname, agroup in artists.items():
+        ap_ = artist_page(aname, agroup, today_d)
+        out[ap_[0] + "index.html"] = ap_[1]
+    if artists:
+        out["artists/index.html"] = artists_index(artists, today_d)
     for vcity in {c for c, _ in venues}:  # link the biggest venues from each city page
         top = sorted(((v, len(p)) for (c, v), p in venues.items() if c == vcity), key=lambda x: (-x[1], x[0]))[:10]
         key = f"{slug(vcity)}/index.html"

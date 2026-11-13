@@ -317,3 +317,36 @@ def test_show_pages_count_ticket_clicks_and_other_pages_carry_no_city(tmp_path):
     assert 'gtag("config", "G-GD04SMDFR3")' in h and 'consent === "granted"' in h   # Google only after an OK
     city = (tmp_path / "mumbai" / "index.html").read_text()
     assert "<body>" in city and "data-ticket=" not in city
+
+
+def test_artist_names_come_only_from_wording_that_marks_one():
+    c = seo.artist_candidates
+    assert c("Charlie Jeer Live in Mumbai - Debut India Tour") == {"Charlie Jeer"}
+    assert c("Mamooli Mota by Karunesh Talwar") == {"Karunesh Talwar"}
+    assert c("Sunburn Arena Ft. Martin Garrix - Chennai") == {"Martin Garrix"}
+    assert c("SONU NIGAM'S REVOLUTION TOUR") == {"Sonu Nigam"}
+    assert c("K.S. Chitra Live in Concert") == {"K.S. Chitra"} and c("NYE 2027 Ft Dj Saif // Night Volt") == {"DJ Saif"}
+    assert c("Friday Night Comedy Live") == set() and c("Sufi Night") == set() and c("Open Mic by Comedy Club") == set()
+
+
+def test_artist_pages_need_two_shows_and_leave_out_tribute_nights(tmp_path):
+    events = [ev("a1", "Charlie Jeer Live in Mumbai", "2026-12-20", price=900),
+              ev("a2", "Charlie Jeer Live in Delhi", "2026-12-21", city="Delhi", price=700),
+              ev("a3", "Tribute to Charlie Jeer Jam Night", "2026-12-22", city="Pune"),
+              ev("a4", "Solo Act Live in Goa", "2026-12-23", city="Goa")]
+    shows = seo.build_shows(events)
+    groups = seo.artist_groups(shows)
+    assert list(groups) == ["Charlie Jeer"] and [s.city for s in groups["Charlie Jeer"]] == ["Mumbai", "Delhi"]
+    path, html_ = seo.artist_page("Charlie Jeer", groups["Charlie Jeer"], date(2026, 11, 13))
+    assert path == "artists/charlie-jeer/" and "2 upcoming Charlie Jeer shows are listed in 2 cities" in html_
+    assert "start from ₹700" in html_ and "Pune" not in html_
+    seo.write(events, str(tmp_path), "2026-11-13")
+    assert (tmp_path / "artists" / "charlie-jeer" / "index.html").exists() and (tmp_path / "artists" / "index.html").exists()
+    show = next(p for p in (tmp_path / "shows").iterdir() if p.name.startswith("charlie-jeer-live-in-mumbai"))
+    assert "All Charlie Jeer shows" in (show / "index.html").read_text()
+    assert "/artists/charlie-jeer/" in (tmp_path / "sitemap.xml").read_text()
+
+
+def test_no_artists_link_when_there_is_no_artists_page(tmp_path):
+    seo.write([ev("b1", "Rock Fest", "2026-12-20")], str(tmp_path), "2026-11-13")
+    assert not (tmp_path / "artists").exists() and "/artists/" not in (tmp_path / "mumbai" / "index.html").read_text()
