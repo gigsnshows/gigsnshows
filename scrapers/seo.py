@@ -62,6 +62,48 @@ THEME_JS = """<script>
 </script>
 """
 
+GA_ID = "G-GD04SMDFR3"  # the same Google Analytics property as the app (index.html)
+
+# Counting on the pages people land on from search: the app has had this, these pages had none, so nobody knew how many
+# search visitors went on to a ticket seller. Two layers, the same as the app and as the privacy page describes:
+#  - our own cookie-free daily totals (api.gigsnshows.com/hit): one visit for the show's city, and one per ticket button
+#    used, by seller. Skipped for Do Not Track / Global Privacy Control.
+#  - Google Analytics, only for people who already said OK on the app's cookie notice: a ticket_click with the show's name.
+# Nothing loads from Google for anyone else, and nothing here delays the page (it runs after the content).
+COUNT_JS = """<script>
+(function () {
+  if (!/(^|\\.)gigsnshows\\.com$/.test(location.hostname)) return;
+  var own = navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl, src = "", consent = "";
+  try { src = new URLSearchParams(location.search).get("utm_source") || ""; } catch (e) {}
+  try { consent = localStorage.getItem("whatsOn.analyticsConsent") || ""; } catch (e) {}
+  function count(f) {
+    if (!own) return;
+    try {
+      var host = ""; try { host = new URL(document.referrer).hostname; } catch (e) {}
+      var b = { r: host, s: src, w: innerWidth }; for (var k in f) b[k] = f[k];
+      fetch("https://api.gigsnshows.com/hit", { method: "POST", body: JSON.stringify(b), mode: "no-cors", credentials: "omit", keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  if (consent === "granted") {
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+    gtag("js", new Date()); gtag("config", "__GA__");
+    var s = document.createElement("script"); s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=__GA__"; document.head.appendChild(s);
+  }
+  var city = document.body.getAttribute("data-city");
+  if (city) count({ c: city });
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[data-ticket]");
+    if (!a) return;
+    var seller = a.getAttribute("data-ticket");
+    count({ e: "ticket:" + seller.toLowerCase().replace(/[^a-z0-9]+/g, "-") });
+    if (consent === "granted") gtag("event", "ticket_click", { platform: seller, item_name: ((document.querySelector("h1") || {}).textContent || document.title).slice(0, 100), via: "show_page" });
+  });
+})();
+</script>
+""".replace("__GA__", GA_ID)
+
 CSS = """
 :root{color-scheme:dark;--bg:#000;--ink:rgba(255,255,255,.94);--ink2:rgba(235,235,245,.62);--ink3:rgba(235,235,245,.35);--line:rgba(84,84,88,.65);--glow:#0a84ff;--neon:#ff2d95;--on-ink:#000;--fill:rgba(255,255,255,.04);--fill-2:rgba(255,255,255,.12);--bg-3:#1c1c1e;
 --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;--brand:"Outfit",var(--font)}
@@ -438,7 +480,7 @@ def build_shows(events):
     return [Show(c, k, v) for (c, k), v in groups.items() if k]
 
 
-def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=False):
+def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=False, count_city=""):
     url = f"{SITE}/{path}"
     og_image = image or f"{SITE}/og.jpg?v=2"
     ld_tags = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False).replace("</", "<\\/")}</script>' for x in (ld or []))
@@ -463,13 +505,13 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
 {THEME_JS}<style>{CSS}</style>
 {ld_tags}
 </head>
-<body>
+<body{f' data-city="{esc(count_city)}"' if count_city else ''}>
 <header><div class="wrap"><a class="home" href="/">gigsnshows</a><nav class="top"><a href="/cities/">All cities</a><a href="/">Open the app</a></nav></div></header>
 <main><div class="wrap">
 {body}
 </div></main>
 <footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/list-event.html">List your event</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
-</body>
+{COUNT_JS}</body>
 </html>
 """
     # links into the app (/?city=...&event=...) show the same home page; search engines should not crawl or follow them
@@ -513,7 +555,7 @@ def show_page(show, related, hubs=""):
         f'<li><div><b>{esc(when(e))}</b><span>{esc(venue_short(e))}{", " + esc(e["city"]) if e["city"] != show.city else ""}'
         f'{esc(from_price(e.get("price_from")))}</span>'
         f'<a class="cal" href="{esc(gcal_url(e, f"{SITE}/{show.path}"))}" target="_blank" rel="noopener nofollow">Add to calendar</a></div>'
-        f'<a class="btn alt" href="{esc(link_for(e)[0])}" target="_blank" rel="noopener nofollow">Tickets on {esc(link_for(e)[1])}</a></li>'
+        f'<a class="btn alt" data-ticket="{esc(link_for(e)[1])}" href="{esc(link_for(e)[0])}" target="_blank" rel="noopener nofollow">Tickets on {esc(link_for(e)[1])}</a></li>'
         for e in show.events)
     tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in [cat_head] + [GENRE_LABELS.get(g, g.replace("-", " ").title()) for g in show.genres[:3]])
     more = "".join(f'<li>{thumb(r.image)}<div><a class="t" href="/{r.path}">{esc(r.title)}</a>'
@@ -532,7 +574,7 @@ def show_page(show, related, hubs=""):
 {f'<p class="upd">Also searched as: {esc(", ".join(aliases))}</p>' if aliases else ''}
 <h2>{'Dates and venues' if len(show.events) > 1 else 'Date and venue'}</h2>
 <ul class="dates">{dates}</ul>
-<div class="cta"><a class="btn" href="{esc(link)}" target="_blank" rel="noopener nofollow">Get tickets on {esc(platform)}</a>
+<div class="cta"><a class="btn" data-ticket="{esc(platform)}" href="{esc(link)}" target="_blank" rel="noopener nofollow">Get tickets on {esc(platform)}</a>
 <a class="btn alt" href="/?city={esc(city_slug)}&amp;event={esc(f['id'])}">Save it, share it or plan it with friends</a></div>
 {faq_html(qa, f"Questions about {show.title}")}
 <p class="upd">Something we haven't answered? <a href="/contact.html?show={quote(f'{clip(show.title, 90)} ({SITE}/{show.path})')}" rel="nofollow">Ask us about this show</a>.</p>
@@ -549,7 +591,7 @@ def show_page(show, related, hubs=""):
     tail = f"{kind}{'' if 'ticket' in show.title.lower() else ' Tickets'}{in_city}, {day} | gigsnshows"
     title = f"{clip(shown, max(30, 76 - len(tail)))}{tail}"  # "tickets" is in most of what people type to find a show; long names give way to it
     crumbs = breadcrumb_ld([("Home", ""), (show.city, f"{city_slug}/"), (cat_head, f"{city_slug}/{cat_slug}/"), (show.title, show.path)])
-    return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events] + [crumbs, faq_ld(qa)])
+    return page(title, clip(desc, 158), show.path, body, image=show.image, ld=[event_ld(show, e) for e in show.events] + [crumbs, faq_ld(qa)], count_city=city_slug)
 
 
 def listing(shows):
@@ -1154,7 +1196,7 @@ def ended_page(html_, today):
     html_ = re.sub(r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")([^"]*)"',
                    lambda m: m.group(1) + "This event has ended. " + re.sub(r" ?Tickets on [^.]*\.", "", m.group(2)).strip() + '"', html_)
     html_ = re.sub(r'<a class="cal" [^>]*>.*?</a>', "", html_, flags=re.S)
-    html_ = re.sub(r'<a class="btn alt" href="https?://[^"]*"[^>]*>Tickets on [^<]*</a>', "", html_)
+    html_ = re.sub(r'<a class="btn alt" [^>]*>Tickets on [^<]*</a>', "", html_)
     crumbs = re.findall(r'<a href="(/[a-z0-9-]+/(?:[a-z0-9-]+/)?)">([^<]+)</a>', re.search(r'<p class="crumbs">.*?</p>', html_, re.S).group(0)) if '<p class="crumbs">' in html_ else []
     links = " · ".join(f'<a href="{h}">What is on in {t}</a>' for h, t in crumbs[:2]) or '<a href="/">See what is on now</a>'
     notice = f'<div class="cta"><p class="lead"><b>This event has ended.</b> {links}</p></div>'

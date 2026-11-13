@@ -307,3 +307,13 @@ def test_new_occasions_and_the_india_wide_hub():
 def test_organizer_without_a_web_address_stays_out_of_the_markup(tmp_path):
     named = {**ev("d", "Indie Night", "2026-10-20", price=500), "organizer": "Acme Live Pvt Ltd"}
     assert "organizer" not in _show_ld(tmp_path / "d", named)
+
+
+def test_show_pages_count_ticket_clicks_and_other_pages_carry_no_city(tmp_path):
+    seo.write([ev("t1", "Rock Fest", "2026-12-20", price=500)], str(tmp_path), "2026-11-13")
+    show = next((tmp_path / "shows").iterdir()) / "index.html"
+    h = show.read_text()
+    assert 'data-ticket="' in h and '<body data-city="mumbai">' in h and "api.gigsnshows.com/hit" in h
+    assert 'gtag("config", "G-GD04SMDFR3")' in h and 'consent === "granted"' in h   # Google only after an OK
+    city = (tmp_path / "mumbai" / "index.html").read_text()
+    assert "<body>" in city and "data-ticket=" not in city
