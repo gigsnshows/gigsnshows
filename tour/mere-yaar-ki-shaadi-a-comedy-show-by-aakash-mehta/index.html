@@ -63,5 +63,37 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-si
 <section class="faq"><h2>About Mere Yaar ki Shaadi a Comedy Show by Aakash Mehta</h2><h3>Which cities is Mere Yaar ki Shaadi a Comedy Show by Aakash Mehta coming to?</h3><p>It is listed in Mumbai, Bhopal, Indore, Bhubaneswar, Kolkata, Pune, Bengaluru, Hyderabad and Nagpur.</p><h3>When does Mere Yaar ki Shaadi a Comedy Show by Aakash Mehta start?</h3><p>The first listed date is 13 Nov in Mumbai.</p></section>
 </div></main>
 <footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/list-event.html">List your event</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
+<script>
+(function () {
+  if (!/(^|\.)gigsnshows\.com$/.test(location.hostname)) return;
+  var own = navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl, src = "", consent = "";
+  try { src = new URLSearchParams(location.search).get("utm_source") || ""; } catch (e) {}
+  try { consent = localStorage.getItem("whatsOn.analyticsConsent") || ""; } catch (e) {}
+  function count(f) {
+    if (!own) return;
+    try {
+      var host = ""; try { host = new URL(document.referrer).hostname; } catch (e) {}
+      var b = { r: host, s: src, w: innerWidth }; for (var k in f) b[k] = f[k];
+      fetch("https://api.gigsnshows.com/hit", { method: "POST", body: JSON.stringify(b), mode: "no-cors", credentials: "omit", keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  if (consent === "granted") {
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+    gtag("js", new Date()); gtag("config", "G-GD04SMDFR3");
+    var s = document.createElement("script"); s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=G-GD04SMDFR3"; document.head.appendChild(s);
+  }
+  var city = document.body.getAttribute("data-city");
+  if (city) count({ c: city });
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[data-ticket]");
+    if (!a) return;
+    var seller = a.getAttribute("data-ticket");
+    count({ e: "ticket:" + seller.toLowerCase().replace(/[^a-z0-9]+/g, "-") });
+    if (consent === "granted") gtag("event", "ticket_click", { platform: seller, item_name: ((document.querySelector("h1") || {}).textContent || document.title).slice(0, 100), via: "show_page" });
+  });
+})();
+</script>
 </body>
 </html>

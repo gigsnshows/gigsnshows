@@ -64,8 +64,40 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-si
 
 <div class="cta"><a class="btn" rel="nofollow" href="/?city=kanpur&amp;tab=music">Open Kanpur on gigsnshows</a></div>
 <section class="faq"><h2>Questions about live music shows in Kanpur</h2><h3>What live music shows are on in Kanpur this weekend?</h3><p>3 are listed for Fri 13 Nov to Sun 15 Nov, including Studio XO Presents Shikhar Band, Studio XO Presents Usool Band Live and Studio XO Presents Chandan Jaiswal Live. The full list is on the this weekend page for Kanpur.</p><h3>Which live music shows are coming up next in Kanpur?</h3><p>The next ones are Studio XO Presents Shikhar Band (Fri 13 Nov, Studio XO), Studio XO Presents Usool Band Live (Sat 14 Nov, Studio XO) and Studio XO Presents Chandan Jaiswal Live (Sun 15 Nov, Studio XO). 3 upcoming live music shows are listed in Kanpur in total.</p><h3>How much do tickets for live music shows in Kanpur cost?</h3><p>Of the 3 listed with a price, tickets start from ₹499, and half of them start at ₹499 or less. These are the &quot;from&quot; prices shown by the ticketing sites when we last checked; the final price depends on the seat or ticket type.</p><h3>Where can I book tickets for live music shows in Kanpur?</h3><p>gigsnshows does not sell tickets. Every listing links to the seller: for Kanpur that is mostly BookMyShow. Dates and prices are refreshed several times a day.</p></section>
-<h2>Other cities</h2><ul class="more"><li><a href="/mumbai/">Mumbai</a></li><li><a href="/bengaluru/">Bengaluru</a></li><li><a href="/delhi/">Delhi</a></li><li><a href="/pune/">Pune</a></li><li><a href="/hyderabad/">Hyderabad</a></li><li><a href="/kolkata/">Kolkata</a></li><li><a href="/ahmedabad/">Ahmedabad</a></li><li><a href="/chennai/">Chennai</a></li><li><a href="/goa/">Goa</a></li><li><a href="/jaipur/">Jaipur</a></li><li><a href="/chandigarh/">Chandigarh</a></li><li><a href="/lucknow/">Lucknow</a></li></ul>
+<h2>Other cities</h2><ul class="more"><li><a href="/mumbai/">Mumbai</a></li><li><a href="/bengaluru/">Bengaluru</a></li><li><a href="/delhi/">Delhi</a></li><li><a href="/hyderabad/">Hyderabad</a></li><li><a href="/pune/">Pune</a></li><li><a href="/kolkata/">Kolkata</a></li><li><a href="/ahmedabad/">Ahmedabad</a></li><li><a href="/chennai/">Chennai</a></li><li><a href="/goa/">Goa</a></li><li><a href="/jaipur/">Jaipur</a></li><li><a href="/chandigarh/">Chandigarh</a></li><li><a href="/lucknow/">Lucknow</a></li></ul>
 </div></main>
 <footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/list-event.html">List your event</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
+<script>
+(function () {
+  if (!/(^|\.)gigsnshows\.com$/.test(location.hostname)) return;
+  var own = navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl, src = "", consent = "";
+  try { src = new URLSearchParams(location.search).get("utm_source") || ""; } catch (e) {}
+  try { consent = localStorage.getItem("whatsOn.analyticsConsent") || ""; } catch (e) {}
+  function count(f) {
+    if (!own) return;
+    try {
+      var host = ""; try { host = new URL(document.referrer).hostname; } catch (e) {}
+      var b = { r: host, s: src, w: innerWidth }; for (var k in f) b[k] = f[k];
+      fetch("https://api.gigsnshows.com/hit", { method: "POST", body: JSON.stringify(b), mode: "no-cors", credentials: "omit", keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  if (consent === "granted") {
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+    gtag("js", new Date()); gtag("config", "G-GD04SMDFR3");
+    var s = document.createElement("script"); s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=G-GD04SMDFR3"; document.head.appendChild(s);
+  }
+  var city = document.body.getAttribute("data-city");
+  if (city) count({ c: city });
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[data-ticket]");
+    if (!a) return;
+    var seller = a.getAttribute("data-ticket");
+    count({ e: "ticket:" + seller.toLowerCase().replace(/[^a-z0-9]+/g, "-") });
+    if (consent === "granted") gtag("event", "ticket_click", { platform: seller, item_name: ((document.querySelector("h1") || {}).textContent || document.title).slice(0, 100), via: "show_page" });
+  });
+})();
+</script>
 </body>
 </html>

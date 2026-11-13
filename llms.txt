@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,202 upcoming shows in 69 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-13).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,204 upcoming shows in 69 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-13).
 
 ## How to use this site
 
@@ -19,15 +19,15 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 410 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 347 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 318 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 163 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 161 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 116 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 96 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 416 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 349 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 315 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 162 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 162 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 112 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 95 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 92 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 63 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 64 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 46 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 45 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 37 upcoming shows
@@ -40,18 +40,18 @@
 - [Today in Mumbai](https://gigsnshows.com/mumbai/today/)
 - [Today in Bengaluru](https://gigsnshows.com/bengaluru/today/)
 - [Today in Delhi](https://gigsnshows.com/delhi/today/)
-- [Today in Pune](https://gigsnshows.com/pune/today/)
 - [Today in Hyderabad](https://gigsnshows.com/hyderabad/today/)
+- [Today in Pune](https://gigsnshows.com/pune/today/)
 - [Tomorrow in Mumbai](https://gigsnshows.com/mumbai/tomorrow/)
 - [Tomorrow in Bengaluru](https://gigsnshows.com/bengaluru/tomorrow/)
 - [Tomorrow in Delhi](https://gigsnshows.com/delhi/tomorrow/)
-- [Tomorrow in Pune](https://gigsnshows.com/pune/tomorrow/)
 - [Tomorrow in Hyderabad](https://gigsnshows.com/hyderabad/tomorrow/)
+- [Tomorrow in Pune](https://gigsnshows.com/pune/tomorrow/)
 - [This weekend in Mumbai](https://gigsnshows.com/mumbai/this-weekend/)
 - [This weekend in Bengaluru](https://gigsnshows.com/bengaluru/this-weekend/)
 - [This weekend in Delhi](https://gigsnshows.com/delhi/this-weekend/)
-- [This weekend in Pune](https://gigsnshows.com/pune/this-weekend/)
 - [This weekend in Hyderabad](https://gigsnshows.com/hyderabad/this-weekend/)
+- [This weekend in Pune](https://gigsnshows.com/pune/this-weekend/)
 
 ## Seasonal and occasion pages
 
@@ -65,8 +65,8 @@
 - [Aamchya Pidhichi Goshtach Vegali](https://gigsnshows.com/tour/aamchya-pidhichi-goshtach-vegali/)
 - [Aamer Peeran S Wide Range A Stand Up Comedy Show](https://gigsnshows.com/tour/aamer-peeran-s-wide-range-a-stand-up-comedy-show/)
 - [Abijit Ganguly Live](https://gigsnshows.com/tour/abijit-ganguly-live/)
+- [Akaash Singh Generational Triumph Tour](https://gigsnshows.com/tour/akaash-singh-generational-triumph-tour/)
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
-- [Alan Walker Legend Of Atlantis](https://gigsnshows.com/tour/alan-walker-legend-of-atlantis/)
 - [Allow Me A Standup Comedy Show By Rahul Dua](https://gigsnshows.com/tour/allow-me-a-standup-comedy-show-by-rahul-dua/)
 - [Amar Photo Studio](https://gigsnshows.com/tour/amar-photo-studio/)
 - [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)

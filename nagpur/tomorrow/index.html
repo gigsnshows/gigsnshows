@@ -62,8 +62,40 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--ink3);font-si
 <ul class="list"><li><img width="92" height="56" src="https://wsrv.nl/?url=https%3A%2F%2Fcdn.district.in%2Fassets%2Fevents%2Fpublisher%2Fevent_cover_image_vertical%2F01M6V5E5H8ARG2H13K4P3WCYJS.jpeg&amp;w=160&amp;output=webp&amp;q=72&amp;we" data-o="https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6V5E5H8ARG2H13K4P3WCYJS.jpeg" alt="" loading="lazy" onerror="if(this.dataset.o){this.src=this.dataset.o;this.removeAttribute(&#x27;data-o&#x27;)}"><div><a class="t" href="/shows/saturday-night-live-ft-khushal-at-the-studs-nagpur-29cad50da7/">Saturday Night Live ft. Khushal at The Studs Nagpur</a><p>Sat 14 Nov, 8 pm · The Studs - Sports Bar &amp; Grill</p></div></li><li><img width="92" height="56" src="https://wsrv.nl/?url=https%3A%2F%2Fassets-in.bmscdn.com%2Fnmcms%2Fevents%2Fbanner%2Fdesktop%2Fmedia-desktop-harsh-o-ullas-ft-harsh-gujral-0-2026-10-7-t-16-15-52.jpg&amp;w=160&amp;output=webp&amp;q=72&amp;we" data-o="https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-harsh-o-ullas-ft-harsh-gujral-0-2026-10-7-t-16-15-52.jpg" alt="" loading="lazy" onerror="if(this.dataset.o){this.src=this.dataset.o;this.removeAttribute(&#x27;data-o&#x27;)}"><div><a class="t" href="/shows/harsh-o-ullas-ft-harsh-gujral-84ffc9ebd9/">Harsh&#x27;O&#x27;Ullas ft. Harsh Gujral</a><p>Sat 14 Nov, 9 pm · Vasantrao Deshpande Hall · from ₹499</p></div></li></ul>
 <div class="cta"><a class="btn" href="/nagpur/">All upcoming shows in Nagpur</a><a class="btn alt" rel="nofollow" href="/?city=nagpur&amp;when=tomorrow">Open on gigsnshows</a></div>
 <section class="faq"><h2>Tomorrow in Nagpur</h2><h3>What is on in Nagpur tomorrow?</h3><p>2 shows are listed for Saturday 14 November in Nagpur (1 music and 1 stand-up), including Saturday Night Live ft. Khushal at The Studs Nagpur and Harsh&#x27;O&#x27;Ullas ft. Harsh Gujral.</p></section>
-<h2>Tomorrow in other cities</h2><ul class="more"><li><a href="/mumbai/tomorrow/">Mumbai</a></li><li><a href="/bengaluru/tomorrow/">Bengaluru</a></li><li><a href="/delhi/tomorrow/">Delhi</a></li><li><a href="/pune/tomorrow/">Pune</a></li><li><a href="/hyderabad/tomorrow/">Hyderabad</a></li><li><a href="/kolkata/tomorrow/">Kolkata</a></li><li><a href="/ahmedabad/tomorrow/">Ahmedabad</a></li><li><a href="/chennai/tomorrow/">Chennai</a></li><li><a href="/goa/tomorrow/">Goa</a></li><li><a href="/jaipur/tomorrow/">Jaipur</a></li></ul>
+<h2>Tomorrow in other cities</h2><ul class="more"><li><a href="/mumbai/tomorrow/">Mumbai</a></li><li><a href="/bengaluru/tomorrow/">Bengaluru</a></li><li><a href="/delhi/tomorrow/">Delhi</a></li><li><a href="/hyderabad/tomorrow/">Hyderabad</a></li><li><a href="/pune/tomorrow/">Pune</a></li><li><a href="/kolkata/tomorrow/">Kolkata</a></li><li><a href="/ahmedabad/tomorrow/">Ahmedabad</a></li><li><a href="/chennai/tomorrow/">Chennai</a></li><li><a href="/goa/tomorrow/">Goa</a></li><li><a href="/jaipur/tomorrow/">Jaipur</a></li></ul>
 </div></main>
 <footer><div class="wrap"><a href="/">Home</a><a href="/cities/">Cities</a><a href="/about/">About</a><a href="/privacy.html">Privacy</a><a href="/list-event.html">List your event</a><a href="/contact.html">Contact</a><p>gigsnshows lists shows from the ticketing sites and venues linked on each page. Tickets are sold by them, not by us.</p></div></footer>
+<script>
+(function () {
+  if (!/(^|\.)gigsnshows\.com$/.test(location.hostname)) return;
+  var own = navigator.doNotTrack !== "1" && !navigator.globalPrivacyControl, src = "", consent = "";
+  try { src = new URLSearchParams(location.search).get("utm_source") || ""; } catch (e) {}
+  try { consent = localStorage.getItem("whatsOn.analyticsConsent") || ""; } catch (e) {}
+  function count(f) {
+    if (!own) return;
+    try {
+      var host = ""; try { host = new URL(document.referrer).hostname; } catch (e) {}
+      var b = { r: host, s: src, w: innerWidth }; for (var k in f) b[k] = f[k];
+      fetch("https://api.gigsnshows.com/hit", { method: "POST", body: JSON.stringify(b), mode: "no-cors", credentials: "omit", keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  if (consent === "granted") {
+    gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+    gtag("js", new Date()); gtag("config", "G-GD04SMDFR3");
+    var s = document.createElement("script"); s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=G-GD04SMDFR3"; document.head.appendChild(s);
+  }
+  var city = document.body.getAttribute("data-city");
+  if (city) count({ c: city });
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[data-ticket]");
+    if (!a) return;
+    var seller = a.getAttribute("data-ticket");
+    count({ e: "ticket:" + seller.toLowerCase().replace(/[^a-z0-9]+/g, "-") });
+    if (consent === "granted") gtag("event", "ticket_click", { platform: seller, item_name: ((document.querySelector("h1") || {}).textContent || document.title).slice(0, 100), via: "show_page" });
+  });
+})();
+</script>
 </body>
 </html>
