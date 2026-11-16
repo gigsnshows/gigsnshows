@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,856 upcoming shows in 64 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-16).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,864 upcoming shows in 64 cities, gathered from BookMyShow, District, thumpN, Skillbox, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-16).
 
 ## How to use this site
 
@@ -19,14 +19,14 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 363 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 286 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 265 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 135 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 364 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 291 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 262 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 139 upcoming shows
 - [Hyderabad](https://gigsnshows.com/hyderabad/): 118 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 103 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 102 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 93 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 76 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 78 upcoming shows
 - [Goa](https://gigsnshows.com/goa/): 55 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 39 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 36 upcoming shows
@@ -59,7 +59,6 @@
 
 ## Tours playing several cities
 
-- [3 Am Thoughts By Manjeet Thakur](https://gigsnshows.com/tour/3-am-thoughts-by-manjeet-thakur/)
 - [Aale Pak Marathi Standup Comedy Ft Mandar Bhide](https://gigsnshows.com/tour/aale-pak-marathi-standup-comedy-ft-mandar-bhide/)
 - [Aamer Peeran S Wide Range A Stand Up Comedy Show](https://gigsnshows.com/tour/aamer-peeran-s-wide-range-a-stand-up-comedy-show/)
 - [Akaash Singh Generational Triumph Tour](https://gigsnshows.com/tour/akaash-singh-generational-triumph-tour/)
@@ -74,6 +73,7 @@
 - [Besharam World Tour 2026 27](https://gigsnshows.com/tour/besharam-world-tour-2026-27/)
 - [Bhumika](https://gigsnshows.com/tour/bhumika/)
 - [Casa Bacardi On Tour](https://gigsnshows.com/tour/casa-bacardi-on-tour/)
+- [Chirag Panjwani Live](https://gigsnshows.com/tour/chirag-panjwani-live/)
 
 ## Venues
 
