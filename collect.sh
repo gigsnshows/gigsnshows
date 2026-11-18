@@ -15,16 +15,19 @@ main() {
   set -e
   cd "$HERE"
   local REPO=git@github.com:gigsnshows/gigsnshows.git
+  local ALT=ssh://git@ssh.github.com:443/gigsnshows/gigsnshows.git  # the same, over port 443, for networks that block or drop port 22
   local BOT=(-c user.name=listings-bot -c user.email=bot@users.noreply.github.com)
-  export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/gigsnshows_deploy -o IdentitiesOnly=yes -o ConnectTimeout=30 -o ServerAliveInterval=15 -o ServerAliveCountMax=3"  # give up on a dead connection instead of hanging (the Mac's 2 Nov 13:35 run sat silent after its first fetch)
+  export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/gigsnshows_deploy -o IdentitiesOnly=yes -o ConnectTimeout=30 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o \"UserKnownHostsFile=$HERE/github_known_hosts $HOME/.ssh/known_hosts\""  # give up on a dead connection instead of hanging (the Mac's 2 Nov 13:35 run sat silent after its first fetch)
   : "${COLLECTOR:?set COLLECTOR to aws or mac}" "${PYTHON:=python3}"
 
   # GitHub sometimes drops a connection for a moment ("early EOF", "Broken pipe"). With set -e that used to end the whole run
   # and throw away 30 minutes of results (the Mac's 15 Oct 09:36 run), so network steps are tried a few times first.
+  # Port 22 first, then port 443 (the Mac's 18 Nov 09:35 run timed out on port 22 four times and lost its upload).
+  remote() { local verb=$1; shift; git "$verb" --quiet "$REPO" "$@" || { echo "GitHub on port 22 failed; trying port 443"; git "$verb" --quiet "$ALT" "$@"; }; }
   net() { local i; for i in 1 2 3 4; do "$@" && return 0; echo "network step failed ($*), try $i of 4"; sleep $((i * 20)); done; return 1; }
 
   echo "=== $(date) on $COLLECTOR ==="
-  net git fetch --quiet "$REPO" main
+  net remote fetch main
   git reset --quiet --hard FETCH_HEAD   # latest code and listings
   git clean -fdq
   "$PYTHON" run.py
@@ -32,13 +35,13 @@ main() {
     git add -A  # listings, health record, share pages and the search pages (shows/, city folders, sitemap)
     if git diff --cached --quiet; then echo "no changes"; return 0; fi
     git "${BOT[@]}" commit --quiet -m "Refresh listings $(date +%F) ($COLLECTOR)"
-    git push --quiet "$REPO" HEAD:main && { echo "uploaded"; "$PYTHON" indexnow.py HEAD~1 || true; return 0; }
+    remote push HEAD:main && { echo "uploaded"; "$PYTHON" indexnow.py HEAD~1 || true; return 0; }
     echo "upload did not go through (another collector uploaded first, or the connection dropped); merging into the latest listings"
     # What this machine's sitemap reader has already read (data/district_pages.json on the server, data/bms_pages.json
     # on the Mac) would be lost by the reset below, and the reader would start again from nothing next time.
     local MEMORY=data/district_pages.json; [ "$COLLECTOR" = mac ] && MEMORY="${GNS_BMS_PAGES:-data/bms_pages.json}"  # (outside the clone when GNS_BMS_PAGES is set)
     local KEEP; KEEP="$(mktemp)"; cp "$MEMORY" "$KEEP" 2>/dev/null || : > "$KEEP"
-    net git fetch --quiet "$REPO" main
+    net remote fetch main
     git reset --quiet --hard FETCH_HEAD
     git clean -fdq
     [ -s "$KEEP" ] && cp "$KEEP" "$MEMORY"; rm -f "$KEEP"
