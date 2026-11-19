@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,292 upcoming shows in 67 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-18).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,273 upcoming shows in 68 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-19).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 408 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 365 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 363 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 173 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 138 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 123 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 403 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 362 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 355 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 167 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 135 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 126 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 105 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 94 upcoming shows
 - [Goa](https://gigsnshows.com/goa/): 84 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 47 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 44 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 43 upcoming shows
 - [Vadodara](https://gigsnshows.com/vadodara/): 34 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 32 upcoming shows
-- [Indore](https://gigsnshows.com/indore/): 27 upcoming shows
-- [Guwahati](https://gigsnshows.com/guwahati/): 25 upcoming shows
+- [Indore](https://gigsnshows.com/indore/): 31 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 31 upcoming shows
+- [Guwahati](https://gigsnshows.com/guwahati/): 27 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -80,7 +80,6 @@
 - [Arvind Sunder](https://gigsnshows.com/artists/arvind-sunder/)
 - [Arz Kiya Hai](https://gigsnshows.com/artists/arz-kiya-hai/)
 - [Ashish Malhotra](https://gigsnshows.com/artists/ashish-malhotra/)
-- [Ashish Vidyarthi](https://gigsnshows.com/artists/ashish-vidyarthi/)
 - [Ashutosh Jamadagni](https://gigsnshows.com/artists/ashutosh-jamadagni/)
 - [Ashwyn Singh](https://gigsnshows.com/artists/ashwyn-singh/)
 - [Atul Khatri](https://gigsnshows.com/artists/atul-khatri/)
@@ -94,6 +93,7 @@
 - [Dj Aziz](https://gigsnshows.com/artists/dj-aziz/)
 - [Dj Chetas](https://gigsnshows.com/artists/dj-chetas/)
 - [Dj Mauu](https://gigsnshows.com/artists/dj-mauu/)
+- [Dj Mikie](https://gigsnshows.com/artists/dj-mikie/)
 - [Farhan Sabir](https://gigsnshows.com/artists/farhan-sabir/)
 - [Foo Fighters](https://gigsnshows.com/artists/foo-fighters/)
 - [Francis Mercier](https://gigsnshows.com/artists/francis-mercier/)
@@ -107,6 +107,7 @@
 - [23 Va Majala](https://gigsnshows.com/tour/23-va-majala/)
 - [Aale Pak Marathi Standup Comedy Ft Mandar Bhide](https://gigsnshows.com/tour/aale-pak-marathi-standup-comedy-ft-mandar-bhide/)
 - [Aamer Peeran S Wide Range A Stand Up Comedy Show](https://gigsnshows.com/tour/aamer-peeran-s-wide-range-a-stand-up-comedy-show/)
+- [Air 1 A Standup Comedy Show By Harshit Mahawar](https://gigsnshows.com/tour/air-1-a-standup-comedy-show-by-harshit-mahawar/)
 - [Akaash Singh Generational Triumph Tour](https://gigsnshows.com/tour/akaash-singh-generational-triumph-tour/)
 - [Akshay Srivastava Live Standup Comedy Show](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy-show/)
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
@@ -118,7 +119,6 @@
 - [Assi Kinne Punjabi Aa Live With Balraj Syal](https://gigsnshows.com/tour/assi-kinne-punjabi-aa-live-with-balraj-syal/)
 - [Aswekeepsearching Live Pune](https://gigsnshows.com/tour/aswekeepsearching-live-pune/)
 - [Bangtanverse Carnival Fan Tour](https://gigsnshows.com/tour/bangtanverse-carnival-fan-tour/)
-- [Besharam World Tour 2026 27](https://gigsnshows.com/tour/besharam-world-tour-2026-27/)
 
 ## Venues
 
