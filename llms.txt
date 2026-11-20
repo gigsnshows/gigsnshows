@@ -19,15 +19,15 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 415 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 359 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 416 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 361 upcoming shows
 - [Bengaluru](https://gigsnshows.com/bengaluru/): 356 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 172 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 170 upcoming shows
 - [Hyderabad](https://gigsnshows.com/hyderabad/): 138 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 122 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 121 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 102 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 95 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 82 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 80 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 53 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 42 upcoming shows
 - [Vadodara](https://gigsnshows.com/vadodara/): 34 upcoming shows
@@ -115,10 +115,10 @@
 - [Amar Photo Studio](https://gigsnshows.com/tour/amar-photo-studio/)
 - [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)
 - [Animal Marathi Play](https://gigsnshows.com/tour/animal-marathi-play/)
+- [Arvind Sunder Live](https://gigsnshows.com/tour/arvind-sunder-live/)
 - [Assi Kinne Punjabi Aa By Balraj Syal](https://gigsnshows.com/tour/assi-kinne-punjabi-aa-by-balraj-syal/)
 - [Assi Kinne Punjabi Aa Live With Balraj Syal](https://gigsnshows.com/tour/assi-kinne-punjabi-aa-live-with-balraj-syal/)
 - [Aswekeepsearching Live Pune](https://gigsnshows.com/tour/aswekeepsearching-live-pune/)
-- [Bangtanverse Carnival Fan Tour](https://gigsnshows.com/tour/bangtanverse-carnival-fan-tour/)
 
 ## Venues
 
