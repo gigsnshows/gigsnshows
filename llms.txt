@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,944 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, NMACC, Prithvi Theatre and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-22).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 1,940 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, NMACC, Prithvi Theatre and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-22).
 
 ## How to use this site
 
@@ -20,11 +20,11 @@
 ## Biggest cities
 
 - [Mumbai](https://gigsnshows.com/mumbai/): 348 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 305 upcoming shows
 - [Delhi](https://gigsnshows.com/delhi/): 305 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 149 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 115 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 108 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 302 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 150 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 114 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 106 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 93 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 74 upcoming shows
 - [Goa](https://gigsnshows.com/goa/): 65 upcoming shows
@@ -38,18 +38,18 @@
 ## What is on now (rebuilt every day)
 
 - [Today in Mumbai](https://gigsnshows.com/mumbai/today/)
-- [Today in Bengaluru](https://gigsnshows.com/bengaluru/today/)
 - [Today in Delhi](https://gigsnshows.com/delhi/today/)
+- [Today in Bengaluru](https://gigsnshows.com/bengaluru/today/)
 - [Today in Pune](https://gigsnshows.com/pune/today/)
 - [Today in Hyderabad](https://gigsnshows.com/hyderabad/today/)
 - [Tomorrow in Mumbai](https://gigsnshows.com/mumbai/tomorrow/)
-- [Tomorrow in Bengaluru](https://gigsnshows.com/bengaluru/tomorrow/)
 - [Tomorrow in Delhi](https://gigsnshows.com/delhi/tomorrow/)
+- [Tomorrow in Bengaluru](https://gigsnshows.com/bengaluru/tomorrow/)
 - [Tomorrow in Pune](https://gigsnshows.com/pune/tomorrow/)
 - [Tomorrow in Hyderabad](https://gigsnshows.com/hyderabad/tomorrow/)
 - [This weekend in Mumbai](https://gigsnshows.com/mumbai/this-weekend/)
-- [This weekend in Bengaluru](https://gigsnshows.com/bengaluru/this-weekend/)
 - [This weekend in Delhi](https://gigsnshows.com/delhi/this-weekend/)
+- [This weekend in Bengaluru](https://gigsnshows.com/bengaluru/this-weekend/)
 - [This weekend in Pune](https://gigsnshows.com/pune/this-weekend/)
 - [This weekend in Hyderabad](https://gigsnshows.com/hyderabad/this-weekend/)
 
