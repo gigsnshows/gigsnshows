@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22T08:35:30Z",
+  "updated_at": "2026-11-22T12:35:29Z",
   "cities": [
     "Abu Dhabi",
     "Agra",
@@ -276,7 +276,7 @@
       "Other Indian languages"
     ]
   ],
-  "count": 2117,
+  "count": 2107,
   "events": [
     {
       "id": "f67b7b41afc7",
@@ -329,31 +329,6 @@
       "first_seen": "2026-11-16"
     },
     {
-      "id": "ca0050a97425",
-      "title": "The Dirty Talk Standup Comedy Show presented by Ink-A-Laugh",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Mumbai",
-      "venue": "Ink A Laugh Standup Comedy Club vile parle west",
-      "date": "2026-11-22",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/inkalaugh-presents-the-dirty-talk-standup-comedy-show-sep26-2025-buy-tickets",
-      "image": null,
-      "source": "District",
-      "about": "Not for the faint-hearted, this night is strictly for adults who think humor should be a little bold. Get ready for cheeky jokes, playful storytelling, and no-holds-barred punchlines on all things risqué. Leave your blushes at the door and your judgement at home; this show lets comedians say what everyone else is just thinking.Dare to laugh without limits? Not for the faint-hearted, this night is strictly for adults…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/inkalaugh-presents-the-dirty-talk-standup-comedy-show-sep26-2025-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
       "id": "f0a8876bb04a",
       "title": "Controversial Comedy",
       "category": "comedy",
@@ -365,7 +340,7 @@
       "venue": "Ink A Laugh Standup Comedy Club vile parle west",
       "date": "2026-11-22",
       "time": "",
-      "price_from": 249,
+      "price_from": null,
       "url": "https://www.district.in/events/controversial-comedy-dec10-2025-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KZBHXKSS06S7VZQP45GSF2J7.png",
       "source": "District",
@@ -390,7 +365,7 @@
       "venue": "Ink A Laugh Standup Comedy Club vile parle west",
       "date": "2026-11-22",
       "time": "",
-      "price_from": 249,
+      "price_from": null,
       "url": "https://www.district.in/events/drop-out-stand-up-comedy-show-dec23-2025-buy-tickets",
       "image": "https://cdn.district.in/events/cd-media/image/upload/v1766409660/z5qg4wrcoey0xltskhxe.jpg",
       "source": "District",
@@ -413,7 +388,7 @@
       "venue": "The Comedy Theatre - Hauz Khass Village",
       "date": "2026-11-22",
       "time": "",
-      "price_from": null,
+      "price_from": 299,
       "url": "https://www.district.in/events/sex-jokes-night-mar29-2026-buy-tickets",
       "image": "https://cdn.district.in/events/cd-media/image/upload/v1774719025/qj38rhhlkkvfseqjyori.jpg",
       "source": "District",
@@ -576,31 +551,6 @@
       "first_seen": "2026-11-22"
     },
     {
-      "id": "7b5801977e5b",
-      "title": "SXX & Savage Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Pune",
-      "venue": "Laugh and Vibe Club",
-      "date": "2026-11-22",
-      "time": "",
-      "price_from": 150,
-      "url": "https://www.district.in/events/sxx-savage-comedy-show-apr3-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1775212757/q8wvpr0tjunc6ftmlabb.jpg",
-      "source": "District",
-      "about": "Brace yourself for a night where nothing is off-limits.Sxx & Savage Comedy Night (18+) is where bold humor, raw storytelling, and unfiltered punchlines take center stage. This isn’t your polite, PG comedy show. It’s loud, edgy, and just a little bit reckless—in the best way.Expect a lineup of fearless comedians who say what everyone’s thinking (but wouldn’t dare say out loud). From cheeky observations to savage…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/sxx-savage-comedy-show-apr3-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
       "id": "e385f3da95c3",
       "title": "Jathiratnalu",
       "category": "comedy",
@@ -626,31 +576,6 @@
       "first_seen": "2026-11-15"
     },
     {
-      "id": "76e241037ffc",
-      "title": "Stand-Up Comedy Night",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Hyderabad",
-      "venue": "Brew Commune Cafe & Bistro",
-      "date": "2026-11-22",
-      "time": "",
-      "price_from": 99,
-      "url": "https://www.district.in/events/standup-comedy-night-jul12-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M1YAP2SYW3QET8QPVDEQ3GCW.png",
-      "source": "District",
-      "about": "Stand-Up Comedy Night is Here!Get ready for an evening packed with laughter, relatable stories, and unforgettable punchlines! Join Amar as open mic comedian to the Brew Commune stage.Too young to retire. Too old to party. Just the right age to laugh out loud! Stand-Up Comedy Night is Here!Get ready for an evening packed with laughter, relatable stories, and unforgettable punchlines! Join Amar as open mic comedian to…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/standup-comedy-night-jul12-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
-    },
-    {
       "id": "e04556f81692",
       "title": "Copper Chimney Velachery, Live Music",
       "category": "music",
@@ -672,56 +597,6 @@
         "District": "https://www.district.in/events/copper-chimney-velachery-live-music-jul3-2026-buy-tickets"
       },
       "first_seen": "2026-11-22"
-    },
-    {
-      "id": "f3c521c11f94",
-      "title": "Top Secret Comedy Show- A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Kolkata",
-      "venue": "TopCat CCU",
-      "date": "2026-11-22",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/too-secret-comedy-show-a-stand-up-comedy-show-oct4-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M40S7GYGTNXAWQ47VC04HDCP.png",
-      "source": "District",
-      "about": "Shhh… 🤐 The details are classified, but one thing is TOP SECRET — you’re going to laugh! 😂Get ready for an evening of hilarious stand-up comedy, crazy observations, unexpected twists, and jokes you probably shouldn’t repeat at home! 🎤🔥No spoilers. No secrets revealed. Just non-stop laughter. Shhh… 🤐 The details are classified, but one thing is TOP SECRET — you’re going to laugh! 😂Get ready for an evening of…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/too-secret-comedy-show-a-stand-up-comedy-show-oct4-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
-      "id": "c359696b1dfb",
-      "title": "Ghar: An Open Mic for Words by Tape A Tale",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "lang": [],
-      "city": "Chandigarh",
-      "venue": "The Laugh Club",
-      "date": "2026-11-22",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-chandigarh-jul5-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KTR4V48FX5VJQ3RKJBJQ3Z9K.jpeg",
-      "source": "District",
-      "about": "Ghar is Tape A Tale's open mic event: a warm, welcoming home for your words. You can come, share your stories or poems, or just sit back and listen to people.At Ghar, you'll always find a space for your art and a family to share it with.P.S. Ghar is a non-biased, chit-based open mic, and we stay true to this format. It's a safe, welcoming space where you'll find a home in the warmth of stories, poems, and the…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-chandigarh-jul5-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
     },
     {
       "id": "f6191358e706",
@@ -1087,6 +962,54 @@
       "first_seen": "2026-11-16"
     },
     {
+      "id": "ceead92a769a",
+      "title": "The Big Aaaaart Walk by The Art Curry || Pune",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Pune",
+      "venue": "Bohri Ali",
+      "date": "2026-11-22",
+      "time": "10:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-pune-sbyzotts",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/179439852178YwiooXEJJjpeEQ.jpeg.webp",
+      "source": "Skillbox",
+      "about": "The Big Aaaaart Walk is a community-led art walk by The Art Curry, bringing people together to explore, create, sketch and experience art in the city! Join us for a space of art, conversations and community. No experienc",
+      "end": "2026-11-22T23:59",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-pune-sbyzotts"
+      },
+      "first_seen": "2026-11-17"
+    },
+    {
+      "id": "b258863a2a02",
+      "title": "The Big Aaaaart Walk by The Art Curry || Ahmedabad",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Rani no Hajiro",
+      "date": "2026-11-22",
+      "time": "10:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-ahmedabad-sbzdyoja",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/179439852178YwiooXEJJjpeEQ.jpeg.webp",
+      "source": "Skillbox",
+      "about": "The Big Aaaaart Walk is a community-led art walk by The Art Curry, bringing people together to explore, create, sketch and experience art in the city! Join us for a space of art, conversations and community. No experienc",
+      "end": "2026-11-22T23:59",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-ahmedabad-sbzdyoja"
+      },
+      "first_seen": "2026-11-12"
+    },
+    {
       "id": "9ea5429e7116",
       "title": "HYROX Simulation – The Gym Collective × Spartan Fitness",
       "category": "sports",
@@ -1205,7 +1128,7 @@
       "url": "https://www.skillboxes.com/events/manchester-united-liverpool-fc-live-screening-watson-s-chennai-sbrpetvf",
       "image": "https://1840729241.rsc.cdn77.org/media/event_cover/THJuaWlqbVNUQkVJNndwTFJzYWtxUT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1794905757RvdeqBdhPvkSlxf9.jpg.webp",
       "source": "Skillbox",
-      "about": "Manchester United | Liverpool FCLive Screening.Watson’s Chennai.Date - 22nd November, 2026!Timings - 10:30 PMVenue - Watson’s Chennai.",
+      "about": "Manchester United | Liverpool FC Live Screening. Watson’s Chennai. Date - 22nd November, 2026! Timings - 10:30 PM Venue - Watson&r",
       "end": "2026-11-22T23:59",
       "sources": [
         "Skillbox"
@@ -1264,33 +1187,6 @@
       ],
       "links": {
         "thumpN": "https://thumpn.com/event/UKZYLW/jalandhar-comic-con"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
-      "id": "18b4cf90d806",
-      "title": "Lazer Crazer: BattleZone Delhi",
-      "category": "sports",
-      "genres": [
-        "esports",
-        "cricket"
-      ],
-      "lang": [],
-      "city": "Delhi",
-      "venue": "Lazer Crazer Delhi | Laser Tag & Cafe Myles",
-      "date": "2026-11-22",
-      "time": "11:00",
-      "price_from": null,
-      "url": "https://thumpn.com/event/HCNNBY/lazer-crazer-battlezone-delhi",
-      "image": "https://media.thumpn.com/prod-mum1/event/evt-99WH4D/cover-image/evt-99wh4d-1f50.webp",
-      "source": "thumpN",
-      "about": "Level up your parties and events with Lazer Crazer, Delhi-NCR's ultimate destination for immersive gaming experiences. From intense laser tag battles to mind-blowing VR worlds and PS5 gaming — we bring non-stop fun for all age groups.- Laser Tag ArenaSuit up and enter the glow-in-the-dark battlefield where strategy meets chaos. It's fast. It's fierce. It's real-life PUBG — no screen, just pure action. Perfect for…",
-      "end": "2026-11-22T12:00",
-      "sources": [
-        "thumpN"
-      ],
-      "links": {
-        "thumpN": "https://thumpn.com/event/HCNNBY/lazer-crazer-battlezone-delhi"
       },
       "first_seen": "2026-11-22"
     },
@@ -1486,30 +1382,6 @@
         "The Piano Man": "https://www.thepianoman.in/event/detail/2/gourmet-cinema-ratatouille-five-thousand-two-hundred-eighteen"
       },
       "first_seen": "2026-11-15"
-    },
-    {
-      "id": "3d15a719dbb7",
-      "title": "QueerKala",
-      "category": "music",
-      "genres": [],
-      "lang": [],
-      "city": "Delhi",
-      "venue": "Deer Park",
-      "date": "2026-11-22",
-      "time": "12:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/queerkala-sbxbbiaq",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1793628033QWjIFIqrhRX0CSTO.jpeg.webp",
-      "source": "Skillbox",
-      "about": "QueerKala - A cute little art escape where queerness meets creativity 🌈 ​Come sketch, paint, vibe, & just be you; no skills needed, only good energy. ​What to Expect:",
-      "end": "2026-11-22T17:00",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/queerkala-sbxbbiaq"
-      },
-      "first_seen": "2026-11-17"
     },
     {
       "id": "e5dd1913f43f",
@@ -2789,9 +2661,9 @@
       "venue": "Ink A Laugh Standup Comedy Club vile parle west",
       "date": "2026-11-22",
       "time": "16:00",
-      "price_from": null,
+      "price_from": 249,
       "url": "https://www.district.in/events/inkalaugh-presents-roasting-relationships-standup-comedy-show-sep26-2025-buy-tickets",
-      "image": null,
+      "image": "https://cdn.district.in/events/cd-media/image/upload/v1771010816/cyjy4aixmfiovivagqxf.jpg",
       "source": "District",
       "about": "Love is a battlefield, and tonight it is all fair game on stage. From first dates to drama-filled texts and in-law adventures, comedians serve up fresh takes on romance, commitment, and everything in between. Whether you have been heartbroken or hopelessly in love, you will see your stories brought to life, maybe just a touch exaggerated for maximum comic impact.Think your relationship stories are wild? You are not…",
       "sources": [
@@ -2801,87 +2673,6 @@
         "District": "https://www.district.in/events/inkalaugh-presents-roasting-relationships-standup-comedy-show-sep26-2025-buy-tickets"
       },
       "first_seen": "2026-11-22"
-    },
-    {
-      "id": "ea33a383b454",
-      "title": "Grand Mushaira and Kavi Sammelan",
-      "category": "theatre",
-      "genres": [
-        "storytelling",
-        "theatre-hindi"
-      ],
-      "lang": [
-        "hindi"
-      ],
-      "city": "Delhi",
-      "venue": "Aiwan-e-Ghalib Auditorium",
-      "date": "2026-11-22",
-      "time": "16:00",
-      "price_from": 149,
-      "url": "https://www.district.in/events/grand-mushaira-and-kavi-sammelan-jun14-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7T4ZVW4M050ZJM37TKN7167.jpg",
-      "source": "District",
-      "about": "Chetna Manch, in collaboration with Mann Mein Hai Vishwas Manch, presents a Grand Mushaira & Kavi Sammelan, an evening celebrating the beauty of Hindi poetry and Urdu shayari.Join us on Sunday, 22 November 2026, from 4 PM onwards, at Aiwan-e-Ghalib Auditorium, ITO, Mandi House, New Delhi, for an evening of verse, emotion, humour, and reflection.Hindi and Urdu poetry give voice to love, longing, hope, and the…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/grand-mushaira-and-kavi-sammelan-jun14-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-20"
-    },
-    {
-      "id": "bd64d0fa9c26",
-      "title": "Ghar: An Open Mic for Words by Tape A Tale",
-      "category": "theatre",
-      "genres": [
-        "storytelling"
-      ],
-      "lang": [],
-      "city": "Bengaluru",
-      "venue": "TAG Comedy Club",
-      "date": "2026-11-22",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-bengaluru-oct4-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3P1PYF3B5YV48GJ123ZQCWD.png",
-      "source": "District",
-      "about": "Ghar is Tape A Tale's open mic event: a warm, welcoming home for your words. You can come, share your stories or poems, or just sit back and listen to people.At Ghar, you'll always find a space for your art and a family to share it with.P.S. Ghar is a non-biased, chit-based open mic, and we stay true to this format. It's a safe, welcoming space where you'll find a home in the warmth of stories, poems, and the…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-bengaluru-oct4-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
-    },
-    {
-      "id": "278b43c9ab1b",
-      "title": "Hindi Thoda Maalum - Hinglish Comedy Openmic Show",
-      "category": "comedy",
-      "genres": [
-        "comedy-open-mic",
-        "comedy-hindi"
-      ],
-      "lang": [
-        "hindi"
-      ],
-      "city": "Chennai",
-      "venue": "Trinity Studio",
-      "date": "2026-11-22",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/hindi-thoda-maalum-hinglish-comedy-openmic-show-oct18-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4XEBT0FMPVDW163B542TDWP.jpg",
-      "source": "District",
-      "about": "Hello, Namaste and Vanakkam. Welcome to Hindi Thoda Maalum, an Hindi and English comedy open mic for performers and audience who yearn for some Hinglish comedy in Apna Chennai.Every performer gets 6 minutes of stage time.Performers that get the performer pass are expected to be at the venue 20 minutes before the show, the order will be decided at the venue by the host and organisers.",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/hindi-thoda-maalum-hinglish-comedy-openmic-show-oct18-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-09"
     },
     {
       "id": "106544a5f2a7",
@@ -3134,30 +2925,6 @@
       "first_seen": "2026-10-13"
     },
     {
-      "id": "ceead92a769a",
-      "title": "The Big Aaaaart Walk by The Art Curry || Pune",
-      "category": "music",
-      "genres": [],
-      "lang": [],
-      "city": "Pune",
-      "venue": "Bohri Ali",
-      "date": "2026-11-22",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-pune-sbyzotts",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/179439852178YwiooXEJJjpeEQ.jpeg.webp",
-      "source": "Skillbox",
-      "about": "The Big Aaaaart Walk is a community-led art walk by The Art Curry, bringing people together to explore, create, sketch and experience art in the city! Join us for a space of art, conversations and community. No experienc",
-      "end": "2026-11-22T23:59",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-pune-sbyzotts"
-      },
-      "first_seen": "2026-11-17"
-    },
-    {
       "id": "539a570c887f",
       "title": "Kolkata’s Biggest Shah Rukh Khan Fan Party – King Edition",
       "category": "music",
@@ -3206,30 +2973,6 @@
         "Skillbox": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-guwahati-sbyxjwmb"
       },
       "first_seen": "2026-11-17"
-    },
-    {
-      "id": "b258863a2a02",
-      "title": "The Big Aaaaart Walk by The Art Curry || Ahmedabad",
-      "category": "music",
-      "genres": [],
-      "lang": [],
-      "city": "Ahmedabad",
-      "venue": "Rani no Hajiro",
-      "date": "2026-11-22",
-      "time": "16:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-ahmedabad-sbzdyoja",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/TG9vcnBSNVBPOXY3RW9qcnAzb1Y3dz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/179439852178YwiooXEJJjpeEQ.jpeg.webp",
-      "source": "Skillbox",
-      "about": "The Big Aaaaart Walk is a community-led art walk by The Art Curry, bringing people together to explore, create, sketch and experience art in the city! Join us for a space of art, conversations and community. No experienc",
-      "end": "2026-11-22T23:59",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/the-big-aaaaart-walk-by-the-art-curry-ahmedabad-sbzdyoja"
-      },
-      "first_seen": "2026-11-12"
     },
     {
       "id": "a3f04493fbcc",
@@ -3656,56 +3399,6 @@
       "first_seen": "2026-11-18"
     },
     {
-      "id": "861f0d18cb38",
-      "title": "Vikkals - Standup Comedy",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Chennai",
-      "venue": "Skygarden",
-      "date": "2026-11-22",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/vikkals-standup-comedy-jun26-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVR5DVVTB524XR6A3ZAYVNWE.jpg",
-      "source": "District",
-      "about": "Vikkals Comedy Cafe, Standup Comedy Open Mic.Open mic nights, where the OG standup comics and amateur comics come together to try out their new jokes. A stage where you can spill your emotions with humor.Disclaimer: Vikkals Vikram will not be performing in all the open mics. He is mainly the producer of the show.",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/vikkals-standup-comedy-jun26-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
-    },
-    {
-      "id": "830fac3a9e31",
-      "title": "Almost Famous - A Standup Comedy Show by Ashish Malhotra",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Jaipur",
-      "venue": "Jaipur Comedy Club",
-      "date": "2026-11-22",
-      "time": "17:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/almost-famous-a-standup-comedy-show-by-ashish-malhotra-aug2-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KY46WJY4JNGXR02GTN7C5SEY.jpg",
-      "source": "District",
-      "about": "Almost Famous is a stand up comedy solo by Ashish Malhotra where he takes you through his weird observations overthinking habits and the way he hilariously sees the world through his eyes.From uploading stand up videos online to slowly almost becoming famous Ashish shares honest funny and relatable stories from his comedy journey. The struggles the small wins the awkward moments and everything in between.Expect…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/almost-famous-a-standup-comedy-show-by-ashish-malhotra-aug2-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-03"
-    },
-    {
       "id": "a9a8ffd8d8c0",
       "title": "CAMACHO - Live in Chennai 2026 – Mirabilis",
       "category": "music",
@@ -3842,34 +3535,6 @@
         "District": "https://www.district.in/events/live-jamming-nov21-2026-buy-tickets"
       },
       "first_seen": "2026-11-19"
-    },
-    {
-      "id": "45b382f54abe",
-      "title": "IPTA Mumbai: Buddhe Ne Maari Century",
-      "category": "theatre",
-      "genres": [
-        "drama",
-        "theatre-hindi"
-      ],
-      "lang": [
-        "hindi"
-      ],
-      "city": "Mumbai",
-      "venue": "Prithvi Theatre",
-      "date": "2026-11-22",
-      "time": "17:00",
-      "price_from": 500,
-      "url": "https://prithvitheatre.org/booktickets",
-      "image": "https://in.bmscdn.com/Events/moviecard/ipta-mumbais-century-buddha-et00364902-2024-2-13-t-11-20-41.jpg",
-      "source": "Prithvi Theatre",
-      "about": "Set against the backdrop of the 20th-century feudalistic zamindari syste.....",
-      "sources": [
-        "Prithvi Theatre"
-      ],
-      "links": {
-        "Prithvi Theatre": "https://prithvitheatre.org/booktickets"
-      },
-      "first_seen": "2026-10-26"
     },
     {
       "id": "4a24891434b5",
@@ -4184,31 +3849,6 @@
       "first_seen": "2026-11-17"
     },
     {
-      "id": "14ba689bc237",
-      "title": "Jokes Feast a Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2026-11-22",
-      "time": "17:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/jokes-feast-a-stand-up-comedy-show-apr26-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1745235576/gk43qcvpwwi2etc487do.jpg",
-      "source": "District",
-      "about": "Step into a world of unstoppable laughter at Jokes Feast with Live Taping & power to vote so you can find out next stand up comedy sensation! 😄With the tagline \"A Laughter Buffet\", this stand-up comedy show is packed with witty humour, hilarious tales, and punchlines that'll keep you roaring. It's a guaranteed recipe for smiles and giggles all night long.Prepare for an unforgettable comedy experience!😀",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/jokes-feast-a-stand-up-comedy-show-apr26-2025-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
-    },
-    {
       "id": "3c4ef02ebb3e",
       "title": "LITJAM Kannada - A Kannada Live Jamming Show",
       "category": "music",
@@ -4518,6 +4158,31 @@
       "first_seen": "2026-11-21"
     },
     {
+      "id": "1184a7d20899",
+      "title": "RJ Rakesh & Friends – A Stand Up Comedy Show",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "Laughing Hyena Comedy Club",
+      "date": "2026-11-22",
+      "time": "18:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/r-j-rakesh-friends-a-stand-up-comedy-show-nov22-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6NE6R0E3TJQ7QJNABX623VE.png",
+      "source": "District",
+      "about": "Get ready for an evening of laughter and entertainment as RJ Rakesh and friends take the stage with their unique humour, hilarious stories, and entertaining comedy acts.Enjoy a fun-filled show packed with witty observations, relatable moments, and plenty of laughs. It's the perfect opportunity to unwind, enjoy some good comedy, and make your evening memorable!",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/r-j-rakesh-friends-a-stand-up-comedy-show-nov22-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-06"
+    },
+    {
       "id": "c493a1711a4f",
       "title": "Bangla Comedy Night - A Bengali Standup Comedy Show",
       "category": "comedy",
@@ -4546,31 +4211,6 @@
       "first_seen": "2026-11-16"
     },
     {
-      "id": "1184a7d20899",
-      "title": "RJ Rakesh & Friends – A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Kolkata",
-      "venue": "Laughing Hyena Comedy Club",
-      "date": "2026-11-22",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/r-j-rakesh-friends-a-stand-up-comedy-show-nov22-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6NE6R0E3TJQ7QJNABX623VE.png",
-      "source": "District",
-      "about": "Get ready for an evening of laughter and entertainment as RJ Rakesh and friends take the stage with their unique humour, hilarious stories, and entertaining comedy acts.Enjoy a fun-filled show packed with witty observations, relatable moments, and plenty of laughs. It's the perfect opportunity to unwind, enjoy some good comedy, and make your evening memorable!",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/r-j-rakesh-friends-a-stand-up-comedy-show-nov22-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-06"
-    },
-    {
       "id": "401a64ec8e6d",
       "title": "Jamming Night - Chandigarh",
       "category": "music",
@@ -4592,31 +4232,6 @@
       ],
       "links": {
         "District": "https://www.district.in/events/jamming-night-chandigarh-apr11-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-17"
-    },
-    {
-      "id": "0811004e67dc",
-      "title": "Unromantic Haryanvi ft. Ronit Rao",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Chandigarh",
-      "venue": "North Studio Live",
-      "date": "2026-11-22",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/unromantic-haryanvi-ft-ronit-rao-nov14-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7269A74WJ56TGG8EZQ25FFN.png",
-      "source": "District",
-      "about": "Get ready for a hilarious ride through the heart of Haryana with Ronit Rao in “Unromantic Haryanvi”!A stand-up comedy show that brings together the raw humour, desi attitude, relatable experiences, and unapologetic flavour of Haryanvi culture. From everyday struggles and family dynamics to quirky traditions, relationships, and the madness of small-town life, Ronit Rao turns ordinary situations into extraordinary…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/unromantic-haryanvi-ft-ronit-rao-nov14-2026-buy-tickets"
       },
       "first_seen": "2026-11-17"
     },
@@ -4913,7 +4528,7 @@
       "url": "https://www.skillboxes.com/events/swayam-live-in-kolkata-sbbdsroo",
       "image": "https://1840729241.rsc.cdn77.org/media/event_cover/OURlYk9BZEp4Tzd6eVZuM2wzM0R6Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1793897325yy5MKAUp4bD4cehh.jpg.webp",
       "source": "Skillbox",
-      "about": "SWAYAM - LIVE IN KOLKATA22nd NOVEMBER, 6PM OnwardsVenue : SCIENCE CITY , Mini Auditorium Renowned Sitarist, SWAYAM announces his extensive 'The Road Less Tra",
+      "about": "SWAYAM - LIVE IN KOLKATA 22nd NOVEMBER, 6PM Onwards Venue : SCIENCE CITY , Mini Auditorium Renowned Sitarist, SWAYAM announces his extensive 'The Road Less Tr",
       "end": "2026-11-22T23:59",
       "sources": [
         "Skillbox"
@@ -5336,33 +4951,6 @@
       }
     },
     {
-      "id": "aa5e47dbfff6",
-      "title": "In No Particular Order – An Evening of Alt Rock and Indie Pop ft. Ananya and Shayne",
-      "category": "music",
-      "genres": [
-        "rock",
-        "pop",
-        "indie"
-      ],
-      "lang": [],
-      "city": "Bengaluru",
-      "venue": "Bloom Creative Zone - Indiranagar",
-      "date": "2026-11-22",
-      "time": "18:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/n-no-particular-order-an-evening-of-alt-rock-indie-pop-ft-ananya-and-shayne-nov22-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7W4E6YY9Z7R62GS8WRGEMPQ.jpg",
-      "source": "District",
-      "about": "Some evenings are best spent with good music, great company, and a little bit of singing along. And this one's all about that!In No Particular Order brings you an evening of live music celebrating the sounds of Alt Rock, Indie Pop, and everything in between.Featuring Ananya and Shayne, expect a mix of familiar favourites, interesting sounds, infectious rhythms, and those little musical surprises that make live…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/n-no-particular-order-an-evening-of-alt-rock-indie-pop-ft-ananya-and-shayne-nov22-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-20"
-    },
-    {
       "id": "ea9de18124a6",
       "title": "Barff",
       "category": "theatre",
@@ -5418,6 +5006,35 @@
         "District": "https://www.district.in/events/bhajan-jamming-by-bangalore-meditates-nov22-2026-buy-tickets"
       },
       "first_seen": "2026-11-21"
+    },
+    {
+      "id": "58529742c616",
+      "title": "In No Particular Order – An Evening of Alt Rock and Indie Pop ft. Ananya and Shayne",
+      "category": "music",
+      "genres": [
+        "rock",
+        "pop",
+        "indie"
+      ],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Bloom Creative Zone - Indiranagar",
+      "date": "2026-11-22",
+      "time": "18:30",
+      "price_from": null,
+      "url": "https://www.district.in/events/n-no-particular-order-an-evening-of-alt-rock-indie-pop-ft-ananya-and-shayne-nov22-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M7VYC35YVZ4KTBN0HHX2P0N7.jpg",
+      "source": "District",
+      "about": "Some evenings are best spent with good music, great company, and a little bit of singing along. And this one's all about that!In No Particular Order brings you an evening of live music celebrating the sounds of Alt Rock, Indie Pop, and everything in between.Featuring Ananya and Shayne, expect a mix of familiar favourites, interesting sounds, infectious rhythms, and those little musical surprises that make live…",
+      "end": "2026-11-22T19:30",
+      "organizer": "Wecare & Dare Hospitalities Private Limited",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/n-no-particular-order-an-evening-of-alt-rock-indie-pop-ft-ananya-and-shayne-nov22-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
     },
     {
       "id": "dd4fa5417a92",
@@ -5610,11 +5227,7 @@
       "genres": [
         "standup"
       ],
-      "lang": [
-        "english",
-        "hindi",
-        "other"
-      ],
+      "lang": [],
       "city": "Kolkata",
       "venue": "Da Duke and Chai",
       "date": "2026-11-22",
@@ -5625,15 +5238,11 @@
       "source": "District",
       "about": "De Duke Cafe presents French Fries & Comedy, A standup comedy mic. If you are looking for a simple comedy mic, where you can have some great snacks & have a good laugh, this is your place. So, join us, be a part of our community, with Funny Bone Comedy.",
       "sources": [
-        "District",
-        "BookMyShow"
+        "District"
       ],
       "links": {
-        "District": "https://www.district.in/events/french-fries-comedy-nov22-2026-buy-tickets",
-        "BookMyShow": "https://in.bookmyshow.com/events/french-fries-comedy/etp3c081k6"
+        "District": "https://www.district.in/events/french-fries-comedy-nov22-2026-buy-tickets"
       },
-      "end": "2026-11-22T20:00",
-      "on_sale": "2026-11-16T11:42",
       "first_seen": "2026-11-22"
     },
     {
@@ -6390,6 +5999,37 @@
       "first_seen": "2026-11-14"
     },
     {
+      "id": "93aea20c46b3",
+      "title": "The Bob's Show - OG Bengaluru Comedy",
+      "category": "comedy",
+      "genres": [
+        "standup",
+        "crowdwork",
+        "comedy-english",
+        "comedy-hindi"
+      ],
+      "lang": [
+        "english",
+        "hindi"
+      ],
+      "city": "Bengaluru",
+      "venue": "Bloom Creative Zone - Indiranagar",
+      "date": "2026-11-22",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-bobs-show-og-bengaluru-comedy-may16-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/prod/events/publisher/event_cover_image_vertical/2026-05-19/14/20/16/414412ab-af4d-44b3-9379-b5b82febd986.jpeg",
+      "source": "District",
+      "about": "A weekly stand-up night in Indiranagar that does one thing differently: no bakchodi, no cringe crowd work, no time-filling. Just six comedians with tight written material — the kind you'd watch for an hour at a special.Whether you've been in Bangalore your whole life or you landed last Tuesday, this is the room for actual comedy.Note: 70-80% English, occasional Hinglish drop-ins.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-bobs-show-og-bengaluru-comedy-may16-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
       "id": "e352bf651a27",
       "title": "Best in English Stand Up - Indiranagar",
       "category": "comedy",
@@ -6414,37 +6054,6 @@
       ],
       "links": {
         "District": "https://www.district.in/events/best-in-english-stand-up-indiranagar-jul18-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
-      "id": "93aea20c46b3",
-      "title": "The Bob's Show - OG Bengaluru Comedy",
-      "category": "comedy",
-      "genres": [
-        "standup",
-        "crowdwork",
-        "comedy-english",
-        "comedy-hindi"
-      ],
-      "lang": [
-        "english",
-        "hindi"
-      ],
-      "city": "Bengaluru",
-      "venue": "Bloom Creative Zone - Indiranagar",
-      "date": "2026-11-22",
-      "time": "20:00",
-      "price_from": 250,
-      "url": "https://www.district.in/events/the-bobs-show-og-bengaluru-comedy-may16-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/prod/events/publisher/event_cover_image_vertical/2026-05-19/14/20/16/414412ab-af4d-44b3-9379-b5b82febd986.jpeg",
-      "source": "District",
-      "about": "A weekly stand-up night in Indiranagar that does one thing differently: no bakchodi, no cringe crowd work, no time-filling. Just six comedians with tight written material — the kind you'd watch for an hour at a special.Whether you've been in Bangalore your whole life or you landed last Tuesday, this is the room for actual comedy.Note: 70-80% English, occasional Hinglish drop-ins.",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/the-bobs-show-og-bengaluru-comedy-may16-2026-buy-tickets"
       },
       "first_seen": "2026-11-22"
     },
@@ -6598,6 +6207,31 @@
         "District": "https://www.district.in/events/genz-v-90s-a-standup-comedy-show-sep20-2026-buy-tickets"
       },
       "first_seen": "2026-11-21"
+    },
+    {
+      "id": "3f0a0d0b1db1",
+      "title": "Ahmedabad's Funniest Lineup Comedy Showcase",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Backspace Ahmedabad",
+      "date": "2026-11-22",
+      "time": "20:00",
+      "price_from": 149,
+      "url": "https://www.district.in/events/ahmedabads-funniest-lineup-comedy-showcase-oct4-2025-buy-tickets",
+      "image": "https://cdn.district.in/events/cd-media/image/upload/v1759535480/ishjqm7tfoezxrm9c04c.png",
+      "source": "District",
+      "about": "Best of Ahmedabad – A Standup Comedy ShowcaseGet ready for a laughter riot as 8 of Ahmedabad's top comedians take the stage with their best material — the jokes that have killed time and again! This isn’t just another comedy show — it’s a piece of history in the making.ARTIST IN THE POSTER MAY OR MAY NOT APPEAR IN THE LINEUP.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/ahmedabads-funniest-lineup-comedy-showcase-oct4-2025-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
     },
     {
       "id": "4c8f8e947e40",
@@ -7049,7 +6683,7 @@
       "venue": "Underdoggs Ludhiana | Aggar Nagar, Ludhiana",
       "date": "2026-11-22",
       "time": "20:30",
-      "price_from": null,
+      "price_from": 200,
       "url": "https://www.district.in/events/unplugged-ft-ira-the-band-live-music-night-nov22-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7J8MY6XN99X8QJZZ3094735.png",
       "source": "District",
@@ -7372,29 +7006,6 @@
       }
     },
     {
-      "id": "c97a396c567b",
-      "title": "Unleashed & Unfiltered, Indiranagar",
-      "category": "comedy",
-      "genres": [],
-      "lang": [],
-      "city": "Bengaluru",
-      "venue": "Bloom Creative Zone - Indiranagar",
-      "date": "2026-11-22",
-      "time": "21:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/unleashed-unfiltered-indiranagar-may22-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/prod/events/publisher/event_cover_image_vertical/2026-05-18/22/32/36/ec4b1006-2a26-42c9-9814-532934a2e274.png",
-      "source": "District",
-      "about": "If you want to enjoy jokes which probably will not be posted on the internet, then this show is for you.If these jokes are posted online, comics will have to go to court.Raw, unfiltered, dark jokes with no censorship.If you are easily offended or light-hearted, go for some other relatable shitty show.",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/unleashed-unfiltered-indiranagar-may22-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
       "id": "4ed9b3b91604",
       "title": "Incognito Mode - ON! (Indiranagar)",
       "category": "comedy",
@@ -7416,6 +7027,29 @@
       ],
       "links": {
         "District": "https://www.district.in/events/incognito-mode-on-indiranagar-jul10-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
+      "id": "c97a396c567b",
+      "title": "Unleashed & Unfiltered, Indiranagar",
+      "category": "comedy",
+      "genres": [],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Bloom Creative Zone - Indiranagar",
+      "date": "2026-11-22",
+      "time": "21:00",
+      "price_from": 199,
+      "url": "https://www.district.in/events/unleashed-unfiltered-indiranagar-may22-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/prod/events/publisher/event_cover_image_vertical/2026-05-18/22/32/36/ec4b1006-2a26-42c9-9814-532934a2e274.png",
+      "source": "District",
+      "about": "If you want to enjoy jokes which probably will not be posted on the internet, then this show is for you.If these jokes are posted online, comics will have to go to court.Raw, unfiltered, dark jokes with no censorship.If you are easily offended or light-hearted, go for some other relatable shitty show.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/unleashed-unfiltered-indiranagar-may22-2026-buy-tickets"
       },
       "first_seen": "2026-11-22"
     },
@@ -7871,6 +7505,31 @@
       }
     },
     {
+      "id": "7dcbfc586f0b",
+      "title": "The Midnight Comedy Show",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Ahmedabad",
+      "venue": "Backspace Ahmedabad",
+      "date": "2026-11-22",
+      "time": "22:00",
+      "price_from": 149,
+      "url": "https://www.district.in/events/the-midnight-comedy-show-oct4-2025-buy-tickets",
+      "image": "https://cdn.district.in/events/cd-media/image/upload/v1759536079/qjswosjxztzj19nkmuee.png",
+      "source": "District",
+      "about": "Welcome to the Midnight Comedy Show, the wildest standup experience Ahmedabad has to offer, every weekend!Featuring a power-packed lineup of 8–10 hilarious comedians, this show is where comics let loose, try bold new bits, and close the night with a bang. It’s raw, real, and ridiculously funny.🎤 This is the last comedy show of the night in the city, and it’s become a late-night ritual for comedy lovers over the past…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-midnight-comedy-show-oct4-2025-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
       "id": "1b50e795b2f0",
       "title": "Ahl-E-Dil with Tabish Pasha – Live at Unvrs Goa",
       "category": "music",
@@ -8041,7 +7700,7 @@
       "venue": "Art House India",
       "date": "2026-11-22",
       "time": "23:30",
-      "price_from": 199,
+      "price_from": null,
       "url": "https://www.district.in/events/fifty-shades-of-ha-ha-18-stand-up-comedy-show-dec14-2025-buy-tickets",
       "image": "https://cdn.district.in/events/cd-media/image/upload/v1765517500/dusswopl25iexdwfzxah.jpg",
       "source": "District",
@@ -8080,57 +7739,6 @@
       "first_seen": "2026-11-21"
     },
     {
-      "id": "d24d66212869",
-      "title": "New Joke Night",
-      "category": "comedy",
-      "genres": [
-        "standup",
-        "comedy-open-mic"
-      ],
-      "lang": [],
-      "city": "Delhi",
-      "venue": "The Comedy Theatre - Hauz Khass Village",
-      "date": "2026-11-23",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/new-joke-night-oct13-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M4MTKNY2PMZR5CW4AS0RG98X.jpg",
-      "source": "District",
-      "about": "Get ready for a night full of laughter at NEW JOKE NIGHT, presented by The Comedy Theatre.Experience fresh jokes, hilarious observations, unexpected punchlines, and unfiltered comedy as four talented stand-up comedians take the stage to test their latest material.FeaturingAmit TiwariRahul GirdharAbhinash MohapatraAmanFrom relatable everyday situations to completely unexpected jokes, every comedian brings a unique…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/new-joke-night-oct13-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
-    },
-    {
-      "id": "1a3e77509af0",
-      "title": "LAID NIGHT Standup Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Mumbai",
-      "venue": "Ink A Laugh Standup Comedy Club vile parle west",
-      "date": "2026-11-23",
-      "time": "00:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/are-you-wet-a-standup-comedy-show-jun12-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KTVKZK0YWR8WQSJHB16P597C.png",
-      "source": "District",
-      "about": "Leave your sensitivities at the door and get ready for ARE YOU WET? --- a standup comedy show that goes exactly where it shouldn't. Featuring a killer lineup of the city’s funniest, most fearless comedians, this show dives headfirst into the hilariously taboo, the aggressively relatable, and the beautifully inappropriate. From dating disasters and bedroom blunders to the intrusive thoughts we all have but never say…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/are-you-wet-a-standup-comedy-show-jun12-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
       "id": "9a6ad2b5f87a",
       "title": "The Dirty Talk @ 11.00pm",
       "category": "comedy",
@@ -8152,6 +7760,31 @@
       ],
       "links": {
         "District": "https://www.district.in/events/the-dirty-talk-1159pm-oct8-2025-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
+      "id": "1a3e77509af0",
+      "title": "LAID NIGHT Standup Comedy Show",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Ink A Laugh Standup Comedy Club vile parle west",
+      "date": "2026-11-23",
+      "time": "00:00",
+      "price_from": 249,
+      "url": "https://www.district.in/events/are-you-wet-a-standup-comedy-show-jun12-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KTVKZK0YWR8WQSJHB16P597C.png",
+      "source": "District",
+      "about": "Leave your sensitivities at the door and get ready for ARE YOU WET? --- a standup comedy show that goes exactly where it shouldn't. Featuring a killer lineup of the city’s funniest, most fearless comedians, this show dives headfirst into the hilariously taboo, the aggressively relatable, and the beautifully inappropriate. From dating disasters and bedroom blunders to the intrusive thoughts we all have but never say…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/are-you-wet-a-standup-comedy-show-jun12-2026-buy-tickets"
       },
       "first_seen": "2026-11-22"
     },
@@ -8228,6 +7861,33 @@
       "links": {
         "BookMyShow Sports": "https://in.bookmyshow.com/sports/kalaripayattu/ET00526079"
       }
+    },
+    {
+      "id": "db79814a25b9",
+      "title": "Lazer Crazer: BattleZone Delhi",
+      "category": "sports",
+      "genres": [
+        "esports",
+        "cricket"
+      ],
+      "lang": [],
+      "city": "Delhi",
+      "venue": "Lazer Crazer Delhi | Laser Tag & Cafe Myles",
+      "date": "2026-11-23",
+      "time": "11:00",
+      "price_from": null,
+      "url": "https://thumpn.com/event/HCNNBY/lazer-crazer-battlezone-delhi",
+      "image": "https://media.thumpn.com/prod-mum1/event/evt-99WH4D/cover-image/evt-99wh4d-1f50.webp",
+      "source": "thumpN",
+      "about": "Level up your parties and events with Lazer Crazer, Delhi-NCR's ultimate destination for immersive gaming experiences. From intense laser tag battles to mind-blowing VR worlds and PS5 gaming — we bring non-stop fun for all age groups.- Laser Tag ArenaSuit up and enter the glow-in-the-dark battlefield where strategy meets chaos. It's fast. It's fierce. It's real-life PUBG — no screen, just pure action. Perfect for…",
+      "end": "2026-11-23T12:00",
+      "sources": [
+        "thumpN"
+      ],
+      "links": {
+        "thumpN": "https://thumpn.com/event/HCNNBY/lazer-crazer-battlezone-delhi"
+      },
+      "first_seen": "2026-11-22"
     },
     {
       "id": "4dcb541443c9",
@@ -8800,7 +8460,7 @@
       "venue": "Art House India",
       "date": "2026-11-23",
       "time": "22:30",
-      "price_from": 159,
+      "price_from": null,
       "url": "https://www.district.in/events/jokes-jam-stand-up-comedy-jun27-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KVWQJYP27SYS7E43ZRSWHRSV.jpg",
       "source": "District",
@@ -11063,6 +10723,30 @@
       "first_seen": "2026-11-21"
     },
     {
+      "id": "733b54339d14",
+      "title": "MIxtape presents The Gundaraaj Tour || Bangalore",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Koramangala SOCIAL",
+      "date": "2026-11-26",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/mixtape-bangalore-sbxyeylq",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1792417751j2LZioQQ2OXlcUcE.png.webp",
+      "source": "Skillbox",
+      "about": "Every great scene begins in a small room with a few people who believed in the music before anyone else did. MIxtape, a new IP from Mood Indigo, is built to recreate that feeling. It’s a tour for artists who do things differently, and for li",
+      "end": "2026-11-26T23:55",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/mixtape-bangalore-sbxyeylq"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
       "id": "86df5d9182e5",
       "title": "Animal",
       "category": "theatre",
@@ -11839,6 +11523,31 @@
       "first_seen": "2026-11-17"
     },
     {
+      "id": "36b4ed2f601a",
+      "title": "The Dirty Talk Standup Comedy Show presented by Ink-A-Laugh",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Mumbai",
+      "venue": "Ink A Laugh Standup Comedy Club vile parle west",
+      "date": "2026-11-27",
+      "time": "14:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/inkalaugh-presents-the-dirty-talk-standup-comedy-show-sep26-2025-buy-tickets",
+      "image": null,
+      "source": "District",
+      "about": "Not for the faint-hearted, this night is strictly for adults who think humor should be a little bold. Get ready for cheeky jokes, playful storytelling, and no-holds-barred punchlines on all things risqué. Leave your blushes at the door and your judgement at home; this show lets comedians say what everyone else is just thinking.Dare to laugh without limits? Not for the faint-hearted, this night is strictly for adults…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/inkalaugh-presents-the-dirty-talk-standup-comedy-show-sep26-2025-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
       "id": "e0ebb728373d",
       "title": "Flashoff Motoverse Portrait Sessions — Goa 2026",
       "category": "music",
@@ -12084,7 +11793,7 @@
       "url": "https://www.skillboxes.com/events/toyota-japan-matsuri-koramangala-social-sbdfekll",
       "image": "https://1840729241.rsc.cdn77.org/media/event_cover/STJTQlp1Q25mekRBMnhqRno2czM4Zz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1795332229Qp8qr89BSmNEetba.jpg.webp",
       "source": "Skillbox",
-      "about": "KORAMANGALA, IT'S YOUR TURN! 🇯🇵🏮Clear your schedules, because Japan is coming to town!Toyota brings Matsuri Nights to SOCIAL Koramangala fo",
+      "about": "KORAMANGALA, IT'S YOUR TURN! 🇯🇵🏮 Clear your schedules, because Japan is coming to town! Toyota brings Matsuri Nights to SOCIAL Koramangala for two days of Japanese culture, art, games, great food a",
       "end": "2026-11-28T23:55",
       "sources": [
         "Skillbox"
@@ -12783,7 +12492,7 @@
       "venue": "Underdoggs Ludhiana | Aggar Nagar, Ludhiana",
       "date": "2026-11-27",
       "time": "20:00",
-      "price_from": 200,
+      "price_from": null,
       "url": "https://www.district.in/events/qawwali-mix-fridays-ft-dj-bob-nov13-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7YM7BT9DXXY35NTFN5XYBN7.png",
       "source": "District",
@@ -15580,7 +15289,7 @@
       "venue": "7Padel | WTC",
       "date": "2026-11-28",
       "time": "17:00",
-      "price_from": 3250,
+      "price_from": null,
       "url": "https://www.district.in/events/7padel-mens-americano-nov28-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7Q2G237JJ82XSY3DP7NMTT9.jpeg",
       "source": "District",
@@ -16247,30 +15956,6 @@
       "first_seen": "2026-11-20"
     },
     {
-      "id": "054787a55492",
-      "title": "Sunfire Festival",
-      "category": "music",
-      "genres": [],
-      "lang": [],
-      "city": "Jaipur",
-      "venue": "Grassfield Valley Resort",
-      "date": "2026-11-28",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/sunfire-festival-sbuiqyrq",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/OFBtUWVaUXNlUkpZTmdmMVJsRHlnZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17918098240jjkhFHKzHVt7aIZ.jpeg.webp",
-      "source": "Skillbox",
-      "about": "DOES ACCOMMODATION INCLUDE ACCESS TO THE FESTIVAL? Yes. Festival access is included with a valid accommodation booking. WHAT IS THE CANCELLATION OR REFUND POLICY?",
-      "end": "2026-11-29T23:55",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/sunfire-festival-sbuiqyrq"
-      },
-      "first_seen": "2026-11-17"
-    },
-    {
       "id": "89647135be0b",
       "title": "IMAGINARIUM: THE DOMINION featuring MUDRARAKSHAS – ASIATIC JUGGLERS – ORCHID EYES",
       "category": "music",
@@ -16295,6 +15980,30 @@
         "Skillbox": "https://www.skillboxes.com/events/imaginarium-the-dominion-featuring-mudrarakshas-sbxfbkrw"
       },
       "first_seen": "2026-11-22"
+    },
+    {
+      "id": "054787a55492",
+      "title": "Sunfire Festival",
+      "category": "music",
+      "genres": [],
+      "lang": [],
+      "city": "Jaipur",
+      "venue": "Grassfield Valley Resort",
+      "date": "2026-11-28",
+      "time": "18:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/sunfire-festival-sbuiqyrq",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/OFBtUWVaUXNlUkpZTmdmMVJsRHlnZz09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/17918098240jjkhFHKzHVt7aIZ.jpeg.webp",
+      "source": "Skillbox",
+      "about": "DOES ACCOMMODATION INCLUDE ACCESS TO THE FESTIVAL? Yes. Festival access is included with a valid accommodation booking. WHAT IS THE CANCELLATION OR REFUND POLICY?",
+      "end": "2026-11-29T23:55",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/sunfire-festival-sbuiqyrq"
+      },
+      "first_seen": "2026-11-17"
     },
     {
       "id": "ceadf3e67b1a",
@@ -18201,34 +17910,6 @@
       }
     },
     {
-      "id": "2dfad67e07b7",
-      "title": "The Midlife Crisis",
-      "category": "comedy",
-      "genres": [
-        "standup",
-        "comedy-hindi"
-      ],
-      "lang": [
-        "hindi"
-      ],
-      "city": "Hyderabad",
-      "venue": "Aaromale - Cafe & Creative Community",
-      "date": "2026-11-28",
-      "time": "20:30",
-      "price_from": null,
-      "url": "https://www.district.in/events/the-midlife-crisis-nov28-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M79XHN9BXPXS8NK5N1FQD7FH.jpg",
-      "source": "District",
-      "about": "Who said life gets sorted after 30? Apparently, nobody told us!Welcome to Midlife Crisis, a hilarious Hindi stand-up comedy show where comedians Shruti and Amar take you on a laughter-filled journey through the chaos of adulting, relationships, family drama, growing responsibilities, and the never-ending confusion of getting older.From parents who still think we're kids to youngsters who think we're ancient, and…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/the-midlife-crisis-nov28-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-14"
-    },
-    {
       "id": "0e95d27bcfcd",
       "title": "Ageing and its Perks",
       "category": "comedy",
@@ -18255,6 +17936,34 @@
         "District": "https://www.district.in/events/ageing-and-its-perks-nov28-2026-buy-tickets"
       },
       "first_seen": "2026-11-16"
+    },
+    {
+      "id": "2dfad67e07b7",
+      "title": "The Midlife Crisis",
+      "category": "comedy",
+      "genres": [
+        "standup",
+        "comedy-hindi"
+      ],
+      "lang": [
+        "hindi"
+      ],
+      "city": "Hyderabad",
+      "venue": "Aaromale - Cafe & Creative Community",
+      "date": "2026-11-28",
+      "time": "20:30",
+      "price_from": null,
+      "url": "https://www.district.in/events/the-midlife-crisis-nov28-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M79XHN9BXPXS8NK5N1FQD7FH.jpg",
+      "source": "District",
+      "about": "Who said life gets sorted after 30? Apparently, nobody told us!Welcome to Midlife Crisis, a hilarious Hindi stand-up comedy show where comedians Shruti and Amar take you on a laughter-filled journey through the chaos of adulting, relationships, family drama, growing responsibilities, and the never-ending confusion of getting older.From parents who still think we're kids to youngsters who think we're ancient, and…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/the-midlife-crisis-nov28-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-14"
     },
     {
       "id": "2565aa09b12d",
@@ -20485,7 +20194,7 @@
       "venue": "7Padel | WTC",
       "date": "2026-11-29",
       "time": "17:00",
-      "price_from": null,
+      "price_from": 3250,
       "url": "https://www.district.in/events/7padel-womens-americano-nov29-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7VY1JM4KWAVP3QHFPVVNGPB.jpeg",
       "source": "District",
@@ -20551,6 +20260,31 @@
         "District": "https://www.district.in/events/beatnicks-open-mic-sep19-2026-buy-tickets"
       },
       "first_seen": "2026-11-21"
+    },
+    {
+      "id": "3da3d8e6864b",
+      "title": "Top Secret Comedy Show- A Stand Up Comedy Show",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "TopCat CCU",
+      "date": "2026-11-29",
+      "time": "17:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/too-secret-comedy-show-a-stand-up-comedy-show-oct4-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M40S7GYGTNXAWQ47VC04HDCP.png",
+      "source": "District",
+      "about": "Shhh… 🤐 The details are classified, but one thing is TOP SECRET — you’re going to laugh! 😂Get ready for an evening of hilarious stand-up comedy, crazy observations, unexpected twists, and jokes you probably shouldn’t repeat at home! 🎤🔥No spoilers. No secrets revealed. Just non-stop laughter.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/too-secret-comedy-show-a-stand-up-comedy-show-oct4-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
     },
     {
       "id": "9aae673d698a",
@@ -21847,7 +21581,7 @@
       "venue": "Mishty Mini Studio",
       "date": "2026-11-29",
       "time": "19:00",
-      "price_from": 150,
+      "price_from": null,
       "url": "https://www.district.in/events/apna-open-mic-76th-edition-ahmedabad-nov29-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6KD81SZW63X0PT3JE2SFVBG.jpg",
       "source": "District",
@@ -22020,32 +21754,6 @@
       "first_seen": "2026-11-17"
     },
     {
-      "id": "21aa3c26bced",
-      "title": "The Bongrass Band Album Launch Concert at The Calcutta Listening Club",
-      "category": "music",
-      "genres": [
-        "tribute"
-      ],
-      "lang": [],
-      "city": "Kolkata",
-      "venue": "The Calcutta Listening Club,",
-      "date": "2026-11-29",
-      "time": "19:00",
-      "price_from": null,
-      "url": "https://www.skillboxes.com/events/the-bongrass-band-album-launch-concert-at-the-calcutta-listening-club-sbvwulvo",
-      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/bURkVmVxakM2OWtkWjdYL1JnL2NiUT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1795000146bfPBp5Xp3gQu7BBs.jpg.webp",
-      "source": "Skillbox",
-      "about": "The Bongrass Band is bringing its sound to The Calcutta Listening Club for an album preview night packed with Old-time, Country and Bluegrass tributes.We're kicking things off with a live performance, followed by an",
-      "end": "2026-11-29T23:59",
-      "sources": [
-        "Skillbox"
-      ],
-      "links": {
-        "Skillbox": "https://www.skillboxes.com/events/the-bongrass-band-album-launch-concert-at-the-calcutta-listening-club-sbvwulvo"
-      },
-      "first_seen": "2026-11-18"
-    },
-    {
       "id": "0f2632c33612",
       "title": "BENNY DAYAL Live in BENGALURU",
       "category": "music",
@@ -22072,6 +21780,32 @@
         "thumpN": "https://thumpn.com/event/H9MUB2/benny-dayal-live-in-bengaluru-bengaluru"
       },
       "first_seen": "2026-11-22"
+    },
+    {
+      "id": "21aa3c26bced",
+      "title": "The Bongrass Band Album Launch Concert at The Calcutta Listening Club",
+      "category": "music",
+      "genres": [
+        "tribute"
+      ],
+      "lang": [],
+      "city": "Kolkata",
+      "venue": "The Calcutta Listening Club,",
+      "date": "2026-11-29",
+      "time": "19:00",
+      "price_from": null,
+      "url": "https://www.skillboxes.com/events/the-bongrass-band-album-launch-concert-at-the-calcutta-listening-club-sbvwulvo",
+      "image": "https://1840729241.rsc.cdn77.org/media/event_cover/bURkVmVxakM2OWtkWjdYL1JnL2NiUT09/anUvZklscG9wVElZc1h0aTRJZmtGZz09/resize/1200x630/1795000146bfPBp5Xp3gQu7BBs.jpg.webp",
+      "source": "Skillbox",
+      "about": "The Bongrass Band is bringing its sound to The Calcutta Listening Club for an album preview night packed with Old-time, Country and Bluegrass tributes.We're kicking things off with a live performance, followed by an",
+      "end": "2026-11-29T23:59",
+      "sources": [
+        "Skillbox"
+      ],
+      "links": {
+        "Skillbox": "https://www.skillboxes.com/events/the-bongrass-band-album-launch-concert-at-the-calcutta-listening-club-sbvwulvo"
+      },
+      "first_seen": "2026-11-18"
     },
     {
       "id": "4ae82b25cf19",
@@ -23186,15 +22920,15 @@
       "date": "2026-11-29",
       "time": "20:30",
       "price_from": null,
-      "url": "https://www.district.in/events/btech-to-bewars-oct31-2026-buy-tickets",
+      "url": "https://www.district.in/events/btech-to-bewars-mar14-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M671WH5N9G65D7S3QPKHJKJJ.png",
       "source": "District",
-      "about": "Prasad Burri is a stand-up comedian who makes jokes out of real life.His comedy comes from things we have all gone through — childhood memories, B.Tech college life, family drama, and the madness of friendships.“B.Tech to Bewars” is a stand-up show inspired by everyday situations most of us relate to. From family pressure to work stress to the weird expectations society puts on us, Prasad talks about it all in a…",
+      "about": "Prasad Burri – B.Tech to BewarsPrasad Burri is a stand-up comedian who makes jokes out of real life.His comedy comes from things we have all gone through — childhood memories, B.Tech college life, family drama, and the madness of friendships.“B.Tech to Bewars” is a stand-up show inspired by everyday situations most of us relate to. From family pressure to work stress to the weird expectations society puts on us…",
       "sources": [
         "District"
       ],
       "links": {
-        "District": "https://www.district.in/events/btech-to-bewars-oct31-2026-buy-tickets"
+        "District": "https://www.district.in/events/btech-to-bewars-mar14-2026-buy-tickets"
       },
       "first_seen": "2026-11-15"
     },
@@ -25501,6 +25235,32 @@
       }
     },
     {
+      "id": "2a95ea18282a",
+      "title": "Rouge",
+      "category": "music",
+      "genres": [
+        "jazz",
+        "pop"
+      ],
+      "lang": [],
+      "city": "Hyderabad",
+      "venue": "Windmills Craftwork",
+      "date": "2026-12-04",
+      "time": "20:00",
+      "price_from": 1179,
+      "url": "https://www.district.in/events/rouge-dec4-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6JWWTEJ6MJK0VDPND4DQ3GX.jpg",
+      "source": "District",
+      "about": "Founded in 2018 by pianist Madeleine Cazenave, ROUGE quickly established itself as a leading presence in the French new jazz scene. This piano, double bass and drums trio creates atmospheric music rooted in a quest for simplicity, drawing inspiration from cinema, classical music and contemporary pop-folk. Each composition evokes a rich palette of images, colours and emotions, moving between softness, intensity and…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/rouge-dec4-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
       "id": "e95503c48c3b",
       "title": "Sama-e-Sufi ft. Shivaya Live",
       "category": "music",
@@ -27264,7 +27024,7 @@
       "venue": "Kolkata Centre for Creativity",
       "date": "2026-12-05",
       "time": "18:30",
-      "price_from": null,
+      "price_from": 499,
       "url": "https://www.district.in/events/kahat-kabir-by-anirudh-varma-collective-dec5-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M5VB62Z46KJER1KXZ18TVZA1.jpg",
       "source": "District",
@@ -27382,6 +27142,58 @@
       }
     },
     {
+      "id": "ccc5554f9217",
+      "title": "Umrao Jaan - Tafreeh Festival",
+      "category": "theatre",
+      "genres": [
+        "theatre-regional"
+      ],
+      "lang": [
+        "other"
+      ],
+      "city": "Delhi",
+      "venue": "Project Otenga - Shaheedi Park, Delhi",
+      "date": "2026-12-05",
+      "time": "19:00",
+      "price_from": 500,
+      "url": "https://www.district.in/events/umrao-jaan-dec5-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7WT8PA0KECRFZ647WQF89CB.jpg",
+      "source": "District",
+      "about": "Directed by Varun R. Sharma, Umrao Jaan is a play adapted from Umrao Jaan Ada which is in Urdu novel by Mirza Hadi Ruswa, first published in 1899. Directed by Mr. Varun Sharma, the play tells the story of a courtesan and poet ‘Umrao Jaan’ who lived in Faizabad as Ameera.The story talks about the rivalry between Ameera’s father and Dilaavar Khan and how Dilaavar Khan makes a plan to trap little Ameera, throwing her…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/umrao-jaan-dec5-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
+      "id": "675ba8457476",
+      "title": "Voice of the Nation - Vijay Prakash Live",
+      "category": "theatre",
+      "genres": [
+        "musical"
+      ],
+      "lang": [],
+      "city": "Bengaluru",
+      "venue": "Phoenix Mall Of Asia",
+      "date": "2026-12-05",
+      "time": "19:00",
+      "price_from": 884,
+      "url": "https://www.district.in/events/voice-of-the-nation-vijay-prakash-live-in-concert-dec5-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7Z286EAFXMY4GZ6Y2EVHX7G.jpg",
+      "source": "District",
+      "about": "Get ready, Bengaluru! For the first time ever, the incredible Vijay Prakash takes the stage at Phoenix Festival, happening at Phoenix Mall of Asia on December 5th, 2026 presented by Sadagara Events. Experience an unforgettable evening of music, energy and entertainment as Vijay Prakash joins an extraordinary lineup. From soulful melodies to electrifying chartbusters, this spectacular musical celebration promises an…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/voice-of-the-nation-vijay-prakash-live-in-concert-dec5-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
+    },
+    {
       "id": "1502a5c4bd30",
       "title": "ILAIYARAAJA LIVE IN GOA",
       "category": "theatre",
@@ -27443,9 +27255,9 @@
       "venue": "Laughing Hyena Comedy Club",
       "date": "2026-12-05",
       "time": "19:00",
-      "price_from": 499,
+      "price_from": null,
       "url": "https://www.district.in/events/mohd-suhel-live-kolkata-dec5-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M5T0DJ2M2XDBB24E4ZB89BSD.jpg",
+      "image": null,
       "source": "District",
       "about": "Mohd Suhel is a Mumbai-based stand-up comedian known for his signature deadpan delivery and sharp observational humor. An engineer-turned-comedian, Suhel started performing in 2017 and quickly gained popularity for his unique style of slow, deliberate storytelling that makes even the most ordinary situations hilariously absurd. With millions of views on YouTube and a growing fanbase across India, Suhel’s comedy…",
       "sources": [
@@ -27736,60 +27548,6 @@
         "District": "https://www.district.in/events/passaggio-dec5-2026-buy-tickets"
       },
       "first_seen": "2026-11-20"
-    },
-    {
-      "id": "ccc5554f9217",
-      "title": "Umrao Jaan - Tafreeh Festival",
-      "category": "music",
-      "genres": [
-        "hiphop"
-      ],
-      "lang": [],
-      "city": "Delhi",
-      "venue": "Project Otenga - Shaheedi Park, Delhi",
-      "date": "2026-12-05",
-      "time": "19:00",
-      "price_from": 500,
-      "url": "https://www.district.in/events/umrao-jaan-dec5-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M7S7B5Q21QEFRYEXK7Q1KF3N.jpg",
-      "source": "District",
-      "about": "Directed by Varun R. Sharma, Umrao Jaan is a play adapted from Umrao Jaan Ada which is in Urdu novel by Mirza Hadi Ruswa, first published in 1899. Directed by Mr. Varun Sharma, the play tells the story of a courtesan and poet ‘Umrao Jaan’ who lived in Faizabad as Ameera.The story talks about the rivalry between Ameera’s father and Dilaavar Khan and how Dilaavar Khan makes a plan to trap little Ameera, throwing her…",
-      "end": "2026-12-05T22:00",
-      "on_sale": "2026-11-21T11:28",
-      "organizer": "SILLY SOULS FOUNDATION",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/umrao-jaan-dec5-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
-      "id": "675ba8457476",
-      "title": "Voice of the Nation - Vijay Prakash Live",
-      "category": "music",
-      "genres": [],
-      "lang": [],
-      "city": "Bengaluru",
-      "venue": "Phoenix Mall Of Asia",
-      "date": "2026-12-05",
-      "time": "19:00",
-      "price_from": 884,
-      "url": "https://www.district.in/events/voice-of-the-nation-vijay-prakash-live-in-concert-dec5-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M7Z27XWFCTXS9EDXX5GT9MY8.jpg",
-      "source": "District",
-      "about": "Get ready, Bengaluru! For the first time ever, the incredible Vijay Prakash takes the stage at Phoenix Festival, happening at Phoenix Mall of Asia on December 5th, 2026 presented by Sadagara Events. Experience an unforgettable evening of music, energy and entertainment as Vijay Prakash joins an extraordinary lineup. From soulful melodies to electrifying chartbusters, this spectacular musical celebration promises an…",
-      "end": "2026-12-05T22:00",
-      "on_sale": "2026-11-21T19:10",
-      "organizer": "OMKAR RAVINDRANATH",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/voice-of-the-nation-vijay-prakash-live-in-concert-dec5-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
     },
     {
       "id": "76a32d48f97d",
@@ -29061,6 +28819,31 @@
         "Skillbox": "https://www.skillboxes.com/events/afters-ft-aaron-hibell-live-in-delhi-ncr-sbsvlrix"
       },
       "first_seen": "2026-11-20"
+    },
+    {
+      "id": "dcdb8f1633b1",
+      "title": "Ghar: An Open Mic for Words by Tape A Tale",
+      "category": "theatre",
+      "genres": [
+        "storytelling"
+      ],
+      "lang": [],
+      "city": "Chandigarh",
+      "venue": "The Laugh Club",
+      "date": "2026-12-06",
+      "time": "",
+      "price_from": null,
+      "url": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-chandigarh-jul5-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01KTR4V48FX5VJQ3RKJBJQ3Z9K.jpeg",
+      "source": "District",
+      "about": "Ghar is Tape A Tale's open mic event: a warm, welcoming home for your words. You can come, share your stories or poems, or just sit back and listen to people.At Ghar, you'll always find a space for your art and a family to share it with.P.S. Ghar is a non-biased, chit-based open mic, and we stay true to this format. It's a safe, welcoming space where you'll find a home in the warmth of stories, poems, and the…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/ghar-an-open-mic-for-words-by-tape-a-tale-chandigarh-jul5-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
     },
     {
       "id": "65a8e2be0535",
@@ -33218,7 +33001,7 @@
       "venue": "The Comedy Theatre - Hauz Khass Village",
       "date": "2026-12-11",
       "time": "20:00",
-      "price_from": 399,
+      "price_from": null,
       "url": "https://www.district.in/events/arvind-sunder-live-oct3-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6GNGWC4HVHMY1QXM5MJHQ52.jpg",
       "source": "District",
@@ -35317,29 +35100,6 @@
       "links": {
         "BookMyShow Plays": "https://in.bookmyshow.com/plays/mahaprasthana/etf136jlb8"
       }
-    },
-    {
-      "id": "8bcf4b9fc5ae",
-      "title": "Global Guitar Gita 2026",
-      "category": "music",
-      "genres": [],
-      "lang": [],
-      "city": "Hyderabad",
-      "venue": "Windmills Craftwork",
-      "date": "2026-12-12",
-      "time": "20:00",
-      "price_from": 1179,
-      "url": "https://www.district.in/events/global-guitar-gita-2026-dec12-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7PRWPDNE7ETT6B1T4VNTEM8.jpg",
-      "source": "District",
-      "about": "Global Guitar Gita 2026 celebrates the art of guitar playing through an extraordinary coming together of musical traditions and talent from across the world. Curated by Konarak Reddy and supported by the Goethe-Institut Bangalore, this much-loved festival has been an integral part of Bengaluru’s cultural landscape for 25 years. Over the years, the festival has welcomed an impressive line-up of internationally…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/global-guitar-gita-2026-dec12-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
     },
     {
       "id": "a5b1d497863d",
@@ -39221,7 +38981,7 @@
       "venue": "Kolkata Centre for Creativity",
       "date": "2026-12-18",
       "time": "18:30",
-      "price_from": 500,
+      "price_from": null,
       "url": "https://www.district.in/events/the-tapi-project-dec18-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3RN9MX5D54BMBA5DFX350GT.jpeg",
       "source": "District",
@@ -39520,6 +39280,31 @@
         "District": "https://www.district.in/events/cigarettes-after-sex-a-vinyl-listening-session-the-midnight-circle-dec18-2026-buy-tickets"
       },
       "first_seen": "2026-11-14"
+    },
+    {
+      "id": "c0296180e6f6",
+      "title": "Let Your Stories Meet Mine – A Stand Up Comedy Show",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Delhi",
+      "venue": "The Comedy Theatre - Hauz Khass Village",
+      "date": "2026-12-18",
+      "time": "21:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/ultimate-roast-by-nishant-tanwar-may3-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M2B532YZMNYP06J3D8ZGJYP0.png",
+      "source": "District",
+      "about": "You have seen him on Latent and Reaction videos.Let Your Stories Meet Mine is Nishant Tanwars completely unpredictable and highly interactive stand-up experience where your stories, experiences, opinions and personalities become part of the show.Come with your friends. Bring your stories. Be ready to talk, laugh, get called out and maybe even discover that your life is funnier than you thought.Because this is not…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/ultimate-roast-by-nishant-tanwar-may3-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
     },
     {
       "id": "4f718d4f41fc",
@@ -42451,7 +42236,7 @@
       "venue": "Samarthanam Auditorium- Managed by Theatrenama",
       "date": "2026-12-20",
       "time": "19:00",
-      "price_from": 499,
+      "price_from": null,
       "url": "https://www.district.in/events/heroine-a-storytelling-special-by-gunjan-saini-dec20-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6ATMWZQ4RWYP195JX4EBXT4.jpeg",
       "source": "District",
@@ -43245,6 +43030,31 @@
       "first_seen": "2026-10-16"
     },
     {
+      "id": "a5663409542a",
+      "title": "Secret Santas Regrets - Christmas Comedy Show",
+      "category": "comedy",
+      "genres": [
+        "standup"
+      ],
+      "lang": [],
+      "city": "Pune",
+      "venue": "Laugh and Vibe Club",
+      "date": "2026-12-24",
+      "time": "00:00",
+      "price_from": 199,
+      "url": "https://www.district.in/events/secret-santas-regrets-christmas-comedy-show-dec24-2026-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M6GCKHMXQRRH4HXWHMF57ES7.jpeg",
+      "source": "District",
+      "about": "We have all received that one Secret Santa gift we wish we could return.Secret Santas Regrets turns awkward office gifts Christmas expectations and festive disasters into a hilarious stand up comedy show. Expect relatable jokes crowd work and plenty of Christmas chaos.Bring your friends colleagues and your worst Secret Santa memories. We have all received that one Secret Santa gift we wish we could return.Secret…",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/secret-santas-regrets-christmas-comedy-show-dec24-2026-buy-tickets"
+      },
+      "first_seen": "2026-11-21"
+    },
+    {
       "id": "cc16a9acb783",
       "title": "The Boibhob Show",
       "category": "comedy",
@@ -43345,34 +43155,6 @@
         "District": "https://www.district.in/events/vvvv-india-tour-bangalore-dec24-2026-buy-tickets"
       },
       "first_seen": "2026-11-17"
-    },
-    {
-      "id": "a5663409542a",
-      "title": "Secret Santas Regrets - Christmas Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Pune",
-      "venue": "Laugh and Vibe Club",
-      "date": "2026-12-24",
-      "time": "20:30",
-      "price_from": 199,
-      "url": "https://www.district.in/events/secret-santas-regrets-christmas-comedy-show-dec24-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M6GCK8VC7F1K250VWE724X95.jpeg",
-      "source": "District",
-      "about": "We have all received that one Secret Santa gift we wish we could return.Secret Santas Regrets turns awkward office gifts Christmas expectations and festive disasters into a hilarious stand up comedy show. Expect relatable jokes crowd work and plenty of Christmas chaos.Bring your friends colleagues and your worst Secret Santa memories.",
-      "end": "2026-12-24T22:00",
-      "on_sale": "2026-11-03T16:09",
-      "organizer": "Metazen Digital Private Limited",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/secret-santas-regrets-christmas-comedy-show-dec24-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
     },
     {
       "id": "6454a2f6d76a",
@@ -43635,31 +43417,6 @@
       "links": {
         "BookMyShow": "https://in.bookmyshow.com/events/taylor-swift-s-the-eras-night-birth-tay-speical/ET00421246"
       }
-    },
-    {
-      "id": "9772f63150d3",
-      "title": "Pratyush Chaubey Live |Delhi|",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Delhi",
-      "venue": "The Comedy Theatre - Hauz Khass Village",
-      "date": "2026-12-25",
-      "time": "18:00",
-      "price_from": null,
-      "url": "https://www.district.in/events/pratyush-chaubey-live-may9-2026-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1776109159/gqjpd6pw1n6u2dcfk2wv.png",
-      "source": "District",
-      "about": "Get ready for an evening of sharp wit and unapologetic honesty as Pratyush Chaubey takes the stage.A frustrated software engineer from Uttar Pradesh, Pratyush has survived an extraordinary level of humiliation, deadlines, and existential dread courtesy of the real world. Instead of switching careers quietly, he chose the more dangerous path—stand-up comedy—deciding to give society back exactly what it gave him, one…",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/pratyush-chaubey-live-may9-2026-buy-tickets"
-      },
-      "first_seen": "2026-11-22"
     },
     {
       "id": "d0d48f6c6d79",
@@ -44158,34 +43915,6 @@
       ],
       "links": {
         "The Piano Man": "https://www.thepianoman.in/event/detail/3/mehfil-e-sufi-with-nizami-brothers-five-thousand-two-hundred-forty"
-      },
-      "first_seen": "2026-11-22"
-    },
-    {
-      "id": "d534c11badd0",
-      "title": "Secret Santas Regrets - Christmas Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Pune",
-      "venue": "Laugh and Vibe Club",
-      "date": "2026-12-25",
-      "time": "21:00",
-      "price_from": 199,
-      "url": "https://www.district.in/events/secret-santas-regrets-christmas-comedy-show-dec24-2026-buy-tickets",
-      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_horizontal/01M6GCK8VC7F1K250VWE724X95.jpeg",
-      "source": "District",
-      "about": "We have all received that one Secret Santa gift we wish we could return.Secret Santas Regrets turns awkward office gifts Christmas expectations and festive disasters into a hilarious stand up comedy show. Expect relatable jokes crowd work and plenty of Christmas chaos.Bring your friends colleagues and your worst Secret Santa memories.",
-      "end": "2026-12-25T22:30",
-      "on_sale": "2026-11-03T16:09",
-      "organizer": "Metazen Digital Private Limited",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/secret-santas-regrets-christmas-comedy-show-dec24-2026-buy-tickets"
       },
       "first_seen": "2026-11-22"
     },
@@ -45605,7 +45334,7 @@
       "venue": "Laughing Hyena Comedy Club",
       "date": "2026-12-27",
       "time": "17:00",
-      "price_from": null,
+      "price_from": 149,
       "url": "https://www.district.in/events/bibidho-bhander-nov1-2026-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M3MRZ2P8T4SYPBNAJ737Q06Y.png",
       "source": "District",
@@ -47593,31 +47322,6 @@
       }
     },
     {
-      "id": "496017a08d94",
-      "title": "4 Sure Laughter: A Stand Up Comedy Show",
-      "category": "comedy",
-      "genres": [
-        "standup"
-      ],
-      "lang": [],
-      "city": "Ahmedabad",
-      "venue": "Art House India",
-      "date": "2027-01-04",
-      "time": "",
-      "price_from": null,
-      "url": "https://www.district.in/events/4-sure-laughter-a-stand-up-comedy-show-may31-2025-buy-tickets",
-      "image": "https://cdn.district.in/events/cd-media/image/upload/v1748359559/qelwcjpb6hltbaldyccz.jpg",
-      "source": "District",
-      "about": "4 Sure Laughter is the stand-up comedy show where four stand-up comedians will perform various stand-up comedy acts to make your day chilled, vibrant and happy and to get rid of so-called corporate majdoori on Labour Day 😀Experience the stand-up comedy live 😃",
-      "sources": [
-        "District"
-      ],
-      "links": {
-        "District": "https://www.district.in/events/4-sure-laughter-a-stand-up-comedy-show-may31-2025-buy-tickets"
-      },
-      "first_seen": "2026-11-21"
-    },
-    {
       "id": "587b0203a26d",
       "title": "90'S MUSIC DIRECTORS ( Live Musical Night)",
       "category": "music",
@@ -49121,7 +48825,7 @@
       "venue": "Aiwan-e-Ghalib Auditorium",
       "date": "2027-01-10",
       "time": "19:30",
-      "price_from": null,
+      "price_from": 499,
       "url": "https://www.district.in/events/ghar-ka-bedi-lanka-dhaaye-by-rakesh-bedi-jan10-2027-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M7SKMARWA8MGBQM8CA6D1N5B.png",
       "source": "District",
@@ -49737,10 +49441,12 @@
       "on_sale": "2026-08-31T14:27",
       "organizer": "VALARINA MARIA ROGERS",
       "sources": [
-        "District"
+        "District",
+        "Skillbox"
       ],
       "links": {
-        "District": "https://www.district.in/events/yohani-live-in-concert-jan16-2027-buy-tickets"
+        "District": "https://www.district.in/events/yohani-live-in-concert-jan16-2027-buy-tickets",
+        "Skillbox": "https://www.skillboxes.com/events/yohani-live-in-concert-sbrpsbln"
       },
       "first_seen": "2026-11-21"
     },
@@ -51374,7 +51080,7 @@
       "venue": "Aiwan-e-Ghalib Auditorium",
       "date": "2027-01-24",
       "time": "19:00",
-      "price_from": 299,
+      "price_from": null,
       "url": "https://www.district.in/events/main-ab-bhi-wahin-hun-by-pankaj-jeena-delhi-jan24-2027-buy-tickets",
       "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M5W60C4MG5Y8H9R71MZDX29Y.png",
       "source": "District",
@@ -54129,6 +53835,29 @@
         "District": "https://www.district.in/events/sonu-nigams-revolution-tour-guwahati-2027-buy-tickets"
       },
       "first_seen": "2026-09-25"
+    },
+    {
+      "id": "cb559a533a28",
+      "title": "3 AM Thoughts by Manjeet Thakur",
+      "category": "comedy",
+      "genres": [],
+      "lang": [],
+      "city": "Delhi",
+      "venue": "The Comedy Theatre - Hauz Khass Village",
+      "date": "2027-02-13",
+      "time": "20:00",
+      "price_from": null,
+      "url": "https://www.district.in/events/3-am-thoughts-by-manjeet-thakur-feb13-2027-buy-tickets",
+      "image": "https://cdn.district.in/assets/events/publisher/event_cover_image_vertical/01M697WG1YB3MTPV47HMWJSSP9.jpg",
+      "source": "District",
+      "about": "3AM Thoughts by Manjeet Thakur is what happens when overthinking gets a mic! With a mix of humor and uncomfortable truths, he dives into topics like gender roles, religion, and the questions society avoids turning them into comedy that`s as bold as it is relatable. His bits are with a perspective that`s both entertaining and thought-provoking.",
+      "sources": [
+        "District"
+      ],
+      "links": {
+        "District": "https://www.district.in/events/3-am-thoughts-by-manjeet-thakur-feb13-2027-buy-tickets"
+      },
+      "first_seen": "2026-11-22"
     },
     {
       "id": "7efd3f3afcd5",
