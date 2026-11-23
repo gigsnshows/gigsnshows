@@ -1,3 +1,4 @@
+import html
 import json
 import re
 from datetime import date
@@ -350,3 +351,34 @@ def test_artist_pages_need_two_shows_and_leave_out_tribute_nights(tmp_path):
 def test_no_artists_link_when_there_is_no_artists_page(tmp_path):
     seo.write([ev("b1", "Rock Fest", "2026-12-20")], str(tmp_path), "2026-11-13")
     assert not (tmp_path / "artists").exists() and "/artists/" not in (tmp_path / "mumbai" / "index.html").read_text()
+
+
+def test_city_and_category_pages_speak_this_week_and_tonight():
+    today = date(2026, 11, 23)  # a Monday
+    events = [ev("c1", "Late Show Comedy", "2026-11-23", category="comedy", price=299),
+              ev("c2", "Midweek Laughs", "2026-11-25", category="comedy", price=499),
+              ev("c3", "Weekend Roast", "2026-11-28", category="comedy"),
+              ev("c4", "December Special", "2026-12-20", category="comedy")]
+    shows = seo.build_shows(events)
+    path, h = seo.city_page("Mumbai", shows, "comedy", today)
+    title = re.search(r"<title>(.*?)</title>", h).group(1)
+    desc = html.unescape(re.search(r'<meta name="description" content="(.*?)"', h).group(1))
+    assert title == "Stand-up comedy shows in Mumbai this week: 4 upcoming, tickets | gigsnshows"
+    assert desc.startswith("Stand-up comedy shows in Mumbai: 1 tonight, 3 this week, 1 this weekend (27-29 Nov), 4 upcoming, tickets from ₹299.")
+    assert "<h1>Stand-up comedy shows in Mumbai</h1>" in h and "This week in Mumbai: 3 stand-up comedy shows</h2>" in h and "<h2>Coming up later</h2>" in h
+    assert "What stand-up comedy shows are on in Mumbai tonight?" in h and "What stand-up comedy shows are on in Mumbai this week?" in h
+    later_only = seo.build_shows([ev("c5", "Far Off", "2026-12-20", category="comedy")])
+    t2 = re.search(r"<title>(.*?)</title>", seo.city_page("Mumbai", later_only, "comedy", today)[1]).group(1)
+    assert "this week" not in t2   # never claims this week when nothing is on this week
+
+
+def test_weekend_and_day_page_titles_lead_with_the_count_and_tonight():
+    today = date(2026, 11, 23)
+    shows = seo.build_shows([ev("w1", "Big Gig", "2026-11-28", price=500), ev("w2", "Other Gig", "2026-11-29"),
+                             ev("t1", "Tonight Gig", "2026-11-23", category="comedy", price=200)])
+    wk = seo.weekend_page("Mumbai", shows, today)[1]
+    assert "<title>2 things to do in Mumbai this weekend (27-29 Nov) | gigsnshows</title>" in wk
+    assert "2 music gigs in Mumbai this weekend, Fri 27 Nov to Sun 29 Nov, tickets from ₹500." in html.unescape(wk)
+    tn = seo.day_page("Mumbai", shows, today, "today")[1]
+    assert "<title>Events in Mumbai tonight and today (23 Nov): 1 show | gigsnshows</title>" in tn
+    assert "1 comedy show in Mumbai tonight" in html.unescape(tn)

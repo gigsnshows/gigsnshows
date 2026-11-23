@@ -286,6 +286,32 @@ def from_price(price):
 NOUN = {None: "live shows", "music": "live music shows", "theatre": "theatre shows", "sports": "sports events", "comedy": "stand-up comedy shows"}
 
 
+# How people name these in a search box ("stand up comedy shows in delhi this weekend", "events in pune tonight"): used
+# in page titles, headings and descriptions, which until 23 Nov said only "Stand-up comedy in Bengaluru: what's on".
+SEARCH_NAME = {None: "Events", "music": "Concerts and live music", "theatre": "Plays and theatre",
+               "comedy": "Stand-up comedy shows", "sports": "Sports events"}
+PLURAL = {"music": ("music gig", "music gigs"), "comedy": ("comedy show", "comedy shows"),
+          "theatre": ("play", "plays"), "sports": ("sports event", "sports events")}
+
+
+def kinds_text(pool):
+    """'12 music gigs, 4 comedy shows and 1 play'"""
+    counts = Counter(s.category for s in pool)
+    return human_list([f"{n} {PLURAL[k][n != 1]}" for k, n in sorted(counts.items(), key=lambda x: (-x[1], x[0])) if k in PLURAL])
+
+
+def from_text(pool):
+    prices = [s.price for s in pool if s.price]
+    return f", tickets from {rupees(min(prices))}" if prices else ""
+
+
+def soon_counts(pool, today):
+    """(tonight, next 7 days, this weekend, weekend window) for one page's shows."""
+    t, wk_end = today.isoformat(), (today + timedelta(days=6)).isoformat()
+    a, b = weekend_window(today)
+    return (shows_between(pool, t, t), shows_between(pool, t, wk_end), shows_between(pool, a.isoformat(), b.isoformat()), (a, b))
+
+
 KIND = {"music": "concert", "theatre": "play", "comedy": "comedy show", "sports": "match"}  # the word people type after a name
 ALIASES_FILE = Path(__file__).resolve().parent.parent / "seo-aliases.json"
 
@@ -387,8 +413,13 @@ def faq_for(city, pool, today, category=None):
     Every number comes from the data on the page; nothing is estimated."""
     noun = NOUN[category]
     qa = []
-    a, b = weekend_window(today)
-    wk = shows_between(pool, a.isoformat(), b.isoformat())
+    tonight, week, wk, (a, b) = soon_counts(pool, today)
+    if tonight:
+        qa.append((f"What {noun} are on in {city} tonight?",
+                   f"{len(tonight)} {'is' if len(tonight) == 1 else 'are'} listed for today, {today:%A} {today.day} {today:%B}, including {human_list([clip(s.title, 60) for s in tonight[:3]])}."))
+    if week and len(week) > len(tonight):
+        qa.append((f"What {noun} are on in {city} this week?",
+                   f"{len(week)} {'is' if len(week) == 1 else 'are'} listed in the next seven days, {today.day} {today:%b} to {(today + timedelta(days=6)).day} {(today + timedelta(days=6)):%b}."))
     if wk:
         qa.append((f"What {noun} are on in {city} this weekend?",
                    f"{len(wk)} {'is' if len(wk) == 1 else 'are'} listed for {weekend_label(a, b)}, including {human_list([clip(s.title, 60) for s in wk[:3]])}. "
@@ -607,12 +638,23 @@ def city_page(city, shows, category=None, today=None, other_cities=()):
     pool = [s for s in shows if category is None or s.category == category]
     pool.sort(key=lambda s: (s.first["date"], s.first.get("time") or ""))
     noun = NOUN[category]
-    h1 = f"Live shows in {city}" if category is None else f"{CATEGORIES[category][1]} in {city}"
-    a, b = weekend_window(today)
-    wk = shows_between(pool, a.isoformat(), b.isoformat())
+    h1 = f"Events and live shows in {city}" if category is None else f"{SEARCH_NAME[category]} in {city}"
+    tonight, week, wk, (a, b) = soon_counts(pool, today)
     lead = f"{len(pool)} upcoming {noun} in {city}, soonest first, from BookMyShow, District and the other ticketing sites and venues."
+    if week:
+        lead += f" {len(week)} in the next seven days{f', {len(tonight)} of them tonight' if tonight else ''}."
     if wk:
         lead += f" {len(wk)} this weekend ({weekend_label(a, b)})."
+    soon = ([f"{len(tonight)} tonight"] if tonight else []) + ([f"{len(week)} this week"] if week else []) + \
+           ([f"{len(wk)} this weekend ({a.day}-{b.day} {b:%b})"] if wk else [])
+    desc = (f"{SEARCH_NAME[category] if category else 'Concerts, stand-up, theatre and sports'} in {city}: "
+            f"{', '.join(soon + [f'{len(pool)} upcoming'])}{from_text(pool)}.")
+    for tail in (" Dates, venues and ticket links, updated daily.", " Ticket links, updated daily."):
+        if len(desc + tail) <= 158:
+            desc += tail
+            break
+    title_core = f"{SEARCH_NAME[category]} in {city}{' this week' if week else ''}"
+    title = f"{title_core}: {len(pool)} upcoming, tickets | gigsnshows" if len(pool) > 1 else f"{title_core} | gigsnshows"
     counts = defaultdict(int)
     for s in shows:
         counts[s.category] += 1
@@ -640,7 +682,7 @@ def city_page(city, shows, category=None, today=None, other_cities=()):
 <h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
 <p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day.</p>
 <div class="cats">{cats}</div>
-<ul class="list">{listing(shown)}</ul>
+{week_split(shown, today, noun, city)}
 {f'<p class="lead">Showing the next {MAX_ON_CITY_PAGE} of {len(pool)}. <a href="/?city={esc(city_slug)}">See them all on gigsnshows</a>.</p>' if len(pool) > len(shown) else ''}
 <div class="cta"><a class="btn" href="/?city={esc(city_slug)}{'&amp;tab=' + category if category else ''}">Open {esc(city)} on gigsnshows</a></div>
 {faq_html(qa, f"Questions about {noun} in {city}")}
@@ -650,7 +692,18 @@ def city_page(city, shows, category=None, today=None, other_cities=()):
           breadcrumb_ld(trail)]
     if faq_ld(qa):
         ld.append(faq_ld(qa))
-    return path, page(f"{h1}: what's on | gigsnshows", clip(lead, 158), path, body, ld=ld)
+    return path, page(title, clip(desc, 158), path, body, ld=ld)
+
+
+def week_split(shown, today, noun, city):
+    """The list under two headings, 'This week' and 'Later', so the page says plainly what is on in the next seven days."""
+    end = (today + timedelta(days=6)).isoformat()
+    now = [s for s in shown if s.first["date"] <= end]
+    later = shown[len(now):]
+    if not now or not later:
+        return f'<ul class="list">{listing(shown)}</ul>'
+    return (f'<h2>This week in {esc(city)}: {len(now)} {esc(noun if len(now) != 1 else noun.rstrip("s"))}</h2><ul class="list">{listing(now)}</ul>'
+            f'<h2>Coming up later</h2><ul class="list">{listing(later)}</ul>')
 
 
 def weekend_page(city, shows, today, other_cities=()):
@@ -683,7 +736,9 @@ def weekend_page(city, shows, today, other_cities=()):
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": f"{h1} ({span})",
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
           breadcrumb_ld([("Home", ""), (city, f"{city_slug}/"), ("This weekend", path)]), faq_ld(qa)]
-    return path, page(f"{h1} ({a.day}-{b.day} {b:%b}) | gigsnshows", clip(lead, 158), path, body, ld=ld)
+    desc = f"{kinds_text(pool).capitalize()} in {city} this weekend, {span}{from_text(pool)}. Including {human_list([clip(s.title, 40) for s in pool[:2]])}."
+    n_word = f"{len(pool)} things" if len(pool) > 1 else "Things"
+    return path, page(f"{n_word} to do in {city} this weekend ({a.day}-{b.day} {b:%b}) | gigsnshows", clip(desc, 158), path, body, ld=ld)
 
 
 DAYS = {"today": (0, "today", "Today", "tonight"), "tomorrow": (1, "tomorrow", "Tomorrow", "tomorrow")}
@@ -700,7 +755,7 @@ def day_page(city, shows, today, which, other_cities=()):
         return None
     path = f"{city_slug}/{which}/"
     span = f"{day:%A} {day.day} {day:%B}"
-    h1 = f"Things to do in {city} {word}"
+    h1 = f"Things to do in {city} {'today and tonight' if which == 'today' else word}"
     lead = f"{len(pool)} live {'show' if len(pool) == 1 else 'shows'} in {city} {word}, {span}: concerts, stand-up, theatre and sports, earliest first."
     counts = Counter(s.category for s in pool)
     kinds = human_list([f"{counts[k]} {CATEGORIES[k][2]}" for k in CATEGORIES if counts[k]])
@@ -722,7 +777,10 @@ def day_page(city, shows, today, which, other_cities=()):
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": f"{h1} ({span})",
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": s.title} for i, s in enumerate(pool[:50])]},
           breadcrumb_ld([("Home", ""), (city, f"{city_slug}/"), (label, path)]), faq_ld(qa)]
-    return path, page(f"{h1} ({day.day} {day:%b}) | gigsnshows", clip(lead, 158), path, body, ld=ld)
+    when_words = "tonight" if which == "today" else "tomorrow"
+    desc = f"{kinds_text(pool).capitalize()} in {city} {when_words}, {span}{from_text(pool)}. Including {human_list([clip(s.title, 40) for s in pool[:2]])}."
+    head = f"Events in {city} tonight and today" if which == "today" else f"Events in {city} tomorrow"
+    return path, page(f"{head} ({day.day} {day:%b}): {len(pool)} {'show' if len(pool) == 1 else 'shows'} | gigsnshows", clip(desc, 158), path, body, ld=ld)
 
 
 # Satellite towns of a metro. The data files them under the metro (cities.py: Gurgaon -> Delhi), so show pages stay
