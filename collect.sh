@@ -23,7 +23,27 @@ main() {
   # GitHub sometimes drops a connection for a moment ("early EOF", "Broken pipe"). With set -e that used to end the whole run
   # and throw away 30 minutes of results (the Mac's 15 Oct 09:36 run), so network steps are tried a few times first.
   # Port 22 first, then port 443 (the Mac's 18 Nov 09:35 run timed out on port 22 four times and lost its upload).
-  remote() { local verb=$1; shift; git "$verb" --quiet "$REPO" "$@" || { echo "GitHub on port 22 failed; trying port 443"; git "$verb" --quiet "$ALT" "$@"; }; }
+  # Last resort: the Mac's network sometimes cannot look up GitHub's name at all ("Could not resolve hostname", 20-23 Nov)
+  # while BookMyShow loads fine. Ask Cloudflare's, then Google's, lookup service over HTTPS (by their numeric addresses,
+  # so no name lookup is needed) and connect to GitHub by address, still checking GitHub's published key (HostKeyAlias).
+  ipof() {
+    local u
+    for u in "https://1.1.1.1/dns-query?name=$1&type=A" "https://8.8.8.8/resolve?name=$1&type=A"; do
+      curl -s --max-time 15 -H 'accept: application/dns-json' "$u" | "$PYTHON" -c 'import json, sys
+for a in json.load(sys.stdin).get("Answer", []):
+    if a.get("type") == 1: print(a["data"]); break' 2>/dev/null | grep -E '^[0-9]{1,3}(\.[0-9]{1,3}){3}$' && return 0
+    done
+    return 1
+  }
+  remote() {
+    local verb=$1 ip; shift
+    git "$verb" --quiet "$REPO" "$@" && return 0
+    echo "GitHub on port 22 failed; trying port 443"
+    git "$verb" --quiet "$ALT" "$@" && return 0
+    ip="$(ipof ssh.github.com)" || { echo "could not look up GitHub's address either"; return 1; }
+    echo "trying GitHub by its address ($ip), looked up over HTTPS"
+    GIT_SSH_COMMAND="$GIT_SSH_COMMAND -o HostKeyAlias=ssh.github.com" git "$verb" --quiet "ssh://git@$ip:443/gigsnshows/gigsnshows.git" "$@"
+  }
   net() { local i; for i in 1 2 3 4; do "$@" && return 0; echo "network step failed ($*), try $i of 4"; sleep $((i * 20)); done; return 1; }
 
   echo "=== $(date) on $COLLECTOR ==="
