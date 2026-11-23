@@ -1,6 +1,7 @@
 """What counts as a show, and when two listings are the same show. Run: python -m pytest tests (from the repo root)."""
 import os
 import sys
+from datetime import date
 
 import pytest
 
@@ -274,3 +275,57 @@ def test_organizer_url_only_when_stated_and_not_a_seller():
     assert organizer_url({"name": "Acme", "url": "https://acme.example/about"}) == "https://acme.example/about"
     assert organizer_url({"name": "Acme", "url": "https://in.bookmyshow.com/x"}) == ""
     assert organizer_url({"name": "Acme"}) == "" and organizer_url("Acme") == "" and organizer_url(None) == ""
+
+
+KCC_JS = '''window.KCC_HIDE_TITLES=["samay"];
+window.KCC_CONFIG = { csv: "https://docs.google.com/spreadsheets/d/e/X/pub?gid=1&single=true&output=csv",
+  tours: [ { "name": "T", "stops": [
+      { "city": "Mumbai", "venue": "Khar Comedy Club, Khar West", "show": "Big Tour" },
+      { "city": "Delhi", "venue": "The Piano Man Gurugram & Eldeco Centre", "show": "Big Tour · Delhi" } ] } ] };'''
+KCC_CSV = ''',SHOW DETAILS,,,,,,,,,,
+Ticket type,On website,Show name,Date,Time,Repeats,Venue,Category,Event type,Line-up,Language,Poster,KCC tickets,Ticket prices (auto),District link,BookMyShow link,Skip dates
+Standard,Yes,Riff@KCC,,10:00 PM,"Every Mon, Tue, Wed",KCC,Comedy Riff,New material,,,riff-kcc.jpg,On,Regular:499:20,,,
+Standard,Yes,Dreamgirl,28 Nov 2026,8:00 PM,,KCC,Solos,Stand-up,Karen Houge,English,https://drive.google.com/x,On,Early Bird:799:0 | Regular:999:10,,,
+Standard,Yes,Urooj and the Broez,5 Dec 2026,"18:00:00 PM, 8:00 PM",,KCC,Experimental,Stand-up,"Shamik, Urooj",,,Off,,https://link.district.in/a,,
+Standard,No,Old Show,29 Nov 2026,8:00 PM,,KCC,Solos,Stand-up,Someone,,,Off,,,,
+Standard,Yes,Samay Secret Set,29 Nov 2026,8:00 PM,,KCC,KCC Exclusive,Stand-up,Samay Raina,,,On,,,,
+Standard,Yes,Saturday Group Yoga,29 Nov 2026,9:30 AM,,Loft52,Loft52 Events,Wellness,Teacher,,,Off,,,,
+Standard,Yes,While I Still Can,29 Nov 2026,7:00 PM,,Loft52,Loft52 Events,Mentalist ,Chaitanya Tamhane,Hinglish,,Off,,https://www.district.in/b,,
+Standard,Yes,Big Tour · Delhi,30 Nov 2026,9:00 PM,,,KCC Exclusive,Stand-up,Big Comic,Hindi,,On,,,,
+Standard,Yes,Past Show,1 Nov 2026,8:00 PM,,KCC,Solos,Stand-up,Someone,,,On,,,,
+'''
+
+
+def test_khar_comedy_club_sheet_keeps_only_what_its_site_shows():
+    from scrapers.parsers import parse_kcc
+    evs = parse_kcc(KCC_JS, "https://www.kharcomedyclub.com/config.js", {"name": "Khar Comedy Club"}, {"city": "Mumbai"},
+                    today=date(2026, 11, 23), sheet=KCC_CSV)
+    by = {}
+    for e in evs:
+        by.setdefault(e["title"], []).append(e)
+    assert set(by) == {"Riff@KCC", "Dreamgirl ft. Karen Houge", "Urooj and the Broez ft. Shamik, Urooj", "While I Still Can ft. Chaitanya Tamhane", "Big Tour ft. Big Comic"}
+    riff = by["Riff@KCC"]   # every Mon, Tue and Wed in the next two weeks
+    assert [e["date"] for e in riff] == ["2026-11-23", "2026-11-24", "2026-11-25", "2026-11-30", "2026-12-01", "2026-12-02"]
+    assert riff[0]["time"] == "22:00" and riff[0]["image"] == "https://www.kharcomedyclub.com/posters/riff-kcc.jpg"
+    dg = by["Dreamgirl ft. Karen Houge"][0]
+    assert dg["venue"] == "Khar Comedy Club" and dg["city"] == "Mumbai" and dg["price_from"] == 999 and dg["category"] == "comedy"
+    assert dg["url"] == "https://www.kharcomedyclub.com/#/booking" and dg["image"] is None
+    two = by["Urooj and the Broez ft. Shamik, Urooj"]
+    assert sorted(e["time"] for e in two) == ["18:00", "20:00"] and len({e["id"] for e in two}) == 2
+    assert two[0]["url"] == "https://link.district.in/a"
+    assert by["While I Still Can ft. Chaitanya Tamhane"][0]["category"] == "theatre"
+    tour = by["Big Tour ft. Big Comic"][0]
+    assert tour["city"] == "Delhi" and tour["venue"] == "The Piano Man Gurugram"
+
+
+def test_same_club_night_and_time_is_one_show():
+    import run
+    a = {"id": "a", "title": "Kullu being Kullu ft. Aaditya Kulshreshth: KCC", "date": "2026-11-23", "time": "20:00", "city": "Mumbai",
+         "venue": "Khar Comedy Club", "source": "District", "url": "u1", "image": "i", "price_from": None}
+    b = {"id": "b", "title": "Kullu being Kullu", "date": "2026-11-23", "time": "20:00", "city": "Mumbai",
+         "venue": "Khar Comedy Club", "source": "Khar Comedy Club", "url": "u2", "image": None, "price_from": 474}
+    c = {**b, "id": "c", "time": "22:00", "title": "Riff@KCC"}
+    out = run.dedupe([a, b, c])
+    assert len(out) == 2
+    m = next(e for e in out if e["id"] == "a")
+    assert m["sources"] == ["District", "Khar Comedy Club"] and m["price_from"] == 474 and m["links"]["Khar Comedy Club"] == "u2"

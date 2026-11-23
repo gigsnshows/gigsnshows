@@ -92,11 +92,23 @@ def _same_show_key(e):
     return (e["date"], e["city"], re.sub(r"[^a-z0-9]", "", e["title"].lower()))
 
 
+# A club with one stage runs one show at a time: the same club, night and start time is the same show, whatever each
+# platform calls it ("Kullu being Kullu" on the club's sheet, "Kullu being Kullu ft. Aaditya Kulshreshth: KCC" on District).
+ONE_STAGE = [("khar-comedy-club", re.compile(r"^khar comedy club\b", re.I))]
+
+
+def _slot_key(e):
+    for key, rx in ONE_STAGE:
+        if e.get("time") and rx.search(e.get("venue") or ""):
+            return (key, e["date"], e["time"])
+    return None
+
+
 def dedupe(events):
     """Same show on two platforms -> one entry that remembers every source."""
     merged, same = {}, {}
     for e in events:
-        twin = same.get(_same_show_key(e))
+        twin = same.get(_same_show_key(e)) or (same.get(_slot_key(e)) if _slot_key(e) else None)
         if twin is not None and twin["id"] != e["id"]:
             e = {**e, "id": twin["id"]}  # fold it into the entry we already have
         if e["id"] in merged:
@@ -115,6 +127,8 @@ def dedupe(events):
             e["links"] = {e["source"]: e["url"]}
             merged[e["id"]] = e
             same.setdefault(_same_show_key(e), e)
+            if _slot_key(e):
+                same.setdefault(_slot_key(e), e)
     return list(merged.values())
 
 

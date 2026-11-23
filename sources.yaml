@@ -162,6 +162,11 @@
     - {url: https://www.thepianoman.in/venue/event/list/2, city: Delhi}
     - {url: https://www.thepianoman.in/venue/event/list/3, city: Delhi}
 
+- name: Khar Comedy Club
+  parser: kcc               # the club's config.js names the published sheet its own site lists shows from
+  urls:
+    - {url: https://www.kharcomedyclub.com/config.js, city: Mumbai}
+
 - name: Skillbox
   parser: detail_pages
   render: true

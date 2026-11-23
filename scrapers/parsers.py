@@ -6,15 +6,17 @@ where `src` is the source block from sources.yaml and `entry` is the expanded
 To support a new site layout, add a function here and register it in PARSERS.
 """
 
+import csv
+import io
 import json
 import os
 import re
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from .base import (collect_links, event, extract_jsonld_events, get_html, reset_browser, guess_category,
+from .base import (collect_links, event, extract_jsonld_events, fetch, get_html, make_id, reset_browser, guess_category,
                    jsonld_to_event, meta_event, parse_date, summary)
 from .cities import detect_city, nearest_city
 from .genres import language
@@ -543,6 +545,127 @@ def parse_pianoman(html, page_url, src, entry):
     return out
 
 
+# ---------- Khar Comedy Club (kharcomedyclub.com) ----------
+# The club's own site draws its show list from a published Google Sheet named in its config.js
+# ("Show list live from Google Sheet", in the site's footer). We read the same sheet and keep only what the site
+# itself shows: rows marked "On website: Yes", minus the titles config.js hides, minus workshops and wellness classes.
+KCC_SITE = "https://www.kharcomedyclub.com"
+KCC_VENUES = {"KCC": "Khar Comedy Club", "Loft52": "Loft52, Khar Comedy Club"}
+KCC_SKIP_TYPES = re.compile(r"workshop|wellness|yoga|class", re.I)
+KCC_DAYS = {"mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6}
+KCC_REPEAT_DAYS = 14  # weekly shows ("Every Thu, Fri, Sat, Sun") are listed for the next two weeks
+
+
+def kcc_config(js):
+    """(sheet csv url, hidden title words, {tour show name: (city, venue)}) from the site's config.js."""
+    m = re.search(r"csv\s*:\s*[\"']([^\"']+output=csv[^\"']*)", js)
+    hide = re.search(r"KCC_HIDE_TITLES\s*=\s*(\[[^\]]*\])", js)
+    try:
+        words = [w.lower() for w in json.loads(hide.group(1))] if hide else []
+    except ValueError:
+        words = []
+    stops = {name.strip(): (city, venue) for city, venue, name in
+             re.findall(r'"city"\s*:\s*"([^"]+)"\s*,\s*"venue"\s*:\s*"([^"]+)"\s*,\s*"show"\s*:\s*"([^"]+)"', js)}
+    return (m.group(1) if m else None), words, stops
+
+
+def kcc_times(text):
+    """'8:00 PM' / '6:00 PM & 8:00 PM' / '18:00:00 PM, 8:00 PM' -> ['18:00', '20:00']"""
+    out = []
+    for h, mi, ap in re.findall(r"(\d{1,2}):(\d{2})(?::\d{2})?\s*([AP]M)?", text or "", re.I):
+        h = int(h)
+        if ap and h <= 12:
+            h = h % 12 + (12 if ap.upper() == "PM" else 0)
+        if h < 24:
+            out.append(f"{h:02d}:{mi}")
+    return list(dict.fromkeys(out))
+
+
+def kcc_price(tiers, fallback=None):
+    """'Early Bird:499:0 | Regular:799:10 | Last phase:999:0' -> the cheapest tier still on sale (count not 0), else the cheapest."""
+    parsed = []
+    for part in (tiers or "").split("|"):
+        bits = [b.strip() for b in part.split(":")]
+        if len(bits) >= 2 and re.fullmatch(r"\d+", bits[1]):
+            parsed.append((int(bits[1]), bits[2] if len(bits) > 2 else ""))
+    live = [p for p, left in parsed if left != "0"]
+    return min(live) if live else (min(p for p, _ in parsed) if parsed else fallback)
+
+
+def kcc_dates(row, today):
+    """A row's dates: its own date, or for a weekly show the matching days in the next KCC_REPEAT_DAYS days."""
+    when = (row.get("Date") or "").strip()
+    if when:
+        try:
+            return [datetime.strptime(when, "%d %b %Y").date().isoformat()]
+        except ValueError:
+            return []
+    days = {KCC_DAYS[d[:3].lower()] for d in re.findall(r"[A-Za-z]{3,}", row.get("Repeats") or "") if d[:3].lower() in KCC_DAYS}
+    skip = set(re.findall(r"\d{1,2} [A-Za-z]{3} \d{4}", row.get("Skip dates") or ""))
+    skip = {datetime.strptime(x, "%d %b %Y").date().isoformat() for x in skip}
+    out = []
+    for i in range(KCC_REPEAT_DAYS):
+        d = today + timedelta(days=i)
+        if d.weekday() in days and d.isoformat() not in skip:
+            out.append(d.isoformat())
+    return out
+
+
+def kcc_rows(text):
+    """The sheet's rows as dicts: its first line is a banner of column groups, the second the column names."""
+    rows = list(csv.reader(io.StringIO(text)))
+    head = next((i for i, r in enumerate(rows[:5]) if "Show name" in r), None)
+    if head is None:
+        return []
+    names = [h.strip() for h in rows[head]]
+    return [{n: (r[i].strip() if i < len(r) else "") for i, n in enumerate(names)} for r in rows[head + 1:]]
+
+
+def parse_kcc(js, page_url, src, entry, today=None, sheet=None):
+    today = today or date.today()
+    csv_url, hidden, stops = kcc_config(js)
+    text = sheet if sheet is not None else (fetch(csv_url) if csv_url else None)
+    if not text:
+        return []
+    out = []
+    for row in kcc_rows(text):
+        name = re.sub(r"\s+", " ", row.get("Show name", "")).strip()
+        if row.get("On website") != "Yes" or not name or any(w in name.lower() for w in hidden):
+            continue
+        if KCC_SKIP_TYPES.search(f"{row.get('Event type', '')} {row.get('Category', '')}"):
+            continue
+        city, place = "Mumbai", "Khar West, Mumbai"
+        venue = KCC_VENUES.get(row.get("Venue", "").strip())
+        if not venue:  # a stop of a tour the club runs in another city: "Sumit Sourav (The Manifest Tour) · Delhi"
+            stop = stops.get(name)
+            if not stop:
+                continue
+            city, venue = stop[0], re.split(r"\s+[|&]\s+", stop[1])[0]
+            place = f"{venue}, {city}"
+            name = re.sub(r"\s+·\s+[^·]+$", "", name)
+        lineup = re.sub(r"\s+", " ", row.get("Line-up", "")).strip()
+        title = name if (not lineup or lineup.lower() in name.lower() or re.search(r"various|surprise|new material", lineup, re.I)) else f"{name} ft. {lineup}"
+        times = kcc_times(row.get("Time")) or [""]
+        poster = row.get("Poster", "")
+        image = f"{KCC_SITE}/posters/{poster}" if poster and not poster.startswith("http") else None
+        link = (f"{KCC_SITE}/#/booking" if row.get("KCC tickets") == "On" else "") or row.get("District link") or row.get("BookMyShow link") or KCC_SITE
+        about = row.get("About", "")
+        hint = f"{row.get('Category', '')} {row.get('Event type', '')} {about}"
+        cat = ("theatre" if re.search(r"mentalist|magic", hint, re.I) else
+               "comedy" if re.search(r"comedy|stand-?up|improv|duos|solos|gala|alternate|riff|pop-up|exclusive|podcast|panel", hint, re.I) else None)
+        lang = row.get("Language", "").strip().lower()
+        for day in kcc_dates(row, today):
+            if day < today.isoformat():
+                continue
+            for time in times:
+                ev = event(title, day, src["name"], city, cat, venue, time, kcc_price(row.get("Ticket prices (auto)")), link,
+                           image, hint=hint, default="comedy", place=place, about=about or None, lang=[lang] if lang else None)
+                if ev:
+                    if len(times) > 1:  # two shows the same night: one entry each
+                        ev["id"] = make_id(f"{name} {time}", day, venue)
+                    out.append(ev)
+    return out
+
 PARSERS = {
     "jsonld": parse_jsonld,
     "detail_pages": parse_detail_pages,
@@ -553,4 +676,5 @@ PARSERS = {
     "ncpa": parse_ncpa,
     "prithvi": parse_prithvi,
     "pianoman": parse_pianoman,
+    "kcc": parse_kcc,
 }
