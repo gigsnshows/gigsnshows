@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,083 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, NMACC, The Piano Man and Prithvi Theatre, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-24).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,103 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, NMACC, The Piano Man and Prithvi Theatre, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-24).
 
 ## How to use this site
 
@@ -19,18 +19,18 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 407 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 329 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 309 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 157 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 135 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 108 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 85 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 79 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 71 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 408 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 336 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 311 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 158 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 134 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 109 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 87 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 80 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 73 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 43 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 41 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 30 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 40 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 31 upcoming shows
 - [Vadodara](https://gigsnshows.com/vadodara/): 26 upcoming shows
 - [Guwahati](https://gigsnshows.com/guwahati/): 25 upcoming shows
 - [Indore](https://gigsnshows.com/indore/): 24 upcoming shows
@@ -46,7 +46,6 @@
 - [Tomorrow in Delhi](https://gigsnshows.com/delhi/tomorrow/)
 - [Tomorrow in Bengaluru](https://gigsnshows.com/bengaluru/tomorrow/)
 - [Tomorrow in Pune](https://gigsnshows.com/pune/tomorrow/)
-- [Tomorrow in Hyderabad](https://gigsnshows.com/hyderabad/tomorrow/)
 - [This weekend in Mumbai](https://gigsnshows.com/mumbai/this-weekend/)
 - [This weekend in Delhi](https://gigsnshows.com/delhi/this-weekend/)
 - [This weekend in Bengaluru](https://gigsnshows.com/bengaluru/this-weekend/)
@@ -81,7 +80,6 @@
 - [Arvind Sunder](https://gigsnshows.com/artists/arvind-sunder/)
 - [Arz Kiya Hai](https://gigsnshows.com/artists/arz-kiya-hai/)
 - [Ashish Malhotra](https://gigsnshows.com/artists/ashish-malhotra/)
-- [Ashish Vidyarthi](https://gigsnshows.com/artists/ashish-vidyarthi/)
 - [Ashutosh Jamadagni](https://gigsnshows.com/artists/ashutosh-jamadagni/)
 - [Atul Khatri](https://gigsnshows.com/artists/atul-khatri/)
 - [Avinash Agarwal](https://gigsnshows.com/artists/avinash-agarwal/)
@@ -101,6 +99,7 @@
 - [Gaurav Kapoor](https://gigsnshows.com/artists/gaurav-kapoor/)
 - [Gautham Govindan](https://gigsnshows.com/artists/gautham-govindan/)
 - [Gurdas Maan](https://gigsnshows.com/artists/gurdas-maan/)
+- [Harmeet Singh Kohli](https://gigsnshows.com/artists/harmeet-singh-kohli/)
 
 ## Tours playing several cities
 
@@ -136,4 +135,4 @@
 - [Comedy Square](https://gigsnshows.com/bengaluru/venue/comedy-square/)
 - [Dnd The Venue](https://gigsnshows.com/bengaluru/venue/dnd-the-venue/)
 - [Hod House Of Dopamine Brewery Llp](https://gigsnshows.com/bengaluru/venue/hod-house-of-dopamine-brewery-llp/)
-- [House Of Dopamine](https://gigsnshows.com/bengaluru/venue/house-of-dopamine/)
+- [Hyatt Centric Mg Road](https://gigsnshows.com/bengaluru/venue/hyatt-centric-mg-road/)
