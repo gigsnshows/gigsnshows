@@ -549,6 +549,15 @@ def page(title, desc, path, body, extra_head="", image=None, ld=None, noindex=Fa
     return doc.replace('<a class="btn alt" href="/?', '<a class="btn alt" rel="nofollow" href="/?').replace('<a class="btn" href="/?', '<a class="btn" rel="nofollow" href="/?').replace('<a href="/?', '<a rel="nofollow" href="/?')
 
 
+PERFORMER = {}  # show id -> artist name, set while a site is being written (from the artist pages' matching)
+GROUP_WORDS = re.compile(r"^the\b|\b(band|project|collective|orchestra|trio|quartet|ensemble|choir|crew|brothers|sisters)\b", re.I)
+
+
+def performer_ld(name):
+    """Who performs, for search engines and AI assistants: a person, or a group when the name says so."""
+    return {"@type": "PerformingGroup" if GROUP_WORDS.search(name) else "Person", "name": name, "url": f"{SITE}/{artist_path(name)}"}
+
+
 def event_ld(show, e):
     link, _ = link_for(e)
     ld = {"@context": "https://schema.org", "@type": SCHEMA_TYPE.get(show.category, "Event"), "name": show.title,
@@ -557,6 +566,8 @@ def event_ld(show, e):
           "location": {"@type": "Place", "name": venue_short(e) or e["city"],
                        "address": {"@type": "PostalAddress", "addressLocality": e["city"], "addressCountry": "IN"}},
           "url": f"{SITE}/{show.path}"}
+    if show.id in PERFORMER:
+        ld["performer"] = performer_ld(PERFORMER[show.id])
     if e.get("end") and e.get("time") and e["end"] > f"{e['date']}T{e['time']}":
         ld["endDate"] = e["end"] + ":00+05:30"  # only when the ticketing site states it
     if e.get("organizer") and e.get("organizer_url"):
@@ -1076,6 +1087,14 @@ def artist_page(name, group, today):
     if prices:
         qa.append((f"How much are {name} tickets?",
                    f"Listed prices start from {rupees(min(prices))}. Each show page shows its own price and links to the ticket seller."))
+    qa.insert(0, (f"Is {name} touring India in {first.first['date'][:4]}?",
+                  f"Yes. {len(group)} {name} {'show is' if len(group) == 1 else 'shows are'} listed in India from {when_range(first.first['date'], last_day)}, "
+                  f"in {human_list(cities[:6])}{' and other cities' if len(cities) > 6 else ''}."))
+    for c in cities[:8]:  # "when is charlie jeer in delhi": the kind of question people put to search and AI assistants
+        here = [s for s in group if s.city == c]
+        dates = [(e, s) for s in here for e in s.events][:4]
+        qa.append((f"When is {name} performing in {c}?",
+                   human_list([f"{when(e, with_year=True)} at {venue_short(e)}" for e, s in dates]) + f" ({here[0].title}{from_price(here[0].price)})."))
     body = f"""<p class="crumbs"><a href="/">Home</a> › <a href="/artists/">Artists</a> › {esc(name)}</p>
 <h1>{esc(h1)}</h1><p class="lead">{esc(lead)}</p>
 <p class="upd">Updated {today.day} {today:%B %Y}. Dates and prices are refreshed several times a day. Shows are matched to {esc(name)} by the name in each listing's title.</p>
@@ -1084,7 +1103,8 @@ def artist_page(name, group, today):
 {faq_html(qa, f"Questions about {name}")}"""
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}/{s.path}", "name": f"{s.title}, {s.city}"} for i, s in enumerate(group[:50])]},
-          breadcrumb_ld([("Home", ""), ("Artists", "artists/"), (name, path)]), faq_ld(qa)]
+          breadcrumb_ld([("Home", ""), ("Artists", "artists/"), (name, path)]), faq_ld(qa),
+          {"@context": "https://schema.org", **performer_ld(name), "mainEntityOfPage": f"{SITE}/{path}"}]
     return path, page(f"{clip(name, 40)}: shows and tour dates | gigsnshows", clip(lead, 158), path, body, ld=ld)
 
 
@@ -1442,10 +1462,12 @@ def write(events, root, today=None):
     global ARTISTS_LIVE
     artists = artist_groups(shows)
     ARTISTS_LIVE = bool(artists)
+    PERFORMER.clear()
     artist_of = {}
     for aname, agroup in artists.items():
         for a_show in agroup:
             artist_of.setdefault(a_show.id, aname)
+    PERFORMER.update(artist_of)
     for s in shows:
         related = [r for r in shows if r.city == s.city and r.category == s.category and r.id != s.id]
         related.sort(key=lambda r: abs((datetime.strptime(r.first["date"], "%Y-%m-%d") - datetime.strptime(s.first["date"], "%Y-%m-%d")).days))

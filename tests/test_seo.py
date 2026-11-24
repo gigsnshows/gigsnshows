@@ -382,3 +382,15 @@ def test_weekend_and_day_page_titles_lead_with_the_count_and_tonight():
     tn = seo.day_page("Mumbai", shows, today, "today")[1]
     assert "<title>Events in Mumbai tonight and today (23 Nov): 1 show | gigsnshows</title>" in tn
     assert "1 comedy show in Mumbai tonight" in html.unescape(tn)
+
+
+def test_artist_pages_answer_city_questions_and_show_pages_name_the_performer(tmp_path):
+    events = [ev("p1", "Darshan Raval Live in Mumbai", "2026-12-10", price=999),
+              ev("p2", "Darshan Raval Live in Delhi", "2026-12-12", city="Delhi")]
+    seo.write(events, str(tmp_path), "2026-11-24")
+    a = html.unescape((tmp_path / "artists" / "darshan-raval" / "index.html").read_text())
+    assert "Is Darshan Raval touring India in 2026?" in a and "When is Darshan Raval performing in Delhi?" in a
+    assert '"@type": "Person", "name": "Darshan Raval"' in a
+    show = next(p for p in (tmp_path / "shows").iterdir() if p.name.startswith("darshan-raval-live-in-mumbai"))
+    assert '"performer": {"@type": "Person", "name": "Darshan Raval", "url": "https://gigsnshows.com/artists/darshan-raval/"}' in (show / "index.html").read_text()
+    assert seo.performer_ld("The Yellow Diary")["@type"] == "PerformingGroup"
