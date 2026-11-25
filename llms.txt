@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,259 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-25).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,254 upcoming shows in 65 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-25).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 444 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 366 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 338 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 437 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 370 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 337 upcoming shows
 - [Pune](https://gigsnshows.com/pune/): 162 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 140 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 113 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 90 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 85 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 78 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 46 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 144 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 114 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 91 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 86 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 80 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 45 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 44 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 33 upcoming shows
-- [Guwahati](https://gigsnshows.com/guwahati/): 27 upcoming shows
-- [Vadodara](https://gigsnshows.com/vadodara/): 27 upcoming shows
-- [Indore](https://gigsnshows.com/indore/): 25 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 32 upcoming shows
+- [Guwahati](https://gigsnshows.com/guwahati/): 26 upcoming shows
+- [Dehradun](https://gigsnshows.com/dehradun/): 24 upcoming shows
+- [Indore](https://gigsnshows.com/indore/): 24 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -83,25 +83,25 @@
 - [Arvind Sunder](https://gigsnshows.com/artists/arvind-sunder/)
 - [Arz Kiya Hai](https://gigsnshows.com/artists/arz-kiya-hai/)
 - [Ashish Malhotra](https://gigsnshows.com/artists/ashish-malhotra/)
+- [Ashish Vidyarthi](https://gigsnshows.com/artists/ashish-vidyarthi/)
 - [Ashutosh Jamadagni](https://gigsnshows.com/artists/ashutosh-jamadagni/)
 - [Atul Khatri](https://gigsnshows.com/artists/atul-khatri/)
 - [Balraj Syal](https://gigsnshows.com/artists/balraj-syal/)
 - [Benny Dayal](https://gigsnshows.com/artists/benny-dayal/)
-- [Chirag Panjwani](https://gigsnshows.com/artists/chirag-panjwani/)
 - [Darshan Raval](https://gigsnshows.com/artists/darshan-raval/)
 - [Diljit Dosanjh](https://gigsnshows.com/artists/diljit-dosanjh/)
 - [Dj Chetas](https://gigsnshows.com/artists/dj-chetas/)
 - [Dj Mikie](https://gigsnshows.com/artists/dj-mikie/)
 - [Elena Gabrielle](https://gigsnshows.com/artists/elena-gabrielle/)
 - [Foo Fighters](https://gigsnshows.com/artists/foo-fighters/)
+- [Francis Mercier](https://gigsnshows.com/artists/francis-mercier/)
 - [Fusion Kaapi](https://gigsnshows.com/artists/fusion-kaapi/)
 - [Gajendra Pratap Singh](https://gigsnshows.com/artists/gajendra-pratap-singh/)
 - [Gajendra Verma](https://gigsnshows.com/artists/gajendra-verma/)
 - [Gaurav Baisla](https://gigsnshows.com/artists/gaurav-baisla/)
 - [Gaurav Gupta](https://gigsnshows.com/artists/gaurav-gupta/)
 - [Gaurav Kapoor](https://gigsnshows.com/artists/gaurav-kapoor/)
-- [Gurdas Maan](https://gigsnshows.com/artists/gurdas-maan/)
-- [Harshit Mahawar](https://gigsnshows.com/artists/harshit-mahawar/)
+- [Gautham Govindan](https://gigsnshows.com/artists/gautham-govindan/)
 
 ## Tours playing several cities
 
@@ -113,13 +113,13 @@
 - [Akshay Srivastava Live Standup Comedy](https://gigsnshows.com/tour/akshay-srivastava-live-standup-comedy/)
 - [All Star Lineup A Curated Stand Up Comedy Show](https://gigsnshows.com/tour/all-star-lineup-a-curated-stand-up-comedy-show/)
 - [Amar Photo Studio](https://gigsnshows.com/tour/amar-photo-studio/)
+- [Andha Pyaar Ft Vivek Samtani Kaustubh Aggarwal](https://gigsnshows.com/tour/andha-pyaar-ft-vivek-samtani-kaustubh-aggarwal/)
 - [Aswekeepsearching Live Pune](https://gigsnshows.com/tour/aswekeepsearching-live-pune/)
-- [Ata Thambvaicha Kasa](https://gigsnshows.com/tour/ata-thambvaicha-kasa/)
 - [Bangtanverse Carnival Fan Tour](https://gigsnshows.com/tour/bangtanverse-carnival-fan-tour/)
 - [Besharam World Tour 2026 27](https://gigsnshows.com/tour/besharam-world-tour-2026-27/)
-- [Chirag Panjwani Live](https://gigsnshows.com/tour/chirag-panjwani-live/)
 - [Closer A Stand Up Comedy Show By Vivek Kapruwan](https://gigsnshows.com/tour/closer-a-stand-up-comedy-show-by-vivek-kapruwan/)
 - [Crowd Ctrl Ft Aakash Mehta](https://gigsnshows.com/tour/crowd-ctrl-ft-aakash-mehta/)
+- [Darshan Raval S Love Letters India Tour](https://gigsnshows.com/tour/darshan-raval-s-love-letters-india-tour/)
 
 ## Venues
 
