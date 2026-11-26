@@ -33,7 +33,7 @@ EVENTS = ROOT / "data" / "events.json"
 SITE = "https://gigsnshows.com"
 
 # How long a source may go without a successful read, by where it is read (hours).
-STALE_AFTER = {"aws": (20, 20), "mac": (30, 60), "home": (24, 36)}  # (warn, error): BookMyShow is a third of the listings, so a day without it is worth knowing about
+STALE_AFTER = {"aws": (20, 20), "mac": (30, 60), "home": (24, 36), "proxy": (20, 30)}  # (warn, error): BookMyShow is a third of the listings, so a day without it is worth knowing about
 DROP_ERROR, DROP_WARN = 0.5, 0.75  # a run below this share of the usual count
 TOTAL_DROP_ERROR = 0.7  # all listings together
 CERT_WARN_DAYS, CERT_ERROR_DAYS = 21, 7
@@ -119,7 +119,7 @@ def check_sources(h, sources):
             continue  # a source read two ways (District, BookMyShow, NCPA) is checked once
         done.add(name)
         runs_on = src.get("runs_on", ["aws", "github"])
-        where = "aws" if "aws" in runs_on else "mac" if "mac" in runs_on else "home" if "home" in runs_on else None
+        where = next((w for w in ("aws", "proxy", "mac", "home") if w in runs_on), None)
         s = h["sources"].get(name)
         if where is None:
             continue  # only read by the manual GitHub run: nothing to expect
@@ -143,7 +143,8 @@ def check_sources(h, sources):
             problems.append("never returned shows")
         elif age > err_h:
             errors.append(f"{name}: last refreshed {age:.0f} hours ago (it should be every {warn_h} hours" +
-                          {"mac": ", and the Mac needs to be awake", "home": ", so the always-on home collector may be off or offline"}.get(where, ", so the server's collector may have stopped") + ")")
+                          {"mac": ", and the Mac needs to be awake", "home": ", so the always-on home collector may be off or offline",
+                           "proxy": ", so the server's proxied collector may have stopped, or the proxy refused it (check its account and balance)"}.get(where, ", so the server's collector may have stopped") + ")")
             problems.append(f"stale {age:.0f}h")
         elif age > warn_h:
             warnings.append(f"{name}: last refreshed {age:.0f} hours ago" + {"mac": " (open the Mac so it can collect)", "home": " (check the home collector is on and online)"}.get(where, ""))

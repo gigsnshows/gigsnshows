@@ -22,6 +22,7 @@ from pathlib import Path
 import yaml
 
 import health
+from scrapers import base
 from scrapers.base import NOT_SHOWS, fix_category, get_html, now_iso
 from scrapers import seo, sharepages
 from scrapers.genres import catalog, language, languages, tag
@@ -29,6 +30,7 @@ from scrapers.parsers import COVERAGE, PARSERS
 
 # Which machine this run is on: "aws" (the Lightsail server), "mac" or "github" (Actions).
 # Some sites refuse some of them, so each source's `runs_on` in sources.yaml says where it's read.
+# "proxy" is the AWS server's second collector, which reads sources that refuse cloud addresses through a proxy.
 WHERE = os.environ.get("COLLECTOR") or ("github" if os.environ.get("GITHUB_ACTIONS") == "true" else "mac")
 DEFAULT_RUNS_ON = ["aws", "github"]
 
@@ -144,14 +146,22 @@ def main(dry_run=False, only=None, remerge=False, refilter=False):
         if only and only.lower() not in src["name"].lower():
             continue
         runs_on = src.get("runs_on", DEFAULT_RUNS_ON)
-        if not only and WHERE not in runs_on:
+        if not only and WHERE not in runs_on and not (WHERE == "proxy" and src.get("proxy")):
             print(f"\n{src['name']}  (skipped here on {WHERE}; read on {' and '.join(runs_on)})")
             continue
+        proxy = None
+        if src.get("proxy") and WHERE == "proxy":  # the server's proxied collector: this source's pages go through the proxy
+            proxy = os.environ.get(src["proxy"])
+            if not proxy:
+                print(f"\n{src['name']}  (skipped: {src['proxy']} is not set on this machine, so there is no proxy to read it through)")
+                continue
         parser = PARSERS[src.get("parser", "jsonld")]
         if src["name"] not in ran:
             ran.append(src["name"])
         print(f"\n{src['name']}  ({src.get('parser', 'jsonld')}{', rendered' if src.get('render') else ''})")
         tried, ok = set(), set()
+        base.set_proxy(proxy)
+        used_before = base.PROXY_BYTES
         if src.get("warmup"):  # a first, ordinary visit to the site's front page; BookMyShow's first listing of a morning run came back empty without it
             get_html(src["warmup"], True, 6000, delay=src.get("crawl_delay", 0))
         for entry in expand(src):
@@ -177,6 +187,9 @@ def main(dry_run=False, only=None, remerge=False, refilter=False):
                 ok.add(city)
         # Per city only for sources read city by city: a site that starts refusing partway
         # through a run (BookMyShow, after a few cities) shouldn't wipe the cities it didn't answer.
+        base.set_proxy(None)
+        if proxy:
+            print(f"  proxy data used: {(base.PROXY_BYTES - used_before) / 1e6:.1f} MB")
         if "cities" in src and ok and tried - ok:
             failed[src["name"]] = tried - ok
             print(f"  (no results for {', '.join(sorted(tried - ok))}; keeping their earlier shows)")

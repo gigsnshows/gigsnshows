@@ -69,10 +69,43 @@ CATEGORY_KEYWORDS = {
 
 # ---------------------------------------------------------------- fetching
 
+# A source can be read through a proxy (sources.yaml `proxy:`): BookMyShow refuses cloud servers' own addresses, so on
+# the AWS server it is read through rented Indian home-broadband addresses. run.py switches the proxy on for that
+# source only; everything else goes direct. PROXY_BYTES adds up what went through it, since the proxy bills by data.
+PROXY = None
+PROXY_BYTES = 0
+# Only what the page's event data needs goes through the proxy: no pictures, fonts, video or styling, and nothing
+# from other sites (ads, analytics). Keeps the proxy bill to a fraction of a full page load.
+PROXY_SKIP_TYPES = {"image", "media", "font", "stylesheet"}
+
+
+def set_proxy(url):
+    """Use this proxy (http://user:pass@host:port) for every request until set_proxy(None)."""
+    global PROXY
+    PROXY = url or None
+
+
+def _proxy_allowed(request, keep_hosts, lean=False):
+    """lean: the page's own HTML only, no scripts. BookMyShow writes its event data into the page itself, so a lean load
+    is usually enough (about 235 KB of page against about 1.5 MB with its scripts)."""
+    host = urlparse(request.url).hostname or ""
+    if lean and request.resource_type != "document":
+        return False
+    return request.resource_type not in PROXY_SKIP_TYPES and any(h in host for h in keep_hosts)
+
+
+def _has_event_data(html):
+    return bool(html) and "application/ld+json" in html and '"@type"' in html
+
+
 def fetch(url, timeout=25):
     """GET a page and return its HTML, or None on any failure."""
+    global PROXY_BYTES
     try:
-        r = requests.get(url, headers=HEADERS, timeout=timeout)
+        proxies = {"http": PROXY, "https": PROXY} if PROXY else None
+        r = requests.get(url, headers=HEADERS, timeout=timeout, proxies=proxies)
+        if PROXY:
+            PROXY_BYTES += len(r.content) + sum(len(k) + len(v) for k, v in r.headers.items())
         r.raise_for_status()
         if "charset" not in r.headers.get("content-type", "").lower():
             try:  # requests assumes Latin-1 when a page doesn't say (thumpN's "Bacardí" became "BacardÃ­"); these sites are UTF-8
@@ -85,42 +118,67 @@ def fetch(url, timeout=25):
         return None
 
 
-# One browser for the whole run; launching Chromium per page was most of the run time.
+# One browser for the whole run; launching Chromium per page was most of the run time. A proxied source gets a
+# browser of its own, launched with that proxy, so no other source's pages ever go through it.
 _playwright = None
-_browser = None
+_browsers = {}  # proxy URL ("" = direct) -> browser
+
+
+def _proxy_settings(url):
+    u = urlparse(url)
+    out = {"server": f"{u.scheme or 'http'}://{u.hostname}:{u.port}" if u.port else f"{u.scheme or 'http'}://{u.hostname}"}
+    if u.username:
+        from urllib.parse import unquote
+        out.update(username=unquote(u.username), password=unquote(u.password or ""))
+    return out
 
 
 def _get_browser():
-    global _playwright, _browser
-    if _browser is None or not _browser.is_connected():
+    global _playwright
+    key = PROXY or ""
+    b = _browsers.get(key)
+    if b is None or not b.is_connected():
         from playwright.sync_api import sync_playwright
         if _playwright is None:
             _playwright = sync_playwright().start()
             atexit.register(_close_browser)
-        _browser = _playwright.chromium.launch()
-    return _browser
+        b = _playwright.chromium.launch(**({"proxy": _proxy_settings(PROXY)} if PROXY else {}))
+        _browsers[key] = b
+    return b
 
 
 def _close_browser():
-    if _browser is not None and _browser.is_connected():
-        _browser.close()
+    for b in _browsers.values():
+        try:
+            if b.is_connected():
+                b.close()
+        except Exception:  # noqa: BLE001
+            pass
     if _playwright is not None:
         _playwright.stop()
 
 
 def reset_browser():
-    """Throw away the shared browser (and everything it remembers) so the next page starts from a clean slate."""
-    global _browser
+    """Throw away the current browser (and everything it remembers) so the next page starts from a clean slate."""
+    b = _browsers.pop(PROXY or "", None)
     try:
-        if _browser is not None and _browser.is_connected():
-            _browser.close()
+        if b is not None and b.is_connected():
+            b.close()
     except Exception:  # noqa: BLE001
         pass
-    _browser = None
 
 
 def render(url, wait_ms=2500, scroll=True):
     """Load a page in headless Chromium and return the rendered HTML."""
+    if PROXY:  # through the proxy: the page's own HTML first, the full page only if that lacks the event data
+        html = _render(url, wait_ms, scroll, lean=True)
+        if _has_event_data(html):
+            return html
+        print("      (no event data in the page itself; loading it with its scripts)")
+    return _render(url, wait_ms, scroll)
+
+
+def _render(url, wait_ms=2500, scroll=True, lean=False):
     try:
         import playwright  # noqa: F401
     except ImportError:
@@ -131,10 +189,14 @@ def render(url, wait_ms=2500, scroll=True):
         # stripped listing for every city after the first, which looks like it was reacting to the session it remembered.
         context = _get_browser().new_context(user_agent=HEADERS["User-Agent"])
         page = context.new_page()
+        if PROXY:
+            keep = (urlparse(url).hostname or "").split(".")[-2:-1] + ["bmscdn"]  # the site's own name (bookmyshow) and its script host
+            page.route("**/*", lambda route: route.continue_() if _proxy_allowed(route.request, keep, lean) else route.abort())
+            page.on("requestfinished", _count_proxy_bytes)
         try:
             page.goto(url, wait_until="domcontentloaded", timeout=45000)
-            page.wait_for_timeout(wait_ms)
-            if scroll:  # trigger lazy-loaded rows on listing pages
+            page.wait_for_timeout(300 if lean else wait_ms)  # nothing to wait for when no scripts run
+            if scroll and not lean:  # trigger lazy-loaded rows on listing pages
                 for _ in range(4):
                     page.mouse.wheel(0, 2000)
                     page.wait_for_timeout(500)
@@ -144,6 +206,15 @@ def render(url, wait_ms=2500, scroll=True):
     except Exception as exc:  # noqa: BLE001
         print(f"  ! render failed {url}: {exc}")
         return None
+
+
+def _count_proxy_bytes(request):
+    global PROXY_BYTES
+    try:
+        sz = request.sizes()
+        PROXY_BYTES += sz.get("responseBodySize", 0) + sz.get("responseHeadersSize", 0) + sz.get("requestHeadersSize", 0)
+    except Exception:  # noqa: BLE001
+        pass
 
 
 _last_request = {}  # host -> time of our previous request to it

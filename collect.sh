@@ -1,7 +1,7 @@
 #!/bin/bash
 # Collect listings and upload them. Runs on the AWS server (cron, 09:30, 13:30 and 17:30 IST, so listings are live by 10am, 2pm and 6pm:
 # everything except BookMyShow) and on the Mac (collect-local.sh: BookMyShow only).
-# Set COLLECTOR (aws / mac) and PYTHON before calling; sources.yaml's runs_on decides
+# Set COLLECTOR (aws / proxy / mac) and PYTHON before calling; sources.yaml's runs_on decides
 # which sources each one reads. Runs from its own clone, which it resets to GitHub's copy.
 #
 # Two collectors can finish at once. If GitHub has moved on when this one uploads, it
@@ -18,7 +18,9 @@ main() {
   local ALT=ssh://git@ssh.github.com:443/gigsnshows/gigsnshows.git  # the same, over port 443, for networks that block or drop port 22
   local BOT=(-c user.name=listings-bot -c user.email=bot@users.noreply.github.com)
   export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/gigsnshows_deploy -o IdentitiesOnly=yes -o ConnectTimeout=30 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o \"UserKnownHostsFile=$HERE/github_known_hosts $HOME/.ssh/known_hosts\""  # give up on a dead connection instead of hanging (the Mac's 2 Nov 13:35 run sat silent after its first fetch)
-  : "${COLLECTOR:?set COLLECTOR to aws or mac}" "${PYTHON:=python3}"
+  : "${COLLECTOR:?set COLLECTOR to aws, proxy or mac}" "${PYTHON:=python3}"
+  # Settings kept on the machine, never in the repo: BMS_PROXY (the proxy account BookMyShow is read through) lives here.
+  if [ -f "$HOME/.gigsnshows.env" ]; then set -a; . "$HOME/.gigsnshows.env"; set +a; fi
 
   # GitHub sometimes drops a connection for a moment ("early EOF", "Broken pipe"). With set -e that used to end the whole run
   # and throw away 30 minutes of results (the Mac's 15 Oct 09:36 run), so network steps are tried a few times first.

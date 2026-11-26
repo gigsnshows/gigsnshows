@@ -382,3 +382,24 @@ def test_g5a_skips_talks_even_under_theatre():
                           "A talk", ["Theatre"])
     cal = f'<a href="{url}">x</a>'
     assert parse_g5a(cal, "", {"name": "G5A Warehouse"}, {}, today=date(2026, 11, 26), pages={url: page}) == []
+
+
+def test_proxy_settings_split_out_the_login():
+    from scrapers.base import _proxy_settings
+    assert _proxy_settings("http://user-in:p%40ss@gw.example.com:823") == {
+        "server": "http://gw.example.com:823", "username": "user-in", "password": "p@ss"}
+    assert _proxy_settings("http://gw.example.com:823") == {"server": "http://gw.example.com:823"}
+
+
+def test_only_the_sites_own_page_goes_through_the_proxy():
+    from scrapers.base import _proxy_allowed
+
+    class Req:
+        def __init__(self, url, kind):
+            self.url, self.resource_type = url, kind
+    keep = ["bookmyshow", "bmscdn"]
+    assert _proxy_allowed(Req("https://in.bookmyshow.com/explore/music-shows-mumbai", "document"), keep, lean=True)
+    assert not _proxy_allowed(Req("https://in.bmscdn.com/app.js", "script"), keep, lean=True)  # lean: page only
+    assert _proxy_allowed(Req("https://in.bmscdn.com/app.js", "script"), keep)  # the full-page fallback runs its scripts
+    assert not _proxy_allowed(Req("https://assets-in.bmscdn.com/poster.jpg", "image"), keep)
+    assert not _proxy_allowed(Req("https://www.googletagmanager.com/gtm.js", "script"), keep)

@@ -26,6 +26,8 @@
 #   details        district parser: also read each show's own page (description, for genres)
 #   quiet          true for a single venue whose calendar can honestly be empty for a while
 #                  (the health check then doesn't treat an empty read as a stopped collector)
+#   proxy          the name of a setting (in ~/.gigsnshows.env on the server) holding a proxy URL; the
+#                  server's `proxy` collector reads this source through it. For sites that refuse cloud addresses.
 #   runs_on        which collectors read this source: aws (the Lightsail server, twice a day),
 #                  mac (the laptop, when it's awake), github (Actions, manual runs only now).
 #                  Default [aws, github]. District refuses GitHub; BookMyShow refuses both clouds.
@@ -99,6 +101,7 @@
 - name: BookMyShow
   runs_on: [mac]            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
+  proxy: BMS_PROXY         # on the server's proxied collector, read through the proxy account named by this setting
   parser: jsonld
   render: true
   url: https://in.bookmyshow.com/explore/{category}-{city}
@@ -118,6 +121,7 @@
   runs_on: [mac]
   warmup: https://in.bookmyshow.com/            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
+  proxy: BMS_PROXY         # on the server's proxied collector, read through the proxy account named by this setting
   parser: detail_pages
   render: true
   render_details: true
@@ -130,6 +134,7 @@
   runs_on: [mac]
   warmup: https://in.bookmyshow.com/            # refuses cloud servers (GitHub and AWS alike)
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
+  proxy: BMS_PROXY         # on the server's proxied collector, read through the proxy account named by this setting
   parser: detail_pages
   render: true
   render_details: true
@@ -147,6 +152,7 @@
   render_details: true
   wait_ms: 3000
   crawl_delay: 10          # BookMyShow's robots.txt asks for 10s between requests
+  proxy: BMS_PROXY         # on the server's proxied collector, read through the proxy account named by this setting
   max_pages: 150           # pages read per run (about 15 s each), well-known acts first; remembered in data/bms_pages.json
   watch: *watch
   urls:
