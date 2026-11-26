@@ -666,6 +666,62 @@ def parse_kcc(js, page_url, src, entry, today=None, sheet=None):
                     out.append(ev)
     return out
 
+# ---------------------------------------------------------------- G5A Warehouse (Mumbai)
+# A WordPress site on the Modern Events Calendar plugin. /calendar/ links every upcoming date of every programme as
+# /calendar/<slug>/?occurrence=YYYY-MM-DD, and each of those pages carries a schema.org Event. Its quirks: every Event
+# says price "0" (paid passes too, sold on checkout.g5a.org), and the place is "G5A Foundation ... - Official".
+
+G5A_VENUE = {"name": "G5A Warehouse", "address": "Laxmi Mills Estate, Shakti Mills Lane, Mahalaxmi, Mumbai"}
+G5A_OCCURRENCE = re.compile(r"/calendar/[^/?#]+/\?occurrence=(\d{4}-\d{2}-\d{2})$")
+G5A_CATEGORY = {"theatre": "theatre", "music": "music", "comedy": "comedy", "stand-up": "comedy", "dance": "theatre",
+                "performance": "theatre", "performances": "theatre"}
+G5A_SKIP = re.compile(r"\b(cinema|film|screening|talk|conversation|panel|rehearsal|workshop|residency open studio)\b", re.I)
+
+
+def g5a_category(html):
+    """Our category from the programme's own event categories (Theatre, Music, Cinema House ...); None = not a show we list."""
+    soup = BeautifulSoup(html, "lxml")
+    cats = [a.get_text(" ", strip=True).lower() for a in soup.select('a[href*="/event-category/"]')]
+    if any(G5A_SKIP.search(c) for c in cats):
+        return None
+    for c in cats:
+        for word, cat in G5A_CATEGORY.items():
+            if re.search(rf"\b{re.escape(word)}\b", c):
+                return cat
+    return None
+
+
+def parse_g5a(html, page_url, src, entry, today=None, pages=None):
+    """`pages`: url -> html, for tests (otherwise each show page is fetched)."""
+    today = today or date.today()
+    links = []
+    for a in BeautifulSoup(html, "lxml").find_all("a", href=True):
+        href = a["href"].strip()
+        m = G5A_OCCURRENCE.search(href)
+        if m and m.group(1) >= today.isoformat() and href not in links:
+            links.append(href)
+    print(f"      {len(links)} upcoming dates listed")
+    out = []
+    for link in links[: src.get("max_pages", 60)]:
+        page = pages.get(link) if pages is not None else get_html(link, delay=src.get("crawl_delay", 0))
+        if not page:
+            continue
+        cat = g5a_category(page)
+        if not cat:
+            continue  # film screenings, talks and workshops: the site lists live shows only
+        for node in extract_jsonld_events(page):
+            if G5A_SKIP.search(node.get("name") or ""):
+                continue
+            node = dict(node, location=dict(G5A_VENUE, **{"@type": "Place"}))
+            offers = node.get("offers")
+            if isinstance(offers, dict) and str(offers.get("price")) in ("0", "0.0", ""):
+                node["offers"] = {k: v for k, v in offers.items() if k != "price"}  # "0" means "not filled in", not free
+            ev = jsonld_to_event(node, src["name"], "Mumbai", cat, link)
+            if ev:
+                out.append(ev)
+    return out
+
+
 PARSERS = {
     "jsonld": parse_jsonld,
     "detail_pages": parse_detail_pages,
@@ -677,4 +733,5 @@ PARSERS = {
     "prithvi": parse_prithvi,
     "pianoman": parse_pianoman,
     "kcc": parse_kcc,
+    "g5a": parse_g5a,
 }

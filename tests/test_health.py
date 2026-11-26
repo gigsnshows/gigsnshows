@@ -45,3 +45,27 @@ def test_one_server_error_on_the_home_page_is_retried(monkeypatch):
 def test_a_site_that_stays_down_still_fails(monkeypatch):
     errors = run_site(monkeypatch, [503, 503, 503])
     assert any("Home page: HTTP 503" in e for e in errors)
+
+
+def quiet(last_ok_days_ago, run_hours_ago=3):
+    from datetime import timedelta
+    ago = lambda **k: health.stamp(health.now() - timedelta(**k))  # noqa: E731
+    s = {"count": 0, "last_run": ago(hours=run_hours_ago), "failed_cities": [], "recent": [1, 0, 0, 0]}
+    if last_ok_days_ago is not None:
+        s["last_ok"] = ago(days=last_ok_days_ago)
+    return health.check_sources({"sources": {"G5A": s}}, [{"name": "G5A", "runs_on": ["aws"], "quiet": True}])
+
+
+def test_a_quiet_venue_with_nothing_on_this_week_is_fine():
+    errors, warnings, _ = quiet(5)
+    assert not errors and not warnings
+
+
+def test_a_quiet_venue_empty_for_weeks_only_gets_a_note():
+    errors, warnings, _ = quiet(30)
+    assert not errors and any("no upcoming shows" in w for w in warnings)
+
+
+def test_a_quiet_venue_whose_collector_stopped_still_fails():
+    errors, _, _ = quiet(5, run_hours_ago=60)
+    assert errors

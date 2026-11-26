@@ -329,3 +329,56 @@ def test_same_club_night_and_time_is_one_show():
     assert len(out) == 2
     m = next(e for e in out if e["id"] == "a")
     assert m["sources"] == ["District", "Khar Comedy Club"] and m["price_from"] == 474 and m["links"]["Khar Comedy Club"] == "u2"
+
+
+G5A_CAL = """<html><body>
+<a href="https://warehouse.g5a.org/calendar/samna-by-jabbar-patel/?occurrence=2026-11-28">Samna by Jabbar Patel</a>
+<a href="https://warehouse.g5a.org/calendar/samna-by-jabbar-patel/?occurrence=2026-11-28">View Detail</a>
+<a href="https://warehouse.g5a.org/calendar/darakht-by-jyoti-dogra-premiere-in-residence/?occurrence=2026-11-12">Darakht (past)</a>
+<a href="https://warehouse.g5a.org/calendar/a-theatre-adaptation-of-haroun-and-the-sea-of-stories-by-salman-rushdie/?occurrence=2026-12-02">Haroun</a>
+<a href="https://warehouse.g5a.org/calendar/samna-by-jabbar-patel/">Get passes</a>
+<a href="https://warehouse.g5a.org/?blackhole=0b114f49e8">G5A</a>
+</body></html>"""
+
+G5A_LD = """<script type="application/ld+json">{{"@context": "http://schema.org", "@type": "Event",
+ "startDate": "{start}", "endDate": "{end}",
+ "location": {{"@type": "Place", "name": "G5A Foundation for Contemporary Culture - Official", "image": "",
+   "address": "G5A Foundation for Contemporary Culture - Official Mumbai  India 400 011"}},
+ "organizer": {{"@type": "Person", "name": "", "url": ""}},
+ "offers": {{"url": "{url}", "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock",
+   "validFrom": "{day}T00:00"}},
+ "performer": "", "description": "{about}", "image": "https://warehouse.g5a.org/wp-content/uploads/{slug}.jpg",
+ "name": "{name}", "url": "{url}"}}</script>"""
+
+
+def _g5a_page(name, slug, day, start, end, about, cats):
+    url = f"https://warehouse.g5a.org/calendar/{slug}/?occurrence={day}"
+    tags = "".join(f'<a rel="tag" href="https://warehouse.g5a.org/event-category/{c.lower()}/">{c}</a>' for c in cats)
+    return url, "<html><head>" + G5A_LD.format(start=f"{day}T{start}:00+05:30", end=f"{day}T{end}:00+05:30", url=url,
+                                                 day=day, about=about, slug=slug, name=name) + f"</head><body>{tags}</body></html>"
+
+
+def test_g5a_lists_theatre_and_skips_films_and_past_dates():
+    from scrapers.parsers import parse_g5a
+    samna = _g5a_page("Samna by Jabbar Patel", "samna-by-jabbar-patel", "2026-11-28", "11:00", "13:30",
+                      "G5A Cinema House presents a screening", ["Cinema", "Cinema House"])
+    haroun = _g5a_page("A Theatre Adaptation of Haroun and the Sea of Stories by Salman Rushdie",
+                       "a-theatre-adaptation-of-haroun-and-the-sea-of-stories-by-salman-rushdie", "2026-12-02", "18:00", "19:30",
+                       "Grade 8 students perform a theatrical adaptation.", ["cityLAB", "Theatre"])
+    pages = dict([samna, haroun])
+    evs = parse_g5a(G5A_CAL, "https://warehouse.g5a.org/calendar/", {"name": "G5A Warehouse"}, {"city": "Mumbai"},
+                    today=date(2026, 11, 26), pages=pages)
+    assert [e["title"] for e in evs] == ["A Theatre Adaptation of Haroun and the Sea of Stories by Salman Rushdie"]
+    e = evs[0]
+    assert e["category"] == "theatre" and e["city"] == "Mumbai" and e["venue"] == "G5A Warehouse"
+    assert e["date"] == "2026-12-02" and e["time"] == "18:00" and e["end"].startswith("2026-12-02T19:30")
+    assert e["price_from"] is None  # the site's "0" is a blank, not a free show
+    assert e["url"] == haroun[0] and e["image"].endswith(".jpg")
+
+
+def test_g5a_skips_talks_even_under_theatre():
+    from scrapers.parsers import parse_g5a
+    url, page = _g5a_page("In Conversation with Jyoti Dogra", "in-conversation", "2026-12-05", "19:00", "20:00",
+                          "A talk", ["Theatre"])
+    cal = f'<a href="{url}">x</a>'
+    assert parse_g5a(cal, "", {"name": "G5A Warehouse"}, {}, today=date(2026, 11, 26), pages={url: page}) == []

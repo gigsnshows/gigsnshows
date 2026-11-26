@@ -8,6 +8,7 @@
 #                  ncpa          NCPA's WordPress site
 #                  prithvi       Prithvi Theatre's schedule feed
 #                  pianoman      The Piano Man's per-club show lists
+#                  g5a           G5A Warehouse's events calendar
 #                  detail_pages  collect links matching link_pattern from the page
 #                                (or an XML sitemap), then read each linked page
 #   render         true if the listing page only fills in with JavaScript
@@ -23,6 +24,8 @@
 #   link_pattern / max_pages   for detail_pages: which links are events, how many to read
 #   crawl_delay    seconds between requests to this site (from its robots.txt)
 #   details        district parser: also read each show's own page (description, for genres)
+#   quiet          true for a single venue whose calendar can honestly be empty for a while
+#                  (the health check then doesn't treat an empty read as a stopped collector)
 #   runs_on        which collectors read this source: aws (the Lightsail server, twice a day),
 #                  mac (the laptop, when it's awake), github (Actions, manual runs only now).
 #                  Default [aws, github]. District refuses GitHub; BookMyShow refuses both clouds.
@@ -166,6 +169,13 @@
   parser: kcc               # the club's config.js names the published sheet its own site lists shows from
   urls:
     - {url: https://www.kharcomedyclub.com/config.js, city: Mumbai}
+
+- name: G5A Warehouse
+  parser: g5a               # the venue's own calendar (Modern Events Calendar); theatre, music and comedy, not its film screenings
+  crawl_delay: 2
+  quiet: true               # some weeks it has no theatre or music on; the health check allows that
+  urls:
+    - {url: "https://warehouse.g5a.org/calendar/", city: Mumbai}
 
 - name: Skillbox
   parser: detail_pages

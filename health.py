@@ -37,6 +37,7 @@ STALE_AFTER = {"aws": (20, 20), "mac": (30, 60), "home": (24, 36)}  # (warn, err
 DROP_ERROR, DROP_WARN = 0.5, 0.75  # a run below this share of the usual count
 TOTAL_DROP_ERROR = 0.7  # all listings together
 CERT_WARN_DAYS, CERT_ERROR_DAYS = 21, 7
+QUIET_NOTE_DAYS = 21  # a `quiet` source (see sources.yaml) listing nothing for this long gets a note, not a failure
 RETRY_WAIT = 20  # seconds between tries when the live site answers with a server error
 FIREBASE_KEY = "AIzaSyD6SaNLKN7HSd9VxzsoApAZponyV0JPAV4"  # public web key, as in index.html
 
@@ -129,6 +130,14 @@ def check_sources(h, sources):
         problems = []
         age = hours_since(s.get("last_ok"))
         warn_h, err_h = STALE_AFTER[where]
+        if src.get("quiet") and s.get("last_run"):
+            # A single venue's own calendar can honestly list nothing for a while (G5A between productions): judge the
+            # collector by when it last read the calendar, and only note a long run of empty reads.
+            empty_days = (age if age is not None else QUIET_NOTE_DAYS * 24 + 1) / 24
+            age = hours_since(s["last_run"])
+            if empty_days > QUIET_NOTE_DAYS:
+                warnings.append(f"{name}: no upcoming shows listed for {QUIET_NOTE_DAYS}+ days (check its calendar still lists shows)")
+                problems.append("nothing listed lately")
         if age is None:
             errors.append(f"{name}: has never returned any shows")
             problems.append("never returned shows")
