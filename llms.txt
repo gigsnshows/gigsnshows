@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,267 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, Prithvi Theatre, The Piano Man and NMACC, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-26).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,265 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, Prithvi Theatre, NMACC and The Piano Man, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-26).
 
 ## How to use this site
 
@@ -19,18 +19,18 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 447 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 366 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 342 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 169 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 144 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 444 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 367 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 340 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 176 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 143 upcoming shows
 - [Kolkata](https://gigsnshows.com/kolkata/): 112 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 88 upcoming shows
 - [Ahmedabad](https://gigsnshows.com/ahmedabad/): 86 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 78 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 45 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 74 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 46 upcoming shows
 - [Chandigarh](https://gigsnshows.com/chandigarh/): 43 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 34 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 33 upcoming shows
 - [Guwahati](https://gigsnshows.com/guwahati/): 26 upcoming shows
 - [Vadodara](https://gigsnshows.com/vadodara/): 26 upcoming shows
 - [Dehradun](https://gigsnshows.com/dehradun/): 25 upcoming shows
@@ -83,7 +83,6 @@
 - [Arvind Sunder](https://gigsnshows.com/artists/arvind-sunder/)
 - [Arz Kiya Hai](https://gigsnshows.com/artists/arz-kiya-hai/)
 - [Ashish Malhotra](https://gigsnshows.com/artists/ashish-malhotra/)
-- [Ashish Vidyarthi](https://gigsnshows.com/artists/ashish-vidyarthi/)
 - [Ashutosh Jamadagni](https://gigsnshows.com/artists/ashutosh-jamadagni/)
 - [Atul Khatri](https://gigsnshows.com/artists/atul-khatri/)
 - [Balraj Syal](https://gigsnshows.com/artists/balraj-syal/)
@@ -97,11 +96,12 @@
 - [Gajendra Pratap Singh](https://gigsnshows.com/artists/gajendra-pratap-singh/)
 - [Gajendra Verma](https://gigsnshows.com/artists/gajendra-verma/)
 - [Gaurav Baisla](https://gigsnshows.com/artists/gaurav-baisla/)
-- [Gaurav Kapoor](https://gigsnshows.com/artists/gaurav-kapoor/)
 - [Gautham Govindan](https://gigsnshows.com/artists/gautham-govindan/)
 - [Gurdas Maan](https://gigsnshows.com/artists/gurdas-maan/)
 - [Harshit Mahawar](https://gigsnshows.com/artists/harshit-mahawar/)
 - [Hector Oaks](https://gigsnshows.com/artists/hector-oaks/)
+- [Hentai Cameraman](https://gigsnshows.com/artists/hentai-cameraman/)
+- [Inder Sahani](https://gigsnshows.com/artists/inder-sahani/)
 
 ## Tours playing several cities
 
@@ -137,4 +137,4 @@
 - [Comedy Square](https://gigsnshows.com/bengaluru/venue/comedy-square/)
 - [Cubbon Park](https://gigsnshows.com/bengaluru/venue/cubbon-park/)
 - [Dnd The Venue](https://gigsnshows.com/bengaluru/venue/dnd-the-venue/)
-- [Hyatt Centric Mg Road](https://gigsnshows.com/bengaluru/venue/hyatt-centric-mg-road/)
+- [Hod House Of Dopamine Brewery Llp](https://gigsnshows.com/bengaluru/venue/hod-house-of-dopamine-brewery-llp/)
