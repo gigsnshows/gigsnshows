@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,269 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, Prithvi Theatre, NMACC, The Piano Man and G5A Warehouse, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-27).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,289 upcoming shows in 66 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, Khar Comedy Club, NMACC, The Piano Man and G5A Warehouse, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-27).
 
 ## How to use this site
 
@@ -19,21 +19,21 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 439 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 361 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 340 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 176 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 141 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 117 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 91 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 436 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 367 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 346 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 179 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 145 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 116 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 97 upcoming shows
 - [Chennai](https://gigsnshows.com/chennai/): 90 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 80 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 81 upcoming shows
 - [Jaipur](https://gigsnshows.com/jaipur/): 45 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 42 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 41 upcoming shows
 - [Lucknow](https://gigsnshows.com/lucknow/): 33 upcoming shows
+- [Vadodara](https://gigsnshows.com/vadodara/): 27 upcoming shows
 - [Guwahati](https://gigsnshows.com/guwahati/): 26 upcoming shows
-- [Surat](https://gigsnshows.com/surat/): 26 upcoming shows
-- [Vadodara](https://gigsnshows.com/vadodara/): 26 upcoming shows
+- [Dehradun](https://gigsnshows.com/dehradun/): 24 upcoming shows
 
 ## What is on now (rebuilt every day)
 
@@ -84,6 +84,7 @@
 - [Arvind Sunder](https://gigsnshows.com/artists/arvind-sunder/)
 - [Arz Kiya Hai](https://gigsnshows.com/artists/arz-kiya-hai/)
 - [Ashish Malhotra](https://gigsnshows.com/artists/ashish-malhotra/)
+- [Ashish Vidyarthi](https://gigsnshows.com/artists/ashish-vidyarthi/)
 - [Ashutosh Jamadagni](https://gigsnshows.com/artists/ashutosh-jamadagni/)
 - [Atul Khatri](https://gigsnshows.com/artists/atul-khatri/)
 - [Balraj Syal](https://gigsnshows.com/artists/balraj-syal/)
@@ -102,7 +103,6 @@
 - [Gurdas Maan](https://gigsnshows.com/artists/gurdas-maan/)
 - [Harshit Mahawar](https://gigsnshows.com/artists/harshit-mahawar/)
 - [Hector Oaks](https://gigsnshows.com/artists/hector-oaks/)
-- [Hentai Cameraman](https://gigsnshows.com/artists/hentai-cameraman/)
 
 ## Tours playing several cities
 
@@ -133,9 +133,9 @@
 - [Mishty Studio](https://gigsnshows.com/ahmedabad/venue/mishty-studio/)
 - [Shreyas Foundation](https://gigsnshows.com/ahmedabad/venue/shreyas-foundation/)
 - [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
+- [Sant Eknath Rang Mandir](https://gigsnshows.com/aurangabad/venue/sant-eknath-rang-mandir/)
 - [Airtel Arena](https://gigsnshows.com/bengaluru/venue/airtel-arena/)
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
 - [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
 - [Comedy Square](https://gigsnshows.com/bengaluru/venue/comedy-square/)
-- [Cubbon Park](https://gigsnshows.com/bengaluru/venue/cubbon-park/)
