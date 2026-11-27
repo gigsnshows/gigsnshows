@@ -1,6 +1,6 @@
 # gigsnshows
 
-> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,337 upcoming shows in 67 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Khar Comedy Club, Prithvi Theatre, NMACC, The Piano Man and G5A Warehouse, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-27).
+> gigsnshows (https://gigsnshows.com/) is a free guide to live music, stand-up comedy, theatre and sports events in India. It lists 2,315 upcoming shows in 67 cities, gathered from BookMyShow, District, Skillbox, thumpN, NCPA, Prithvi Theatre, Khar Comedy Club, NMACC, The Piano Man and G5A Warehouse, and links each one to the site that sells tickets. gigsnshows does not sell tickets. Listings are refreshed several times a day (last built 2026-11-27).
 
 ## How to use this site
 
@@ -19,20 +19,20 @@
 
 ## Biggest cities
 
-- [Mumbai](https://gigsnshows.com/mumbai/): 445 upcoming shows
-- [Delhi](https://gigsnshows.com/delhi/): 371 upcoming shows
-- [Bengaluru](https://gigsnshows.com/bengaluru/): 349 upcoming shows
-- [Pune](https://gigsnshows.com/pune/): 185 upcoming shows
-- [Hyderabad](https://gigsnshows.com/hyderabad/): 149 upcoming shows
-- [Kolkata](https://gigsnshows.com/kolkata/): 111 upcoming shows
-- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 98 upcoming shows
-- [Chennai](https://gigsnshows.com/chennai/): 86 upcoming shows
-- [Goa](https://gigsnshows.com/goa/): 79 upcoming shows
-- [Jaipur](https://gigsnshows.com/jaipur/): 50 upcoming shows
-- [Chandigarh](https://gigsnshows.com/chandigarh/): 44 upcoming shows
-- [Lucknow](https://gigsnshows.com/lucknow/): 37 upcoming shows
+- [Mumbai](https://gigsnshows.com/mumbai/): 443 upcoming shows
+- [Delhi](https://gigsnshows.com/delhi/): 368 upcoming shows
+- [Bengaluru](https://gigsnshows.com/bengaluru/): 345 upcoming shows
+- [Pune](https://gigsnshows.com/pune/): 183 upcoming shows
+- [Hyderabad](https://gigsnshows.com/hyderabad/): 143 upcoming shows
+- [Kolkata](https://gigsnshows.com/kolkata/): 114 upcoming shows
+- [Ahmedabad](https://gigsnshows.com/ahmedabad/): 99 upcoming shows
+- [Chennai](https://gigsnshows.com/chennai/): 88 upcoming shows
+- [Goa](https://gigsnshows.com/goa/): 77 upcoming shows
+- [Jaipur](https://gigsnshows.com/jaipur/): 48 upcoming shows
+- [Chandigarh](https://gigsnshows.com/chandigarh/): 45 upcoming shows
+- [Lucknow](https://gigsnshows.com/lucknow/): 35 upcoming shows
+- [Vadodara](https://gigsnshows.com/vadodara/): 28 upcoming shows
 - [Guwahati](https://gigsnshows.com/guwahati/): 27 upcoming shows
-- [Vadodara](https://gigsnshows.com/vadodara/): 27 upcoming shows
 - [Surat](https://gigsnshows.com/surat/): 25 upcoming shows
 
 ## What is on now (rebuilt every day)
@@ -63,10 +63,10 @@
 ## Artists with several shows listed
 
 - [All artists](https://gigsnshows.com/artists/)
-- [Aaditya Kulshreshth](https://gigsnshows.com/artists/aaditya-kulshreshth/)
 - [Aakash Mehta](https://gigsnshows.com/artists/aakash-mehta/)
 - [Aaron Hibell](https://gigsnshows.com/artists/aaron-hibell/)
 - [Abijit Ganguly](https://gigsnshows.com/artists/abijit-ganguly/)
+- [Aditya Gadhvi](https://gigsnshows.com/artists/aditya-gadhvi/)
 - [Aditya Rikhari](https://gigsnshows.com/artists/aditya-rikhari/)
 - [Aditya Sawant](https://gigsnshows.com/artists/aditya-sawant/)
 - [Akaash Singh](https://gigsnshows.com/artists/akaash-singh/)
@@ -84,6 +84,7 @@
 - [Arvind Sunder](https://gigsnshows.com/artists/arvind-sunder/)
 - [Arz Kiya Hai](https://gigsnshows.com/artists/arz-kiya-hai/)
 - [Ashish Malhotra](https://gigsnshows.com/artists/ashish-malhotra/)
+- [Ashish Vidyarthi](https://gigsnshows.com/artists/ashish-vidyarthi/)
 - [Ashutosh Jamadagni](https://gigsnshows.com/artists/ashutosh-jamadagni/)
 - [Atul Khatri](https://gigsnshows.com/artists/atul-khatri/)
 - [Avinash Agarwal](https://gigsnshows.com/artists/avinash-agarwal/)
@@ -102,7 +103,6 @@
 - [Gaurav Kapoor](https://gigsnshows.com/artists/gaurav-kapoor/)
 - [Gautham Govindan](https://gigsnshows.com/artists/gautham-govindan/)
 - [Gurdas Maan](https://gigsnshows.com/artists/gurdas-maan/)
-- [Harshit Mahawar](https://gigsnshows.com/artists/harshit-mahawar/)
 
 ## Tours playing several cities
 
@@ -119,8 +119,8 @@
 - [Closer A Stand Up Comedy Show By Vivek Kapruwan](https://gigsnshows.com/tour/closer-a-stand-up-comedy-show-by-vivek-kapruwan/)
 - [Crowd Ctrl Ft Aakash Mehta](https://gigsnshows.com/tour/crowd-ctrl-ft-aakash-mehta/)
 - [Darshan Raval S Love Letters India Tour](https://gigsnshows.com/tour/darshan-raval-s-love-letters-india-tour/)
-- [Daru Badnaam A Comedy Show By Inder Sahani](https://gigsnshows.com/tour/daru-badnaam-a-comedy-show-by-inder-sahani/)
 - [Diy Sock Puppet](https://gigsnshows.com/tour/diy-sock-puppet/)
+- [Eka Lagnachi Pudhchi Gosht](https://gigsnshows.com/tour/eka-lagnachi-pudhchi-gosht/)
 
 ## Venues
 
@@ -129,13 +129,13 @@
 - [Doozer Club](https://gigsnshows.com/ahmedabad/venue/doozer-club/)
 - [Hk Hall](https://gigsnshows.com/ahmedabad/venue/hk-hall/)
 - [Kliya Cafe](https://gigsnshows.com/ahmedabad/venue/kliya-cafe/)
-- [Mehdi Nawaz Jung Hall](https://gigsnshows.com/ahmedabad/venue/mehdi-nawaz-jung-hall/)
 - [Mishty Studio](https://gigsnshows.com/ahmedabad/venue/mishty-studio/)
+- [Natarani Amphitheatre](https://gigsnshows.com/ahmedabad/venue/natarani-amphitheatre/)
 - [Shreyas Foundation](https://gigsnshows.com/ahmedabad/venue/shreyas-foundation/)
 - [Thakorbhai Desai Hall](https://gigsnshows.com/ahmedabad/venue/thakorbhai-desai-hall/)
+- [Sant Eknath Rang Mandir](https://gigsnshows.com/aurangabad/venue/sant-eknath-rang-mandir/)
 - [Airtel Arena](https://gigsnshows.com/bengaluru/venue/airtel-arena/)
 - [Bhartiya Mall Of Bengaluru](https://gigsnshows.com/bengaluru/venue/bhartiya-mall-of-bengaluru/)
 - [Budbee Restobar 104](https://gigsnshows.com/bengaluru/venue/budbee-restobar-104/)
 - [Chowdiah Memorial Hall](https://gigsnshows.com/bengaluru/venue/chowdiah-memorial-hall/)
 - [Comedy Square](https://gigsnshows.com/bengaluru/venue/comedy-square/)
-- [Dnd The Venue](https://gigsnshows.com/bengaluru/venue/dnd-the-venue/)
